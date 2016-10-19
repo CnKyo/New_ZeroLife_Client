@@ -21,7 +21,61 @@
 @property(nonatomic,strong) NSString            *errMsg;//错误信息输出
 @property(nonatomic,assign) int                 page;
 
+/**
+ 腾讯统计标签
+ */
+@property(nonatomic,strong) NSString            *mPageName;
 
+
+/**
+ 跳转到某个controller
+ 
+ @param vc vc
+ */
+-(void)pushViewController:(UIViewController *)vc;
+/**
+ 返回上个controller
+ */
+-(void)popViewController;
+/**
+ 返回上上个controller
+ */
+-(void)popViewController_2;
+/**
+ *  返回上上上个controller
+ */
+- (void)popViewController_3;
+/**
+ *  想返回哪几个上级controller
+ *
+ *  @param whatYouWant 上级页面个数
+ */
+- (void)popViewController:(int)whatYouWant;
+
+
+
+/**
+ *  模态跳转方法
+ *
+ *  @param vc 跳转的viewcontroller
+ */
+- (void)presentModalViewController:(UIViewController *)vc;
+/**
+ *  模态跳转返回上一级
+ */
+- (void)dismissViewController;
+/**
+ *  模态跳转返回上二级
+ */
+- (void)dismissViewController_2;
+/**
+ *  模态跳转返回上三级
+ */
+- (void)dismissViewController_3;
+/**
+ *  模态跳转返回上n级
+ */
+- (void)dismissViewController:(int)whatYouWant;
 
 /**
  *  开始顶部刷新

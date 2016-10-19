@@ -19,5 +19,8 @@ target 'ZeroLifeClient' do
   pod 'LKDBHelper'
   pod 'MJExtension'
   pod 'MJRefresh'
+  pod 'MTA'
+  pod 'MTASdk', :git => 'https://github.com/smalllixin/QQ-MTA-SDK.git'
+
 
 end

@@ -7,7 +7,8 @@
 //
 
 #import "CustomTVC.h"
-
+#import "MTA.h"
+#import "MTAConfig.h"
 @interface CustomTVC ()
 
 @end
@@ -53,16 +54,134 @@
 {
     [super viewWillAppear:animated];
     
+    if (!_mPageName) {
+        MLLog(@"腾讯统计标签:%@",[self description]);
+
+    }
+    [MTA trackPageViewBegin:self.mPageName];
+    
     if (self.tableArr.count == 0 && _beginHeaderRereshingWhenViewWillAppear==YES && self.tableView.mj_header!=nil)
         [self performSelector:@selector(beginHeaderRereshing) withObject:nil afterDelay:0.1];
 }
 
-
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    [MTA trackPageViewEnd:self.mPageName];
+    
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+-(void)popViewController
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+-(void)popViewController_2
+{
+    NSMutableArray* vcs = [[NSMutableArray alloc]initWithArray:self.navigationController.viewControllers];
+    if( vcs.count > 2 )
+    {
+        [vcs removeLastObject];
+        [vcs removeLastObject];
+        [self.navigationController setViewControllers:vcs   animated:YES];
+    }
+    else
+        [self popViewController];
+}
+-(void)popViewController_3
+{
+    NSMutableArray* vcs = [[NSMutableArray alloc]initWithArray:self.navigationController.viewControllers];
+    if( vcs.count > 2 )
+    {
+        [vcs removeLastObject];
+        [vcs removeLastObject];
+        [vcs removeLastObject];
+        [self.navigationController setViewControllers:vcs   animated:YES];
+    }
+    else
+        [self popViewController];
+}
+- (void)popViewController:(int)whatYouWant{
+    NSMutableArray* vcs = [[NSMutableArray alloc]initWithArray:self.navigationController.viewControllers];
+    
+    if (whatYouWant == 1) {
+        [self popViewController];
+    }else if (whatYouWant == 2){
+        [self popViewController_2];
+    }else if (whatYouWant == 3){
+        [self popViewController_3];
+    }else if (whatYouWant == 4){
+        [vcs removeLastObject];
+        [vcs removeLastObject];
+        [vcs removeLastObject];
+        [vcs removeLastObject];
+        [self.navigationController setViewControllers:vcs   animated:YES];
+    }
+}
 
+/**
+ 跳转到某个controller
+
+ @param vc vc
+ */
+-(void)pushViewController:(UIViewController *)vc{
+    if( [vc isKindOfClass:[CustomTVC class] ] )
+    {
+        
+            [self.navigationController pushViewController:vc animated:YES];
+    }
+    else
+        
+        [self.navigationController pushViewController:vc animated:YES];
+}
+
+/**
+ 模态跳转下一级界面
+
+ @param vc vc
+ */
+- (void)presentModalViewController:(UIViewController *)vc{
+    if( [vc isKindOfClass:[CustomTVC class] ] )
+    {
+   
+            
+            [self presentViewController:vc animated:YES completion:nil];
+    }
+    else
+        
+        [self presentViewController:vc animated:YES completion:nil];
+}
+/**
+ *  模态跳转返回上一级
+ */
+- (void)dismissViewController{
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+}
+/**
+ *  模态跳转返回上二级
+ */
+- (void)dismissViewController_2{
+    self.presentingViewController.view.alpha = 0;
+    [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+}
+/**
+ *  模态跳转返回上三级
+ */
+- (void)dismissViewController_3{
+    self.presentingViewController.view.alpha = 0;
+    [self.presentingViewController.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+}
+/**
+ *  模态跳转返回上n级
+ */
+- (void)dismissViewController:(int)whatYouWant{
+    self.presentingViewController.view.alpha = 0;
+    [self.presentingViewController.presentingViewController.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+}
 /*
 #pragma mark - Navigation
 
