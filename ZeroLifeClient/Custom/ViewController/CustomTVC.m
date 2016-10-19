@@ -33,7 +33,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    
+    self.view.backgroundColor = [UIColor colorWithRed:0.99 green:0.99 blue:0.99 alpha:1.00];
     
 }
 
@@ -45,7 +47,7 @@
         MLLog(@"腾讯统计标签:%@",[self description]);
 
     }
-    [MTA trackPageViewBegin:self.mPageName];
+    [MTA trackPageViewBegin:self.navigationItem.title];
     
     if (self.tableArr.count == 0 && _beginHeaderRereshingWhenViewWillAppear==YES && self.tableView.mj_header!=nil)
         [self performSelector:@selector(beginHeaderRereshing) withObject:nil afterDelay:0.1];
@@ -55,7 +57,7 @@
 {
     [super viewWillDisappear:animated];
     
-    [MTA trackPageViewEnd:self.mPageName];
+    [MTA trackPageViewEnd:self.navigationItem.title];
     
 }
 
