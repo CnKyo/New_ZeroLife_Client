@@ -21,6 +21,13 @@
 @property(nonatomic,strong) NSString            *errMsg;//错误信息输出
 @property(nonatomic,assign) int                 page;
 
+
+/**
+  初始化tableview
+ */
+-(void)addTableView;
+
+
 /**
  腾讯统计标签
  */

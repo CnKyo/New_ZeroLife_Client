@@ -29,25 +29,12 @@
 {
     [super loadView];
     
-    if (self.tableView==nil ) {
-        self.tableView = [[UITableView alloc] initWithFrame:CGRectZero];
-        self.tableView.delegate = self;
-        self.tableView.dataSource = self;
-        [self.view addSubview:self.tableView];
-        self.tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-        self.tableView.tableFooterView = [[UIView alloc] init];
-        
-        [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self.view);
-            make.height.equalTo(self.view.mas_height);
-        }];
-    }
 }
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -71,9 +58,28 @@
     [MTA trackPageViewEnd:self.mPageName];
     
 }
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (void)addTableView{
+    
+    if (self.tableView==nil ) {
+        self.tableView = [[UITableView alloc] initWithFrame:CGRectZero];
+        self.tableView.delegate = self;
+        self.tableView.dataSource = self;
+        [self.view addSubview:self.tableView];
+        self.tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+        self.tableView.tableFooterView = [[UIView alloc] init];
+        
+        [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(self.view);
+            make.height.equalTo(self.view.mas_height);
+        }];
+    }
+    
+    
 }
 -(void)popViewController
 {
