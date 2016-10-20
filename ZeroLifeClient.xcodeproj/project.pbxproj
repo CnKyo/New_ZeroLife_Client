@@ -18,6 +18,7 @@
 		049D49211DB760F3005A1038 /* ZLHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 049D49201DB760F3005A1038 /* ZLHomeViewController.m */; };
 		049D49241DB76117005A1038 /* ZLPurseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 049D49231DB76117005A1038 /* ZLPurseViewController.m */; };
 		049D49271DB76123005A1038 /* ZLUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 049D49261DB76123005A1038 /* ZLUserViewController.m */; };
+		049D492C1DB76CC7005A1038 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 049D492B1DB76CC7005A1038 /* QuartzCore.framework */; };
 		92AF8AA63E2B8C882D0429B1 /* libPods-ZeroLifeClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 339DEB89053AF616C6AD0FF3 /* libPods-ZeroLifeClient.a */; };
 		DFFAA7341DB744C5001CFBB5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFAA7331DB744C5001CFBB5 /* main.m */; };
 		DFFAA7371DB744C5001CFBB5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFAA7361DB744C5001CFBB5 /* AppDelegate.m */; };
@@ -49,6 +50,7 @@
 		049D49231DB76117005A1038 /* ZLPurseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZLPurseViewController.m; path = ZeroLifeClient/ZLPurseViewController.m; sourceTree = SOURCE_ROOT; };
 		049D49251DB76123005A1038 /* ZLUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZLUserViewController.h; path = ZeroLifeClient/ZLUserViewController.h; sourceTree = SOURCE_ROOT; };
 		049D49261DB76123005A1038 /* ZLUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZLUserViewController.m; path = ZeroLifeClient/ZLUserViewController.m; sourceTree = SOURCE_ROOT; };
+		049D492B1DB76CC7005A1038 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		26781393B9810BF63F686EF1 /* Pods-ZeroLifeClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZeroLifeClient.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZeroLifeClient/Pods-ZeroLifeClient.release.xcconfig"; sourceTree = "<group>"; };
 		339DEB89053AF616C6AD0FF3 /* libPods-ZeroLifeClient.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZeroLifeClient.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFF2BA083AFD4D1DD56A8848 /* Pods-ZeroLifeClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZeroLifeClient.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZeroLifeClient/Pods-ZeroLifeClient.debug.xcconfig"; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				049D492C1DB76CC7005A1038 /* QuartzCore.framework in Frameworks */,
 				049D49101DB75CEF005A1038 /* AdSupport.framework in Frameworks */,
 				049D490E1DB75CE9005A1038 /* CoreTelephony.framework in Frameworks */,
 				049D490C1DB75CE0005A1038 /* SystemConfiguration.framework in Frameworks */,
@@ -104,6 +107,7 @@
 		12B582CBD65385C342FBEFDA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				049D492B1DB76CC7005A1038 /* QuartzCore.framework */,
 				049D490F1DB75CEF005A1038 /* AdSupport.framework */,
 				049D490D1DB75CE9005A1038 /* CoreTelephony.framework */,
 				049D490B1DB75CE0005A1038 /* SystemConfiguration.framework */,
