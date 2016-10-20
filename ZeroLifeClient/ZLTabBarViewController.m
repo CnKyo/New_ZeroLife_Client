@@ -12,6 +12,7 @@
 #import "ZLUserViewController.h"
 #import "ZLPurseViewController.h"
 #import "ZLCookViewController.h"
+#import <QuartzCore/QuartzCore.h>
 @interface ZLTabBarViewController ()
 
 @end
@@ -59,6 +60,10 @@
 
 - (void)setUpItemTitleTextAttrs
 {
+    //设置tabbar边缘线
+    self.tabBar.layer.borderWidth = 0.50;
+    self.tabBar.layer.borderColor = [UIColor colorWithRed:0.75 green:0.75 blue:0.75 alpha:0.3].CGColor;
+    
     //设置normal状态下的文字属性
     NSMutableDictionary *normalAttrs = [NSMutableDictionary dictionary];
     normalAttrs[NSFontAttributeName] = [UIFont systemFontOfSize:13];
