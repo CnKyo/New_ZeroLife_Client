@@ -16,7 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = self.mPageName =  @"厨房";
+    self.title =  @"厨房";
 
     // Do any additional setup after loading the view.
 }

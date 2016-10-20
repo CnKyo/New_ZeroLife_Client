@@ -6,14 +6,14 @@
 //  Copyright © 2016年 瞿伦平. All rights reserved.
 //
 
-#import "CustomTVC.h"
+#import "CustomVC.h"
 #import "MTA.h"
 #import "MTAConfig.h"
-@interface CustomTVC ()
+@interface CustomVC ()
 
 @end
 
-@implementation CustomTVC
+@implementation CustomVC
 
 - (id)init
 {
@@ -43,10 +43,6 @@
 {
     [super viewWillAppear:animated];
     
-    if (!_mPageName) {
-        MLLog(@"腾讯统计标签:%@",[self description]);
-
-    }
     [MTA trackPageViewBegin:self.navigationItem.title];
     
     if (self.tableArr.count == 0 && _beginHeaderRereshingWhenViewWillAppear==YES && self.tableView.mj_header!=nil)
@@ -136,7 +132,7 @@
  @param vc vc
  */
 -(void)pushViewController:(UIViewController *)vc{
-    if( [vc isKindOfClass:[CustomTVC class] ] )
+    if( [vc isKindOfClass:[CustomVC class] ] )
     {
         
             [self.navigationController pushViewController:vc animated:YES];
@@ -152,7 +148,7 @@
  @param vc vc
  */
 - (void)presentModalViewController:(UIViewController *)vc{
-    if( [vc isKindOfClass:[CustomTVC class] ] )
+    if( [vc isKindOfClass:[CustomVC class] ] )
     {
    
             
@@ -201,12 +197,9 @@
 */
 
 
-/**
- *  开始顶部刷新
- *
- *  @param have yes or no
- */
--(void)setHaveHeader:(BOOL)have
+
+
+-(void)setTableViewHaveHeader
 {
     __weak typeof(self) weakSelf = self;
     MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -219,12 +212,7 @@
     [header setTitle:@"" forState:MJRefreshStateRefreshing];
 }
 
-/**
- *  是否开始底部刷新
- *
- *  @param haveFooter yes or no
- */
--(void)setHaveFooter:(BOOL)haveFooter
+-(void)setTableViewHaveFooter
 {
     __weak typeof(self) weakSelf = self;
     MJRefreshAutoNormalFooter *footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
@@ -237,17 +225,10 @@
     self.tableView.mj_footer.hidden = YES;
 }
 
-
--(void)setTableViewHaveHeader
-{
-    [self setHaveHeader:YES];
-    [self setHaveFooter:YES];
-}
-
 -(void)setTableViewHaveHeaderFooter
 {
-    [self setHaveHeader:YES];
-    [self setHaveFooter:YES];
+    [self setTableViewHaveHeader];
+    [self setTableViewHaveFooter];
 }
 
 #pragma mark -
