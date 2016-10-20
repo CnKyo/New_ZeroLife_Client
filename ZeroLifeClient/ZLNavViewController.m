@@ -20,6 +20,7 @@
      *  清空代理,默认用户的手势就是有效的
      */
     //    self.interactivePopGestureRecognizer.delegate = nil;
+    self.navigationBar.translucent = NO;
     self.interactivePopGestureRecognizer.delegate = self;
     self.navigationBar.barTintColor = [UIColor colorWithRed:0.55 green:0.75 blue:0.15 alpha:1.00];
     //设置导航栏文字
