@@ -6,8 +6,8 @@
 //  Copyright © 2016年 瞿伦平. All rights reserved.
 //
 
-#import "CustomTVC.h"
+#import "CustomVC.h"
 
-@interface ZLHomeViewController : CustomTVC
+@interface ZLHomeViewController : CustomVC
 
 @end

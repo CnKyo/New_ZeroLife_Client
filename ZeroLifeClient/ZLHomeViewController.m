@@ -7,6 +7,8 @@
 //
 
 #import "ZLHomeViewController.h"
+#import "ScrollModelVC.h"
+
 @interface ZLHomeViewController ()
 
 @end
@@ -16,7 +18,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"首页";
-
+    
+    ScrollModelVC *vc = [[ScrollModelVC alloc] init];
+    [self addChildViewController:vc];
+    [self.view addSubview:vc.view];
+    [vc.view mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(self.view);
+        make.top.equalTo(self.view.mas_top).offset(10);
+        make.height.equalTo(@200);
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
