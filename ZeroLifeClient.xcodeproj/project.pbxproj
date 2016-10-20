@@ -29,7 +29,7 @@
 		DFFAA7621DB744EF001CFBB5 /* APIObjectDefine.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFAA7571DB744EF001CFBB5 /* APIObjectDefine.m */; };
 		DFFAA7631DB744EF001CFBB5 /* UIView+AutoSize.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFAA75B1DB744EF001CFBB5 /* UIView+AutoSize.m */; };
 		DFFAA7641DB744EF001CFBB5 /* CustomScrollVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFAA75F1DB744EF001CFBB5 /* CustomScrollVC.m */; };
-		DFFAA7651DB744EF001CFBB5 /* CustomTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFAA7611DB744EF001CFBB5 /* CustomTVC.m */; };
+		DFFAA7651DB744EF001CFBB5 /* CustomVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFAA7611DB744EF001CFBB5 /* CustomVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,8 +71,8 @@
 		DFFAA75B1DB744EF001CFBB5 /* UIView+AutoSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+AutoSize.m"; sourceTree = "<group>"; };
 		DFFAA75E1DB744EF001CFBB5 /* CustomScrollVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomScrollVC.h; sourceTree = "<group>"; };
 		DFFAA75F1DB744EF001CFBB5 /* CustomScrollVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomScrollVC.m; sourceTree = "<group>"; };
-		DFFAA7601DB744EF001CFBB5 /* CustomTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTVC.h; sourceTree = "<group>"; };
-		DFFAA7611DB744EF001CFBB5 /* CustomTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTVC.m; sourceTree = "<group>"; };
+		DFFAA7601DB744EF001CFBB5 /* CustomVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomVC.h; sourceTree = "<group>"; };
+		DFFAA7611DB744EF001CFBB5 /* CustomVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -309,8 +309,8 @@
 			children = (
 				DFFAA75E1DB744EF001CFBB5 /* CustomScrollVC.h */,
 				DFFAA75F1DB744EF001CFBB5 /* CustomScrollVC.m */,
-				DFFAA7601DB744EF001CFBB5 /* CustomTVC.h */,
-				DFFAA7611DB744EF001CFBB5 /* CustomTVC.m */,
+				DFFAA7601DB744EF001CFBB5 /* CustomVC.h */,
+				DFFAA7611DB744EF001CFBB5 /* CustomVC.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -322,12 +322,15 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DFFAA7461DB744C5001CFBB5 /* Build configuration list for PBXNativeTarget "ZeroLifeClient" */;
 			buildPhases = (
+				F1EAC3C068B69D6E51F2E512 /* 📦 Check Pods Manifest.lock */,
 				50F0269C8C4AFB4E78A6B5D7 /* [CP] Check Pods Manifest.lock */,
 				DFFAA72B1DB744C5001CFBB5 /* Sources */,
 				DFFAA72C1DB744C5001CFBB5 /* Frameworks */,
 				DFFAA72D1DB744C5001CFBB5 /* Resources */,
 				BFA60780792CC5D9164A46E7 /* [CP] Embed Pods Frameworks */,
 				C6102D58DD01A614916C9396 /* [CP] Copy Pods Resources */,
+				C081A2D19A4A8F94205A70BD /* 📦 Embed Pods Frameworks */,
+				632BB4D806504739987A7C6F /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -401,6 +404,21 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		632BB4D806504739987A7C6F /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZeroLifeClient/Pods-ZeroLifeClient-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		BFA60780792CC5D9164A46E7 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -409,6 +427,21 @@
 			inputPaths = (
 			);
 			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZeroLifeClient/Pods-ZeroLifeClient-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C081A2D19A4A8F94205A70BD /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -431,6 +464,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZeroLifeClient/Pods-ZeroLifeClient-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		F1EAC3C068B69D6E51F2E512 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -447,7 +495,7 @@
 				049D49241DB76117005A1038 /* ZLPurseViewController.m in Sources */,
 				049D491E1DB760E3005A1038 /* ZLCookViewController.m in Sources */,
 				DFFAA7371DB744C5001CFBB5 /* AppDelegate.m in Sources */,
-				DFFAA7651DB744EF001CFBB5 /* CustomTVC.m in Sources */,
+				DFFAA7651DB744EF001CFBB5 /* CustomVC.m in Sources */,
 				DFFAA7341DB744C5001CFBB5 /* main.m in Sources */,
 				049D49271DB76123005A1038 /* ZLUserViewController.m in Sources */,
 				049D49211DB760F3005A1038 /* ZLHomeViewController.m in Sources */,

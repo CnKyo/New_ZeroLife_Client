@@ -12,7 +12,7 @@
 #import <MJRefresh/MJRefresh.h>
 #import "APIObjectDefine.h"
 
-@interface CustomTVC : UIViewController<UITableViewDataSource, UITableViewDelegate>
+@interface CustomVC : UIViewController<UITableViewDataSource, UITableViewDelegate>
 
 @property(nonatomic,assign) BOOL                beginHeaderRereshingWhenViewWillAppear;
 @property(nonatomic,assign) BOOL				tableIsReloading;
@@ -28,10 +28,10 @@
 -(void)addTableView;
 
 
-/**
- 腾讯统计标签
- */
-@property(nonatomic,strong) NSString            *mPageName;
+///**
+// 腾讯统计标签
+// */
+//@property(nonatomic,strong) NSString            *mPageName;
 
 
 /**
@@ -84,23 +84,19 @@
  */
 - (void)dismissViewController:(int)whatYouWant;
 
-/**
- *  开始顶部刷新
- *
- *  @param have yes or no
- */
--(void)setHaveHeader:(BOOL)have;
+
 
 
 /**
- *  是否开始底部刷新
+ *  添加顶部刷新
  *
- *  @param haveFooter yes or no
  */
--(void)setHaveFooter:(BOOL)haveFooter;
-
-
 -(void)setTableViewHaveHeader;
+
+/**
+ *  添加顶部和底部刷新
+ *
+ */
 -(void)setTableViewHaveHeaderFooter;
 
 
