@@ -13,4 +13,9 @@
 
 @interface ScrollModelVC : CustomScrollVC
 
+/**
+ 数据源
+ */
+@property (strong,nonatomic) NSArray *mDataSource;
+
 @end

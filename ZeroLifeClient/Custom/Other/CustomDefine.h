@@ -28,6 +28,7 @@
 #define NumberWithFloat(i)       [NSNumber numberWithFloat:i]
 #define NumberWithInt(i)       [NSNumber numberWithInt:i]
 #define NumberWithBool(i)       [NSNumber numberWithBool:i]
+#define navigationBarColor RGB(33, 192, 174)
 
 #define M_CO    [UIColor colorWithRed:0.56 green:0.77 blue:0.18 alpha:1.00]
 
@@ -67,6 +68,9 @@
 
 #define PerDeviceWidth(__NUMBER__)      (DEVICE_Width * __NUMBER__)
 #define PerDeviceHeight(__NUMBER__)     (DEVICE_Height * __NUMBER__)
+
+#define screen_width [UIScreen mainScreen].bounds.size.width
+#define screen_height [UIScreen mainScreen].bounds.size.height
 
 #ifdef DEBUG
 #define MLLog(format, ...) NSLog(format, ## __VA_ARGS__)
