@@ -20,6 +20,12 @@
 		049D49271DB76123005A1038 /* ZLUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 049D49261DB76123005A1038 /* ZLUserViewController.m */; };
 		049D492C1DB76CC7005A1038 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 049D492B1DB76CC7005A1038 /* QuartzCore.framework */; };
 		92AF8AA63E2B8C882D0429B1 /* libPods-ZeroLifeClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 339DEB89053AF616C6AD0FF3 /* libPods-ZeroLifeClient.a */; };
+		DF7D0A151DB9FFF0005A62A7 /* APIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = DF7D0A141DB9FFF0005A62A7 /* APIClient.m */; };
+		DF7D0A1C1DBA0019005A62A7 /* CookCategoryTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF7D0A171DBA0019005A62A7 /* CookCategoryTVC.m */; };
+		DF7D0A1D1DBA0019005A62A7 /* CookTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF7D0A191DBA0019005A62A7 /* CookTVC.m */; };
+		DF7D0A1E1DBA0019005A62A7 /* CookDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF7D0A1B1DBA0019005A62A7 /* CookDetailVC.m */; };
+		DF7D0A231DBA0023005A62A7 /* ImageTextTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF7D0A201DBA0023005A62A7 /* ImageTextTableViewCell.m */; };
+		DF7D0A241DBA0023005A62A7 /* TagsTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF7D0A221DBA0023005A62A7 /* TagsTableCell.m */; };
 		DFF634C11DB873D200B5C917 /* ScrollModelVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF634C01DB873D200B5C917 /* ScrollModelVC.m */; };
 		DFFAA7341DB744C5001CFBB5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFAA7331DB744C5001CFBB5 /* main.m */; };
 		DFFAA7371DB744C5001CFBB5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFAA7361DB744C5001CFBB5 /* AppDelegate.m */; };
@@ -54,6 +60,19 @@
 		049D492B1DB76CC7005A1038 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		26781393B9810BF63F686EF1 /* Pods-ZeroLifeClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZeroLifeClient.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZeroLifeClient/Pods-ZeroLifeClient.release.xcconfig"; sourceTree = "<group>"; };
 		339DEB89053AF616C6AD0FF3 /* libPods-ZeroLifeClient.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZeroLifeClient.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DF7D0A131DB9FFF0005A62A7 /* APIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIClient.h; sourceTree = "<group>"; };
+		DF7D0A141DB9FFF0005A62A7 /* APIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIClient.m; sourceTree = "<group>"; };
+		DF7D0A161DBA0019005A62A7 /* CookCategoryTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CookCategoryTVC.h; sourceTree = "<group>"; };
+		DF7D0A171DBA0019005A62A7 /* CookCategoryTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CookCategoryTVC.m; sourceTree = "<group>"; };
+		DF7D0A181DBA0019005A62A7 /* CookTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CookTVC.h; sourceTree = "<group>"; };
+		DF7D0A191DBA0019005A62A7 /* CookTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CookTVC.m; sourceTree = "<group>"; };
+		DF7D0A1A1DBA0019005A62A7 /* CookDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CookDetailVC.h; sourceTree = "<group>"; };
+		DF7D0A1B1DBA0019005A62A7 /* CookDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CookDetailVC.m; sourceTree = "<group>"; };
+		DF7D0A1F1DBA0023005A62A7 /* ImageTextTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageTextTableViewCell.h; sourceTree = "<group>"; };
+		DF7D0A201DBA0023005A62A7 /* ImageTextTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageTextTableViewCell.m; sourceTree = "<group>"; };
+		DF7D0A211DBA0023005A62A7 /* TagsTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagsTableCell.h; sourceTree = "<group>"; };
+		DF7D0A221DBA0023005A62A7 /* TagsTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagsTableCell.m; sourceTree = "<group>"; };
+		DF7D0A251DBA0BA0005A62A7 /* ZeroLifeClient-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZeroLifeClient-Prefix.pch"; sourceTree = "<group>"; };
 		DFF2BA083AFD4D1DD56A8848 /* Pods-ZeroLifeClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZeroLifeClient.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZeroLifeClient/Pods-ZeroLifeClient.debug.xcconfig"; sourceTree = "<group>"; };
 		DFF634BF1DB873D200B5C917 /* ScrollModelVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollModelVC.h; sourceTree = "<group>"; };
 		DFF634C01DB873D200B5C917 /* ScrollModelVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollModelVC.m; sourceTree = "<group>"; };
@@ -173,6 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				DFFAA7331DB744C5001CFBB5 /* main.m */,
+				DF7D0A251DBA0BA0005A62A7 /* ZeroLifeClient-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -193,6 +213,12 @@
 			children = (
 				049D491C1DB760E3005A1038 /* ZLCookViewController.h */,
 				049D491D1DB760E3005A1038 /* ZLCookViewController.m */,
+				DF7D0A161DBA0019005A62A7 /* CookCategoryTVC.h */,
+				DF7D0A171DBA0019005A62A7 /* CookCategoryTVC.m */,
+				DF7D0A181DBA0019005A62A7 /* CookTVC.h */,
+				DF7D0A191DBA0019005A62A7 /* CookTVC.m */,
+				DF7D0A1A1DBA0019005A62A7 /* CookDetailVC.h */,
+				DF7D0A1B1DBA0019005A62A7 /* CookDetailVC.m */,
 				DFFAA74B1DB744EF001CFBB5 /* View */,
 			);
 			path = Cook;
@@ -201,6 +227,10 @@
 		DFFAA74B1DB744EF001CFBB5 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				DF7D0A1F1DBA0023005A62A7 /* ImageTextTableViewCell.h */,
+				DF7D0A201DBA0023005A62A7 /* ImageTextTableViewCell.m */,
+				DF7D0A211DBA0023005A62A7 /* TagsTableCell.h */,
+				DF7D0A221DBA0023005A62A7 /* TagsTableCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -288,6 +318,8 @@
 			children = (
 				DFFAA7561DB744EF001CFBB5 /* APIObjectDefine.h */,
 				DFFAA7571DB744EF001CFBB5 /* APIObjectDefine.m */,
+				DF7D0A131DB9FFF0005A62A7 /* APIClient.h */,
+				DF7D0A141DB9FFF0005A62A7 /* APIClient.m */,
 			);
 			path = Api;
 			sourceTree = "<group>";
@@ -494,15 +526,21 @@
 				DFFAA7631DB744EF001CFBB5 /* UIView+AutoSize.m in Sources */,
 				DFF634C11DB873D200B5C917 /* ScrollModelVC.m in Sources */,
 				049D491A1DB76073005A1038 /* ZLTabBarViewController.m in Sources */,
+				DF7D0A1C1DBA0019005A62A7 /* CookCategoryTVC.m in Sources */,
 				DFFAA7621DB744EF001CFBB5 /* APIObjectDefine.m in Sources */,
 				049D49141DB76038005A1038 /* ZLNavViewController.m in Sources */,
+				DF7D0A231DBA0023005A62A7 /* ImageTextTableViewCell.m in Sources */,
+				DF7D0A1D1DBA0019005A62A7 /* CookTVC.m in Sources */,
 				DFFAA7641DB744EF001CFBB5 /* CustomScrollVC.m in Sources */,
 				DFFAA73A1DB744C5001CFBB5 /* ViewController.m in Sources */,
 				049D49241DB76117005A1038 /* ZLPurseViewController.m in Sources */,
 				049D491E1DB760E3005A1038 /* ZLCookViewController.m in Sources */,
 				DFFAA7371DB744C5001CFBB5 /* AppDelegate.m in Sources */,
+				DF7D0A151DB9FFF0005A62A7 /* APIClient.m in Sources */,
 				DFFAA7651DB744EF001CFBB5 /* CustomVC.m in Sources */,
 				DFFAA7341DB744C5001CFBB5 /* main.m in Sources */,
+				DF7D0A1E1DBA0019005A62A7 /* CookDetailVC.m in Sources */,
+				DF7D0A241DBA0023005A62A7 /* TagsTableCell.m in Sources */,
 				049D49271DB76123005A1038 /* ZLUserViewController.m in Sources */,
 				049D49211DB760F3005A1038 /* ZLHomeViewController.m in Sources */,
 			);
@@ -624,6 +662,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 5FKH22H2X2;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/ZeroLifeClient/ZeroLifeClient-Prefix.pch";
 				INFOPLIST_FILE = ZeroLifeClient/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.chaoer.ZeroLifeClient;
@@ -637,6 +676,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 5FKH22H2X2;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/ZeroLifeClient/ZeroLifeClient-Prefix.pch";
 				INFOPLIST_FILE = ZeroLifeClient/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.chaoer.ZeroLifeClient;

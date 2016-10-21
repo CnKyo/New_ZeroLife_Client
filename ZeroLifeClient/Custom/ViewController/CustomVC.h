@@ -132,10 +132,9 @@
 /**
  *  当接口取到数据时调用--把接口数据加入tabArr里面
  *
- *  @param tablearr 传入的列表对象数组
+ *  @param arr 传入的列表对象数组
  *  @param info     错误信息
  */
-//- (void)reloadWithTableArr:(NSArray *)arr info:(APIObject*) info;
-
+- (void)reloadWithTableArr:(NSArray *)arr info:(APIObject*) info;
 
 @end
