@@ -327,7 +327,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DFFAA7461DB744C5001CFBB5 /* Build configuration list for PBXNativeTarget "ZeroLifeClient" */;
 			buildPhases = (
-				F1EAC3C068B69D6E51F2E512 /* 📦 Check Pods Manifest.lock */,
+				F1EAC3C068B69D6E51F2E512 /* [CP] Check Pods Manifest.lock */,
 				50F0269C8C4AFB4E78A6B5D7 /* [CP] Check Pods Manifest.lock */,
 				DFFAA72B1DB744C5001CFBB5 /* Sources */,
 				DFFAA72C1DB744C5001CFBB5 /* Frameworks */,
@@ -469,14 +469,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZeroLifeClient/Pods-ZeroLifeClient-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		F1EAC3C068B69D6E51F2E512 /* 📦 Check Pods Manifest.lock */ = {
+		F1EAC3C068B69D6E51F2E512 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;

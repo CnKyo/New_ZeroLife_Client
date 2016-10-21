@@ -25,6 +25,7 @@ target 'ZeroLifeClient' do
   pod 'AMap2DMap'
   pod 'AMapSearch'
   pod 'AMapLocation'
+  pod 'SDWebImage'
 
 
 end
