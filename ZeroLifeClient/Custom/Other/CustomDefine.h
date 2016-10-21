@@ -139,14 +139,20 @@ typedef enum {
 #define TABLE_PAGE_ROW              20  //每次页面调用20条数据
 
 
-////define this constant if you want to use Masonry without the 'mas_' prefix
-//#define MAS_SHORTHAND
-////define this constant if you want to enable auto-boxing for default syntax
-//#define MAS_SHORTHAND_GLOBALS
 
 
 static int const RESP_STATUS_YES                  = 0;             //成功
 static int const RESP_STATUS_NO                   = 1;             //失败
+
+#define RETCODE_SUCCESS  200
+
+
+static NSString* const  kAFAppDotNetApiBaseURLString_test    = @"http://test.shop.hookwin.com";
+static NSString* const  kAFAppDotNetApiBaseURLString    = @"http://shop.hookwin.com";
+
+
+
+
 
 
 #endif /* CustomDefine_h */
