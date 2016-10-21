@@ -12,6 +12,7 @@
 #import "ZLUserViewController.h"
 #import "ZLPurseViewController.h"
 #import "ZLCookViewController.h"
+#import "CookCategoryTVC.h"
 #import <QuartzCore/QuartzCore.h>
 @interface ZLTabBarViewController ()
 
@@ -44,7 +45,7 @@
     
     [self setUpOneChildVc:[[ZLNavViewController alloc] initWithRootViewController:[[ZLPurseViewController alloc] init]]title:@"钱包" image:@"tabBar_friendTrends_icon" selectedImage:@"tabBar_friendTrends_click_icon"];
     
-    [self setUpOneChildVc:[[ZLNavViewController alloc] initWithRootViewController:[[ZLCookViewController alloc] init]]title:@"厨房" image:@"tabBar_friendTrends_icon" selectedImage:@"tabBar_friendTrends_click_icon"];
+    [self setUpOneChildVc:[[ZLNavViewController alloc] initWithRootViewController:[[CookCategoryTVC alloc] init]]title:@"厨房" image:@"tabBar_friendTrends_icon" selectedImage:@"tabBar_friendTrends_click_icon"];
  
     
 }

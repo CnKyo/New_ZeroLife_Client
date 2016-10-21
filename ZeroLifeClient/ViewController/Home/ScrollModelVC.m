@@ -9,9 +9,6 @@
 #import "ScrollModelVC.h"
 #import "APIObjectDefine.h"
 
-#define MAS_SHORTHAND
-//define this constant if you want to enable auto-boxing for default syntax
-#define MAS_SHORTHAND_GLOBALS
 
 @interface ScrollModelVC ()
 
