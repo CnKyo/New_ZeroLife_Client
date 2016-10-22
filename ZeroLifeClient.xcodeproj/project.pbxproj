@@ -12,14 +12,14 @@
 		049D490C1DB75CE0005A1038 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 049D490B1DB75CE0005A1038 /* SystemConfiguration.framework */; };
 		049D490E1DB75CE9005A1038 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 049D490D1DB75CE9005A1038 /* CoreTelephony.framework */; };
 		049D49101DB75CEF005A1038 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 049D490F1DB75CEF005A1038 /* AdSupport.framework */; };
-		049D49141DB76038005A1038 /* ZLNavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 049D49131DB76038005A1038 /* ZLNavViewController.m */; };
-		049D491A1DB76073005A1038 /* ZLTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 049D49191DB76073005A1038 /* ZLTabBarViewController.m */; };
-		049D491E1DB760E3005A1038 /* ZLCookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 049D491D1DB760E3005A1038 /* ZLCookViewController.m */; };
-		049D49211DB760F3005A1038 /* ZLHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 049D49201DB760F3005A1038 /* ZLHomeViewController.m */; };
-		049D49241DB76117005A1038 /* ZLPurseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 049D49231DB76117005A1038 /* ZLPurseViewController.m */; };
-		049D49271DB76123005A1038 /* ZLUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 049D49261DB76123005A1038 /* ZLUserViewController.m */; };
 		049D492C1DB76CC7005A1038 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 049D492B1DB76CC7005A1038 /* QuartzCore.framework */; };
 		92AF8AA63E2B8C882D0429B1 /* libPods-ZeroLifeClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 339DEB89053AF616C6AD0FF3 /* libPods-ZeroLifeClient.a */; };
+		DF55B4611DBAFE5800F89341 /* ZLCookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF55B45F1DBAFE5800F89341 /* ZLCookViewController.m */; };
+		DF55B4641DBAFE6000F89341 /* ZLHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF55B4621DBAFE6000F89341 /* ZLHomeViewController.m */; };
+		DF55B4671DBAFE6D00F89341 /* ZLPurseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF55B4651DBAFE6D00F89341 /* ZLPurseViewController.m */; };
+		DF55B46A1DBAFE7700F89341 /* ZLUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF55B4681DBAFE7700F89341 /* ZLUserViewController.m */; };
+		DF55B46F1DBAFEAC00F89341 /* ZLTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF55B46B1DBAFEAC00F89341 /* ZLTabBarViewController.m */; };
+		DF55B4701DBAFEAC00F89341 /* ZLNavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF55B46D1DBAFEAC00F89341 /* ZLNavViewController.m */; };
 		DF5C49031DBA1BEC006E4825 /* DCPicScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5C49001DBA1BEC006E4825 /* DCPicScrollView.m */; };
 		DF5C49041DBA1BEC006E4825 /* DCWebImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5C49021DBA1BEC006E4825 /* DCWebImageManager.m */; };
 		DF5C49071DBA1BF5006E4825 /* ZLHomeScrollerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5C49051DBA1BF5006E4825 /* ZLHomeScrollerTableViewCell.m */; };
@@ -49,21 +49,21 @@
 		049D490B1DB75CE0005A1038 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		049D490D1DB75CE9005A1038 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		049D490F1DB75CEF005A1038 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
-		049D49121DB76038005A1038 /* ZLNavViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLNavViewController.h; sourceTree = "<group>"; };
-		049D49131DB76038005A1038 /* ZLNavViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLNavViewController.m; sourceTree = "<group>"; };
-		049D49181DB76073005A1038 /* ZLTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLTabBarViewController.h; sourceTree = "<group>"; };
-		049D49191DB76073005A1038 /* ZLTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLTabBarViewController.m; sourceTree = "<group>"; };
-		049D491C1DB760E3005A1038 /* ZLCookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZLCookViewController.h; path = ZeroLifeClient/ZLCookViewController.h; sourceTree = SOURCE_ROOT; };
-		049D491D1DB760E3005A1038 /* ZLCookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZLCookViewController.m; path = ZeroLifeClient/ZLCookViewController.m; sourceTree = SOURCE_ROOT; };
-		049D491F1DB760F3005A1038 /* ZLHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZLHomeViewController.h; path = ZeroLifeClient/ZLHomeViewController.h; sourceTree = SOURCE_ROOT; };
-		049D49201DB760F3005A1038 /* ZLHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZLHomeViewController.m; path = ZeroLifeClient/ZLHomeViewController.m; sourceTree = SOURCE_ROOT; };
-		049D49221DB76117005A1038 /* ZLPurseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZLPurseViewController.h; path = ZeroLifeClient/ZLPurseViewController.h; sourceTree = SOURCE_ROOT; };
-		049D49231DB76117005A1038 /* ZLPurseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZLPurseViewController.m; path = ZeroLifeClient/ZLPurseViewController.m; sourceTree = SOURCE_ROOT; };
-		049D49251DB76123005A1038 /* ZLUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZLUserViewController.h; path = ZeroLifeClient/ZLUserViewController.h; sourceTree = SOURCE_ROOT; };
-		049D49261DB76123005A1038 /* ZLUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZLUserViewController.m; path = ZeroLifeClient/ZLUserViewController.m; sourceTree = SOURCE_ROOT; };
 		049D492B1DB76CC7005A1038 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		26781393B9810BF63F686EF1 /* Pods-ZeroLifeClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZeroLifeClient.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZeroLifeClient/Pods-ZeroLifeClient.release.xcconfig"; sourceTree = "<group>"; };
 		339DEB89053AF616C6AD0FF3 /* libPods-ZeroLifeClient.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZeroLifeClient.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DF55B45F1DBAFE5800F89341 /* ZLCookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLCookViewController.m; sourceTree = "<group>"; };
+		DF55B4601DBAFE5800F89341 /* ZLCookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLCookViewController.h; sourceTree = "<group>"; };
+		DF55B4621DBAFE6000F89341 /* ZLHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLHomeViewController.m; sourceTree = "<group>"; };
+		DF55B4631DBAFE6000F89341 /* ZLHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLHomeViewController.h; sourceTree = "<group>"; };
+		DF55B4651DBAFE6D00F89341 /* ZLPurseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPurseViewController.m; sourceTree = "<group>"; };
+		DF55B4661DBAFE6D00F89341 /* ZLPurseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPurseViewController.h; sourceTree = "<group>"; };
+		DF55B4681DBAFE7700F89341 /* ZLUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLUserViewController.m; sourceTree = "<group>"; };
+		DF55B4691DBAFE7700F89341 /* ZLUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLUserViewController.h; sourceTree = "<group>"; };
+		DF55B46B1DBAFEAC00F89341 /* ZLTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLTabBarViewController.m; sourceTree = "<group>"; };
+		DF55B46C1DBAFEAC00F89341 /* ZLTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLTabBarViewController.h; sourceTree = "<group>"; };
+		DF55B46D1DBAFEAC00F89341 /* ZLNavViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLNavViewController.m; sourceTree = "<group>"; };
+		DF55B46E1DBAFEAC00F89341 /* ZLNavViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLNavViewController.h; sourceTree = "<group>"; };
 		DF5C48FF1DBA1BEC006E4825 /* DCPicScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCPicScrollView.h; sourceTree = "<group>"; };
 		DF5C49001DBA1BEC006E4825 /* DCPicScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCPicScrollView.m; sourceTree = "<group>"; };
 		DF5C49011DBA1BEC006E4825 /* DCWebImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCWebImageManager.h; sourceTree = "<group>"; };
@@ -127,17 +127,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		049D49111DB76016005A1038 /* Main */ = {
-			isa = PBXGroup;
-			children = (
-				049D49121DB76038005A1038 /* ZLNavViewController.h */,
-				049D49131DB76038005A1038 /* ZLNavViewController.m */,
-				049D49181DB76073005A1038 /* ZLTabBarViewController.h */,
-				049D49191DB76073005A1038 /* ZLTabBarViewController.m */,
-			);
-			name = Main;
-			sourceTree = "<group>";
-		};
 		12B582CBD65385C342FBEFDA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -193,7 +182,6 @@
 		DFFAA7311DB744C5001CFBB5 /* ZeroLifeClient */ = {
 			isa = PBXGroup;
 			children = (
-				049D49111DB76016005A1038 /* Main */,
 				DFFAA7541DB744EF001CFBB5 /* Custom */,
 				DFFAA7491DB744EF001CFBB5 /* ViewController */,
 				DFFAA7521DB744EF001CFBB5 /* Resources */,
@@ -223,6 +211,10 @@
 		DFFAA7491DB744EF001CFBB5 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				DF55B46C1DBAFEAC00F89341 /* ZLTabBarViewController.h */,
+				DF55B46B1DBAFEAC00F89341 /* ZLTabBarViewController.m */,
+				DF55B46E1DBAFEAC00F89341 /* ZLNavViewController.h */,
+				DF55B46D1DBAFEAC00F89341 /* ZLNavViewController.m */,
 				DFFAA74A1DB744EF001CFBB5 /* Cook */,
 				DFFAA74C1DB744EF001CFBB5 /* Home */,
 				DFFAA74E1DB744EF001CFBB5 /* Purse */,
@@ -234,15 +226,15 @@
 		DFFAA74A1DB744EF001CFBB5 /* Cook */ = {
 			isa = PBXGroup;
 			children = (
-				049D491C1DB760E3005A1038 /* ZLCookViewController.h */,
-				049D491D1DB760E3005A1038 /* ZLCookViewController.m */,
+				DFFAA74B1DB744EF001CFBB5 /* View */,
+				DF55B4601DBAFE5800F89341 /* ZLCookViewController.h */,
+				DF55B45F1DBAFE5800F89341 /* ZLCookViewController.m */,
 				DF7D0A161DBA0019005A62A7 /* CookCategoryTVC.h */,
 				DF7D0A171DBA0019005A62A7 /* CookCategoryTVC.m */,
 				DF7D0A181DBA0019005A62A7 /* CookTVC.h */,
 				DF7D0A191DBA0019005A62A7 /* CookTVC.m */,
 				DF7D0A1A1DBA0019005A62A7 /* CookDetailVC.h */,
 				DF7D0A1B1DBA0019005A62A7 /* CookDetailVC.m */,
-				DFFAA74B1DB744EF001CFBB5 /* View */,
 			);
 			path = Cook;
 			sourceTree = "<group>";
@@ -262,9 +254,9 @@
 			isa = PBXGroup;
 			children = (
 				DF5C48FE1DBA1BEC006E4825 /* DCBannerView */,
-				049D491F1DB760F3005A1038 /* ZLHomeViewController.h */,
-				049D49201DB760F3005A1038 /* ZLHomeViewController.m */,
 				DFFAA74D1DB744EF001CFBB5 /* View */,
+				DF55B4631DBAFE6000F89341 /* ZLHomeViewController.h */,
+				DF55B4621DBAFE6000F89341 /* ZLHomeViewController.m */,
 				DFF634BF1DB873D200B5C917 /* ScrollModelVC.h */,
 				DFF634C01DB873D200B5C917 /* ScrollModelVC.m */,
 			);
@@ -285,8 +277,8 @@
 		DFFAA74E1DB744EF001CFBB5 /* Purse */ = {
 			isa = PBXGroup;
 			children = (
-				049D49221DB76117005A1038 /* ZLPurseViewController.h */,
-				049D49231DB76117005A1038 /* ZLPurseViewController.m */,
+				DF55B4661DBAFE6D00F89341 /* ZLPurseViewController.h */,
+				DF55B4651DBAFE6D00F89341 /* ZLPurseViewController.m */,
 				DFFAA74F1DB744EF001CFBB5 /* View */,
 			);
 			path = Purse;
@@ -302,8 +294,8 @@
 		DFFAA7501DB744EF001CFBB5 /* User */ = {
 			isa = PBXGroup;
 			children = (
-				049D49251DB76123005A1038 /* ZLUserViewController.h */,
-				049D49261DB76123005A1038 /* ZLUserViewController.m */,
+				DF55B4691DBAFE7700F89341 /* ZLUserViewController.h */,
+				DF55B4681DBAFE7700F89341 /* ZLUserViewController.m */,
 				DFFAA7511DB744EF001CFBB5 /* View */,
 			);
 			path = User;
@@ -569,28 +561,28 @@
 			files = (
 				DFFAA7631DB744EF001CFBB5 /* UIView+AutoSize.m in Sources */,
 				DFF634C11DB873D200B5C917 /* ScrollModelVC.m in Sources */,
-				049D491A1DB76073005A1038 /* ZLTabBarViewController.m in Sources */,
 				DF5C49031DBA1BEC006E4825 /* DCPicScrollView.m in Sources */,
 				DF5C490A1DBA1C20006E4825 /* ZLCustomBtnView.m in Sources */,
 				DF7D0A1C1DBA0019005A62A7 /* CookCategoryTVC.m in Sources */,
 				DFFAA7621DB744EF001CFBB5 /* APIObjectDefine.m in Sources */,
-				049D49141DB76038005A1038 /* ZLNavViewController.m in Sources */,
+				DF55B46F1DBAFEAC00F89341 /* ZLTabBarViewController.m in Sources */,
 				DF7D0A231DBA0023005A62A7 /* ImageTextTableViewCell.m in Sources */,
 				DF7D0A1D1DBA0019005A62A7 /* CookTVC.m in Sources */,
+				DF55B4671DBAFE6D00F89341 /* ZLPurseViewController.m in Sources */,
+				DF55B4701DBAFEAC00F89341 /* ZLNavViewController.m in Sources */,
+				DF55B4611DBAFE5800F89341 /* ZLCookViewController.m in Sources */,
 				DFFAA7641DB744EF001CFBB5 /* CustomScrollVC.m in Sources */,
 				DFFAA73A1DB744C5001CFBB5 /* ViewController.m in Sources */,
-				049D49241DB76117005A1038 /* ZLPurseViewController.m in Sources */,
 				DF5C49071DBA1BF5006E4825 /* ZLHomeScrollerTableViewCell.m in Sources */,
-				049D491E1DB760E3005A1038 /* ZLCookViewController.m in Sources */,
+				DF55B4641DBAFE6000F89341 /* ZLHomeViewController.m in Sources */,
 				DFFAA7371DB744C5001CFBB5 /* AppDelegate.m in Sources */,
 				DF7D0A151DB9FFF0005A62A7 /* APIClient.m in Sources */,
 				DFFAA7651DB744EF001CFBB5 /* CustomVC.m in Sources */,
 				DFFAA7341DB744C5001CFBB5 /* main.m in Sources */,
 				DF7D0A1E1DBA0019005A62A7 /* CookDetailVC.m in Sources */,
+				DF55B46A1DBAFE7700F89341 /* ZLUserViewController.m in Sources */,
 				DF7D0A241DBA0023005A62A7 /* TagsTableCell.m in Sources */,
 				DF5C49041DBA1BEC006E4825 /* DCWebImageManager.m in Sources */,
-				049D49271DB76123005A1038 /* ZLUserViewController.m in Sources */,
-				049D49211DB760F3005A1038 /* ZLHomeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
