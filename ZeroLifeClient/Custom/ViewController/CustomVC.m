@@ -21,6 +21,7 @@
     if (self) {
         self.page = 1;
         self.beginHeaderRereshingWhenViewWillAppear = YES;
+        self.tableArr = [NSMutableArray array];
     }
     return self;
 }
@@ -76,8 +77,6 @@
             make.height.equalTo(self.view.mas_height);
         }];
     }
-    
-    
 }
 -(void)popViewController
 {
