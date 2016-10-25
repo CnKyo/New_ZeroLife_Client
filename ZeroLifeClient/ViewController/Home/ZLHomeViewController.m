@@ -39,6 +39,8 @@
     NSString * url6 = @"http://imgtu.lishiquwen.com/20160919/590346287e6e45faf1070a07159314b7.jpg";
     NSArray *mArr = @[url1,url2,url3,url4,url5,url6];
     
+    
+    
     [mBannerArr addObjectsFromArray:mArr];
     
     NSDictionary *mTempDic = [NSMutableDictionary new];
