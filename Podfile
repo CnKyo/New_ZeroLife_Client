@@ -28,5 +28,5 @@ target 'ZeroLifeClient' do
   pod 'SDWebImage'
   pod 'SKTagView'
   pod 'HMSegmentedControl'
-
+  pod 'JPush'
 end
