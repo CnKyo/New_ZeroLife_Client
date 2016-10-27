@@ -13,6 +13,13 @@
 		049D490E1DB75CE9005A1038 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 049D490D1DB75CE9005A1038 /* CoreTelephony.framework */; };
 		049D49101DB75CEF005A1038 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 049D490F1DB75CEF005A1038 /* AdSupport.framework */; };
 		049D492C1DB76CC7005A1038 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 049D492B1DB76CC7005A1038 /* QuartzCore.framework */; };
+		04CBF0251DC19EFD0098BF52 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CBF0241DC19EFD0098BF52 /* CFNetwork.framework */; };
+		04CBF0271DC19F090098BF52 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CBF0261DC19F090098BF52 /* CoreFoundation.framework */; };
+		04CBF0291DC19F190098BF52 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CBF0281DC19F190098BF52 /* CoreGraphics.framework */; };
+		04CBF02B1DC19F220098BF52 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CBF02A1DC19F220098BF52 /* Foundation.framework */; };
+		04CBF02D1DC19F2A0098BF52 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CBF02C1DC19F2A0098BF52 /* UIKit.framework */; };
+		04CBF02F1DC19F310098BF52 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CBF02E1DC19F310098BF52 /* Security.framework */; };
+		04CBF0311DC19F430098BF52 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CBF0301DC19F430098BF52 /* UserNotifications.framework */; };
 		92AF8AA63E2B8C882D0429B1 /* libPods-ZeroLifeClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 339DEB89053AF616C6AD0FF3 /* libPods-ZeroLifeClient.a */; };
 		DF55B4611DBAFE5800F89341 /* ZLCookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF55B45F1DBAFE5800F89341 /* ZLCookViewController.m */; };
 		DF55B4641DBAFE6000F89341 /* ZLHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF55B4621DBAFE6000F89341 /* ZLHomeViewController.m */; };
@@ -50,6 +57,14 @@
 		049D490D1DB75CE9005A1038 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		049D490F1DB75CEF005A1038 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		049D492B1DB76CC7005A1038 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		04CBF0241DC19EFD0098BF52 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		04CBF0261DC19F090098BF52 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		04CBF0281DC19F190098BF52 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		04CBF02A1DC19F220098BF52 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		04CBF02C1DC19F2A0098BF52 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		04CBF02E1DC19F310098BF52 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		04CBF0301DC19F430098BF52 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		04CBF0321DC19F890098BF52 /* ZeroLifeClient.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ZeroLifeClient.entitlements; sourceTree = "<group>"; };
 		26781393B9810BF63F686EF1 /* Pods-ZeroLifeClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZeroLifeClient.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZeroLifeClient/Pods-ZeroLifeClient.release.xcconfig"; sourceTree = "<group>"; };
 		339DEB89053AF616C6AD0FF3 /* libPods-ZeroLifeClient.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZeroLifeClient.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF55B45F1DBAFE5800F89341 /* ZLCookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLCookViewController.m; sourceTree = "<group>"; };
@@ -114,6 +129,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04CBF0311DC19F430098BF52 /* UserNotifications.framework in Frameworks */,
+				04CBF02F1DC19F310098BF52 /* Security.framework in Frameworks */,
+				04CBF02D1DC19F2A0098BF52 /* UIKit.framework in Frameworks */,
+				04CBF02B1DC19F220098BF52 /* Foundation.framework in Frameworks */,
+				04CBF0291DC19F190098BF52 /* CoreGraphics.framework in Frameworks */,
+				04CBF0271DC19F090098BF52 /* CoreFoundation.framework in Frameworks */,
+				04CBF0251DC19EFD0098BF52 /* CFNetwork.framework in Frameworks */,
 				049D492C1DB76CC7005A1038 /* QuartzCore.framework in Frameworks */,
 				049D49101DB75CEF005A1038 /* AdSupport.framework in Frameworks */,
 				049D490E1DB75CE9005A1038 /* CoreTelephony.framework in Frameworks */,
@@ -130,6 +152,13 @@
 		12B582CBD65385C342FBEFDA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				04CBF0301DC19F430098BF52 /* UserNotifications.framework */,
+				04CBF02E1DC19F310098BF52 /* Security.framework */,
+				04CBF02C1DC19F2A0098BF52 /* UIKit.framework */,
+				04CBF02A1DC19F220098BF52 /* Foundation.framework */,
+				04CBF0281DC19F190098BF52 /* CoreGraphics.framework */,
+				04CBF0261DC19F090098BF52 /* CoreFoundation.framework */,
+				04CBF0241DC19EFD0098BF52 /* CFNetwork.framework */,
 				049D492B1DB76CC7005A1038 /* QuartzCore.framework */,
 				049D490F1DB75CEF005A1038 /* AdSupport.framework */,
 				049D490D1DB75CE9005A1038 /* CoreTelephony.framework */,
@@ -182,6 +211,7 @@
 		DFFAA7311DB744C5001CFBB5 /* ZeroLifeClient */ = {
 			isa = PBXGroup;
 			children = (
+				04CBF0321DC19F890098BF52 /* ZeroLifeClient.entitlements */,
 				DFFAA7541DB744EF001CFBB5 /* Custom */,
 				DFFAA7491DB744EF001CFBB5 /* ViewController */,
 				DFFAA7521DB744EF001CFBB5 /* Resources */,
@@ -379,7 +409,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DFFAA7461DB744C5001CFBB5 /* Build configuration list for PBXNativeTarget "ZeroLifeClient" */;
 			buildPhases = (
-				FA2F72B750A76F5318A85DA7 /* 📦 Check Pods Manifest.lock */,
+				FA2F72B750A76F5318A85DA7 /* [CP] Check Pods Manifest.lock */,
 				F1EAC3C068B69D6E51F2E512 /* [CP] Check Pods Manifest.lock */,
 				50F0269C8C4AFB4E78A6B5D7 /* [CP] Check Pods Manifest.lock */,
 				DFFAA72B1DB744C5001CFBB5 /* Sources */,
@@ -412,6 +442,11 @@
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = 5FKH22H2X2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -537,14 +572,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		FA2F72B750A76F5318A85DA7 /* 📦 Check Pods Manifest.lock */ = {
+		FA2F72B750A76F5318A85DA7 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -701,7 +736,9 @@
 			baseConfigurationReference = DFF2BA083AFD4D1DD56A8848 /* Pods-ZeroLifeClient.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ZeroLifeClient/ZeroLifeClient.entitlements;
 				DEVELOPMENT_TEAM = 5FKH22H2X2;
+				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/ZeroLifeClient/ZeroLifeClient-Prefix.pch";
 				INFOPLIST_FILE = ZeroLifeClient/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -715,7 +752,9 @@
 			baseConfigurationReference = 26781393B9810BF63F686EF1 /* Pods-ZeroLifeClient.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ZeroLifeClient/ZeroLifeClient.entitlements;
 				DEVELOPMENT_TEAM = 5FKH22H2X2;
+				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/ZeroLifeClient/ZeroLifeClient-Prefix.pch";
 				INFOPLIST_FILE = ZeroLifeClient/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
