@@ -29,4 +29,6 @@ target 'ZeroLifeClient' do
   pod 'SKTagView'
   pod 'HMSegmentedControl'
   pod 'JPush'
+  pod 'LTNavigationBar'
+
 end
