@@ -23,6 +23,25 @@
 
 
 /**
+ 设置左边的按钮
+
+ @param mHidden    是否显示
+ @param mBackTitle 标题
+ @param mImage     图片
+ */
+- (void)addLeftBtn:(BOOL)mHidden andTitel:(NSString *)mBackTitle andImage:(UIImage *)mImage;
+
+
+/**
+ 设置右边的按钮
+
+ @param mHidden    是否显示
+ @param mBackTitle 标题
+ @param mImage     图片
+ */
+- (void)addRightBtn:(BOOL)mHidden andTitel:(NSString *)mBackTitle andImage:(UIImage *)mImage;
+
+/**
   初始化tableview
  */
 -(void)addTableView;

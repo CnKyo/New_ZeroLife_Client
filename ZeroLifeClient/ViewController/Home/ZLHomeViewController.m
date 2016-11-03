@@ -7,15 +7,23 @@
 //
 
 #import "ZLHomeViewController.h"
+#import "MTA.h"
+#import "MTAConfig.h"
 #import "ScrollModelVC.h"
+#import "ZLHomeLocationView.h"
 #import "ZLHomeScrollerTableViewCell.h"
-@interface ZLHomeViewController ()<UITableViewDelegate,UITableViewDataSource,ZLHomeScrollerTableCellDelegate>
+#import "ZLHomeOtherCell.h"
+#import "ZLSelectArearViewController.h"
+@interface ZLHomeViewController ()<UITableViewDelegate,UITableViewDataSource,ZLHomeScrollerTableCellDelegate,ZLHomeLocationViewDelegate>
 
 @end
 
 @implementation ZLHomeViewController
 {
+    //banner数据源
     NSMutableArray *mBannerArr;
+    //地址选择view
+    ZLHomeLocationView *mLocationView;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -23,11 +31,38 @@
 
     mBannerArr = [NSMutableArray new];
     
+    
+    [self initLeftAndRightBarButton];
     [self addTableView];
-    //UINib   *nib = [UINib nibWithNibName:@"ZLHomeScrollerTableViewCell" bundle:nil];
-    //[self.tableView registerNib:nib forCellReuseIdentifier:@"cell1"];
+    
+    UINib   *nib = [UINib nibWithNibName:@"ZLHomeOtherCell" bundle:nil];
+    [self.tableView registerNib:nib forCellReuseIdentifier:@"cell2"];
 
     [self loadData];
+}
+#pragma mark ----****----加载导航条左右按钮和中间的社区选择view
+- (void)initLeftAndRightBarButton{
+
+    
+    [self addRightBtn:NO andTitel:nil andImage:[UIImage imageNamed:@"ZLHome_Message"]];
+    [self.navigationController.navigationBar.subviews[3] setHidden:YES];
+    
+    MLLog(@"%@",self.navigationController.navigationBar.subviews);
+    
+    mLocationView = [ZLHomeLocationView shareView];
+    mLocationView.frame = CGRectMake(0, 0, 200, 30);
+    mLocationView.delegate = self;
+    self.navigationItem.titleView = mLocationView;
+    
+}
+#pragma mark ----****----社区选择view代理方法
+- (void)ZLHomLocationViewDidSelected{
+    ZLSelectArearViewController *ZLAddressVC = [ZLSelectArearViewController new];
+    [self pushViewController:ZLAddressVC];
+}
+#pragma mark ----****----消息按钮方法
+- (void)mRightAction{
+    MLLog(@"right");
 }
 - (void)loadData{
 
@@ -72,7 +107,7 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView              // Default is 1 if not implemented
 {
     
-    return 1;
+    return 2;
     
     
 }
@@ -85,15 +120,23 @@
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if (section == 0) {
+        return 1;
+    }else{
+        return 5;
+    }
     
-    return 1;
     
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
- 
-    return 360;
+    if (indexPath.section == 0) {
+        return 360;
+    }else{
+        return 200;
+    }
+    
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -102,20 +145,35 @@
     
     NSString *reuseCellId = nil;
     
-    reuseCellId = @"cell1";
     
-    ZLHomeScrollerTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
+    if (indexPath.section == 0) {
+        reuseCellId = @"cell1";
+        
+        ZLHomeScrollerTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
+        
+        if (cell == nil) {
+            cell = [[ZLHomeScrollerTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseCellId andBannerDataSource:mBannerArr andDataSource:self.tableArr];
+        }
+        
+        
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        cell.delegate = self;
+        
+        return cell;
+    }else{
+
     
-    if (cell == nil) {
-        cell = [[ZLHomeScrollerTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseCellId andBannerDataSource:mBannerArr andDataSource:self.tableArr];
+        reuseCellId = @"cell2";
+        
+        ZLHomeOtherCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
+
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                
+        return cell;
     }
     
 
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
-    cell.delegate = self;
-    
-    return cell;
     
     
 }
@@ -124,12 +182,12 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
    
 }
-
+#pragma mark ----****----首页滚动功能代理方法
 - (void)ZLHomeScrollerTableViewCellDidSelectedWithIndex:(NSInteger)mIndex{
 
     MLLog(@"点击了第:%ld个",(long)mIndex);
 }
-
+#pragma mark ----****----banner点击方法
 - (void)ZLHomeBannerDidSelectedWithIndex:(NSInteger)mIndex{
     MLLog(@"点击了第:%ld个",(long)mIndex);
 

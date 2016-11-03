@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ZLHomeLocationView">
+            <rect key="frame" x="0.0" y="0.0" width="200" height="35"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ZLHome_Location" translatesAutoresizingMaskIntoConstraints="NO" id="HFr-hP-YzG">
+                    <constraints>
+                        <constraint firstAttribute="height" constant="23" id="UTH-Mx-1Fv"/>
+                        <constraint firstAttribute="width" constant="16" id="mBe-y3-h8W"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="选择地址" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J7a-4M-evb">
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="fvI-z2-O8B"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ZLHom_Location_Down" translatesAutoresizingMaskIntoConstraints="NO" id="Lm3-Dw-R6M">
+                    <constraints>
+                        <constraint firstAttribute="width" constant="13" id="61D-Q5-ggn"/>
+                        <constraint firstAttribute="height" constant="7" id="qWM-OE-QQh"/>
+                    </constraints>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ibn-qQ-cWf">
+                    <frame key="frameInset" width="200" height="40"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <state key="normal">
+                        <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="mAddressAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="8h3-jK-GzQ"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.69431430101394653" green="0.839030921459198" blue="0.37425118684768677" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="J7a-4M-evb" firstAttribute="leading" secondItem="HFr-hP-YzG" secondAttribute="trailing" constant="10" id="99H-42-dmQ"/>
+                <constraint firstItem="J7a-4M-evb" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="F0H-on-Nvf"/>
+                <constraint firstItem="Lm3-Dw-R6M" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="H0p-wH-PJq"/>
+                <constraint firstItem="HFr-hP-YzG" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="NqU-Zh-i8O"/>
+                <constraint firstItem="Lm3-Dw-R6M" firstAttribute="leading" secondItem="J7a-4M-evb" secondAttribute="trailing" constant="8" id="RWv-dF-R1B"/>
+                <constraint firstAttribute="trailing" secondItem="Lm3-Dw-R6M" secondAttribute="trailing" constant="20" id="aNO-ys-jt3"/>
+                <constraint firstItem="HFr-hP-YzG" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="r8V-zc-dl2"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="mAddress" destination="J7a-4M-evb" id="EAD-y7-iWm"/>
+                <outlet property="mAddressBtn" destination="ibn-qQ-cWf" id="RJ2-2a-10R"/>
+            </connections>
+            <point key="canvasLocation" x="-100" y="150"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ZLHom_Location_Down" width="20" height="11"/>
+        <image name="ZLHome_Location" width="26" height="40"/>
+    </resources>
+</document>

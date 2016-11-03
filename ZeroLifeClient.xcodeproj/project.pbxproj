@@ -20,6 +20,15 @@
 		04CBF02D1DC19F2A0098BF52 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CBF02C1DC19F2A0098BF52 /* UIKit.framework */; };
 		04CBF02F1DC19F310098BF52 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CBF02E1DC19F310098BF52 /* Security.framework */; };
 		04CBF0311DC19F430098BF52 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CBF0301DC19F430098BF52 /* UserNotifications.framework */; };
+		04D64D641DC9C16D004E8859 /* ZLSelectArearViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D64D631DC9C16D004E8859 /* ZLSelectArearViewController.m */; };
+		04D64D681DC9CC7B004E8859 /* ZLCustomBtnView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D64D671DC9CC7B004E8859 /* ZLCustomBtnView.m */; };
+		04D64D6C1DC9CCA5004E8859 /* ZLHomeLocationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D64D6A1DC9CCA5004E8859 /* ZLHomeLocationView.m */; };
+		04D64D6D1DC9CCA5004E8859 /* ZLHomeLocationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D64D6B1DC9CCA5004E8859 /* ZLHomeLocationView.xib */; };
+		04D64D741DC9CCDC004E8859 /* ZLHomeOtherCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D64D701DC9CCDC004E8859 /* ZLHomeOtherCell.m */; };
+		04D64D751DC9CCDC004E8859 /* ZLHomeOtherCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D64D711DC9CCDC004E8859 /* ZLHomeOtherCell.xib */; };
+		04D64D761DC9CCDC004E8859 /* ZLHomeScrollerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D64D731DC9CCDC004E8859 /* ZLHomeScrollerTableViewCell.m */; };
+		04D64D7A1DC9CD35004E8859 /* ZLHomeCoupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D64D791DC9CD35004E8859 /* ZLHomeCoupView.m */; };
+		04D64D7C1DC9CDA4004E8859 /* ZlHomeCoupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D64D7B1DC9CDA4004E8859 /* ZlHomeCoupView.xib */; };
 		92AF8AA63E2B8C882D0429B1 /* libPods-ZeroLifeClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 339DEB89053AF616C6AD0FF3 /* libPods-ZeroLifeClient.a */; };
 		DF55B4611DBAFE5800F89341 /* ZLCookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF55B45F1DBAFE5800F89341 /* ZLCookViewController.m */; };
 		DF55B4641DBAFE6000F89341 /* ZLHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF55B4621DBAFE6000F89341 /* ZLHomeViewController.m */; };
@@ -29,8 +38,6 @@
 		DF55B4701DBAFEAC00F89341 /* ZLNavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF55B46D1DBAFEAC00F89341 /* ZLNavViewController.m */; };
 		DF5C49031DBA1BEC006E4825 /* DCPicScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5C49001DBA1BEC006E4825 /* DCPicScrollView.m */; };
 		DF5C49041DBA1BEC006E4825 /* DCWebImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5C49021DBA1BEC006E4825 /* DCWebImageManager.m */; };
-		DF5C49071DBA1BF5006E4825 /* ZLHomeScrollerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5C49051DBA1BF5006E4825 /* ZLHomeScrollerTableViewCell.m */; };
-		DF5C490A1DBA1C20006E4825 /* ZLCustomBtnView.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5C49081DBA1C20006E4825 /* ZLCustomBtnView.m */; };
 		DF7D0A151DB9FFF0005A62A7 /* APIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = DF7D0A141DB9FFF0005A62A7 /* APIClient.m */; };
 		DF7D0A1C1DBA0019005A62A7 /* CookCategoryTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF7D0A171DBA0019005A62A7 /* CookCategoryTVC.m */; };
 		DF7D0A1D1DBA0019005A62A7 /* CookTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF7D0A191DBA0019005A62A7 /* CookTVC.m */; };
@@ -65,6 +72,21 @@
 		04CBF02E1DC19F310098BF52 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		04CBF0301DC19F430098BF52 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		04CBF0321DC19F890098BF52 /* ZeroLifeClient.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ZeroLifeClient.entitlements; sourceTree = "<group>"; };
+		04D64D621DC9C16D004E8859 /* ZLSelectArearViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLSelectArearViewController.h; sourceTree = "<group>"; };
+		04D64D631DC9C16D004E8859 /* ZLSelectArearViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLSelectArearViewController.m; sourceTree = "<group>"; };
+		04D64D661DC9CC7B004E8859 /* ZLCustomBtnView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLCustomBtnView.h; sourceTree = "<group>"; };
+		04D64D671DC9CC7B004E8859 /* ZLCustomBtnView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLCustomBtnView.m; sourceTree = "<group>"; };
+		04D64D691DC9CCA5004E8859 /* ZLHomeLocationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZLHomeLocationView.h; path = ZLHomeLocationView/ZLHomeLocationView.h; sourceTree = "<group>"; };
+		04D64D6A1DC9CCA5004E8859 /* ZLHomeLocationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZLHomeLocationView.m; path = ZLHomeLocationView/ZLHomeLocationView.m; sourceTree = "<group>"; };
+		04D64D6B1DC9CCA5004E8859 /* ZLHomeLocationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ZLHomeLocationView.xib; path = ZLHomeLocationView/ZLHomeLocationView.xib; sourceTree = "<group>"; };
+		04D64D6F1DC9CCDC004E8859 /* ZLHomeOtherCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLHomeOtherCell.h; sourceTree = "<group>"; };
+		04D64D701DC9CCDC004E8859 /* ZLHomeOtherCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLHomeOtherCell.m; sourceTree = "<group>"; };
+		04D64D711DC9CCDC004E8859 /* ZLHomeOtherCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLHomeOtherCell.xib; sourceTree = "<group>"; };
+		04D64D721DC9CCDC004E8859 /* ZLHomeScrollerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLHomeScrollerTableViewCell.h; sourceTree = "<group>"; };
+		04D64D731DC9CCDC004E8859 /* ZLHomeScrollerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLHomeScrollerTableViewCell.m; sourceTree = "<group>"; };
+		04D64D781DC9CD35004E8859 /* ZLHomeCoupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLHomeCoupView.h; sourceTree = "<group>"; };
+		04D64D791DC9CD35004E8859 /* ZLHomeCoupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLHomeCoupView.m; sourceTree = "<group>"; };
+		04D64D7B1DC9CDA4004E8859 /* ZlHomeCoupView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZlHomeCoupView.xib; sourceTree = "<group>"; };
 		26781393B9810BF63F686EF1 /* Pods-ZeroLifeClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZeroLifeClient.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZeroLifeClient/Pods-ZeroLifeClient.release.xcconfig"; sourceTree = "<group>"; };
 		339DEB89053AF616C6AD0FF3 /* libPods-ZeroLifeClient.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZeroLifeClient.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF55B45F1DBAFE5800F89341 /* ZLCookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLCookViewController.m; sourceTree = "<group>"; };
@@ -83,10 +105,6 @@
 		DF5C49001DBA1BEC006E4825 /* DCPicScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCPicScrollView.m; sourceTree = "<group>"; };
 		DF5C49011DBA1BEC006E4825 /* DCWebImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCWebImageManager.h; sourceTree = "<group>"; };
 		DF5C49021DBA1BEC006E4825 /* DCWebImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCWebImageManager.m; sourceTree = "<group>"; };
-		DF5C49051DBA1BF5006E4825 /* ZLHomeScrollerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLHomeScrollerTableViewCell.m; sourceTree = "<group>"; };
-		DF5C49061DBA1BF5006E4825 /* ZLHomeScrollerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLHomeScrollerTableViewCell.h; sourceTree = "<group>"; };
-		DF5C49081DBA1C20006E4825 /* ZLCustomBtnView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLCustomBtnView.m; sourceTree = "<group>"; };
-		DF5C49091DBA1C20006E4825 /* ZLCustomBtnView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLCustomBtnView.h; sourceTree = "<group>"; };
 		DF7D0A131DB9FFF0005A62A7 /* APIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIClient.h; sourceTree = "<group>"; };
 		DF7D0A141DB9FFF0005A62A7 /* APIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIClient.m; sourceTree = "<group>"; };
 		DF7D0A161DBA0019005A62A7 /* CookCategoryTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CookCategoryTVC.h; sourceTree = "<group>"; };
@@ -149,6 +167,56 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04231D911DC8830B00C50D12 /* ZLHomeLocationView */ = {
+			isa = PBXGroup;
+			children = (
+				04D64D691DC9CCA5004E8859 /* ZLHomeLocationView.h */,
+				04D64D6A1DC9CCA5004E8859 /* ZLHomeLocationView.m */,
+				04D64D6B1DC9CCA5004E8859 /* ZLHomeLocationView.xib */,
+			);
+			name = ZLHomeLocationView;
+			sourceTree = "<group>";
+		};
+		04D64D611DC9C154004E8859 /* ZLAddressSelect */ = {
+			isa = PBXGroup;
+			children = (
+				04D64D621DC9C16D004E8859 /* ZLSelectArearViewController.h */,
+				04D64D631DC9C16D004E8859 /* ZLSelectArearViewController.m */,
+			);
+			path = ZLAddressSelect;
+			sourceTree = "<group>";
+		};
+		04D64D651DC9CC7B004E8859 /* ZLCustomBtnView */ = {
+			isa = PBXGroup;
+			children = (
+				04D64D661DC9CC7B004E8859 /* ZLCustomBtnView.h */,
+				04D64D671DC9CC7B004E8859 /* ZLCustomBtnView.m */,
+			);
+			path = ZLCustomBtnView;
+			sourceTree = "<group>";
+		};
+		04D64D6E1DC9CCDC004E8859 /* ZLHomeCell */ = {
+			isa = PBXGroup;
+			children = (
+				04D64D6F1DC9CCDC004E8859 /* ZLHomeOtherCell.h */,
+				04D64D701DC9CCDC004E8859 /* ZLHomeOtherCell.m */,
+				04D64D711DC9CCDC004E8859 /* ZLHomeOtherCell.xib */,
+				04D64D721DC9CCDC004E8859 /* ZLHomeScrollerTableViewCell.h */,
+				04D64D731DC9CCDC004E8859 /* ZLHomeScrollerTableViewCell.m */,
+			);
+			path = ZLHomeCell;
+			sourceTree = "<group>";
+		};
+		04D64D771DC9CD21004E8859 /* ZLHomeCoupView */ = {
+			isa = PBXGroup;
+			children = (
+				04D64D781DC9CD35004E8859 /* ZLHomeCoupView.h */,
+				04D64D791DC9CD35004E8859 /* ZLHomeCoupView.m */,
+				04D64D7B1DC9CDA4004E8859 /* ZlHomeCoupView.xib */,
+			);
+			path = ZLHomeCoupView;
+			sourceTree = "<group>";
+		};
 		12B582CBD65385C342FBEFDA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -283,6 +351,7 @@
 		DFFAA74C1DB744EF001CFBB5 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				04D64D611DC9C154004E8859 /* ZLAddressSelect */,
 				DF5C48FE1DBA1BEC006E4825 /* DCBannerView */,
 				DFFAA74D1DB744EF001CFBB5 /* View */,
 				DF55B4631DBAFE6000F89341 /* ZLHomeViewController.h */,
@@ -296,10 +365,10 @@
 		DFFAA74D1DB744EF001CFBB5 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				DF5C49081DBA1C20006E4825 /* ZLCustomBtnView.m */,
-				DF5C49091DBA1C20006E4825 /* ZLCustomBtnView.h */,
-				DF5C49051DBA1BF5006E4825 /* ZLHomeScrollerTableViewCell.m */,
-				DF5C49061DBA1BF5006E4825 /* ZLHomeScrollerTableViewCell.h */,
+				04D64D771DC9CD21004E8859 /* ZLHomeCoupView */,
+				04D64D6E1DC9CCDC004E8859 /* ZLHomeCell */,
+				04D64D651DC9CC7B004E8859 /* ZLCustomBtnView */,
+				04231D911DC8830B00C50D12 /* ZLHomeLocationView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -473,8 +542,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04D64D751DC9CCDC004E8859 /* ZLHomeOtherCell.xib in Resources */,
+				04D64D6D1DC9CCA5004E8859 /* ZLHomeLocationView.xib in Resources */,
 				DFFAA7421DB744C5001CFBB5 /* LaunchScreen.storyboard in Resources */,
 				DFFAA73F1DB744C5001CFBB5 /* Assets.xcassets in Resources */,
+				04D64D7C1DC9CDA4004E8859 /* ZlHomeCoupView.xib in Resources */,
 				DFFAA73D1DB744C5001CFBB5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -597,7 +669,7 @@
 				DFFAA7631DB744EF001CFBB5 /* UIView+AutoSize.m in Sources */,
 				DFF634C11DB873D200B5C917 /* ScrollModelVC.m in Sources */,
 				DF5C49031DBA1BEC006E4825 /* DCPicScrollView.m in Sources */,
-				DF5C490A1DBA1C20006E4825 /* ZLCustomBtnView.m in Sources */,
+				04D64D741DC9CCDC004E8859 /* ZLHomeOtherCell.m in Sources */,
 				DF7D0A1C1DBA0019005A62A7 /* CookCategoryTVC.m in Sources */,
 				DFFAA7621DB744EF001CFBB5 /* APIObjectDefine.m in Sources */,
 				DF55B46F1DBAFEAC00F89341 /* ZLTabBarViewController.m in Sources */,
@@ -608,11 +680,15 @@
 				DF55B4611DBAFE5800F89341 /* ZLCookViewController.m in Sources */,
 				DFFAA7641DB744EF001CFBB5 /* CustomScrollVC.m in Sources */,
 				DFFAA73A1DB744C5001CFBB5 /* ViewController.m in Sources */,
-				DF5C49071DBA1BF5006E4825 /* ZLHomeScrollerTableViewCell.m in Sources */,
 				DF55B4641DBAFE6000F89341 /* ZLHomeViewController.m in Sources */,
 				DFFAA7371DB744C5001CFBB5 /* AppDelegate.m in Sources */,
+				04D64D641DC9C16D004E8859 /* ZLSelectArearViewController.m in Sources */,
+				04D64D681DC9CC7B004E8859 /* ZLCustomBtnView.m in Sources */,
 				DF7D0A151DB9FFF0005A62A7 /* APIClient.m in Sources */,
 				DFFAA7651DB744EF001CFBB5 /* CustomVC.m in Sources */,
+				04D64D7A1DC9CD35004E8859 /* ZLHomeCoupView.m in Sources */,
+				04D64D761DC9CCDC004E8859 /* ZLHomeScrollerTableViewCell.m in Sources */,
+				04D64D6C1DC9CCA5004E8859 /* ZLHomeLocationView.m in Sources */,
 				DFFAA7341DB744C5001CFBB5 /* main.m in Sources */,
 				DF7D0A1E1DBA0019005A62A7 /* CookDetailVC.m in Sources */,
 				DF55B46A1DBAFE7700F89341 /* ZLUserViewController.m in Sources */,

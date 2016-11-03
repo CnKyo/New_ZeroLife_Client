@@ -9,12 +9,15 @@
 #import "CustomVC.h"
 #import "MTA.h"
 #import "MTAConfig.h"
-@interface CustomVC ()
+@interface CustomVC ()<UIGestureRecognizerDelegate>
 
 @end
 
 @implementation CustomVC
+{
 
+    UIImageView *navBarHairlineImageView;
+}
 - (id)init
 {
     self = [super init];
@@ -34,15 +37,36 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    
-    self.view.backgroundColor = [UIColor colorWithRed:0.99 green:0.99 blue:0.99 alpha:1.00];
-    
+    /**
+     *  清空代理,默认用户的手势就是有效的
+     */
+    //    self.interactivePopGestureRecognizer.delegate = nil;
+    self.navigationController.navigationBar.translucent = NO;
+    self.navigationController.interactivePopGestureRecognizer.delegate = self;
+    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0.55 green:0.75 blue:0.15 alpha:1.00];
+    //设置导航栏文字
+    [self.navigationController.navigationBar setTitleTextAttributes:@{
+                                                 NSFontAttributeName : [UIFont boldSystemFontOfSize:17],NSForegroundColorAttributeName:[UIColor whiteColor]
+                                                 
+                                                 }];
+
+    self.navigationController.navigationBar.translucent = NO;
+
+    self.view.backgroundColor = COLOR(247, 247, 247);
+    navBarHairlineImageView = [self findHairlineImageViewUnder:self.navigationController.navigationBar];
+
+    [self addLeftBtn:NO andTitel:nil andImage:[UIImage imageNamed:@"ZLBackBtn_Image"]];
 }
+
+
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    navBarHairlineImageView.hidden = YES;
+
+
     
     [MTA trackPageViewBegin:self.navigationItem.title];
     
@@ -55,9 +79,21 @@
     [super viewWillDisappear:animated];
     
     [MTA trackPageViewEnd:self.navigationItem.title];
-    
-}
+    navBarHairlineImageView.hidden = NO;
 
+}
+- (UIImageView *)findHairlineImageViewUnder:(UIView *)view {
+    if ([view isKindOfClass:UIImageView.class] && view.bounds.size.height <= 1.0) {
+        return (UIImageView *)view;
+    }
+    for (UIView *subview in view.subviews) {
+        UIImageView *imageView = [self findHairlineImageViewUnder:subview];
+        if (imageView) {
+            return imageView;
+        }
+    }
+    return nil;
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -68,10 +104,12 @@
         self.tableView = [[UITableView alloc] initWithFrame:CGRectZero];
         self.tableView.delegate = self;
         self.tableView.dataSource = self;
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         [self.view addSubview:self.tableView];
         self.tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
         self.tableView.tableFooterView = [[UIView alloc] init];
-        
+        self.tableView.backgroundColor = COLOR(247, 247, 247);
+
         [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self.view);
             make.height.equalTo(self.view.mas_height);
@@ -372,4 +410,61 @@
 
 
 
+#pragma mark ----****----设置左边的按钮
+- (void)addLeftBtn:(BOOL)mHidden andTitel:(NSString *)mBackTitle andImage:(UIImage *)mImage{
+
+    UIButton *mBackBtn = [[UIButton alloc]initWithFrame:CGRectMake(DEVICE_Width-80,15,13,20)];
+    
+    if (mHidden) {
+        return;
+    }else{
+    
+        if (mBackTitle.length > 0 ) {
+
+            [mBackBtn setTitle:mBackTitle forState:UIControlStateNormal];
+        }else if (mImage != nil){
+            [mBackBtn setImage:mImage forState:UIControlStateNormal];
+
+        }else{
+            [mBackBtn setImage:[UIImage imageNamed:@"ZLBackBtn_Image"] forState:UIControlStateNormal];
+
+        }
+        [mBackBtn addTarget:self action:@selector(mBackAction)forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem *mBackItem = [[UIBarButtonItem alloc]initWithCustomView:mBackBtn];
+        self.navigationItem.leftBarButtonItem= mBackItem;
+    }
+    
+
+    
+
+    
+}
+- (void)addRightBtn:(BOOL)mHidden andTitel:(NSString *)mBackTitle andImage:(UIImage *)mImage{
+    
+    UIButton *mRightBtn = [[UIButton alloc]initWithFrame:CGRectMake(DEVICE_Width-80,15,25,25)];
+
+    if (mHidden) {
+        return;
+    }else{
+        if (mBackTitle.length > 0 ) {
+            
+            [mRightBtn setTitle:mBackTitle forState:UIControlStateNormal];
+        }else if (mImage != nil){
+            [mRightBtn setImage:mImage forState:UIControlStateNormal];
+            
+        }
+        [mRightBtn addTarget:self action:@selector(mRightAction)forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem *mRightBartem = [[UIBarButtonItem alloc]initWithCustomView:mRightBtn];
+        self.navigationItem.rightBarButtonItem= mRightBartem;
+    }
+    
+
+    
+}
+- (void)mBackAction{
+    [self popViewController];
+}
+- (void)mRightAction{
+    
+}
 @end
