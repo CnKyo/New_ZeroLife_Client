@@ -21,17 +21,18 @@
 
 + (ZLHomeCoupView *)shareView{
 
-    ZLHomeCoupView *view  = [[[NSBundle mainBundle] loadNibNamed:@"ZLHomeCoupView" owner:self options:0] objectAtIndex:0];
+    ZLHomeCoupView *view  = [[[NSBundle mainBundle] loadNibNamed:@"ZlHomeCoupView" owner:self options:0] objectAtIndex:0];
     
     
     view.mOKBtn.layer.masksToBounds = YES;
     view.mOKBtn.layer.cornerRadius = 4;
     
-    
+
     return view;
     
     
 }
+
 - (IBAction)mOKBtnAction:(UIButton *)sender {
     
     if ([self.delegate respondsToSelector:@selector(ZLCoupOKBtnSelected)]) {

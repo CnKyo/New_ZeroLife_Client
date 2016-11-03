@@ -9,6 +9,7 @@
 #import "CustomVC.h"
 #import "MTA.h"
 #import "MTAConfig.h"
+#import "CustomDefine.h"
 @interface CustomVC ()<UIGestureRecognizerDelegate>
 
 @end
@@ -55,7 +56,7 @@
     self.view.backgroundColor = COLOR(247, 247, 247);
     navBarHairlineImageView = [self findHairlineImageViewUnder:self.navigationController.navigationBar];
 
-    [self addLeftBtn:NO andTitel:nil andImage:[UIImage imageNamed:@"ZLBackBtn_Image"]];
+    [self addLeftBtn:YES andTitel:nil andImage:[UIImage imageNamed:@"ZLBackBtn_Image"]];
 }
 
 
@@ -415,7 +416,7 @@
 
     UIButton *mBackBtn = [[UIButton alloc]initWithFrame:CGRectMake(DEVICE_Width-80,15,13,20)];
     
-    if (mHidden) {
+    if (!mHidden) {
         return;
     }else{
     
@@ -426,6 +427,7 @@
             [mBackBtn setImage:mImage forState:UIControlStateNormal];
 
         }else{
+            [mBackBtn setTitle:mBackTitle forState:UIControlStateNormal];
             [mBackBtn setImage:[UIImage imageNamed:@"ZLBackBtn_Image"] forState:UIControlStateNormal];
 
         }
@@ -443,7 +445,7 @@
     
     UIButton *mRightBtn = [[UIButton alloc]initWithFrame:CGRectMake(DEVICE_Width-80,15,25,25)];
 
-    if (mHidden) {
+    if (!mHidden) {
         return;
     }else{
         if (mBackTitle.length > 0 ) {

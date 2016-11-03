@@ -7,12 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		040D92F41DCAE15300DBE42E /* ZLHomeMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 040D92F31DCAE15300DBE42E /* ZLHomeMessageViewController.m */; };
+		040D92F91DCAE34E00DBE42E /* ZLHomeMSGCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 040D92F71DCAE34E00DBE42E /* ZLHomeMSGCell.m */; };
+		040D92FA1DCAE34E00DBE42E /* ZLHomeMSGCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 040D92F81DCAE34E00DBE42E /* ZLHomeMSGCell.xib */; };
+		040D92FD1DCAE82000DBE42E /* ZLHomeMessageDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 040D92FC1DCAE82000DBE42E /* ZLHomeMessageDetailViewController.m */; };
+		040D92FF1DCAE84300DBE42E /* ZLHomeMsgDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 040D92FE1DCAE84300DBE42E /* ZLHomeMsgDetailCell.xib */; };
+		04162DF81DCB2C9300FB4229 /* ZLHomeCoupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04162DF61DCB2C9300FB4229 /* ZLHomeCoupCell.m */; };
+		04162DF91DCB2C9300FB4229 /* ZLHomeCoupCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04162DF71DCB2C9300FB4229 /* ZLHomeCoupCell.xib */; };
 		049D49081DB75CCD005A1038 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 049D49071DB75CCD005A1038 /* libz.tbd */; };
 		049D490A1DB75CDA005A1038 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 049D49091DB75CDA005A1038 /* libsqlite3.tbd */; };
 		049D490C1DB75CE0005A1038 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 049D490B1DB75CE0005A1038 /* SystemConfiguration.framework */; };
 		049D490E1DB75CE9005A1038 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 049D490D1DB75CE9005A1038 /* CoreTelephony.framework */; };
 		049D49101DB75CEF005A1038 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 049D490F1DB75CEF005A1038 /* AdSupport.framework */; };
 		049D492C1DB76CC7005A1038 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 049D492B1DB76CC7005A1038 /* QuartzCore.framework */; };
+		04C6A3731DCB07B9002C4D4A /* Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C6A3721DCB07B9002C4D4A /* Util.m */; };
+		04C6A3761DCB0874002C4D4A /* keyChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C6A3751DCB0874002C4D4A /* keyChain.m */; };
+		04C6A37E1DCB08AF002C4D4A /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C6A3791DCB08AF002C4D4A /* NSData+Base64.m */; };
+		04C6A37F1DCB08AF002C4D4A /* private_key.p12 in Resources */ = {isa = PBXBuildFile; fileRef = 04C6A37A1DCB08AF002C4D4A /* private_key.p12 */; };
+		04C6A3801DCB08AF002C4D4A /* public_key.der in Resources */ = {isa = PBXBuildFile; fileRef = 04C6A37B1DCB08AF002C4D4A /* public_key.der */; };
+		04C6A3811DCB08AF002C4D4A /* RSAEncryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C6A37D1DCB08AF002C4D4A /* RSAEncryptor.m */; };
+		04C6A3841DCB11A4002C4D4A /* UIViewExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C6A3831DCB11A4002C4D4A /* UIViewExt.m */; };
 		04CBF0251DC19EFD0098BF52 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CBF0241DC19EFD0098BF52 /* CFNetwork.framework */; };
 		04CBF0271DC19F090098BF52 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CBF0261DC19F090098BF52 /* CoreFoundation.framework */; };
 		04CBF0291DC19F190098BF52 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CBF0281DC19F190098BF52 /* CoreGraphics.framework */; };
@@ -58,12 +72,35 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		040D92F21DCAE15300DBE42E /* ZLHomeMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLHomeMessageViewController.h; sourceTree = "<group>"; };
+		040D92F31DCAE15300DBE42E /* ZLHomeMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLHomeMessageViewController.m; sourceTree = "<group>"; };
+		040D92F61DCAE34E00DBE42E /* ZLHomeMSGCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLHomeMSGCell.h; sourceTree = "<group>"; };
+		040D92F71DCAE34E00DBE42E /* ZLHomeMSGCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLHomeMSGCell.m; sourceTree = "<group>"; };
+		040D92F81DCAE34E00DBE42E /* ZLHomeMSGCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLHomeMSGCell.xib; sourceTree = "<group>"; };
+		040D92FB1DCAE82000DBE42E /* ZLHomeMessageDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLHomeMessageDetailViewController.h; sourceTree = "<group>"; };
+		040D92FC1DCAE82000DBE42E /* ZLHomeMessageDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLHomeMessageDetailViewController.m; sourceTree = "<group>"; };
+		040D92FE1DCAE84300DBE42E /* ZLHomeMsgDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLHomeMsgDetailCell.xib; sourceTree = "<group>"; };
+		04162DF51DCB2C9300FB4229 /* ZLHomeCoupCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLHomeCoupCell.h; sourceTree = "<group>"; };
+		04162DF61DCB2C9300FB4229 /* ZLHomeCoupCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLHomeCoupCell.m; sourceTree = "<group>"; };
+		04162DF71DCB2C9300FB4229 /* ZLHomeCoupCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLHomeCoupCell.xib; sourceTree = "<group>"; };
 		049D49071DB75CCD005A1038 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		049D49091DB75CDA005A1038 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		049D490B1DB75CE0005A1038 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		049D490D1DB75CE9005A1038 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		049D490F1DB75CEF005A1038 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		049D492B1DB76CC7005A1038 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		04C6A3711DCB07B2002C4D4A /* Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Util.h; sourceTree = "<group>"; };
+		04C6A3721DCB07B9002C4D4A /* Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Util.m; sourceTree = "<group>"; };
+		04C6A3741DCB0874002C4D4A /* keyChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = keyChain.h; sourceTree = "<group>"; };
+		04C6A3751DCB0874002C4D4A /* keyChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = keyChain.m; sourceTree = "<group>"; };
+		04C6A3781DCB08AF002C4D4A /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
+		04C6A3791DCB08AF002C4D4A /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
+		04C6A37A1DCB08AF002C4D4A /* private_key.p12 */ = {isa = PBXFileReference; lastKnownFileType = file; path = private_key.p12; sourceTree = "<group>"; };
+		04C6A37B1DCB08AF002C4D4A /* public_key.der */ = {isa = PBXFileReference; lastKnownFileType = file; path = public_key.der; sourceTree = "<group>"; };
+		04C6A37C1DCB08AF002C4D4A /* RSAEncryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSAEncryptor.h; sourceTree = "<group>"; };
+		04C6A37D1DCB08AF002C4D4A /* RSAEncryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSAEncryptor.m; sourceTree = "<group>"; };
+		04C6A3821DCB11A4002C4D4A /* UIViewExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewExt.h; sourceTree = "<group>"; };
+		04C6A3831DCB11A4002C4D4A /* UIViewExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewExt.m; sourceTree = "<group>"; };
 		04CBF0241DC19EFD0098BF52 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		04CBF0261DC19F090098BF52 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		04CBF0281DC19F190098BF52 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -167,6 +204,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		040D92F11DCAE11400DBE42E /* ZLHomeMessage */ = {
+			isa = PBXGroup;
+			children = (
+				040D92F51DCAE33700DBE42E /* View */,
+				040D92F21DCAE15300DBE42E /* ZLHomeMessageViewController.h */,
+				040D92F31DCAE15300DBE42E /* ZLHomeMessageViewController.m */,
+				040D92FB1DCAE82000DBE42E /* ZLHomeMessageDetailViewController.h */,
+				040D92FC1DCAE82000DBE42E /* ZLHomeMessageDetailViewController.m */,
+			);
+			name = ZLHomeMessage;
+			path = View/ZLHomeMessage;
+			sourceTree = "<group>";
+		};
+		040D92F51DCAE33700DBE42E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				040D92F61DCAE34E00DBE42E /* ZLHomeMSGCell.h */,
+				040D92F71DCAE34E00DBE42E /* ZLHomeMSGCell.m */,
+				040D92F81DCAE34E00DBE42E /* ZLHomeMSGCell.xib */,
+				040D92FE1DCAE84300DBE42E /* ZLHomeMsgDetailCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		04231D911DC8830B00C50D12 /* ZLHomeLocationView */ = {
 			isa = PBXGroup;
 			children = (
@@ -175,6 +236,32 @@
 				04D64D6B1DC9CCA5004E8859 /* ZLHomeLocationView.xib */,
 			);
 			name = ZLHomeLocationView;
+			sourceTree = "<group>";
+		};
+		04C6A3701DCB079B002C4D4A /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				04C6A3821DCB11A4002C4D4A /* UIViewExt.h */,
+				04C6A3831DCB11A4002C4D4A /* UIViewExt.m */,
+				04C6A3711DCB07B2002C4D4A /* Util.h */,
+				04C6A3721DCB07B9002C4D4A /* Util.m */,
+				04C6A3741DCB0874002C4D4A /* keyChain.h */,
+				04C6A3751DCB0874002C4D4A /* keyChain.m */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		04C6A3771DCB08A5002C4D4A /* RSA */ = {
+			isa = PBXGroup;
+			children = (
+				04C6A3781DCB08AF002C4D4A /* NSData+Base64.h */,
+				04C6A3791DCB08AF002C4D4A /* NSData+Base64.m */,
+				04C6A37A1DCB08AF002C4D4A /* private_key.p12 */,
+				04C6A37B1DCB08AF002C4D4A /* public_key.der */,
+				04C6A37C1DCB08AF002C4D4A /* RSAEncryptor.h */,
+				04C6A37D1DCB08AF002C4D4A /* RSAEncryptor.m */,
+			);
+			path = RSA;
 			sourceTree = "<group>";
 		};
 		04D64D611DC9C154004E8859 /* ZLAddressSelect */ = {
@@ -203,6 +290,9 @@
 				04D64D711DC9CCDC004E8859 /* ZLHomeOtherCell.xib */,
 				04D64D721DC9CCDC004E8859 /* ZLHomeScrollerTableViewCell.h */,
 				04D64D731DC9CCDC004E8859 /* ZLHomeScrollerTableViewCell.m */,
+				04162DF51DCB2C9300FB4229 /* ZLHomeCoupCell.h */,
+				04162DF61DCB2C9300FB4229 /* ZLHomeCoupCell.m */,
+				04162DF71DCB2C9300FB4229 /* ZLHomeCoupCell.xib */,
 			);
 			path = ZLHomeCell;
 			sourceTree = "<group>";
@@ -351,6 +441,7 @@
 		DFFAA74C1DB744EF001CFBB5 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				040D92F11DCAE11400DBE42E /* ZLHomeMessage */,
 				04D64D611DC9C154004E8859 /* ZLAddressSelect */,
 				DF5C48FE1DBA1BEC006E4825 /* DCBannerView */,
 				DFFAA74D1DB744EF001CFBB5 /* View */,
@@ -446,6 +537,8 @@
 		DFFAA7581DB744EF001CFBB5 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				04C6A3771DCB08A5002C4D4A /* RSA */,
+				04C6A3701DCB079B002C4D4A /* Util */,
 				DFFAA7591DB744EF001CFBB5 /* CustomDefine.h */,
 				DFFAA75A1DB744EF001CFBB5 /* UIView+AutoSize.h */,
 				DFFAA75B1DB744EF001CFBB5 /* UIView+AutoSize.m */,
@@ -543,9 +636,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				04D64D751DC9CCDC004E8859 /* ZLHomeOtherCell.xib in Resources */,
+				040D92FF1DCAE84300DBE42E /* ZLHomeMsgDetailCell.xib in Resources */,
+				04C6A37F1DCB08AF002C4D4A /* private_key.p12 in Resources */,
 				04D64D6D1DC9CCA5004E8859 /* ZLHomeLocationView.xib in Resources */,
+				04C6A3801DCB08AF002C4D4A /* public_key.der in Resources */,
 				DFFAA7421DB744C5001CFBB5 /* LaunchScreen.storyboard in Resources */,
 				DFFAA73F1DB744C5001CFBB5 /* Assets.xcassets in Resources */,
+				040D92FA1DCAE34E00DBE42E /* ZLHomeMSGCell.xib in Resources */,
+				04162DF91DCB2C9300FB4229 /* ZLHomeCoupCell.xib in Resources */,
 				04D64D7C1DC9CDA4004E8859 /* ZlHomeCoupView.xib in Resources */,
 				DFFAA73D1DB744C5001CFBB5 /* Main.storyboard in Resources */,
 			);
@@ -670,6 +768,7 @@
 				DFF634C11DB873D200B5C917 /* ScrollModelVC.m in Sources */,
 				DF5C49031DBA1BEC006E4825 /* DCPicScrollView.m in Sources */,
 				04D64D741DC9CCDC004E8859 /* ZLHomeOtherCell.m in Sources */,
+				04C6A3841DCB11A4002C4D4A /* UIViewExt.m in Sources */,
 				DF7D0A1C1DBA0019005A62A7 /* CookCategoryTVC.m in Sources */,
 				DFFAA7621DB744EF001CFBB5 /* APIObjectDefine.m in Sources */,
 				DF55B46F1DBAFEAC00F89341 /* ZLTabBarViewController.m in Sources */,
@@ -682,18 +781,26 @@
 				DFFAA73A1DB744C5001CFBB5 /* ViewController.m in Sources */,
 				DF55B4641DBAFE6000F89341 /* ZLHomeViewController.m in Sources */,
 				DFFAA7371DB744C5001CFBB5 /* AppDelegate.m in Sources */,
+				040D92F91DCAE34E00DBE42E /* ZLHomeMSGCell.m in Sources */,
 				04D64D641DC9C16D004E8859 /* ZLSelectArearViewController.m in Sources */,
 				04D64D681DC9CC7B004E8859 /* ZLCustomBtnView.m in Sources */,
 				DF7D0A151DB9FFF0005A62A7 /* APIClient.m in Sources */,
+				04C6A3761DCB0874002C4D4A /* keyChain.m in Sources */,
+				04C6A37E1DCB08AF002C4D4A /* NSData+Base64.m in Sources */,
 				DFFAA7651DB744EF001CFBB5 /* CustomVC.m in Sources */,
 				04D64D7A1DC9CD35004E8859 /* ZLHomeCoupView.m in Sources */,
+				04C6A3811DCB08AF002C4D4A /* RSAEncryptor.m in Sources */,
+				040D92F41DCAE15300DBE42E /* ZLHomeMessageViewController.m in Sources */,
 				04D64D761DC9CCDC004E8859 /* ZLHomeScrollerTableViewCell.m in Sources */,
+				040D92FD1DCAE82000DBE42E /* ZLHomeMessageDetailViewController.m in Sources */,
+				04162DF81DCB2C9300FB4229 /* ZLHomeCoupCell.m in Sources */,
 				04D64D6C1DC9CCA5004E8859 /* ZLHomeLocationView.m in Sources */,
 				DFFAA7341DB744C5001CFBB5 /* main.m in Sources */,
 				DF7D0A1E1DBA0019005A62A7 /* CookDetailVC.m in Sources */,
 				DF55B46A1DBAFE7700F89341 /* ZLUserViewController.m in Sources */,
 				DF7D0A241DBA0023005A62A7 /* TagsTableCell.m in Sources */,
 				DF5C49041DBA1BEC006E4825 /* DCWebImageManager.m in Sources */,
+				04C6A3731DCB07B9002C4D4A /* Util.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

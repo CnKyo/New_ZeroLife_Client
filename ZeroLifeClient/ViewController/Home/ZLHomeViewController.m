@@ -7,6 +7,7 @@
 //
 
 #import "ZLHomeViewController.h"
+#import "AppDelegate.h"
 #import "MTA.h"
 #import "MTAConfig.h"
 #import "ScrollModelVC.h"
@@ -14,7 +15,11 @@
 #import "ZLHomeScrollerTableViewCell.h"
 #import "ZLHomeOtherCell.h"
 #import "ZLSelectArearViewController.h"
-@interface ZLHomeViewController ()<UITableViewDelegate,UITableViewDataSource,ZLHomeScrollerTableCellDelegate,ZLHomeLocationViewDelegate>
+#import "ZLHomeMessageViewController.h"
+#import "ZLHomeCoupView.h"
+#import "ZLHomeCoupCell.h"
+
+@interface ZLHomeViewController ()<UITableViewDelegate,UITableViewDataSource,ZLHomeScrollerTableCellDelegate,ZLHomeLocationViewDelegate,ZLCoupViewDelegate>
 
 @end
 
@@ -24,13 +29,18 @@
     NSMutableArray *mBannerArr;
     //地址选择view
     ZLHomeLocationView *mLocationView;
+    //优惠券弹框
+    ZLHomeCoupView *mCoupView;
+    //优惠券数据源
+    NSMutableArray *mCoupArr;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"首页";
 
     mBannerArr = [NSMutableArray new];
-    
+    mCoupArr = [NSMutableArray new];
+
     
     [self initLeftAndRightBarButton];
     [self addTableView];
@@ -38,13 +48,16 @@
     UINib   *nib = [UINib nibWithNibName:@"ZLHomeOtherCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell2"];
 
+    
+    [self initCoupView];
+    
     [self loadData];
 }
 #pragma mark ----****----加载导航条左右按钮和中间的社区选择view
 - (void)initLeftAndRightBarButton{
 
     
-    [self addRightBtn:NO andTitel:nil andImage:[UIImage imageNamed:@"ZLHome_Message"]];
+    [self addRightBtn:YES andTitel:nil andImage:[UIImage imageNamed:@"ZLHome_Message"]];
     [self.navigationController.navigationBar.subviews[3] setHidden:YES];
     
     MLLog(@"%@",self.navigationController.navigationBar.subviews);
@@ -63,6 +76,10 @@
 #pragma mark ----****----消息按钮方法
 - (void)mRightAction{
     MLLog(@"right");
+    
+    ZLHomeMessageViewController *ZLHomeMsgVC = [ZLHomeMessageViewController new];
+    [self pushViewController:ZLHomeMsgVC];
+    
 }
 - (void)loadData{
 
@@ -106,8 +123,13 @@
 #pragma mark -- tableviewDelegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView              // Default is 1 if not implemented
 {
+    if (tableView == self.tableView) {
+        return 2;
+    }else{
     
-    return 2;
+        return 1;
+    }
+    
     
     
 }
@@ -120,22 +142,37 @@
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 0) {
-        return 1;
+    
+    if (tableView == self.tableView) {
+        if (section == 0) {
+            return 1;
+        }else{
+            return 5;
+        }
     }else{
+        
         return 5;
     }
+ 
     
     
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0) {
-        return 360;
+    
+    if (tableView == self.tableView) {
+        if (indexPath.section == 0) {
+            return 360;
+        }else{
+            return 200;
+        }
     }else{
-        return 200;
+        
+        return 70;
     }
+    
+
     
 }
 
@@ -145,31 +182,42 @@
     
     NSString *reuseCellId = nil;
     
-    
-    if (indexPath.section == 0) {
-        reuseCellId = @"cell1";
-        
-        ZLHomeScrollerTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
-        
-        if (cell == nil) {
-            cell = [[ZLHomeScrollerTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseCellId andBannerDataSource:mBannerArr andDataSource:self.tableArr];
+    if (tableView == self.tableView) {
+        if (indexPath.section == 0) {
+            reuseCellId = @"cell1";
+            
+            ZLHomeScrollerTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
+            
+            if (cell == nil) {
+                cell = [[ZLHomeScrollerTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseCellId andBannerDataSource:mBannerArr andDataSource:self.tableArr];
+            }
+            
+            
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            cell.delegate = self;
+            
+            return cell;
+        }else{
+            
+            
+            reuseCellId = @"cell2";
+            
+            ZLHomeOtherCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
+            
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            return cell;
         }
-        
-        
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
-        cell.delegate = self;
-        
-        return cell;
+
     }else{
-
-    
-        reuseCellId = @"cell2";
         
-        ZLHomeOtherCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
-
+        reuseCellId = @"CoupCell";
+        
+        ZLHomeCoupCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
+        
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                
+        
         return cell;
     }
     
@@ -180,6 +228,14 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    if (tableView == self.tableView) {
+        [self showCoupView];
+    }else{
+        [self hiddenCoupView];
+    }
+    
+    
    
 }
 #pragma mark ----****----首页滚动功能代理方法
@@ -191,5 +247,47 @@
 - (void)ZLHomeBannerDidSelectedWithIndex:(NSInteger)mIndex{
     MLLog(@"点击了第:%ld个",(long)mIndex);
 
+}
+#pragma mark ----****----优惠券view
+- (void)initCoupView{
+
+    mCoupView = [ZLHomeCoupView shareView];
+    mCoupView.delegate = self;
+    mCoupView.mCoupTableView.delegate = self;
+    mCoupView.mCoupTableView.dataSource = self;
+    mCoupView.frame = self.view.bounds;
+    mCoupView.alpha = 0;
+    mCoupView.mCoupTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    mCoupView.mCoupTableView.backgroundColor = [UIColor clearColor];
+    UINib   *nib = [UINib nibWithNibName:@"ZLHomeCoupCell" bundle:nil];
+    [mCoupView.mCoupTableView registerNib:nib forCellReuseIdentifier:@"CoupCell"];
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    [window addSubview:mCoupView];
+    
+    UITapGestureRecognizer *mTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapACount)];
+    [mCoupView addGestureRecognizer:mTap];
+    
+}
+- (void)tapACount{
+    
+    [self hiddenCoupView];
+}
+#pragma mark ----****----显示优惠券view
+- (void)showCoupView{
+    
+    [UIView animateWithDuration:0.5 animations:^{
+        mCoupView.alpha = 1;
+    }];
+
+}
+#pragma mark ----****----隐藏优惠券view
+- (void)hiddenCoupView{
+    [UIView animateWithDuration:0.25 animations:^{
+        mCoupView.alpha = 0;
+    }];
+}
+#pragma mark ----****----隐藏优惠券view
+- (void)ZLCoupOKBtnSelected{
+    [self hiddenCoupView];
 }
 @end

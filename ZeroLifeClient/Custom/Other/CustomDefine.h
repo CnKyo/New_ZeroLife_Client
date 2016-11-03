@@ -9,6 +9,14 @@
 #ifndef CustomDefine_h
 #define CustomDefine_h
 
+#import "Util.h"
+#import "UIViewExt.h"
+
+#define  KEY_USERNAME_PASSWORD @"com.company.app.usernamepassword"
+#define  KEY_USERNAME @"com.company.app.username"
+#define  KEY_PASSWORD @"com.company.app.password"
+
+#define ColorRGB(_R_, _G_, _B_)       ([UIColor colorWithRed:_R_/255.0f green:_G_/255.0f blue:_B_/255.0f alpha:1])
 
 #define COLOR(r,g,b)                [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:1]
 #define COLOR_RGBA(r,g,b,a)         [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:(a)]
@@ -92,6 +100,8 @@ NSIndexPath *indexPath = [tableview indexPathForRowAtPoint:subviewFrame.origin];
 UITableViewCell *cell=[tableview cellForRowAtIndexPath:indexPath];\
 cell;\
 })\
+
+
 
 
 

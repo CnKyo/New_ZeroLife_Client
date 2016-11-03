@@ -12,32 +12,32 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="F4D-b7-YxM">
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="250" id="SjE-Qf-FUZ"/>
-                        <constraint firstAttribute="width" constant="240" id="n6P-TX-Tpc"/>
-                    </constraints>
-                </tableView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lvg-xl-Ivc">
-                    <color key="backgroundColor" red="0.99569243192672729" green="0.85008782148361206" blue="0.001528226537629962" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="45" id="TuA-Bn-bNX"/>
-                    </constraints>
-                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <state key="normal" title="确定">
-                        <color key="titleColor" red="0.49106055498123169" green="0.35072216391563416" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </state>
-                    <connections>
-                        <action selector="mOKBtnAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="WBu-Jf-XC2"/>
-                    </connections>
-                </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wzE-tc-hhu">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ZLHome_Coup" translatesAutoresizingMaskIntoConstraints="NO" id="wzE-tc-hhu">
                     <constraints>
                         <constraint firstAttribute="height" constant="400" id="Aqi-pp-FWV"/>
                         <constraint firstAttribute="width" constant="280" id="wTy-4G-Evl"/>
                     </constraints>
                 </imageView>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="F4D-b7-YxM">
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="210" id="SjE-Qf-FUZ"/>
+                        <constraint firstAttribute="width" constant="210" id="n6P-TX-Tpc"/>
+                    </constraints>
+                </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lvg-xl-Ivc">
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="45" id="TuA-Bn-bNX"/>
+                    </constraints>
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <state key="normal" title="确定">
+                        <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="mOKBtnAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="WBu-Jf-XC2"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="0.68402183219178081" colorSpace="calibratedRGB"/>
             <constraints>
@@ -46,7 +46,7 @@
                 <constraint firstItem="wzE-tc-hhu" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="YKt-kX-oOp"/>
                 <constraint firstItem="wzE-tc-hhu" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="l9E-oK-rEf"/>
                 <constraint firstItem="lvg-xl-Ivc" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="lAa-Ml-o85"/>
-                <constraint firstItem="F4D-b7-YxM" firstAttribute="top" secondItem="wzE-tc-hhu" secondAttribute="bottom" constant="-300.5" id="q1t-Ib-K79"/>
+                <constraint firstItem="F4D-b7-YxM" firstAttribute="top" secondItem="wzE-tc-hhu" secondAttribute="bottom" constant="-280.5" id="q1t-Ib-K79"/>
                 <constraint firstItem="lvg-xl-Ivc" firstAttribute="width" secondItem="wzE-tc-hhu" secondAttribute="width" id="qo4-im-aXM"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
@@ -58,4 +58,7 @@
             <point key="canvasLocation" x="-29.5" y="-48.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="ZLHome_Coup" width="578" height="838"/>
+    </resources>
 </document>
