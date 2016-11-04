@@ -18,7 +18,7 @@
 #import "ZLHomeMessageViewController.h"
 #import "ZLHomeCoupView.h"
 #import "ZLHomeCoupCell.h"
-
+#import "ZLSuperMarketViewController.h"
 @interface ZLHomeViewController ()<UITableViewDelegate,UITableViewDataSource,ZLHomeScrollerTableCellDelegate,ZLHomeLocationViewDelegate,ZLCoupViewDelegate>
 
 @end
@@ -101,7 +101,7 @@
     
     NSDictionary *mTempDic = [NSMutableDictionary new];
     self.tableArr = [NSMutableArray new];
-    for (int i = 0; i<8; i++) {
+    for (int i = 0; i<11; i++) {
         [mTempDic setValue:[NSString stringWithFormat:@"这是第%d",i] forKey:@"title"];
         [mTempDic setValue:@"icon_homepage_default" forKey:@"image"];
         [self.tableArr addObject:mTempDic];
@@ -167,7 +167,14 @@
     
     if (tableView == self.tableView) {
         if (indexPath.section == 0) {
-            return 360;
+            
+            if (self.tableArr.count<=4) {
+                return 360-90;
+            }else{
+                return 360;
+            }
+            
+            
         }else{
             return 200;
         }
@@ -242,10 +249,13 @@
     
    
 }
-#pragma mark ----****----首页滚动功能代理方法
+#pragma mark ----****----首页滚动分类功能代理方法
 - (void)ZLHomeScrollerTableViewCellDidSelectedWithIndex:(NSInteger)mIndex{
 
     MLLog(@"点击了第:%ld个",(long)mIndex);
+    
+    ZLSuperMarketViewController *mSuperMarketVC = [ZLSuperMarketViewController new];
+    [self pushViewController:mSuperMarketVC];
 }
 #pragma mark ----****----banner点击方法
 - (void)ZLHomeBannerDidSelectedWithIndex:(NSInteger)mIndex{

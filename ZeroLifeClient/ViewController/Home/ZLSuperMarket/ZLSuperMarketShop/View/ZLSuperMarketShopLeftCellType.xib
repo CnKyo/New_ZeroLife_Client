@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="ZLSuperMarketShopLeftCellType">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <frame key="frameInset" width="320" height="49"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Srb-iz-4xb">
+                        <constraints>
+                            <constraint firstAttribute="width" constant="30" id="87n-up-8sE"/>
+                            <constraint firstAttribute="height" constant="30" id="q7p-bZ-5Zi"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="限时抢购" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cPI-sQ-dxY">
+                        <constraints>
+                            <constraint firstAttribute="height" constant="35" id="STD-wS-l9I"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Srb-iz-4xb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="2" id="CUS-cS-zlY"/>
+                    <constraint firstItem="Srb-iz-4xb" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="CdU-RS-b1A"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="cPI-sQ-dxY" secondAttribute="trailing" id="Mlw-HS-Q1s"/>
+                    <constraint firstItem="cPI-sQ-dxY" firstAttribute="leading" secondItem="Srb-iz-4xb" secondAttribute="trailing" constant="8" id="OZu-BX-gJZ"/>
+                    <constraint firstItem="cPI-sQ-dxY" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="urQ-4l-2Hv"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="mContent" destination="cPI-sQ-dxY" id="qdC-s7-6iC"/>
+                <outlet property="mContentLeftContraint" destination="OZu-BX-gJZ" id="Rgv-z4-pJm"/>
+                <outlet property="mLogo" destination="Srb-iz-4xb" id="006-cu-dPW"/>
+            </connections>
+            <point key="canvasLocation" x="-43" y="21"/>
+        </tableViewCell>
+    </objects>
+</document>

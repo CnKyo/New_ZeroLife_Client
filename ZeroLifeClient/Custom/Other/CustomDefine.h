@@ -11,6 +11,11 @@
 
 #import "Util.h"
 #import "UIViewExt.h"
+#import "DCPicScrollView.h"
+#import "DCWebImageManager.h"
+#import "UIImageView+WebCache.h"
+#import "WPHotspotLabel.h"
+
 
 #define  KEY_USERNAME_PASSWORD @"com.company.app.usernamepassword"
 #define  KEY_USERNAME @"com.company.app.username"
