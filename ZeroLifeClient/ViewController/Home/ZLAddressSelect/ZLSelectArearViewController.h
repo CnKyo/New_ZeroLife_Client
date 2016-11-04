@@ -10,4 +10,9 @@
 
 @interface ZLSelectArearViewController : CustomVC
 
+/**
+ block
+ */
+@property (nonatomic,strong) void(^block)(NSString *mBlockAddress ,NSString *mBlockId);
+
 @end

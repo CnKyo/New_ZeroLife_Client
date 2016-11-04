@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		040917511DCC1FE500DB2568 /* ZLSearchArearView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0409174F1DCC1FE500DB2568 /* ZLSearchArearView.m */; };
+		040917521DCC1FE500DB2568 /* ZLSearchArearView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 040917501DCC1FE500DB2568 /* ZLSearchArearView.xib */; };
 		040D92F41DCAE15300DBE42E /* ZLHomeMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 040D92F31DCAE15300DBE42E /* ZLHomeMessageViewController.m */; };
 		040D92F91DCAE34E00DBE42E /* ZLHomeMSGCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 040D92F71DCAE34E00DBE42E /* ZLHomeMSGCell.m */; };
 		040D92FA1DCAE34E00DBE42E /* ZLHomeMSGCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 040D92F81DCAE34E00DBE42E /* ZLHomeMSGCell.xib */; };
@@ -14,6 +16,8 @@
 		040D92FF1DCAE84300DBE42E /* ZLHomeMsgDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 040D92FE1DCAE84300DBE42E /* ZLHomeMsgDetailCell.xib */; };
 		04162DF81DCB2C9300FB4229 /* ZLHomeCoupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04162DF61DCB2C9300FB4229 /* ZLHomeCoupCell.m */; };
 		04162DF91DCB2C9300FB4229 /* ZLHomeCoupCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04162DF71DCB2C9300FB4229 /* ZLHomeCoupCell.xib */; };
+		04162DFF1DCB545200FB4229 /* ChineseToPinyin.m in Sources */ = {isa = PBXBuildFile; fileRef = 04162DFC1DCB545200FB4229 /* ChineseToPinyin.m */; };
+		04162E001DCB545200FB4229 /* HeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04162DFE1DCB545200FB4229 /* HeaderView.m */; };
 		049D49081DB75CCD005A1038 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 049D49071DB75CCD005A1038 /* libz.tbd */; };
 		049D490A1DB75CDA005A1038 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 049D49091DB75CDA005A1038 /* libsqlite3.tbd */; };
 		049D490C1DB75CE0005A1038 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 049D490B1DB75CE0005A1038 /* SystemConfiguration.framework */; };
@@ -72,6 +76,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0409174E1DCC1FE500DB2568 /* ZLSearchArearView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLSearchArearView.h; sourceTree = "<group>"; };
+		0409174F1DCC1FE500DB2568 /* ZLSearchArearView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLSearchArearView.m; sourceTree = "<group>"; };
+		040917501DCC1FE500DB2568 /* ZLSearchArearView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLSearchArearView.xib; sourceTree = "<group>"; };
 		040D92F21DCAE15300DBE42E /* ZLHomeMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLHomeMessageViewController.h; sourceTree = "<group>"; };
 		040D92F31DCAE15300DBE42E /* ZLHomeMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLHomeMessageViewController.m; sourceTree = "<group>"; };
 		040D92F61DCAE34E00DBE42E /* ZLHomeMSGCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLHomeMSGCell.h; sourceTree = "<group>"; };
@@ -83,6 +90,10 @@
 		04162DF51DCB2C9300FB4229 /* ZLHomeCoupCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLHomeCoupCell.h; sourceTree = "<group>"; };
 		04162DF61DCB2C9300FB4229 /* ZLHomeCoupCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLHomeCoupCell.m; sourceTree = "<group>"; };
 		04162DF71DCB2C9300FB4229 /* ZLHomeCoupCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLHomeCoupCell.xib; sourceTree = "<group>"; };
+		04162DFB1DCB545200FB4229 /* ChineseToPinyin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChineseToPinyin.h; sourceTree = "<group>"; };
+		04162DFC1DCB545200FB4229 /* ChineseToPinyin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChineseToPinyin.m; sourceTree = "<group>"; };
+		04162DFD1DCB545200FB4229 /* HeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderView.h; sourceTree = "<group>"; };
+		04162DFE1DCB545200FB4229 /* HeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeaderView.m; sourceTree = "<group>"; };
 		049D49071DB75CCD005A1038 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		049D49091DB75CDA005A1038 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		049D490B1DB75CE0005A1038 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -228,6 +239,20 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		04162DFA1DCB544300FB4229 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				04162DFB1DCB545200FB4229 /* ChineseToPinyin.h */,
+				04162DFC1DCB545200FB4229 /* ChineseToPinyin.m */,
+				04162DFD1DCB545200FB4229 /* HeaderView.h */,
+				04162DFE1DCB545200FB4229 /* HeaderView.m */,
+				0409174E1DCC1FE500DB2568 /* ZLSearchArearView.h */,
+				0409174F1DCC1FE500DB2568 /* ZLSearchArearView.m */,
+				040917501DCC1FE500DB2568 /* ZLSearchArearView.xib */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
 		04231D911DC8830B00C50D12 /* ZLHomeLocationView */ = {
 			isa = PBXGroup;
 			children = (
@@ -267,6 +292,7 @@
 		04D64D611DC9C154004E8859 /* ZLAddressSelect */ = {
 			isa = PBXGroup;
 			children = (
+				04162DFA1DCB544300FB4229 /* view */,
 				04D64D621DC9C16D004E8859 /* ZLSelectArearViewController.h */,
 				04D64D631DC9C16D004E8859 /* ZLSelectArearViewController.m */,
 			);
@@ -640,6 +666,7 @@
 				04C6A37F1DCB08AF002C4D4A /* private_key.p12 in Resources */,
 				04D64D6D1DC9CCA5004E8859 /* ZLHomeLocationView.xib in Resources */,
 				04C6A3801DCB08AF002C4D4A /* public_key.der in Resources */,
+				040917521DCC1FE500DB2568 /* ZLSearchArearView.xib in Resources */,
 				DFFAA7421DB744C5001CFBB5 /* LaunchScreen.storyboard in Resources */,
 				DFFAA73F1DB744C5001CFBB5 /* Assets.xcassets in Resources */,
 				040D92FA1DCAE34E00DBE42E /* ZLHomeMSGCell.xib in Resources */,
@@ -767,15 +794,18 @@
 				DFFAA7631DB744EF001CFBB5 /* UIView+AutoSize.m in Sources */,
 				DFF634C11DB873D200B5C917 /* ScrollModelVC.m in Sources */,
 				DF5C49031DBA1BEC006E4825 /* DCPicScrollView.m in Sources */,
+				040917511DCC1FE500DB2568 /* ZLSearchArearView.m in Sources */,
 				04D64D741DC9CCDC004E8859 /* ZLHomeOtherCell.m in Sources */,
 				04C6A3841DCB11A4002C4D4A /* UIViewExt.m in Sources */,
 				DF7D0A1C1DBA0019005A62A7 /* CookCategoryTVC.m in Sources */,
 				DFFAA7621DB744EF001CFBB5 /* APIObjectDefine.m in Sources */,
+				04162DFF1DCB545200FB4229 /* ChineseToPinyin.m in Sources */,
 				DF55B46F1DBAFEAC00F89341 /* ZLTabBarViewController.m in Sources */,
 				DF7D0A231DBA0023005A62A7 /* ImageTextTableViewCell.m in Sources */,
 				DF7D0A1D1DBA0019005A62A7 /* CookTVC.m in Sources */,
 				DF55B4671DBAFE6D00F89341 /* ZLPurseViewController.m in Sources */,
 				DF55B4701DBAFEAC00F89341 /* ZLNavViewController.m in Sources */,
+				04162E001DCB545200FB4229 /* HeaderView.m in Sources */,
 				DF55B4611DBAFE5800F89341 /* ZLCookViewController.m in Sources */,
 				DFFAA7641DB744EF001CFBB5 /* CustomScrollVC.m in Sources */,
 				DFFAA73A1DB744C5001CFBB5 /* ViewController.m in Sources */,

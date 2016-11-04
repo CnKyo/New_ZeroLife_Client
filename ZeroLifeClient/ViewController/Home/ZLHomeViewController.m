@@ -71,6 +71,10 @@
 #pragma mark ----****----社区选择view代理方法
 - (void)ZLHomLocationViewDidSelected{
     ZLSelectArearViewController *ZLAddressVC = [ZLSelectArearViewController new];
+    ZLAddressVC.block = ^(NSString *mBlockAddress ,NSString *mBlockId){
+        mLocationView.mAddress.text = mBlockAddress;
+       
+    };
     [self pushViewController:ZLAddressVC];
 }
 #pragma mark ----****----消息按钮方法

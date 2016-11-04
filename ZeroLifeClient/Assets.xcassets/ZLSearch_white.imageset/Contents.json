@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "ZLHome_Location.png",
+      "filename" : "ZLSearch_white.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "ZLHome_Location-1.png",
+      "filename" : "ZLSearch_white-1.png",
       "scale" : "2x"
     },
     {

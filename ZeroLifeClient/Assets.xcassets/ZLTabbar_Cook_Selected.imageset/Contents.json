@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "ZLHome_Location.png",
+      "filename" : "ZLTabbar_Cook_Selected.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "ZLHome_Location-1.png",
+      "filename" : "ZLTabbar_Cook_Selected-1.png",
       "scale" : "2x"
     },
     {
