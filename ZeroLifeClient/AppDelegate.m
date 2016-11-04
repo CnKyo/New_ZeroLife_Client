@@ -19,8 +19,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    [self initLibraries];
-    
     //创建窗口的根控制器
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     
@@ -29,6 +27,7 @@
     //显示窗口
     [self.window makeKeyAndVisible];
 
+    [self initLibraries];
     
     return YES;
 }

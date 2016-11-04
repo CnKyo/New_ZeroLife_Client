@@ -39,13 +39,13 @@
 - (void)setUpChildVcs
 {
     
-    [self setUpOneChildVc:[[ZLNavViewController alloc] initWithRootViewController:[[ZLHomeViewController alloc] init]] title:@"首页" image:@"tabBar_essence_icon" selectedImage:@"tabBar_essence_click_icon"];
+    [self setUpOneChildVc:[[ZLNavViewController alloc] initWithRootViewController:[[ZLHomeViewController alloc] init]] title:@"首页" image:@"ZLTabbar_Home_Normal" selectedImage:@"ZLTabbar_Home_Selected"];
     
-    [self setUpOneChildVc:[[ZLNavViewController alloc] initWithRootViewController:[[ZLUserViewController alloc] init]] title:@"我的" image:@"tabBar_new_icon" selectedImage:@"tabBar_new_click_icon"];
+    [self setUpOneChildVc:[[ZLNavViewController alloc] initWithRootViewController:[[ZLUserViewController alloc] init]] title:@"我的" image:@"ZLTabbar_My_Normal" selectedImage:@"ZLTabbar_My_Selected"];
     
-    [self setUpOneChildVc:[[ZLNavViewController alloc] initWithRootViewController:[[ZLPurseViewController alloc] init]]title:@"钱包" image:@"tabBar_friendTrends_icon" selectedImage:@"tabBar_friendTrends_click_icon"];
+    [self setUpOneChildVc:[[ZLNavViewController alloc] initWithRootViewController:[[ZLPurseViewController alloc] init]]title:@"钱包" image:@"ZLTabbar_Purse_Normal" selectedImage:@"ZLTabbar_Purse_Selected"];
     
-    [self setUpOneChildVc:[[ZLNavViewController alloc] initWithRootViewController:[[CookCategoryTVC alloc] init]]title:@"厨房" image:@"tabBar_friendTrends_icon" selectedImage:@"tabBar_friendTrends_click_icon"];
+    [self setUpOneChildVc:[[ZLNavViewController alloc] initWithRootViewController:[[CookCategoryTVC alloc] init]]title:@"厨房" image:@"ZLTabbar_Cook_normal" selectedImage:@"ZLTabbar_Cook_Selected"];
  
     
 }
@@ -61,6 +61,8 @@
 
 - (void)setUpItemTitleTextAttrs
 {
+    self.tabBar.tintColor = M_CO;
+    
     //设置tabbar边缘线
     self.tabBar.layer.borderWidth = 0.50;
     self.tabBar.layer.borderColor = [UIColor colorWithRed:0.75 green:0.75 blue:0.75 alpha:0.3].CGColor;
