@@ -11,7 +11,8 @@
 
 #import "ZLSuperMarketShopLeftCellType.h"
 #import "ZLSuperMarketShopRightCell.h"
-@interface ZLSuperMarketShopViewController ()<UITableViewDelegate,UITableViewDataSource,ZLSuperMarketShopDelegate,ZLSuperMarketGoodsCellDelegate,UIScrollViewDelegate>
+#import "ZLSuperMarketShopCarView.h"
+@interface ZLSuperMarketShopViewController ()<UITableViewDelegate,UITableViewDataSource,ZLSuperMarketShopDelegate,ZLSuperMarketGoodsCellDelegate,UIScrollViewDelegate,ZLSuperMarketShopCarDelegate>
 
 @end
 
@@ -29,8 +30,12 @@
     UITableView *mRightTableView;
     ///通用headerview
     UIView *mGeneraHeaderView;
-    CGRect mL;
-    CGRect mR;
+    
+    CGRect mRect;
+    
+    UIScrollView *mMainView;
+    
+    ZLSuperMarketShopCarView *mBottomView;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -38,8 +43,9 @@
     self.navigationItem.title = @"店铺首页";
 
     [self addRightBtn:YES andTitel:nil andImage:[UIImage imageNamed:@"ZLSearch_white"]];
-    [self initView];
     [self initHeaderView];
+
+    [self initView];
 
 }
 - (void)initHeaderView{
@@ -51,17 +57,28 @@
         make.height.offset(@156);
     }];
     
+    
+
 }
 
 - (void)initView{
 
+    mMainView = [UIScrollView new];
+    [self.view addSubview:mMainView];
+    mMainView.backgroundColor = [UIColor clearColor];
+    [mMainView makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.equalTo(self.view).offset(0);
+        make.top.equalTo(self.view).offset(@156);
+        make.width.offset(DEVICE_Width);
+    }];
+    
     mLeftTableView = [UITableView new];
     mLeftTableView.delegate = self;
     mLeftTableView.dataSource = self;
     mLeftTableView.layer.masksToBounds = YES;
     mLeftTableView.layer.borderColor = [UIColor colorWithRed:0.96 green:0.95 blue:0.96 alpha:1.00].CGColor;
     mLeftTableView.layer.borderWidth = 0.5;
-    [self.view addSubview:mLeftTableView];
+    [mMainView addSubview:mLeftTableView];
     
     UINib   *nib = [UINib nibWithNibName:@"ZLSuperMarketShopLeftCellType" bundle:nil];
     [mLeftTableView registerNib:nib forCellReuseIdentifier:@"mLeftCell"];
@@ -73,7 +90,7 @@
     mRightTableView.layer.masksToBounds = YES;
     mRightTableView.layer.borderColor = [UIColor colorWithRed:0.96 green:0.95 blue:0.96 alpha:1.00].CGColor;
     mRightTableView.layer.borderWidth = 0.5;
-    [self.view addSubview:mRightTableView];
+    [mMainView addSubview:mRightTableView];
     
     nib = [UINib nibWithNibName:@"ZLSuperMarketShopRightCell" bundle:nil];
     [mRightTableView registerNib:nib forCellReuseIdentifier:@"mRightCell"];
@@ -81,18 +98,18 @@
     
     [mLeftTableView makeConstraints:^(MASConstraintMaker *make) {
 //        make.left.top.equalTo(self.view).offset(0);
-        make.left.equalTo(self.view).offset(0);
-        make.top.equalTo(self.view).offset(156);
-        make.bottom.equalTo(self.view).offset(DEVICE_Height-100);
+        make.left.equalTo(mMainView).offset(0);
+        make.top.equalTo(mMainView).offset(0);
+        make.bottom.equalTo(mMainView).offset(DEVICE_Height-100);
         make.right.equalTo(mRightTableView.left).offset(0);
         make.width.offset(DEVICE_Width/3);
     }];
     
     [mRightTableView makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.view).offset(0);
-        make.top.equalTo(self.view).offset(156);
+        make.right.equalTo(mMainView).offset(0);
+        make.top.equalTo(mMainView).offset(0);
 
-        make.bottom.equalTo(self.view).offset(DEVICE_Height-100);
+        make.bottom.equalTo(mMainView).offset(DEVICE_Height-100);
         make.left.equalTo(mLeftTableView.right).offset(0);
         make.width.offset(DEVICE_Width-DEVICE_Width/3);
     }];
@@ -109,6 +126,14 @@
 //    mLeftTableView.tableHeaderView = mGeneraHeaderView;
 //    mRightTableView.tableHeaderView = mGeneraHeaderView;
 
+    mBottomView = [ZLSuperMarketShopCarView shareView];
+    mBottomView.delegate = self;
+    [self.view addSubview:mBottomView];
+    [mBottomView makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.equalTo(self.view).offset(0);
+        make.height.offset(@60);
+        
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -264,26 +289,46 @@
     
     MLLog(@"yyyyyyyyy----------:  %f",offsetY);
     
-    mL = mLeftTableView.frame;
-//    mR = mRightTableView.frame;
+    mRect = mMainView.frame;
     
-    if (offsetY < 156) {
+    if (offsetY > 30 ) {
+  
+        [UIView animateWithDuration:0.25 animations:^{
+            mRect.origin.y = 0;
+            mRect.size.height+=156;
+            mMainView.frame = mRect;
+
+        }];
         
-        mL.origin.y = 156 - offsetY;
-//        mR.origin.y = 156- offsetY;
-        
-        mLeftTableView.frame = mL;
-//        mRightTableView.frame = mR;
-        
-    } else {
-        
-        mL.origin.y = 156 + offsetY;
-//        mR.origin.y = 156+offsetY;
-        
-        mLeftTableView.frame = mL;
-//        mRightTableView.frame = mR;
     }
+    else if(offsetY < 0){
+        if (offsetY == -30) {
+            return;
+        }
+        [UIView animateWithDuration:0.25 animations:^{
+            mRect.origin.y = 156;
+
+            mMainView.frame = mRect;
+            
+        }];
+
+        
+
+    }
+
 }
 
+/**
+ 购物车代理方法
+ */
+- (void)ZLSuperMarketShopCarDidSelected{
 
+}
+
+/**
+ 去结算代理方法
+ */
+- (void)ZLSuperMarketGoPayDidSelected{
+
+}
 @end
