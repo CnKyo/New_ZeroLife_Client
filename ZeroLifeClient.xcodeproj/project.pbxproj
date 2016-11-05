@@ -48,6 +48,11 @@
 		04D64D7A1DC9CD35004E8859 /* ZLHomeCoupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D64D791DC9CD35004E8859 /* ZLHomeCoupView.m */; };
 		04D64D7C1DC9CDA4004E8859 /* ZlHomeCoupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D64D7B1DC9CDA4004E8859 /* ZlHomeCoupView.xib */; };
 		92AF8AA63E2B8C882D0429B1 /* libPods-ZeroLifeClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 339DEB89053AF616C6AD0FF3 /* libPods-ZeroLifeClient.a */; };
+		DF0308851DCD65C700E1EAB6 /* SystemSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0308841DCD65C700E1EAB6 /* SystemSettingVC.m */; };
+		DF0308881DCD67ED00E1EAB6 /* UserInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0308871DCD67ED00E1EAB6 /* UserInfoVC.m */; };
+		DF03088D1DCD698900E1EAB6 /* QUPickPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = DF03088A1DCD698900E1EAB6 /* QUPickPhoto.m */; };
+		DF03088E1DCD698900E1EAB6 /* NSObject+PickPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = DF03088C1DCD698900E1EAB6 /* NSObject+PickPhoto.m */; };
+		DF0308911DCD69DC00E1EAB6 /* UIViewController+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0308901DCD69DC00E1EAB6 /* UIViewController+Additions.m */; };
 		DF55B4611DBAFE5800F89341 /* ZLCookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF55B45F1DBAFE5800F89341 /* ZLCookViewController.m */; };
 		DF55B4641DBAFE6000F89341 /* ZLHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF55B4621DBAFE6000F89341 /* ZLHomeViewController.m */; };
 		DF55B4671DBAFE6D00F89341 /* ZLPurseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF55B4651DBAFE6D00F89341 /* ZLPurseViewController.m */; };
@@ -137,6 +142,16 @@
 		04D64D7B1DC9CDA4004E8859 /* ZlHomeCoupView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZlHomeCoupView.xib; sourceTree = "<group>"; };
 		26781393B9810BF63F686EF1 /* Pods-ZeroLifeClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZeroLifeClient.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZeroLifeClient/Pods-ZeroLifeClient.release.xcconfig"; sourceTree = "<group>"; };
 		339DEB89053AF616C6AD0FF3 /* libPods-ZeroLifeClient.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZeroLifeClient.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DF0308831DCD65C700E1EAB6 /* SystemSettingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemSettingVC.h; sourceTree = "<group>"; };
+		DF0308841DCD65C700E1EAB6 /* SystemSettingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SystemSettingVC.m; sourceTree = "<group>"; };
+		DF0308861DCD67ED00E1EAB6 /* UserInfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoVC.h; sourceTree = "<group>"; };
+		DF0308871DCD67ED00E1EAB6 /* UserInfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoVC.m; sourceTree = "<group>"; };
+		DF0308891DCD698900E1EAB6 /* QUPickPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QUPickPhoto.h; sourceTree = "<group>"; };
+		DF03088A1DCD698900E1EAB6 /* QUPickPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QUPickPhoto.m; sourceTree = "<group>"; };
+		DF03088B1DCD698900E1EAB6 /* NSObject+PickPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+PickPhoto.h"; sourceTree = "<group>"; };
+		DF03088C1DCD698900E1EAB6 /* NSObject+PickPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+PickPhoto.m"; sourceTree = "<group>"; };
+		DF03088F1DCD69DC00E1EAB6 /* UIViewController+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Additions.h"; sourceTree = "<group>"; };
+		DF0308901DCD69DC00E1EAB6 /* UIViewController+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Additions.m"; sourceTree = "<group>"; };
 		DF55B45F1DBAFE5800F89341 /* ZLCookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLCookViewController.m; sourceTree = "<group>"; };
 		DF55B4601DBAFE5800F89341 /* ZLCookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLCookViewController.h; sourceTree = "<group>"; };
 		DF55B4621DBAFE6000F89341 /* ZLHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLHomeViewController.m; sourceTree = "<group>"; };
@@ -510,9 +525,13 @@
 		DFFAA7501DB744EF001CFBB5 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				DFFAA7511DB744EF001CFBB5 /* View */,
 				DF55B4691DBAFE7700F89341 /* ZLUserViewController.h */,
 				DF55B4681DBAFE7700F89341 /* ZLUserViewController.m */,
-				DFFAA7511DB744EF001CFBB5 /* View */,
+				DF0308831DCD65C700E1EAB6 /* SystemSettingVC.h */,
+				DF0308841DCD65C700E1EAB6 /* SystemSettingVC.m */,
+				DF0308861DCD67ED00E1EAB6 /* UserInfoVC.h */,
+				DF0308871DCD67ED00E1EAB6 /* UserInfoVC.m */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -568,6 +587,12 @@
 				DFFAA7591DB744EF001CFBB5 /* CustomDefine.h */,
 				DFFAA75A1DB744EF001CFBB5 /* UIView+AutoSize.h */,
 				DFFAA75B1DB744EF001CFBB5 /* UIView+AutoSize.m */,
+				DF0308891DCD698900E1EAB6 /* QUPickPhoto.h */,
+				DF03088A1DCD698900E1EAB6 /* QUPickPhoto.m */,
+				DF03088B1DCD698900E1EAB6 /* NSObject+PickPhoto.h */,
+				DF03088C1DCD698900E1EAB6 /* NSObject+PickPhoto.m */,
+				DF03088F1DCD69DC00E1EAB6 /* UIViewController+Additions.h */,
+				DF0308901DCD69DC00E1EAB6 /* UIViewController+Additions.m */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -791,6 +816,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF0308851DCD65C700E1EAB6 /* SystemSettingVC.m in Sources */,
 				DFFAA7631DB744EF001CFBB5 /* UIView+AutoSize.m in Sources */,
 				DFF634C11DB873D200B5C917 /* ScrollModelVC.m in Sources */,
 				DF5C49031DBA1BEC006E4825 /* DCPicScrollView.m in Sources */,
@@ -799,6 +825,7 @@
 				04C6A3841DCB11A4002C4D4A /* UIViewExt.m in Sources */,
 				DF7D0A1C1DBA0019005A62A7 /* CookCategoryTVC.m in Sources */,
 				DFFAA7621DB744EF001CFBB5 /* APIObjectDefine.m in Sources */,
+				DF0308911DCD69DC00E1EAB6 /* UIViewController+Additions.m in Sources */,
 				04162DFF1DCB545200FB4229 /* ChineseToPinyin.m in Sources */,
 				DF55B46F1DBAFEAC00F89341 /* ZLTabBarViewController.m in Sources */,
 				DF7D0A231DBA0023005A62A7 /* ImageTextTableViewCell.m in Sources */,
@@ -807,10 +834,13 @@
 				DF55B4701DBAFEAC00F89341 /* ZLNavViewController.m in Sources */,
 				04162E001DCB545200FB4229 /* HeaderView.m in Sources */,
 				DF55B4611DBAFE5800F89341 /* ZLCookViewController.m in Sources */,
+				DF0308881DCD67ED00E1EAB6 /* UserInfoVC.m in Sources */,
 				DFFAA7641DB744EF001CFBB5 /* CustomScrollVC.m in Sources */,
+				DF03088E1DCD698900E1EAB6 /* NSObject+PickPhoto.m in Sources */,
 				DFFAA73A1DB744C5001CFBB5 /* ViewController.m in Sources */,
 				DF55B4641DBAFE6000F89341 /* ZLHomeViewController.m in Sources */,
 				DFFAA7371DB744C5001CFBB5 /* AppDelegate.m in Sources */,
+				DF03088D1DCD698900E1EAB6 /* QUPickPhoto.m in Sources */,
 				040D92F91DCAE34E00DBE42E /* ZLHomeMSGCell.m in Sources */,
 				04D64D641DC9C16D004E8859 /* ZLSelectArearViewController.m in Sources */,
 				04D64D681DC9CC7B004E8859 /* ZLCustomBtnView.m in Sources */,
