@@ -11,6 +11,8 @@
 #import "Masonry.h"
 #import <MJRefresh/MJRefresh.h>
 #import "APIObjectDefine.h"
+#import <JKCategories/JKUIKit.h>
+#import <BlocksKit/BlocksKit+UIKit.h>
 
 @interface CustomVC : UIViewController<UITableViewDataSource, UITableViewDelegate>
 
@@ -45,7 +47,7 @@
   初始化tableview
  */
 -(void)addTableView;
-
+-(void)addTableViewWithStyleGrouped;
 
 ///**
 // 腾讯统计标签

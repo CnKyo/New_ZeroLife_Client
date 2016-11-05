@@ -22,12 +22,24 @@
     //    self.interactivePopGestureRecognizer.delegate = nil;
     self.navigationBar.translucent = NO;
     self.interactivePopGestureRecognizer.delegate = self;
-    self.navigationBar.barTintColor = [UIColor colorWithRed:0.55 green:0.75 blue:0.15 alpha:1.00];
-    //设置导航栏文字
-    [self.navigationBar setTitleTextAttributes:@{
-                                                 NSFontAttributeName : [UIFont boldSystemFontOfSize:17],NSForegroundColorAttributeName:[UIColor whiteColor]
-                                                 
-                                                 }];
+//    self.navigationBar.barTintColor = [UIColor colorWithRed:0.55 green:0.75 blue:0.15 alpha:1.00];
+//    //设置导航栏文字
+//    [self.navigationBar setTitleTextAttributes:@{
+//                                                 NSFontAttributeName : [UIFont boldSystemFontOfSize:17],NSForegroundColorAttributeName:[UIColor whiteColor]
+//                                                 
+//                                                 }];
+    
+    UIColor *color = [UIColor whiteColor];
+    self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    self.navigationBar.tintColor = COLOR_NavBar;
+    self.navigationBar.barStyle = UIBarStyleBlack;
+    self.navigationBar.translucent = NO;
+    if (SystemIsiOS7()) {
+        self.navigationBar.barTintColor = COLOR_NavBar;
+        self.navigationBar.tintColor = color;
+    }
+    [self.navigationBar setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:color, NSForegroundColorAttributeName, [UIFont boldSystemFontOfSize:17], NSFontAttributeName, nil]];
+    
 
 }
 /**

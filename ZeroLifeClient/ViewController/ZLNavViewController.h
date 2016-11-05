@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CustomDefine.h"
 
 @interface ZLNavViewController : UINavigationController
 

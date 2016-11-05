@@ -99,6 +99,26 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+-(void)addTableViewWithStyleGrouped
+{
+    if (self.tableView==nil ) {
+        self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
+        self.tableView.delegate = self;
+        self.tableView.dataSource = self;
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        [self.view addSubview:self.tableView];
+        self.tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+        self.tableView.tableFooterView = [[UIView alloc] init];
+        self.tableView.backgroundColor = COLOR(247, 247, 247);
+        
+        [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(self.view);
+            make.height.equalTo(self.view.mas_height);
+        }];
+    }
+}
+
 - (void)addTableView{
     
     if (self.tableView==nil ) {
