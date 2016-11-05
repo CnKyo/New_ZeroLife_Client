@@ -476,7 +476,7 @@
             [mRightBtn setImage:mImage forState:UIControlStateNormal];
             
         }
-        [mRightBtn addTarget:self action:@selector(mRightAction)forControlEvents:UIControlEventTouchUpInside];
+        [mRightBtn addTarget:self action:@selector(mRightAction:)forControlEvents:UIControlEventTouchUpInside];
         UIBarButtonItem *mRightBartem = [[UIBarButtonItem alloc]initWithCustomView:mRightBtn];
         self.navigationItem.rightBarButtonItem= mRightBartem;
     }
@@ -487,7 +487,7 @@
 - (void)mBackAction{
     [self popViewController];
 }
-- (void)mRightAction{
+- (void)mRightAction:(UIButton *)sender{
     
 }
 @end

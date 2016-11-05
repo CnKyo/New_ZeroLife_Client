@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="yMQ-My-VqO" customClass="ZLSuperMarketShopRightCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yMQ-My-VqO" id="L5x-xu-iZT">
+                <frame key="frameInset" width="320" height="99"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jNB-dN-sjL">
+                        <constraints>
+                            <constraint firstAttribute="width" constant="80" id="R9N-Yw-XO2"/>
+                            <constraint firstAttribute="height" constant="80" id="nTm-Rl-A0O"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="tqn-kJ-tsK">
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="dmc-g9-iLu"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="月销1000件" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rzl-Jk-yaU">
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="TyZ-VB-TpL"/>
+                            <constraint firstAttribute="width" constant="72" id="oX2-gA-kD3"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rJL-1T-MFm" customClass="WPHotspotLabel">
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="MVc-vH-c6D"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="库存999件" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dn2-jb-L5Z" customClass="WPHotspotLabel">
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="tNm-OG-YHZ"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lbs-S3-GNR">
+                        <color key="backgroundColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="25" id="6ga-NT-YyD"/>
+                            <constraint firstAttribute="width" constant="60" id="kLI-LP-ou1"/>
+                        </constraints>
+                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <state key="normal" title="选规格">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="mSpecBtnAction:" destination="yMQ-My-VqO" eventType="touchUpInside" id="WOV-lm-ucB"/>
+                        </connections>
+                    </button>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6ti-Ze-K16">
+                        <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="0.25232769690000001" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="Td9-3J-2Go"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="rJL-1T-MFm" firstAttribute="leading" secondItem="jNB-dN-sjL" secondAttribute="trailing" constant="8" id="071-hP-23Y"/>
+                    <constraint firstItem="jNB-dN-sjL" firstAttribute="centerY" secondItem="L5x-xu-iZT" secondAttribute="centerY" id="4Oe-u8-DH9"/>
+                    <constraint firstItem="tqn-kJ-tsK" firstAttribute="top" secondItem="L5x-xu-iZT" secondAttribute="topMargin" constant="2" id="Epy-LC-3PN"/>
+                    <constraint firstItem="6ti-Ze-K16" firstAttribute="top" secondItem="jNB-dN-sjL" secondAttribute="bottom" constant="9" id="FdH-L9-nXW"/>
+                    <constraint firstItem="rzl-Jk-yaU" firstAttribute="leading" secondItem="tqn-kJ-tsK" secondAttribute="trailing" constant="8" id="HKF-CA-sVp"/>
+                    <constraint firstItem="jNB-dN-sjL" firstAttribute="leading" secondItem="L5x-xu-iZT" secondAttribute="leadingMargin" constant="2" id="I23-YC-emD"/>
+                    <constraint firstItem="Dn2-jb-L5Z" firstAttribute="leading" secondItem="jNB-dN-sjL" secondAttribute="trailing" constant="8" id="Ivg-rx-PaD"/>
+                    <constraint firstItem="6ti-Ze-K16" firstAttribute="leading" secondItem="L5x-xu-iZT" secondAttribute="leadingMargin" constant="2" id="O2V-UT-4LZ"/>
+                    <constraint firstItem="rzl-Jk-yaU" firstAttribute="top" secondItem="L5x-xu-iZT" secondAttribute="topMargin" constant="2" id="OA3-Rr-mwi"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="rJL-1T-MFm" secondAttribute="trailing" id="Uli-Nw-kRL"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="lbs-S3-GNR" secondAttribute="trailing" id="WtN-ur-EUE"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="6ti-Ze-K16" secondAttribute="trailing" constant="-8" id="Wyu-sm-db0"/>
+                    <constraint firstItem="lbs-S3-GNR" firstAttribute="top" secondItem="rJL-1T-MFm" secondAttribute="bottom" constant="3" id="XGo-0D-hxw"/>
+                    <constraint firstItem="lbs-S3-GNR" firstAttribute="leading" secondItem="Dn2-jb-L5Z" secondAttribute="trailing" constant="10" id="gsY-ZM-bYF"/>
+                    <constraint firstItem="Dn2-jb-L5Z" firstAttribute="top" secondItem="rJL-1T-MFm" secondAttribute="bottom" constant="10" id="ioi-kI-eW8"/>
+                    <constraint firstItem="rJL-1T-MFm" firstAttribute="top" secondItem="tqn-kJ-tsK" secondAttribute="bottom" constant="8" id="ivV-ka-WeY"/>
+                    <constraint firstItem="tqn-kJ-tsK" firstAttribute="leading" secondItem="jNB-dN-sjL" secondAttribute="trailing" constant="8" id="pzr-Mn-alN"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="rzl-Jk-yaU" secondAttribute="trailing" id="twT-pg-pZn"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="mGoodsCount" destination="Dn2-jb-L5Z" id="mNC-Kh-Fhx"/>
+                <outlet property="mGoodsImg" destination="jNB-dN-sjL" id="Yhc-T2-vDJ"/>
+                <outlet property="mGoodsName" destination="tqn-kJ-tsK" id="5FG-Jw-8gl"/>
+                <outlet property="mGoodsPrice" destination="rJL-1T-MFm" id="PhR-Zp-yhg"/>
+                <outlet property="mSailsNum" destination="rzl-Jk-yaU" id="Yol-nG-xAB"/>
+                <outlet property="mSpecBtn" destination="lbs-S3-GNR" id="XnW-OM-NDC"/>
+            </connections>
+            <point key="canvasLocation" x="-36" y="47"/>
+        </tableViewCell>
+    </objects>
+</document>

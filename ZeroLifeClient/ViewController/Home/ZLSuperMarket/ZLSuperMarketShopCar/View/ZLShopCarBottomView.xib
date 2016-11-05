@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ZLShopCarBottomView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Wc-km-ZQY">
+                    <rect key="contentStretch" x="0.050000000000000003" y="0.0" width="1" height="1"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="65" id="5aM-3r-3Cj"/>
+                        <constraint firstAttribute="height" constant="28" id="Phi-Cu-Ped"/>
+                    </constraints>
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <state key="normal" title="全选" image="ZLShopCar_Normal">
+                        <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <state key="selected" title="取消全选" image="ZLShopCar_Selected"/>
+                    <connections>
+                        <action selector="mSelectedAll:" destination="iN0-l3-epB" eventType="touchUpInside" id="9kh-M9-m1H"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ny0-IV-b3c">
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uxj-gL-dpB">
+                    <color key="backgroundColor" red="0.59415739769999998" green="0.78603571650000004" blue="0.16135776039999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="120" id="vmT-uc-74h"/>
+                    </constraints>
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <state key="normal" title="去结算">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="mGoPay:" destination="iN0-l3-epB" eventType="touchUpInside" id="FRy-6Y-7jt"/>
+                    </connections>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j0K-ec-Er6">
+                    <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="0.25222067636986301" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="fSU-L8-7AW"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="uxj-gL-dpB" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="2cn-7m-fGM"/>
+                <constraint firstItem="j0K-ec-Er6" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="6Jw-zJ-n5B"/>
+                <constraint firstItem="uxj-gL-dpB" firstAttribute="leading" secondItem="ny0-IV-b3c" secondAttribute="trailing" constant="8" id="81u-9I-cfI"/>
+                <constraint firstItem="9Wc-km-ZQY" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="TZR-Bb-Vq4"/>
+                <constraint firstAttribute="trailing" secondItem="j0K-ec-Er6" secondAttribute="trailing" constant="55" id="Zdp-IG-VRo"/>
+                <constraint firstItem="j0K-ec-Er6" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="a99-LO-nNb"/>
+                <constraint firstAttribute="bottom" secondItem="uxj-gL-dpB" secondAttribute="bottom" id="e8M-3w-KwK"/>
+                <constraint firstItem="ny0-IV-b3c" firstAttribute="leading" secondItem="9Wc-km-ZQY" secondAttribute="trailing" constant="21" id="jO4-9C-Ed7"/>
+                <constraint firstItem="9Wc-km-ZQY" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="mZn-9e-9R5"/>
+                <constraint firstItem="ny0-IV-b3c" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="p3b-aB-KHi"/>
+                <constraint firstAttribute="trailing" secondItem="uxj-gL-dpB" secondAttribute="trailing" id="xLi-bd-Doh"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="mGoPayBtn" destination="uxj-gL-dpB" id="DEM-C9-p7b"/>
+                <outlet property="mPrice" destination="ny0-IV-b3c" id="002-nZ-BIV"/>
+                <outlet property="mSelecAllBtn" destination="9Wc-km-ZQY" id="gxc-L6-YEX"/>
+            </connections>
+            <point key="canvasLocation" x="-71" y="269"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ZLShopCar_Normal" width="28" height="28"/>
+        <image name="ZLShopCar_Selected" width="28" height="28"/>
+    </resources>
+</document>

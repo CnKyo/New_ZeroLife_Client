@@ -13,7 +13,6 @@
 #import "ZLSuperMarketSearchView.h"
 #import "ZLSuperMarketSearchViewController.h"
 #import "ZLSuperMarketShopViewController.h"
-
 @interface ZLSuperMarketViewController ()<UITableViewDelegate,UITableViewDataSource,ZLSupermarketBannerCellDelegate>
 
 @end
@@ -223,8 +222,7 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    ZLSuperMarketShopViewController *mShopVC = [ZLSuperMarketShopViewController new];
-    [self pushViewController:mShopVC];
+ 
     
     
     
@@ -241,14 +239,14 @@
 
 #pragma mark ----****----banner点击方法
 /**
- baner的代理方法
+ baner的代理方法v
  
  @param mIndex 索引
  */
 - (void)ZLSupermarketBannerDidSelectedWithIndex:(NSInteger)mIndex{
 
 }
-- (void)mRightAction{
+- (void)mRightAction:(UIButton *)sender{
     ZLSuperMarketSearchViewController *mSearchVC = [ZLSuperMarketSearchViewController new];
     [self pushViewController:mSearchVC];
 }

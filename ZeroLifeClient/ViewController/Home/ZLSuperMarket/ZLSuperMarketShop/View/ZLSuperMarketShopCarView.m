@@ -27,5 +27,25 @@
     return view;
 }
 
+- (IBAction)mShopCar:(UIButton *)sender {
+    
+    if ([self.delegate respondsToSelector:@selector(ZLSuperMarketShopCarDidSelected)]) {
+        [self.delegate ZLSuperMarketShopCarDidSelected];
+
+    }
+
+}
+
+- (IBAction)mGoPay:(UIButton *)sender {
+
+    
+    if ([self.delegate respondsToSelector:@selector(ZLSuperMarketGoPayDidSelected)]) {
+        [self.delegate ZLSuperMarketGoPayDidSelected];
+    }
+    
+    
+}
+
+
 
 @end

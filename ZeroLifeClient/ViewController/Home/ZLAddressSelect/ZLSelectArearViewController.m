@@ -163,7 +163,7 @@
     return nil;
 }
 #pragma mark----****----搜索按钮
-- (void)mRightAction{
+- (void)mRightAction:(UIButton *)sender{
 
     [self showSearchView];
     

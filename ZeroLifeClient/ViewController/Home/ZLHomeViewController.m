@@ -67,6 +67,7 @@
     mLocationView.delegate = self;
     self.navigationItem.titleView = mLocationView;
     
+    
 }
 #pragma mark ----****----社区选择view代理方法
 - (void)ZLHomLocationViewDidSelected{
@@ -78,7 +79,7 @@
     [self pushViewController:ZLAddressVC];
 }
 #pragma mark ----****----消息按钮方法
-- (void)mRightAction{
+- (void)mRightAction:(UIButton *)sender{
     MLLog(@"right");
     
     ZLHomeMessageViewController *ZLHomeMsgVC = [ZLHomeMessageViewController new];

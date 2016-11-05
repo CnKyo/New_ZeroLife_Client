@@ -32,6 +32,13 @@
  */
 - (void)ZLSuperMarketGoodsCellWithAddSelectedIndexPath:(NSIndexPath *)mIndexPath;
 
+/**
+ 选择规格按钮代理方法
+
+ @param mIndexPath 索引
+ */
+- (void)ZLSuperMarketGoodsCellWithSpecBtnSelectedIndexPath:(NSIndexPath *)mIndexPath;
+
 
 @end
 
@@ -86,5 +93,9 @@
  设置代理
  */
 @property (strong,nonatomic) id <ZLSuperMarketGoodsCellDelegate>delegate;
+
+
+#pragma mark----****----规格cell
+@property (weak, nonatomic) IBOutlet UIButton *mSpecBtn;
 
 @end

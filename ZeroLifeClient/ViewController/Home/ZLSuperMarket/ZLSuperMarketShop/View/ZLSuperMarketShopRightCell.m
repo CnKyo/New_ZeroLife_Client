@@ -39,5 +39,12 @@
     
 }
 
+- (IBAction)mSpecBtnAction:(UIButton *)sender {
+    
+    if ([self.delegate respondsToSelector:@selector(ZLSuperMarketGoodsCellWithSpecBtnSelectedIndexPath:)]) {
+        [self.delegate ZLSuperMarketGoodsCellWithSpecBtnSelectedIndexPath:self.mIndexPath];
+    }
+    
+}
 
 @end
