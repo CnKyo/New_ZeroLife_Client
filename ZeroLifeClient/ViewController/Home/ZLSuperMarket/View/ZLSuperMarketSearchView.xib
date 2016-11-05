@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ZLSuperMarketSearchView">
+            <rect key="frame" x="0.0" y="0.0" width="200" height="44"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fUQ-dF-GFP">
+                    <subviews>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入您要搜索的店铺" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3cq-zE-GPe">
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="Hq8-7t-93K"/>
+                            </constraints>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ZLSearch_gray" translatesAutoresizingMaskIntoConstraints="NO" id="j9p-87-llC">
+                            <constraints>
+                                <constraint firstAttribute="width" constant="18" id="AuV-AN-aes"/>
+                                <constraint firstAttribute="height" constant="18" id="xYz-z4-rft"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="j9p-87-llC" firstAttribute="centerY" secondItem="fUQ-dF-GFP" secondAttribute="centerY" id="C4z-eW-pVi"/>
+                        <constraint firstItem="j9p-87-llC" firstAttribute="leading" secondItem="fUQ-dF-GFP" secondAttribute="leadingMargin" id="DYP-W7-Ofy"/>
+                        <constraint firstItem="3cq-zE-GPe" firstAttribute="centerY" secondItem="fUQ-dF-GFP" secondAttribute="centerY" id="Gfe-iA-lkO"/>
+                        <constraint firstItem="3cq-zE-GPe" firstAttribute="leading" secondItem="j9p-87-llC" secondAttribute="trailing" constant="5" id="oIe-Ss-XCk"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="fUQ-dF-GFP" secondAttribute="bottom" id="3ZF-bb-Aci"/>
+                <constraint firstItem="fUQ-dF-GFP" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Ljq-F6-Y5S"/>
+                <constraint firstItem="fUQ-dF-GFP" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="ir2-pt-SX8"/>
+                <constraint firstItem="fUQ-dF-GFP" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailingMargin" id="njB-Hg-K9V"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="mBgkView" destination="fUQ-dF-GFP" id="igM-Bz-lYN"/>
+                <outlet property="mSearchTx" destination="3cq-zE-GPe" id="Aqe-RX-4ab"/>
+            </connections>
+            <point key="canvasLocation" x="-186" y="129"/>
+        </view>
+        <searchDisplayController id="KmB-ZG-ThC"/>
+    </objects>
+    <resources>
+        <image name="ZLSearch_gray" width="20" height="20"/>
+    </resources>
+</document>

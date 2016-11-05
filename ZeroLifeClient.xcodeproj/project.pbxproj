@@ -9,6 +9,27 @@
 /* Begin PBXBuildFile section */
 		040917511DCC1FE500DB2568 /* ZLSearchArearView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0409174F1DCC1FE500DB2568 /* ZLSearchArearView.m */; };
 		040917521DCC1FE500DB2568 /* ZLSearchArearView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 040917501DCC1FE500DB2568 /* ZLSearchArearView.xib */; };
+		040917561DCC2C1A00DB2568 /* ZLSuperMarketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 040917551DCC2C1A00DB2568 /* ZLSuperMarketViewController.m */; };
+		0409175A1DCC313500DB2568 /* ZLSupMarketCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 040917591DCC313500DB2568 /* ZLSupMarketCell.m */; };
+		0409175E1DCC336000DB2568 /* ZLSuperMarketShopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0409175C1DCC336000DB2568 /* ZLSuperMarketShopCell.m */; };
+		0409175F1DCC336000DB2568 /* ZLSuperMarketShopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0409175D1DCC336000DB2568 /* ZLSuperMarketShopCell.xib */; };
+		040917611DCC371D00DB2568 /* ZLSuperMarketShopActivityCell1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 040917601DCC371D00DB2568 /* ZLSuperMarketShopActivityCell1.xib */; };
+		040917631DCC372A00DB2568 /* ZLSuperMarketShopActivityCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 040917621DCC372A00DB2568 /* ZLSuperMarketShopActivityCell2.xib */; };
+		040917661DCC39D400DB2568 /* ZLSuperMarketHeaderSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 040917651DCC39D400DB2568 /* ZLSuperMarketHeaderSectionView.m */; };
+		040917681DCC39DE00DB2568 /* ZLSuperMarketHeaderSectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 040917671DCC39DE00DB2568 /* ZLSuperMarketHeaderSectionView.xib */; };
+		0409176C1DCC55C300DB2568 /* RKImageBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0409176B1DCC55C300DB2568 /* RKImageBrowser.m */; };
+		0409176F1DCC5E0700DB2568 /* ZLSuperMarketSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0409176E1DCC5E0700DB2568 /* ZLSuperMarketSearchView.m */; };
+		040917711DCC5E1000DB2568 /* ZLSuperMarketSearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 040917701DCC5E1000DB2568 /* ZLSuperMarketSearchView.xib */; };
+		040917751DCC60FA00DB2568 /* ZLSuperMarketSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 040917741DCC60FA00DB2568 /* ZLSuperMarketSearchViewController.m */; };
+		040917791DCC664300DB2568 /* ZLSuperMarketShopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 040917781DCC664300DB2568 /* ZLSuperMarketShopViewController.m */; };
+		0409177D1DCC679900DB2568 /* ZLSuperMarketHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0409177C1DCC679900DB2568 /* ZLSuperMarketHeaderView.m */; };
+		0409177F1DCC67A100DB2568 /* ZLSuperMarketHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0409177E1DCC67A100DB2568 /* ZLSuperMarketHeaderView.xib */; };
+		040917831DCC904B00DB2568 /* ZLSuperMarketShopLeftCellType.m in Sources */ = {isa = PBXBuildFile; fileRef = 040917811DCC904B00DB2568 /* ZLSuperMarketShopLeftCellType.m */; };
+		040917841DCC904B00DB2568 /* ZLSuperMarketShopLeftCellType.xib in Resources */ = {isa = PBXBuildFile; fileRef = 040917821DCC904B00DB2568 /* ZLSuperMarketShopLeftCellType.xib */; };
+		0409178A1DCC919200DB2568 /* ZLSuperMarketShopRightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 040917881DCC919200DB2568 /* ZLSuperMarketShopRightCell.m */; };
+		0409178B1DCC919200DB2568 /* ZLSuperMarketShopRightCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 040917891DCC919200DB2568 /* ZLSuperMarketShopRightCell.xib */; };
+		0409178E1DCCA9D500DB2568 /* ZLSuperMarketShopCarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0409178D1DCCA9D500DB2568 /* ZLSuperMarketShopCarView.m */; };
+		040917901DCCA9E800DB2568 /* ZLSuperMarketShopCarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0409178F1DCCA9E800DB2568 /* ZLSuperMarketShopCarView.xib */; };
 		040D92F41DCAE15300DBE42E /* ZLHomeMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 040D92F31DCAE15300DBE42E /* ZLHomeMessageViewController.m */; };
 		040D92F91DCAE34E00DBE42E /* ZLHomeMSGCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 040D92F71DCAE34E00DBE42E /* ZLHomeMSGCell.m */; };
 		040D92FA1DCAE34E00DBE42E /* ZLHomeMSGCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 040D92F81DCAE34E00DBE42E /* ZLHomeMSGCell.xib */; };
@@ -79,6 +100,39 @@
 		0409174E1DCC1FE500DB2568 /* ZLSearchArearView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLSearchArearView.h; sourceTree = "<group>"; };
 		0409174F1DCC1FE500DB2568 /* ZLSearchArearView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLSearchArearView.m; sourceTree = "<group>"; };
 		040917501DCC1FE500DB2568 /* ZLSearchArearView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLSearchArearView.xib; sourceTree = "<group>"; };
+		040917541DCC2C1A00DB2568 /* ZLSuperMarketViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLSuperMarketViewController.h; sourceTree = "<group>"; };
+		040917551DCC2C1A00DB2568 /* ZLSuperMarketViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLSuperMarketViewController.m; sourceTree = "<group>"; };
+		040917581DCC313500DB2568 /* ZLSupMarketCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLSupMarketCell.h; sourceTree = "<group>"; };
+		040917591DCC313500DB2568 /* ZLSupMarketCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLSupMarketCell.m; sourceTree = "<group>"; };
+		0409175B1DCC336000DB2568 /* ZLSuperMarketShopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLSuperMarketShopCell.h; sourceTree = "<group>"; };
+		0409175C1DCC336000DB2568 /* ZLSuperMarketShopCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLSuperMarketShopCell.m; sourceTree = "<group>"; };
+		0409175D1DCC336000DB2568 /* ZLSuperMarketShopCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLSuperMarketShopCell.xib; sourceTree = "<group>"; };
+		040917601DCC371D00DB2568 /* ZLSuperMarketShopActivityCell1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLSuperMarketShopActivityCell1.xib; sourceTree = "<group>"; };
+		040917621DCC372A00DB2568 /* ZLSuperMarketShopActivityCell2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLSuperMarketShopActivityCell2.xib; sourceTree = "<group>"; };
+		040917641DCC39D400DB2568 /* ZLSuperMarketHeaderSectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLSuperMarketHeaderSectionView.h; sourceTree = "<group>"; };
+		040917651DCC39D400DB2568 /* ZLSuperMarketHeaderSectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLSuperMarketHeaderSectionView.m; sourceTree = "<group>"; };
+		040917671DCC39DE00DB2568 /* ZLSuperMarketHeaderSectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLSuperMarketHeaderSectionView.xib; sourceTree = "<group>"; };
+		0409176A1DCC55C300DB2568 /* RKImageBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKImageBrowser.h; sourceTree = "<group>"; };
+		0409176B1DCC55C300DB2568 /* RKImageBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKImageBrowser.m; sourceTree = "<group>"; };
+		0409176D1DCC5E0700DB2568 /* ZLSuperMarketSearchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLSuperMarketSearchView.h; sourceTree = "<group>"; };
+		0409176E1DCC5E0700DB2568 /* ZLSuperMarketSearchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLSuperMarketSearchView.m; sourceTree = "<group>"; };
+		040917701DCC5E1000DB2568 /* ZLSuperMarketSearchView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLSuperMarketSearchView.xib; sourceTree = "<group>"; };
+		040917731DCC60FA00DB2568 /* ZLSuperMarketSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLSuperMarketSearchViewController.h; sourceTree = "<group>"; };
+		040917741DCC60FA00DB2568 /* ZLSuperMarketSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLSuperMarketSearchViewController.m; sourceTree = "<group>"; };
+		040917771DCC664300DB2568 /* ZLSuperMarketShopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLSuperMarketShopViewController.h; sourceTree = "<group>"; };
+		040917781DCC664300DB2568 /* ZLSuperMarketShopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLSuperMarketShopViewController.m; sourceTree = "<group>"; };
+		0409177B1DCC679900DB2568 /* ZLSuperMarketHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLSuperMarketHeaderView.h; sourceTree = "<group>"; };
+		0409177C1DCC679900DB2568 /* ZLSuperMarketHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLSuperMarketHeaderView.m; sourceTree = "<group>"; };
+		0409177E1DCC67A100DB2568 /* ZLSuperMarketHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLSuperMarketHeaderView.xib; sourceTree = "<group>"; };
+		040917801DCC904B00DB2568 /* ZLSuperMarketShopLeftCellType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLSuperMarketShopLeftCellType.h; sourceTree = "<group>"; };
+		040917811DCC904B00DB2568 /* ZLSuperMarketShopLeftCellType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLSuperMarketShopLeftCellType.m; sourceTree = "<group>"; };
+		040917821DCC904B00DB2568 /* ZLSuperMarketShopLeftCellType.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLSuperMarketShopLeftCellType.xib; sourceTree = "<group>"; };
+		040917871DCC919200DB2568 /* ZLSuperMarketShopRightCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLSuperMarketShopRightCell.h; sourceTree = "<group>"; };
+		040917881DCC919200DB2568 /* ZLSuperMarketShopRightCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLSuperMarketShopRightCell.m; sourceTree = "<group>"; };
+		040917891DCC919200DB2568 /* ZLSuperMarketShopRightCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLSuperMarketShopRightCell.xib; sourceTree = "<group>"; };
+		0409178C1DCCA9D500DB2568 /* ZLSuperMarketShopCarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLSuperMarketShopCarView.h; sourceTree = "<group>"; };
+		0409178D1DCCA9D500DB2568 /* ZLSuperMarketShopCarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLSuperMarketShopCarView.m; sourceTree = "<group>"; };
+		0409178F1DCCA9E800DB2568 /* ZLSuperMarketShopCarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLSuperMarketShopCarView.xib; sourceTree = "<group>"; };
 		040D92F21DCAE15300DBE42E /* ZLHomeMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLHomeMessageViewController.h; sourceTree = "<group>"; };
 		040D92F31DCAE15300DBE42E /* ZLHomeMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLHomeMessageViewController.m; sourceTree = "<group>"; };
 		040D92F61DCAE34E00DBE42E /* ZLHomeMSGCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLHomeMSGCell.h; sourceTree = "<group>"; };
@@ -215,6 +269,86 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		040917531DCC2C0400DB2568 /* ZLSuperMarket */ = {
+			isa = PBXGroup;
+			children = (
+				040917761DCC662F00DB2568 /* ZLSuperMarketShop */,
+				040917721DCC60C200DB2568 /* ZLSuperMarketSearchViewController */,
+				040917691DCC55B300DB2568 /* RKImageBrowser */,
+				040917571DCC310700DB2568 /* View */,
+				040917541DCC2C1A00DB2568 /* ZLSuperMarketViewController.h */,
+				040917551DCC2C1A00DB2568 /* ZLSuperMarketViewController.m */,
+			);
+			path = ZLSuperMarket;
+			sourceTree = "<group>";
+		};
+		040917571DCC310700DB2568 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				040917581DCC313500DB2568 /* ZLSupMarketCell.h */,
+				040917591DCC313500DB2568 /* ZLSupMarketCell.m */,
+				0409175B1DCC336000DB2568 /* ZLSuperMarketShopCell.h */,
+				0409175C1DCC336000DB2568 /* ZLSuperMarketShopCell.m */,
+				0409175D1DCC336000DB2568 /* ZLSuperMarketShopCell.xib */,
+				040917601DCC371D00DB2568 /* ZLSuperMarketShopActivityCell1.xib */,
+				040917621DCC372A00DB2568 /* ZLSuperMarketShopActivityCell2.xib */,
+				040917641DCC39D400DB2568 /* ZLSuperMarketHeaderSectionView.h */,
+				040917651DCC39D400DB2568 /* ZLSuperMarketHeaderSectionView.m */,
+				040917671DCC39DE00DB2568 /* ZLSuperMarketHeaderSectionView.xib */,
+				0409176D1DCC5E0700DB2568 /* ZLSuperMarketSearchView.h */,
+				0409176E1DCC5E0700DB2568 /* ZLSuperMarketSearchView.m */,
+				040917701DCC5E1000DB2568 /* ZLSuperMarketSearchView.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		040917691DCC55B300DB2568 /* RKImageBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				0409176A1DCC55C300DB2568 /* RKImageBrowser.h */,
+				0409176B1DCC55C300DB2568 /* RKImageBrowser.m */,
+			);
+			path = RKImageBrowser;
+			sourceTree = "<group>";
+		};
+		040917721DCC60C200DB2568 /* ZLSuperMarketSearchViewController */ = {
+			isa = PBXGroup;
+			children = (
+				040917731DCC60FA00DB2568 /* ZLSuperMarketSearchViewController.h */,
+				040917741DCC60FA00DB2568 /* ZLSuperMarketSearchViewController.m */,
+			);
+			path = ZLSuperMarketSearchViewController;
+			sourceTree = "<group>";
+		};
+		040917761DCC662F00DB2568 /* ZLSuperMarketShop */ = {
+			isa = PBXGroup;
+			children = (
+				0409177A1DCC677C00DB2568 /* View */,
+				040917771DCC664300DB2568 /* ZLSuperMarketShopViewController.h */,
+				040917781DCC664300DB2568 /* ZLSuperMarketShopViewController.m */,
+			);
+			path = ZLSuperMarketShop;
+			sourceTree = "<group>";
+		};
+		0409177A1DCC677C00DB2568 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0409177B1DCC679900DB2568 /* ZLSuperMarketHeaderView.h */,
+				0409177C1DCC679900DB2568 /* ZLSuperMarketHeaderView.m */,
+				0409177E1DCC67A100DB2568 /* ZLSuperMarketHeaderView.xib */,
+				040917801DCC904B00DB2568 /* ZLSuperMarketShopLeftCellType.h */,
+				040917811DCC904B00DB2568 /* ZLSuperMarketShopLeftCellType.m */,
+				040917821DCC904B00DB2568 /* ZLSuperMarketShopLeftCellType.xib */,
+				040917871DCC919200DB2568 /* ZLSuperMarketShopRightCell.h */,
+				040917881DCC919200DB2568 /* ZLSuperMarketShopRightCell.m */,
+				040917891DCC919200DB2568 /* ZLSuperMarketShopRightCell.xib */,
+				0409178C1DCCA9D500DB2568 /* ZLSuperMarketShopCarView.h */,
+				0409178D1DCCA9D500DB2568 /* ZLSuperMarketShopCarView.m */,
+				0409178F1DCCA9E800DB2568 /* ZLSuperMarketShopCarView.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		040D92F11DCAE11400DBE42E /* ZLHomeMessage */ = {
 			isa = PBXGroup;
 			children = (
@@ -467,6 +601,7 @@
 		DFFAA74C1DB744EF001CFBB5 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				040917531DCC2C0400DB2568 /* ZLSuperMarket */,
 				040D92F11DCAE11400DBE42E /* ZLHomeMessage */,
 				04D64D611DC9C154004E8859 /* ZLAddressSelect */,
 				DF5C48FE1DBA1BEC006E4825 /* DCBannerView */,
@@ -661,16 +796,25 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				040917611DCC371D00DB2568 /* ZLSuperMarketShopActivityCell1.xib in Resources */,
 				04D64D751DC9CCDC004E8859 /* ZLHomeOtherCell.xib in Resources */,
 				040D92FF1DCAE84300DBE42E /* ZLHomeMsgDetailCell.xib in Resources */,
 				04C6A37F1DCB08AF002C4D4A /* private_key.p12 in Resources */,
+				0409178B1DCC919200DB2568 /* ZLSuperMarketShopRightCell.xib in Resources */,
 				04D64D6D1DC9CCA5004E8859 /* ZLHomeLocationView.xib in Resources */,
+				040917711DCC5E1000DB2568 /* ZLSuperMarketSearchView.xib in Resources */,
+				0409175F1DCC336000DB2568 /* ZLSuperMarketShopCell.xib in Resources */,
 				04C6A3801DCB08AF002C4D4A /* public_key.der in Resources */,
 				040917521DCC1FE500DB2568 /* ZLSearchArearView.xib in Resources */,
 				DFFAA7421DB744C5001CFBB5 /* LaunchScreen.storyboard in Resources */,
+				040917841DCC904B00DB2568 /* ZLSuperMarketShopLeftCellType.xib in Resources */,
+				040917681DCC39DE00DB2568 /* ZLSuperMarketHeaderSectionView.xib in Resources */,
 				DFFAA73F1DB744C5001CFBB5 /* Assets.xcassets in Resources */,
 				040D92FA1DCAE34E00DBE42E /* ZLHomeMSGCell.xib in Resources */,
+				040917901DCCA9E800DB2568 /* ZLSuperMarketShopCarView.xib in Resources */,
+				0409177F1DCC67A100DB2568 /* ZLSuperMarketHeaderView.xib in Resources */,
 				04162DF91DCB2C9300FB4229 /* ZLHomeCoupCell.xib in Resources */,
+				040917631DCC372A00DB2568 /* ZLSuperMarketShopActivityCell2.xib in Resources */,
 				04D64D7C1DC9CDA4004E8859 /* ZlHomeCoupView.xib in Resources */,
 				DFFAA73D1DB744C5001CFBB5 /* Main.storyboard in Resources */,
 			);
@@ -792,6 +936,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DFFAA7631DB744EF001CFBB5 /* UIView+AutoSize.m in Sources */,
+				0409178E1DCCA9D500DB2568 /* ZLSuperMarketShopCarView.m in Sources */,
 				DFF634C11DB873D200B5C917 /* ScrollModelVC.m in Sources */,
 				DF5C49031DBA1BEC006E4825 /* DCPicScrollView.m in Sources */,
 				040917511DCC1FE500DB2568 /* ZLSearchArearView.m in Sources */,
@@ -801,31 +946,42 @@
 				DFFAA7621DB744EF001CFBB5 /* APIObjectDefine.m in Sources */,
 				04162DFF1DCB545200FB4229 /* ChineseToPinyin.m in Sources */,
 				DF55B46F1DBAFEAC00F89341 /* ZLTabBarViewController.m in Sources */,
+				040917661DCC39D400DB2568 /* ZLSuperMarketHeaderSectionView.m in Sources */,
+				0409177D1DCC679900DB2568 /* ZLSuperMarketHeaderView.m in Sources */,
 				DF7D0A231DBA0023005A62A7 /* ImageTextTableViewCell.m in Sources */,
 				DF7D0A1D1DBA0019005A62A7 /* CookTVC.m in Sources */,
+				0409175A1DCC313500DB2568 /* ZLSupMarketCell.m in Sources */,
 				DF55B4671DBAFE6D00F89341 /* ZLPurseViewController.m in Sources */,
 				DF55B4701DBAFEAC00F89341 /* ZLNavViewController.m in Sources */,
+				0409178A1DCC919200DB2568 /* ZLSuperMarketShopRightCell.m in Sources */,
 				04162E001DCB545200FB4229 /* HeaderView.m in Sources */,
 				DF55B4611DBAFE5800F89341 /* ZLCookViewController.m in Sources */,
 				DFFAA7641DB744EF001CFBB5 /* CustomScrollVC.m in Sources */,
 				DFFAA73A1DB744C5001CFBB5 /* ViewController.m in Sources */,
 				DF55B4641DBAFE6000F89341 /* ZLHomeViewController.m in Sources */,
+				040917831DCC904B00DB2568 /* ZLSuperMarketShopLeftCellType.m in Sources */,
 				DFFAA7371DB744C5001CFBB5 /* AppDelegate.m in Sources */,
 				040D92F91DCAE34E00DBE42E /* ZLHomeMSGCell.m in Sources */,
 				04D64D641DC9C16D004E8859 /* ZLSelectArearViewController.m in Sources */,
+				040917561DCC2C1A00DB2568 /* ZLSuperMarketViewController.m in Sources */,
 				04D64D681DC9CC7B004E8859 /* ZLCustomBtnView.m in Sources */,
 				DF7D0A151DB9FFF0005A62A7 /* APIClient.m in Sources */,
 				04C6A3761DCB0874002C4D4A /* keyChain.m in Sources */,
 				04C6A37E1DCB08AF002C4D4A /* NSData+Base64.m in Sources */,
 				DFFAA7651DB744EF001CFBB5 /* CustomVC.m in Sources */,
+				0409176F1DCC5E0700DB2568 /* ZLSuperMarketSearchView.m in Sources */,
 				04D64D7A1DC9CD35004E8859 /* ZLHomeCoupView.m in Sources */,
 				04C6A3811DCB08AF002C4D4A /* RSAEncryptor.m in Sources */,
 				040D92F41DCAE15300DBE42E /* ZLHomeMessageViewController.m in Sources */,
+				040917751DCC60FA00DB2568 /* ZLSuperMarketSearchViewController.m in Sources */,
 				04D64D761DC9CCDC004E8859 /* ZLHomeScrollerTableViewCell.m in Sources */,
 				040D92FD1DCAE82000DBE42E /* ZLHomeMessageDetailViewController.m in Sources */,
 				04162DF81DCB2C9300FB4229 /* ZLHomeCoupCell.m in Sources */,
 				04D64D6C1DC9CCA5004E8859 /* ZLHomeLocationView.m in Sources */,
+				0409176C1DCC55C300DB2568 /* RKImageBrowser.m in Sources */,
 				DFFAA7341DB744C5001CFBB5 /* main.m in Sources */,
+				0409175E1DCC336000DB2568 /* ZLSuperMarketShopCell.m in Sources */,
+				040917791DCC664300DB2568 /* ZLSuperMarketShopViewController.m in Sources */,
 				DF7D0A1E1DBA0019005A62A7 /* CookDetailVC.m in Sources */,
 				DF55B46A1DBAFE7700F89341 /* ZLUserViewController.m in Sources */,
 				DF7D0A241DBA0023005A62A7 /* TagsTableCell.m in Sources */,
