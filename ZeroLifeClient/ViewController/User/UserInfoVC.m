@@ -8,6 +8,7 @@
 
 #import "UserInfoVC.h"
 #import "NSObject+PickPhoto.h"
+#import "UserHouseEditVC.h"
 
 @interface UserInfoVC ()
 
@@ -53,7 +54,7 @@
     NSInteger row = 0;
     if (section == 0)
         return row = 3;
-    else if (section == 0)
+    else if (section == 1)
         return row = 2;
 
     return row;
@@ -61,7 +62,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 1;
+    return 5;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
@@ -80,29 +81,60 @@
     UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell= [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        
+        UIView *superView = cell.contentView;
+        int padding = 10;
+        UIImageView *imgView = [superView newUIImageView];
+        UILabel *textLable = [superView newUILableWithText:@"" textColor:[UIColor colorWithWhite:0.4 alpha:1] font:[UIFont systemFontOfSize:14]];
+        UITextField *field = [superView newUITextField];
+        field.textAlignment = NSTextAlignmentRight;
+        imgView.tag = 11;
+        textLable.tag = 12;
+        field.tag = 13;
+        [imgView makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(superView.left).offset(padding);
+            make.width.height.equalTo(20);
+            make.centerY.equalTo(superView.centerY);
+        }];
+        [textLable makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(imgView.right).offset(padding);
+            make.top.bottom.equalTo(superView);
+            make.width.equalTo(80);
+        }];
+        [field makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(textLable.right).offset(padding/2);
+            make.top.bottom.equalTo(superView);
+            make.right.equalTo(superView.right).offset(-padding);
+        }];
     }
+    cell.accessoryType = UITableViewCellAccessoryNone;
+    UIImageView *imgView = (UIImageView *)[cell.contentView viewWithTag:11];
+    UILabel *textLabel = (UILabel *)[cell.contentView viewWithTag:12];
+    UITextField *field = (UITextField *)[cell.contentView viewWithTag:13];
+    field.hidden = NO;
+    field.enabled = YES;
     if (indexPath.section == 0) {
         switch (indexPath.row) {
             case 0:
-                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-                cell.imageView.image = IMG(@"ZLSearch_gray.png");
-                cell.textLabel.text = @"头像";
+                imgView.image = IMG(@"ZLSearch_gray.png");
+                textLabel.text = @"头像";
+                field.hidden = YES;
             {
-                UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
+                UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
                 imgView.image = IMG(@"ZLSearch_gray.png");
                 cell.accessoryView = imgView;
             }
                 break;
             case 1:
-                cell.accessoryType = UITableViewCellAccessoryNone;
-                cell.imageView.image = IMG(@"ZLSearch_gray.png");
-                cell.textLabel.text = @"昵称";
-
+                
+                imgView.image = IMG(@"ZLSearch_gray.png");
+                textLabel.text = @"昵称";
+                field.placeholder = @"请输入昵称";
                 break;
             case 2:
-                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-                cell.imageView.image = IMG(@"ZLSearch_gray.png");
-                cell.textLabel.text = @"性别";
+                imgView.image = IMG(@"ZLSearch_gray.png");
+                textLabel.text = @"性别";
+                field.placeholder = @"请选择性别";
                 break;
             default:
                 break;
@@ -110,14 +142,16 @@
     } else if (indexPath.section == 1) {
         switch (indexPath.row) {
             case 0:
-                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-                cell.imageView.image = IMG(@"ZLSearch_gray.png");
-                cell.textLabel.text = @"电话";
+                imgView.image = IMG(@"ZLSearch_gray.png");
+                textLabel.text = @"电话";
+                field.placeholder = @"请输入联系电话";
                 break;
             case 1:
-                cell.accessoryType = UITableViewCellAccessoryNone;
-                cell.imageView.image = IMG(@"ZLSearch_gray.png");
-                cell.textLabel.text = @"房屋地址";
+                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                imgView.image = IMG(@"ZLSearch_gray.png");
+                textLabel.text = @"房屋地址";
+                field.placeholder = @"请添加房屋地址";
+                field.enabled = NO;
                 break;
             default:
                 break;
@@ -138,7 +172,10 @@
             }];
         }
     } else {
-        
+        if (indexPath.row == 1) {
+            UserHouseEditVC *vc = [[UserHouseEditVC alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
     }
 }
 

@@ -113,8 +113,10 @@
         self.tableView.backgroundColor = COLOR(247, 247, 247);
         
         [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self.view);
-            make.height.equalTo(self.view.mas_height);
+//            make.edges.equalTo(self.view);
+//            make.height.equalTo(self.view.mas_height);
+            make.left.right.bottom.equalTo(self.view);
+            make.top.equalTo(self.view.top).offset(-1);
         }];
     }
 }

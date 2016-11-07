@@ -148,7 +148,7 @@ typedef enum {
 //-----------------------
 
 
-#define COLOR_NavBar                COLOR(155, 187, 54)
+#define COLOR_NavBar                COLOR(150, 200, 43)
 #define COLOR_LowNavBar             [UIColor colorWithRed:0.761 green:0.914 blue:0.769 alpha:1.000]
 #define COLOR_BtnBar                [UIColor colorWithRed:0.980 green:0.675 blue:0.082 alpha:1.000]
 #define TABLE_PAGE_ROW              20  //每次页面调用20条数据

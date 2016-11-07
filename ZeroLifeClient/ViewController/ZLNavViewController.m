@@ -28,6 +28,8 @@
 //                                                 NSFontAttributeName : [UIFont boldSystemFontOfSize:17],NSForegroundColorAttributeName:[UIColor whiteColor]
 //                                                 
 //                                                 }];
+
+    
     
     UIColor *color = [UIColor whiteColor];
     self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
@@ -40,6 +42,11 @@
     }
     [self.navigationBar setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:color, NSForegroundColorAttributeName, [UIFont boldSystemFontOfSize:17], NSFontAttributeName, nil]];
     
+    if ([UINavigationBar instancesRespondToSelector:@selector(setShadowImage:)]) {
+        [[UINavigationBar appearance] setShadowImage:[UIImage jk_imageWithColor:COLOR_NavBar]];
+    }
+//     [self.navigationBar.layer setMasksToBounds:YES];
+//     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleBlackOpaque;
 
 }
 /**
