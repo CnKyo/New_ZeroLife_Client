@@ -106,7 +106,7 @@
         self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
         self.tableView.delegate = self;
         self.tableView.dataSource = self;
-        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
         [self.view addSubview:self.tableView];
         self.tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
         self.tableView.tableFooterView = [[UIView alloc] init];
@@ -127,7 +127,7 @@
         self.tableView = [[UITableView alloc] initWithFrame:CGRectZero];
         self.tableView.delegate = self;
         self.tableView.dataSource = self;
-        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
         [self.view addSubview:self.tableView];
         self.tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
         self.tableView.tableFooterView = [[UIView alloc] init];

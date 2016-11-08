@@ -122,6 +122,14 @@
 		DF8DBCBE1DD01C9C002E574B /* ComplaintGongsiView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF8DBCBD1DD01C9C002E574B /* ComplaintGongsiView.xib */; };
 		DF8DBCC11DD01FCA002E574B /* UserComplaintHistoryTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF8DBCC01DD01FCA002E574B /* UserComplaintHistoryTVC.m */; };
 		DF8DBCC41DD0202B002E574B /* UserComplaintHistoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF8DBCC31DD0202B002E574B /* UserComplaintHistoryTableViewCell.m */; };
+		DF8DBCD81DD055E8002E574B /* ImgNameView.m in Sources */ = {isa = PBXBuildFile; fileRef = DF8DBCD71DD055E8002E574B /* ImgNameView.m */; };
+		DF8DBCDA1DD0581F002E574B /* gouwu_order@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF8DBCD91DD0581F002E574B /* gouwu_order@2x.png */; };
+		DF8DBCDD1DD05D49002E574B /* CustomBtnView.m in Sources */ = {isa = PBXBuildFile; fileRef = DF8DBCDC1DD05D49002E574B /* CustomBtnView.m */; };
+		DF8DBCE01DD05D61002E574B /* QUItemBtnView.m in Sources */ = {isa = PBXBuildFile; fileRef = DF8DBCDF1DD05D61002E574B /* QUItemBtnView.m */; };
+		DF8DBCE41DD0616F002E574B /* DryCleanShopTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF8DBCE31DD0616F002E574B /* DryCleanShopTVC.m */; };
+		DF8DBCE81DD06C8A002E574B /* DryCleanShopTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF8DBCE71DD06C8A002E574B /* DryCleanShopTableViewCell.m */; };
+		DF8DBCED1DD0782F002E574B /* LifePayVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF8DBCEC1DD0782F002E574B /* LifePayVC.m */; };
+		DF8DBCF31DD07CB2002E574B /* MobileRechargeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF8DBCF21DD07CB2002E574B /* MobileRechargeVC.m */; };
 		DFF634C11DB873D200B5C917 /* ScrollModelVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF634C01DB873D200B5C917 /* ScrollModelVC.m */; };
 		DFFAA7341DB744C5001CFBB5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFAA7331DB744C5001CFBB5 /* main.m */; };
 		DFFAA7371DB744C5001CFBB5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFAA7361DB744C5001CFBB5 /* AppDelegate.m */; };
@@ -322,6 +330,21 @@
 		DF8DBCC01DD01FCA002E574B /* UserComplaintHistoryTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserComplaintHistoryTVC.m; sourceTree = "<group>"; };
 		DF8DBCC21DD0202B002E574B /* UserComplaintHistoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserComplaintHistoryTableViewCell.h; sourceTree = "<group>"; };
 		DF8DBCC31DD0202B002E574B /* UserComplaintHistoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserComplaintHistoryTableViewCell.m; sourceTree = "<group>"; };
+		DF8DBCD61DD055E8002E574B /* ImgNameView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImgNameView.h; sourceTree = "<group>"; };
+		DF8DBCD71DD055E8002E574B /* ImgNameView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImgNameView.m; sourceTree = "<group>"; };
+		DF8DBCD91DD0581F002E574B /* gouwu_order@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gouwu_order@2x.png"; sourceTree = "<group>"; };
+		DF8DBCDB1DD05D49002E574B /* CustomBtnView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomBtnView.h; sourceTree = "<group>"; };
+		DF8DBCDC1DD05D49002E574B /* CustomBtnView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomBtnView.m; sourceTree = "<group>"; };
+		DF8DBCDE1DD05D61002E574B /* QUItemBtnView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QUItemBtnView.h; sourceTree = "<group>"; };
+		DF8DBCDF1DD05D61002E574B /* QUItemBtnView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QUItemBtnView.m; sourceTree = "<group>"; };
+		DF8DBCE21DD0616F002E574B /* DryCleanShopTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DryCleanShopTVC.h; sourceTree = "<group>"; };
+		DF8DBCE31DD0616F002E574B /* DryCleanShopTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DryCleanShopTVC.m; sourceTree = "<group>"; };
+		DF8DBCE61DD06C8A002E574B /* DryCleanShopTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DryCleanShopTableViewCell.h; sourceTree = "<group>"; };
+		DF8DBCE71DD06C8A002E574B /* DryCleanShopTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DryCleanShopTableViewCell.m; sourceTree = "<group>"; };
+		DF8DBCEB1DD0782F002E574B /* LifePayVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LifePayVC.h; sourceTree = "<group>"; };
+		DF8DBCEC1DD0782F002E574B /* LifePayVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LifePayVC.m; sourceTree = "<group>"; };
+		DF8DBCF11DD07CB2002E574B /* MobileRechargeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobileRechargeVC.h; sourceTree = "<group>"; };
+		DF8DBCF21DD07CB2002E574B /* MobileRechargeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobileRechargeVC.m; sourceTree = "<group>"; };
 		DFF2BA083AFD4D1DD56A8848 /* Pods-ZeroLifeClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZeroLifeClient.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZeroLifeClient/Pods-ZeroLifeClient.debug.xcconfig"; sourceTree = "<group>"; };
 		DFF634BF1DB873D200B5C917 /* ScrollModelVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollModelVC.h; sourceTree = "<group>"; };
 		DFF634C01DB873D200B5C917 /* ScrollModelVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollModelVC.m; sourceTree = "<group>"; };
@@ -649,6 +672,44 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		DF8DBCE11DD06155002E574B /* DryClean */ = {
+			isa = PBXGroup;
+			children = (
+				DF8DBCE51DD06C5B002E574B /* Views */,
+				DF8DBCE21DD0616F002E574B /* DryCleanShopTVC.h */,
+				DF8DBCE31DD0616F002E574B /* DryCleanShopTVC.m */,
+			);
+			path = DryClean;
+			sourceTree = "<group>";
+		};
+		DF8DBCE51DD06C5B002E574B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DF8DBCE61DD06C8A002E574B /* DryCleanShopTableViewCell.h */,
+				DF8DBCE71DD06C8A002E574B /* DryCleanShopTableViewCell.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		DF8DBCE91DD077F8002E574B /* LifePay */ = {
+			isa = PBXGroup;
+			children = (
+				DF8DBCEA1DD077F8002E574B /* View */,
+				DF8DBCEB1DD0782F002E574B /* LifePayVC.h */,
+				DF8DBCEC1DD0782F002E574B /* LifePayVC.m */,
+				DF8DBCF11DD07CB2002E574B /* MobileRechargeVC.h */,
+				DF8DBCF21DD07CB2002E574B /* MobileRechargeVC.m */,
+			);
+			path = LifePay;
+			sourceTree = "<group>";
+		};
+		DF8DBCEA1DD077F8002E574B /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		DFFAA7261DB744C5001CFBB5 = {
 			isa = PBXGroup;
 			children = (
@@ -742,6 +803,8 @@
 		DFFAA74C1DB744EF001CFBB5 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				DF8DBCE91DD077F8002E574B /* LifePay */,
+				DF8DBCE11DD06155002E574B /* DryClean */,
 				040917531DCC2C0400DB2568 /* ZLSuperMarket */,
 				040D92F11DCAE11400DBE42E /* ZLHomeMessage */,
 				04D64D611DC9C154004E8859 /* ZLAddressSelect */,
@@ -833,6 +896,7 @@
 		DFFAA7521DB744EF001CFBB5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DF8DBCD91DD0581F002E574B /* gouwu_order@2x.png */,
 				DF7F1BE71DCDD5F200D2242B /* gongsi_off@2x.png */,
 				DF7F1BE81DCDD5F200D2242B /* gongsi_on@2x.png */,
 				DF7F1BE91DCDD5F200D2242B /* juming_off@2x.png */,
@@ -899,6 +963,12 @@
 		DFFAA75C1DB744EF001CFBB5 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				DF8DBCD61DD055E8002E574B /* ImgNameView.h */,
+				DF8DBCD71DD055E8002E574B /* ImgNameView.m */,
+				DF8DBCDE1DD05D61002E574B /* QUItemBtnView.h */,
+				DF8DBCDF1DD05D61002E574B /* QUItemBtnView.m */,
+				DF8DBCDB1DD05D49002E574B /* CustomBtnView.h */,
+				DF8DBCDC1DD05D49002E574B /* CustomBtnView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -997,6 +1067,7 @@
 				040D92FF1DCAE84300DBE42E /* ZLHomeMsgDetailCell.xib in Resources */,
 				04C6A37F1DCB08AF002C4D4A /* private_key.p12 in Resources */,
 				0409178B1DCC919200DB2568 /* ZLSuperMarketShopRightCell.xib in Resources */,
+				DF8DBCDA1DD0581F002E574B /* gouwu_order@2x.png in Resources */,
 				04D64D6D1DC9CCA5004E8859 /* ZLHomeLocationView.xib in Resources */,
 				040917711DCC5E1000DB2568 /* ZLSuperMarketSearchView.xib in Resources */,
 				DF7F1BF21DCDD5F200D2242B /* wuguan_on@2x.png in Resources */,
@@ -1162,6 +1233,7 @@
 				DF5C49031DBA1BEC006E4825 /* DCPicScrollView.m in Sources */,
 				040917511DCC1FE500DB2568 /* ZLSearchArearView.m in Sources */,
 				DF7F1BC31DCDB70C00D2242B /* UserAddressTVC.m in Sources */,
+				DF8DBCD81DD055E8002E574B /* ImgNameView.m in Sources */,
 				04D64D741DC9CCDC004E8859 /* ZLHomeOtherCell.m in Sources */,
 				DF7F1BFA1DCDDD3000D2242B /* ComplaintJumingView.m in Sources */,
 				04C6A3841DCB11A4002C4D4A /* UIViewExt.m in Sources */,
@@ -1193,11 +1265,14 @@
 				DF55B4641DBAFE6000F89341 /* ZLHomeViewController.m in Sources */,
 				040917831DCC904B00DB2568 /* ZLSuperMarketShopLeftCellType.m in Sources */,
 				DFFAA7371DB744C5001CFBB5 /* AppDelegate.m in Sources */,
+				DF8DBCF31DD07CB2002E574B /* MobileRechargeVC.m in Sources */,
 				DF03088D1DCD698900E1EAB6 /* QUPickPhoto.m in Sources */,
 				DF7F1BF71DCDDCF500D2242B /* UserComplaintAddVC.m in Sources */,
 				040D92F91DCAE34E00DBE42E /* ZLHomeMSGCell.m in Sources */,
+				DF8DBCE81DD06C8A002E574B /* DryCleanShopTableViewCell.m in Sources */,
 				04D64D641DC9C16D004E8859 /* ZLSelectArearViewController.m in Sources */,
 				040917561DCC2C1A00DB2568 /* ZLSuperMarketViewController.m in Sources */,
+				DF8DBCDD1DD05D49002E574B /* CustomBtnView.m in Sources */,
 				DF0308A71DCD7D6600E1EAB6 /* ZLUserHeaderTableViewCell.m in Sources */,
 				04D64D681DC9CC7B004E8859 /* ZLCustomBtnView.m in Sources */,
 				DF7D0A151DB9FFF0005A62A7 /* APIClient.m in Sources */,
@@ -1206,6 +1281,7 @@
 				04C6A37E1DCB08AF002C4D4A /* NSData+Base64.m in Sources */,
 				DFFAA7651DB744EF001CFBB5 /* CustomVC.m in Sources */,
 				DF4EE2291DCDA7DE008FE84C /* UserAddressEditTableViewCell.m in Sources */,
+				DF8DBCE41DD0616F002E574B /* DryCleanShopTVC.m in Sources */,
 				0409176F1DCC5E0700DB2568 /* ZLSuperMarketSearchView.m in Sources */,
 				04D64D7A1DC9CD35004E8859 /* ZLHomeCoupView.m in Sources */,
 				04C6A3811DCB08AF002C4D4A /* RSAEncryptor.m in Sources */,
@@ -1222,6 +1298,7 @@
 				DF7F1BE61DCDD0CF00D2242B /* HMSegmentedControl.m in Sources */,
 				04D64D6C1DC9CCA5004E8859 /* ZLHomeLocationView.m in Sources */,
 				0409176C1DCC55C300DB2568 /* RKImageBrowser.m in Sources */,
+				DF8DBCED1DD0782F002E574B /* LifePayVC.m in Sources */,
 				DFFAA7341DB744C5001CFBB5 /* main.m in Sources */,
 				0409175E1DCC336000DB2568 /* ZLSuperMarketShopCell.m in Sources */,
 				040917791DCC664300DB2568 /* ZLSuperMarketShopViewController.m in Sources */,
@@ -1231,6 +1308,7 @@
 				DF8DBCC41DD0202B002E574B /* UserComplaintHistoryTableViewCell.m in Sources */,
 				DF5C49041DBA1BEC006E4825 /* DCWebImageManager.m in Sources */,
 				04C6A3731DCB07B9002C4D4A /* Util.m in Sources */,
+				DF8DBCE01DD05D61002E574B /* QUItemBtnView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
