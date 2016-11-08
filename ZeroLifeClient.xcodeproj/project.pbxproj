@@ -81,6 +81,16 @@
 		DF0308A31DCD7AD500E1EAB6 /* UIView+Name.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0308A21DCD7AD500E1EAB6 /* UIView+Name.m */; };
 		DF0308A71DCD7D6600E1EAB6 /* ZLUserHeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0308A51DCD7D6600E1EAB6 /* ZLUserHeaderTableViewCell.m */; };
 		DF0308A81DCD7D6600E1EAB6 /* ZLUserHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF0308A61DCD7D6600E1EAB6 /* ZLUserHeaderTableViewCell.xib */; };
+		DF08E8441DD16868003E4DD9 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF08E8431DD16868003E4DD9 /* AddressBookUI.framework */; };
+		DF08E84D1DD16A13003E4DD9 /* MobileRechargeMoneyView_kuangChoose@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF08E8451DD16A13003E4DD9 /* MobileRechargeMoneyView_kuangChoose@2x.png */; };
+		DF08E84E1DD16A13003E4DD9 /* MobileRechargeMoneyView_kuangChoose@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF08E8461DD16A13003E4DD9 /* MobileRechargeMoneyView_kuangChoose@3x.png */; };
+		DF08E84F1DD16A13003E4DD9 /* MobileRechargeMoneyView_kuangNormal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF08E8471DD16A13003E4DD9 /* MobileRechargeMoneyView_kuangNormal@2x.png */; };
+		DF08E8501DD16A13003E4DD9 /* MobileRechargeMoneyView_kuangNormal@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF08E8481DD16A13003E4DD9 /* MobileRechargeMoneyView_kuangNormal@3x.png */; };
+		DF08E8511DD16A13003E4DD9 /* MobileRechargeMoneyView_mobile@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF08E8491DD16A13003E4DD9 /* MobileRechargeMoneyView_mobile@2x.png */; };
+		DF08E8521DD16A13003E4DD9 /* MobileRechargeMoneyView_mobile@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF08E84A1DD16A13003E4DD9 /* MobileRechargeMoneyView_mobile@3x.png */; };
+		DF08E8531DD16A13003E4DD9 /* MobileRechargeMoneyView_person@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF08E84B1DD16A13003E4DD9 /* MobileRechargeMoneyView_person@2x.png */; };
+		DF08E8541DD16A13003E4DD9 /* MobileRechargeMoneyView_person@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF08E84C1DD16A13003E4DD9 /* MobileRechargeMoneyView_person@3x.png */; };
+		DF08E8561DD178A6003E4DD9 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF08E8551DD178A6003E4DD9 /* AddressBook.framework */; };
 		DF4EE2291DCDA7DE008FE84C /* UserAddressEditTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4EE2271DCDA7DE008FE84C /* UserAddressEditTableViewCell.m */; };
 		DF4EE22A1DCDA7DE008FE84C /* UserAddressEditTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF4EE2281DCDA7DE008FE84C /* UserAddressEditTableViewCell.xib */; };
 		DF4EE22D1DCDAC17008FE84C /* UserHouseEditVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4EE22C1DCDAC17008FE84C /* UserHouseEditVC.m */; };
@@ -259,6 +269,16 @@
 		DF0308A41DCD7D6600E1EAB6 /* ZLUserHeaderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLUserHeaderTableViewCell.h; sourceTree = "<group>"; };
 		DF0308A51DCD7D6600E1EAB6 /* ZLUserHeaderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLUserHeaderTableViewCell.m; sourceTree = "<group>"; };
 		DF0308A61DCD7D6600E1EAB6 /* ZLUserHeaderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLUserHeaderTableViewCell.xib; sourceTree = "<group>"; };
+		DF08E8431DD16868003E4DD9 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
+		DF08E8451DD16A13003E4DD9 /* MobileRechargeMoneyView_kuangChoose@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MobileRechargeMoneyView_kuangChoose@2x.png"; sourceTree = "<group>"; };
+		DF08E8461DD16A13003E4DD9 /* MobileRechargeMoneyView_kuangChoose@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MobileRechargeMoneyView_kuangChoose@3x.png"; sourceTree = "<group>"; };
+		DF08E8471DD16A13003E4DD9 /* MobileRechargeMoneyView_kuangNormal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MobileRechargeMoneyView_kuangNormal@2x.png"; sourceTree = "<group>"; };
+		DF08E8481DD16A13003E4DD9 /* MobileRechargeMoneyView_kuangNormal@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MobileRechargeMoneyView_kuangNormal@3x.png"; sourceTree = "<group>"; };
+		DF08E8491DD16A13003E4DD9 /* MobileRechargeMoneyView_mobile@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MobileRechargeMoneyView_mobile@2x.png"; sourceTree = "<group>"; };
+		DF08E84A1DD16A13003E4DD9 /* MobileRechargeMoneyView_mobile@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MobileRechargeMoneyView_mobile@3x.png"; sourceTree = "<group>"; };
+		DF08E84B1DD16A13003E4DD9 /* MobileRechargeMoneyView_person@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MobileRechargeMoneyView_person@2x.png"; sourceTree = "<group>"; };
+		DF08E84C1DD16A13003E4DD9 /* MobileRechargeMoneyView_person@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MobileRechargeMoneyView_person@3x.png"; sourceTree = "<group>"; };
+		DF08E8551DD178A6003E4DD9 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		DF4EE2261DCDA7DE008FE84C /* UserAddressEditTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAddressEditTableViewCell.h; sourceTree = "<group>"; };
 		DF4EE2271DCDA7DE008FE84C /* UserAddressEditTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAddressEditTableViewCell.m; sourceTree = "<group>"; };
 		DF4EE2281DCDA7DE008FE84C /* UserAddressEditTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserAddressEditTableViewCell.xib; sourceTree = "<group>"; };
@@ -374,6 +394,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF08E8561DD178A6003E4DD9 /* AddressBook.framework in Frameworks */,
+				DF08E8441DD16868003E4DD9 /* AddressBookUI.framework in Frameworks */,
 				04CBF0311DC19F430098BF52 /* UserNotifications.framework in Frameworks */,
 				04CBF02F1DC19F310098BF52 /* Security.framework in Frameworks */,
 				04CBF02D1DC19F2A0098BF52 /* UIKit.framework in Frameworks */,
@@ -595,6 +617,8 @@
 		12B582CBD65385C342FBEFDA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DF08E8551DD178A6003E4DD9 /* AddressBook.framework */,
+				DF08E8431DD16868003E4DD9 /* AddressBookUI.framework */,
 				04CBF0301DC19F430098BF52 /* UserNotifications.framework */,
 				04CBF02E1DC19F310098BF52 /* Security.framework */,
 				04CBF02C1DC19F2A0098BF52 /* UIKit.framework */,
@@ -896,6 +920,14 @@
 		DFFAA7521DB744EF001CFBB5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DF08E8451DD16A13003E4DD9 /* MobileRechargeMoneyView_kuangChoose@2x.png */,
+				DF08E8461DD16A13003E4DD9 /* MobileRechargeMoneyView_kuangChoose@3x.png */,
+				DF08E8471DD16A13003E4DD9 /* MobileRechargeMoneyView_kuangNormal@2x.png */,
+				DF08E8481DD16A13003E4DD9 /* MobileRechargeMoneyView_kuangNormal@3x.png */,
+				DF08E8491DD16A13003E4DD9 /* MobileRechargeMoneyView_mobile@2x.png */,
+				DF08E84A1DD16A13003E4DD9 /* MobileRechargeMoneyView_mobile@3x.png */,
+				DF08E84B1DD16A13003E4DD9 /* MobileRechargeMoneyView_person@2x.png */,
+				DF08E84C1DD16A13003E4DD9 /* MobileRechargeMoneyView_person@3x.png */,
 				DF8DBCD91DD0581F002E574B /* gouwu_order@2x.png */,
 				DF7F1BE71DCDD5F200D2242B /* gongsi_off@2x.png */,
 				DF7F1BE81DCDD5F200D2242B /* gongsi_on@2x.png */,
@@ -1056,11 +1088,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF08E8531DD16A13003E4DD9 /* MobileRechargeMoneyView_person@2x.png in Resources */,
 				DF7F1BEF1DCDD5F200D2242B /* juming_off@2x.png in Resources */,
 				040917611DCC371D00DB2568 /* ZLSuperMarketShopActivityCell1.xib in Resources */,
 				DF7F1BFC1DCDDD4900D2242B /* ComplaintJumingView.xib in Resources */,
 				DF03089E1DCD6F0900E1EAB6 /* UserIDAuthTableViewCell.xib in Resources */,
 				04D64D751DC9CCDC004E8859 /* ZLHomeOtherCell.xib in Resources */,
+				DF08E8521DD16A13003E4DD9 /* MobileRechargeMoneyView_mobile@3x.png in Resources */,
 				DF7F1BF01DCDD5F200D2242B /* juming_on@2x.png in Resources */,
 				DF4EE22A1DCDA7DE008FE84C /* UserAddressEditTableViewCell.xib in Resources */,
 				DF0308A01DCD77E100E1EAB6 /* choose_on.png in Resources */,
@@ -1068,18 +1102,22 @@
 				04C6A37F1DCB08AF002C4D4A /* private_key.p12 in Resources */,
 				0409178B1DCC919200DB2568 /* ZLSuperMarketShopRightCell.xib in Resources */,
 				DF8DBCDA1DD0581F002E574B /* gouwu_order@2x.png in Resources */,
+				DF08E8501DD16A13003E4DD9 /* MobileRechargeMoneyView_kuangNormal@3x.png in Resources */,
 				04D64D6D1DC9CCA5004E8859 /* ZLHomeLocationView.xib in Resources */,
 				040917711DCC5E1000DB2568 /* ZLSuperMarketSearchView.xib in Resources */,
 				DF7F1BF21DCDD5F200D2242B /* wuguan_on@2x.png in Resources */,
 				0409175F1DCC336000DB2568 /* ZLSuperMarketShopCell.xib in Resources */,
 				04C6A3801DCB08AF002C4D4A /* public_key.der in Resources */,
 				040917521DCC1FE500DB2568 /* ZLSearchArearView.xib in Resources */,
+				DF08E84E1DD16A13003E4DD9 /* MobileRechargeMoneyView_kuangChoose@3x.png in Resources */,
+				DF08E8541DD16A13003E4DD9 /* MobileRechargeMoneyView_person@3x.png in Resources */,
 				DFFAA7421DB744C5001CFBB5 /* LaunchScreen.storyboard in Resources */,
 				DF7F1BD31DCDC1FB00D2242B /* UserPaoPaoRegisterVC.xib in Resources */,
 				040917841DCC904B00DB2568 /* ZLSuperMarketShopLeftCellType.xib in Resources */,
 				040917681DCC39DE00DB2568 /* ZLSuperMarketHeaderSectionView.xib in Resources */,
 				DF0308A81DCD7D6600E1EAB6 /* ZLUserHeaderTableViewCell.xib in Resources */,
 				DF7F1BCB1DCDBDEE00D2242B /* UserHouseEditTableViewCell.xib in Resources */,
+				DF08E84F1DD16A13003E4DD9 /* MobileRechargeMoneyView_kuangNormal@2x.png in Resources */,
 				DF7F1BED1DCDD5F200D2242B /* gongsi_off@2x.png in Resources */,
 				DFFAA73F1DB744C5001CFBB5 /* Assets.xcassets in Resources */,
 				DF8DBCBE1DD01C9C002E574B /* ComplaintGongsiView.xib in Resources */,
@@ -1091,6 +1129,8 @@
 				04D64D7C1DC9CDA4004E8859 /* ZlHomeCoupView.xib in Resources */,
 				DFFAA73D1DB744C5001CFBB5 /* Main.storyboard in Resources */,
 				DF7F1BEE1DCDD5F200D2242B /* gongsi_on@2x.png in Resources */,
+				DF08E84D1DD16A13003E4DD9 /* MobileRechargeMoneyView_kuangChoose@2x.png in Resources */,
+				DF08E8511DD16A13003E4DD9 /* MobileRechargeMoneyView_mobile@2x.png in Resources */,
 				DF7F1BF11DCDD5F200D2242B /* wuguan_off@2x.png in Resources */,
 				DF8DBCB91DD01A90002E574B /* ComplaintWuguanView.xib in Resources */,
 			);

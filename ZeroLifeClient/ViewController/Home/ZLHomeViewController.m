@@ -262,14 +262,17 @@
     MLLog(@"点击了第:%ld个",(long)mIndex);
     if (mIndex == 0) {
         LifePayVC *vc = [[LifePayVC alloc] init];
+        vc.hidesBottomBarWhenPushed = YES;
         [self pushViewController:vc];
         
     } else if (mIndex == 1) {
         ZLSuperMarketViewController *mSuperMarketVC = [ZLSuperMarketViewController new];
+        mSuperMarketVC.hidesBottomBarWhenPushed = YES;
         [self pushViewController:mSuperMarketVC];
         
     } else if (mIndex == 3) {
         DryCleanShopTVC *vc = [[DryCleanShopTVC alloc] init];
+        vc.hidesBottomBarWhenPushed = YES;
         [self pushViewController:vc];
     }
     

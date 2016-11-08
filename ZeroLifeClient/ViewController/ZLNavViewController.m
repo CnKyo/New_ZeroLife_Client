@@ -47,6 +47,9 @@
     }
 //     [self.navigationBar.layer setMasksToBounds:YES];
 //     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleBlackOpaque;
+    
+    
+    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(10, -60) forBarMetrics:UIBarMetricsDefault];
 
 }
 /**
@@ -56,20 +59,20 @@
  */
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
-    if (self.childViewControllers.count > 0) {
-        UIButton *backButton = [[UIButton alloc] init];
-        [backButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [backButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
-        //        [backButton setTitle:@"返回" forState:UIControlStateNormal];
-        [backButton setImage:[UIImage imageNamed:@"back_bgk"] forState:UIControlStateNormal];
-        [backButton setImage:[UIImage imageNamed:@"back_bgk"] forState:UIControlStateHighlighted];
-        [backButton sizeToFit];
-        [backButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
-        backButton.contentEdgeInsets = UIEdgeInsetsMake(0, -20, 0, 0);
-        viewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
-        viewController.hidesBottomBarWhenPushed = YES;
-        
-    }
+//    if (self.childViewControllers.count > 0) {
+//        UIButton *backButton = [[UIButton alloc] init];
+//        [backButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//        [backButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
+//        //        [backButton setTitle:@"返回" forState:UIControlStateNormal];
+//        [backButton setImage:[UIImage imageNamed:@"ZLBackBtn_Image"] forState:UIControlStateNormal];
+//        [backButton setImage:[UIImage imageNamed:@"ZLBackBtn_Image"] forState:UIControlStateHighlighted];
+//        [backButton sizeToFit];
+//        [backButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+//        backButton.contentEdgeInsets = UIEdgeInsetsMake(0, -20, 0, 0);
+//        viewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+//        viewController.hidesBottomBarWhenPushed = YES;
+//        
+//    }
     
     [super pushViewController:viewController animated:YES];
     
