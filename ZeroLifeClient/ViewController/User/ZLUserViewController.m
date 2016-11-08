@@ -16,6 +16,7 @@
 #import "UserComplaintAddVC.h"
 #import <JKCategories/UIButton+JKImagePosition.h>
 #import "CustomBtnView.h"
+#import "FavoriteTVC.h"
 
 @interface ZLUserViewController ()
 
@@ -31,8 +32,23 @@
     [self addTableViewWithStyleGrouped];
     [self.tableView registerNib:[ZLUserHeaderTableViewCell jk_nib] forCellReuseIdentifier:[ZLUserHeaderTableViewCell reuseIdentifier]];
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] bk_initWithImage:IMG(@"ZLSearch_gray.png") style:UIBarButtonItemStylePlain handler:^(id  _Nonnull sender) {
+    
+    UIView *footerView = ({
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, DEVICE_Width, 70)];
+        UIButton *btn11 = [view newUIButton];
+        btn11.frame = CGRectMake(10, 10, view.bounds.size.width-20, 50);
+        [btn11 setTitle:@"退出登陆" forState:UIControlStateNormal];
+        [btn11 setStyleNavColor];
+        [btn11 jk_addActionHandler:^(NSInteger tag) {
+            
+        }];
+        view;
+    });
+    self.tableView.tableFooterView = footerView;
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] bk_initWithImage:IMG(@"choose_on.png") style:UIBarButtonItemStylePlain handler:^(id  _Nonnull sender) {
         SystemSettingVC *vc = [[SystemSettingVC alloc] init];
+        vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
     }];
 }
@@ -40,7 +56,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.navigationController.navigationBar.subviews[2] setHidden:YES];
+    //[self.navigationController.navigationBar.subviews[2] setHidden:YES];
 
 }
 
@@ -48,9 +64,9 @@
 {
     [super viewWillAppear:animated];
     
-    UINavigationBar *navigationBar = self.navigationController.navigationBar;
-    [navigationBar setBackgroundImage:[UIImage jk_imageWithColor:COLOR_NavBar] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
-    [navigationBar setShadowImage:[UIImage new]];
+//    UINavigationBar *navigationBar = self.navigationController.navigationBar;
+//    [navigationBar setBackgroundImage:[UIImage jk_imageWithColor:COLOR_NavBar] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
+//    [navigationBar setShadowImage:[UIImage new]];
     
 
 }
@@ -86,7 +102,7 @@
 {
     NSInteger row = 1;
     if (section == 2)
-        row = 4;
+        row = 3;
     return row;
 }
 
@@ -127,7 +143,7 @@
         return cell;
         
     } else if (indexPath.section == 1) {
-        static NSString *CellIdentifier = @"ZLUserViewControllerTableViewCell";
+        static NSString *CellIdentifier = @"ZLUserViewControllerTableViewCell222";
         UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
             cell= [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
@@ -197,11 +213,11 @@
         return cell;
         
     } else {
-        static NSString *CellIdentifier = @"ZLUserViewControllerTableViewCell";
+        static NSString *CellIdentifier = @"ZLUserViewControllerTableViewCell111";
         UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
             cell= [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-            
+            cell.textLabel.textColor = [UIColor colorWithWhite:0.3 alpha:1];
         }
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         switch (indexPath.row) {
@@ -230,19 +246,26 @@
     
     if (indexPath.section == 0) {
         UserInfoVC *vc = [[UserInfoVC alloc] init];
+        vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
         
     } else if (indexPath.section == 2) {
         if (indexPath.row == 0) {
-            UserIDAuthVC *vc = [[UserIDAuthVC alloc] init];
+//            UserIDAuthVC *vc = [[UserIDAuthVC alloc] init];
+//            [self.navigationController pushViewController:vc animated:YES];
+            
+            FavoriteTVC *vc = [[FavoriteTVC alloc] init];
+            vc.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:vc animated:YES];
             
         } else if (indexPath.row == 1) {
             UserAddressTVC *vc = [[UserAddressTVC alloc] init];
+            vc.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:vc animated:YES];
             
         } else if (indexPath.row == 2) {
             UserComplaintAddVC *vc = [[UserComplaintAddVC alloc] init];
+            vc.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:vc animated:YES];
         }
 

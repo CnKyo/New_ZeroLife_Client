@@ -19,5 +19,5 @@
 
 
 @interface MobileRechargeVC : CustomVC
-
+@property MobileRechargeMoneyView *aa;
 @end

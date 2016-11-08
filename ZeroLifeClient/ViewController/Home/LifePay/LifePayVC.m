@@ -8,6 +8,7 @@
 
 #import "LifePayVC.h"
 #import "MobileRechargeVC.h"
+#import "WuGuanFeePayVC.h"
 
 @interface LifePayVC ()
 
@@ -119,7 +120,11 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    if (indexPath.row == 3) {
+    if (indexPath.row == 0) {
+        WuGuanFeePayVC *vc = [[WuGuanFeePayVC alloc] init];
+        [self pushViewController:vc];
+        
+    } else if (indexPath.row == 3) {
         MobileRechargeVC *vc = [[MobileRechargeVC alloc] init];
         [self pushViewController:vc];
     }

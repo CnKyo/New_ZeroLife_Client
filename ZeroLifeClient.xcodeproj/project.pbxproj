@@ -91,9 +91,22 @@
 		DF08E8531DD16A13003E4DD9 /* MobileRechargeMoneyView_person@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF08E84B1DD16A13003E4DD9 /* MobileRechargeMoneyView_person@2x.png */; };
 		DF08E8541DD16A13003E4DD9 /* MobileRechargeMoneyView_person@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF08E84C1DD16A13003E4DD9 /* MobileRechargeMoneyView_person@3x.png */; };
 		DF08E8561DD178A6003E4DD9 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF08E8551DD178A6003E4DD9 /* AddressBook.framework */; };
-		DF4EE2291DCDA7DE008FE84C /* UserAddressEditTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4EE2271DCDA7DE008FE84C /* UserAddressEditTableViewCell.m */; };
-		DF4EE22A1DCDA7DE008FE84C /* UserAddressEditTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF4EE2281DCDA7DE008FE84C /* UserAddressEditTableViewCell.xib */; };
-		DF4EE22D1DCDAC17008FE84C /* UserHouseEditVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4EE22C1DCDAC17008FE84C /* UserHouseEditVC.m */; };
+		DF08E8591DD19F06003E4DD9 /* WuGuanFeePayVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF08E8581DD19F06003E4DD9 /* WuGuanFeePayVC.m */; };
+		DF08E85B1DD1A6ED003E4DD9 /* wuguan_jiange.png in Resources */ = {isa = PBXBuildFile; fileRef = DF08E85A1DD1A6ED003E4DD9 /* wuguan_jiange.png */; };
+		DF08E85E1DD1A82C003E4DD9 /* FeePayHistoryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF08E85D1DD1A82C003E4DD9 /* FeePayHistoryVC.m */; };
+		DF08E8611DD1A869003E4DD9 /* FeePayHistoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF08E8601DD1A869003E4DD9 /* FeePayHistoryTableViewCell.m */; };
+		DF08E8651DD1ACC5003E4DD9 /* FeePayHistoryDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF08E8631DD1ACC5003E4DD9 /* FeePayHistoryDetailVC.m */; };
+		DF08E8791DD1C072003E4DD9 /* UserAddressEditVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF08E86B1DD1C072003E4DD9 /* UserAddressEditVC.m */; };
+		DF08E87A1DD1C072003E4DD9 /* UserAddressTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF08E86D1DD1C072003E4DD9 /* UserAddressTVC.m */; };
+		DF08E87B1DD1C072003E4DD9 /* UserHouseEditVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF08E86F1DD1C072003E4DD9 /* UserHouseEditVC.m */; };
+		DF08E87C1DD1C072003E4DD9 /* UserAddressEditTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF08E8721DD1C072003E4DD9 /* UserAddressEditTableViewCell.m */; };
+		DF08E87D1DD1C072003E4DD9 /* UserAddressEditTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF08E8731DD1C072003E4DD9 /* UserAddressEditTableViewCell.xib */; };
+		DF08E87E1DD1C072003E4DD9 /* UserAddressTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF08E8751DD1C072003E4DD9 /* UserAddressTableViewCell.m */; };
+		DF08E87F1DD1C072003E4DD9 /* UserHouseEditTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF08E8771DD1C072003E4DD9 /* UserHouseEditTableViewCell.m */; };
+		DF08E8801DD1C072003E4DD9 /* UserHouseEditTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF08E8781DD1C072003E4DD9 /* UserHouseEditTableViewCell.xib */; };
+		DF08E8831DD1C093003E4DD9 /* FavoriteTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF08E8821DD1C093003E4DD9 /* FavoriteTVC.m */; };
+		DF08E8861DD1C0B2003E4DD9 /* FavoriteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF08E8851DD1C0B2003E4DD9 /* FavoriteTableViewCell.m */; };
+		DF08E8881DD1C39B003E4DD9 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF08E8871DD1C39B003E4DD9 /* CoreText.framework */; };
 		DF55B4611DBAFE5800F89341 /* ZLCookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF55B45F1DBAFE5800F89341 /* ZLCookViewController.m */; };
 		DF55B4641DBAFE6000F89341 /* ZLHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF55B4621DBAFE6000F89341 /* ZLHomeViewController.m */; };
 		DF55B4671DBAFE6D00F89341 /* ZLPurseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF55B4651DBAFE6D00F89341 /* ZLPurseViewController.m */; };
@@ -108,11 +121,6 @@
 		DF7D0A1E1DBA0019005A62A7 /* CookDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF7D0A1B1DBA0019005A62A7 /* CookDetailVC.m */; };
 		DF7D0A231DBA0023005A62A7 /* ImageTextTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF7D0A201DBA0023005A62A7 /* ImageTextTableViewCell.m */; };
 		DF7D0A241DBA0023005A62A7 /* TagsTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF7D0A221DBA0023005A62A7 /* TagsTableCell.m */; };
-		DF7F1BBF1DCDB07F00D2242B /* UserAddressTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF7F1BBD1DCDB07F00D2242B /* UserAddressTableViewCell.m */; };
-		DF7F1BC31DCDB70C00D2242B /* UserAddressTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF7F1BC21DCDB70C00D2242B /* UserAddressTVC.m */; };
-		DF7F1BC61DCDBCCC00D2242B /* UserAddressEditVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF7F1BC51DCDBCCC00D2242B /* UserAddressEditVC.m */; };
-		DF7F1BCA1DCDBDEE00D2242B /* UserHouseEditTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF7F1BC81DCDBDEE00D2242B /* UserHouseEditTableViewCell.m */; };
-		DF7F1BCB1DCDBDEE00D2242B /* UserHouseEditTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF7F1BC91DCDBDEE00D2242B /* UserHouseEditTableViewCell.xib */; };
 		DF7F1BD21DCDC1FB00D2242B /* UserPaoPaoRegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF7F1BD01DCDC1FB00D2242B /* UserPaoPaoRegisterVC.m */; };
 		DF7F1BD31DCDC1FB00D2242B /* UserPaoPaoRegisterVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF7F1BD11DCDC1FB00D2242B /* UserPaoPaoRegisterVC.xib */; };
 		DF7F1BE61DCDD0CF00D2242B /* HMSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = DF7F1BE51DCDD0CF00D2242B /* HMSegmentedControl.m */; };
@@ -279,11 +287,34 @@
 		DF08E84B1DD16A13003E4DD9 /* MobileRechargeMoneyView_person@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MobileRechargeMoneyView_person@2x.png"; sourceTree = "<group>"; };
 		DF08E84C1DD16A13003E4DD9 /* MobileRechargeMoneyView_person@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MobileRechargeMoneyView_person@3x.png"; sourceTree = "<group>"; };
 		DF08E8551DD178A6003E4DD9 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
-		DF4EE2261DCDA7DE008FE84C /* UserAddressEditTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAddressEditTableViewCell.h; sourceTree = "<group>"; };
-		DF4EE2271DCDA7DE008FE84C /* UserAddressEditTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAddressEditTableViewCell.m; sourceTree = "<group>"; };
-		DF4EE2281DCDA7DE008FE84C /* UserAddressEditTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserAddressEditTableViewCell.xib; sourceTree = "<group>"; };
-		DF4EE22B1DCDAC17008FE84C /* UserHouseEditVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserHouseEditVC.h; sourceTree = "<group>"; };
-		DF4EE22C1DCDAC17008FE84C /* UserHouseEditVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserHouseEditVC.m; sourceTree = "<group>"; };
+		DF08E8571DD19F06003E4DD9 /* WuGuanFeePayVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WuGuanFeePayVC.h; sourceTree = "<group>"; };
+		DF08E8581DD19F06003E4DD9 /* WuGuanFeePayVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WuGuanFeePayVC.m; sourceTree = "<group>"; };
+		DF08E85A1DD1A6ED003E4DD9 /* wuguan_jiange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wuguan_jiange.png; sourceTree = "<group>"; };
+		DF08E85C1DD1A82C003E4DD9 /* FeePayHistoryVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeePayHistoryVC.h; sourceTree = "<group>"; };
+		DF08E85D1DD1A82C003E4DD9 /* FeePayHistoryVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeePayHistoryVC.m; sourceTree = "<group>"; };
+		DF08E85F1DD1A869003E4DD9 /* FeePayHistoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeePayHistoryTableViewCell.h; sourceTree = "<group>"; };
+		DF08E8601DD1A869003E4DD9 /* FeePayHistoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeePayHistoryTableViewCell.m; sourceTree = "<group>"; };
+		DF08E8621DD1ACC5003E4DD9 /* FeePayHistoryDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeePayHistoryDetailVC.h; sourceTree = "<group>"; };
+		DF08E8631DD1ACC5003E4DD9 /* FeePayHistoryDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeePayHistoryDetailVC.m; sourceTree = "<group>"; };
+		DF08E86A1DD1C072003E4DD9 /* UserAddressEditVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAddressEditVC.h; sourceTree = "<group>"; };
+		DF08E86B1DD1C072003E4DD9 /* UserAddressEditVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAddressEditVC.m; sourceTree = "<group>"; };
+		DF08E86C1DD1C072003E4DD9 /* UserAddressTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAddressTVC.h; sourceTree = "<group>"; };
+		DF08E86D1DD1C072003E4DD9 /* UserAddressTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAddressTVC.m; sourceTree = "<group>"; };
+		DF08E86E1DD1C072003E4DD9 /* UserHouseEditVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserHouseEditVC.h; sourceTree = "<group>"; };
+		DF08E86F1DD1C072003E4DD9 /* UserHouseEditVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserHouseEditVC.m; sourceTree = "<group>"; };
+		DF08E8711DD1C072003E4DD9 /* UserAddressEditTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAddressEditTableViewCell.h; sourceTree = "<group>"; };
+		DF08E8721DD1C072003E4DD9 /* UserAddressEditTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAddressEditTableViewCell.m; sourceTree = "<group>"; };
+		DF08E8731DD1C072003E4DD9 /* UserAddressEditTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserAddressEditTableViewCell.xib; sourceTree = "<group>"; };
+		DF08E8741DD1C072003E4DD9 /* UserAddressTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAddressTableViewCell.h; sourceTree = "<group>"; };
+		DF08E8751DD1C072003E4DD9 /* UserAddressTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAddressTableViewCell.m; sourceTree = "<group>"; };
+		DF08E8761DD1C072003E4DD9 /* UserHouseEditTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserHouseEditTableViewCell.h; sourceTree = "<group>"; };
+		DF08E8771DD1C072003E4DD9 /* UserHouseEditTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserHouseEditTableViewCell.m; sourceTree = "<group>"; };
+		DF08E8781DD1C072003E4DD9 /* UserHouseEditTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserHouseEditTableViewCell.xib; sourceTree = "<group>"; };
+		DF08E8811DD1C093003E4DD9 /* FavoriteTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoriteTVC.h; sourceTree = "<group>"; };
+		DF08E8821DD1C093003E4DD9 /* FavoriteTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoriteTVC.m; sourceTree = "<group>"; };
+		DF08E8841DD1C0B2003E4DD9 /* FavoriteTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoriteTableViewCell.h; sourceTree = "<group>"; };
+		DF08E8851DD1C0B2003E4DD9 /* FavoriteTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoriteTableViewCell.m; sourceTree = "<group>"; };
+		DF08E8871DD1C39B003E4DD9 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		DF55B45F1DBAFE5800F89341 /* ZLCookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLCookViewController.m; sourceTree = "<group>"; };
 		DF55B4601DBAFE5800F89341 /* ZLCookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLCookViewController.h; sourceTree = "<group>"; };
 		DF55B4621DBAFE6000F89341 /* ZLHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLHomeViewController.m; sourceTree = "<group>"; };
@@ -313,15 +344,6 @@
 		DF7D0A211DBA0023005A62A7 /* TagsTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagsTableCell.h; sourceTree = "<group>"; };
 		DF7D0A221DBA0023005A62A7 /* TagsTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagsTableCell.m; sourceTree = "<group>"; };
 		DF7D0A251DBA0BA0005A62A7 /* ZeroLifeClient-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZeroLifeClient-Prefix.pch"; sourceTree = "<group>"; };
-		DF7F1BBC1DCDB07F00D2242B /* UserAddressTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAddressTableViewCell.h; sourceTree = "<group>"; };
-		DF7F1BBD1DCDB07F00D2242B /* UserAddressTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAddressTableViewCell.m; sourceTree = "<group>"; };
-		DF7F1BC11DCDB70C00D2242B /* UserAddressTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAddressTVC.h; sourceTree = "<group>"; };
-		DF7F1BC21DCDB70C00D2242B /* UserAddressTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAddressTVC.m; sourceTree = "<group>"; };
-		DF7F1BC41DCDBCCC00D2242B /* UserAddressEditVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAddressEditVC.h; sourceTree = "<group>"; };
-		DF7F1BC51DCDBCCC00D2242B /* UserAddressEditVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAddressEditVC.m; sourceTree = "<group>"; };
-		DF7F1BC71DCDBDEE00D2242B /* UserHouseEditTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserHouseEditTableViewCell.h; sourceTree = "<group>"; };
-		DF7F1BC81DCDBDEE00D2242B /* UserHouseEditTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserHouseEditTableViewCell.m; sourceTree = "<group>"; };
-		DF7F1BC91DCDBDEE00D2242B /* UserHouseEditTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserHouseEditTableViewCell.xib; sourceTree = "<group>"; };
 		DF7F1BCF1DCDC1FB00D2242B /* UserPaoPaoRegisterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserPaoPaoRegisterVC.h; sourceTree = "<group>"; };
 		DF7F1BD01DCDC1FB00D2242B /* UserPaoPaoRegisterVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserPaoPaoRegisterVC.m; sourceTree = "<group>"; };
 		DF7F1BD11DCDC1FB00D2242B /* UserPaoPaoRegisterVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserPaoPaoRegisterVC.xib; sourceTree = "<group>"; };
@@ -394,6 +416,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF08E8881DD1C39B003E4DD9 /* CoreText.framework in Frameworks */,
 				DF08E8561DD178A6003E4DD9 /* AddressBook.framework in Frameworks */,
 				DF08E8441DD16868003E4DD9 /* AddressBookUI.framework in Frameworks */,
 				04CBF0311DC19F430098BF52 /* UserNotifications.framework in Frameworks */,
@@ -617,6 +640,7 @@
 		12B582CBD65385C342FBEFDA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DF08E8871DD1C39B003E4DD9 /* CoreText.framework */,
 				DF08E8551DD178A6003E4DD9 /* AddressBook.framework */,
 				DF08E8431DD16868003E4DD9 /* AddressBookUI.framework */,
 				04CBF0301DC19F430098BF52 /* UserNotifications.framework */,
@@ -644,6 +668,54 @@
 				26781393B9810BF63F686EF1 /* Pods-ZeroLifeClient.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		DF08E8671DD1C004003E4DD9 /* Favorite */ = {
+			isa = PBXGroup;
+			children = (
+				DF08E8681DD1C004003E4DD9 /* View */,
+				DF08E8811DD1C093003E4DD9 /* FavoriteTVC.h */,
+				DF08E8821DD1C093003E4DD9 /* FavoriteTVC.m */,
+			);
+			path = Favorite;
+			sourceTree = "<group>";
+		};
+		DF08E8681DD1C004003E4DD9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DF08E8841DD1C0B2003E4DD9 /* FavoriteTableViewCell.h */,
+				DF08E8851DD1C0B2003E4DD9 /* FavoriteTableViewCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DF08E8691DD1C072003E4DD9 /* Address */ = {
+			isa = PBXGroup;
+			children = (
+				DF08E86A1DD1C072003E4DD9 /* UserAddressEditVC.h */,
+				DF08E86B1DD1C072003E4DD9 /* UserAddressEditVC.m */,
+				DF08E86C1DD1C072003E4DD9 /* UserAddressTVC.h */,
+				DF08E86D1DD1C072003E4DD9 /* UserAddressTVC.m */,
+				DF08E86E1DD1C072003E4DD9 /* UserHouseEditVC.h */,
+				DF08E86F1DD1C072003E4DD9 /* UserHouseEditVC.m */,
+				DF08E8701DD1C072003E4DD9 /* View */,
+			);
+			path = Address;
+			sourceTree = "<group>";
+		};
+		DF08E8701DD1C072003E4DD9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DF08E8711DD1C072003E4DD9 /* UserAddressEditTableViewCell.h */,
+				DF08E8721DD1C072003E4DD9 /* UserAddressEditTableViewCell.m */,
+				DF08E8731DD1C072003E4DD9 /* UserAddressEditTableViewCell.xib */,
+				DF08E8741DD1C072003E4DD9 /* UserAddressTableViewCell.h */,
+				DF08E8751DD1C072003E4DD9 /* UserAddressTableViewCell.m */,
+				DF08E8761DD1C072003E4DD9 /* UserHouseEditTableViewCell.h */,
+				DF08E8771DD1C072003E4DD9 /* UserHouseEditTableViewCell.m */,
+				DF08E8781DD1C072003E4DD9 /* UserHouseEditTableViewCell.xib */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		DF5C48FE1DBA1BEC006E4825 /* DCBannerView */ = {
@@ -723,6 +795,12 @@
 				DF8DBCEC1DD0782F002E574B /* LifePayVC.m */,
 				DF8DBCF11DD07CB2002E574B /* MobileRechargeVC.h */,
 				DF8DBCF21DD07CB2002E574B /* MobileRechargeVC.m */,
+				DF08E8571DD19F06003E4DD9 /* WuGuanFeePayVC.h */,
+				DF08E8581DD19F06003E4DD9 /* WuGuanFeePayVC.m */,
+				DF08E85C1DD1A82C003E4DD9 /* FeePayHistoryVC.h */,
+				DF08E85D1DD1A82C003E4DD9 /* FeePayHistoryVC.m */,
+				DF08E8621DD1ACC5003E4DD9 /* FeePayHistoryDetailVC.h */,
+				DF08E8631DD1ACC5003E4DD9 /* FeePayHistoryDetailVC.m */,
 			);
 			path = LifePay;
 			sourceTree = "<group>";
@@ -730,6 +808,8 @@
 		DF8DBCEA1DD077F8002E574B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				DF08E85F1DD1A869003E4DD9 /* FeePayHistoryTableViewCell.h */,
+				DF08E8601DD1A869003E4DD9 /* FeePayHistoryTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -873,6 +953,8 @@
 		DFFAA7501DB744EF001CFBB5 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				DF08E8691DD1C072003E4DD9 /* Address */,
+				DF08E8671DD1C004003E4DD9 /* Favorite */,
 				DF7F1BF31DCDDCCC00D2242B /* Complaint */,
 				DFFAA7511DB744EF001CFBB5 /* View */,
 				DF55B4691DBAFE7700F89341 /* ZLUserViewController.h */,
@@ -883,12 +965,6 @@
 				DF0308871DCD67ED00E1EAB6 /* UserInfoVC.m */,
 				DF0308971DCD6EAE00E1EAB6 /* UserIDAuthVC.h */,
 				DF0308981DCD6EAE00E1EAB6 /* UserIDAuthVC.m */,
-				DF4EE22B1DCDAC17008FE84C /* UserHouseEditVC.h */,
-				DF4EE22C1DCDAC17008FE84C /* UserHouseEditVC.m */,
-				DF7F1BC11DCDB70C00D2242B /* UserAddressTVC.h */,
-				DF7F1BC21DCDB70C00D2242B /* UserAddressTVC.m */,
-				DF7F1BC41DCDBCCC00D2242B /* UserAddressEditVC.h */,
-				DF7F1BC51DCDBCCC00D2242B /* UserAddressEditVC.m */,
 				DF7F1BCF1DCDC1FB00D2242B /* UserPaoPaoRegisterVC.h */,
 				DF7F1BD01DCDC1FB00D2242B /* UserPaoPaoRegisterVC.m */,
 				DF7F1BD11DCDC1FB00D2242B /* UserPaoPaoRegisterVC.xib */,
@@ -905,14 +981,6 @@
 				DF03089A1DCD6F0900E1EAB6 /* UserIDAuthTableViewCell.h */,
 				DF03089B1DCD6F0900E1EAB6 /* UserIDAuthTableViewCell.m */,
 				DF03089C1DCD6F0900E1EAB6 /* UserIDAuthTableViewCell.xib */,
-				DF7F1BC71DCDBDEE00D2242B /* UserHouseEditTableViewCell.h */,
-				DF7F1BC81DCDBDEE00D2242B /* UserHouseEditTableViewCell.m */,
-				DF7F1BC91DCDBDEE00D2242B /* UserHouseEditTableViewCell.xib */,
-				DF4EE2261DCDA7DE008FE84C /* UserAddressEditTableViewCell.h */,
-				DF4EE2271DCDA7DE008FE84C /* UserAddressEditTableViewCell.m */,
-				DF4EE2281DCDA7DE008FE84C /* UserAddressEditTableViewCell.xib */,
-				DF7F1BBC1DCDB07F00D2242B /* UserAddressTableViewCell.h */,
-				DF7F1BBD1DCDB07F00D2242B /* UserAddressTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -920,6 +988,7 @@
 		DFFAA7521DB744EF001CFBB5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DF08E85A1DD1A6ED003E4DD9 /* wuguan_jiange.png */,
 				DF08E8451DD16A13003E4DD9 /* MobileRechargeMoneyView_kuangChoose@2x.png */,
 				DF08E8461DD16A13003E4DD9 /* MobileRechargeMoneyView_kuangChoose@3x.png */,
 				DF08E8471DD16A13003E4DD9 /* MobileRechargeMoneyView_kuangNormal@2x.png */,
@@ -1096,7 +1165,6 @@
 				04D64D751DC9CCDC004E8859 /* ZLHomeOtherCell.xib in Resources */,
 				DF08E8521DD16A13003E4DD9 /* MobileRechargeMoneyView_mobile@3x.png in Resources */,
 				DF7F1BF01DCDD5F200D2242B /* juming_on@2x.png in Resources */,
-				DF4EE22A1DCDA7DE008FE84C /* UserAddressEditTableViewCell.xib in Resources */,
 				DF0308A01DCD77E100E1EAB6 /* choose_on.png in Resources */,
 				040D92FF1DCAE84300DBE42E /* ZLHomeMsgDetailCell.xib in Resources */,
 				04C6A37F1DCB08AF002C4D4A /* private_key.p12 in Resources */,
@@ -1106,7 +1174,9 @@
 				04D64D6D1DC9CCA5004E8859 /* ZLHomeLocationView.xib in Resources */,
 				040917711DCC5E1000DB2568 /* ZLSuperMarketSearchView.xib in Resources */,
 				DF7F1BF21DCDD5F200D2242B /* wuguan_on@2x.png in Resources */,
+				DF08E85B1DD1A6ED003E4DD9 /* wuguan_jiange.png in Resources */,
 				0409175F1DCC336000DB2568 /* ZLSuperMarketShopCell.xib in Resources */,
+				DF08E87D1DD1C072003E4DD9 /* UserAddressEditTableViewCell.xib in Resources */,
 				04C6A3801DCB08AF002C4D4A /* public_key.der in Resources */,
 				040917521DCC1FE500DB2568 /* ZLSearchArearView.xib in Resources */,
 				DF08E84E1DD16A13003E4DD9 /* MobileRechargeMoneyView_kuangChoose@3x.png in Resources */,
@@ -1116,7 +1186,6 @@
 				040917841DCC904B00DB2568 /* ZLSuperMarketShopLeftCellType.xib in Resources */,
 				040917681DCC39DE00DB2568 /* ZLSuperMarketHeaderSectionView.xib in Resources */,
 				DF0308A81DCD7D6600E1EAB6 /* ZLUserHeaderTableViewCell.xib in Resources */,
-				DF7F1BCB1DCDBDEE00D2242B /* UserHouseEditTableViewCell.xib in Resources */,
 				DF08E84F1DD16A13003E4DD9 /* MobileRechargeMoneyView_kuangNormal@2x.png in Resources */,
 				DF7F1BED1DCDD5F200D2242B /* gongsi_off@2x.png in Resources */,
 				DFFAA73F1DB744C5001CFBB5 /* Assets.xcassets in Resources */,
@@ -1129,6 +1198,7 @@
 				04D64D7C1DC9CDA4004E8859 /* ZlHomeCoupView.xib in Resources */,
 				DFFAA73D1DB744C5001CFBB5 /* Main.storyboard in Resources */,
 				DF7F1BEE1DCDD5F200D2242B /* gongsi_on@2x.png in Resources */,
+				DF08E8801DD1C072003E4DD9 /* UserHouseEditTableViewCell.xib in Resources */,
 				DF08E84D1DD16A13003E4DD9 /* MobileRechargeMoneyView_kuangChoose@2x.png in Resources */,
 				DF08E8511DD16A13003E4DD9 /* MobileRechargeMoneyView_mobile@2x.png in Resources */,
 				DF7F1BF11DCDD5F200D2242B /* wuguan_off@2x.png in Resources */,
@@ -1268,16 +1338,18 @@
 			files = (
 				DF0308851DCD65C700E1EAB6 /* SystemSettingVC.m in Sources */,
 				DFFAA7631DB744EF001CFBB5 /* UIView+AutoSize.m in Sources */,
+				DF08E8791DD1C072003E4DD9 /* UserAddressEditVC.m in Sources */,
 				0409178E1DCCA9D500DB2568 /* ZLSuperMarketShopCarView.m in Sources */,
 				DFF634C11DB873D200B5C917 /* ScrollModelVC.m in Sources */,
 				DF5C49031DBA1BEC006E4825 /* DCPicScrollView.m in Sources */,
 				040917511DCC1FE500DB2568 /* ZLSearchArearView.m in Sources */,
-				DF7F1BC31DCDB70C00D2242B /* UserAddressTVC.m in Sources */,
+				DF08E8651DD1ACC5003E4DD9 /* FeePayHistoryDetailVC.m in Sources */,
 				DF8DBCD81DD055E8002E574B /* ImgNameView.m in Sources */,
 				04D64D741DC9CCDC004E8859 /* ZLHomeOtherCell.m in Sources */,
 				DF7F1BFA1DCDDD3000D2242B /* ComplaintJumingView.m in Sources */,
 				04C6A3841DCB11A4002C4D4A /* UIViewExt.m in Sources */,
 				DF7D0A1C1DBA0019005A62A7 /* CookCategoryTVC.m in Sources */,
+				DF08E85E1DD1A82C003E4DD9 /* FeePayHistoryVC.m in Sources */,
 				DFFAA7621DB744EF001CFBB5 /* APIObjectDefine.m in Sources */,
 				DF8DBCB41DD0127D002E574B /* UIButton+CustomLocal.m in Sources */,
 				DF0308911DCD69DC00E1EAB6 /* UIViewController+Additions.m in Sources */,
@@ -1286,23 +1358,25 @@
 				040917661DCC39D400DB2568 /* ZLSuperMarketHeaderSectionView.m in Sources */,
 				0409177D1DCC679900DB2568 /* ZLSuperMarketHeaderView.m in Sources */,
 				DF7D0A231DBA0023005A62A7 /* ImageTextTableViewCell.m in Sources */,
-				DF4EE22D1DCDAC17008FE84C /* UserHouseEditVC.m in Sources */,
 				DF0308991DCD6EAE00E1EAB6 /* UserIDAuthVC.m in Sources */,
-				DF7F1BCA1DCDBDEE00D2242B /* UserHouseEditTableViewCell.m in Sources */,
 				DF7D0A1D1DBA0019005A62A7 /* CookTVC.m in Sources */,
+				DF08E87F1DD1C072003E4DD9 /* UserHouseEditTableViewCell.m in Sources */,
 				0409175A1DCC313500DB2568 /* ZLSupMarketCell.m in Sources */,
 				DF55B4671DBAFE6D00F89341 /* ZLPurseViewController.m in Sources */,
 				DF55B4701DBAFEAC00F89341 /* ZLNavViewController.m in Sources */,
+				DF08E87A1DD1C072003E4DD9 /* UserAddressTVC.m in Sources */,
 				0409178A1DCC919200DB2568 /* ZLSuperMarketShopRightCell.m in Sources */,
-				DF7F1BC61DCDBCCC00D2242B /* UserAddressEditVC.m in Sources */,
 				04162E001DCB545200FB4229 /* HeaderView.m in Sources */,
+				DF08E87B1DD1C072003E4DD9 /* UserHouseEditVC.m in Sources */,
+				DF08E87C1DD1C072003E4DD9 /* UserAddressEditTableViewCell.m in Sources */,
 				DF55B4611DBAFE5800F89341 /* ZLCookViewController.m in Sources */,
 				DF0308881DCD67ED00E1EAB6 /* UserInfoVC.m in Sources */,
 				DFFAA7641DB744EF001CFBB5 /* CustomScrollVC.m in Sources */,
 				DF03088E1DCD698900E1EAB6 /* NSObject+PickPhoto.m in Sources */,
+				DF08E8831DD1C093003E4DD9 /* FavoriteTVC.m in Sources */,
 				DFFAA73A1DB744C5001CFBB5 /* ViewController.m in Sources */,
-				DF7F1BBF1DCDB07F00D2242B /* UserAddressTableViewCell.m in Sources */,
 				DF55B4641DBAFE6000F89341 /* ZLHomeViewController.m in Sources */,
+				DF08E8611DD1A869003E4DD9 /* FeePayHistoryTableViewCell.m in Sources */,
 				040917831DCC904B00DB2568 /* ZLSuperMarketShopLeftCellType.m in Sources */,
 				DFFAA7371DB744C5001CFBB5 /* AppDelegate.m in Sources */,
 				DF8DBCF31DD07CB2002E574B /* MobileRechargeVC.m in Sources */,
@@ -1320,13 +1394,13 @@
 				04C6A3761DCB0874002C4D4A /* keyChain.m in Sources */,
 				04C6A37E1DCB08AF002C4D4A /* NSData+Base64.m in Sources */,
 				DFFAA7651DB744EF001CFBB5 /* CustomVC.m in Sources */,
-				DF4EE2291DCDA7DE008FE84C /* UserAddressEditTableViewCell.m in Sources */,
 				DF8DBCE41DD0616F002E574B /* DryCleanShopTVC.m in Sources */,
 				0409176F1DCC5E0700DB2568 /* ZLSuperMarketSearchView.m in Sources */,
 				04D64D7A1DC9CD35004E8859 /* ZLHomeCoupView.m in Sources */,
 				04C6A3811DCB08AF002C4D4A /* RSAEncryptor.m in Sources */,
 				DF7F1BD21DCDC1FB00D2242B /* UserPaoPaoRegisterVC.m in Sources */,
 				040D92F41DCAE15300DBE42E /* ZLHomeMessageViewController.m in Sources */,
+				DF08E8591DD19F06003E4DD9 /* WuGuanFeePayVC.m in Sources */,
 				DF8DBCBC1DD01C90002E574B /* ComplaintGongsiView.m in Sources */,
 				DF8DBCB71DD01A73002E574B /* ComplaintWuguanView.m in Sources */,
 				040917751DCC60FA00DB2568 /* ZLSuperMarketSearchViewController.m in Sources */,
@@ -1347,8 +1421,10 @@
 				DF7D0A241DBA0023005A62A7 /* TagsTableCell.m in Sources */,
 				DF8DBCC41DD0202B002E574B /* UserComplaintHistoryTableViewCell.m in Sources */,
 				DF5C49041DBA1BEC006E4825 /* DCWebImageManager.m in Sources */,
+				DF08E87E1DD1C072003E4DD9 /* UserAddressTableViewCell.m in Sources */,
 				04C6A3731DCB07B9002C4D4A /* Util.m in Sources */,
 				DF8DBCE01DD05D61002E574B /* QUItemBtnView.m in Sources */,
+				DF08E8861DD1C0B2003E4DD9 /* FavoriteTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

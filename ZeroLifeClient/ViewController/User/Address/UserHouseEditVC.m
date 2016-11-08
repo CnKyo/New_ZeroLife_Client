@@ -28,10 +28,7 @@
         UIButton *btn11 = [view newUIButton];
         btn11.frame = CGRectMake(10, 50, view.bounds.size.width-20, 50);
         [btn11 setTitle:@"确定" forState:UIControlStateNormal];
-        [btn11 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [btn11 jk_setBackgroundColor:COLOR_NavBar forState:UIControlStateNormal];
-        btn11.layer.masksToBounds = YES;
-        btn11.layer.cornerRadius = 5;
+        [btn11 setStyleNavColor];
         [btn11 jk_addActionHandler:^(NSInteger tag) {
             
         }];
