@@ -143,6 +143,7 @@ typedef enum {
 
 
 
+
 //-----------------------
 //自定义的写在下面，通用的写在上面
 //-----------------------
@@ -166,6 +167,23 @@ static NSString* const  kAFAppDotNetApiBaseURLString_test    = @"http://test.sho
 static NSString* const  kAFAppDotNetApiBaseURLString    = @"http://shop.hookwin.com";
 
 
+typedef enum {
+    kOrderClassType_goods,//购物订单
+    kOrderClassType_baoxiu,//报修订单
+    kOrderClassType_ganxi,//干洗订单
+    kOrderClassType_paopao,//跑跑订单
+} kOrderClassType;
+
+
+typedef enum {
+    kOrderFixStatus_waitUserPay,//待用户支付
+    kOrderFixStatus_userHavePay,//用户已支付
+    kOrderFixStatus_waitShopBidding,//待商家竞价
+    kOrderFixStatus_shopHaveReceiving,//商家已接单
+    kOrderFixStatus_shopInService,//商家正在服务中
+    kOrderFixStatus_done,//订单完成
+    kOrderFixStatus_cancel,//订单取消
+} kOrderFixStatus; //报修流程状态
 
 
 
