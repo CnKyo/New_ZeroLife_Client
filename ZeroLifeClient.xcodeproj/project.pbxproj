@@ -118,7 +118,6 @@
 		DF08E8881DD1C39B003E4DD9 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF08E8871DD1C39B003E4DD9 /* CoreText.framework */; };
 		DF55B4611DBAFE5800F89341 /* ZLCookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF55B45F1DBAFE5800F89341 /* ZLCookViewController.m */; };
 		DF55B4641DBAFE6000F89341 /* ZLHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF55B4621DBAFE6000F89341 /* ZLHomeViewController.m */; };
-		DF55B4671DBAFE6D00F89341 /* ZLPurseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF55B4651DBAFE6D00F89341 /* ZLPurseViewController.m */; };
 		DF55B46A1DBAFE7700F89341 /* ZLUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF55B4681DBAFE7700F89341 /* ZLUserViewController.m */; };
 		DF55B46F1DBAFEAC00F89341 /* ZLTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF55B46B1DBAFEAC00F89341 /* ZLTabBarViewController.m */; };
 		DF55B4701DBAFEAC00F89341 /* ZLNavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF55B46D1DBAFEAC00F89341 /* ZLNavViewController.m */; };
@@ -140,6 +139,27 @@
 		DF630D1E1DD4435F0076A92C /* order_fix_choose_jiantou.png in Resources */ = {isa = PBXBuildFile; fileRef = DF630D1B1DD4435F0076A92C /* order_fix_choose_jiantou.png */; };
 		DF630D1F1DD4435F0076A92C /* order_fix_choose_jiantou@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF630D1C1DD4435F0076A92C /* order_fix_choose_jiantou@2x.png */; };
 		DF630D201DD4435F0076A92C /* order_fix_choose_jiantou@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF630D1D1DD4435F0076A92C /* order_fix_choose_jiantou@3x.png */; };
+		DF630D2B1DD449C10076A92C /* ZLPurseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF630D291DD449C10076A92C /* ZLPurseViewController.m */; };
+		DF630D341DD44CE60076A92C /* qianbao_headerBG.png in Resources */ = {isa = PBXBuildFile; fileRef = DF630D2D1DD44CE60076A92C /* qianbao_headerBG.png */; };
+		DF630D351DD44CE60076A92C /* sigin_qian.png in Resources */ = {isa = PBXBuildFile; fileRef = DF630D2E1DD44CE60076A92C /* sigin_qian.png */; };
+		DF630D361DD44CE60076A92C /* sigin_qian@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF630D2F1DD44CE60076A92C /* sigin_qian@2x.png */; };
+		DF630D371DD44CE60076A92C /* sigin_qian@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF630D301DD44CE60076A92C /* sigin_qian@3x.png */; };
+		DF630D381DD44CE60076A92C /* sigin_qianYes.png in Resources */ = {isa = PBXBuildFile; fileRef = DF630D311DD44CE60076A92C /* sigin_qianYes.png */; };
+		DF630D391DD44CE60076A92C /* sigin_qianYes@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF630D321DD44CE60076A92C /* sigin_qianYes@2x.png */; };
+		DF630D3A1DD44CE60076A92C /* sigin_qianYes@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF630D331DD44CE60076A92C /* sigin_qianYes@3x.png */; };
+		DF630D3D1DD455530076A92C /* PlurseValueNameControl.m in Sources */ = {isa = PBXBuildFile; fileRef = DF630D3C1DD455530076A92C /* PlurseValueNameControl.m */; };
+		DF630D4A1DD45D790076A92C /* purse_anquanma.png in Resources */ = {isa = PBXBuildFile; fileRef = DF630D3E1DD45D790076A92C /* purse_anquanma.png */; };
+		DF630D4B1DD45D790076A92C /* purse_anquanma@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF630D3F1DD45D790076A92C /* purse_anquanma@2x.png */; };
+		DF630D4C1DD45D790076A92C /* purse_anquanma@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF630D401DD45D790076A92C /* purse_anquanma@3x.png */; };
+		DF630D4D1DD45D790076A92C /* purse_erweima.png in Resources */ = {isa = PBXBuildFile; fileRef = DF630D411DD45D790076A92C /* purse_erweima.png */; };
+		DF630D4E1DD45D790076A92C /* purse_erweima@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF630D421DD45D790076A92C /* purse_erweima@2x.png */; };
+		DF630D4F1DD45D790076A92C /* purse_erweima@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF630D431DD45D790076A92C /* purse_erweima@3x.png */; };
+		DF630D501DD45D790076A92C /* purse_tixian.png in Resources */ = {isa = PBXBuildFile; fileRef = DF630D441DD45D790076A92C /* purse_tixian.png */; };
+		DF630D511DD45D790076A92C /* purse_tixian@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF630D451DD45D790076A92C /* purse_tixian@2x.png */; };
+		DF630D521DD45D790076A92C /* purse_tixian@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF630D461DD45D790076A92C /* purse_tixian@3x.png */; };
+		DF630D531DD45D790076A92C /* purse_zhuanzhuang.png in Resources */ = {isa = PBXBuildFile; fileRef = DF630D471DD45D790076A92C /* purse_zhuanzhuang.png */; };
+		DF630D541DD45D790076A92C /* purse_zhuanzhuang@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF630D481DD45D790076A92C /* purse_zhuanzhuang@2x.png */; };
+		DF630D551DD45D790076A92C /* purse_zhuanzhuang@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF630D491DD45D790076A92C /* purse_zhuanzhuang@3x.png */; };
 		DF7D0A151DB9FFF0005A62A7 /* APIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = DF7D0A141DB9FFF0005A62A7 /* APIClient.m */; };
 		DF7D0A1C1DBA0019005A62A7 /* CookCategoryTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF7D0A171DBA0019005A62A7 /* CookCategoryTVC.m */; };
 		DF7D0A1D1DBA0019005A62A7 /* CookTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF7D0A191DBA0019005A62A7 /* CookTVC.m */; };
@@ -381,8 +401,6 @@
 		DF55B4601DBAFE5800F89341 /* ZLCookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLCookViewController.h; sourceTree = "<group>"; };
 		DF55B4621DBAFE6000F89341 /* ZLHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLHomeViewController.m; sourceTree = "<group>"; };
 		DF55B4631DBAFE6000F89341 /* ZLHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLHomeViewController.h; sourceTree = "<group>"; };
-		DF55B4651DBAFE6D00F89341 /* ZLPurseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPurseViewController.m; sourceTree = "<group>"; };
-		DF55B4661DBAFE6D00F89341 /* ZLPurseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPurseViewController.h; sourceTree = "<group>"; };
 		DF55B4681DBAFE7700F89341 /* ZLUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLUserViewController.m; sourceTree = "<group>"; };
 		DF55B4691DBAFE7700F89341 /* ZLUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLUserViewController.h; sourceTree = "<group>"; };
 		DF55B46B1DBAFEAC00F89341 /* ZLTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLTabBarViewController.m; sourceTree = "<group>"; };
@@ -415,6 +433,29 @@
 		DF630D1B1DD4435F0076A92C /* order_fix_choose_jiantou.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = order_fix_choose_jiantou.png; sourceTree = "<group>"; };
 		DF630D1C1DD4435F0076A92C /* order_fix_choose_jiantou@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "order_fix_choose_jiantou@2x.png"; sourceTree = "<group>"; };
 		DF630D1D1DD4435F0076A92C /* order_fix_choose_jiantou@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "order_fix_choose_jiantou@3x.png"; sourceTree = "<group>"; };
+		DF630D281DD449C10076A92C /* ZLPurseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPurseViewController.h; sourceTree = "<group>"; };
+		DF630D291DD449C10076A92C /* ZLPurseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPurseViewController.m; sourceTree = "<group>"; };
+		DF630D2D1DD44CE60076A92C /* qianbao_headerBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qianbao_headerBG.png; sourceTree = "<group>"; };
+		DF630D2E1DD44CE60076A92C /* sigin_qian.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sigin_qian.png; sourceTree = "<group>"; };
+		DF630D2F1DD44CE60076A92C /* sigin_qian@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sigin_qian@2x.png"; sourceTree = "<group>"; };
+		DF630D301DD44CE60076A92C /* sigin_qian@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sigin_qian@3x.png"; sourceTree = "<group>"; };
+		DF630D311DD44CE60076A92C /* sigin_qianYes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sigin_qianYes.png; sourceTree = "<group>"; };
+		DF630D321DD44CE60076A92C /* sigin_qianYes@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sigin_qianYes@2x.png"; sourceTree = "<group>"; };
+		DF630D331DD44CE60076A92C /* sigin_qianYes@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sigin_qianYes@3x.png"; sourceTree = "<group>"; };
+		DF630D3B1DD455530076A92C /* PlurseValueNameControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlurseValueNameControl.h; sourceTree = "<group>"; };
+		DF630D3C1DD455530076A92C /* PlurseValueNameControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlurseValueNameControl.m; sourceTree = "<group>"; };
+		DF630D3E1DD45D790076A92C /* purse_anquanma.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = purse_anquanma.png; sourceTree = "<group>"; };
+		DF630D3F1DD45D790076A92C /* purse_anquanma@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "purse_anquanma@2x.png"; sourceTree = "<group>"; };
+		DF630D401DD45D790076A92C /* purse_anquanma@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "purse_anquanma@3x.png"; sourceTree = "<group>"; };
+		DF630D411DD45D790076A92C /* purse_erweima.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = purse_erweima.png; sourceTree = "<group>"; };
+		DF630D421DD45D790076A92C /* purse_erweima@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "purse_erweima@2x.png"; sourceTree = "<group>"; };
+		DF630D431DD45D790076A92C /* purse_erweima@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "purse_erweima@3x.png"; sourceTree = "<group>"; };
+		DF630D441DD45D790076A92C /* purse_tixian.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = purse_tixian.png; sourceTree = "<group>"; };
+		DF630D451DD45D790076A92C /* purse_tixian@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "purse_tixian@2x.png"; sourceTree = "<group>"; };
+		DF630D461DD45D790076A92C /* purse_tixian@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "purse_tixian@3x.png"; sourceTree = "<group>"; };
+		DF630D471DD45D790076A92C /* purse_zhuanzhuang.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = purse_zhuanzhuang.png; sourceTree = "<group>"; };
+		DF630D481DD45D790076A92C /* purse_zhuanzhuang@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "purse_zhuanzhuang@2x.png"; sourceTree = "<group>"; };
+		DF630D491DD45D790076A92C /* purse_zhuanzhuang@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "purse_zhuanzhuang@3x.png"; sourceTree = "<group>"; };
 		DF7D0A131DB9FFF0005A62A7 /* APIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIClient.h; sourceTree = "<group>"; };
 		DF7D0A141DB9FFF0005A62A7 /* APIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIClient.m; sourceTree = "<group>"; };
 		DF7D0A161DBA0019005A62A7 /* CookCategoryTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CookCategoryTVC.h; sourceTree = "<group>"; };
@@ -1155,9 +1196,9 @@
 		DFFAA74E1DB744EF001CFBB5 /* Purse */ = {
 			isa = PBXGroup;
 			children = (
-				DF55B4661DBAFE6D00F89341 /* ZLPurseViewController.h */,
-				DF55B4651DBAFE6D00F89341 /* ZLPurseViewController.m */,
 				DFFAA74F1DB744EF001CFBB5 /* View */,
+				DF630D281DD449C10076A92C /* ZLPurseViewController.h */,
+				DF630D291DD449C10076A92C /* ZLPurseViewController.m */,
 			);
 			path = Purse;
 			sourceTree = "<group>";
@@ -1165,6 +1206,8 @@
 		DFFAA74F1DB744EF001CFBB5 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				DF630D3B1DD455530076A92C /* PlurseValueNameControl.h */,
+				DF630D3C1DD455530076A92C /* PlurseValueNameControl.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1208,6 +1251,25 @@
 		DFFAA7521DB744EF001CFBB5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DF630D3E1DD45D790076A92C /* purse_anquanma.png */,
+				DF630D3F1DD45D790076A92C /* purse_anquanma@2x.png */,
+				DF630D401DD45D790076A92C /* purse_anquanma@3x.png */,
+				DF630D411DD45D790076A92C /* purse_erweima.png */,
+				DF630D421DD45D790076A92C /* purse_erweima@2x.png */,
+				DF630D431DD45D790076A92C /* purse_erweima@3x.png */,
+				DF630D441DD45D790076A92C /* purse_tixian.png */,
+				DF630D451DD45D790076A92C /* purse_tixian@2x.png */,
+				DF630D461DD45D790076A92C /* purse_tixian@3x.png */,
+				DF630D471DD45D790076A92C /* purse_zhuanzhuang.png */,
+				DF630D481DD45D790076A92C /* purse_zhuanzhuang@2x.png */,
+				DF630D491DD45D790076A92C /* purse_zhuanzhuang@3x.png */,
+				DF630D2D1DD44CE60076A92C /* qianbao_headerBG.png */,
+				DF630D2E1DD44CE60076A92C /* sigin_qian.png */,
+				DF630D2F1DD44CE60076A92C /* sigin_qian@2x.png */,
+				DF630D301DD44CE60076A92C /* sigin_qian@3x.png */,
+				DF630D311DD44CE60076A92C /* sigin_qianYes.png */,
+				DF630D321DD44CE60076A92C /* sigin_qianYes@2x.png */,
+				DF630D331DD44CE60076A92C /* sigin_qianYes@3x.png */,
 				DF630D1B1DD4435F0076A92C /* order_fix_choose_jiantou.png */,
 				DF630D1C1DD4435F0076A92C /* order_fix_choose_jiantou@2x.png */,
 				DF630D1D1DD4435F0076A92C /* order_fix_choose_jiantou@3x.png */,
@@ -1399,17 +1461,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				DF08E8531DD16A13003E4DD9 /* MobileRechargeMoneyView_person@2x.png in Resources */,
+				DF630D4C1DD45D790076A92C /* purse_anquanma@3x.png in Resources */,
 				DF98EC601DD2FCA00006EBFE /* order_baoxiu_jinjia.png in Resources */,
 				DF7F1BEF1DCDD5F200D2242B /* juming_off@2x.png in Resources */,
+				DF630D4B1DD45D790076A92C /* purse_anquanma@2x.png in Resources */,
 				040917611DCC371D00DB2568 /* ZLSuperMarketShopActivityCell1.xib in Resources */,
 				DF7F1BFC1DCDDD4900D2242B /* ComplaintJumingView.xib in Resources */,
+				DF630D4D1DD45D790076A92C /* purse_erweima.png in Resources */,
 				DF03089E1DCD6F0900E1EAB6 /* UserIDAuthTableViewCell.xib in Resources */,
 				04866B961DD41337008DA56B /* ZLSuperMarketShopRightSpecCell.xib in Resources */,
 				04866B8A1DD40E53008DA56B /* ZLShopCarBottomView.xib in Resources */,
 				04D64D751DC9CCDC004E8859 /* ZLHomeOtherCell.xib in Resources */,
 				DF08E8521DD16A13003E4DD9 /* MobileRechargeMoneyView_mobile@3x.png in Resources */,
+				DF630D4E1DD45D790076A92C /* purse_erweima@2x.png in Resources */,
 				DF7F1BF01DCDD5F200D2242B /* juming_on@2x.png in Resources */,
 				DF0308A01DCD77E100E1EAB6 /* choose_on.png in Resources */,
+				DF630D501DD45D790076A92C /* purse_tixian.png in Resources */,
+				DF630D361DD44CE60076A92C /* sigin_qian@2x.png in Resources */,
 				040D92FF1DCAE84300DBE42E /* ZLHomeMsgDetailCell.xib in Resources */,
 				04C6A37F1DCB08AF002C4D4A /* private_key.p12 in Resources */,
 				0409178B1DCC919200DB2568 /* ZLSuperMarketShopRightCell.xib in Resources */,
@@ -1419,7 +1487,9 @@
 				04D64D6D1DC9CCA5004E8859 /* ZLHomeLocationView.xib in Resources */,
 				040917711DCC5E1000DB2568 /* ZLSuperMarketSearchView.xib in Resources */,
 				DF7F1BF21DCDD5F200D2242B /* wuguan_on@2x.png in Resources */,
+				DF630D531DD45D790076A92C /* purse_zhuanzhuang.png in Resources */,
 				DF08E85B1DD1A6ED003E4DD9 /* wuguan_jiange.png in Resources */,
+				DF630D521DD45D790076A92C /* purse_tixian@3x.png in Resources */,
 				0409175F1DCC336000DB2568 /* ZLSuperMarketShopCell.xib in Resources */,
 				DF630D171DD442960076A92C /* call_mobile.png in Resources */,
 				DF08E87D1DD1C072003E4DD9 /* UserAddressEditTableViewCell.xib in Resources */,
@@ -1439,20 +1509,27 @@
 				040917681DCC39DE00DB2568 /* ZLSuperMarketHeaderSectionView.xib in Resources */,
 				DF0308A81DCD7D6600E1EAB6 /* ZLUserHeaderTableViewCell.xib in Resources */,
 				DF98EC671DD2FCA00006EBFE /* order_paopao_jiedan.png in Resources */,
+				DF630D341DD44CE60076A92C /* qianbao_headerBG.png in Resources */,
 				DF08E84F1DD16A13003E4DD9 /* MobileRechargeMoneyView_kuangNormal@2x.png in Resources */,
 				DF98EC641DD2FCA00006EBFE /* order_gouwu_jiedan.png in Resources */,
 				DF98EC5F1DD2FCA00006EBFE /* order_address_place.png in Resources */,
 				DF630D181DD442960076A92C /* call_mobile@2x.png in Resources */,
 				DF7F1BED1DCDD5F200D2242B /* gongsi_off@2x.png in Resources */,
 				DFFAA73F1DB744C5001CFBB5 /* Assets.xcassets in Resources */,
+				DF630D391DD44CE60076A92C /* sigin_qianYes@2x.png in Resources */,
 				DF98EC661DD2FCA00006EBFE /* order_hengxian_hua.png in Resources */,
+				DF630D371DD44CE60076A92C /* sigin_qian@3x.png in Resources */,
+				DF630D511DD45D790076A92C /* purse_tixian@2x.png in Resources */,
 				DF8DBCBE1DD01C9C002E574B /* ComplaintGongsiView.xib in Resources */,
+				DF630D4A1DD45D790076A92C /* purse_anquanma.png in Resources */,
 				040D92FA1DCAE34E00DBE42E /* ZLHomeMSGCell.xib in Resources */,
+				DF630D381DD44CE60076A92C /* sigin_qianYes.png in Resources */,
 				040917901DCCA9E800DB2568 /* ZLSuperMarketShopCarView.xib in Resources */,
 				04866B941DD40FFD008DA56B /* ZLSuperMarketGoodsSpecView.xib in Resources */,
 				0409177F1DCC67A100DB2568 /* ZLSuperMarketHeaderView.xib in Resources */,
 				04162DF91DCB2C9300FB4229 /* ZLHomeCoupCell.xib in Resources */,
 				04866B8C1DD40E53008DA56B /* ZLSuperMarketShopCarCell.xib in Resources */,
+				DF630D4F1DD45D790076A92C /* purse_erweima@3x.png in Resources */,
 				040917631DCC372A00DB2568 /* ZLSuperMarketShopActivityCell2.xib in Resources */,
 				04866B921DD40EB9008DA56B /* ZLSuperMArketSearchGoodsView.xib in Resources */,
 				04D64D7C1DC9CDA4004E8859 /* ZlHomeCoupView.xib in Resources */,
@@ -1461,12 +1538,16 @@
 				DF08E8801DD1C072003E4DD9 /* UserHouseEditTableViewCell.xib in Resources */,
 				DF98EC651DD2FCA00006EBFE /* order_gouwu_peisong.png in Resources */,
 				DF08E84D1DD16A13003E4DD9 /* MobileRechargeMoneyView_kuangChoose@2x.png in Resources */,
+				DF630D3A1DD44CE60076A92C /* sigin_qianYes@3x.png in Resources */,
 				DF630D111DD440940076A92C /* order_mobile@2x.png in Resources */,
 				DF08E8511DD16A13003E4DD9 /* MobileRechargeMoneyView_mobile@2x.png in Resources */,
+				DF630D351DD44CE60076A92C /* sigin_qian.png in Resources */,
 				DF630D201DD4435F0076A92C /* order_fix_choose_jiantou@3x.png in Resources */,
 				DF98EC681DD2FCA00006EBFE /* order_paopao_jinxin.png in Resources */,
+				DF630D541DD45D790076A92C /* purse_zhuanzhuang@2x.png in Resources */,
 				DF7F1BF11DCDD5F200D2242B /* wuguan_off@2x.png in Resources */,
 				DF98EC691DD2FCA00006EBFE /* order_shop_icon.png in Resources */,
+				DF630D551DD45D790076A92C /* purse_zhuanzhuang@3x.png in Resources */,
 				DF630D081DD413F00076A92C /* Images.xcassets in Resources */,
 				DF8DBCB91DD01A90002E574B /* ComplaintWuguanView.xib in Resources */,
 				DF98EC611DD2FCA00006EBFE /* order_beizhu.png in Resources */,
@@ -1633,7 +1714,6 @@
 				DF7D0A1D1DBA0019005A62A7 /* CookTVC.m in Sources */,
 				DF08E87F1DD1C072003E4DD9 /* UserHouseEditTableViewCell.m in Sources */,
 				0409175A1DCC313500DB2568 /* ZLSupMarketCell.m in Sources */,
-				DF55B4671DBAFE6D00F89341 /* ZLPurseViewController.m in Sources */,
 				DF55B4701DBAFEAC00F89341 /* ZLNavViewController.m in Sources */,
 				DF08E87A1DD1C072003E4DD9 /* UserAddressTVC.m in Sources */,
 				0409178A1DCC919200DB2568 /* ZLSuperMarketShopRightCell.m in Sources */,
@@ -1658,6 +1738,7 @@
 				04866B8B1DD40E53008DA56B /* ZLSuperMarketShopCarCell.m in Sources */,
 				DF03088D1DCD698900E1EAB6 /* QUPickPhoto.m in Sources */,
 				DF98EC4D1DD2D6BE0006EBFE /* OrderShopHeaderView.m in Sources */,
+				DF630D2B1DD449C10076A92C /* ZLPurseViewController.m in Sources */,
 				DF98EC381DD2AE880006EBFE /* OrderGoodsThumbListView.m in Sources */,
 				DF7F1BF71DCDDCF500D2242B /* UserComplaintAddVC.m in Sources */,
 				040D92F91DCAE34E00DBE42E /* ZLHomeMSGCell.m in Sources */,
@@ -1676,6 +1757,7 @@
 				04C6A3761DCB0874002C4D4A /* keyChain.m in Sources */,
 				04C6A37E1DCB08AF002C4D4A /* NSData+Base64.m in Sources */,
 				DFFAA7651DB744EF001CFBB5 /* CustomVC.m in Sources */,
+				DF630D3D1DD455530076A92C /* PlurseValueNameControl.m in Sources */,
 				DF8DBCE41DD0616F002E574B /* DryCleanShopTVC.m in Sources */,
 				DF630CF31DD407AE0076A92C /* OrderBaoXiuChooseShopVC.m in Sources */,
 				0409176F1DCC5E0700DB2568 /* ZLSuperMarketSearchView.m in Sources */,

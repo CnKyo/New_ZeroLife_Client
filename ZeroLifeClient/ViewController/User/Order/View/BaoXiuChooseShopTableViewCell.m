@@ -7,7 +7,7 @@
 //
 
 #import "BaoXiuChooseShopTableViewCell.h"
-#import "PureLayout.h"
+
 
 @implementation BaoXiuChooseShopTableViewCell
 
