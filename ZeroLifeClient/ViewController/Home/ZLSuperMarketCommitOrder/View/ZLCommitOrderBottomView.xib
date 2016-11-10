@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="uNO-Am-W8V" customClass="ZLCommitOrderHeaderView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gsT-6f-Eip">
+                    <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="0.2479130993150685" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="U7a-5A-glb"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="重庆市苏打水大赛大赛大赛大赛大赛大赛大赛" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qa6-w2-F7I" customClass="WPHotspotLabel">
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="99h-ye-nNb">
+                    <color key="backgroundColor" red="0.96197503809999996" green="0.60040664669999999" blue="0.01703021117" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="130" id="mCc-hu-Ca5"/>
+                    </constraints>
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <state key="normal" title="去支付">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="mGoPay:" destination="uNO-Am-W8V" eventType="touchUpInside" id="Gs8-3F-GD6"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="Qa6-w2-F7I" firstAttribute="leading" secondItem="uNO-Am-W8V" secondAttribute="leading" constant="5" id="APX-bU-dvN"/>
+                <constraint firstAttribute="trailing" secondItem="99h-ye-nNb" secondAttribute="trailing" id="I3u-g4-3Gn"/>
+                <constraint firstItem="99h-ye-nNb" firstAttribute="leading" secondItem="Qa6-w2-F7I" secondAttribute="trailing" constant="8" id="K3f-ve-6nW"/>
+                <constraint firstItem="99h-ye-nNb" firstAttribute="top" secondItem="uNO-Am-W8V" secondAttribute="top" id="SoM-aC-lP0"/>
+                <constraint firstAttribute="bottom" secondItem="Qa6-w2-F7I" secondAttribute="bottom" constant="15" id="btc-CL-H6e"/>
+                <constraint firstAttribute="trailing" secondItem="gsT-6f-Eip" secondAttribute="trailing" id="d5X-Nn-8Od"/>
+                <constraint firstItem="Qa6-w2-F7I" firstAttribute="top" secondItem="uNO-Am-W8V" secondAttribute="top" constant="15" id="gP6-Vz-zxv"/>
+                <constraint firstItem="gsT-6f-Eip" firstAttribute="top" secondItem="uNO-Am-W8V" secondAttribute="top" id="oVs-fE-xae"/>
+                <constraint firstAttribute="bottom" secondItem="99h-ye-nNb" secondAttribute="bottom" id="qHE-hJ-uOp"/>
+                <constraint firstItem="gsT-6f-Eip" firstAttribute="leading" secondItem="uNO-Am-W8V" secondAttribute="leading" id="vMd-fv-kr6"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="mGoPayBtn" destination="99h-ye-nNb" id="aGO-cj-ZLJ"/>
+                <outlet property="mTotelPrice" destination="Qa6-w2-F7I" id="NdX-7t-yLv"/>
+            </connections>
+            <point key="canvasLocation" x="4.5" y="158"/>
+        </view>
+    </objects>
+</document>

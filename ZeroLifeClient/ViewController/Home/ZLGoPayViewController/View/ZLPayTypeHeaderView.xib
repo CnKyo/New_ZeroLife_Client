@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ZLPayTypeHeaderView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aA6-cc-bPc">
+                    <constraints>
+                        <constraint firstAttribute="width" constant="50" id="8g7-0s-f8K"/>
+                        <constraint firstAttribute="height" constant="50" id="9te-T4-WPX"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="物管费" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GSH-8d-gCK">
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="aGu-2c-xV6"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥50" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wQr-rl-hau">
+                    <constraints>
+                        <constraint firstAttribute="width" constant="140" id="8WH-ya-jaq"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="wQr-rl-hau" firstAttribute="top" secondItem="aA6-cc-bPc" secondAttribute="bottom" constant="44" id="CLj-rF-aVf"/>
+                <constraint firstItem="aA6-cc-bPc" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="LBt-eb-YBG"/>
+                <constraint firstAttribute="trailing" secondItem="GSH-8d-gCK" secondAttribute="trailing" constant="5" id="cDS-B0-RhX"/>
+                <constraint firstItem="wQr-rl-hau" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="dpa-CP-Ilg"/>
+                <constraint firstItem="GSH-8d-gCK" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" multiplier="0.5" constant="194" id="ek7-gM-tLm"/>
+                <constraint firstItem="GSH-8d-gCK" firstAttribute="leading" secondItem="aA6-cc-bPc" secondAttribute="trailing" constant="8" symbolic="YES" id="hEg-Nv-z7R"/>
+                <constraint firstAttribute="bottom" secondItem="wQr-rl-hau" secondAttribute="bottom" constant="46" id="i4M-16-lmF"/>
+                <constraint firstItem="GSH-8d-gCK" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="35" id="r3q-DO-jcL"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="mLogo" destination="aA6-cc-bPc" id="PvF-uN-2xd"/>
+                <outlet property="mName" destination="GSH-8d-gCK" id="5ow-Vh-HBr"/>
+                <outlet property="mPricce" destination="wQr-rl-hau" id="rI6-oC-9Wg"/>
+            </connections>
+            <point key="canvasLocation" x="26.5" y="-253"/>
+        </view>
+    </objects>
+</document>

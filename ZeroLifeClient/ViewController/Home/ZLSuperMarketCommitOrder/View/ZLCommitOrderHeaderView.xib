@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ZLCommitOrderHeaderView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ZLCommitOrder_Location" translatesAutoresizingMaskIntoConstraints="NO" id="tUa-qT-pTi">
+                    <constraints>
+                        <constraint firstAttribute="width" constant="22" id="58U-sk-4zF"/>
+                        <constraint firstAttribute="height" constant="23" id="LnJ-DS-lDf"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="kdU-2a-By0">
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="jrl-12-hS1"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="重庆市苏打水大赛大赛大赛大赛大赛大赛大赛" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ar7-0v-Isz">
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="ZXD-nJ-8kf"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ZLGenery_Right" translatesAutoresizingMaskIntoConstraints="NO" id="t9N-hy-8MC">
+                    <constraints>
+                        <constraint firstAttribute="height" constant="13" id="H9E-JM-477"/>
+                        <constraint firstAttribute="width" constant="7" id="PwR-nD-SXn"/>
+                    </constraints>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ZLCommitOrder_BottomLine" translatesAutoresizingMaskIntoConstraints="NO" id="QED-ra-NlJ">
+                    <constraints>
+                        <constraint firstAttribute="height" constant="5" id="Wkj-25-jH4"/>
+                    </constraints>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sEm-eY-mCz">
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <state key="normal">
+                        <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="mSelectAddress:" destination="iN0-l3-epB" eventType="touchUpInside" id="bZo-lE-R8U"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="t9N-hy-8MC" firstAttribute="leading" secondItem="Ar7-0v-Isz" secondAttribute="trailing" constant="8" id="A7r-aI-hB5"/>
+                <constraint firstAttribute="bottom" secondItem="sEm-eY-mCz" secondAttribute="bottom" id="Agh-GW-3pB"/>
+                <constraint firstItem="QED-ra-NlJ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="D0e-z6-kdj"/>
+                <constraint firstItem="Ar7-0v-Isz" firstAttribute="leading" secondItem="tUa-qT-pTi" secondAttribute="trailing" constant="10" id="DMD-aa-ojL"/>
+                <constraint firstAttribute="trailing" secondItem="QED-ra-NlJ" secondAttribute="trailing" id="ERD-4d-Whq"/>
+                <constraint firstItem="t9N-hy-8MC" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="FqN-Kc-3K2"/>
+                <constraint firstAttribute="trailing" secondItem="kdU-2a-By0" secondAttribute="trailing" constant="16" id="LKt-9M-Gqa"/>
+                <constraint firstItem="Ar7-0v-Isz" firstAttribute="top" secondItem="kdU-2a-By0" secondAttribute="bottom" constant="13" id="PHT-yg-0XK"/>
+                <constraint firstItem="kdU-2a-By0" firstAttribute="leading" secondItem="tUa-qT-pTi" secondAttribute="trailing" constant="10" id="VHn-mk-ZuJ"/>
+                <constraint firstItem="Ar7-0v-Isz" firstAttribute="top" secondItem="t9N-hy-8MC" secondAttribute="top" id="Xkl-aN-xwu"/>
+                <constraint firstAttribute="trailing" secondItem="t9N-hy-8MC" secondAttribute="trailing" constant="12" id="ZJo-yc-bsY"/>
+                <constraint firstAttribute="trailing" secondItem="sEm-eY-mCz" secondAttribute="trailing" id="cBI-W0-TgN"/>
+                <constraint firstItem="tUa-qT-pTi" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="e8I-NP-Dh0"/>
+                <constraint firstItem="sEm-eY-mCz" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="jEJ-02-dC0"/>
+                <constraint firstItem="QED-ra-NlJ" firstAttribute="top" secondItem="Ar7-0v-Isz" secondAttribute="bottom" constant="21" id="jrE-yZ-Gm6"/>
+                <constraint firstItem="sEm-eY-mCz" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="kMh-Ii-3e2"/>
+                <constraint firstItem="tUa-qT-pTi" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="oZL-C3-2I6"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="mContent" destination="Ar7-0v-Isz" id="2Nb-Hu-uTj"/>
+                <outlet property="mName" destination="kdU-2a-By0" id="Dim-HQ-X6C"/>
+                <outlet property="mSelecteBtn" destination="sEm-eY-mCz" id="hcM-lX-dfI"/>
+            </connections>
+            <point key="canvasLocation" x="4.5" y="158"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ZLCommitOrder_BottomLine" width="750" height="6"/>
+        <image name="ZLCommitOrder_Location" width="34" height="36"/>
+        <image name="ZLGenery_Right" width="14" height="20"/>
+    </resources>
+</document>

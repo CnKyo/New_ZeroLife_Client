@@ -14,6 +14,7 @@
 #import "ZLSuperMarketShopCarView.h"
 #import "ZLSuperMArketSearchGoodsView.h"
 #import "ZLSuperMarketShopCarViewController.h"
+#import "ZLSuperMarketCommitOrderViewController.h"
 
 @interface ZLSuperMarketShopViewController ()<UITableViewDelegate,UITableViewDataSource,ZLSuperMarketShopDelegate,ZLSuperMarketGoodsCellDelegate,UIScrollViewDelegate,ZLSuperMarketShopCarDelegate,ZLSuperMarketGoodsSpecDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
@@ -116,6 +117,8 @@
     mLeftTableView.delegate = self;
     mLeftTableView.dataSource = self;
     mLeftTableView.layer.masksToBounds = YES;
+    mRightTableView.separatorStyle = UITableViewCellSelectionStyleNone;
+
     mLeftTableView.layer.borderColor = [UIColor colorWithRed:0.96 green:0.95 blue:0.96 alpha:1.00].CGColor;
     mLeftTableView.layer.borderWidth = 0.5;
     [mMainView addSubview:mLeftTableView];
@@ -128,6 +131,8 @@
     mRightTableView.delegate = self;
     mRightTableView.dataSource = self;
     mRightTableView.layer.masksToBounds = YES;
+    mRightTableView.separatorStyle = UITableViewCellSelectionStyleNone;
+
     mRightTableView.layer.borderColor = [UIColor colorWithRed:0.96 green:0.95 blue:0.96 alpha:1.00].CGColor;
     mRightTableView.layer.borderWidth = 0.5;
     [mMainView addSubview:mRightTableView];
@@ -344,12 +349,13 @@
     ZLSuperMarketShopCarViewController *ZLShopCarVC = [ZLSuperMarketShopCarViewController new];
     [self pushViewController:ZLShopCarVC];
 }
-#pragma mark----****----隐藏搜索view
+#pragma mark----****----去结算代理方法
 /**
  去结算代理方法
  */
 - (void)ZLSuperMarketGoPayDidSelected{
-
+    ZLSuperMarketCommitOrderViewController *ZLCommitVC = [ZLSuperMarketCommitOrderViewController new];
+    [self pushViewController:ZLCommitVC];
 }
 
 #pragma mark----****----加载搜索view
@@ -546,6 +552,5 @@
     [self hiddenSpeView];
     [self popViewController];
 }
-
 
 @end

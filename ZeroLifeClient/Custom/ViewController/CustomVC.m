@@ -127,7 +127,9 @@
         self.tableView = [[UITableView alloc] initWithFrame:CGRectZero];
         self.tableView.delegate = self;
         self.tableView.dataSource = self;
-        self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+        self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
+
+        //self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
         [self.view addSubview:self.tableView];
         self.tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
         self.tableView.tableFooterView = [[UIView alloc] init];
