@@ -44,6 +44,7 @@
         }];
     }
     
+    self.view.backgroundColor = COLOR(245, 245, 245);
 }
 
 - (void)viewDidLoad {

@@ -92,3 +92,12 @@
 +(APIObject *)infoWithErrorMessage:(NSString *)errMsg;
 +(APIObject *)infoWithReLoginErrorMessage:(NSString *)errMsg;
 @end
+
+
+
+
+@interface OrderObject : NSObject
+@property (nonatomic,strong) NSString *         iD;         //
+@property (nonatomic,assign) kOrderClassType    type;         //
+@property (nonatomic,assign) int                status;         //
+@end
