@@ -222,7 +222,8 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
- 
+    ZLSuperMarketShopViewController *ZLSuperMarketShopVC = [ZLSuperMarketShopViewController new];
+    [self pushViewController:ZLSuperMarketShopVC];
     
     
     

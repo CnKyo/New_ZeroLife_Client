@@ -434,6 +434,10 @@
 
 
 #pragma mark----****----collectionviewdelegate
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
+    return self.mSpeDataArray.count;
+}
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     return self.mSpeDataArray.count;
