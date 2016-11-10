@@ -19,6 +19,10 @@
 #import "ZLHomeCoupView.h"
 #import "ZLHomeCoupCell.h"
 #import "ZLSuperMarketViewController.h"
+#import "DryCleanShopTVC.h"
+#import "LifePayVC.h"
+
+
 @interface ZLHomeViewController ()<UITableViewDelegate,UITableViewDataSource,ZLHomeScrollerTableCellDelegate,ZLHomeLocationViewDelegate,ZLCoupViewDelegate>
 
 @end
@@ -103,7 +107,10 @@
     NSDictionary *mTempDic = [NSMutableDictionary new];
     self.tableArr = [NSMutableArray new];
     for (int i = 0; i<11; i++) {
-        [mTempDic setValue:[NSString stringWithFormat:@"这是第%d",i] forKey:@"title"];
+        if (i == 3) {
+            [mTempDic setValue:@"家政" forKey:@"title"];
+        } else
+            [mTempDic setValue:[NSString stringWithFormat:@"这是第%d",i] forKey:@"title"];
         [mTempDic setValue:@"icon_homepage_default" forKey:@"image"];
         [self.tableArr addObject:mTempDic];
     }
@@ -254,9 +261,23 @@
 - (void)ZLHomeScrollerTableViewCellDidSelectedWithIndex:(NSInteger)mIndex{
 
     MLLog(@"点击了第:%ld个",(long)mIndex);
+    if (mIndex == 0) {
+        LifePayVC *vc = [[LifePayVC alloc] init];
+        vc.hidesBottomBarWhenPushed = YES;
+        [self pushViewController:vc];
+        
+    } else if (mIndex == 1) {
+        ZLSuperMarketViewController *mSuperMarketVC = [ZLSuperMarketViewController new];
+        mSuperMarketVC.hidesBottomBarWhenPushed = YES;
+        [self pushViewController:mSuperMarketVC];
+        
+    } else if (mIndex == 3) {
+        DryCleanShopTVC *vc = [[DryCleanShopTVC alloc] init];
+        vc.hidesBottomBarWhenPushed = YES;
+        [self pushViewController:vc];
+    }
     
-    ZLSuperMarketViewController *mSuperMarketVC = [ZLSuperMarketViewController new];
-    [self pushViewController:mSuperMarketVC];
+
 }
 #pragma mark ----****----banner点击方法
 - (void)ZLHomeBannerDidSelectedWithIndex:(NSInteger)mIndex{

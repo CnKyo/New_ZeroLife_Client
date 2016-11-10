@@ -27,7 +27,6 @@ target 'ZeroLifeClient' do
   pod 'AMapLocation'
   pod 'SDWebImage'
   pod 'SKTagView'
-  pod 'HMSegmentedControl'
   pod 'JPush'
   pod 'LTNavigationBar'
 

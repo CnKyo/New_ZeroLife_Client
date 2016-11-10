@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ComplaintGongsiView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kpb-Di-ckt">
+                    <rect key="frame" x="0.0" y="10" width="375" height="150"/>
+                    <subviews>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="请输入投诉原因" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="VgY-6f-rsp" customClass="IQTextView">
+                            <rect key="frame" x="8" y="8" width="359" height="134"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        </textView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="150" id="Hym-hc-STU"/>
+                        <constraint firstAttribute="bottom" secondItem="VgY-6f-rsp" secondAttribute="bottom" constant="8" id="e2b-SP-oe7"/>
+                        <constraint firstItem="VgY-6f-rsp" firstAttribute="leading" secondItem="Kpb-Di-ckt" secondAttribute="leading" constant="8" id="gmU-eN-dUy"/>
+                        <constraint firstItem="VgY-6f-rsp" firstAttribute="top" secondItem="Kpb-Di-ckt" secondAttribute="top" constant="8" id="usX-Le-w8a"/>
+                        <constraint firstAttribute="trailing" secondItem="VgY-6f-rsp" secondAttribute="trailing" constant="8" id="xfK-10-yWc"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3aO-vd-fVo">
+                    <rect key="frame" x="10" y="180" width="355" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="XeZ-L6-Hiu"/>
+                    </constraints>
+                    <state key="normal" title="确定">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.96448427438735962" green="0.96863061189651489" blue="0.97263997793197632" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Kpb-Di-ckt" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="6kE-iN-HxD"/>
+                <constraint firstAttribute="trailing" secondItem="Kpb-Di-ckt" secondAttribute="trailing" id="bkX-yy-Hty"/>
+                <constraint firstAttribute="trailing" secondItem="3aO-vd-fVo" secondAttribute="trailing" constant="10" id="fBj-jb-Mvc"/>
+                <constraint firstItem="3aO-vd-fVo" firstAttribute="top" secondItem="Kpb-Di-ckt" secondAttribute="bottom" constant="20" id="gI2-iT-hHz"/>
+                <constraint firstItem="Kpb-Di-ckt" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="h5V-z1-0Wo"/>
+                <constraint firstItem="3aO-vd-fVo" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="qmP-V6-F90"/>
+            </constraints>
+            <connections>
+                <outlet property="doneBtn" destination="3aO-vd-fVo" id="vJc-UV-6OI"/>
+                <outlet property="questionTextView" destination="VgY-6f-rsp" id="Y23-Rq-Uhg"/>
+            </connections>
+        </view>
+    </objects>
+</document>

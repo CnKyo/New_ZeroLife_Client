@@ -56,7 +56,7 @@
     self.view.backgroundColor = COLOR(247, 247, 247);
     navBarHairlineImageView = [self findHairlineImageViewUnder:self.navigationController.navigationBar];
 
-    [self addLeftBtn:YES andTitel:nil andImage:[UIImage imageNamed:@"ZLBackBtn_Image"]];
+    //[self addLeftBtn:YES andTitel:nil andImage:[UIImage imageNamed:@"ZLBackBtn_Image"]];
 }
 
 
@@ -106,15 +106,17 @@
         self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
         self.tableView.delegate = self;
         self.tableView.dataSource = self;
-        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
         [self.view addSubview:self.tableView];
         self.tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
         self.tableView.tableFooterView = [[UIView alloc] init];
         self.tableView.backgroundColor = COLOR(247, 247, 247);
         
         [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self.view);
-            make.height.equalTo(self.view.mas_height);
+//            make.edges.equalTo(self.view);
+//            make.height.equalTo(self.view.mas_height);
+            make.left.right.bottom.equalTo(self.view);
+            make.top.equalTo(self.view.top).offset(-1);
         }];
     }
 }
@@ -125,7 +127,7 @@
         self.tableView = [[UITableView alloc] initWithFrame:CGRectZero];
         self.tableView.delegate = self;
         self.tableView.dataSource = self;
-        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
         [self.view addSubview:self.tableView];
         self.tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
         self.tableView.tableFooterView = [[UIView alloc] init];
