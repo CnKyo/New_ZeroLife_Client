@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ZLActivityView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="满" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wNR-gx-sGe">
+                    <color key="backgroundColor" red="0.96197503809999996" green="0.60040664669999999" blue="0.01703021117" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="6HJ-wE-3cw"/>
+                        <constraint firstAttribute="width" constant="20" id="Lrk-A3-LVD"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="满80减5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7tS-bv-9WQ">
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="7tS-bv-9WQ" firstAttribute="leading" secondItem="wNR-gx-sGe" secondAttribute="trailing" constant="8" id="5gb-aE-d6j"/>
+                <constraint firstItem="7tS-bv-9WQ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="7E4-KX-6vB"/>
+                <constraint firstAttribute="bottom" secondItem="7tS-bv-9WQ" secondAttribute="bottom" constant="4" id="Dcp-5I-I4L"/>
+                <constraint firstAttribute="trailing" secondItem="7tS-bv-9WQ" secondAttribute="trailing" constant="9" id="EKd-sV-QrU"/>
+                <constraint firstItem="wNR-gx-sGe" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="5" id="QhZ-Jy-8LX"/>
+                <constraint firstAttribute="bottom" secondItem="wNR-gx-sGe" secondAttribute="bottom" id="XzJ-pQ-C5F"/>
+                <constraint firstItem="wNR-gx-sGe" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="sAI-9c-bKg"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="mActContent" destination="7tS-bv-9WQ" id="P4E-zj-1BA"/>
+                <outlet property="mActTitle" destination="wNR-gx-sGe" id="gFh-Nz-vSj"/>
+            </connections>
+            <point key="canvasLocation" x="25.5" y="53"/>
+        </view>
+    </objects>
+</document>

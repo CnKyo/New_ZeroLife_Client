@@ -1,23 +1,22 @@
 //
-//  HRViewController.m
-//  segment
+//  ZLGoodsDetailWithWeb.m
+//  ZeroLifeClient
 //
-//  Created by HR_W on 16/4/22.
-//  Copyright © 2016年 admin. All rights reserved.
+//  Created by Mac on 2016/11/11.
+//  Copyright © 2016年 瞿伦平. All rights reserved.
 //
 
-#import "HRViewController.h"
+#import "ZLGoodsDetailWithWeb.h"
 
-@interface HRViewController ()
+@interface ZLGoodsDetailWithWeb ()
 
 @end
 
-@implementation HRViewController
+@implementation ZLGoodsDetailWithWeb
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
-    self.title = @"联系人";
+    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {
