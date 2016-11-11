@@ -64,13 +64,23 @@
         if (cell == nil) {
             cell = [[UserComplaintHistoryTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
             cell.selectionStyle = UITableViewCellSelectionStyleGray;
+            cell.backgroundColor = [UIColor whiteColor];
         }
 
-        cell.backgroundColor = [UIColor whiteColor];
-        cell.iconImgView.image = IMG(@"choose_on.png");
-        cell.nameLable.text = @"物管投诉";
         cell.timeLable.text = @"2016-09-10";
-        cell.msgLable.text = @"重庆市渝中区石油路万科中心1栋1004 重庆超尔科技有限公司";
+        cell.msgLable.text = @"投诉内容投诉内容投诉内容投诉内容投诉内容投诉内容";
+        
+        if (indexPath.row == 0) {
+            cell.iconImgView.image = IMG(@"cell_complaint_juming.png");
+            cell.nameLable.text = @"居民投诉";
+        } else if (indexPath.row == 1) {
+            cell.iconImgView.image = IMG(@"cell_complaint_wuguan.png");
+            cell.nameLable.text = @"物管投诉";
+        } else {
+            cell.iconImgView.image = IMG(@"cell_complaint_gongsi.png");
+            cell.nameLable.text = @"对公司投诉";
+        }
+        
         return cell;
     }
     return [super tableView:tableView cellForRowAtIndexPath:indexPath];

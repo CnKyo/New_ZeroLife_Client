@@ -6,7 +6,7 @@
 //  Copyright © 2016年 瞿伦平. All rights reserved.
 //
 
-#import "UserYuEVC.h"
+#import "UserScoreYuEVC.h"
 #import "UserNotIDAuthNoteView.h"
 #import "UserYuEHeaderView.h"
 #import "UserYuETableViewCell.h"
@@ -14,11 +14,11 @@
 #import "UserRechargeMoneyVC.h"
 #import <JKCategories/UIControl+JKActionBlocks.h>
 
-@interface UserYuEVC ()
+@interface UserScoreYuEVC ()
 
 @end
 
-@implementation UserYuEVC
+@implementation UserScoreYuEVC
 
 -(void)loadView
 {
@@ -31,7 +31,6 @@
 
     
     UserYuEHeaderView *headerView = [[UserYuEHeaderView alloc] init];
-    [headerView loadMoney:@"100.00"];
     [superView addSubview:headerView];
 
     
@@ -45,7 +44,7 @@
         make.top.equalTo(noteView.bottom);
     }];
     
-    UILabel *xfjlLable = [superView newUILableWithText:@"消费记录" textColor:[UIColor blackColor] font:[UIFont systemFontOfSize:13]];
+    UILabel *xfjlLable = [superView newUILableWithText:@"" textColor:[UIColor blackColor] font:[UIFont systemFontOfSize:13]];
     [xfjlLable makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(superView.left).offset(padding);
         make.right.equalTo(superView.right).offset(-padding);
@@ -70,14 +69,25 @@
         [self.navigationController pushViewController:vc animated:YES];
     }];
     [headerView.chongZiBtn jk_addActionHandler:^(NSInteger tag) {
-        UserRechargeMoneyVC *vc = [[UserRechargeMoneyVC alloc] init];
-        [self.navigationController pushViewController:vc animated:YES];
+        if (_isScoreView == NO) {
+            UserRechargeMoneyVC *vc = [[UserRechargeMoneyVC alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
     }];
+    
+    if (_isScoreView == YES) {
+        self.title = @"我的积分";
+        [headerView setScoreStyle];
+        xfjlLable.text = @"兑换记录";
+    } else {
+        self.title = @"我的余额";
+        [headerView setYuEStyle];
+        xfjlLable.text = @"消费记录";
+    }
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"我的余额";
 }
 
 - (void)didReceiveMemoryWarning {
@@ -100,7 +110,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.tableArr.count > 0)
-        return 60;
+        return 50;
     return [super tableView:tableView heightForRowAtIndexPath:indexPath];
 }
 
@@ -114,6 +124,22 @@
             cell.selectionStyle = UITableViewCellSelectionStyleGray;
         }
 
+        if (_isScoreView == YES) {
+            cell.msgLable.text = @"积分商场兑换";
+            cell.imgView.image = IMG(@"cell_score_item.png");
+        } else {
+            if (indexPath.row == 0) {
+                cell.msgLable.text = @"收款";
+                cell.imgView.image = IMG(@"cell_soukuan_item.png");
+            } else if (indexPath.row == 1) {
+                cell.msgLable.text = @"转帐";
+                cell.imgView.image = IMG(@"cell_soukuan_item.png");
+            } else {
+                cell.msgLable.text = @"转帐";
+                cell.imgView.image = IMG(@"cell_soukuan_item.png");
+            }
+        }
+        
         return cell;
     }
     return [super tableView:tableView cellForRowAtIndexPath:indexPath];

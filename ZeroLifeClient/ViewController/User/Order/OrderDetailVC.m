@@ -19,6 +19,7 @@
 #import "BaoXiuChooseShopView.h"
 #import "BaoXiuWorkerView.h"
 #import "BaoXiuShopNoteView.h"
+#import "OrderHeaderStatusView.h"
 
 #import "OrderBaoXiuChooseShopVC.h"
 #import <JKCategories/UIControl+JKActionBlocks.h>
@@ -65,22 +66,27 @@
     UIView *lastView = nil;
     int padding = 10;
     
-    UIView *statusView = ({
-        UIView *view = [superView newUIViewWithBgColor:[UIColor whiteColor]];
-        UIImageView *imgView = [view newUIImageViewWithImg:IMG(@"order_gouwu_daizhifu.png")];
-        [imgView makeConstraints:^(MASConstraintMaker *make) {
-            make.width.equalTo(view.width).multipliedBy(0.8);
-            make.centerX.equalTo(view.centerX);
-            make.top.equalTo(view.top).offset(padding);
-            make.height.equalTo(imgView.width).multipliedBy(0.13);
-        }];
-        [view makeConstraints:^(MASConstraintMaker *make) {
-            make.bottom.equalTo(imgView.bottom).offset(padding);
-        }];
-        view;
-    });
+    OrderHeaderStatusView *statusView = [[OrderHeaderStatusView alloc] init];
+    [statusView loadStatus:@"等待支付" note:@"剩余3小时自动关闭"];
+    [superView addSubview:statusView];
+    
+//    UIView *statusView = ({
+//        UIView *view = [superView newUIViewWithBgColor:[UIColor whiteColor]];
+//        UIImageView *imgView = [view newUIImageViewWithImg:IMG(@"order_gouwu_daizhifu.png")];
+//        [imgView makeConstraints:^(MASConstraintMaker *make) {
+//            make.width.equalTo(view.width).multipliedBy(0.8);
+//            make.centerX.equalTo(view.centerX);
+//            make.top.equalTo(view.top).offset(padding);
+//            make.height.equalTo(imgView.width).multipliedBy(0.13);
+//        }];
+//        [view makeConstraints:^(MASConstraintMaker *make) {
+//            make.bottom.equalTo(imgView.bottom).offset(padding);
+//        }];
+//        view;
+//    });
     [statusView updateConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.equalTo(superView);
+        make.height.equalTo(100);
         //make.height.equalTo(statusView.width).multipliedBy(0.25);
     }];
     

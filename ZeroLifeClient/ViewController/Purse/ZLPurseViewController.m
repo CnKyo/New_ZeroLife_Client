@@ -12,7 +12,7 @@
 #import <JKCategories/UIButton+JKImagePosition.h>
 #import <JKCategories/UIControl+JKActionBlocks.h>
 
-#import "UserYuEVC.h"
+#import "UserScoreYuEVC.h"
 
 
 @implementation PurseHeaderView
@@ -33,6 +33,7 @@
         
         self.singInBtn = [superView newUIButton];
         [self.singInBtn setImage:IMG(@"sigin_qian.png") forState:UIControlStateNormal];
+        
 
         [bgImgView makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(superView);
@@ -179,7 +180,16 @@
         
         //余额
         [yuEView jk_handleControlEvents:UIControlEventTouchUpInside withBlock:^(id weakSender) {
-            UserYuEVC *vc = [[UserYuEVC alloc] init];
+            UserScoreYuEVC *vc = [[UserScoreYuEVC alloc] init];
+            vc.isScoreView = NO;
+            vc.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:vc animated:YES];
+        }];
+        
+        //积分
+        [jiFenView jk_handleControlEvents:UIControlEventTouchUpInside withBlock:^(id weakSender) {
+            UserScoreYuEVC *vc = [[UserScoreYuEVC alloc] init];
+            vc.isScoreView = YES;
             vc.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:vc animated:YES];
         }];
@@ -197,6 +207,9 @@
         make.top.equalTo(headerView.bottom);
     }];
     
+    [headerView.singInBtn jk_addActionHandler:^(NSInteger tag) {
+        [headerView.singInBtn setImage:IMG(@"sigin_qianYes.png") forState:UIControlStateNormal];
+    }];
 }
 
 - (void)viewDidLoad {

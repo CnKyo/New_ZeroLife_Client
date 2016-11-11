@@ -30,7 +30,7 @@
         self.msgLable.numberOfLines = 0;
         
         [self.imgView makeConstraints:^(MASConstraintMaker *make) {
-            make.width.height.equalTo(30);
+            make.width.height.equalTo(22);
             make.centerY.equalTo(superView.centerY);
             make.left.equalTo(superView.left).offset(padding);
         }];
