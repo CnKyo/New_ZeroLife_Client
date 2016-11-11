@@ -8,6 +8,6 @@
 
 #import "CustomVC.h"
 
-@interface UserYuEVC : CustomVC
-
+@interface UserScoreYuEVC : CustomVC
+@property(nonatomic,assign) BOOL isScoreView; //yes我的积分界面 no我的余额界面
 @end

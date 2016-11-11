@@ -26,13 +26,13 @@
         
         self.iconImgView = [superView newUIImageViewWithImg:IMG(@"choose_on.png")];
         self.nameLable = [superView newUILableWithText:@"" textColor:[UIColor blackColor] font:font];
-        self.timeLable = [superView newUILableWithText:@"" textColor:color font:font];
-        self.msgLable = [superView newUILableWithText:@"" textColor:color font:font textAlignment:NSTextAlignmentRight];
+        self.timeLable = [superView newUILableWithText:@"" textColor:color font:font textAlignment:NSTextAlignmentRight];
+        self.msgLable = [superView newUILableWithText:@"" textColor:color font:font ];
         
         [self.iconImgView makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(superView.left).offset(padding);
             make.centerY.equalTo(superView.centerY);
-            make.width.height.equalTo(30);
+            make.width.height.equalTo(25);
         }];
         [self.nameLable makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(superView.top).offset(padding/2);
