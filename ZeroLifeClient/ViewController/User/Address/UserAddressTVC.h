@@ -10,4 +10,7 @@
 
 @interface UserAddressTVC : CustomVC
 
+@property(nonatomic,assign) BOOL isChooseAddress; //yes选择地址界面，no地址管理界面
+@property (nonatomic, copy) void (^chooseCallBack)(UserAddressObject* item);
+
 @end

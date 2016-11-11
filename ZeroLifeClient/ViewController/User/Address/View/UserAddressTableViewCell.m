@@ -23,7 +23,7 @@
         UIColor *color = [UIColor grayColor];
         UIView *superView = self.contentView;
         
-        UIImageView *imgView = [superView newUIImageViewWithImg:IMG(@"choose_on.png")];
+        //UIImageView *imgView = [superView newUIImageViewWithImg:IMG(@"cell_address_myplace.png")];
         
         
         self.nameLable = [superView newUILableWithText:@"" textColor:[UIColor blackColor] font:font];
@@ -31,15 +31,19 @@
         self.nameLable.numberOfLines = 0;
         self.addressLable.numberOfLines = 0;
 
+        self.chooseBtn = [superView newUIButton];
         self.delBtn = [superView newUIButton];
         self.editBtn = [superView newUIButton];
-        [self.delBtn setImage:IMG(@"choose_on.png") forState:UIControlStateNormal];
-        [self.editBtn setImage:IMG(@"choose_on.png") forState:UIControlStateNormal];
+        [self.chooseBtn setImage:IMG(@"cell_address_myplace.png") forState:UIControlStateNormal];
+        [self.delBtn setImage:IMG(@"cell_address_del.png") forState:UIControlStateNormal];
+        [self.editBtn setImage:IMG(@"cell_address_edit.png") forState:UIControlStateNormal];
         
-        [imgView makeConstraints:^(MASConstraintMaker *make) {
+        [self.chooseBtn makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(superView.left).offset(padding);
             make.centerY.equalTo(superView.centerY);
             make.width.height.equalTo(30);
+            //make.width.equalTo(12);
+            //make.height.equalTo(16);
         }];
         [self.delBtn makeConstraints:^(MASConstraintMaker *make) {
             make.width.height.equalTo(30);
@@ -54,13 +58,13 @@
         [self.nameLable makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(superView.top).offset(padding/2);
             make.bottom.equalTo(superView.centerY);
-            make.left.equalTo(imgView.right).offset(padding);
+            make.left.equalTo(_chooseBtn.right).offset(padding);
             make.right.equalTo(_delBtn.left).offset(-padding);
         }];
         [self.addressLable makeConstraints:^(MASConstraintMaker *make) {
             make.bottom.equalTo(superView.bottom).offset(-padding/2);
             make.top.equalTo(superView.centerY);
-            make.left.equalTo(imgView.right).offset(padding);
+            make.left.equalTo(_chooseBtn.right).offset(padding);
             make.right.equalTo(_editBtn.left).offset(-padding);
         }];
         

@@ -10,6 +10,8 @@
 #import "ZLTabBarViewController.h"
 #import "MTA.h"
 #import "MTAConfig.h"
+#import "CustomDefine.h"
+
 @interface AppDelegate ()
 
 @end
@@ -21,6 +23,7 @@
     // Override point for customization after application launch.
     //创建窗口的根控制器
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    self.window.backgroundColor = COLOR_NavBar;
     
     //设置窗口的根控制器
     self.window.rootViewController = [[ZLTabBarViewController alloc] init];

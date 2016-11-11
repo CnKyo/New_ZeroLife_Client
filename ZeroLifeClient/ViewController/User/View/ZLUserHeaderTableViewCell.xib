@@ -19,6 +19,9 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="222"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="userCenterBg.png" translatesAutoresizingMaskIntoConstraints="NO" id="pzN-6o-fvF">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="222"/>
+                    </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_homepage_default" translatesAutoresizingMaskIntoConstraints="NO" id="qDO-cz-IUg">
                         <rect key="frame" x="120" y="8" width="80" height="80"/>
                         <constraints>
@@ -92,7 +95,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="aIN-Qx-RpY">
-                                <rect key="frame" x="105" y="12.5" width="90" height="10"/>
+                                <rect key="frame" x="105" y="13" width="90" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="jqT-sj-uT7"/>
                                 </constraints>
@@ -117,10 +120,12 @@
                 <color key="backgroundColor" red="0.58755028247833252" green="0.78307092189788818" blue="0.1672416627407074" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
                     <constraint firstItem="RU0-J3-pRL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="5Ws-F0-mZb"/>
+                    <constraint firstItem="pzN-6o-fvF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="CDu-rX-goa"/>
                     <constraint firstItem="RU0-J3-pRL" firstAttribute="top" secondItem="CpW-do-P7C" secondAttribute="bottom" id="Csu-Ug-7aX"/>
                     <constraint firstItem="qDO-cz-IUg" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="DU4-v1-dNX"/>
                     <constraint firstItem="CpW-do-P7C" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="GUJ-P1-Qqy"/>
                     <constraint firstItem="5PL-3w-SJt" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="OFQ-u2-QMf"/>
+                    <constraint firstItem="pzN-6o-fvF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="RzB-qm-YXQ"/>
                     <constraint firstAttribute="trailingMargin" secondItem="RU0-J3-pRL" secondAttribute="trailing" constant="10" id="SZD-wy-2eN"/>
                     <constraint firstItem="1dZ-pi-IwC" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="U6C-4e-boi"/>
                     <constraint firstItem="1dZ-pi-IwC" firstAttribute="top" secondItem="RU0-J3-pRL" secondAttribute="bottom" id="YdZ-Ca-JaI"/>
@@ -129,8 +134,10 @@
                     <constraint firstAttribute="trailingMargin" secondItem="CpW-do-P7C" secondAttribute="trailing" constant="10" id="hSe-Qx-gGE"/>
                     <constraint firstItem="MR7-9o-qIB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="mgs-8P-lP2"/>
                     <constraint firstAttribute="trailingMargin" secondItem="MR7-9o-qIB" secondAttribute="trailing" constant="10" id="r50-Jf-Kai"/>
+                    <constraint firstAttribute="trailing" secondItem="pzN-6o-fvF" secondAttribute="trailing" id="tFf-r6-MTq"/>
                     <constraint firstItem="qDO-cz-IUg" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="ubZ-cg-a0z"/>
                     <constraint firstItem="CpW-do-P7C" firstAttribute="top" secondItem="MR7-9o-qIB" secondAttribute="bottom" id="yZP-Wp-1Wc"/>
+                    <constraint firstAttribute="bottom" secondItem="pzN-6o-fvF" secondAttribute="bottom" id="zjS-R2-ksJ"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
@@ -148,5 +155,6 @@
     </objects>
     <resources>
         <image name="icon_homepage_default" width="80" height="80"/>
+        <image name="userCenterBg.png" width="1080" height="474"/>
     </resources>
 </document>

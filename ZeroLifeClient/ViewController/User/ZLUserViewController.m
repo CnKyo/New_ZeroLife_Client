@@ -32,7 +32,7 @@
     
     [self addTableViewWithStyleGrouped];
     [self.tableView registerNib:[ZLUserHeaderTableViewCell jk_nib] forCellReuseIdentifier:[ZLUserHeaderTableViewCell reuseIdentifier]];
-    
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     UIView *footerView = ({
         UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, DEVICE_Width, 70)];
@@ -47,7 +47,7 @@
     });
     self.tableView.tableFooterView = footerView;
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] bk_initWithImage:IMG(@"choose_on.png") style:UIBarButtonItemStylePlain handler:^(id  _Nonnull sender) {
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] bk_initWithImage:IMG(@"itemBar_setting.png") style:UIBarButtonItemStylePlain handler:^(id  _Nonnull sender) {
         SystemSettingVC *vc = [[SystemSettingVC alloc] init];
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
@@ -154,9 +154,9 @@
 
             UILabel *lable = [superView newUILableWithText:@"我的订单" textColor:[UIColor grayColor] font:[UIFont systemFontOfSize:15]];
             CustomBtnView *btn1 = [CustomBtnView initWithTag:11 title:@"购物订单" img:IMG(@"gouwu_order.png")];
-            CustomBtnView *btn2 = [CustomBtnView initWithTag:12 title:@"报修订单" img:IMG(@"gouwu_order.png")];
-            CustomBtnView *btn3 = [CustomBtnView initWithTag:13 title:@"干洗订单" img:IMG(@"gouwu_order.png")];
-            CustomBtnView *btn4 = [CustomBtnView initWithTag:14 title:@"跑腿订单" img:IMG(@"gouwu_order.png")];
+            CustomBtnView *btn2 = [CustomBtnView initWithTag:12 title:@"报修订单" img:IMG(@"order_fix.png")];
+            CustomBtnView *btn3 = [CustomBtnView initWithTag:13 title:@"干洗订单" img:IMG(@"order_ganxi.png")];
+            CustomBtnView *btn4 = [CustomBtnView initWithTag:14 title:@"跑腿订单" img:IMG(@"order_paopao.png")];
             btn1.delegate = self;
             btn2.delegate = self;
             btn3.delegate = self;
@@ -229,15 +229,15 @@
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         switch (indexPath.row) {
             case 0:
-                cell.imageView.image = IMG(@"ZLSearch_gray.png");
+                cell.imageView.image = IMG(@"cell_souchang.png");
                 cell.textLabel.text = @"我的收藏";
                 break;
             case 1:
-                cell.imageView.image = IMG(@"ZLSearch_gray.png");
+                cell.imageView.image = IMG(@"cell_address.png");
                 cell.textLabel.text = @"地址管理";
                 break;
             case 2:
-                cell.imageView.image = IMG(@"ZLSearch_gray.png");
+                cell.imageView.image = IMG(@"cell_tousu.png");
                 cell.textLabel.text = @"投诉建议";
                 break;
             default:

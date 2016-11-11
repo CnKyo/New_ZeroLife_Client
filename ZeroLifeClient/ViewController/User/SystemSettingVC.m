@@ -69,31 +69,32 @@
     UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell= [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        cell.textLabel.textColor = [UIColor colorWithWhite:0.3 alpha:1];
     }
     
     switch (indexPath.row) {
         case 0:
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            cell.imageView.image = IMG(@"ZLSearch_gray.png");
+            cell.imageView.image = IMG(@"cell_cleanImgs.png");
             cell.textLabel.text = @"清除图片缓存";
             break;
         case 1:
             cell.accessoryType = UITableViewCellAccessoryNone;
-            cell.imageView.image = IMG(@"ZLSearch_gray.png");
+            cell.imageView.image = IMG(@"cell_msgSetting.png");
             cell.textLabel.text = @"消息通知";
         {
-            UISwitch *swi = [[UISwitch alloc] initWithFrame:CGRectMake(0, 0, 100, 30)];
+            UISwitch *swi = [[UISwitch alloc] initWithFrame:CGRectMake(0, 0, 80, 20)];
             cell.accessoryView = swi;
         }
             break;
         case 2:
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            cell.imageView.image = IMG(@"ZLSearch_gray.png");
+            cell.imageView.image = IMG(@"cell_about.png");
             cell.textLabel.text = @"关于零生活";
             break;
         case 3:
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            cell.imageView.image = IMG(@"ZLSearch_gray.png");
+            cell.imageView.image = IMG(@"cell_help.png");
             cell.textLabel.text = @"使用帮助";
             break;
         default:

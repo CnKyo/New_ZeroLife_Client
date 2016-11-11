@@ -9,6 +9,11 @@
 #import "UserAddressTVC.h"
 #import "UserAddressTableViewCell.h"
 #import "UserAddressEditVC.h"
+#import <JKCategories/UIButton+JKImagePosition.h>
+
+#import <WPAttributedMarkup/WPHotspotLabel.h>
+#import <WPAttributedMarkup/NSString+WPAttributedMarkup.h>
+#import <WPAttributedMarkup/WPAttributedStyleAction.h>
 
 @interface UserAddressTVC ()
 
@@ -22,6 +27,29 @@
     
     [self addTableView];
     [self setTableViewHaveHeader];
+    
+    UIView *superView = self.view;
+    
+    UIView *footerView = ({
+        UIView *view = [superView newUIView];
+        UIButton *btn = [view newUIButton];
+        [btn setTitle:@"新增" forState:UIControlStateNormal];
+        [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [btn setImage:IMG(@"cell_address_add.png") forState:UIControlStateNormal];
+        [btn jk_setBackgroundColor:COLOR_NavBar forState:UIControlStateNormal];
+        [btn jk_setImagePosition:LXMImagePositionLeft spacing:5];
+        [btn makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(view);
+        }];
+        [btn jk_addActionHandler:^(NSInteger tag) {
+            
+        }];
+        view;
+    });
+    [footerView makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.equalTo(superView);
+        make.height.equalTo(50);
+    }];
     
 }
 
@@ -66,7 +94,9 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 100;
+    if (self.tableArr.count > 0)
+        return 80;
+    return 50;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -78,11 +108,36 @@
             cell = [[UserAddressTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
         
+        if (_isChooseAddress == YES) {
+            cell.chooseBtn.enabled = YES;
+            cell.editBtn.enabled = NO;
+            if (indexPath.section == 1) {
+                [cell.chooseBtn setImage:IMG(@"shimingrenzheng_on.png") forState:UIControlStateNormal];
+            } else
+                [cell.chooseBtn setImage:IMG(@"shimingrenzheng_off.png") forState:UIControlStateNormal];
+            
+        } else {
+            cell.chooseBtn.enabled = NO;
+            cell.editBtn.enabled = YES;
+            [cell.chooseBtn setImage:IMG(@"cell_address_myplace.png") forState:UIControlStateNormal];
+        }
+        
+        NSDictionary* style = @{@"body" : @[[UIFont systemFontOfSize:14], [UIColor grayColor]],
+                                @"red" : @[[UIFont systemFontOfSize:14], COLOR(253, 151, 0)]};
+        
+        NSString *str1 = nil;
+        if (indexPath.section == 0) {
+            str1 = [NSString stringWithFormat:@"<red>(默认地址)</red>%@", @"重庆市渝中区石油路万科中心1栋1004 重庆超尔科技有限公司"];
+        } else {
+            str1 = [NSString stringWithFormat:@"%@", @"重庆市渝中区石油路万科中心1栋1004 重庆超尔科技有限公司"];
+        }
+        
+        cell.addressLable.attributedText = [str1 attributedStringWithStyleBook:style];
+        
         //UserAddressTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[UserAddressTableViewCell reuseIdentifier]];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundColor = [UIColor whiteColor];
         cell.nameLable.text = @"张三  188****4324  户主";
-        cell.addressLable.text = @"重庆市渝中区石油路万科中心1栋1004 重庆超尔科技有限公司";
         return cell;
     }
     return [super tableView:tableView cellForRowAtIndexPath:indexPath];
@@ -99,8 +154,17 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if (self.tableArr.count > 0) {
-        UserAddressEditVC *vc = [[UserAddressEditVC alloc] init];
-        [self.navigationController pushViewController:vc animated:YES];
+        if (_isChooseAddress == YES) {
+            if (self.chooseCallBack)
+                self.chooseCallBack(nil);
+            [self performSelector:@selector(popViewController) withObject:nil afterDelay:0.2];
+            
+        } else {
+            
+            UserAddressEditVC *vc = [[UserAddressEditVC alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+
     }
 }
 

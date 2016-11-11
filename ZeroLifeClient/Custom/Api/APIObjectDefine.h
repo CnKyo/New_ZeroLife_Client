@@ -101,3 +101,10 @@
 @property (nonatomic,assign) kOrderClassType    type;         //
 @property (nonatomic,assign) int                status;         //
 @end
+
+
+
+
+@interface UserAddressObject : NSObject
+@property (nonatomic,strong) NSString *         iD;         //
+@end

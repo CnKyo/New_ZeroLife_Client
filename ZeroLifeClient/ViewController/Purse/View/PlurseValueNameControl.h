@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "UIView+AutoSize.h"
 #import "CustomDefine.h"
+
 @interface PlurseValueNameControl : UIControl
 @property(nonatomic,strong) UILabel *valueLable;
 @property(nonatomic,strong) UILabel *nameLable;

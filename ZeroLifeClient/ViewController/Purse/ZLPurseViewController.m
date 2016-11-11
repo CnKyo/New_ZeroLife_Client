@@ -10,6 +10,10 @@
 #import "PlurseValueNameControl.h"
 
 #import <JKCategories/UIButton+JKImagePosition.h>
+#import <JKCategories/UIControl+JKActionBlocks.h>
+
+#import "UserYuEVC.h"
+
 
 @implementation PurseHeaderView
 
@@ -66,7 +70,6 @@
     [super loadView];
     
     float padding = 10;
-    UIFont *font = [UIFont systemFontOfSize:14];
     UIView *superView = self.view;
     
     PurseHeaderView *headerView = [[PurseHeaderView alloc] init];
@@ -169,9 +172,19 @@
             make.left.equalTo(jiFenView.right);
             make.width.equalTo(OnePixNumber);
         }];
+        
         [view makeConstraints:^(MASConstraintMaker *make) {
             make.bottom.equalTo(btn4.bottom).offset(padding);
         }];
+        
+        //余额
+        [yuEView jk_handleControlEvents:UIControlEventTouchUpInside withBlock:^(id weakSender) {
+            UserYuEVC *vc = [[UserYuEVC alloc] init];
+            vc.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:vc animated:YES];
+        }];
+        
+        
         view;
     });
     
@@ -188,7 +201,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = YES;
+}
+
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    self.navigationController.navigationBarHidden = NO;
 }
 
 - (void)didReceiveMemoryWarning {
