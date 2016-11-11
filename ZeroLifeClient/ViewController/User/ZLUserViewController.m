@@ -17,8 +17,9 @@
 #import <JKCategories/UIButton+JKImagePosition.h>
 #import "CustomBtnView.h"
 #import "FavoriteTVC.h"
+#import "OrderTVC.h"
 
-@interface ZLUserViewController ()
+@interface ZLUserViewController ()<QUItemBtnViewDelegate>
 
 @end
 
@@ -31,7 +32,7 @@
     
     [self addTableViewWithStyleGrouped];
     [self.tableView registerNib:[ZLUserHeaderTableViewCell jk_nib] forCellReuseIdentifier:[ZLUserHeaderTableViewCell reuseIdentifier]];
-    
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     UIView *footerView = ({
         UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, DEVICE_Width, 70)];
@@ -46,7 +47,7 @@
     });
     self.tableView.tableFooterView = footerView;
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] bk_initWithImage:IMG(@"choose_on.png") style:UIBarButtonItemStylePlain handler:^(id  _Nonnull sender) {
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] bk_initWithImage:IMG(@"itemBar_setting.png") style:UIBarButtonItemStylePlain handler:^(id  _Nonnull sender) {
         SystemSettingVC *vc = [[SystemSettingVC alloc] init];
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
@@ -147,19 +148,25 @@
         UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
             cell= [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             UIView *superView = cell.contentView;
             int padding = 10;
-            UIColor *color = [UIColor colorWithWhite:0.2 alpha:1];
-            UIFont *font = [UIFont systemFontOfSize:14];
+
             UILabel *lable = [superView newUILableWithText:@"我的订单" textColor:[UIColor grayColor] font:[UIFont systemFontOfSize:15]];
             CustomBtnView *btn1 = [CustomBtnView initWithTag:11 title:@"购物订单" img:IMG(@"gouwu_order.png")];
-            CustomBtnView *btn2 = [CustomBtnView initWithTag:11 title:@"报修订单" img:IMG(@"gouwu_order.png")];
-            CustomBtnView *btn3 = [CustomBtnView initWithTag:11 title:@"干洗订单" img:IMG(@"gouwu_order.png")];
-            CustomBtnView *btn4 = [CustomBtnView initWithTag:11 title:@"跑腿订单" img:IMG(@"gouwu_order.png")];
+            CustomBtnView *btn2 = [CustomBtnView initWithTag:12 title:@"报修订单" img:IMG(@"order_fix.png")];
+            CustomBtnView *btn3 = [CustomBtnView initWithTag:13 title:@"干洗订单" img:IMG(@"order_ganxi.png")];
+            CustomBtnView *btn4 = [CustomBtnView initWithTag:14 title:@"跑腿订单" img:IMG(@"order_paopao.png")];
+            btn1.delegate = self;
+            btn2.delegate = self;
+            btn3.delegate = self;
+            btn4.delegate = self;
             [superView addSubview:btn1];
             [superView addSubview:btn2];
             [superView addSubview:btn3];
             [superView addSubview:btn4];
+//            UIColor *color = [UIColor colorWithWhite:0.2 alpha:1];
+//            UIFont *font = [UIFont systemFontOfSize:14];
 //            UIButton *btn1 = [superView newUIButton];
 //            UIButton *btn2 = [superView newUIButton];
 //            UIButton *btn3 = [superView newUIButton];
@@ -222,15 +229,15 @@
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         switch (indexPath.row) {
             case 0:
-                cell.imageView.image = IMG(@"ZLSearch_gray.png");
+                cell.imageView.image = IMG(@"cell_souchang.png");
                 cell.textLabel.text = @"我的收藏";
                 break;
             case 1:
-                cell.imageView.image = IMG(@"ZLSearch_gray.png");
+                cell.imageView.image = IMG(@"cell_address.png");
                 cell.textLabel.text = @"地址管理";
                 break;
             case 2:
-                cell.imageView.image = IMG(@"ZLSearch_gray.png");
+                cell.imageView.image = IMG(@"cell_tousu.png");
                 cell.textLabel.text = @"投诉建议";
                 break;
             default:
@@ -272,6 +279,23 @@
     }
 }
 
+- (void)selectItemBtnView:(QUItemBtnView *)view
+{
+    
+    OrderTVC *vc = [[OrderTVC alloc] init];
+    
+    if (view.tag == 11)
+        vc.classType = kOrderClassType_goods;
+    else if (view.tag == 12)
+        vc.classType = kOrderClassType_baoxiu;
+    else if (view.tag == 13)
+        vc.classType = kOrderClassType_ganxi;
+    else if (view.tag == 14)
+        vc.classType = kOrderClassType_paopao;
+    
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 
 @end

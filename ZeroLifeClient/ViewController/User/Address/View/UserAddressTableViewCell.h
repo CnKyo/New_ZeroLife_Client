@@ -13,6 +13,7 @@
 @interface UserAddressTableViewCell : UITableViewCell
 @property(nonatomic,strong) UILabel *nameLable;
 @property(nonatomic,strong) UILabel *addressLable;
+@property(nonatomic,strong) UIButton *chooseBtn;
 @property(nonatomic,strong) UIButton *delBtn;
 @property(nonatomic,strong) UIButton *editBtn;
 @end

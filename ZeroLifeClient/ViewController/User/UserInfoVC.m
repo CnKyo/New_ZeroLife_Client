@@ -116,23 +116,23 @@
     if (indexPath.section == 0) {
         switch (indexPath.row) {
             case 0:
-                imgView.image = IMG(@"ZLSearch_gray.png");
+                imgView.image = IMG(@"cell_img_touxiang.png");
                 textLabel.text = @"头像";
                 field.hidden = YES;
             {
                 UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
-                imgView.image = IMG(@"ZLSearch_gray.png");
+                imgView.image = IMG(@"cell_img_touxiang_defult.png");
                 cell.accessoryView = imgView;
             }
                 break;
             case 1:
                 
-                imgView.image = IMG(@"ZLSearch_gray.png");
+                imgView.image = IMG(@"cell_img_nike.png");
                 textLabel.text = @"昵称";
                 field.placeholder = @"请输入昵称";
                 break;
             case 2:
-                imgView.image = IMG(@"ZLSearch_gray.png");
+                imgView.image = IMG(@"cell_img_six.png");
                 textLabel.text = @"性别";
                 field.placeholder = @"请选择性别";
                 break;
@@ -142,13 +142,13 @@
     } else if (indexPath.section == 1) {
         switch (indexPath.row) {
             case 0:
-                imgView.image = IMG(@"ZLSearch_gray.png");
+                imgView.image = IMG(@"cell_img_mobile.png");
                 textLabel.text = @"电话";
                 field.placeholder = @"请输入联系电话";
                 break;
             case 1:
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-                imgView.image = IMG(@"ZLSearch_gray.png");
+                imgView.image = IMG(@"cell_img_hourse.png");
                 textLabel.text = @"房屋地址";
                 field.placeholder = @"请添加房屋地址";
                 field.enabled = NO;

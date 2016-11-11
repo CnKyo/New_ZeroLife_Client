@@ -68,7 +68,7 @@
                                             <constraint firstAttribute="width" constant="17" id="Jbm-SX-zdK"/>
                                             <constraint firstAttribute="height" constant="17" id="bwN-ac-pvO"/>
                                         </constraints>
-                                        <state key="normal" image="choose_on.png"/>
+                                        <state key="normal" image="shimingrenzheng_on.png"/>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="先生" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ojo-ve-r20">
                                         <rect key="frame" x="22" y="0.0" width="29" height="20"/>
@@ -97,7 +97,7 @@
                                             <constraint firstAttribute="height" constant="17" id="RZS-jc-xGg"/>
                                             <constraint firstAttribute="width" constant="17" id="iOt-ly-CeN"/>
                                         </constraints>
-                                        <state key="normal" image="choose_on.png"/>
+                                        <state key="normal" image="shimingrenzheng_off.png"/>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="女士" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pfN-O4-DND">
                                         <rect key="frame" x="22" y="0.0" width="29" height="20"/>
@@ -268,6 +268,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="choose_on.png" width="28" height="28"/>
+        <image name="shimingrenzheng_off.png" width="18" height="18"/>
+        <image name="shimingrenzheng_on.png" width="18" height="18"/>
     </resources>
 </document>
