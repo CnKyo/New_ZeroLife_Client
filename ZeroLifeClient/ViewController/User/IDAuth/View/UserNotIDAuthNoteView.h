@@ -11,6 +11,6 @@
 #import "CustomDefine.h"
 
 
-@interface UserNotIDAuthNoteView : UIView
+@interface UserNotIDAuthNoteView : UIControl
 
 @end

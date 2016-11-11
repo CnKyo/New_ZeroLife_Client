@@ -281,6 +281,7 @@
 		DFE178B21DD55B6000E06F21 /* userCenterBg.png in Resources */ = {isa = PBXBuildFile; fileRef = DFE178B11DD55B6000E06F21 /* userCenterBg.png */; };
 		DFE178B51DD55E3300E06F21 /* cell_address_add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFE178B31DD55E3300E06F21 /* cell_address_add@2x.png */; };
 		DFE178B61DD55E3300E06F21 /* cell_address_add@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFE178B41DD55E3300E06F21 /* cell_address_add@3x.png */; };
+		DFE178B91DD5670700E06F21 /* UserRechargeMoneyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DFE178B81DD5670700E06F21 /* UserRechargeMoneyVC.m */; };
 		DFF634C11DB873D200B5C917 /* ScrollModelVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF634C01DB873D200B5C917 /* ScrollModelVC.m */; };
 		DFFAA7341DB744C5001CFBB5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFAA7331DB744C5001CFBB5 /* main.m */; };
 		DFFAA7371DB744C5001CFBB5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFAA7361DB744C5001CFBB5 /* AppDelegate.m */; };
@@ -681,6 +682,8 @@
 		DFE178B11DD55B6000E06F21 /* userCenterBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = userCenterBg.png; sourceTree = "<group>"; };
 		DFE178B31DD55E3300E06F21 /* cell_address_add@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cell_address_add@2x.png"; sourceTree = "<group>"; };
 		DFE178B41DD55E3300E06F21 /* cell_address_add@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cell_address_add@3x.png"; sourceTree = "<group>"; };
+		DFE178B71DD5670700E06F21 /* UserRechargeMoneyVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserRechargeMoneyVC.h; sourceTree = "<group>"; };
+		DFE178B81DD5670700E06F21 /* UserRechargeMoneyVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserRechargeMoneyVC.m; sourceTree = "<group>"; };
 		DFF2BA083AFD4D1DD56A8848 /* Pods-ZeroLifeClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZeroLifeClient.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZeroLifeClient/Pods-ZeroLifeClient.debug.xcconfig"; sourceTree = "<group>"; };
 		DFF634BF1DB873D200B5C917 /* ScrollModelVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollModelVC.h; sourceTree = "<group>"; };
 		DFF634C01DB873D200B5C917 /* ScrollModelVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollModelVC.m; sourceTree = "<group>"; };
@@ -1076,6 +1079,8 @@
 				DF630D571DD4622B0076A92C /* View */,
 				DF630D581DD462510076A92C /* UserYuEVC.h */,
 				DF630D591DD462510076A92C /* UserYuEVC.m */,
+				DFE178B71DD5670700E06F21 /* UserRechargeMoneyVC.h */,
+				DFE178B81DD5670700E06F21 /* UserRechargeMoneyVC.m */,
 			);
 			path = YuE;
 			sourceTree = "<group>";
@@ -1991,6 +1996,7 @@
 				DF630D6C1DD465B90076A92C /* UserYuEHeaderView.m in Sources */,
 				DF7F1BFA1DCDDD3000D2242B /* ComplaintJumingView.m in Sources */,
 				04C6A3841DCB11A4002C4D4A /* UIViewExt.m in Sources */,
+				DFE178B91DD5670700E06F21 /* UserRechargeMoneyVC.m in Sources */,
 				DF7D0A1C1DBA0019005A62A7 /* CookCategoryTVC.m in Sources */,
 				DF98EC6F1DD31C6C0006EBFE /* OrderBaoxiuImgVideoView.m in Sources */,
 				DF08E85E1DD1A82C003E4DD9 /* FeePayHistoryVC.m in Sources */,

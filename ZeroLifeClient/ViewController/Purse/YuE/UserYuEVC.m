@@ -10,7 +10,9 @@
 #import "UserNotIDAuthNoteView.h"
 #import "UserYuEHeaderView.h"
 #import "UserYuETableViewCell.h"
-
+#import "UserIDAuthVC.h"
+#import "UserRechargeMoneyVC.h"
+#import <JKCategories/UIControl+JKActionBlocks.h>
 
 @interface UserYuEVC ()
 
@@ -26,7 +28,7 @@
     
     UserNotIDAuthNoteView *noteView = [[UserNotIDAuthNoteView alloc] init];
     [superView addSubview:noteView];
-    
+
     
     UserYuEHeaderView *headerView = [[UserYuEHeaderView alloc] init];
     [headerView loadMoney:@"100.00"];
@@ -57,6 +59,19 @@
     [self.tableView remakeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.equalTo(superView);
         make.top.equalTo(xfjlLable.bottom);
+    }];
+    
+    
+    
+    
+    
+    [noteView jk_handleControlEvents:UIControlEventTouchUpInside withBlock:^(id weakSender) {
+        UserIDAuthVC *vc = [[UserIDAuthVC alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }];
+    [headerView.chongZiBtn jk_addActionHandler:^(NSInteger tag) {
+        UserRechargeMoneyVC *vc = [[UserRechargeMoneyVC alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
     }];
 }
 
