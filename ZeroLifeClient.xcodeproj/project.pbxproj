@@ -72,6 +72,10 @@
 		049D49101DB75CEF005A1038 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 049D490F1DB75CEF005A1038 /* AdSupport.framework */; };
 		049D492C1DB76CC7005A1038 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 049D492B1DB76CC7005A1038 /* QuartzCore.framework */; };
 		04B862501DD55F1600BDEA59 /* ZLGoodsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B8624F1DD55F1600BDEA59 /* ZLGoodsDetailViewController.m */; };
+		04B862921DD5663F00BDEA59 /* HRViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B8628F1DD5663F00BDEA59 /* HRViewController.m */; };
+		04B862931DD5663F00BDEA59 /* UIView+HRExtention.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B862911DD5663F00BDEA59 /* UIView+HRExtention.m */; };
+		04B862981DD5664900BDEA59 /* HRTableViewOne.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B862951DD5664900BDEA59 /* HRTableViewOne.m */; };
+		04B862991DD5664900BDEA59 /* HRTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B862971DD5664900BDEA59 /* HRTabView.m */; };
 		04C6A3731DCB07B9002C4D4A /* Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C6A3721DCB07B9002C4D4A /* Util.m */; };
 		04C6A3761DCB0874002C4D4A /* keyChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C6A3751DCB0874002C4D4A /* keyChain.m */; };
 		04C6A37E1DCB08AF002C4D4A /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C6A3791DCB08AF002C4D4A /* NSData+Base64.m */; };
@@ -285,6 +289,14 @@
 		049D492B1DB76CC7005A1038 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		04B8624E1DD55F1600BDEA59 /* ZLGoodsDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLGoodsDetailViewController.h; sourceTree = "<group>"; };
 		04B8624F1DD55F1600BDEA59 /* ZLGoodsDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLGoodsDetailViewController.m; sourceTree = "<group>"; };
+		04B8628E1DD5663F00BDEA59 /* HRViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRViewController.h; sourceTree = "<group>"; };
+		04B8628F1DD5663F00BDEA59 /* HRViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRViewController.m; sourceTree = "<group>"; };
+		04B862901DD5663F00BDEA59 /* UIView+HRExtention.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+HRExtention.h"; sourceTree = "<group>"; };
+		04B862911DD5663F00BDEA59 /* UIView+HRExtention.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+HRExtention.m"; sourceTree = "<group>"; };
+		04B862941DD5664900BDEA59 /* HRTableViewOne.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRTableViewOne.h; sourceTree = "<group>"; };
+		04B862951DD5664900BDEA59 /* HRTableViewOne.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRTableViewOne.m; sourceTree = "<group>"; };
+		04B862961DD5664900BDEA59 /* HRTabView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRTabView.h; sourceTree = "<group>"; };
+		04B862971DD5664900BDEA59 /* HRTabView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRTabView.m; sourceTree = "<group>"; };
 		04C6A3711DCB07B2002C4D4A /* Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Util.h; sourceTree = "<group>"; };
 		04C6A3721DCB07B9002C4D4A /* Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Util.m; sourceTree = "<group>"; };
 		04C6A3741DCB0874002C4D4A /* keyChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = keyChain.h; sourceTree = "<group>"; };
@@ -728,6 +740,14 @@
 		04B8624D1DD55EF100BDEA59 /* ZLGoodsDetailViewController */ = {
 			isa = PBXGroup;
 			children = (
+				04B8628E1DD5663F00BDEA59 /* HRViewController.h */,
+				04B8628F1DD5663F00BDEA59 /* HRViewController.m */,
+				04B862901DD5663F00BDEA59 /* UIView+HRExtention.h */,
+				04B862911DD5663F00BDEA59 /* UIView+HRExtention.m */,
+				04B862941DD5664900BDEA59 /* HRTableViewOne.h */,
+				04B862951DD5664900BDEA59 /* HRTableViewOne.m */,
+				04B862961DD5664900BDEA59 /* HRTabView.h */,
+				04B862971DD5664900BDEA59 /* HRTabView.m */,
 				04B8624E1DD55F1600BDEA59 /* ZLGoodsDetailViewController.h */,
 				04B8624F1DD55F1600BDEA59 /* ZLGoodsDetailViewController.m */,
 			);
@@ -1521,6 +1541,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04B862921DD5663F00BDEA59 /* HRViewController.m in Sources */,
 				DF0308851DCD65C700E1EAB6 /* SystemSettingVC.m in Sources */,
 				DFFAA7631DB744EF001CFBB5 /* UIView+AutoSize.m in Sources */,
 				0445AD791DD44AF300788779 /* ZLGoPayViewController.m in Sources */,
@@ -1546,6 +1567,7 @@
 				040917661DCC39D400DB2568 /* ZLSuperMarketHeaderSectionView.m in Sources */,
 				0409177D1DCC679900DB2568 /* ZLSuperMarketHeaderView.m in Sources */,
 				DF7D0A231DBA0023005A62A7 /* ImageTextTableViewCell.m in Sources */,
+				04B862981DD5664900BDEA59 /* HRTableViewOne.m in Sources */,
 				DF0308991DCD6EAE00E1EAB6 /* UserIDAuthVC.m in Sources */,
 				DF7D0A1D1DBA0019005A62A7 /* CookTVC.m in Sources */,
 				04866BA61DD41E08008DA56B /* ZLCommitOrderCell.m in Sources */,
@@ -1565,7 +1587,9 @@
 				DF03088E1DCD698900E1EAB6 /* NSObject+PickPhoto.m in Sources */,
 				04866B911DD40EB9008DA56B /* ZLSuperMArketSearchGoodsView.m in Sources */,
 				DF08E8831DD1C093003E4DD9 /* FavoriteTVC.m in Sources */,
+				04B862991DD5664900BDEA59 /* HRTabView.m in Sources */,
 				DFFAA73A1DB744C5001CFBB5 /* ViewController.m in Sources */,
+				04B862931DD5663F00BDEA59 /* UIView+HRExtention.m in Sources */,
 				DF55B4641DBAFE6000F89341 /* ZLHomeViewController.m in Sources */,
 				DF08E8611DD1A869003E4DD9 /* FeePayHistoryTableViewCell.m in Sources */,
 				04B862501DD55F1600BDEA59 /* ZLGoodsDetailViewController.m in Sources */,

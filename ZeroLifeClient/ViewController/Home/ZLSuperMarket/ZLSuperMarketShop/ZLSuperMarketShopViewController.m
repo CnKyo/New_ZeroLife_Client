@@ -16,6 +16,8 @@
 #import "ZLSuperMarketShopCarViewController.h"
 #import "ZLSuperMarketCommitOrderViewController.h"
 
+#import "ZLGoodsDetailViewController.h"
+
 @interface ZLSuperMarketShopViewController ()<UITableViewDelegate,UITableViewDataSource,ZLSuperMarketShopDelegate,ZLSuperMarketGoodsCellDelegate,UIScrollViewDelegate,ZLSuperMarketShopCarDelegate,ZLSuperMarketGoodsSpecDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
 /**
@@ -257,7 +259,7 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    ZLSuperMarketShopViewController *mShopVC = [ZLSuperMarketShopViewController new];
+    ZLGoodsDetailViewController *mShopVC = [ZLGoodsDetailViewController new];
     [self pushViewController:mShopVC];
     
     
