@@ -71,6 +71,7 @@
 		049D490E1DB75CE9005A1038 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 049D490D1DB75CE9005A1038 /* CoreTelephony.framework */; };
 		049D49101DB75CEF005A1038 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 049D490F1DB75CEF005A1038 /* AdSupport.framework */; };
 		049D492C1DB76CC7005A1038 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 049D492B1DB76CC7005A1038 /* QuartzCore.framework */; };
+		04B862501DD55F1600BDEA59 /* ZLGoodsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B8624F1DD55F1600BDEA59 /* ZLGoodsDetailViewController.m */; };
 		04C6A3731DCB07B9002C4D4A /* Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C6A3721DCB07B9002C4D4A /* Util.m */; };
 		04C6A3761DCB0874002C4D4A /* keyChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C6A3751DCB0874002C4D4A /* keyChain.m */; };
 		04C6A37E1DCB08AF002C4D4A /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C6A3791DCB08AF002C4D4A /* NSData+Base64.m */; };
@@ -282,6 +283,8 @@
 		049D490D1DB75CE9005A1038 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		049D490F1DB75CEF005A1038 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		049D492B1DB76CC7005A1038 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		04B8624E1DD55F1600BDEA59 /* ZLGoodsDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLGoodsDetailViewController.h; sourceTree = "<group>"; };
+		04B8624F1DD55F1600BDEA59 /* ZLGoodsDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLGoodsDetailViewController.m; sourceTree = "<group>"; };
 		04C6A3711DCB07B2002C4D4A /* Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Util.h; sourceTree = "<group>"; };
 		04C6A3721DCB07B9002C4D4A /* Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Util.m; sourceTree = "<group>"; };
 		04C6A3741DCB0874002C4D4A /* keyChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = keyChain.h; sourceTree = "<group>"; };
@@ -505,6 +508,7 @@
 		040917531DCC2C0400DB2568 /* ZLSuperMarket */ = {
 			isa = PBXGroup;
 			children = (
+				04B8624D1DD55EF100BDEA59 /* ZLGoodsDetailViewController */,
 				04866B7E1DD40E53008DA56B /* ZLSuperMarketShopCar */,
 				040917761DCC662F00DB2568 /* ZLSuperMarketShop */,
 				040917721DCC60C200DB2568 /* ZLSuperMarketSearchViewController */,
@@ -719,6 +723,16 @@
 				04866BAA1DD425F8008DA56B /* ZLCommitGoodsCell.xib */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		04B8624D1DD55EF100BDEA59 /* ZLGoodsDetailViewController */ = {
+			isa = PBXGroup;
+			children = (
+				04B8624E1DD55F1600BDEA59 /* ZLGoodsDetailViewController.h */,
+				04B8624F1DD55F1600BDEA59 /* ZLGoodsDetailViewController.m */,
+			);
+			name = ZLGoodsDetailViewController;
+			path = ZLSuperMarketShop/ZLGoodsDetailViewController;
 			sourceTree = "<group>";
 		};
 		04C6A3701DCB079B002C4D4A /* Util */ = {
@@ -1554,6 +1568,7 @@
 				DFFAA73A1DB744C5001CFBB5 /* ViewController.m in Sources */,
 				DF55B4641DBAFE6000F89341 /* ZLHomeViewController.m in Sources */,
 				DF08E8611DD1A869003E4DD9 /* FeePayHistoryTableViewCell.m in Sources */,
+				04B862501DD55F1600BDEA59 /* ZLGoodsDetailViewController.m in Sources */,
 				040917831DCC904B00DB2568 /* ZLSuperMarketShopLeftCellType.m in Sources */,
 				04866B9A1DD41500008DA56B /* ZLSuperMarketCommitOrderViewController.m in Sources */,
 				04866B8D1DD40E53008DA56B /* ZLSuperMarketShopCarViewController.m in Sources */,
