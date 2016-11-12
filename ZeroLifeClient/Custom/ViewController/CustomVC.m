@@ -202,6 +202,9 @@
     else
         
         [self.navigationController pushViewController:vc animated:YES];
+    
+    vc.hidesBottomBarWhenPushed = YES;
+
 }
 
 /**

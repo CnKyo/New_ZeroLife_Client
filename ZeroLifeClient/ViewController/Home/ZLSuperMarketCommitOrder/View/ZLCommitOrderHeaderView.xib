@@ -83,7 +83,7 @@
                 <outlet property="mName" destination="kdU-2a-By0" id="Dim-HQ-X6C"/>
                 <outlet property="mSelecteBtn" destination="sEm-eY-mCz" id="hcM-lX-dfI"/>
             </connections>
-            <point key="canvasLocation" x="4.5" y="158"/>
+            <point key="canvasLocation" x="104" y="154"/>
         </view>
     </objects>
     <resources>

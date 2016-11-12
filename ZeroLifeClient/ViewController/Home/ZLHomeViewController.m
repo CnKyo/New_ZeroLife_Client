@@ -21,7 +21,7 @@
 #import "ZLSuperMarketViewController.h"
 #import "DryCleanShopTVC.h"
 #import "LifePayVC.h"
-
+#import "ZLTenementRepairsViewController.h"
 
 @interface ZLHomeViewController ()<UITableViewDelegate,UITableViewDataSource,ZLHomeScrollerTableCellDelegate,ZLHomeLocationViewDelegate,ZLCoupViewDelegate>
 
@@ -271,7 +271,14 @@
         mSuperMarketVC.hidesBottomBarWhenPushed = YES;
         [self pushViewController:mSuperMarketVC];
         
-    } else if (mIndex == 3) {
+    }else if (mIndex == 2){
+        ZLTenementRepairsViewController *ZLFixVC = [ZLTenementRepairsViewController new];
+        ZLFixVC.hidesBottomBarWhenPushed = YES;
+
+        [self pushViewController:ZLFixVC];
+    }
+    
+    else if (mIndex == 3) {
         DryCleanShopTVC *vc = [[DryCleanShopTVC alloc] init];
         vc.hidesBottomBarWhenPushed = YES;
         [self pushViewController:vc];
