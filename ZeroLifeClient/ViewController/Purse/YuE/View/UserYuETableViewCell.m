@@ -18,8 +18,8 @@
         self.selectionStyle=UITableViewCellSelectionStyleGray;
         [self.contentView setAutoresizingMask:UIViewAutoresizingFlexibleHeight];
         
-        float padding = 5;
-        UIFont *font = [UIFont systemFontOfSize:14];
+        float padding = 10;
+        //UIFont *font = [UIFont systemFontOfSize:14];
         UIColor *color = [UIColor grayColor];
         UIView *superView = self.contentView;
         
@@ -30,7 +30,7 @@
         self.msgLable.numberOfLines = 0;
         
         [self.imgView makeConstraints:^(MASConstraintMaker *make) {
-            make.width.height.equalTo(30);
+            make.width.height.equalTo(22);
             make.centerY.equalTo(superView.centerY);
             make.left.equalTo(superView.left).offset(padding);
         }];

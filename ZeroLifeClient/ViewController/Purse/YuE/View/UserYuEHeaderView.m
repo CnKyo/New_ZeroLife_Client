@@ -31,6 +31,7 @@
         
         UILabel *noteLable = [superView newUILableWithText:@"现金余额可用于购买商品（支付时勾选即可抵扣订单金额）" textColor:[UIColor grayColor] font:[UIFont systemFontOfSize:14]];
         noteLable.numberOfLines = 0;
+        self.noteELable = noteLable;
         
         UIColor *textColor = COLOR_NavBar;
         UIButton *btn1 = [superView newUIButton];
@@ -69,7 +70,26 @@
     return self;
 }
 
--(void)loadMoney:(NSString *)moneyStr
+//设置余额样式
+-(void)setYuEStyle
+{
+    self.noteELable.text = @"现金余额可用于购买商品（支付时勾选即可抵扣订单金额）";
+    [self.chongZiBtn setTitle:@"充值" forState:UIControlStateNormal];
+    [self.chongZiBtn setImage:IMG(@"chongzi.png") forState:UIControlStateNormal];
+    [self loadYuEMoney:@"0.00"];
+}
+
+
+//设置积分样式
+-(void)setScoreStyle
+{
+    self.noteELable.text = @"积分可用于商品兑换（兑换时抵扣积分）";
+    [self.chongZiBtn setTitle:@"积分商城" forState:UIControlStateNormal];
+    [self.chongZiBtn setImage:IMG(@"btn_scoreShop.png") forState:UIControlStateNormal];
+    [self loadUserScore:@"0"];
+}
+
+-(void)loadYuEMoney:(NSString *)moneyStr
 {
     NSDictionary* style2 = @{@"body" :
                                  @[[UIFont systemFontOfSize:15], [UIColor blackColor]],
@@ -79,4 +99,14 @@
     self.yuELable.attributedText = [[NSString stringWithFormat:@"现金余额 <u>￥</u><ub>%@</ub>", moneyStr] attributedStringWithStyleBook:style2];
 }
 
+
+-(void)loadUserScore:(NSString *)scoreStr
+{
+    NSDictionary* style2 = @{@"body" :
+                                 @[[UIFont systemFontOfSize:15], [UIColor blackColor]],
+                             @"u": @[[UIFont systemFontOfSize:15], COLOR(254, 145, 0)],
+                             @"ub": @[[UIFont systemFontOfSize:20], COLOR(254, 145, 0)] };
+    
+    self.yuELable.attributedText = [[NSString stringWithFormat:@"我的积分 <ub>%@</ub><u>分</u>", scoreStr] attributedStringWithStyleBook:style2];
+}
 @end

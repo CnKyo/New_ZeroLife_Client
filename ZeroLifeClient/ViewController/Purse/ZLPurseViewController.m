@@ -12,7 +12,11 @@
 #import <JKCategories/UIButton+JKImagePosition.h>
 #import <JKCategories/UIControl+JKActionBlocks.h>
 
-#import "UserYuEVC.h"
+#import "UserScoreYuEVC.h"
+#import "UserCouponVC.h"
+#import "TransferAccountVC.h"
+#import "WithDrawalVC.h"
+#import "SouKuanVC.h"
 
 
 @implementation PurseHeaderView
@@ -33,6 +37,7 @@
         
         self.singInBtn = [superView newUIButton];
         [self.singInBtn setImage:IMG(@"sigin_qian.png") forState:UIControlStateNormal];
+        
 
         [bgImgView makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(superView);
@@ -179,11 +184,47 @@
         
         //余额
         [yuEView jk_handleControlEvents:UIControlEventTouchUpInside withBlock:^(id weakSender) {
-            UserYuEVC *vc = [[UserYuEVC alloc] init];
+            UserScoreYuEVC *vc = [[UserScoreYuEVC alloc] init];
+            vc.isScoreView = NO;
             vc.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:vc animated:YES];
         }];
         
+        //积分
+        [jiFenView jk_handleControlEvents:UIControlEventTouchUpInside withBlock:^(id weakSender) {
+            UserScoreYuEVC *vc = [[UserScoreYuEVC alloc] init];
+            vc.isScoreView = YES;
+            vc.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:vc animated:YES];
+        }];
+        
+        //优惠券
+        [youHuiView jk_handleControlEvents:UIControlEventTouchUpInside withBlock:^(id weakSender) {
+            UserCouponVC *vc = [[UserCouponVC alloc] init];
+            vc.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:vc animated:YES];
+        }];
+        
+        //转帐
+        [btn1 jk_addActionHandler:^(NSInteger tag) {
+            TransferAccountVC *vc = [[TransferAccountVC alloc] initWithNibName:@"TransferAccountVC" bundle:nil];
+            vc.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:vc animated:YES];
+        }];
+        
+        //提现
+        [btn2 jk_addActionHandler:^(NSInteger tag) {
+            WithDrawalVC *vc = [[WithDrawalVC alloc] initWithNibName:@"WithDrawalVC" bundle:nil];
+            vc.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:vc animated:YES];
+        }];
+        
+        //二维码收款
+        [btn3 jk_addActionHandler:^(NSInteger tag) {
+            SouKuanVC *vc = [[SouKuanVC alloc] init];
+            vc.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:vc animated:YES];
+        }];
         
         view;
     });
@@ -197,6 +238,9 @@
         make.top.equalTo(headerView.bottom);
     }];
     
+    [headerView.singInBtn jk_addActionHandler:^(NSInteger tag) {
+        [headerView.singInBtn setImage:IMG(@"sigin_qianYes.png") forState:UIControlStateNormal];
+    }];
 }
 
 - (void)viewDidLoad {

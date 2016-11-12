@@ -11,9 +11,14 @@
 #import "CustomDefine.h"
 
 @interface UserYuEHeaderView : UIView
+@property(nonatomic,strong) UILabel *noteELable;
 @property(nonatomic,strong) UILabel *yuELable;
 @property(nonatomic,strong) UIButton *chongZiBtn;
 
--(void)loadMoney:(NSString *)moneyStr;
 
+-(void)setYuEStyle;
+-(void)setScoreStyle;
+
+-(void)loadYuEMoney:(NSString *)moneyStr;
+-(void)loadUserScore:(NSString *)scoreStr;
 @end

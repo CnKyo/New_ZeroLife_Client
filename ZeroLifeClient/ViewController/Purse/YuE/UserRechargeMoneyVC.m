@@ -7,6 +7,7 @@
 //
 
 #import "UserRechargeMoneyVC.h"
+#import "UserPayTypeTableViewCell.h"
 
 @interface UserRechargeMoneyVC ()
 
@@ -18,11 +19,29 @@
 {
     [super loadView];
     [self addTableViewWithStyleGrouped];
+    
+    UIView *footerView = ({
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, DEVICE_Width, 60)];
+        UIButton *btn11 = [view newUIButton];
+        btn11.frame = CGRectMake(10, 10, view.bounds.size.width-20, 50);
+        [btn11 setTitle:@"确认" forState:UIControlStateNormal];
+        [btn11 setStyleNavColor];
+        [btn11 jk_addActionHandler:^(NSInteger tag) {
+            
+        }];
+        view;
+    });
+    self.tableView.tableFooterView = footerView;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"充值";
+    
+    
+    for (int i=0; i<2; i++) {
+        [self.tableArr addObject:@"111"];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -113,12 +132,25 @@
         return cell;
         
     } else {
-        static NSString *CellIdentifier = @"SystemSettingViewControllerTableViewCell";
-        UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        static NSString *CellIdentifier = @"Cell_UserRechargeMoneyVC222";
+        UserPayTypeTableViewCell *cell = (UserPayTypeTableViewCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
-            cell= [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+            cell= [[UserPayTypeTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+            cell.accessoryType = UITableViewCellAccessoryNone;
         }
-        cell.accessoryType = UITableViewCellAccessoryNone;
+        
+        if (indexPath.row == 0) {
+            cell.imgView.image = IMG(@"user_payTyple_weixin.png");
+            cell.nameLable.text = @"微信支付";
+            
+            UIImageView *chooseImgView = [[UIImageView alloc] initWithImage:IMG(@"shimingrenzheng_on.png")];
+            chooseImgView.frame = CGRectMake(0, 0, 20, 20);
+            cell.accessoryView = chooseImgView;
+        } else {
+            cell.imgView.image = IMG(@"user_payTyple_alipay.png");
+            cell.nameLable.text = @"支付宝支付";
+            cell.accessoryView = nil;
+        }
 
         return cell;
     }
