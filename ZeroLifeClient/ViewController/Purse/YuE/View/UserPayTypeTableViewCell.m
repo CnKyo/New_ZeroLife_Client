@@ -1,14 +1,15 @@
 //
-//  UserYuETableViewCell.m
+//  UserPayTypeTableViewCell.m
 //  ZeroLifeClient
 //
 //  Created by 瞿伦平 on 2016/11/11.
 //  Copyright © 2016年 瞿伦平. All rights reserved.
 //
 
-#import "UserYuETableViewCell.h"
+#import "UserPayTypeTableViewCell.h"
 
-@implementation UserYuETableViewCell
+@implementation UserPayTypeTableViewCell
+
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     
@@ -19,38 +20,23 @@
         [self.contentView setAutoresizingMask:UIViewAutoresizingFlexibleHeight];
         
         float padding = 10;
-        //UIFont *font = [UIFont systemFontOfSize:14];
+        UIFont *font = [UIFont systemFontOfSize:14];
         UIColor *color = [UIColor grayColor];
         UIView *superView = self.contentView;
         
         self.imgView = [superView newUIImageViewWithImg:IMG(@"choose_on.png")];
-        self.msgLable = [superView newUILableWithText:@"转账" textColor:[UIColor blackColor] font:[UIFont systemFontOfSize:14]];
-        self.moneyLable = [superView newUILableWithText:@"-50" textColor:COLOR(254, 145, 0) font:[UIFont systemFontOfSize:16] textAlignment:NSTextAlignmentRight];
-        self.timeLable = [superView newUILableWithText:@"2016-10-05 10:23:42" textColor:color font:[UIFont systemFontOfSize:13]];
-        self.msgLable.numberOfLines = 0;
+        self.nameLable = [superView newUILableWithText:@"支付宝支付" textColor:[UIColor blackColor] font:[UIFont systemFontOfSize:14]];
         
         [self.imgView makeConstraints:^(MASConstraintMaker *make) {
             make.width.height.equalTo(22);
             make.centerY.equalTo(superView.centerY);
             make.left.equalTo(superView.left).offset(padding);
         }];
-        [self.moneyLable makeConstraints:^(MASConstraintMaker *make) {
+        [self.nameLable makeConstraints:^(MASConstraintMaker *make) {
             make.right.equalTo(superView.right).offset(-padding);
-            make.top.bottom.equalTo(superView);
-            make.width.lessThanOrEqualTo(65);
-        }];
-        [self.msgLable makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(_imgView.right).offset(padding);
-            make.right.equalTo(_moneyLable.left).offset(-padding/2);
-            make.top.equalTo(superView.top).offset(padding/2);
-            make.bottom.equalTo(superView.centerY);
+            make.top.bottom.equalTo(superView);
         }];
-        [self.timeLable makeConstraints:^(MASConstraintMaker *make) {
-            make.bottom.equalTo(superView.bottom).offset(-padding/2);
-            make.top.equalTo(superView.centerY);
-            make.left.right.equalTo(_msgLable);
-        }];
-        
     }
     return self;
 }

@@ -135,6 +135,16 @@
 		DF08E8831DD1C093003E4DD9 /* FavoriteTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF08E8821DD1C093003E4DD9 /* FavoriteTVC.m */; };
 		DF08E8861DD1C0B2003E4DD9 /* FavoriteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF08E8851DD1C0B2003E4DD9 /* FavoriteTableViewCell.m */; };
 		DF08E8881DD1C39B003E4DD9 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF08E8871DD1C39B003E4DD9 /* CoreText.framework */; };
+		DF539F041DD5932900AF228F /* UserPayTypeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF539F031DD5932900AF228F /* UserPayTypeTableViewCell.m */; };
+		DF539F091DD595F400AF228F /* user_payTyple_alipay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF539F051DD595F400AF228F /* user_payTyple_alipay@2x.png */; };
+		DF539F0A1DD595F400AF228F /* user_payTyple_alipay@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF539F061DD595F400AF228F /* user_payTyple_alipay@3x.png */; };
+		DF539F0B1DD595F400AF228F /* user_payTyple_weixin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF539F071DD595F400AF228F /* user_payTyple_weixin@2x.png */; };
+		DF539F0C1DD595F400AF228F /* user_payTyple_weixin@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF539F081DD595F400AF228F /* user_payTyple_weixin@3x.png */; };
+		DF539F111DD5991500AF228F /* UserCouponVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF539F101DD5991500AF228F /* UserCouponVC.m */; };
+		DF539F141DD5B22A00AF228F /* UserCouponTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF539F131DD5B22A00AF228F /* UserCouponTableViewCell.m */; };
+		DF539F181DD5C01F00AF228F /* user_coupon_gray.png in Resources */ = {isa = PBXBuildFile; fileRef = DF539F151DD5C01F00AF228F /* user_coupon_gray.png */; };
+		DF539F191DD5C01F00AF228F /* user_coupon_jushe.png in Resources */ = {isa = PBXBuildFile; fileRef = DF539F161DD5C01F00AF228F /* user_coupon_jushe.png */; };
+		DF539F1A1DD5C01F00AF228F /* user_coupon_red.png in Resources */ = {isa = PBXBuildFile; fileRef = DF539F171DD5C01F00AF228F /* user_coupon_red.png */; };
 		DF55B4611DBAFE5800F89341 /* ZLCookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF55B45F1DBAFE5800F89341 /* ZLCookViewController.m */; };
 		DF55B4641DBAFE6000F89341 /* ZLHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF55B4621DBAFE6000F89341 /* ZLHomeViewController.m */; };
 		DF55B46A1DBAFE7700F89341 /* ZLUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF55B4681DBAFE7700F89341 /* ZLUserViewController.m */; };
@@ -251,6 +261,10 @@
 		DF98EC691DD2FCA00006EBFE /* order_shop_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = DF98EC5E1DD2FCA00006EBFE /* order_shop_icon.png */; };
 		DF98EC6C1DD304DC0006EBFE /* OrderActionBtnView.m in Sources */ = {isa = PBXBuildFile; fileRef = DF98EC6B1DD304DC0006EBFE /* OrderActionBtnView.m */; };
 		DF98EC6F1DD31C6C0006EBFE /* OrderBaoxiuImgVideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = DF98EC6E1DD31C6C0006EBFE /* OrderBaoxiuImgVideoView.m */; };
+		DFA135351DD6AA6C00805BA2 /* coupon_top_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = DFA135321DD6AA6C00805BA2 /* coupon_top_icon.png */; };
+		DFA135361DD6AA6C00805BA2 /* coupon_top_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFA135331DD6AA6C00805BA2 /* coupon_top_icon@2x.png */; };
+		DFA135371DD6AA6C00805BA2 /* coupon_top_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFA135341DD6AA6C00805BA2 /* coupon_top_icon@3x.png */; };
+		DFA135391DD6ADC000805BA2 /* UserCouponTableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFA135381DD6ADC000805BA2 /* UserCouponTableHeaderView.xib */; };
 		DFE178501DD54F6800E06F21 /* UserYuETableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DFE1784F1DD54F6800E06F21 /* UserYuETableViewCell.m */; };
 		DFE178611DD555C100E06F21 /* cell_address@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFE178511DD555C100E06F21 /* cell_address@2x.png */; };
 		DFE178621DD555C100E06F21 /* cell_address@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFE178521DD555C100E06F21 /* cell_address@3x.png */; };
@@ -532,6 +546,19 @@
 		DF08E8841DD1C0B2003E4DD9 /* FavoriteTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoriteTableViewCell.h; sourceTree = "<group>"; };
 		DF08E8851DD1C0B2003E4DD9 /* FavoriteTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoriteTableViewCell.m; sourceTree = "<group>"; };
 		DF08E8871DD1C39B003E4DD9 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		DF539F021DD5932900AF228F /* UserPayTypeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserPayTypeTableViewCell.h; sourceTree = "<group>"; };
+		DF539F031DD5932900AF228F /* UserPayTypeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserPayTypeTableViewCell.m; sourceTree = "<group>"; };
+		DF539F051DD595F400AF228F /* user_payTyple_alipay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_payTyple_alipay@2x.png"; sourceTree = "<group>"; };
+		DF539F061DD595F400AF228F /* user_payTyple_alipay@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_payTyple_alipay@3x.png"; sourceTree = "<group>"; };
+		DF539F071DD595F400AF228F /* user_payTyple_weixin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_payTyple_weixin@2x.png"; sourceTree = "<group>"; };
+		DF539F081DD595F400AF228F /* user_payTyple_weixin@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_payTyple_weixin@3x.png"; sourceTree = "<group>"; };
+		DF539F0F1DD5991500AF228F /* UserCouponVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCouponVC.h; sourceTree = "<group>"; };
+		DF539F101DD5991500AF228F /* UserCouponVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCouponVC.m; sourceTree = "<group>"; };
+		DF539F121DD5B22A00AF228F /* UserCouponTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCouponTableViewCell.h; sourceTree = "<group>"; };
+		DF539F131DD5B22A00AF228F /* UserCouponTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCouponTableViewCell.m; sourceTree = "<group>"; };
+		DF539F151DD5C01F00AF228F /* user_coupon_gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user_coupon_gray.png; sourceTree = "<group>"; };
+		DF539F161DD5C01F00AF228F /* user_coupon_jushe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user_coupon_jushe.png; sourceTree = "<group>"; };
+		DF539F171DD5C01F00AF228F /* user_coupon_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user_coupon_red.png; sourceTree = "<group>"; };
 		DF55B45F1DBAFE5800F89341 /* ZLCookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLCookViewController.m; sourceTree = "<group>"; };
 		DF55B4601DBAFE5800F89341 /* ZLCookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLCookViewController.h; sourceTree = "<group>"; };
 		DF55B4621DBAFE6000F89341 /* ZLHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLHomeViewController.m; sourceTree = "<group>"; };
@@ -704,6 +731,10 @@
 		DF98EC6B1DD304DC0006EBFE /* OrderActionBtnView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderActionBtnView.m; sourceTree = "<group>"; };
 		DF98EC6D1DD31C6C0006EBFE /* OrderBaoxiuImgVideoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderBaoxiuImgVideoView.h; sourceTree = "<group>"; };
 		DF98EC6E1DD31C6C0006EBFE /* OrderBaoxiuImgVideoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderBaoxiuImgVideoView.m; sourceTree = "<group>"; };
+		DFA135321DD6AA6C00805BA2 /* coupon_top_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coupon_top_icon.png; sourceTree = "<group>"; };
+		DFA135331DD6AA6C00805BA2 /* coupon_top_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "coupon_top_icon@2x.png"; sourceTree = "<group>"; };
+		DFA135341DD6AA6C00805BA2 /* coupon_top_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "coupon_top_icon@3x.png"; sourceTree = "<group>"; };
+		DFA135381DD6ADC000805BA2 /* UserCouponTableHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserCouponTableHeaderView.xib; sourceTree = "<group>"; };
 		DFE1784E1DD54F6800E06F21 /* UserYuETableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserYuETableViewCell.h; sourceTree = "<group>"; };
 		DFE1784F1DD54F6800E06F21 /* UserYuETableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserYuETableViewCell.m; sourceTree = "<group>"; };
 		DFE178511DD555C100E06F21 /* cell_address@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cell_address@2x.png"; sourceTree = "<group>"; };
@@ -1220,6 +1251,26 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		DF539F0D1DD598EE00AF228F /* UserCoupon */ = {
+			isa = PBXGroup;
+			children = (
+				DF539F0E1DD598EE00AF228F /* View */,
+				DF539F0F1DD5991500AF228F /* UserCouponVC.h */,
+				DF539F101DD5991500AF228F /* UserCouponVC.m */,
+			);
+			path = UserCoupon;
+			sourceTree = "<group>";
+		};
+		DF539F0E1DD598EE00AF228F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DF539F121DD5B22A00AF228F /* UserCouponTableViewCell.h */,
+				DF539F131DD5B22A00AF228F /* UserCouponTableViewCell.m */,
+				DFA135381DD6ADC000805BA2 /* UserCouponTableHeaderView.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		DF5C48FE1DBA1BEC006E4825 /* DCBannerView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1260,6 +1311,8 @@
 				DF630D6B1DD465B90076A92C /* UserYuEHeaderView.m */,
 				DFE1784E1DD54F6800E06F21 /* UserYuETableViewCell.h */,
 				DFE1784F1DD54F6800E06F21 /* UserYuETableViewCell.m */,
+				DF539F021DD5932900AF228F /* UserPayTypeTableViewCell.h */,
+				DF539F031DD5932900AF228F /* UserPayTypeTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1563,6 +1616,7 @@
 		DFFAA74E1DB744EF001CFBB5 /* Purse */ = {
 			isa = PBXGroup;
 			children = (
+				DF539F0D1DD598EE00AF228F /* UserCoupon */,
 				DFE178BA1DD56B3000E06F21 /* UserScore */,
 				DF630D561DD4622B0076A92C /* YuE */,
 				DFFAA74F1DB744EF001CFBB5 /* View */,
@@ -1616,6 +1670,16 @@
 		DFFAA7521DB744EF001CFBB5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DFA135321DD6AA6C00805BA2 /* coupon_top_icon.png */,
+				DFA135331DD6AA6C00805BA2 /* coupon_top_icon@2x.png */,
+				DFA135341DD6AA6C00805BA2 /* coupon_top_icon@3x.png */,
+				DF539F151DD5C01F00AF228F /* user_coupon_gray.png */,
+				DF539F161DD5C01F00AF228F /* user_coupon_jushe.png */,
+				DF539F171DD5C01F00AF228F /* user_coupon_red.png */,
+				DF539F051DD595F400AF228F /* user_payTyple_alipay@2x.png */,
+				DF539F061DD595F400AF228F /* user_payTyple_alipay@3x.png */,
+				DF539F071DD595F400AF228F /* user_payTyple_weixin@2x.png */,
+				DF539F081DD595F400AF228F /* user_payTyple_weixin@3x.png */,
 				DFE178D11DD5901E00E06F21 /* btn_scoreShop.png */,
 				DFE178D21DD5901E00E06F21 /* btn_scoreShop@2x.png */,
 				DFE178D31DD5901E00E06F21 /* btn_scoreShop@3x.png */,
@@ -1838,6 +1902,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DFFAA7461DB744C5001CFBB5 /* Build configuration list for PBXNativeTarget "ZeroLifeClient" */;
 			buildPhases = (
+				3AD80649A67A16B6F8D6A7D8 /* 📦 Check Pods Manifest.lock */,
 				44E03DBD70E9B398E23265A7 /* [CP] Check Pods Manifest.lock */,
 				FA2F72B750A76F5318A85DA7 /* [CP] Check Pods Manifest.lock */,
 				F1EAC3C068B69D6E51F2E512 /* [CP] Check Pods Manifest.lock */,
@@ -1915,13 +1980,14 @@
 				DF630D4B1DD45D790076A92C /* purse_anquanma@2x.png in Resources */,
 				040917611DCC371D00DB2568 /* ZLSuperMarketShopActivityCell1.xib in Resources */,
 				DF7F1BFC1DCDDD4900D2242B /* ComplaintJumingView.xib in Resources */,
+				DF539F1A1DD5C01F00AF228F /* user_coupon_red.png in Resources */,
 				0445AD841DD44D0600788779 /* ZLPayTypeHeaderView.xib in Resources */,
-				DF03089E1DCD6F0900E1EAB6 /* UserIDAuthTableViewCell.xib in Resources */,
 				DFE178921DD558B400E06F21 /* shimingrenzheng_off@3x.png in Resources */,
 				DF630D4D1DD45D790076A92C /* purse_erweima.png in Resources */,
 				04866B961DD41337008DA56B /* ZLSuperMarketShopRightSpecCell.xib in Resources */,
 				DFE178DC1DD5901E00E06F21 /* btn_scoreShop@3x.png in Resources */,
 				04866B8A1DD40E53008DA56B /* ZLShopCarBottomView.xib in Resources */,
+				DF539F191DD5C01F00AF228F /* user_coupon_jushe.png in Resources */,
 				04866BA21DD41865008DA56B /* ZLCommitOrderBottomView.xib in Resources */,
 				DFE178E01DD5901E00E06F21 /* cell_soukuan_item.png in Resources */,
 				DFE178C31DD573F500E06F21 /* order_img_status.png in Resources */,
@@ -1937,6 +2003,7 @@
 				DFE178641DD555C100E06F21 /* cell_souchang@3x.png in Resources */,
 				DFE178AD1DD55A9A00E06F21 /* cell_img_touxiang@2x.png in Resources */,
 				DFE178CB1DD575E700E06F21 /* cell_complaint_gongsi@2x.png in Resources */,
+				DF539F091DD595F400AF228F /* user_payTyple_alipay@2x.png in Resources */,
 				DF630D501DD45D790076A92C /* purse_tixian.png in Resources */,
 				DF630D361DD44CE60076A92C /* sigin_qian@2x.png in Resources */,
 				040D92FF1DCAE84300DBE42E /* ZLHomeMsgDetailCell.xib in Resources */,
@@ -1968,14 +2035,17 @@
 				DF630D171DD442960076A92C /* call_mobile.png in Resources */,
 				DF08E87D1DD1C072003E4DD9 /* UserAddressEditTableViewCell.xib in Resources */,
 				DF98EC631DD2FCA00006EBFE /* order_gouwu_done.png in Resources */,
+				DF539F0C1DD595F400AF228F /* user_payTyple_weixin@3x.png in Resources */,
 				04C6A3801DCB08AF002C4D4A /* public_key.der in Resources */,
 				04866BAB1DD425F8008DA56B /* ZLCommitGoodsCell.xib in Resources */,
 				DFE1787B1DD556D000E06F21 /* cell_cleanImgs@2x.png in Resources */,
 				040917521DCC1FE500DB2568 /* ZLSearchArearView.xib in Resources */,
 				DF630D1E1DD4435F0076A92C /* order_fix_choose_jiantou.png in Resources */,
+				DF539F0A1DD595F400AF228F /* user_payTyple_alipay@3x.png in Resources */,
 				DF08E84E1DD16A13003E4DD9 /* MobileRechargeMoneyView_kuangChoose@3x.png in Resources */,
 				DF98EC621DD2FCA00006EBFE /* order_gouwu_daizhifu.png in Resources */,
 				DFE178611DD555C100E06F21 /* cell_address@2x.png in Resources */,
+				DF539F181DD5C01F00AF228F /* user_coupon_gray.png in Resources */,
 				DF08E8541DD16A13003E4DD9 /* MobileRechargeMoneyView_person@3x.png in Resources */,
 				DFE1788F1DD558B400E06F21 /* cell_address_myplace@2x.png in Resources */,
 				DFFAA7421DB744C5001CFBB5 /* LaunchScreen.storyboard in Resources */,
@@ -1989,6 +2059,7 @@
 				040917841DCC904B00DB2568 /* ZLSuperMarketShopLeftCellType.xib in Resources */,
 				040917681DCC39DE00DB2568 /* ZLSuperMarketHeaderSectionView.xib in Resources */,
 				DFE178A71DD55A9A00E06F21 /* cell_img_nike@2x.png in Resources */,
+				DFA135351DD6AA6C00805BA2 /* coupon_top_icon.png in Resources */,
 				DFE1786F1DD555C100E06F21 /* order_paopao@2x.png in Resources */,
 				DF0308A81DCD7D6600E1EAB6 /* ZLUserHeaderTableViewCell.xib in Resources */,
 				DF98EC671DD2FCA00006EBFE /* order_paopao_jiedan.png in Resources */,
@@ -1998,6 +2069,7 @@
 				DFE178AE1DD55A9A00E06F21 /* cell_img_touxiang@3x.png in Resources */,
 				DF08E84F1DD16A13003E4DD9 /* MobileRechargeMoneyView_kuangNormal@2x.png in Resources */,
 				DF98EC641DD2FCA00006EBFE /* order_gouwu_jiedan.png in Resources */,
+				DFA135391DD6ADC000805BA2 /* UserCouponTableHeaderView.xib in Resources */,
 				DF98EC5F1DD2FCA00006EBFE /* order_address_place.png in Resources */,
 				DF630D181DD442960076A92C /* call_mobile@2x.png in Resources */,
 				DFE178701DD555C100E06F21 /* order_paopao@3x.png in Resources */,
@@ -2048,13 +2120,16 @@
 				DFE1788B1DD558B400E06F21 /* cell_address_del@2x.png in Resources */,
 				DFFAA73D1DB744C5001CFBB5 /* Main.storyboard in Resources */,
 				DF7F1BEE1DCDD5F200D2242B /* gongsi_on@2x.png in Resources */,
+				DFA135371DD6AA6C00805BA2 /* coupon_top_icon@3x.png in Resources */,
 				DF08E8801DD1C072003E4DD9 /* UserHouseEditTableViewCell.xib in Resources */,
 				0445AD7F1DD44CE600788779 /* ZLPayTypeTableViewCell.xib in Resources */,
+				DFA135361DD6AA6C00805BA2 /* coupon_top_icon@2x.png in Resources */,
 				04866BA01DD415B9008DA56B /* ZLCommitOrderHeaderView.xib in Resources */,
 				DF98EC651DD2FCA00006EBFE /* order_gouwu_peisong.png in Resources */,
 				DFE178661DD555C100E06F21 /* cell_tousu@3x.png in Resources */,
 				DF08E84D1DD16A13003E4DD9 /* MobileRechargeMoneyView_kuangChoose@2x.png in Resources */,
 				DF630D3A1DD44CE60076A92C /* sigin_qianYes@3x.png in Resources */,
+				DF539F0B1DD595F400AF228F /* user_payTyple_weixin@2x.png in Resources */,
 				DF630D111DD440940076A92C /* order_mobile@2x.png in Resources */,
 				DF08E8511DD16A13003E4DD9 /* MobileRechargeMoneyView_mobile@2x.png in Resources */,
 				DFE1787A1DD556D000E06F21 /* cell_about@3x.png in Resources */,
@@ -2089,6 +2164,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		3AD80649A67A16B6F8D6A7D8 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		44E03DBD70E9B398E23265A7 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2247,9 +2337,9 @@
 				DF55B46F1DBAFEAC00F89341 /* ZLTabBarViewController.m in Sources */,
 				040917661DCC39D400DB2568 /* ZLSuperMarketHeaderSectionView.m in Sources */,
 				0409177D1DCC679900DB2568 /* ZLSuperMarketHeaderView.m in Sources */,
+				DF539F111DD5991500AF228F /* UserCouponVC.m in Sources */,
 				DF7D0A231DBA0023005A62A7 /* ImageTextTableViewCell.m in Sources */,
 				04B862981DD5664900BDEA59 /* HRTableViewOne.m in Sources */,
-				DF0308991DCD6EAE00E1EAB6 /* UserIDAuthVC.m in Sources */,
 				DF7D0A1D1DBA0019005A62A7 /* CookTVC.m in Sources */,
 				04866BA61DD41E08008DA56B /* ZLCommitOrderCell.m in Sources */,
 				DF08E87F1DD1C072003E4DD9 /* UserHouseEditTableViewCell.m in Sources */,
@@ -2280,6 +2370,7 @@
 				DF630D691DD463180076A92C /* UserNotIDAuthNoteView.m in Sources */,
 				DFFAA7371DB744C5001CFBB5 /* AppDelegate.m in Sources */,
 				DF8DBCF31DD07CB2002E574B /* MobileRechargeVC.m in Sources */,
+				DF539F041DD5932900AF228F /* UserPayTypeTableViewCell.m in Sources */,
 				04866B8B1DD40E53008DA56B /* ZLSuperMarketShopCarCell.m in Sources */,
 				DF03088D1DCD698900E1EAB6 /* QUPickPhoto.m in Sources */,
 				DF98EC4D1DD2D6BE0006EBFE /* OrderShopHeaderView.m in Sources */,
@@ -2305,6 +2396,7 @@
 				DFFAA7651DB744EF001CFBB5 /* CustomVC.m in Sources */,
 				DF630D3D1DD455530076A92C /* PlurseValueNameControl.m in Sources */,
 				DF8DBCE41DD0616F002E574B /* DryCleanShopTVC.m in Sources */,
+				DF539F141DD5B22A00AF228F /* UserCouponTableViewCell.m in Sources */,
 				DF630D641DD462F60076A92C /* UserIDAuthVC.m in Sources */,
 				DFE178BE1DD5714B00E06F21 /* OrderHeaderStatusView.m in Sources */,
 				DF630CF31DD407AE0076A92C /* OrderBaoXiuChooseShopVC.m in Sources */,

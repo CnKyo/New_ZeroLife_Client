@@ -104,7 +104,14 @@
 
 
 
-
+//用户地址对象
 @interface UserAddressObject : NSObject
 @property (nonatomic,strong) NSString *         iD;         //
+@end
+
+
+//用户优惠券
+@interface CouponObject : NSObject
+@property (nonatomic,strong) NSString *         iD;         //
+@property (nonatomic,assign) kCouponType        type;
 @end

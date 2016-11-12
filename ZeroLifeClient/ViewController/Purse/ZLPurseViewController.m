@@ -13,6 +13,7 @@
 #import <JKCategories/UIControl+JKActionBlocks.h>
 
 #import "UserScoreYuEVC.h"
+#import "UserCouponVC.h"
 
 
 @implementation PurseHeaderView
@@ -190,6 +191,13 @@
         [jiFenView jk_handleControlEvents:UIControlEventTouchUpInside withBlock:^(id weakSender) {
             UserScoreYuEVC *vc = [[UserScoreYuEVC alloc] init];
             vc.isScoreView = YES;
+            vc.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:vc animated:YES];
+        }];
+        
+        //优惠券
+        [youHuiView jk_handleControlEvents:UIControlEventTouchUpInside withBlock:^(id weakSender) {
+            UserCouponVC *vc = [[UserCouponVC alloc] init];
             vc.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:vc animated:YES];
         }];

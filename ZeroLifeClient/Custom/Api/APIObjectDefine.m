@@ -254,3 +254,8 @@
 
 @implementation UserAddressObject
 @end
+
+
+
+@implementation CouponObject
+@end

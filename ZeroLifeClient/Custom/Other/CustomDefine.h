@@ -187,5 +187,10 @@ typedef enum {
 
 
 
+typedef enum {
+    kCouponType_manjian,//满减
+    kCouponType_lijian,//立减
+} kCouponType;
+
 
 #endif /* CustomDefine_h */
