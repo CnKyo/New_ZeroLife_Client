@@ -259,3 +259,9 @@
 
 @implementation CouponObject
 @end
+
+
+@implementation BankCardObject
+@end
+
+

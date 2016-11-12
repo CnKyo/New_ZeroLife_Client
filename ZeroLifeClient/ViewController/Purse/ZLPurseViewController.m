@@ -14,6 +14,8 @@
 
 #import "UserScoreYuEVC.h"
 #import "UserCouponVC.h"
+#import "TransferAccountVC.h"
+#import "WithDrawalVC.h"
 
 
 @implementation PurseHeaderView
@@ -202,6 +204,19 @@
             [self.navigationController pushViewController:vc animated:YES];
         }];
         
+        //转帐
+        [btn1 jk_addActionHandler:^(NSInteger tag) {
+            TransferAccountVC *vc = [[TransferAccountVC alloc] initWithNibName:@"TransferAccountVC" bundle:nil];
+            vc.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:vc animated:YES];
+        }];
+        
+        //提现
+        [btn2 jk_addActionHandler:^(NSInteger tag) {
+            WithDrawalVC *vc = [[WithDrawalVC alloc] initWithNibName:@"WithDrawalVC" bundle:nil];
+            vc.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:vc animated:YES];
+        }];
         
         view;
     });

@@ -15,6 +15,8 @@
 #import <WPAttributedMarkup/NSString+WPAttributedMarkup.h>
 #import <WPAttributedMarkup/WPAttributedStyleAction.h>
 
+#import "UserHouseEditVC.h"
+
 @interface UserAddressTVC ()
 
 @end
@@ -55,7 +57,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title =  @"我的地址";
+    
+    self.title =  _isShowHouseView ? @"房屋地址" : @"收货地址";
 }
 
 
@@ -160,9 +163,13 @@
             [self performSelector:@selector(popViewController) withObject:nil afterDelay:0.2];
             
         } else {
-            
-            UserAddressEditVC *vc = [[UserAddressEditVC alloc] init];
-            [self.navigationController pushViewController:vc animated:YES];
+            if (_isShowHouseView) {
+                UserHouseEditVC *vc = [[UserHouseEditVC alloc] init];
+                [self.navigationController pushViewController:vc animated:YES];
+            } else {
+                UserAddressEditVC *vc = [[UserAddressEditVC alloc] init];
+                [self.navigationController pushViewController:vc animated:YES];
+            }
         }
 
     }

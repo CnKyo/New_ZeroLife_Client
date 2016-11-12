@@ -115,3 +115,10 @@
 @property (nonatomic,strong) NSString *         iD;         //
 @property (nonatomic,assign) kCouponType        type;
 @end
+
+
+//用户银行卡
+@interface BankCardObject : NSObject
+@property (nonatomic,strong) NSString *         iD;         //
+@property (nonatomic,strong) NSString *         name;         //
+@end

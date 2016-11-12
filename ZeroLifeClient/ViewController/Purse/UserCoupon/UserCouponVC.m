@@ -120,12 +120,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"我的优惠券";
-    
-//    UIView *headerView = self.tableView.tableHeaderView;
-//    CGRect frame = headerView.frame;
-//    frame.size.height = 100;
-//    headerView.frame = frame;
-//    self.tableView.tableHeaderView = headerView;
 }
 
 - (void)didReceiveMemoryWarning {

@@ -9,6 +9,7 @@
 #import "UserInfoVC.h"
 #import "NSObject+PickPhoto.h"
 #import "UserHouseEditVC.h"
+#import "UserAddressTVC.h"
 
 @interface UserInfoVC ()
 
@@ -149,7 +150,7 @@
             case 1:
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
                 imgView.image = IMG(@"cell_img_hourse.png");
-                textLabel.text = @"房屋地址";
+                textLabel.text = @"房屋管理";
                 field.placeholder = @"请添加房屋地址";
                 field.enabled = NO;
                 break;
@@ -173,7 +174,8 @@
         }
     } else {
         if (indexPath.row == 1) {
-            UserHouseEditVC *vc = [[UserHouseEditVC alloc] init];
+            UserAddressTVC *vc = [[UserAddressTVC alloc] init];
+            vc.isShowHouseView = YES;
             [self.navigationController pushViewController:vc animated:YES];
         }
     }
