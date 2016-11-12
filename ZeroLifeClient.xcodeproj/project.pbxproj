@@ -288,6 +288,9 @@
 		DFA135781DD6FE6F00805BA2 /* BankCardAddVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFA135761DD6FE6F00805BA2 /* BankCardAddVC.xib */; };
 		DFA1357B1DD7028600805BA2 /* add_bankCard_auto@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFA135791DD7028600805BA2 /* add_bankCard_auto@2x.png */; };
 		DFA1357C1DD7028600805BA2 /* add_bankCard_auto@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFA1357A1DD7028600805BA2 /* add_bankCard_auto@3x.png */; };
+		DFA135811DD7056000805BA2 /* SouKuanVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DFA135801DD7056000805BA2 /* SouKuanVC.m */; };
+		DFA135841DD70C3E00805BA2 /* SouKuanHistoryTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DFA135831DD70C3E00805BA2 /* SouKuanHistoryTVC.m */; };
+		DFA135871DD70C5600805BA2 /* SouKuanHistoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DFA135861DD70C5600805BA2 /* SouKuanHistoryTableViewCell.m */; };
 		DFE178501DD54F6800E06F21 /* UserYuETableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DFE1784F1DD54F6800E06F21 /* UserYuETableViewCell.m */; };
 		DFE178611DD555C100E06F21 /* cell_address@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFE178511DD555C100E06F21 /* cell_address@2x.png */; };
 		DFE178621DD555C100E06F21 /* cell_address@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFE178521DD555C100E06F21 /* cell_address@3x.png */; };
@@ -788,6 +791,12 @@
 		DFA135761DD6FE6F00805BA2 /* BankCardAddVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BankCardAddVC.xib; sourceTree = "<group>"; };
 		DFA135791DD7028600805BA2 /* add_bankCard_auto@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add_bankCard_auto@2x.png"; sourceTree = "<group>"; };
 		DFA1357A1DD7028600805BA2 /* add_bankCard_auto@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add_bankCard_auto@3x.png"; sourceTree = "<group>"; };
+		DFA1357F1DD7056000805BA2 /* SouKuanVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SouKuanVC.h; sourceTree = "<group>"; };
+		DFA135801DD7056000805BA2 /* SouKuanVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SouKuanVC.m; sourceTree = "<group>"; };
+		DFA135821DD70C3E00805BA2 /* SouKuanHistoryTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SouKuanHistoryTVC.h; sourceTree = "<group>"; };
+		DFA135831DD70C3E00805BA2 /* SouKuanHistoryTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SouKuanHistoryTVC.m; sourceTree = "<group>"; };
+		DFA135851DD70C5600805BA2 /* SouKuanHistoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SouKuanHistoryTableViewCell.h; sourceTree = "<group>"; };
+		DFA135861DD70C5600805BA2 /* SouKuanHistoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SouKuanHistoryTableViewCell.m; sourceTree = "<group>"; };
 		DFE1784E1DD54F6800E06F21 /* UserYuETableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserYuETableViewCell.h; sourceTree = "<group>"; };
 		DFE1784F1DD54F6800E06F21 /* UserYuETableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserYuETableViewCell.m; sourceTree = "<group>"; };
 		DFE178511DD555C100E06F21 /* cell_address@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cell_address@2x.png"; sourceTree = "<group>"; };
@@ -1577,6 +1586,27 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		DFA1357D1DD7055100805BA2 /* ShouKuan */ = {
+			isa = PBXGroup;
+			children = (
+				DFA1357E1DD7055100805BA2 /* View */,
+				DFA1357F1DD7056000805BA2 /* SouKuanVC.h */,
+				DFA135801DD7056000805BA2 /* SouKuanVC.m */,
+				DFA135821DD70C3E00805BA2 /* SouKuanHistoryTVC.h */,
+				DFA135831DD70C3E00805BA2 /* SouKuanHistoryTVC.m */,
+			);
+			path = ShouKuan;
+			sourceTree = "<group>";
+		};
+		DFA1357E1DD7055100805BA2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DFA135851DD70C5600805BA2 /* SouKuanHistoryTableViewCell.h */,
+				DFA135861DD70C5600805BA2 /* SouKuanHistoryTableViewCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		DFFAA7261DB744C5001CFBB5 = {
 			isa = PBXGroup;
 			children = (
@@ -1701,6 +1731,7 @@
 		DFFAA74E1DB744EF001CFBB5 /* Purse */ = {
 			isa = PBXGroup;
 			children = (
+				DFA1357D1DD7055100805BA2 /* ShouKuan */,
 				DFA1355B1DD6EB5500805BA2 /* WithDrawal */,
 				DFA1353D1DD6C28800805BA2 /* TransferAccount */,
 				DF539F0D1DD598EE00AF228F /* UserCoupon */,
@@ -2491,6 +2522,7 @@
 				04866B8B1DD40E53008DA56B /* ZLSuperMarketShopCarCell.m in Sources */,
 				DF03088D1DCD698900E1EAB6 /* QUPickPhoto.m in Sources */,
 				DF98EC4D1DD2D6BE0006EBFE /* OrderShopHeaderView.m in Sources */,
+				DFA135841DD70C3E00805BA2 /* SouKuanHistoryTVC.m in Sources */,
 				DF630D2B1DD449C10076A92C /* ZLPurseViewController.m in Sources */,
 				DF98EC381DD2AE880006EBFE /* OrderGoodsThumbListView.m in Sources */,
 				DF7F1BF71DCDDCF500D2242B /* UserComplaintAddVC.m in Sources */,
@@ -2535,6 +2567,7 @@
 				DFE178501DD54F6800E06F21 /* UserYuETableViewCell.m in Sources */,
 				040917751DCC60FA00DB2568 /* ZLSuperMarketSearchViewController.m in Sources */,
 				DF0308A31DCD7AD500E1EAB6 /* UIView+Name.m in Sources */,
+				DFA135871DD70C5600805BA2 /* SouKuanHistoryTableViewCell.m in Sources */,
 				DF98EC6C1DD304DC0006EBFE /* OrderActionBtnView.m in Sources */,
 				04D64D761DC9CCDC004E8859 /* ZLHomeScrollerTableViewCell.m in Sources */,
 				040D92FD1DCAE82000DBE42E /* ZLHomeMessageDetailViewController.m in Sources */,
@@ -2552,6 +2585,7 @@
 				DF7D0A1E1DBA0019005A62A7 /* CookDetailVC.m in Sources */,
 				DF55B46A1DBAFE7700F89341 /* ZLUserViewController.m in Sources */,
 				DF7D0A241DBA0023005A62A7 /* TagsTableCell.m in Sources */,
+				DFA135811DD7056000805BA2 /* SouKuanVC.m in Sources */,
 				DF98EC531DD2F64A0006EBFE /* OrderNoteValueView.m in Sources */,
 				DF8DBCC41DD0202B002E574B /* UserComplaintHistoryTableViewCell.m in Sources */,
 				DFA135601DD6EB6C00805BA2 /* WithDrawalVC.m in Sources */,

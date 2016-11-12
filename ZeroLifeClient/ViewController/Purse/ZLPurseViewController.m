@@ -16,6 +16,7 @@
 #import "UserCouponVC.h"
 #import "TransferAccountVC.h"
 #import "WithDrawalVC.h"
+#import "SouKuanVC.h"
 
 
 @implementation PurseHeaderView
@@ -214,6 +215,13 @@
         //提现
         [btn2 jk_addActionHandler:^(NSInteger tag) {
             WithDrawalVC *vc = [[WithDrawalVC alloc] initWithNibName:@"WithDrawalVC" bundle:nil];
+            vc.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:vc animated:YES];
+        }];
+        
+        //二维码收款
+        [btn3 jk_addActionHandler:^(NSInteger tag) {
+            SouKuanVC *vc = [[SouKuanVC alloc] init];
             vc.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:vc animated:YES];
         }];
