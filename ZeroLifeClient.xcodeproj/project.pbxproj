@@ -204,7 +204,6 @@
 		DF630D531DD45D790076A92C /* purse_zhuanzhuang.png in Resources */ = {isa = PBXBuildFile; fileRef = DF630D471DD45D790076A92C /* purse_zhuanzhuang.png */; };
 		DF630D541DD45D790076A92C /* purse_zhuanzhuang@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF630D481DD45D790076A92C /* purse_zhuanzhuang@2x.png */; };
 		DF630D551DD45D790076A92C /* purse_zhuanzhuang@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF630D491DD45D790076A92C /* purse_zhuanzhuang@3x.png */; };
-		DF630D5A1DD462510076A92C /* UserScoreYuEVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF630D591DD462510076A92C /* UserScoreYuEVC.m */; };
 		DF630D641DD462F60076A92C /* UserIDAuthVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF630D5F1DD462F60076A92C /* UserIDAuthVC.m */; };
 		DF630D651DD462F60076A92C /* UserIDAuthTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF630D621DD462F60076A92C /* UserIDAuthTableViewCell.m */; };
 		DF630D661DD462F60076A92C /* UserIDAuthTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF630D631DD462F60076A92C /* UserIDAuthTableViewCell.xib */; };
@@ -379,6 +378,7 @@
 		DFE178E11DD5901E00E06F21 /* cell_soukuan_item@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFE178D81DD5901E00E06F21 /* cell_soukuan_item@2x.png */; };
 		DFE178E21DD5901E00E06F21 /* cell_soukuan_item@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFE178D91DD5901E00E06F21 /* cell_soukuan_item@3x.png */; };
 		DFF634C11DB873D200B5C917 /* ScrollModelVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF634C01DB873D200B5C917 /* ScrollModelVC.m */; };
+		DFF9322D1DD95C1300BA8C8B /* UserScoreYuEVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF9322C1DD95C1300BA8C8B /* UserScoreYuEVC.m */; };
 		DFFAA7341DB744C5001CFBB5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFAA7331DB744C5001CFBB5 /* main.m */; };
 		DFFAA7371DB744C5001CFBB5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFAA7361DB744C5001CFBB5 /* AppDelegate.m */; };
 		DFFAA73A1DB744C5001CFBB5 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFAA7391DB744C5001CFBB5 /* ViewController.m */; };
@@ -682,8 +682,6 @@
 		DF630D471DD45D790076A92C /* purse_zhuanzhuang.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = purse_zhuanzhuang.png; sourceTree = "<group>"; };
 		DF630D481DD45D790076A92C /* purse_zhuanzhuang@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "purse_zhuanzhuang@2x.png"; sourceTree = "<group>"; };
 		DF630D491DD45D790076A92C /* purse_zhuanzhuang@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "purse_zhuanzhuang@3x.png"; sourceTree = "<group>"; };
-		DF630D581DD462510076A92C /* UserScoreYuEVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserScoreYuEVC.h; sourceTree = "<group>"; };
-		DF630D591DD462510076A92C /* UserScoreYuEVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserScoreYuEVC.m; sourceTree = "<group>"; };
 		DF630D5E1DD462F60076A92C /* UserIDAuthVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserIDAuthVC.h; sourceTree = "<group>"; };
 		DF630D5F1DD462F60076A92C /* UserIDAuthVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserIDAuthVC.m; sourceTree = "<group>"; };
 		DF630D611DD462F60076A92C /* UserIDAuthTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserIDAuthTableViewCell.h; sourceTree = "<group>"; };
@@ -913,6 +911,8 @@
 		DFF2BA083AFD4D1DD56A8848 /* Pods-ZeroLifeClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZeroLifeClient.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZeroLifeClient/Pods-ZeroLifeClient.debug.xcconfig"; sourceTree = "<group>"; };
 		DFF634BF1DB873D200B5C917 /* ScrollModelVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollModelVC.h; sourceTree = "<group>"; };
 		DFF634C01DB873D200B5C917 /* ScrollModelVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollModelVC.m; sourceTree = "<group>"; };
+		DFF9322B1DD95C1300BA8C8B /* UserScoreYuEVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserScoreYuEVC.h; sourceTree = "<group>"; };
+		DFF9322C1DD95C1300BA8C8B /* UserScoreYuEVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserScoreYuEVC.m; sourceTree = "<group>"; };
 		DFFAA72F1DB744C5001CFBB5 /* ZeroLifeClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZeroLifeClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFFAA7331DB744C5001CFBB5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DFFAA7351DB744C5001CFBB5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -1465,8 +1465,8 @@
 			isa = PBXGroup;
 			children = (
 				DF630D571DD4622B0076A92C /* View */,
-				DF630D581DD462510076A92C /* UserScoreYuEVC.h */,
-				DF630D591DD462510076A92C /* UserScoreYuEVC.m */,
+				DFF9322B1DD95C1300BA8C8B /* UserScoreYuEVC.h */,
+				DFF9322C1DD95C1300BA8C8B /* UserScoreYuEVC.m */,
 				DFE178B71DD5670700E06F21 /* UserRechargeMoneyVC.h */,
 				DFE178B81DD5670700E06F21 /* UserRechargeMoneyVC.m */,
 			);
@@ -2604,8 +2604,6 @@
 				DFA135561DD6CB0400805BA2 /* TransferAccountHistoryTableViewCell.m in Sources */,
 				DF539F111DD5991500AF228F /* UserCouponVC.m in Sources */,
 				DF7D0A231DBA0023005A62A7 /* ImageTextTableViewCell.m in Sources */,
-				DF0308991DCD6EAE00E1EAB6 /* UserIDAuthVC.m in Sources */,
-				04B862981DD5664900BDEA59 /* HRTableViewOne.m in Sources */,
 				DF7D0A1D1DBA0019005A62A7 /* CookTVC.m in Sources */,
 				04866BA61DD41E08008DA56B /* ZLCommitOrderCell.m in Sources */,
 				04B862B01DD59A9D00BDEA59 /* JXLayoutButton.m in Sources */,
@@ -2684,6 +2682,7 @@
 				DF8DBCBC1DD01C90002E574B /* ComplaintGongsiView.m in Sources */,
 				DF98EC351DD2AE460006EBFE /* OrderTVC.m in Sources */,
 				DF8DBCB71DD01A73002E574B /* ComplaintWuguanView.m in Sources */,
+				DFF9322D1DD95C1300BA8C8B /* UserScoreYuEVC.m in Sources */,
 				DF98EC4A1DD2D4FF0006EBFE /* OrderBeizhuView.m in Sources */,
 				DFE178501DD54F6800E06F21 /* UserYuETableViewCell.m in Sources */,
 				040917751DCC60FA00DB2568 /* ZLSuperMarketSearchViewController.m in Sources */,
@@ -2705,8 +2704,6 @@
 				04B862A81DD5971900BDEA59 /* ZLActivityView.m in Sources */,
 				0409175E1DCC336000DB2568 /* ZLSuperMarketShopCell.m in Sources */,
 				0416570D1DD6A64D004E7D9A /* ZLRepairsCustomView.m in Sources */,
-				DF630D5A1DD462510076A92C /* UserYuEVC.m in Sources */,
-				DF630D5A1DD462510076A92C /* UserScoreYuEVC.m in Sources */,
 				040917791DCC664300DB2568 /* ZLSuperMarketShopViewController.m in Sources */,
 				DF7D0A1E1DBA0019005A62A7 /* CookDetailVC.m in Sources */,
 				DF55B46A1DBAFE7700F89341 /* ZLUserViewController.m in Sources */,
