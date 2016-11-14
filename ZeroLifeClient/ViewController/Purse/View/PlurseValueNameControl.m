@@ -17,7 +17,7 @@
         self.backgroundColor = [UIColor clearColor];
         
         float padding = 10;
-        UIFont *font = [UIFont systemFontOfSize:15];
+        //UIFont *font = [UIFont systemFontOfSize:15];
         UIView *superView = self;
         
         self.valueLable = [superView newUILableWithText:@"" textColor:COLOR(253, 155, 21) font:[UIFont boldSystemFontOfSize:20] textAlignment:NSTextAlignmentCenter];

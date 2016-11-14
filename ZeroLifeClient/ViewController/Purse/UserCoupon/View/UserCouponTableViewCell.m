@@ -134,8 +134,8 @@
         self.backgroundColor = [UIColor clearColor];
         
         float padding = 10;
-        UIFont *font = [UIFont systemFontOfSize:14];
-        UIColor *color = [UIColor grayColor];
+//        UIFont *font = [UIFont systemFontOfSize:14];
+//        UIColor *color = [UIColor grayColor];
         UIView *superView = self.contentView;
         
         self.view = [[UserCouponTableView alloc] init];

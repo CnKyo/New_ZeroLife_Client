@@ -26,7 +26,7 @@
         
         float padding = 10;
         UIFont *font = [UIFont systemFontOfSize:15];
-        UIColor *color = [UIColor grayColor];
+        //UIColor *color = [UIColor grayColor];
         UIView *superView = self;
         
         self.imgView1 = [superView newUIImageViewWithImg:IMG(@"choose_on.png")];
