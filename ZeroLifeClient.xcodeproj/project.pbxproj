@@ -383,6 +383,7 @@
 		DFF9323A1DD98DF700BA8C8B /* dian_black@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFF932381DD98DF700BA8C8B /* dian_black@2x.png */; };
 		DFF9323B1DD98DF700BA8C8B /* dian_black@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFF932391DD98DF700BA8C8B /* dian_black@3x.png */; };
 		DFF9323E1DD9978000BA8C8B /* TopLeftLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF9323D1DD9978000BA8C8B /* TopLeftLabel.m */; };
+		DFF9325F1DD9A8A900BA8C8B /* BianMingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF9325E1DD9A8A900BA8C8B /* BianMingVC.m */; };
 		DFFAA7341DB744C5001CFBB5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFAA7331DB744C5001CFBB5 /* main.m */; };
 		DFFAA7371DB744C5001CFBB5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFAA7361DB744C5001CFBB5 /* AppDelegate.m */; };
 		DFFAA73A1DB744C5001CFBB5 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFAA7391DB744C5001CFBB5 /* ViewController.m */; };
@@ -923,6 +924,8 @@
 		DFF932391DD98DF700BA8C8B /* dian_black@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dian_black@3x.png"; sourceTree = "<group>"; };
 		DFF9323C1DD9978000BA8C8B /* TopLeftLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopLeftLabel.h; sourceTree = "<group>"; };
 		DFF9323D1DD9978000BA8C8B /* TopLeftLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopLeftLabel.m; sourceTree = "<group>"; };
+		DFF9325D1DD9A8A900BA8C8B /* BianMingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BianMingVC.h; sourceTree = "<group>"; };
+		DFF9325E1DD9A8A900BA8C8B /* BianMingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BianMingVC.m; sourceTree = "<group>"; };
 		DFFAA72F1DB744C5001CFBB5 /* ZeroLifeClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZeroLifeClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFFAA7331DB744C5001CFBB5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DFFAA7351DB744C5001CFBB5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -1590,6 +1593,8 @@
 				DF08E85D1DD1A82C003E4DD9 /* FeePayHistoryVC.m */,
 				DF08E8621DD1ACC5003E4DD9 /* FeePayHistoryDetailVC.h */,
 				DF08E8631DD1ACC5003E4DD9 /* FeePayHistoryDetailVC.m */,
+				DFF9325D1DD9A8A900BA8C8B /* BianMingVC.h */,
+				DFF9325E1DD9A8A900BA8C8B /* BianMingVC.m */,
 			);
 			path = LifePay;
 			sourceTree = "<group>";
@@ -2669,6 +2674,7 @@
 				DF630D2B1DD449C10076A92C /* ZLPurseViewController.m in Sources */,
 				DF98EC381DD2AE880006EBFE /* OrderGoodsThumbListView.m in Sources */,
 				DF7F1BF71DCDDCF500D2242B /* UserComplaintAddVC.m in Sources */,
+				DFF9325F1DD9A8A900BA8C8B /* BianMingVC.m in Sources */,
 				040D92F91DCAE34E00DBE42E /* ZLHomeMSGCell.m in Sources */,
 				DF8DBCE81DD06C8A002E574B /* DryCleanShopTableViewCell.m in Sources */,
 				DF630D061DD40AFA0076A92C /* RatingBar.m in Sources */,

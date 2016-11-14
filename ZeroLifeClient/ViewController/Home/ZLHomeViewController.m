@@ -22,6 +22,8 @@
 #import "DryCleanShopTVC.h"
 #import "LifePayVC.h"
 #import "ZLTenementRepairsViewController.h"
+#import "BianMingVC.h"
+
 
 @interface ZLHomeViewController ()<UITableViewDelegate,UITableViewDataSource,ZLHomeScrollerTableCellDelegate,ZLHomeLocationViewDelegate,ZLCoupViewDelegate>
 
@@ -283,7 +285,11 @@
         vc.hidesBottomBarWhenPushed = YES;
         [self pushViewController:vc];
     }
-    
+    else if (mIndex == 4) {
+        BianMingVC *vc = [[BianMingVC alloc] init];
+        vc.hidesBottomBarWhenPushed = YES;
+        [self pushViewController:vc];
+    }
 
 }
 #pragma mark ----****----banner点击方法
