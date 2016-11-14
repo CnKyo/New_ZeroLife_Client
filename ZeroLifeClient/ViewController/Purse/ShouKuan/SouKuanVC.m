@@ -9,6 +9,7 @@
 #import "SouKuanVC.h"
 #import <JKCategories/UIColor+JKGradient.h>
 #import "SouKuanHistoryTVC.h"
+#import <JKCategories/UINavigationBar+JKAwesome.h>
 
 @interface SouKuanVC ()
 
@@ -104,13 +105,16 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-     [self.navigationController.navigationBar setBackgroundImage:[UIImage jk_imageWithColor:COLOR(74, 184, 196)] forBarMetrics:UIBarMetricsDefault];
+    
+    [self.navigationController.navigationBar jk_setBackgroundColor:COLOR(74, 184, 196)];
+     //[self.navigationController.navigationBar setBackgroundImage:[UIImage jk_imageWithColor:COLOR(74, 184, 196)] forBarMetrics:UIBarMetricsDefault];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar jk_reset];
+    //[self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
 }
 
 - (void)didReceiveMemoryWarning {

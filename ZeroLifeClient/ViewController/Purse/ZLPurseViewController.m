@@ -17,6 +17,7 @@
 #import "TransferAccountVC.h"
 #import "WithDrawalVC.h"
 #import "SouKuanVC.h"
+#import "SecurityPasswordVC.h"
 
 
 @implementation PurseHeaderView
@@ -222,6 +223,13 @@
         //二维码收款
         [btn3 jk_addActionHandler:^(NSInteger tag) {
             SouKuanVC *vc = [[SouKuanVC alloc] init];
+            vc.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:vc animated:YES];
+        }];
+        
+        //交易密码
+        [btn4 jk_addActionHandler:^(NSInteger tag) {
+            SecurityPasswordVC *vc = [[SecurityPasswordVC alloc] init];
             vc.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:vc animated:YES];
         }];

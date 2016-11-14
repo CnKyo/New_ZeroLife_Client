@@ -11,6 +11,7 @@
 #import "MTA.h"
 #import "MTAConfig.h"
 #import "CustomDefine.h"
+#import <SVProgressHUD/SVProgressHUD.h>
 
 @interface AppDelegate ()
 
@@ -24,6 +25,9 @@
     //创建窗口的根控制器
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = COLOR_NavBar;
+    
+    [SVProgressHUD setDefaultStyle:SVProgressHUDStyleCustom];
+    [SVProgressHUD setBackgroundColor:[UIColor colorWithWhite:0.9 alpha:1]];
     
     //设置窗口的根控制器
     self.window.rootViewController = [[ZLTabBarViewController alloc] init];

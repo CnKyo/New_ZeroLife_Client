@@ -379,6 +379,10 @@
 		DFE178E21DD5901E00E06F21 /* cell_soukuan_item@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFE178D91DD5901E00E06F21 /* cell_soukuan_item@3x.png */; };
 		DFF634C11DB873D200B5C917 /* ScrollModelVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF634C01DB873D200B5C917 /* ScrollModelVC.m */; };
 		DFF9322D1DD95C1300BA8C8B /* UserScoreYuEVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF9322C1DD95C1300BA8C8B /* UserScoreYuEVC.m */; };
+		DFF932311DD9641A00BA8C8B /* SecurityPasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF932301DD9641A00BA8C8B /* SecurityPasswordVC.m */; };
+		DFF9323A1DD98DF700BA8C8B /* dian_black@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFF932381DD98DF700BA8C8B /* dian_black@2x.png */; };
+		DFF9323B1DD98DF700BA8C8B /* dian_black@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFF932391DD98DF700BA8C8B /* dian_black@3x.png */; };
+		DFF9323E1DD9978000BA8C8B /* TopLeftLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF9323D1DD9978000BA8C8B /* TopLeftLabel.m */; };
 		DFFAA7341DB744C5001CFBB5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFAA7331DB744C5001CFBB5 /* main.m */; };
 		DFFAA7371DB744C5001CFBB5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFAA7361DB744C5001CFBB5 /* AppDelegate.m */; };
 		DFFAA73A1DB744C5001CFBB5 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFAA7391DB744C5001CFBB5 /* ViewController.m */; };
@@ -913,6 +917,12 @@
 		DFF634C01DB873D200B5C917 /* ScrollModelVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollModelVC.m; sourceTree = "<group>"; };
 		DFF9322B1DD95C1300BA8C8B /* UserScoreYuEVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserScoreYuEVC.h; sourceTree = "<group>"; };
 		DFF9322C1DD95C1300BA8C8B /* UserScoreYuEVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserScoreYuEVC.m; sourceTree = "<group>"; };
+		DFF9322F1DD9641A00BA8C8B /* SecurityPasswordVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecurityPasswordVC.h; sourceTree = "<group>"; };
+		DFF932301DD9641A00BA8C8B /* SecurityPasswordVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecurityPasswordVC.m; sourceTree = "<group>"; };
+		DFF932381DD98DF700BA8C8B /* dian_black@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dian_black@2x.png"; sourceTree = "<group>"; };
+		DFF932391DD98DF700BA8C8B /* dian_black@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dian_black@3x.png"; sourceTree = "<group>"; };
+		DFF9323C1DD9978000BA8C8B /* TopLeftLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopLeftLabel.h; sourceTree = "<group>"; };
+		DFF9323D1DD9978000BA8C8B /* TopLeftLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopLeftLabel.m; sourceTree = "<group>"; };
 		DFFAA72F1DB744C5001CFBB5 /* ZeroLifeClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZeroLifeClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFFAA7331DB744C5001CFBB5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DFFAA7351DB744C5001CFBB5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -1714,6 +1724,15 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		DFF9322E1DD9640300BA8C8B /* SecurityPassword */ = {
+			isa = PBXGroup;
+			children = (
+				DFF9322F1DD9641A00BA8C8B /* SecurityPasswordVC.h */,
+				DFF932301DD9641A00BA8C8B /* SecurityPasswordVC.m */,
+			);
+			path = SecurityPassword;
+			sourceTree = "<group>";
+		};
 		DFFAA7261DB744C5001CFBB5 = {
 			isa = PBXGroup;
 			children = (
@@ -1839,6 +1858,7 @@
 		DFFAA74E1DB744EF001CFBB5 /* Purse */ = {
 			isa = PBXGroup;
 			children = (
+				DFF9322E1DD9640300BA8C8B /* SecurityPassword */,
 				DFA1357D1DD7055100805BA2 /* ShouKuan */,
 				DFA1355B1DD6EB5500805BA2 /* WithDrawal */,
 				DFA1353D1DD6C28800805BA2 /* TransferAccount */,
@@ -1895,6 +1915,8 @@
 		DFFAA7521DB744EF001CFBB5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DFF932381DD98DF700BA8C8B /* dian_black@2x.png */,
+				DFF932391DD98DF700BA8C8B /* dian_black@3x.png */,
 				DFA135791DD7028600805BA2 /* add_bankCard_auto@2x.png */,
 				DFA1357A1DD7028600805BA2 /* add_bankCard_auto@3x.png */,
 				DFA1356A1DD6FBE000805BA2 /* bankCard_add.png */,
@@ -2119,6 +2141,8 @@
 				DF8DBCDF1DD05D61002E574B /* QUItemBtnView.m */,
 				DF8DBCDB1DD05D49002E574B /* CustomBtnView.h */,
 				DF8DBCDC1DD05D49002E574B /* CustomBtnView.m */,
+				DFF9323C1DD9978000BA8C8B /* TopLeftLabel.h */,
+				DFF9323D1DD9978000BA8C8B /* TopLeftLabel.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2301,6 +2325,7 @@
 				DF539F181DD5C01F00AF228F /* user_coupon_gray.png in Resources */,
 				DF08E8541DD16A13003E4DD9 /* MobileRechargeMoneyView_person@3x.png in Resources */,
 				DFE1788F1DD558B400E06F21 /* cell_address_myplace@2x.png in Resources */,
+				DFF9323A1DD98DF700BA8C8B /* dian_black@2x.png in Resources */,
 				DFFAA7421DB744C5001CFBB5 /* LaunchScreen.storyboard in Resources */,
 				DF630D121DD440940076A92C /* order_mobile@3x.png in Resources */,
 				DFE178DA1DD5901E00E06F21 /* btn_scoreShop.png in Resources */,
@@ -2348,6 +2373,7 @@
 				DF630D4A1DD45D790076A92C /* purse_anquanma.png in Resources */,
 				040D92FA1DCAE34E00DBE42E /* ZLHomeMSGCell.xib in Resources */,
 				DFE178911DD558B400E06F21 /* shimingrenzheng_off@2x.png in Resources */,
+				DFF9323B1DD98DF700BA8C8B /* dian_black@3x.png in Resources */,
 				DF630D761DD475660076A92C /* anquantishi.png in Resources */,
 				DF630D381DD44CE60076A92C /* sigin_qianYes.png in Resources */,
 				040917901DCCA9E800DB2568 /* ZLSuperMarketShopCarView.xib in Resources */,
@@ -2678,6 +2704,7 @@
 				DF7F1BD21DCDC1FB00D2242B /* UserPaoPaoRegisterVC.m in Sources */,
 				DF630D651DD462F60076A92C /* UserIDAuthTableViewCell.m in Sources */,
 				040D92F41DCAE15300DBE42E /* ZLHomeMessageViewController.m in Sources */,
+				DFF932311DD9641A00BA8C8B /* SecurityPasswordVC.m in Sources */,
 				DF08E8591DD19F06003E4DD9 /* WuGuanFeePayVC.m in Sources */,
 				DF8DBCBC1DD01C90002E574B /* ComplaintGongsiView.m in Sources */,
 				DF98EC351DD2AE460006EBFE /* OrderTVC.m in Sources */,
@@ -2696,6 +2723,7 @@
 				04162DF81DCB2C9300FB4229 /* ZLHomeCoupCell.m in Sources */,
 				DF7F1BE61DCDD0CF00D2242B /* HMSegmentedControl.m in Sources */,
 				04B862A01DD5732B00BDEA59 /* ZLGoodsDetailWithWeb.m in Sources */,
+				DFF9323E1DD9978000BA8C8B /* TopLeftLabel.m in Sources */,
 				04D64D6C1DC9CCA5004E8859 /* ZLHomeLocationView.m in Sources */,
 				0409176C1DCC55C300DB2568 /* RKImageBrowser.m in Sources */,
 				0445AD891DD457E600788779 /* ZLGoPayPopRedBagView.m in Sources */,
