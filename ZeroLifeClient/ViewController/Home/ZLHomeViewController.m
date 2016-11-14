@@ -23,6 +23,9 @@
 #import "LifePayVC.h"
 #import "ZLTenementRepairsViewController.h"
 #import "ZLRunningManViewController.h"
+#import "BianMingVC.h"
+
+
 @interface ZLHomeViewController ()<UITableViewDelegate,UITableViewDataSource,ZLHomeScrollerTableCellDelegate,ZLHomeLocationViewDelegate,ZLCoupViewDelegate>
 
 @end
@@ -277,18 +280,22 @@
 
         [self pushViewController:ZLFixVC];
     }
-    
     else if (mIndex == 3) {
         DryCleanShopTVC *vc = [[DryCleanShopTVC alloc] init];
         vc.hidesBottomBarWhenPushed = YES;
         [self pushViewController:vc];
-    }else if (mIndex == 4){
+    }
+	else if (mIndex == 5){
         ZLRunningManViewController *ZLFixVC = [ZLRunningManViewController new];
         ZLFixVC.hidesBottomBarWhenPushed = YES;
         
         [self pushViewController:ZLFixVC];
     }
-    
+    else if (mIndex == 4) {
+        BianMingVC *vc = [[BianMingVC alloc] init];
+        vc.hidesBottomBarWhenPushed = YES;
+        [self pushViewController:vc];
+    }
 
 }
 #pragma mark ----****----banner点击方法
