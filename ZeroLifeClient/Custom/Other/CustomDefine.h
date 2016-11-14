@@ -15,7 +15,10 @@
 #import "DCWebImageManager.h"
 #import "UIImageView+WebCache.h"
 #import "WPHotspotLabel.h"
-
+#import <WPAttributedMarkup/WPHotspotLabel.h>
+#import <WPAttributedMarkup/NSString+WPAttributedMarkup.h>
+#import <WPAttributedMarkup/WPAttributedStyleAction.h>
+#import <CoreText/CoreText.h>
 
 #define  KEY_USERNAME_PASSWORD @"com.company.app.usernamepassword"
 #define  KEY_USERNAME @"com.company.app.username"
