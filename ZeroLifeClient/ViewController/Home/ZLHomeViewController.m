@@ -282,7 +282,7 @@
         DryCleanShopTVC *vc = [[DryCleanShopTVC alloc] init];
         vc.hidesBottomBarWhenPushed = YES;
         [self pushViewController:vc];
-    }else if (mIndex == 4){
+    }else if (mIndex == 5){
         ZLRunningManViewController *ZLFixVC = [ZLRunningManViewController new];
         ZLFixVC.hidesBottomBarWhenPushed = YES;
         

@@ -13,6 +13,8 @@
 #import "HMSegmentedControl.h"
 #import "ZLPPTAnounceMentViewController.h"
 #import "ZLPPTRewardViewController.h"
+#import "ZLPPTMyOrderViewController.h"
+#import "ZLPPTRateViewController.h"
 @interface ZLRunningManViewController ()<UITableViewDelegate,UITableViewDataSource,ZLRunningManHomeCellDelegate,ZLRunningManCellDelegate,ZLRuuningManHomeHeaderSectionViewDelegate>
 
 @end
@@ -44,12 +46,19 @@
 }
 
 - (void)initSecondSectionView{
+    
+    
+    
+    NSArray *mImgArr =@[IMG(@"ZLPPT_All"), IMG(@"ZLPPT_DFlower"), IMG(@"ZLPPT_DOut_Buy"), IMG(@"ZLPPT_DBuy"), IMG(@"ZLPPT_DShort"),IMG(@"ZLPPT_DBuy"), IMG(@"ZLPPT_DShort")];
+    
+    
+    
     mSecondSectionView = [ZLRuuningManHomeHeaderSectionView initSecondView];
     mSecondSectionView.frame = CGRectMake(0, 0, DEVICE_Width, 130);
     
-    HMSegmentedControl *seg = [[HMSegmentedControl alloc] initWithSectionImages:@[IMG(@"ZLPPT_All"), IMG(@"ZLPPT_DFlower"), IMG(@"ZLPPT_DOut_Buy"), IMG(@"ZLPPT_DBuy"), IMG(@"ZLPPT_DShort")]
-                                                          sectionSelectedImages:@[IMG(@"ZLPPT_All"), IMG(@"ZLPPT_DFlower"), IMG(@"ZLPPT_DOut_Buy"), IMG(@"ZLPPT_DBuy"), IMG(@"ZLPPT_DShort")]
-                                                              titlesForSections:@[@"全部", @"代买花", @"代买外卖",@"超市代买",@"短程代办"]];
+    HMSegmentedControl *seg = [[HMSegmentedControl alloc] initWithSectionImages:mImgArr
+                                                          sectionSelectedImages:mImgArr
+                                                              titlesForSections:@[@"全部", @"代买花", @"代买外卖",@"超市代买",@"短程代办",@"超市代买",@"短程代办"]];
     seg.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
     seg.selectionIndicatorHeight = 2.0f;
     seg.titleTextAttributes = @{NSFontAttributeName : [UIFont systemFontOfSize:15], NSForegroundColorAttributeName : [UIColor grayColor]};
@@ -213,7 +222,21 @@
             break;
         case 1:
         {
+            ZLPPTMyOrderViewController *vc = [ZLPPTMyOrderViewController new];
+            [self pushViewController:vc];
+        }
+            break;
+        case 2:
+        {
+
             ZLPPTRewardViewController *vc = [ZLPPTRewardViewController new];
+            [self pushViewController:vc];
+        }
+            break;
+        case 3:
+        {
+            
+            ZLPPTRateViewController *vc = [ZLPPTRateViewController new];
             [self pushViewController:vc];
         }
             break;

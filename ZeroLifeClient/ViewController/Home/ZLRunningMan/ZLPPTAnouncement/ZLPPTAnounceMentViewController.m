@@ -49,6 +49,23 @@
     
     
 }
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    
+
+    return 80;
+ 
+    
+    
+    
+}
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    
+    UIImageView *mImg = [UIImageView new];
+    mImg.backgroundColor = [UIColor lightGrayColor];
+    return mImg;
+    
+    
+}
 
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -66,8 +83,6 @@
     
     
     return 85;
-    
-    
     
     
 }

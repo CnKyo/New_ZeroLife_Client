@@ -82,6 +82,20 @@
 		049D490E1DB75CE9005A1038 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 049D490D1DB75CE9005A1038 /* CoreTelephony.framework */; };
 		049D49101DB75CEF005A1038 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 049D490F1DB75CEF005A1038 /* AdSupport.framework */; };
 		049D492C1DB76CC7005A1038 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 049D492B1DB76CC7005A1038 /* QuartzCore.framework */; };
+		04A8DA071DDAA5D3000CE048 /* ZLPPTMyOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A8DA051DDAA5D3000CE048 /* ZLPPTMyOrderCell.m */; };
+		04A8DA081DDAA5D3000CE048 /* ZLPPTMyOrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04A8DA061DDAA5D3000CE048 /* ZLPPTMyOrderCell.xib */; };
+		04A8DA0D1DDAB1E3000CE048 /* ZLPPTOrderDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A8DA0C1DDAB1E3000CE048 /* ZLPPTOrderDetailViewController.m */; };
+		04A8DA111DDAB1FF000CE048 /* ZLPPTOrderDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A8DA0F1DDAB1FF000CE048 /* ZLPPTOrderDetailCell.m */; };
+		04A8DA121DDAB1FF000CE048 /* ZLPPTOrderDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04A8DA101DDAB1FF000CE048 /* ZLPPTOrderDetailCell.xib */; };
+		04A8DA141DDAB211000CE048 /* ZLPPTOrderDetailCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04A8DA131DDAB211000CE048 /* ZLPPTOrderDetailCell2.xib */; };
+		04A8DA191DDABDDA000CE048 /* ZLPPTOrderDetailHeaderSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A8DA181DDABDD9000CE048 /* ZLPPTOrderDetailHeaderSectionView.m */; };
+		04A8DA1B1DDABDE4000CE048 /* ZLPPTOrderDetailHeaderSectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04A8DA1A1DDABDE4000CE048 /* ZLPPTOrderDetailHeaderSectionView.xib */; };
+		04A8DA1D1DDABDEF000CE048 /* ZLPPTOrderDetailHeaderSectionView2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04A8DA1C1DDABDEF000CE048 /* ZLPPTOrderDetailHeaderSectionView2.xib */; };
+		04A8DA221DDADB41000CE048 /* ZLPPTRateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A8DA211DDADB41000CE048 /* ZLPPTRateViewController.m */; };
+		04A8DA261DDADB5A000CE048 /* ZLPPTRateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A8DA241DDADB5A000CE048 /* ZLPPTRateCell.m */; };
+		04A8DA271DDADB5A000CE048 /* ZLPPTRateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04A8DA251DDADB5A000CE048 /* ZLPPTRateCell.xib */; };
+		04A8DA291DDADB6A000CE048 /* ZLPPTRateCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04A8DA281DDADB6A000CE048 /* ZLPPTRateCell2.xib */; };
+		04A8DA2D1DDAEC33000CE048 /* WKSegmentControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A8DA2C1DDAEC33000CE048 /* WKSegmentControl.m */; };
 		04B07E911DD95F26004A7294 /* ZLRunningManViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B07E901DD95F26004A7294 /* ZLRunningManViewController.m */; };
 		04B07E961DD96003004A7294 /* ZLRunningManHomeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B07E941DD96003004A7294 /* ZLRunningManHomeCell.m */; };
 		04B07E971DD96003004A7294 /* ZLRunningManHomeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04B07E951DD96003004A7294 /* ZLRunningManHomeCell.xib */; };
@@ -98,6 +112,9 @@
 		04B07EBA1DD9A643004A7294 /* ZLPPTRewardHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B07EB91DD9A643004A7294 /* ZLPPTRewardHeadView.m */; };
 		04B07EBC1DD9A649004A7294 /* ZLPPTRewardHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04B07EBB1DD9A649004A7294 /* ZLPPTRewardHeadView.xib */; };
 		04B07EBF1DD9A87A004A7294 /* ZLPPTRewardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B07EBE1DD9A87A004A7294 /* ZLPPTRewardViewController.m */; };
+		04B07EC41DD9AEFA004A7294 /* ZLPPTMyOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B07EC31DD9AEFA004A7294 /* ZLPPTMyOrderViewController.m */; };
+		04B07EC71DD9AF12004A7294 /* ZLPPTMyOrderHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B07EC61DD9AF12004A7294 /* ZLPPTMyOrderHeaderView.m */; };
+		04B07EC91DD9AF1C004A7294 /* ZLPPTMyOrderHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04B07EC81DD9AF1C004A7294 /* ZLPPTMyOrderHeaderView.xib */; };
 		04B862501DD55F1600BDEA59 /* ZLGoodsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B8624F1DD55F1600BDEA59 /* ZLGoodsDetailViewController.m */; };
 		04B862A01DD5732B00BDEA59 /* ZLGoodsDetailWithWeb.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B8629F1DD5732B00BDEA59 /* ZLGoodsDetailWithWeb.m */; };
 		04B862A41DD5786F00BDEA59 /* ZLGoodsDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B862A21DD5786F00BDEA59 /* ZLGoodsDetailCell.m */; };
@@ -521,6 +538,27 @@
 		049D490D1DB75CE9005A1038 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		049D490F1DB75CEF005A1038 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		049D492B1DB76CC7005A1038 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		04A8DA041DDAA5D3000CE048 /* ZLPPTMyOrderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPPTMyOrderCell.h; sourceTree = "<group>"; };
+		04A8DA051DDAA5D3000CE048 /* ZLPPTMyOrderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPPTMyOrderCell.m; sourceTree = "<group>"; };
+		04A8DA061DDAA5D3000CE048 /* ZLPPTMyOrderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLPPTMyOrderCell.xib; sourceTree = "<group>"; };
+		04A8DA0B1DDAB1E3000CE048 /* ZLPPTOrderDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPPTOrderDetailViewController.h; sourceTree = "<group>"; };
+		04A8DA0C1DDAB1E3000CE048 /* ZLPPTOrderDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPPTOrderDetailViewController.m; sourceTree = "<group>"; };
+		04A8DA0E1DDAB1FF000CE048 /* ZLPPTOrderDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPPTOrderDetailCell.h; sourceTree = "<group>"; };
+		04A8DA0F1DDAB1FF000CE048 /* ZLPPTOrderDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPPTOrderDetailCell.m; sourceTree = "<group>"; };
+		04A8DA101DDAB1FF000CE048 /* ZLPPTOrderDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLPPTOrderDetailCell.xib; sourceTree = "<group>"; };
+		04A8DA131DDAB211000CE048 /* ZLPPTOrderDetailCell2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLPPTOrderDetailCell2.xib; sourceTree = "<group>"; };
+		04A8DA171DDABDD9000CE048 /* ZLPPTOrderDetailHeaderSectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPPTOrderDetailHeaderSectionView.h; sourceTree = "<group>"; };
+		04A8DA181DDABDD9000CE048 /* ZLPPTOrderDetailHeaderSectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPPTOrderDetailHeaderSectionView.m; sourceTree = "<group>"; };
+		04A8DA1A1DDABDE4000CE048 /* ZLPPTOrderDetailHeaderSectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLPPTOrderDetailHeaderSectionView.xib; sourceTree = "<group>"; };
+		04A8DA1C1DDABDEF000CE048 /* ZLPPTOrderDetailHeaderSectionView2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLPPTOrderDetailHeaderSectionView2.xib; sourceTree = "<group>"; };
+		04A8DA201DDADB41000CE048 /* ZLPPTRateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPPTRateViewController.h; sourceTree = "<group>"; };
+		04A8DA211DDADB41000CE048 /* ZLPPTRateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPPTRateViewController.m; sourceTree = "<group>"; };
+		04A8DA231DDADB5A000CE048 /* ZLPPTRateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPPTRateCell.h; sourceTree = "<group>"; };
+		04A8DA241DDADB5A000CE048 /* ZLPPTRateCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPPTRateCell.m; sourceTree = "<group>"; };
+		04A8DA251DDADB5A000CE048 /* ZLPPTRateCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLPPTRateCell.xib; sourceTree = "<group>"; };
+		04A8DA281DDADB6A000CE048 /* ZLPPTRateCell2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLPPTRateCell2.xib; sourceTree = "<group>"; };
+		04A8DA2B1DDAEC33000CE048 /* WKSegmentControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKSegmentControl.h; sourceTree = "<group>"; };
+		04A8DA2C1DDAEC33000CE048 /* WKSegmentControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKSegmentControl.m; sourceTree = "<group>"; };
 		04B07E8F1DD95F26004A7294 /* ZLRunningManViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLRunningManViewController.h; sourceTree = "<group>"; };
 		04B07E901DD95F26004A7294 /* ZLRunningManViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLRunningManViewController.m; sourceTree = "<group>"; };
 		04B07E931DD96003004A7294 /* ZLRunningManHomeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLRunningManHomeCell.h; sourceTree = "<group>"; };
@@ -546,6 +584,11 @@
 		04B07EBB1DD9A649004A7294 /* ZLPPTRewardHeadView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLPPTRewardHeadView.xib; sourceTree = "<group>"; };
 		04B07EBD1DD9A87A004A7294 /* ZLPPTRewardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPPTRewardViewController.h; sourceTree = "<group>"; };
 		04B07EBE1DD9A87A004A7294 /* ZLPPTRewardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPPTRewardViewController.m; sourceTree = "<group>"; };
+		04B07EC21DD9AEFA004A7294 /* ZLPPTMyOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPPTMyOrderViewController.h; sourceTree = "<group>"; };
+		04B07EC31DD9AEFA004A7294 /* ZLPPTMyOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPPTMyOrderViewController.m; sourceTree = "<group>"; };
+		04B07EC51DD9AF12004A7294 /* ZLPPTMyOrderHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPPTMyOrderHeaderView.h; sourceTree = "<group>"; };
+		04B07EC61DD9AF12004A7294 /* ZLPPTMyOrderHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPPTMyOrderHeaderView.m; sourceTree = "<group>"; };
+		04B07EC81DD9AF1C004A7294 /* ZLPPTMyOrderHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLPPTMyOrderHeaderView.xib; sourceTree = "<group>"; };
 		04B8624E1DD55F1600BDEA59 /* ZLGoodsDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLGoodsDetailViewController.h; sourceTree = "<group>"; };
 		04B8624F1DD55F1600BDEA59 /* ZLGoodsDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLGoodsDetailViewController.m; sourceTree = "<group>"; };
 		04B8629E1DD5732B00BDEA59 /* ZLGoodsDetailWithWeb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLGoodsDetailWithWeb.h; sourceTree = "<group>"; };
@@ -1273,9 +1316,67 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		04A8DA091DDAB1CB000CE048 /* ZLPPTOrderDetail */ = {
+			isa = PBXGroup;
+			children = (
+				04A8DA0A1DDAB1CB000CE048 /* View */,
+				04A8DA0B1DDAB1E3000CE048 /* ZLPPTOrderDetailViewController.h */,
+				04A8DA0C1DDAB1E3000CE048 /* ZLPPTOrderDetailViewController.m */,
+			);
+			path = ZLPPTOrderDetail;
+			sourceTree = "<group>";
+		};
+		04A8DA0A1DDAB1CB000CE048 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				04A8DA0E1DDAB1FF000CE048 /* ZLPPTOrderDetailCell.h */,
+				04A8DA0F1DDAB1FF000CE048 /* ZLPPTOrderDetailCell.m */,
+				04A8DA101DDAB1FF000CE048 /* ZLPPTOrderDetailCell.xib */,
+				04A8DA131DDAB211000CE048 /* ZLPPTOrderDetailCell2.xib */,
+				04A8DA171DDABDD9000CE048 /* ZLPPTOrderDetailHeaderSectionView.h */,
+				04A8DA181DDABDD9000CE048 /* ZLPPTOrderDetailHeaderSectionView.m */,
+				04A8DA1A1DDABDE4000CE048 /* ZLPPTOrderDetailHeaderSectionView.xib */,
+				04A8DA1C1DDABDEF000CE048 /* ZLPPTOrderDetailHeaderSectionView2.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		04A8DA1E1DDADA39000CE048 /* ZLPPTRate */ = {
+			isa = PBXGroup;
+			children = (
+				04A8DA1F1DDADA39000CE048 /* View */,
+				04A8DA201DDADB41000CE048 /* ZLPPTRateViewController.h */,
+				04A8DA211DDADB41000CE048 /* ZLPPTRateViewController.m */,
+			);
+			path = ZLPPTRate;
+			sourceTree = "<group>";
+		};
+		04A8DA1F1DDADA39000CE048 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				04A8DA231DDADB5A000CE048 /* ZLPPTRateCell.h */,
+				04A8DA241DDADB5A000CE048 /* ZLPPTRateCell.m */,
+				04A8DA251DDADB5A000CE048 /* ZLPPTRateCell.xib */,
+				04A8DA281DDADB6A000CE048 /* ZLPPTRateCell2.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		04A8DA2A1DDAEC33000CE048 /* WKSegMentView */ = {
+			isa = PBXGroup;
+			children = (
+				04A8DA2B1DDAEC33000CE048 /* WKSegmentControl.h */,
+				04A8DA2C1DDAEC33000CE048 /* WKSegmentControl.m */,
+			);
+			path = WKSegMentView;
+			sourceTree = "<group>";
+		};
 		04B07E8E1DD95E61004A7294 /* ZLRunningMan */ = {
 			isa = PBXGroup;
 			children = (
+				04A8DA1E1DDADA39000CE048 /* ZLPPTRate */,
+				04A8DA091DDAB1CB000CE048 /* ZLPPTOrderDetail */,
+				04B07EC01DD9AEED004A7294 /* ZLPPTMyOrder */,
 				04B07EB11DD99139004A7294 /* ZLPPTReward */,
 				04B07EA71DD98D6B004A7294 /* ZLPPTAnouncement */,
 				04B07E921DD95FD9004A7294 /* View */,
@@ -1341,6 +1442,29 @@
 				04B07EB81DD9A643004A7294 /* ZLPPTRewardHeadView.h */,
 				04B07EB91DD9A643004A7294 /* ZLPPTRewardHeadView.m */,
 				04B07EBB1DD9A649004A7294 /* ZLPPTRewardHeadView.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		04B07EC01DD9AEED004A7294 /* ZLPPTMyOrder */ = {
+			isa = PBXGroup;
+			children = (
+				04B07EC11DD9AEED004A7294 /* View */,
+				04B07EC21DD9AEFA004A7294 /* ZLPPTMyOrderViewController.h */,
+				04B07EC31DD9AEFA004A7294 /* ZLPPTMyOrderViewController.m */,
+			);
+			path = ZLPPTMyOrder;
+			sourceTree = "<group>";
+		};
+		04B07EC11DD9AEED004A7294 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				04B07EC51DD9AF12004A7294 /* ZLPPTMyOrderHeaderView.h */,
+				04B07EC61DD9AF12004A7294 /* ZLPPTMyOrderHeaderView.m */,
+				04B07EC81DD9AF1C004A7294 /* ZLPPTMyOrderHeaderView.xib */,
+				04A8DA041DDAA5D3000CE048 /* ZLPPTMyOrderCell.h */,
+				04A8DA051DDAA5D3000CE048 /* ZLPPTMyOrderCell.m */,
+				04A8DA061DDAA5D3000CE048 /* ZLPPTMyOrderCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2173,6 +2297,7 @@
 		DFFAA7531DB744EF001CFBB5 /* OpenSourceLib */ = {
 			isa = PBXGroup;
 			children = (
+				04A8DA2A1DDAEC33000CE048 /* WKSegMentView */,
 				04B862AD1DD59A8F00BDEA59 /* JXLayoutButton */,
 				DF630CF71DD40AFA0076A92C /* RatingBar */,
 				DF7F1BE31DCDD0CF00D2242B /* HMSegmentedControl */,
@@ -2343,6 +2468,7 @@
 				DFE178DC1DD5901E00E06F21 /* btn_scoreShop@3x.png in Resources */,
 				04866B8A1DD40E53008DA56B /* ZLShopCarBottomView.xib in Resources */,
 				DF539F191DD5C01F00AF228F /* user_coupon_jushe.png in Resources */,
+				04B07EC91DD9AF1C004A7294 /* ZLPPTMyOrderHeaderView.xib in Resources */,
 				04866BA21DD41865008DA56B /* ZLCommitOrderBottomView.xib in Resources */,
 				0416570F1DD6A654004E7D9A /* ZLRepairsCustomView.xib in Resources */,
 				DFE178E01DD5901E00E06F21 /* cell_soukuan_item.png in Resources */,
@@ -2377,6 +2503,7 @@
 				DF630D1F1DD4435F0076A92C /* order_fix_choose_jiantou@2x.png in Resources */,
 				DFE178DB1DD5901E00E06F21 /* btn_scoreShop@2x.png in Resources */,
 				DFE178791DD556D000E06F21 /* cell_about@2x.png in Resources */,
+				04A8DA1D1DDABDEF000CE048 /* ZLPPTOrderDetailHeaderSectionView2.xib in Resources */,
 				04B07EBC1DD9A649004A7294 /* ZLPPTRewardHeadView.xib in Resources */,
 				DFA135711DD6FBE000805BA2 /* bankCard_add@3x.png in Resources */,
 				DFE178A61DD55A9A00E06F21 /* cell_img_mobile@3x.png in Resources */,
@@ -2389,8 +2516,10 @@
 				040917711DCC5E1000DB2568 /* ZLSuperMarketSearchView.xib in Resources */,
 				DFE1788C1DD558B400E06F21 /* cell_address_del@3x.png in Resources */,
 				DF630D661DD462F60076A92C /* UserIDAuthTableViewCell.xib in Resources */,
+				04A8DA141DDAB211000CE048 /* ZLPPTOrderDetailCell2.xib in Resources */,
 				DF7F1BF21DCDD5F200D2242B /* wuguan_on@2x.png in Resources */,
 				DF630D531DD45D790076A92C /* purse_zhuanzhuang.png in Resources */,
+				04A8DA271DDADB5A000CE048 /* ZLPPTRateCell.xib in Resources */,
 				DFE178AA1DD55A9A00E06F21 /* cell_img_six@3x.png in Resources */,
 				DFE1787D1DD556D000E06F21 /* cell_help@2x.png in Resources */,
 				DFE1786E1DD555C100E06F21 /* order_gouwu@3x.png in Resources */,
@@ -2428,6 +2557,7 @@
 				DFE178B61DD55E3300E06F21 /* cell_address_add@3x.png in Resources */,
 				DF630D1A1DD442960076A92C /* order_shop_fix.png in Resources */,
 				040917841DCC904B00DB2568 /* ZLSuperMarketShopLeftCellType.xib in Resources */,
+				04A8DA1B1DDABDE4000CE048 /* ZLPPTOrderDetailHeaderSectionView.xib in Resources */,
 				04B07E9C1DD9602E004A7294 /* ZLRuuningManHomeHeaderSectionView.xib in Resources */,
 				040917681DCC39DE00DB2568 /* ZLSuperMarketHeaderSectionView.xib in Resources */,
 				DFE178A71DD55A9A00E06F21 /* cell_img_nike@2x.png in Resources */,
@@ -2451,6 +2581,7 @@
 				0445AD861DD454CE00788779 /* ZLGoPaySucsessCell.xib in Resources */,
 				0445AD8B1DD457ED00788779 /* ZLGoPayPopRedBagView.xib in Resources */,
 				DFFAA73F1DB744C5001CFBB5 /* Assets.xcassets in Resources */,
+				04A8DA291DDADB6A000CE048 /* ZLPPTRateCell2.xib in Resources */,
 				DF630D391DD44CE60076A92C /* sigin_qianYes@2x.png in Resources */,
 				04B862AA1DD5972000BDEA59 /* ZLActivityView.xib in Resources */,
 				DFE178901DD558B400E06F21 /* cell_address_myplace@3x.png in Resources */,
@@ -2471,6 +2602,8 @@
 				DF630D381DD44CE60076A92C /* sigin_qianYes.png in Resources */,
 				040917901DCCA9E800DB2568 /* ZLSuperMarketShopCarView.xib in Resources */,
 				DF630D7B1DD475660076A92C /* chongzi@3x.png in Resources */,
+				04A8DA081DDAA5D3000CE048 /* ZLPPTMyOrderCell.xib in Resources */,
+				04A8DA121DDAB1FF000CE048 /* ZLPPTOrderDetailCell.xib in Resources */,
 				DFE178A91DD55A9A00E06F21 /* cell_img_six@2x.png in Resources */,
 				DFE178931DD558B400E06F21 /* shimingrenzheng_on@2x.png in Resources */,
 				DFE178E21DD5901E00E06F21 /* cell_soukuan_item@3x.png in Resources */,
@@ -2694,6 +2827,7 @@
 				DFFAA7631DB744EF001CFBB5 /* UIView+AutoSize.m in Sources */,
 				0445AD791DD44AF300788779 /* ZLGoPayViewController.m in Sources */,
 				DF08E8791DD1C072003E4DD9 /* UserAddressEditVC.m in Sources */,
+				04A8DA2D1DDAEC33000CE048 /* WKSegmentControl.m in Sources */,
 				0445AD7E1DD44CE600788779 /* ZLPayTypeTableViewCell.m in Sources */,
 				0409178E1DCCA9D500DB2568 /* ZLSuperMarketShopCarView.m in Sources */,
 				DFF634C11DB873D200B5C917 /* ScrollModelVC.m in Sources */,
@@ -2725,11 +2859,13 @@
 				DFA135561DD6CB0400805BA2 /* TransferAccountHistoryTableViewCell.m in Sources */,
 				DF539F111DD5991500AF228F /* UserCouponVC.m in Sources */,
 				DF7D0A231DBA0023005A62A7 /* ImageTextTableViewCell.m in Sources */,
+				04A8DA111DDAB1FF000CE048 /* ZLPPTOrderDetailCell.m in Sources */,
 				DF7D0A1D1DBA0019005A62A7 /* CookTVC.m in Sources */,
 				04866BA61DD41E08008DA56B /* ZLCommitOrderCell.m in Sources */,
 				04B862B01DD59A9D00BDEA59 /* JXLayoutButton.m in Sources */,
 				DF08E87F1DD1C072003E4DD9 /* UserHouseEditTableViewCell.m in Sources */,
 				0409175A1DCC313500DB2568 /* ZLSupMarketCell.m in Sources */,
+				04A8DA071DDAA5D3000CE048 /* ZLPPTMyOrderCell.m in Sources */,
 				04B07EBF1DD9A87A004A7294 /* ZLPPTRewardViewController.m in Sources */,
 				04B862A41DD5786F00BDEA59 /* ZLGoodsDetailCell.m in Sources */,
 				DF55B4701DBAFEAC00F89341 /* ZLNavViewController.m in Sources */,
@@ -2747,6 +2883,7 @@
 				DF08E8831DD1C093003E4DD9 /* FavoriteTVC.m in Sources */,
 				DFFAA73A1DB744C5001CFBB5 /* ViewController.m in Sources */,
 				DF98EC441DD2CAA10006EBFE /* OrderDetailVC.m in Sources */,
+				04B07EC71DD9AF12004A7294 /* ZLPPTMyOrderHeaderView.m in Sources */,
 				DF55B4641DBAFE6000F89341 /* ZLHomeViewController.m in Sources */,
 				DF08E8611DD1A869003E4DD9 /* FeePayHistoryTableViewCell.m in Sources */,
 				04B862501DD55F1600BDEA59 /* ZLGoodsDetailViewController.m in Sources */,
@@ -2759,11 +2896,13 @@
 				DF8DBCF31DD07CB2002E574B /* MobileRechargeVC.m in Sources */,
 				DF539F041DD5932900AF228F /* UserPayTypeTableViewCell.m in Sources */,
 				04B07EA01DD964E7004A7294 /* ZLRunningManCell.m in Sources */,
+				04B07EC41DD9AEFA004A7294 /* ZLPPTMyOrderViewController.m in Sources */,
 				04866B8B1DD40E53008DA56B /* ZLSuperMarketShopCarCell.m in Sources */,
 				DF03088D1DCD698900E1EAB6 /* QUPickPhoto.m in Sources */,
 				DF98EC4D1DD2D6BE0006EBFE /* OrderShopHeaderView.m in Sources */,
 				DFA135841DD70C3E00805BA2 /* SouKuanHistoryTVC.m in Sources */,
 				DF630D2B1DD449C10076A92C /* ZLPurseViewController.m in Sources */,
+				04A8DA0D1DDAB1E3000CE048 /* ZLPPTOrderDetailViewController.m in Sources */,
 				DF98EC381DD2AE880006EBFE /* OrderGoodsThumbListView.m in Sources */,
 				DF7F1BF71DCDDCF500D2242B /* UserComplaintAddVC.m in Sources */,
 				040D92F91DCAE34E00DBE42E /* ZLHomeMSGCell.m in Sources */,
@@ -2781,6 +2920,7 @@
 				DFA135451DD6C2A700805BA2 /* TransferAccountVC.m in Sources */,
 				04B07EB61DD99159004A7294 /* ZLPPTRewardCell.m in Sources */,
 				04D64D681DC9CC7B004E8859 /* ZLCustomBtnView.m in Sources */,
+				04A8DA221DDADB41000CE048 /* ZLPPTRateViewController.m in Sources */,
 				DF630CF01DD401F40076A92C /* BaoXiuChooseShopView.m in Sources */,
 				04B07E9A1DD96023004A7294 /* ZLRuuningManHomeHeaderSectionView.m in Sources */,
 				DF98EC3E1DD2BF7B0006EBFE /* BaoXiuGoodsView.m in Sources */,
@@ -2831,6 +2971,7 @@
 				DFFAA7341DB744C5001CFBB5 /* main.m in Sources */,
 				04B862A81DD5971900BDEA59 /* ZLActivityView.m in Sources */,
 				0409175E1DCC336000DB2568 /* ZLSuperMarketShopCell.m in Sources */,
+				04A8DA191DDABDDA000CE048 /* ZLPPTOrderDetailHeaderSectionView.m in Sources */,
 				0416570D1DD6A64D004E7D9A /* ZLRepairsCustomView.m in Sources */,
 				040917791DCC664300DB2568 /* ZLSuperMarketShopViewController.m in Sources */,
 				DF7D0A1E1DBA0019005A62A7 /* CookDetailVC.m in Sources */,
@@ -2843,6 +2984,7 @@
 				DFA135601DD6EB6C00805BA2 /* WithDrawalVC.m in Sources */,
 				DF5C49041DBA1BEC006E4825 /* DCWebImageManager.m in Sources */,
 				DF08E87E1DD1C072003E4DD9 /* UserAddressTableViewCell.m in Sources */,
+				04A8DA261DDADB5A000CE048 /* ZLPPTRateCell.m in Sources */,
 				DFA135691DD6F90900805BA2 /* BankCardTVC.m in Sources */,
 				04C6A3731DCB07B9002C4D4A /* Util.m in Sources */,
 				DF8DBCE01DD05D61002E574B /* QUItemBtnView.m in Sources */,

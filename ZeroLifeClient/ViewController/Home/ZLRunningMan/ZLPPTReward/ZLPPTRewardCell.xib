@@ -18,8 +18,8 @@
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ZLPPTReward_S" translatesAutoresizingMaskIntoConstraints="NO" id="Q4O-9y-aIM">
                         <constraints>
-                            <constraint firstAttribute="width" constant="30" id="Yxc-am-pzG"/>
-                            <constraint firstAttribute="height" constant="30" id="nOo-He-lyF"/>
+                            <constraint firstAttribute="width" constant="28" id="Yxc-am-pzG"/>
+                            <constraint firstAttribute="height" constant="27" id="nOo-He-lyF"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pEj-g6-J7L">
@@ -73,6 +73,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="ZLPPTReward_S" width="30" height="30"/>
+        <image name="ZLPPTReward_S" width="27" height="24"/>
     </resources>
 </document>
