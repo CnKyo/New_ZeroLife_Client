@@ -25,18 +25,21 @@
         UIImageView *imgView = [superView newUIImageViewWithImg:IMG(@"order_address_place.png")];
 //        self.addressLable = [superView newUILableWithText:addressStr textColor:[UIColor grayColor] font:font];
 //        self.addressLable.numberOfLines = 0;
-        self.addressLable = [superView newUITextView];
+        self.addressLable = [[TopLeftLabel alloc] init];
         self.addressLable.font = font;
         self.addressLable.text = addressStr;
+        self.addressLable.numberOfLines = 0;
+        self.addressLable.textColor = [UIColor colorWithWhite:0.3 alpha:1];
+        [superView addSubview:_addressLable];
         //self.addressLable.backgroundColor = [UIColor redColor];
-        self.addressLable.editable = NO;
-        self.addressLable.scrollEnabled = NO;
+//        self.addressLable.editable = NO;
+//        self.addressLable.scrollEnabled = NO;
         
         [imgView makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(superView.left).offset(padding);
-            make.width.equalTo(15);
-            make.height.equalTo(20);
-            make.top.equalTo(_addressLable.top).offset(padding);
+            make.width.equalTo(14);
+            make.height.equalTo(18);
+            make.top.equalTo(_addressLable.top);
         }];
         
         
@@ -74,8 +77,8 @@
             if (lastView == nil)
                 make.top.equalTo(superView.top);
             else
-                make.top.equalTo(lastView.bottom).offset(-padding/2);
-            make.height.equalTo(50);
+                make.top.equalTo(lastView.bottom);
+            make.height.greaterThanOrEqualTo(40);
         }];
         
         UIImageView *lineView2 = [superView newUIImageViewWithImg:IMG(@"order_hengxian_hua.png")];

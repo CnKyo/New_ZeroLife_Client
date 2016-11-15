@@ -9,5 +9,5 @@
 #import "CustomVC.h"
 
 @interface UserHouseEditVC : CustomVC
-
+@property(nonatomic,strong) HouseObject *item;
 @end

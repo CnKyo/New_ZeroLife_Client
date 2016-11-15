@@ -14,6 +14,7 @@
 #import <JKCategories/JKUIKit.h>
 #import <BlocksKit/BlocksKit+UIKit.h>
 #import <BlocksKit/UIBarButtonItem+BlocksKit.h>
+#import <IQKeyboardManager/IQKeyboardManager.h>
 #import "UIView+Name.h"
 #import "UIView+AutoSize.h"
 #import "UIButton+CustomLocal.h"

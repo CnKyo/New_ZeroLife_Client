@@ -171,6 +171,12 @@ static NSString* const  kAFAppDotNetApiBaseURLString    = @"http://shop.hookwin.
 
 
 typedef enum {
+    kUserSexType_man,//
+    kUserSexType_woman,//
+    kUserSexType_uknown,//
+} kUserSexType; //用户性别
+
+typedef enum {
     kOrderClassType_goods,//购物订单
     kOrderClassType_baoxiu,//报修订单
     kOrderClassType_ganxi,//干洗订单

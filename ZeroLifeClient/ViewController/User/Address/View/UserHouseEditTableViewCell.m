@@ -10,6 +10,7 @@
 
 @implementation UserHouseEditTableViewCell
 
+
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
@@ -19,6 +20,17 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+-(void)reloadSexUI:(kUserSexType)sex
+{
+    if (sex == kUserSexType_man) {
+        [self.sexManBtn setImage:IMG(@"shimingrenzheng_on.png") forState:UIControlStateNormal];
+        [self.sexWomanBtn setImage:IMG(@"shimingrenzheng_off.png") forState:UIControlStateNormal];
+    } else if (sex == kUserSexType_woman) {
+        [self.sexManBtn setImage:IMG(@"shimingrenzheng_off.png") forState:UIControlStateNormal];
+        [self.sexWomanBtn setImage:IMG(@"shimingrenzheng_on.png") forState:UIControlStateNormal];
+    }
 }
 
 @end

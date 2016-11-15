@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "UIView+AutoSize.h"
 #import "CustomDefine.h"
+#import "TopLeftLabel.h"
 
 @interface OrderBeizhuView : UIView
-@property(nonatomic,strong) UILabel *beizhuLable;
+@property(nonatomic,strong) TopLeftLabel *beizhuLable;
 @end

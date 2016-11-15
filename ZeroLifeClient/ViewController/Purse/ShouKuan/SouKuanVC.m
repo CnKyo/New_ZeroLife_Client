@@ -25,10 +25,7 @@
     
     UIView *superView = self.view;
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] bk_initWithTitle:@"收款记录" style:UIBarButtonItemStylePlain handler:^(id  _Nonnull sender) {
-        SouKuanHistoryTVC *vc = [[SouKuanHistoryTVC alloc] init];
-        [self.navigationController pushViewController:vc animated:YES];
-    }];
+
     
     
     CAGradientLayer *gradientLayer = [CAGradientLayer layer];  // 设置渐变效果
@@ -106,8 +103,12 @@
 {
     [super viewWillAppear:animated];
     
-    [self.navigationController.navigationBar jk_setBackgroundColor:COLOR(74, 184, 196)];
-     //[self.navigationController.navigationBar setBackgroundImage:[UIImage jk_imageWithColor:COLOR(74, 184, 196)] forBarMetrics:UIBarMetricsDefault];
+    //[self.navigationController.navigationBar jk_setBackgroundColor:COLOR(74, 184, 196)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] bk_initWithTitle:@"收款记录" style:UIBarButtonItemStylePlain handler:^(id  _Nonnull sender) {
+        SouKuanHistoryTVC *vc = [[SouKuanHistoryTVC alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }];
+     [self.navigationController.navigationBar setBackgroundImage:[UIImage jk_imageWithColor:COLOR(74, 184, 196)] forBarMetrics:UIBarMetricsDefault];
 }
 
 -(void)viewWillDisappear:(BOOL)animated

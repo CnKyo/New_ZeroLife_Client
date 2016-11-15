@@ -17,14 +17,14 @@
         self.backgroundColor = COLOR(245, 245, 245);
         
         float padding = 10;
-        UIFont *font = [UIFont systemFontOfSize:14];
+        UIFont *font = [UIFont systemFontOfSize:13];
         UIView *superView = self;
         
         self.imgView = [superView newUIImageViewWithImg:IMG(@"choose_on.png")];
         
         
         self.nameLable = [superView newUILableWithText:@"康师傅方便面" textColor:[UIColor colorWithWhite:0.3 alpha:1] font:font];
-        self.sizeLable = [superView newUILableWithText:@"规格：120g" textColor:[UIColor colorWithWhite:0.3 alpha:1] font:font];
+        self.sizeLable = [superView newUILableWithText:@"规格：120g" textColor:[UIColor grayColor] font:font];
         self.priceLable = [superView newUILableWithText:@"￥3.50" textColor:[UIColor blackColor] font:font textAlignment:NSTextAlignmentRight];
         self.countLable = [superView newUILableWithText:@"x 1" textColor:[UIColor grayColor] font:font textAlignment:NSTextAlignmentRight];
         self.nameLable.numberOfLines = 0;

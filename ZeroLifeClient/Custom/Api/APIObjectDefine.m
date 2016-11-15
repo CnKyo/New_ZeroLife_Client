@@ -252,9 +252,18 @@
 
 
 
-@implementation UserAddressObject
+@implementation AddressObject
++(AddressObject *)defaultAddress
+{
+    AddressObject *item = [AddressObject searchSingleWithWhere:@"is_default=1" orderBy:nil];
+    return item;
+}
 @end
 
+
+
+@implementation HouseObject
+@end
 
 
 @implementation CouponObject

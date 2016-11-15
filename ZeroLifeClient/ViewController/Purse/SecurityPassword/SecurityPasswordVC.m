@@ -295,7 +295,7 @@
     UIView *superView = self.view;
     int padding = 10;
     UIFont *font = [UIFont systemFontOfSize:14];
-    UIColor *color = [UIColor grayColor];
+    UIColor *color = [UIColor colorWithWhite:0.4 alpha:1];
     
     
     UIView *noteView = ({

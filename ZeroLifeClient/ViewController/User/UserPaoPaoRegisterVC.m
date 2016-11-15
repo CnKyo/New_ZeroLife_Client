@@ -7,6 +7,7 @@
 //
 
 #import "UserPaoPaoRegisterVC.h"
+#import "UserRechargeMoneyVC.h"
 
 @interface UserPaoPaoRegisterVC ()
 
@@ -45,16 +46,20 @@
 
 //去充值
 - (IBAction)goChongziMethod:(id)sender {
+    UserRechargeMoneyVC *vc = [[UserRechargeMoneyVC alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 
 //支付
 - (IBAction)payMethod:(id)sender {
+    
 }
 
 
 //选择协议
 - (IBAction)xieyiChooseMethod:(id)sender {
+    
 }
 
 @end

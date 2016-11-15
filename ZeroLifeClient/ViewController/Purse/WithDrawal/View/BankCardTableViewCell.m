@@ -17,6 +17,7 @@
         // Initialization code.
         self.selectionStyle=UITableViewCellSelectionStyleGray;
         [self.contentView setAutoresizingMask:UIViewAutoresizingFlexibleHeight];
+        self.backgroundColor = COLOR(246, 246, 246);
         
         float padding = 10;
         UIView *superView = self.contentView;

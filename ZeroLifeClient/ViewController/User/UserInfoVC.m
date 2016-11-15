@@ -85,10 +85,12 @@
         
         UIView *superView = cell.contentView;
         int padding = 10;
+        UIFont *font = [UIFont systemFontOfSize:14];
         UIImageView *imgView = [superView newUIImageView];
-        UILabel *textLable = [superView newUILableWithText:@"" textColor:[UIColor colorWithWhite:0.4 alpha:1] font:[UIFont systemFontOfSize:14]];
+        UILabel *textLable = [superView newUILableWithText:@"" textColor:[UIColor colorWithWhite:0.4 alpha:1] font:font];
         UITextField *field = [superView newUITextField];
         field.textAlignment = NSTextAlignmentRight;
+        field.font = font;
         imgView.tag = 11;
         textLable.tag = 12;
         field.tag = 13;

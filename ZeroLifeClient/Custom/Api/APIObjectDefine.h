@@ -12,7 +12,7 @@
 #import <MJExtension/MJExtension.h>
 
 
-#pragma mark - NSDictionary
+#pragma mark - NSDictionary自定义
 @interface NSDictionary (QUAdditions)
 -(id)objectWithKey:(NSString *)key; //返回有效值
 @end
@@ -83,7 +83,7 @@
 
 
 
-
+#pragma mark - APIObject 接口外层对象
 @interface APIObject : NSObject
 @property (nonatomic,strong) id                 data;         //正文
 @property (nonatomic,strong) NSString *         msg;   //错误消息
@@ -95,7 +95,7 @@
 
 
 
-
+#pragma mark -  用户订单对象
 @interface OrderObject : NSObject
 @property (nonatomic,strong) NSString *         iD;         //
 @property (nonatomic,assign) kOrderClassType    type;         //
@@ -104,20 +104,44 @@
 
 
 
-//用户地址对象
-@interface UserAddressObject : NSObject
-@property (nonatomic,strong) NSString *         iD;         //
+#pragma mark -  用户地址对象
+@interface AddressObject : NSObject
+@property(nonatomic,strong) NSString *              iD;         //
+@property(nonatomic,assign) kUserSexType            sex;         //
+@property(nonatomic,strong) NSString *              user_id;            //用户id
+@property(nonatomic,strong) NSString *              consignee;          // 收货人姓名
+@property(nonatomic,strong) NSString *              mobile;             // 手机号
+@property(nonatomic,strong) NSString *              area_code;           //地区编码
+@property(nonatomic,strong) NSString *              address;            // 详细地址
+@property(nonatomic,assign) BOOL                    is_default;         // 是否为默认地址
+@property(nonatomic,strong) NSString *              zipcode;            // 邮编
++(AddressObject *)defaultAddress; //默认选择地区
 @end
 
 
-//用户优惠券
+#pragma mark -  用户房屋对象
+@interface HouseObject : NSObject
+@property(nonatomic,strong) NSString *              iD;         //
+@property(nonatomic,assign) kUserSexType            sex;         //
+@property(nonatomic,strong) NSString *              user_id;            //用户id
+@property(nonatomic,strong) NSString *              real_name;          // 联系人姓名
+@property(nonatomic,strong) NSString *              mobile;             // 手机号
+@property(nonatomic,strong) NSString *              xiaoqu;              // 小区id
+@property(nonatomic,strong) NSString *              area_code;           //地区编码
+@property(nonatomic,strong) NSString *              address;            // 详细地址
+@end
+
+
+
+#pragma mark -  用户优惠券对象
 @interface CouponObject : NSObject
 @property (nonatomic,strong) NSString *         iD;         //
 @property (nonatomic,assign) kCouponType        type;
 @end
 
 
-//用户银行卡
+
+#pragma mark -  用户银行卡对象
 @interface BankCardObject : NSObject
 @property (nonatomic,strong) NSString *         iD;         //
 @property (nonatomic,strong) NSString *         name;         //

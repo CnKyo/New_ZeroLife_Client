@@ -52,7 +52,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.tableArr.count > 0)
-        return 70;
+        return 60;
     return [super tableView:tableView heightForRowAtIndexPath:indexPath];
 }
 

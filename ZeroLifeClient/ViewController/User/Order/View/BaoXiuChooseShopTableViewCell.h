@@ -17,7 +17,11 @@
 @property(nonatomic,strong) UILabel *priceLable;
 @property(nonatomic,strong) RatingBar *ratingBarView;
 @property(nonatomic,strong) UIButton *chooseBtn;
-@property(nonatomic,strong) UILabel *extensionLable1;
-@property(nonatomic,strong) UILabel *extensionLable2;
-@property(nonatomic,strong) UILabel *extensionLable3;
+//@property(nonatomic,strong) UILabel *extensionLable1;
+//@property(nonatomic,strong) UILabel *extensionLable2;
+//@property(nonatomic,strong) UILabel *extensionLable3;
+
+@property(nonatomic,strong) UIButton *extensionBtn1;
+@property(nonatomic,strong) UIButton *extensionBtn2;
+@property(nonatomic,strong) UIButton *extensionBtn3;
 @end

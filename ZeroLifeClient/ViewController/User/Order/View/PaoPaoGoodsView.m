@@ -33,7 +33,7 @@
         
         self.nameLable = [superView newUILableWithText:@"帮我买一瓶脉动5块的" textColor:[UIColor blackColor] font:font];
         self.msgLable = [superView newUILableWithText:@"维修说明维修说明维修说明维修说明维修说明维修说明维修说" textColor:[UIColor grayColor] font:font];
-        self.priceLable = [superView newUILableWithText:@"酬金\n￥3.00" textColor:[UIColor blackColor] font:font textAlignment:NSTextAlignmentCenter];
+        self.priceLable = [superView newUILableWithText:@"酬金\n\n￥3.00" textColor:[UIColor blackColor] font:font textAlignment:NSTextAlignmentCenter];
         self.nameLable.numberOfLines = 0;
         self.msgLable.numberOfLines = 0;
         self.priceLable.numberOfLines = 0;

@@ -17,18 +17,17 @@
         self.backgroundColor = [UIColor whiteColor];
         
         float padding = 10;
-        UIFont *font = [UIFont systemFontOfSize:15];
-        UIColor *color = [UIColor grayColor];
+        UIFont *font = [UIFont systemFontOfSize:14];
         UIView *superView = self;
         
         self.shopIconImgView = [superView newUIImageViewWithImg:IMG(@"order_shop_icon.png")];
-        self.shopNameLable = [superView newUILableWithText:@"超尔店铺" textColor:color font:font];
+        self.shopNameLable = [superView newUILableWithText:@"超尔店铺" textColor:[UIColor colorWithWhite:0.2 alpha:1] font:font];
         self.orderStatusLable = [superView newUILableWithText:@"待支付" textColor:COLOR(254, 102, 0) font:font textAlignment:NSTextAlignmentRight];
         
         [self.shopIconImgView makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(superView.left).offset(padding);
             make.centerY.equalTo(_shopNameLable.centerY);
-            make.width.height.equalTo(20);
+            make.width.height.equalTo(15);
         }];
         [self.shopNameLable makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(_shopIconImgView.right).offset(padding/2);

@@ -20,8 +20,8 @@
         self.backgroundColor = [UIColor whiteColor];
         
         float padding = 10;
-        UIFont *font = [UIFont systemFontOfSize:14];
-        UIColor *color = [UIColor grayColor];
+        UIFont *font = [UIFont systemFontOfSize:13];
+        UIColor *color = [UIColor colorWithWhite:0.3 alpha:1];
         UIView *superView = self.contentView;
         
         self.shopView = [[OrderShopHeaderView alloc] init];
@@ -51,6 +51,12 @@
         self.actionBtn2 = [superView newUIButton];
         self.actionBtn1.titleLabel.font = font;
         self.actionBtn2.titleLabel.font = font;
+        self.actionBtn1.layer.borderColor = color.CGColor;
+        self.actionBtn2.layer.borderColor = color.CGColor;
+        self.actionBtn1.layer.borderWidth = 1;
+        self.actionBtn2.layer.borderWidth = 1;
+        self.actionBtn1.layer.cornerRadius = 3;
+        self.actionBtn2.layer.cornerRadius = 3;
         [self.actionBtn1 setTitle:@"取消支付" forState:UIControlStateNormal];
         [self.actionBtn2 setTitle:@"去支付" forState:UIControlStateNormal];
         [self.actionBtn1 setTitleColor:color forState:UIControlStateNormal];
@@ -106,7 +112,7 @@
         [self.orderTimeLable makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(superView.left).offset(padding);
             make.top.equalTo(lineView.bottom);
-            make.height.equalTo(40);
+            make.height.equalTo(50);
         }];
         [self.actionBtn2 makeConstraints:^(MASConstraintMaker *make) {
             make.right.equalTo(superView.right).offset(-padding);

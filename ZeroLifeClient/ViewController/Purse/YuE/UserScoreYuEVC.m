@@ -51,6 +51,12 @@
         make.top.equalTo(headerView.bottom);
         make.height.equalTo(40);
     }];
+    UIView *lineView = [superView newDefaultLineView];
+    [lineView makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(superView);
+        make.bottom.equalTo(xfjlLable.bottom);
+        make.height.equalTo(OnePixNumber);
+    }];
     
     [self addTableView];
     [self setTableViewHaveHeaderFooter];
@@ -110,7 +116,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.tableArr.count > 0)
-        return 50;
+        return 60;
     return [super tableView:tableView heightForRowAtIndexPath:indexPath];
 }
 
