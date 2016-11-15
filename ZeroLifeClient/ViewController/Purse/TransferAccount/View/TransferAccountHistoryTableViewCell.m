@@ -26,7 +26,7 @@
         UIColor *clolr1 = [UIColor blackColor];
         UIColor *color2 = [UIColor grayColor];
         UIFont *font1 = [UIFont systemFontOfSize:14];
-        UIFont *font2 = [UIFont systemFontOfSize:14];
+        UIFont *font2 = [UIFont systemFontOfSize:13];
         self.nameLable = [superView newUILableWithText:@"张三" textColor:clolr1 font:font1];
         self.timeLable = [superView newUILableWithText:@"2016-10-05 10:23:42" textColor:color2 font:font2];
         self.moneyLable = [superView newUILableWithText:@"-50" textColor:clolr1 font:font1 textAlignment:NSTextAlignmentRight];
@@ -36,13 +36,13 @@
         
         [self.moneyLable makeConstraints:^(MASConstraintMaker *make) {
             make.right.equalTo(superView.right).offset(-padding);
-            make.top.equalTo(superView.top).offset(padding/2);
+            make.top.equalTo(superView.top).offset(padding);
             make.width.equalTo(80);
         }];
         [self.statusLable makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(_moneyLable.bottom);
             make.left.right.height.equalTo(_moneyLable);
-            make.bottom.equalTo(superView.bottom).offset(-padding/2);
+            make.bottom.equalTo(superView.bottom).offset(-padding);
         }];
         
         [self.nameLable makeConstraints:^(MASConstraintMaker *make) {

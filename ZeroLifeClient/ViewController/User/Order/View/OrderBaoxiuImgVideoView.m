@@ -18,8 +18,8 @@
         self.backgroundColor = COLOR(255, 255, 255);
         
         float padding = 10;
-        UIFont *font = [UIFont systemFontOfSize:14];
-        UIColor *color = COLOR(170, 170, 170);
+        UIFont *font = [UIFont systemFontOfSize:13];
+        UIColor *color = [UIColor colorWithWhite:0.3 alpha:1];
         UIView *superView = self;
         
         UILabel *noteLable = [superView newUILableWithText:@"维权信息" textColor:color font:font];
@@ -36,7 +36,7 @@
 
         [noteLable makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(superView.left).offset(padding);
-            make.top.equalTo(superView.top);
+            make.top.equalTo(superView.top).offset(padding/2);
             make.height.equalTo(20);
             make.right.equalTo(superView.right).offset(-padding);
         }];

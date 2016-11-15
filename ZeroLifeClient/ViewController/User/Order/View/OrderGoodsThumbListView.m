@@ -25,8 +25,8 @@
         self.backgroundColor = COLOR(245, 245, 245);
         
         float padding = 10;
-        UIFont *font = [UIFont systemFontOfSize:15];
-        UIColor *color = [UIColor grayColor];
+        UIFont *font = [UIFont systemFontOfSize:13];
+        //UIColor *color = [UIColor grayColor];
         UIView *superView = self;
         
         self.imgView1 = [superView newUIImageViewWithImg:IMG(@"choose_on.png")];
@@ -35,7 +35,7 @@
         UIImageView *imgView = [superView newUIImageViewWithImg:IMG(@"choose_on.png")];
         
         
-        self.countLable = [superView newUILableWithText:@"共3件" textColor:[UIColor blackColor] font:font textAlignment:NSTextAlignmentRight];
+        self.countLable = [superView newUILableWithText:@"共3件" textColor:[UIColor grayColor] font:font textAlignment:NSTextAlignmentRight];
         
         [imgView makeConstraints:^(MASConstraintMaker *make) {
             make.width.height.equalTo(15);

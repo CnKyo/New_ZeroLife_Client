@@ -19,7 +19,7 @@
         self.selectionStyle=UITableViewCellSelectionStyleGray;
         [self.contentView setAutoresizingMask:UIViewAutoresizingFlexibleHeight];
         
-        float padding = 5;
+        float padding = 10;
         UIFont *font = [UIFont systemFontOfSize:15];
         UIColor *color = [UIColor grayColor];
         UIView *superView = self.contentView;
@@ -27,7 +27,7 @@
         self.iconImgView = [superView newUIImageViewWithImg:IMG(@"choose_on.png")];
         self.nameLable = [superView newUILableWithText:@"" textColor:[UIColor blackColor] font:font];
         self.timeLable = [superView newUILableWithText:@"" textColor:color font:font textAlignment:NSTextAlignmentRight];
-        self.msgLable = [superView newUILableWithText:@"" textColor:color font:font ];
+        self.msgLable = [superView newUILableWithText:@"" textColor:color font:[UIFont systemFontOfSize:14] ];
         
         [self.iconImgView makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(superView.left).offset(padding);

@@ -9,5 +9,5 @@
 #import "CustomVC.h"
 
 @interface UserAddressEditVC : CustomVC
-
+@property(nonatomic,strong) AddressObject *item;
 @end

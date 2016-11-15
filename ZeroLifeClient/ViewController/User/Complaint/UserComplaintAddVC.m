@@ -25,7 +25,7 @@
 {
     [super loadView];
     UIView *superView = self.view;
-    int padding = 10;
+    //int padding = 10;
     
     HMSegmentedControl *seg = [[HMSegmentedControl alloc] initWithSectionImages:@[IMG(@"juming_off.png"), IMG(@"wuguan_off.png"), IMG(@"gongsi_off.png")]
                                                           sectionSelectedImages:@[IMG(@"juming_on.png"), IMG(@"wuguan_on.png"), IMG(@"gongsi_on.png")]

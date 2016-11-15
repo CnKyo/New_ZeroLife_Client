@@ -20,16 +20,17 @@
         
         float padding = 5;
         UIFont *font = [UIFont systemFontOfSize:15];
+        UIFont *font2 = [UIFont systemFontOfSize:13];
         UIColor *color = [UIColor grayColor];
         UIView *superView = self.contentView;
         
-        UIImageView *iconView1 = [superView newUIImageViewWithImg:IMG(@"choose_on.png")];
-        UIImageView *iconView2 = [superView newUIImageViewWithImg:IMG(@"choose_on.png")];
+        UIImageView *iconView1 = [superView newUIImageViewWithImg:IMG(@"ganxi_shijian.png")];
+        UIImageView *iconView2 = [superView newUIImageViewWithImg:IMG(@"ganxi_xiaoliang.png")];
         self.iconImgView = [superView newUIImageViewWithImg:IMG(@"choose_on.png")];
         self.nameLable = [superView newUILableWithText:@"" textColor:[UIColor blackColor] font:font];
-        self.timeLable = [superView newUILableWithText:@"" textColor:color font:font];
-        self.saleLable = [superView newUILableWithText:@"" textColor:color font:font];
-        self.distanceLable = [superView newUILableWithText:@"" textColor:color font:font textAlignment:NSTextAlignmentRight];
+        self.timeLable = [superView newUILableWithText:@"" textColor:color font:font2];
+        self.saleLable = [superView newUILableWithText:@"" textColor:color font:font2];
+        self.distanceLable = [superView newUILableWithText:@"" textColor:color font:font2 textAlignment:NSTextAlignmentRight];
         
         [self.iconImgView makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(superView.left).offset(padding);
@@ -54,7 +55,7 @@
             make.bottom.equalTo(_iconImgView.bottom);
         }];
         [iconView1 makeConstraints:^(MASConstraintMaker *make) {
-            make.width.height.equalTo(15);
+            make.width.height.equalTo(13);
             make.centerY.equalTo(_timeLable.centerY);
             make.left.equalTo(_nameLable.left);
         }];

@@ -9,11 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "UIView+AutoSize.h"
 #import "CustomDefine.h"
+#import "TopLeftLabel.h"
 
 @interface OrderAddressView : UIView
 @property(nonatomic,strong) UILabel *noteLable;
 @property(nonatomic,strong) UILabel *nameLable;
-@property(nonatomic,strong) UITextView *addressLable;
+@property(nonatomic,strong) TopLeftLabel *addressLable;
 
 - (id)initWithNote:(NSString *)noteStr name:(NSString *)nameStr address:(NSString *)addressStr;
 

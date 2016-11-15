@@ -9,8 +9,8 @@
 #import "UserAddressEditVC.h"
 #import "UserAddressEditTableViewCell.h"
 
-@interface UserAddressEditVC ()
-
+@interface UserAddressEditVC ()<UITextFieldDelegate>
+@property(nonatomic,strong) UserAddressEditTableViewCell *customCell;
 @end
 
 @implementation UserAddressEditVC
@@ -20,17 +20,33 @@
     [super loadView];
     
     [self addTableViewWithStyleGrouped];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     [self.tableView registerNib:[UserAddressEditTableViewCell jk_nib] forCellReuseIdentifier:[UserAddressEditTableViewCell reuseIdentifier]];
 
     UIView *footerView = ({
-        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, DEVICE_Width, 100)];
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, DEVICE_Width, 80)];
         UIButton *btn11 = [view newUIButton];
-        btn11.frame = CGRectMake(10, 50, view.bounds.size.width-20, 50);
+        btn11.frame = CGRectMake(10, 30, view.bounds.size.width-20, 50);
         [btn11 setTitle:@"确认" forState:UIControlStateNormal];
         [btn11 setStyleNavColor];
         [btn11 jk_addActionHandler:^(NSInteger tag) {
+            [[IQKeyboardManager sharedManager] resignFirstResponder];
             
+            if (_item.consignee.length == 0) {
+                [SVProgressHUD showErrorWithStatus:@"请输入收货联系人"];
+                return ;
+            }
+            
+            if (_item.mobile.length == 0) {
+                [SVProgressHUD showErrorWithStatus:@"请输入联系电话"];
+                return ;
+            }
+            
+            if (_item.address.length == 0) {
+                [SVProgressHUD showErrorWithStatus:@"请输入详细地址"];
+                return ;
+            }
         }];
         view;
     });
@@ -39,7 +55,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title =  @"添加地址";
+    
+    
+    if (_item == nil) {
+        self.title =  @"添加地址";
+        self.item = [AddressObject new];
+        self.item.sex = kUserSexType_man;
+    } else {
+        self.title =  @"编辑地址";
+    }
 }
 
 
@@ -58,6 +82,19 @@
  }
  */
 
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    if (textField == _customCell.consigneeField) {
+        self.item.consignee = textField.text;
+    }
+    else if (textField == _customCell.mobileField) {
+        self.item.mobile = textField.text;
+    }
+    else if (textField == _customCell.addressField) {
+        self.item.address = textField.text;
+    }
+}
+
 #pragma mark -- tableviewDelegate
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -66,15 +103,29 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 260;
+    return 330;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UserAddressEditTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[UserAddressEditTableViewCell reuseIdentifier]];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.backgroundColor = [UIColor whiteColor];
+    cell.consigneeField.delegate = self;
+    cell.mobileField.delegate = self;
+    cell.addressField.delegate = self;
     
+    [cell reloadSexUI:_item.sex];
+
+    [cell.sexManBtn jk_addActionHandler:^(NSInteger tag) {
+        self.item.sex = kUserSexType_man;
+        [cell reloadSexUI:_item.sex];
+    }];
+    [cell.sexWomanBtn jk_addActionHandler:^(NSInteger tag) {
+        self.item.sex = kUserSexType_woman;
+        [cell reloadSexUI:_item.sex];
+    }];
+    
+    self.customCell = cell;
     return cell;
     
 }

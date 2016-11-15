@@ -129,10 +129,10 @@
     
     OrderBeizhuView *beizhuView = [[OrderBeizhuView alloc] init];
     [superView addSubview:beizhuView];
-    [beizhuView makeConstraints:^(MASConstraintMaker *make) {
+    [beizhuView updateConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(superView);
         make.top.equalTo(lastView.bottom);
-        make.height.equalTo(80);
+        //make.height.equalTo(80);
         //make.height.equalTo(_beizhuView.width).multipliedBy(0.3);
     }];
     lastView = beizhuView;

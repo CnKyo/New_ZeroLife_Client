@@ -9,6 +9,7 @@
 #import "SouKuanVC.h"
 #import <JKCategories/UIColor+JKGradient.h>
 #import "SouKuanHistoryTVC.h"
+#import <JKCategories/UINavigationBar+JKAwesome.h>
 
 @interface SouKuanVC ()
 
@@ -24,10 +25,7 @@
     
     UIView *superView = self.view;
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] bk_initWithTitle:@"收款记录" style:UIBarButtonItemStylePlain handler:^(id  _Nonnull sender) {
-        SouKuanHistoryTVC *vc = [[SouKuanHistoryTVC alloc] init];
-        [self.navigationController pushViewController:vc animated:YES];
-    }];
+
     
     
     CAGradientLayer *gradientLayer = [CAGradientLayer layer];  // 设置渐变效果
@@ -104,13 +102,20 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    //[self.navigationController.navigationBar jk_setBackgroundColor:COLOR(74, 184, 196)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] bk_initWithTitle:@"收款记录" style:UIBarButtonItemStylePlain handler:^(id  _Nonnull sender) {
+        SouKuanHistoryTVC *vc = [[SouKuanHistoryTVC alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }];
      [self.navigationController.navigationBar setBackgroundImage:[UIImage jk_imageWithColor:COLOR(74, 184, 196)] forBarMetrics:UIBarMetricsDefault];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar jk_reset];
+    //[self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
 }
 
 - (void)didReceiveMemoryWarning {

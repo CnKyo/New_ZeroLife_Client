@@ -52,7 +52,10 @@
         make.left.right.bottom.equalTo(superView);
         make.height.equalTo(50);
     }];
-    
+    [self.tableView remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.equalTo(superView);
+        make.bottom.equalTo(footerView.top);
+    }];
 }
 
 - (void)viewDidLoad {

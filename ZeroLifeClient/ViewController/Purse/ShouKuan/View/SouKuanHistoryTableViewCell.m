@@ -26,7 +26,7 @@
         UIColor *clolr1 = [UIColor blackColor];
         UIColor *color2 = [UIColor grayColor];
         UIFont *font1 = [UIFont systemFontOfSize:14];
-        UIFont *font2 = [UIFont systemFontOfSize:14];
+        UIFont *font2 = [UIFont systemFontOfSize:13];
         self.imgView = [superView newUIImageViewWithImg:IMG(@"cell_img_touxiang_defult.png")];
         self.nameLable = [superView newUILableWithText:@"张三" textColor:clolr1 font:font1];
         self.timeLable = [superView newUILableWithText:@"2016-10-05 10:23:42" textColor:color2 font:font2];
