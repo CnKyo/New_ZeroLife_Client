@@ -298,6 +298,15 @@
 		DF993D401DDAE7640061D7CA /* baoxiuShop_pei@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF993D3A1DDAE7640061D7CA /* baoxiuShop_pei@3x.png */; };
 		DF993D411DDAE7640061D7CA /* baoxiuShop_souhou@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF993D3B1DDAE7640061D7CA /* baoxiuShop_souhou@2x.png */; };
 		DF993D421DDAE7640061D7CA /* baoxiuShop_souhou@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF993D3C1DDAE7640061D7CA /* baoxiuShop_souhou@3x.png */; };
+		DF993D451DDAF0790061D7CA /* DryCleanOrderChooseTimeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF993D441DDAF0790061D7CA /* DryCleanOrderChooseTimeVC.m */; };
+		DF993D481DDAF1F80061D7CA /* DryCleanTimeChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = DF993D471DDAF1F80061D7CA /* DryCleanTimeChooseView.m */; };
+		DF993D4D1DDAF3D60061D7CA /* ganxi_shijian@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF993D491DDAF3D60061D7CA /* ganxi_shijian@2x.png */; };
+		DF993D4E1DDAF3D60061D7CA /* ganxi_shijian@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF993D4A1DDAF3D60061D7CA /* ganxi_shijian@3x.png */; };
+		DF993D4F1DDAF3D60061D7CA /* ganxi_xiaoliang@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF993D4B1DDAF3D60061D7CA /* ganxi_xiaoliang@2x.png */; };
+		DF993D501DDAF3D60061D7CA /* ganxi_xiaoliang@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF993D4C1DDAF3D60061D7CA /* ganxi_xiaoliang@3x.png */; };
+		DF993D531DDAF54F0061D7CA /* NoticeTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = DF993D521DDAF54F0061D7CA /* NoticeTextView.m */; };
+		DF993D561DDAFFB30061D7CA /* notice@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF993D541DDAFFB30061D7CA /* notice@2x.png */; };
+		DF993D571DDAFFB30061D7CA /* notice@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF993D551DDAFFB30061D7CA /* notice@3x.png */; };
 		DFA135351DD6AA6C00805BA2 /* coupon_top_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = DFA135321DD6AA6C00805BA2 /* coupon_top_icon.png */; };
 		DFA135361DD6AA6C00805BA2 /* coupon_top_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFA135331DD6AA6C00805BA2 /* coupon_top_icon@2x.png */; };
 		DFA135371DD6AA6C00805BA2 /* coupon_top_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFA135341DD6AA6C00805BA2 /* coupon_top_icon@3x.png */; };
@@ -854,6 +863,18 @@
 		DF993D3A1DDAE7640061D7CA /* baoxiuShop_pei@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "baoxiuShop_pei@3x.png"; sourceTree = "<group>"; };
 		DF993D3B1DDAE7640061D7CA /* baoxiuShop_souhou@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "baoxiuShop_souhou@2x.png"; sourceTree = "<group>"; };
 		DF993D3C1DDAE7640061D7CA /* baoxiuShop_souhou@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "baoxiuShop_souhou@3x.png"; sourceTree = "<group>"; };
+		DF993D431DDAF0790061D7CA /* DryCleanOrderChooseTimeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DryCleanOrderChooseTimeVC.h; sourceTree = "<group>"; };
+		DF993D441DDAF0790061D7CA /* DryCleanOrderChooseTimeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DryCleanOrderChooseTimeVC.m; sourceTree = "<group>"; };
+		DF993D461DDAF1F80061D7CA /* DryCleanTimeChooseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DryCleanTimeChooseView.h; sourceTree = "<group>"; };
+		DF993D471DDAF1F80061D7CA /* DryCleanTimeChooseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DryCleanTimeChooseView.m; sourceTree = "<group>"; };
+		DF993D491DDAF3D60061D7CA /* ganxi_shijian@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ganxi_shijian@2x.png"; sourceTree = "<group>"; };
+		DF993D4A1DDAF3D60061D7CA /* ganxi_shijian@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ganxi_shijian@3x.png"; sourceTree = "<group>"; };
+		DF993D4B1DDAF3D60061D7CA /* ganxi_xiaoliang@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ganxi_xiaoliang@2x.png"; sourceTree = "<group>"; };
+		DF993D4C1DDAF3D60061D7CA /* ganxi_xiaoliang@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ganxi_xiaoliang@3x.png"; sourceTree = "<group>"; };
+		DF993D511DDAF54F0061D7CA /* NoticeTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoticeTextView.h; sourceTree = "<group>"; };
+		DF993D521DDAF54F0061D7CA /* NoticeTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoticeTextView.m; sourceTree = "<group>"; };
+		DF993D541DDAFFB30061D7CA /* notice@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notice@2x.png"; sourceTree = "<group>"; };
+		DF993D551DDAFFB30061D7CA /* notice@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notice@3x.png"; sourceTree = "<group>"; };
 		DFA135321DD6AA6C00805BA2 /* coupon_top_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coupon_top_icon.png; sourceTree = "<group>"; };
 		DFA135331DD6AA6C00805BA2 /* coupon_top_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "coupon_top_icon@2x.png"; sourceTree = "<group>"; };
 		DFA135341DD6AA6C00805BA2 /* coupon_top_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "coupon_top_icon@3x.png"; sourceTree = "<group>"; };
@@ -1693,6 +1714,8 @@
 				DF8DBCE51DD06C5B002E574B /* Views */,
 				DF8DBCE21DD0616F002E574B /* DryCleanShopTVC.h */,
 				DF8DBCE31DD0616F002E574B /* DryCleanShopTVC.m */,
+				DF993D431DDAF0790061D7CA /* DryCleanOrderChooseTimeVC.h */,
+				DF993D441DDAF0790061D7CA /* DryCleanOrderChooseTimeVC.m */,
 			);
 			path = DryClean;
 			sourceTree = "<group>";
@@ -1702,6 +1725,10 @@
 			children = (
 				DF8DBCE61DD06C8A002E574B /* DryCleanShopTableViewCell.h */,
 				DF8DBCE71DD06C8A002E574B /* DryCleanShopTableViewCell.m */,
+				DF993D461DDAF1F80061D7CA /* DryCleanTimeChooseView.h */,
+				DF993D471DDAF1F80061D7CA /* DryCleanTimeChooseView.m */,
+				DF993D511DDAF54F0061D7CA /* NoticeTextView.h */,
+				DF993D521DDAF54F0061D7CA /* NoticeTextView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2048,6 +2075,12 @@
 		DFFAA7521DB744EF001CFBB5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DF993D541DDAFFB30061D7CA /* notice@2x.png */,
+				DF993D551DDAFFB30061D7CA /* notice@3x.png */,
+				DF993D491DDAF3D60061D7CA /* ganxi_shijian@2x.png */,
+				DF993D4A1DDAF3D60061D7CA /* ganxi_shijian@3x.png */,
+				DF993D4B1DDAF3D60061D7CA /* ganxi_xiaoliang@2x.png */,
+				DF993D4C1DDAF3D60061D7CA /* ganxi_xiaoliang@3x.png */,
 				DF993D371DDAE7640061D7CA /* baoxiuShop_jishu@2x.png */,
 				DF993D381DDAE7640061D7CA /* baoxiuShop_jishu@3x.png */,
 				DF993D391DDAE7640061D7CA /* baoxiuShop_pei@2x.png */,
@@ -2392,6 +2425,7 @@
 				04866B961DD41337008DA56B /* ZLSuperMarketShopRightSpecCell.xib in Resources */,
 				DFE178DC1DD5901E00E06F21 /* btn_scoreShop@3x.png in Resources */,
 				04866B8A1DD40E53008DA56B /* ZLShopCarBottomView.xib in Resources */,
+				DF993D501DDAF3D60061D7CA /* ganxi_xiaoliang@3x.png in Resources */,
 				DF539F191DD5C01F00AF228F /* user_coupon_jushe.png in Resources */,
 				04866BA21DD41865008DA56B /* ZLCommitOrderBottomView.xib in Resources */,
 				0416570F1DD6A654004E7D9A /* ZLRepairsCustomView.xib in Resources */,
@@ -2432,6 +2466,7 @@
 				DFE178791DD556D000E06F21 /* cell_about@2x.png in Resources */,
 				04B07EBC1DD9A649004A7294 /* ZLPPTRewardHeadView.xib in Resources */,
 				DFA135711DD6FBE000805BA2 /* bankCard_add@3x.png in Resources */,
+				DF993D4F1DDAF3D60061D7CA /* ganxi_xiaoliang@2x.png in Resources */,
 				DFE178A61DD55A9A00E06F21 /* cell_img_mobile@3x.png in Resources */,
 				DF8DBCDA1DD0581F002E574B /* gouwu_order@2x.png in Resources */,
 				DF08E8501DD16A13003E4DD9 /* MobileRechargeMoneyView_kuangNormal@3x.png in Resources */,
@@ -2439,6 +2474,7 @@
 				DFA135701DD6FBE000805BA2 /* bankCard_add@2x.png in Resources */,
 				04D64D6D1DC9CCA5004E8859 /* ZLHomeLocationView.xib in Resources */,
 				DFA135521DD6C7A900805BA2 /* gou_yes@3x.png in Resources */,
+				DF993D561DDAFFB30061D7CA /* notice@2x.png in Resources */,
 				040917711DCC5E1000DB2568 /* ZLSuperMarketSearchView.xib in Resources */,
 				DFE1788C1DD558B400E06F21 /* cell_address_del@3x.png in Resources */,
 				DF630D661DD462F60076A92C /* UserIDAuthTableViewCell.xib in Resources */,
@@ -2484,6 +2520,7 @@
 				040917841DCC904B00DB2568 /* ZLSuperMarketShopLeftCellType.xib in Resources */,
 				04B07E9C1DD9602E004A7294 /* ZLRuuningManHomeHeaderSectionView.xib in Resources */,
 				040917681DCC39DE00DB2568 /* ZLSuperMarketHeaderSectionView.xib in Resources */,
+				DF993D4E1DDAF3D60061D7CA /* ganxi_shijian@3x.png in Resources */,
 				DFE178A71DD55A9A00E06F21 /* cell_img_nike@2x.png in Resources */,
 				DFA135351DD6AA6C00805BA2 /* coupon_top_icon.png in Resources */,
 				DFE1786F1DD555C100E06F21 /* order_paopao@2x.png in Resources */,
@@ -2508,6 +2545,7 @@
 				DFFAA73F1DB744C5001CFBB5 /* Assets.xcassets in Resources */,
 				DF630D391DD44CE60076A92C /* sigin_qianYes@2x.png in Resources */,
 				04B862AA1DD5972000BDEA59 /* ZLActivityView.xib in Resources */,
+				DF993D4D1DDAF3D60061D7CA /* ganxi_shijian@2x.png in Resources */,
 				DFE178901DD558B400E06F21 /* cell_address_myplace@3x.png in Resources */,
 				DFE178A41DD55A9A00E06F21 /* cell_img_hourse@3x.png in Resources */,
 				DF98EC661DD2FCA00006EBFE /* order_hengxian_hua.png in Resources */,
@@ -2554,6 +2592,7 @@
 				DFA135781DD6FE6F00805BA2 /* BankCardAddVC.xib in Resources */,
 				DFA135371DD6AA6C00805BA2 /* coupon_top_icon@3x.png in Resources */,
 				DF08E8801DD1C072003E4DD9 /* UserHouseEditTableViewCell.xib in Resources */,
+				DF993D571DDAFFB30061D7CA /* notice@3x.png in Resources */,
 				0445AD7F1DD44CE600788779 /* ZLPayTypeTableViewCell.xib in Resources */,
 				DFA135361DD6AA6C00805BA2 /* coupon_top_icon@2x.png in Resources */,
 				04866BA01DD415B9008DA56B /* ZLCommitOrderHeaderView.xib in Resources */,
@@ -2752,6 +2791,7 @@
 				DF98EC411DD2C1DD0006EBFE /* PaoPaoGoodsView.m in Sources */,
 				DFFAA7631DB744EF001CFBB5 /* UIView+AutoSize.m in Sources */,
 				0445AD791DD44AF300788779 /* ZLGoPayViewController.m in Sources */,
+				DF993D531DDAF54F0061D7CA /* NoticeTextView.m in Sources */,
 				DF08E8791DD1C072003E4DD9 /* UserAddressEditVC.m in Sources */,
 				0445AD7E1DD44CE600788779 /* ZLPayTypeTableViewCell.m in Sources */,
 				0409178E1DCCA9D500DB2568 /* ZLSuperMarketShopCarView.m in Sources */,
@@ -2768,6 +2808,7 @@
 				04C6A3841DCB11A4002C4D4A /* UIViewExt.m in Sources */,
 				041657161DD6B22D004E7D9A /* ZLRepairsCell.m in Sources */,
 				041657381DD6F479004E7D9A /* ZLCommitRepairsCell.m in Sources */,
+				DF993D481DDAF1F80061D7CA /* DryCleanTimeChooseView.m in Sources */,
 				DFE178B91DD5670700E06F21 /* UserRechargeMoneyVC.m in Sources */,
 				DF7D0A1C1DBA0019005A62A7 /* CookCategoryTVC.m in Sources */,
 				DF98EC6F1DD31C6C0006EBFE /* OrderBaoxiuImgVideoView.m in Sources */,
@@ -2793,6 +2834,7 @@
 				04B862A41DD5786F00BDEA59 /* ZLGoodsDetailCell.m in Sources */,
 				DF55B4701DBAFEAC00F89341 /* ZLNavViewController.m in Sources */,
 				DF08E87A1DD1C072003E4DD9 /* UserAddressTVC.m in Sources */,
+				DF993D451DDAF0790061D7CA /* DryCleanOrderChooseTimeVC.m in Sources */,
 				0409178A1DCC919200DB2568 /* ZLSuperMarketShopRightCell.m in Sources */,
 				04162E001DCB545200FB4229 /* HeaderView.m in Sources */,
 				DF08E87B1DD1C072003E4DD9 /* UserHouseEditVC.m in Sources */,

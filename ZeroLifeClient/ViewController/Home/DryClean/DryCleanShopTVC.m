@@ -9,6 +9,7 @@
 #import "DryCleanShopTVC.h"
 #import "HMSegmentedControl.h"
 #import "DryCleanShopTableViewCell.h"
+#import "NoticeTextView.h"
 
 @interface DryCleanShopTVC ()
 
@@ -32,22 +33,34 @@
     seg.selectionIndicatorColor = COLOR_NavBar;
     [superView addSubview:seg];
     [seg addTarget:self action:@selector(segmentedControlChangedValue:) forControlEvents:UIControlEventValueChanged];
-    [seg makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.top.equalTo(superView);
-        make.height.equalTo(80);
-    }];
+
+    
     [self addTableView];
     [self setTableViewHaveHeaderFooter];
+    
+    NoticeTextView *noticeView = [[NoticeTextView alloc] init];
+    [superView addSubview:noticeView];
+    
+    [seg makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.equalTo(superView);
+        make.height.equalTo(60);
+    }];
+    [noticeView makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(superView);
+        make.top.equalTo(seg.bottom).offset(OnePixNumber);
+        make.height.equalTo(40);
+    }];
     [self.tableView remakeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.equalTo(self.view);
-        make.top.equalTo(seg.bottom);
+        make.top.equalTo(noticeView.bottom).offset(TenPixNumber);
     }];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
 }
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.title = @"家政干洗";
 }
 
 - (void)didReceiveMemoryWarning {

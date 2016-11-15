@@ -29,5 +29,6 @@ target 'ZeroLifeClient' do
   pod 'SKTagView'
   pod 'JPush'
   pod 'LTNavigationBar'
+  pod 'AutoScrollLabel'
 
 end
