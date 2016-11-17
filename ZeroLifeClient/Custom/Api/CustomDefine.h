@@ -19,6 +19,8 @@
 #import <WPAttributedMarkup/NSString+WPAttributedMarkup.h>
 #import <WPAttributedMarkup/WPAttributedStyleAction.h>
 #import <CoreText/CoreText.h>
+#import <IQKeyboardManager/IQKeyboardManager.h>
+#import "PPNumberButton.h"
 
 #define  KEY_USERNAME_PASSWORD @"com.company.app.usernamepassword"
 #define  KEY_USERNAME @"com.company.app.username"

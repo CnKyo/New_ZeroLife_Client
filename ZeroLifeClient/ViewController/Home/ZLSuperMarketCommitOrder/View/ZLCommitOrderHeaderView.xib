@@ -34,7 +34,7 @@
                     <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ZLGenery_Right" translatesAutoresizingMaskIntoConstraints="NO" id="t9N-hy-8MC">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="jiantou_hui.png" translatesAutoresizingMaskIntoConstraints="NO" id="t9N-hy-8MC">
                     <constraints>
                         <constraint firstAttribute="height" constant="13" id="H9E-JM-477"/>
                         <constraint firstAttribute="width" constant="7" id="PwR-nD-SXn"/>
@@ -89,6 +89,6 @@
     <resources>
         <image name="ZLCommitOrder_BottomLine" width="750" height="6"/>
         <image name="ZLCommitOrder_Location" width="34" height="36"/>
-        <image name="ZLGenery_Right" width="14" height="20"/>
+        <image name="jiantou_hui.png" width="5" height="10"/>
     </resources>
 </document>

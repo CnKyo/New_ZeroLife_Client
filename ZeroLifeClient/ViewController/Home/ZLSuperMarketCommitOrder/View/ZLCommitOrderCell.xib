@@ -43,7 +43,7 @@
                             <action selector="mSendTypeAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="qKo-Wo-wub"/>
                         </connections>
                     </button>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ZLGenery_Right" translatesAutoresizingMaskIntoConstraints="NO" id="ibm-qQ-Oxp">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="jiantou_hui.png" translatesAutoresizingMaskIntoConstraints="NO" id="ibm-qQ-Oxp">
                         <constraints>
                             <constraint firstAttribute="width" constant="7" id="rm1-O9-BDh"/>
                             <constraint firstAttribute="height" constant="13" id="y9Y-Sl-KKx"/>
@@ -76,7 +76,7 @@
                             <action selector="mCoupBtnAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Z9r-tG-9W8"/>
                         </connections>
                     </button>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ZLGenery_Right" translatesAutoresizingMaskIntoConstraints="NO" id="FNs-Gn-UqD">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="jiantou_hui.png" translatesAutoresizingMaskIntoConstraints="NO" id="FNs-Gn-UqD">
                         <constraints>
                             <constraint firstAttribute="height" constant="13" id="VH2-dZ-97g"/>
                             <constraint firstAttribute="width" constant="7" id="hCZ-4b-ocp"/>
@@ -206,11 +206,12 @@
                 <outlet property="mNoteTx" destination="9ph-wC-NG7" id="ikn-v1-qMd"/>
                 <outlet property="mPrice" destination="3g9-qA-CbR" id="3ax-ls-NR2"/>
                 <outlet property="mSendType" destination="jxH-Qe-Qsr" id="Vb4-XL-OEE"/>
+                <outlet property="mSendTypeOrWorkTime" destination="8EY-H4-lTV" id="bgT-Sr-D9v"/>
             </connections>
             <point key="canvasLocation" x="26" y="14.5"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="ZLGenery_Right" width="14" height="20"/>
+        <image name="jiantou_hui.png" width="5" height="10"/>
     </resources>
 </document>

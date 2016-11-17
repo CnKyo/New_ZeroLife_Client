@@ -10,6 +10,7 @@
 #import "HMSegmentedControl.h"
 #import "DryCleanShopTableViewCell.h"
 #import "NoticeTextView.h"
+#import "ZLSuperMarketShopViewController.h"
 
 @interface DryCleanShopTVC ()
 
@@ -124,6 +125,11 @@
     //        UserAddressEditVC *vc = [[UserAddressEditVC alloc] init];
     //        [self.navigationController pushViewController:vc animated:YES];
     //    }
+    
+    ZLSuperMarketShopViewController *vc = [ZLSuperMarketShopViewController new];
+    vc.mType = 2;
+    [self pushViewController:vc];
+    
 }
 
 

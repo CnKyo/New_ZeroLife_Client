@@ -55,7 +55,7 @@
                 <outlet property="mGoodsName" destination="wgb-d5-w3A" id="j8w-Lb-08P"/>
                 <outlet property="mGoodsPrice" destination="pDg-yf-lnA" id="FkH-NU-6P0"/>
             </connections>
-            <point key="canvasLocation" x="-19" y="20"/>
+            <point key="canvasLocation" x="28" y="13"/>
         </tableViewCell>
     </objects>
 </document>

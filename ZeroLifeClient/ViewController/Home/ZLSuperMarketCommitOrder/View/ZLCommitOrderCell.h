@@ -34,6 +34,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *mPrice;
 ///优惠金额
 @property (weak, nonatomic) IBOutlet UILabel *mCoupMoney;
+///配送方式和服务时间
+@property (weak, nonatomic) IBOutlet UILabel *mSendTypeOrWorkTime;
+
+
+
 
 #pragma mark----****----商品cell
 ///商品图片

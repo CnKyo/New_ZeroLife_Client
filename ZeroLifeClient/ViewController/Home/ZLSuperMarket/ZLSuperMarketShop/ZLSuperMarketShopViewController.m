@@ -18,7 +18,10 @@
 
 #import "ZLGoodsDetailViewController.h"
 
-@interface ZLSuperMarketShopViewController ()<UITableViewDelegate,UITableViewDataSource,ZLSuperMarketShopDelegate,ZLSuperMarketGoodsCellDelegate,UIScrollViewDelegate,ZLSuperMarketShopCarDelegate,ZLSuperMarketGoodsSpecDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
+#import "ZLHouseKeppingServiceCell.h"
+static const CGFloat mTopH = 156;
+
+@interface ZLSuperMarketShopViewController ()<UITableViewDelegate,UITableViewDataSource,ZLSuperMarketShopDelegate,ZLSuperMarketGoodsCellDelegate,UIScrollViewDelegate,ZLSuperMarketShopCarDelegate,ZLSuperMarketGoodsSpecDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,ZLHouseKeppingServiceCellDelegate>
 
 /**
  规格瀑布流
@@ -54,7 +57,7 @@
     
     CGRect mRect;
     
-    UIScrollView *mMainView;
+//    UIScrollView *mMainView;
     ///地步view
     ZLSuperMarketShopCarView *mBottomView;
     ///搜索view
@@ -62,6 +65,8 @@
     ///规格view
     ZLSuperMArketSearchGoodsView *mSpeView;
 
+    BOOL mIsScroller;
+    
 }
 
 
@@ -74,15 +79,20 @@
     self.mSpeAddArray = [NSMutableArray new];
     
     [self addRightBtn:YES andTitel:nil andImage:[UIImage imageNamed:@"ZLSearch_white"]];
-    [self initHeaderView];
 
-    [self initView];
-    [self initData];
-    [self initSpeView];
-    
     
     
 }
+
+- (void)loadView{
+
+    [super loadView];
+    [self initView];
+    [self initData];
+    [self initHeaderView];
+    [self initSpeView];
+}
+
 #pragma mark----****----加载数据
 - (void)initData{
 
@@ -106,15 +116,7 @@
 
 - (void)initView{
 
-    mMainView = [UIScrollView new];
-    [self.view addSubview:mMainView];
-    mMainView.backgroundColor = [UIColor clearColor];
-    [mMainView makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.bottom.equalTo(self.view).offset(0);
-        make.top.equalTo(self.view).offset(@156);
-        make.width.offset(DEVICE_Width);
-    }];
-    
+   
     mLeftTableView = [UITableView new];
     mLeftTableView.delegate = self;
     mLeftTableView.dataSource = self;
@@ -123,7 +125,7 @@
 
     mLeftTableView.layer.borderColor = [UIColor colorWithRed:0.96 green:0.95 blue:0.96 alpha:1.00].CGColor;
     mLeftTableView.layer.borderWidth = 0.5;
-    [mMainView addSubview:mLeftTableView];
+    [self.view addSubview:mLeftTableView];
     
     UINib   *nib = [UINib nibWithNibName:@"ZLSuperMarketShopLeftCellType" bundle:nil];
     [mLeftTableView registerNib:nib forCellReuseIdentifier:@"mLeftCell"];
@@ -137,27 +139,32 @@
 
     mRightTableView.layer.borderColor = [UIColor colorWithRed:0.96 green:0.95 blue:0.96 alpha:1.00].CGColor;
     mRightTableView.layer.borderWidth = 0.5;
-    [mMainView addSubview:mRightTableView];
+    [self.view addSubview:mRightTableView];
     
     nib = [UINib nibWithNibName:@"ZLSuperMarketShopRightSpecCell" bundle:nil];
     [mRightTableView registerNib:nib forCellReuseIdentifier:@"mRightCell"];
 
+    nib = [UINib nibWithNibName:@"ZLHouseKeppingServiceCell" bundle:nil];
+    [mRightTableView registerNib:nib forCellReuseIdentifier:@"mHouseKeepCell"];
     
     [mLeftTableView makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(mMainView).offset(0);
-        make.top.equalTo(mMainView).offset(0);
-        make.bottom.equalTo(mMainView).offset(DEVICE_Height-100);
+        make.left.equalTo(self.view).offset(0);
+        make.top.equalTo(self.view).offset(0);
+        make.bottom.equalTo(self.view).offset(-50);
         make.right.equalTo(mRightTableView.left).offset(0);
         make.width.offset(DEVICE_Width/3);
     }];
     
     [mRightTableView makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(mMainView).offset(0);
-        make.top.equalTo(mMainView).offset(0);
-        make.bottom.equalTo(mMainView).offset(DEVICE_Height-100);
+        make.right.equalTo(self.view).offset(0);
+        make.top.equalTo(self.view).offset(0);
+        make.bottom.equalTo(self.view).offset(-50);
         make.left.equalTo(mLeftTableView.right).offset(0);
         make.width.offset(DEVICE_Width-DEVICE_Width/3);
     }];
+    
+    mLeftTableView.contentInset = UIEdgeInsetsMake(mTopH, 0, 0, 0);
+    mRightTableView.contentInset = UIEdgeInsetsMake(mTopH, 0, 0, 0);
 
     mBottomView = [ZLSuperMarketShopCarView shareView];
     mBottomView.delegate = self;
@@ -201,11 +208,12 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-//    if (section == 3) {
+    if (tableView == mLeftTableView) {
+        return 5;
+    }else{
         return 10;
-//    }else{
-//        return 1;
-//    }
+    }
+    
     
     
     
@@ -239,14 +247,26 @@
         
     }else{
         
+        if (self.mType == 2) {
+            reuseCellId = @"mHouseKeepCell";
+            
+            ZLHouseKeppingServiceCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
+            cell.delegate = self;
+            cell.mIndexPath = indexPath;
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            return cell;
+        }else{
+            reuseCellId = @"mRightCell";
+            
+            ZLSuperMarketShopRightCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
+            cell.delegate = self;
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            return cell;
+        }
         
-        reuseCellId = @"mRightCell";
         
-        ZLSuperMarketShopRightCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
-        cell.delegate = self;
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
-        return cell;
     }
     
     
@@ -311,38 +331,56 @@
 #pragma mark----****----滚动代理方法
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
+    
+    if (scrollView == mLeftTableView) {
+        return;
+    }
+    
     CGFloat offsetY = scrollView.contentOffset.y;
     
     MLLog(@"yyyyyyyyy----------:  %f",offsetY);
-    
-    mRect = mMainView.frame;
-    
-    if (offsetY > 30 ) {
-  
-        [UIView animateWithDuration:0.25 animations:^{
-            mRect.origin.y = 0;
-            mRect.size.height+=156;
-            mMainView.frame = mRect;
 
-        }];
+    if (offsetY >= 0 ) {
         
-    }
-    else if(offsetY < 0){
-        if (offsetY == -30) {
-            return;
+        CGFloat mHH = offsetY;
+        MLLog(@"mHH----------:  %f",mHH);
+        if (mHH>=mTopH) {
+            mHH = mTopH;
         }
-        [UIView animateWithDuration:0.25 animations:^{
-            mRect.origin.y = 156;
-
-            mMainView.frame = mRect;
-            
-        }];
-
         
-
+        [self setHeaderViewY:-mHH];
+        mLeftTableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+        mRightTableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+    }
+    else if (offsetY <= -mTopH){
+    
+        
+        [self setHeaderViewY:0];
+        mLeftTableView.contentInset = UIEdgeInsetsMake(mTopH, 0, 0, 0);
+        mRightTableView.contentInset = UIEdgeInsetsMake(mTopH, 0, 0, 0);
+    }
+    else{
+        CGFloat mH = -mTopH - offsetY;
+        [self setHeaderViewY:mH];
+        
+        mLeftTableView.contentOffset = mRightTableView.contentOffset;
+        mLeftTableView.contentInset = UIEdgeInsetsMake(-offsetY, 0, 0, 0 );
+        mRightTableView.contentInset = UIEdgeInsetsMake(-offsetY, 0, 0, 0 );
+        
     }
 
+    
 }
+
+- (void)setHeaderViewY:(CGFloat)mY{
+
+    CGRect mRRR = mHeaderView.frame;
+    mRRR.origin.y = mY;
+    mHeaderView.frame = mRRR;
+ 
+    
+}
+
 #pragma mark----****---- 购物车代理方法
 /**
  购物车代理方法
@@ -554,5 +592,15 @@
     [self hiddenSpeView];
     [self popViewController];
 }
+#pragma mark----****----加减代理方法
+/**
+ 加减代理方法
+ 
+ @param mNum       数量
+ @param mIndexPath 索引
+ */
+- (void)ZLHouseKeppingServiceCellWithNumChanged:(int)mNum andIndexPath:(NSIndexPath *)mIndexPath{
 
+    MLLog(@"索引是：%ld     数量是：%d",(long)mIndexPath.row,mNum);
+}
 @end

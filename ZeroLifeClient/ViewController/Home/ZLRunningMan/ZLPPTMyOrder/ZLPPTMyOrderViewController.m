@@ -9,6 +9,8 @@
 #import "ZLPPTMyOrderViewController.h"
 #import "ZLPPTMyOrderCell.h"
 #import "ZLPPTOrderDetailViewController.h"
+#import "ZLPPTRealeseOrderViewController.h"
+
 
 @interface ZLPPTMyOrderViewController ()<UITableViewDelegate,UITableViewDataSource,ZLPPTMyOrderCellDelegate>
 
@@ -76,8 +78,11 @@
     return mHeaderView;
     
 }
+#pragma mark----****----去发布
 - (void)mGoReleaseAction:(UIButton *)sender{
 
+    ZLPPTRealeseOrderViewController *vc = [ZLPPTRealeseOrderViewController new];
+    [self pushViewController:vc];
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
