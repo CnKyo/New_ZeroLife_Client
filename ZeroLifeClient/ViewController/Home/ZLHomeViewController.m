@@ -24,7 +24,7 @@
 #import "ZLTenementRepairsViewController.h"
 #import "ZLRunningManViewController.h"
 #import "BianMingVC.h"
-
+#import "ZLLoginViewController.h"
 
 @interface ZLHomeViewController ()<UITableViewDelegate,UITableViewDataSource,ZLHomeScrollerTableCellDelegate,ZLHomeLocationViewDelegate,ZLCoupViewDelegate>
 
@@ -63,9 +63,9 @@
 #pragma mark ----****----加载导航条左右按钮和中间的社区选择view
 - (void)initLeftAndRightBarButton{
 
-    
     [self addRightBtn:YES andTitel:nil andImage:[UIImage imageNamed:@"ZLHome_Message"]];
-    [self.navigationController.navigationBar.subviews[3] setHidden:YES];
+    
+//    [self.navigationController.navigationBar.subviews[3] setHidden:YES];
     
     MLLog(@"%@",self.navigationController.navigationBar.subviews);
     
@@ -83,15 +83,23 @@
         mLocationView.mAddress.text = mBlockAddress;
        
     };
+    ZLAddressVC.hidesBottomBarWhenPushed = YES;
+
     [self pushViewController:ZLAddressVC];
 }
 #pragma mark ----****----消息按钮方法
 - (void)mRightAction:(UIButton *)sender{
     MLLog(@"right");
     
-    ZLHomeMessageViewController *ZLHomeMsgVC = [ZLHomeMessageViewController new];
-    [self pushViewController:ZLHomeMsgVC];
+//    ZLHomeMessageViewController *ZLHomeMsgVC = [ZLHomeMessageViewController new];
+//    ZLHomeMsgVC.hidesBottomBarWhenPushed = YES;
+//
+//    [self pushViewController:ZLHomeMsgVC];
     
+    ZLLoginViewController *vc = [ZLLoginViewController new];
+    vc.hidesBottomBarWhenPushed = YES;
+
+    [self pushViewController:vc];
 }
 - (void)loadData{
 

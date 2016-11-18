@@ -85,6 +85,12 @@
                         <action selector="mCheckMoreAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="LLp-6g-nbQ"/>
                     </connections>
                 </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nud-Lb-Mlj">
+                    <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="0.25363869863013699" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="wOx-ya-e9g"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -96,6 +102,8 @@
                 <constraint firstItem="szp-o2-yCd" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="BQf-zR-q4z"/>
                 <constraint firstItem="o7A-af-9CE" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="GH6-Si-Q3f"/>
                 <constraint firstItem="Jbu-4X-S2H" firstAttribute="top" secondItem="O5E-fw-wUn" secondAttribute="bottom" constant="9" id="H0E-iL-n77"/>
+                <constraint firstItem="nud-Lb-Mlj" firstAttribute="top" secondItem="PH6-iC-10G" secondAttribute="bottom" constant="9" id="HUh-c6-AFm"/>
+                <constraint firstItem="nud-Lb-Mlj" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="J08-fg-8bo"/>
                 <constraint firstItem="SHM-iL-M3N" firstAttribute="top" secondItem="2h3-tu-kSl" secondAttribute="bottom" constant="8" id="JIa-zq-tpr"/>
                 <constraint firstItem="o7A-af-9CE" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="JuK-Tj-W1Z"/>
                 <constraint firstItem="2h3-tu-kSl" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="LZu-w2-frt"/>
@@ -108,6 +116,7 @@
                 <constraint firstItem="2h3-tu-kSl" firstAttribute="leading" secondItem="O5E-fw-wUn" secondAttribute="trailing" constant="8" id="cl5-pj-6To"/>
                 <constraint firstItem="821-6X-J0V" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="68" id="oqO-kb-Fe3"/>
                 <constraint firstItem="821-6X-J0V" firstAttribute="top" secondItem="szp-o2-yCd" secondAttribute="bottom" constant="15" id="qg9-8h-glo"/>
+                <constraint firstAttribute="trailing" secondItem="nud-Lb-Mlj" secondAttribute="trailing" id="tpj-Vn-YIa"/>
                 <constraint firstItem="O5E-fw-wUn" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="u0l-eH-4gV"/>
                 <constraint firstItem="PH6-iC-10G" firstAttribute="leading" secondItem="821-6X-J0V" secondAttribute="trailing" constant="8" id="uhO-Vp-6uy"/>
                 <constraint firstItem="SHM-iL-M3N" firstAttribute="leading" secondItem="Jbu-4X-S2H" secondAttribute="trailing" constant="8" id="wIS-5T-WXG"/>

@@ -10,6 +10,7 @@
 #import "ZLPayTypeTableViewCell.h"
 #import "ZLPayTypeHeaderView.h"
 #import "ZLGoPayPopRedBagView.h"
+#import "ZLGoPaySucsessCell.h"
 @interface ZLGoPayViewController ()<UITableViewDelegate,UITableViewDataSource,ZLGoPayCellDelegate,ZLGoPayShareDelegate>
 @property (strong,nonatomic)ZLGoPayPopRedBagView *mPopView;
 @end
@@ -39,6 +40,8 @@
     nib = [UINib nibWithNibName:@"ZLGoPaySucsessCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell2"];
     
+    nib = [UINib nibWithNibName:@"ZLGoPaySucsessViewCell" bundle:nil];
+    [self.tableView registerNib:nib forCellReuseIdentifier:@"cell3"];
     
     mComformBtn = [UIButton new];
     
@@ -64,14 +67,14 @@
         make.left.equalTo(self.view).offset(@10);
         make.right.equalTo(self.view).offset(-10);
         make.bottom.equalTo(self.view).offset(-10);
-        make.height.offset(@50);
+        make.height.offset(@45);
         make.width.offset(DEVICE_Width-20);
     }];
     
     [mSendRedBagBtn makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.view).offset(-10);
+        make.centerX.equalTo(self.view);
         make.bottom.equalTo(self.view).offset(-150);
-        make.height.width.offset(@50);
+        make.height.width.offset(@80);
     }];
     
     [self initShareView];

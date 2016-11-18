@@ -18,7 +18,7 @@
 #import "CustomBtnView.h"
 #import "FavoriteTVC.h"
 #import "OrderTVC.h"
-
+#import "ZLLoginViewController.h"
 @interface ZLUserViewController ()<QUItemBtnViewDelegate>
 
 @end
@@ -40,8 +40,12 @@
         btn11.frame = CGRectMake(10, 10, view.bounds.size.width-20, 50);
         [btn11 setTitle:@"退出登陆" forState:UIControlStateNormal];
         [btn11 setStyleNavColor];
+        
+        __weak __typeof(self)weakSelf = self;
+        
         [btn11 jk_addActionHandler:^(NSInteger tag) {
-            
+
+
         }];
         view;
     });

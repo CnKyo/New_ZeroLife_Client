@@ -22,10 +22,12 @@
     self.navigationItem.title = @"消息详情";
     [self addRightBtn:NO andTitel:nil andImage:nil];
     
-    mStr = @"张晓东介绍了鸿雁星座所具备的功能。在卫星数据采集方面，将以广域分布的地面传感器获得的信息为数据来源，实现大地域信息收集，应用于海洋、气象、交通、环保、地质、灾害等领域；在卫星数据交换方面，在全球范围内提供短报文、图片、音频、视频等多媒体数据服务张晓东介绍了鸿雁星座所具备的功能。在卫星数据采集方面，";
+    mStr = @"新华社莫斯科11月16日电俄罗斯总统普京16日签署命令，宣布退出设在荷兰海牙的国际刑事法院。普京已责成相关部门向联合国秘书长通报，阐明俄无意成为《国际刑事法院罗马规约》成员国。俄外交部声明还特别提到了2008年8月俄罗斯与格鲁吉亚爆发的那场战争，并对国际刑事法院立场表达不满。布隆迪、南非、冈比亚三个非洲国家已于今年10月底相继宣布退出国际刑事法院，指责其沦为西方大国不公正对待非洲的工具.检方在确定当面调查朴槿惠的方针时已明确表示，应于16日进行针对朴槿惠的调查。但柳荣夏已刚结案无暇了解案情为由请求推迟调查。同时，韩国检方强调，书面调查需要花很长时间，一小时内也很难得到回复，因此坚持以面对面的方式进行调查";
     
     [self addTableView];
-    
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 200;
+
     UINib   *nib = [UINib nibWithNibName:@"ZLHomeMsgDetailCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
 }
