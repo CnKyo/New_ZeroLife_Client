@@ -37,5 +37,6 @@ target 'ZeroLifeClient' do
   pod 'ShareSDK3/ShareSDKPlatforms/SinaWeibo'
   pod 'ShareSDK3/ShareSDKPlatforms/WeChat'
   pod 'ShareSDK3/ShareSDKPlatforms/WeChat'
+  pod 'CustomIOSAlertView'
 
 end

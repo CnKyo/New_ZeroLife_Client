@@ -8,7 +8,10 @@
 
 #import "SecurityPasswordVC.h"
 #import "TopLeftLabel.h"
+#import <IQKeyboardManager/IQUIView+IQKeyboardToolbar.h>
 
+
+#pragma mark -- SecurityPasswordView
 @implementation NewTextField
 
 /*
@@ -89,6 +92,7 @@
         self.field.tintColor = [UIColor clearColor];
         self.field.delegate = self;
         [self.field addTarget:self action:@selector(textChange:) forControlEvents:UIControlEventEditingChanged];
+        
         
         [self.dianView1 makeConstraints:^(MASConstraintMaker *make) {
             make.left.top.bottom.equalTo(superView);
@@ -279,10 +283,101 @@
 
 
 
+#pragma mark -- SecurityPasswordAlertView
+@implementation SecurityPasswordAlertView
+
+-(id)init
+{
+    self = [super init];
+    if (self) {
 
 
+    }
+    return self;
+}
+
+- (UIView *)createDemoView
+{
+    UIView *aView = ({
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, DEVICE_Width-20, 130)];
+        view.backgroundColor = [UIColor whiteColor];
+        view.layer.cornerRadius = 6;
+        view.layer.masksToBounds = YES;
+        UIColor *color = [UIColor blackColor];
+        UIFont *font = [UIFont systemFontOfSize:15];
+        int padding = 10;
+        
+        
+        UILabel *titleLable = [view newUILableWithText:@"输入密码" textColor:color font:font textAlignment:NSTextAlignmentCenter];
+        
+        UIButton *closeBtn = [view newUIButton];
+        closeBtn.titleLabel.font = [UIFont systemFontOfSize:18];
+        [closeBtn setTitle:@"X" forState:UIControlStateNormal];
+        [closeBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+        
+        UIView *lineView = [view newDefaultLineView];
+        
+        self.secrityView = [[SecurityPasswordView alloc] init];
+        [view addSubview:_secrityView];
+        
+         [self.secrityView.field addDoneOnKeyboardWithTarget:self action:@selector(keyboardDoneMethod:)]; //
+        
+        [titleLable makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.top.equalTo(view);
+            make.height.equalTo(40);
+        }];
+        [closeBtn makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(view.left).offset(padding);
+            make.top.bottom.equalTo(titleLable);
+            make.width.equalTo(closeBtn.height);
+        }];
+        
+        [lineView makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.equalTo(view);
+            make.top.equalTo(titleLable.bottom);
+            make.height.equalTo(OnePixNumber);
+        }];
+        
+        [self.secrityView makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.equalTo(view);
+            make.top.equalTo(lineView.bottom).offset(padding*2);
+            make.height.equalTo(50);
+        }];
+        
+        [closeBtn jk_addActionHandler:^(NSInteger tag) {
+            [self close];
+        }];
+        
+        view;
+    });
+    return aView;
+}
+
+-(void)keyboardDoneMethod:(id)sender
+{
+    if (self.inputPwdCallBack) {
+        NSString *str = self.secrityView.pwStr;
+        if (str.length == 6) {
+            self.inputPwdCallBack(str);
+        } else
+            [SVProgressHUD showErrorWithStatus:@"请输入6位密码"];
+        
+    }
+}
+
+-(void)showAlert
+{
+    [self setContainerView:[self createDemoView]];
+    [self setButtonTitles:NULL];
+    [self setUseMotionEffects:TRUE];
+    [self show];
+    [self.secrityView.field becomeFirstResponder];
+}
+
+@end
 
 
+#pragma mark -- SecurityPasswordVC
 @interface SecurityPasswordVC ()
 
 @end
@@ -406,34 +501,45 @@
     
     
     [doneBtn jk_addActionHandler:^(NSInteger tag) {
-        if (pwdField.text.length == 0) {
-            [SVProgressHUD showErrorWithStatus:@"请输入登录密码"];
-            return ;
-        }
+        SecurityPasswordAlertView *alertView = [[SecurityPasswordAlertView alloc] initWithParentView:self.view];
+        alertView.inputPwdCallBack = ^(NSString* pwd) {
+            
+        };
+        [alertView showAlert];
         
-        if (seView1.pwStr.length == 0) {
-            [SVProgressHUD showErrorWithStatus:@"请输入交易密码"];
-            return ;
-        }
-        if (seView1.pwStr.length < 6) {
-            [SVProgressHUD showErrorWithStatus:@"请输入完整的交易密码"];
-            return ;
-        }
+       
         
-        if (seView2.pwStr.length == 0) {
-            [SVProgressHUD showErrorWithStatus:@"请输入确认交易密码"];
-            return ;
-        }
-        if (seView2.pwStr.length < 6) {
-            [SVProgressHUD showErrorWithStatus:@"请输入完整的确认交易密码"];
-            return ;
-        }
+//        if (pwdField.text.length == 0) {
+//            [SVProgressHUD showErrorWithStatus:@"请输入登录密码"];
+//            return ;
+//        }
+//
+//        if (seView1.pwStr.length == 0) {
+//            [SVProgressHUD showErrorWithStatus:@"请输入交易密码"];
+//            return ;
+//        }
+//        if (seView1.pwStr.length < 6) {
+//            [SVProgressHUD showErrorWithStatus:@"请输入完整的交易密码"];
+//            return ;
+//        }
+//        
+//        if (seView2.pwStr.length == 0) {
+//            [SVProgressHUD showErrorWithStatus:@"请输入确认交易密码"];
+//            return ;
+//        }
+//        if (seView2.pwStr.length < 6) {
+//            [SVProgressHUD showErrorWithStatus:@"请输入完整的确认交易密码"];
+//            return ;
+//        }
     }];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"设置交易安全密码";
+    
+    
+
 }
 
 - (void)didReceiveMemoryWarning {

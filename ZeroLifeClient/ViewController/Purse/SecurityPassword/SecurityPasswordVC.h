@@ -7,6 +7,7 @@
 //
 
 #import "CustomVC.h"
+#import <CustomIOSAlertView/CustomIOSAlertView.h>
 
 @interface NewTextField : UITextField
 
@@ -15,6 +16,15 @@
 @interface SecurityPasswordView : UIView
 @property(nonatomic,strong) NewTextField *field;
 @property(nonatomic,strong) NSMutableString *pwStr;
+@end
+
+
+
+//密码输入弹框
+@interface SecurityPasswordAlertView : CustomIOSAlertView
+@property(nonatomic,strong) SecurityPasswordView *secrityView;
+@property(nonatomic, copy) void (^inputPwdCallBack)(NSString* pwd); //获取密码字符串
+-(void)showAlert; //显示alert
 @end
 
 
