@@ -497,4 +497,23 @@
 - (void)mRightAction:(UIButton *)sender{
     
 }
+
+-(void)showWithStatus:(NSString *)str //调用svprogresssview加载框 参数：加载时显示的内容
+{
+    [SVProgressHUD showWithStatus:str];
+    
+}
+-(void)dismiss //隐藏svprogressview
+{
+    [SVProgressHUD dismiss];
+}
+-(void)showSuccessStatus:(NSString *)str//展示成功状态svprogressview
+{
+    [SVProgressHUD showSuccessWithStatus:str];
+}
+-(void)showErrorStatus:(NSString *)astr//展示失败状态svprogressview
+{
+    [SVProgressHUD showErrorWithStatus:astr];
+}
+
 @end

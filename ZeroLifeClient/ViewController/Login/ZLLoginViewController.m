@@ -92,7 +92,7 @@
  登录
  */
 - (void)ZLLoginWithLoginAction{
-
+    [self showWithStatus:@"登陆中..."];
 }
 
 /**
