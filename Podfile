@@ -38,5 +38,7 @@ target 'ZeroLifeClient' do
   pod 'ShareSDK3/ShareSDKPlatforms/WeChat'
   pod 'ShareSDK3/ShareSDKPlatforms/WeChat'
   pod 'CustomIOSAlertView'
-
+  pod 'AlipaySDK-2.0'
+  pod 'AliPaySDK'
+  pod 'WeChatSDK-iOS'
 end
