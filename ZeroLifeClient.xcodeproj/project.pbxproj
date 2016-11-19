@@ -167,7 +167,7 @@
 		04CBF02B1DC19F220098BF52 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CBF02A1DC19F220098BF52 /* Foundation.framework */; };
 		04CBF02D1DC19F2A0098BF52 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CBF02C1DC19F2A0098BF52 /* UIKit.framework */; };
 		04CBF02F1DC19F310098BF52 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CBF02E1DC19F310098BF52 /* Security.framework */; };
-		04CBF0311DC19F430098BF52 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CBF0301DC19F430098BF52 /* UserNotifications.framework */; };
+		04CBF0311DC19F430098BF52 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CBF0301DC19F430098BF52 /* UserNotifications.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		04D64D641DC9C16D004E8859 /* ZLSelectArearViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D64D631DC9C16D004E8859 /* ZLSelectArearViewController.m */; };
 		04D64D681DC9CC7B004E8859 /* ZLCustomBtnView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D64D671DC9CC7B004E8859 /* ZLCustomBtnView.m */; };
 		04D64D6C1DC9CCA5004E8859 /* ZLHomeLocationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D64D6A1DC9CCA5004E8859 /* ZLHomeLocationView.m */; };
