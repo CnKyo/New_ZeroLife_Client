@@ -25,6 +25,7 @@
 #import "ZLRunningManViewController.h"
 #import "BianMingVC.h"
 #import "ZLLoginViewController.h"
+#import "ZLWebViewViewController.h"
 
 @interface ZLHomeViewController ()<UITableViewDelegate,UITableViewDataSource,ZLHomeScrollerTableCellDelegate,ZLHomeLocationViewDelegate,ZLCoupViewDelegate>
 
@@ -96,10 +97,16 @@
 //
 //    [self pushViewController:ZLHomeMsgVC];
     
-    ZLLoginViewController *vc = [ZLLoginViewController new];
+//    ZLLoginViewController *vc = [ZLLoginViewController new];
+    ZLWebViewViewController *vc = [ZLWebViewViewController new];
+
     vc.hidesBottomBarWhenPushed = YES;
+    vc.mUrl = @"www.baidu.com";
+    vc.title = @"web";
 
     [self pushViewController:vc];
+    
+    
 }
 - (void)loadData{
 

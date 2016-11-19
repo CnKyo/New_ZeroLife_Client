@@ -441,7 +441,8 @@
 #pragma mark ----****----设置左边的按钮
 - (void)addLeftBtn:(BOOL)mHidden andTitel:(NSString *)mBackTitle andImage:(UIImage *)mImage{
 
-    UIButton *mBackBtn = [[UIButton alloc]initWithFrame:CGRectMake(DEVICE_Width-80,15,13,20)];
+    
+    UIButton *mBackBtn = [[UIButton alloc]initWithFrame:CGRectMake(80,15,13,20)];
     
     if (!mHidden) {
         return;

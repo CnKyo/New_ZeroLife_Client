@@ -54,6 +54,7 @@
 		041789CD1DDFE90200D55EA7 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 041789CC1DDFE90100D55EA7 /* libicucore.tbd */; };
 		041789CF1DDFE91300D55EA7 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 041789CE1DDFE91300D55EA7 /* libstdc++.tbd */; };
 		041789D11DDFE91A00D55EA7 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 041789D01DDFE91A00D55EA7 /* JavaScriptCore.framework */; };
+		041789D51DE01D9700D55EA7 /* ZLWebViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 041789D41DE01D9700D55EA7 /* ZLWebViewViewController.m */; };
 		0445AD791DD44AF300788779 /* ZLGoPayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0445AD781DD44AF300788779 /* ZLGoPayViewController.m */; };
 		0445AD7E1DD44CE600788779 /* ZLPayTypeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0445AD7C1DD44CE600788779 /* ZLPayTypeTableViewCell.m */; };
 		0445AD7F1DD44CE600788779 /* ZLPayTypeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0445AD7D1DD44CE600788779 /* ZLPayTypeTableViewCell.xib */; };
@@ -551,6 +552,8 @@
 		041789CC1DDFE90100D55EA7 /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
 		041789CE1DDFE91300D55EA7 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		041789D01DDFE91A00D55EA7 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		041789D31DE01D9700D55EA7 /* ZLWebViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLWebViewViewController.h; sourceTree = "<group>"; };
+		041789D41DE01D9700D55EA7 /* ZLWebViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLWebViewViewController.m; sourceTree = "<group>"; };
 		0445AD771DD44AF300788779 /* ZLGoPayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLGoPayViewController.h; sourceTree = "<group>"; };
 		0445AD781DD44AF300788779 /* ZLGoPayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLGoPayViewController.m; sourceTree = "<group>"; };
 		0445AD7B1DD44CE600788779 /* ZLPayTypeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPayTypeTableViewCell.h; sourceTree = "<group>"; };
@@ -1356,6 +1359,15 @@
 				041789CA1DDFE40500D55EA7 /* MZTimerLabel.m */,
 			);
 			path = MZTimerLabel;
+			sourceTree = "<group>";
+		};
+		041789D21DE01D7B00D55EA7 /* WebView */ = {
+			isa = PBXGroup;
+			children = (
+				041789D31DE01D9700D55EA7 /* ZLWebViewViewController.h */,
+				041789D41DE01D9700D55EA7 /* ZLWebViewViewController.m */,
+			);
+			path = WebView;
 			sourceTree = "<group>";
 		};
 		04231D911DC8830B00C50D12 /* ZLHomeLocationView */ = {
@@ -2252,6 +2264,7 @@
 				DF55B46B1DBAFEAC00F89341 /* ZLTabBarViewController.m */,
 				DF55B46E1DBAFEAC00F89341 /* ZLNavViewController.h */,
 				DF55B46D1DBAFEAC00F89341 /* ZLNavViewController.m */,
+				041789D21DE01D7B00D55EA7 /* WebView */,
 				DFFAA74A1DB744EF001CFBB5 /* Cook */,
 				DFFAA74C1DB744EF001CFBB5 /* Home */,
 				DFFAA74E1DB744EF001CFBB5 /* Purse */,
@@ -3146,6 +3159,7 @@
 				DF7D0A1C1DBA0019005A62A7 /* CookCategoryTVC.m in Sources */,
 				DF98EC6F1DD31C6C0006EBFE /* OrderBaoxiuImgVideoView.m in Sources */,
 				DF08E85E1DD1A82C003E4DD9 /* FeePayHistoryVC.m in Sources */,
+				041789D51DE01D9700D55EA7 /* ZLWebViewViewController.m in Sources */,
 				DFFAA7621DB744EF001CFBB5 /* APIObjectDefine.m in Sources */,
 				DF8DBCB41DD0127D002E574B /* UIButton+CustomLocal.m in Sources */,
 				DF0308911DCD69DC00E1EAB6 /* UIViewController+Additions.m in Sources */,
