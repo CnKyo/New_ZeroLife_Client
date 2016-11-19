@@ -30,5 +30,6 @@ target 'ZeroLifeClient' do
   pod 'JPush'
   pod 'LTNavigationBar'
   pod 'AutoScrollLabel'
+  pod 'CustomIOSAlertView'
 
 end
