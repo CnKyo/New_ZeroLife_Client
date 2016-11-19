@@ -18,6 +18,66 @@
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+    <key>CFBundleURLTypes</key>
+    <array>
+        <dict>
+            <key>CFBundleTypeRole</key>
+            <string>Editor</string>
+            <key>CFBundleURLName</key>
+            <string>weixinShare</string>
+            <key>CFBundleURLSchemes</key>
+            <array>
+                <string>wxf8feb845b3a4d04e</string>
+            </array>
+        </dict>
+        <dict>
+            <key>CFBundleTypeRole</key>
+            <string>Editor</string>
+            <key>CFBundleURLName</key>
+            <string>qqlogin</string>
+            <key>CFBundleURLSchemes</key>
+            <array>
+                <string>tencent1105204239</string>
+            </array>
+        </dict>
+        <dict>
+            <key>CFBundleTypeRole</key>
+            <string>Editor</string>
+            <key>CFBundleURLName</key>
+            <string>weixinPay</string>
+            <key>CFBundleURLSchemes</key>
+            <array>
+                <string>wxf8feb845b3a4d04e</string>
+            </array>
+        </dict>
+        <dict>
+            <key>CFBundleTypeRole</key>
+            <string>Editor</string>
+            <key>CFBundleURLName</key>
+            <string>alipay</string>
+            <key>CFBundleURLSchemes</key>
+            <array>
+                <string>zerolife</string>
+            </array>
+        </dict>
+    </array>
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+        <string>iosamap</string>
+        <string>alipay</string>
+        <string>cydia</string>
+        <string>safepay</string>
+        <string>diditripcard</string>
+        <string>weixin</string>
+        <string>wechat</string>
+        <string>mqzone</string>
+        <string>wtloginmqq2</string>
+        <string>mqqopensdkapiV3</string>
+        <string>mqqopensdkapiV2</string>
+        <string>mqqOpensdkSSoLogin</string>
+        <string>mqq</string>
+        <string>mqqapi</string>
+    </array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>

@@ -50,6 +50,10 @@
 		041657311DD6F383004E7D9A /* ZLCommitRepairsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 041657301DD6F383004E7D9A /* ZLCommitRepairsViewController.m */; };
 		041657381DD6F479004E7D9A /* ZLCommitRepairsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 041657361DD6F479004E7D9A /* ZLCommitRepairsCell.m */; };
 		041657391DD6F479004E7D9A /* ZLCommitRepairsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 041657371DD6F479004E7D9A /* ZLCommitRepairsCell.xib */; };
+		041789CB1DDFE40500D55EA7 /* MZTimerLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 041789CA1DDFE40500D55EA7 /* MZTimerLabel.m */; };
+		041789CD1DDFE90200D55EA7 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 041789CC1DDFE90100D55EA7 /* libicucore.tbd */; };
+		041789CF1DDFE91300D55EA7 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 041789CE1DDFE91300D55EA7 /* libstdc++.tbd */; };
+		041789D11DDFE91A00D55EA7 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 041789D01DDFE91A00D55EA7 /* JavaScriptCore.framework */; };
 		0445AD791DD44AF300788779 /* ZLGoPayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0445AD781DD44AF300788779 /* ZLGoPayViewController.m */; };
 		0445AD7E1DD44CE600788779 /* ZLPayTypeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0445AD7C1DD44CE600788779 /* ZLPayTypeTableViewCell.m */; };
 		0445AD7F1DD44CE600788779 /* ZLPayTypeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0445AD7D1DD44CE600788779 /* ZLPayTypeTableViewCell.xib */; };
@@ -542,6 +546,11 @@
 		041657351DD6F479004E7D9A /* ZLCommitRepairsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLCommitRepairsCell.h; sourceTree = "<group>"; };
 		041657361DD6F479004E7D9A /* ZLCommitRepairsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLCommitRepairsCell.m; sourceTree = "<group>"; };
 		041657371DD6F479004E7D9A /* ZLCommitRepairsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLCommitRepairsCell.xib; sourceTree = "<group>"; };
+		041789C91DDFE40500D55EA7 /* MZTimerLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZTimerLabel.h; sourceTree = "<group>"; };
+		041789CA1DDFE40500D55EA7 /* MZTimerLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZTimerLabel.m; sourceTree = "<group>"; };
+		041789CC1DDFE90100D55EA7 /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
+		041789CE1DDFE91300D55EA7 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
+		041789D01DDFE91A00D55EA7 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		0445AD771DD44AF300788779 /* ZLGoPayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLGoPayViewController.h; sourceTree = "<group>"; };
 		0445AD781DD44AF300788779 /* ZLGoPayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLGoPayViewController.m; sourceTree = "<group>"; };
 		0445AD7B1DD44CE600788779 /* ZLPayTypeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPayTypeTableViewCell.h; sourceTree = "<group>"; };
@@ -1136,6 +1145,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				041789D11DDFE91A00D55EA7 /* JavaScriptCore.framework in Frameworks */,
+				041789CF1DDFE91300D55EA7 /* libstdc++.tbd in Frameworks */,
+				041789CD1DDFE90200D55EA7 /* libicucore.tbd in Frameworks */,
 				DF08E8881DD1C39B003E4DD9 /* CoreText.framework in Frameworks */,
 				DF08E8561DD178A6003E4DD9 /* AddressBook.framework in Frameworks */,
 				DF08E8441DD16868003E4DD9 /* AddressBookUI.framework in Frameworks */,
@@ -1335,6 +1347,15 @@
 				041657371DD6F479004E7D9A /* ZLCommitRepairsCell.xib */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		041789C81DDFE40500D55EA7 /* MZTimerLabel */ = {
+			isa = PBXGroup;
+			children = (
+				041789C91DDFE40500D55EA7 /* MZTimerLabel.h */,
+				041789CA1DDFE40500D55EA7 /* MZTimerLabel.m */,
+			);
+			path = MZTimerLabel;
 			sourceTree = "<group>";
 		};
 		04231D911DC8830B00C50D12 /* ZLHomeLocationView */ = {
@@ -1784,6 +1805,9 @@
 		12B582CBD65385C342FBEFDA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				041789D01DDFE91A00D55EA7 /* JavaScriptCore.framework */,
+				041789CE1DDFE91300D55EA7 /* libstdc++.tbd */,
+				041789CC1DDFE90100D55EA7 /* libicucore.tbd */,
 				DF08E8871DD1C39B003E4DD9 /* CoreText.framework */,
 				DF08E8551DD178A6003E4DD9 /* AddressBook.framework */,
 				DF08E8431DD16868003E4DD9 /* AddressBookUI.framework */,
@@ -2537,6 +2561,7 @@
 		DFFAA7531DB744EF001CFBB5 /* OpenSourceLib */ = {
 			isa = PBXGroup;
 			children = (
+				041789C81DDFE40500D55EA7 /* MZTimerLabel */,
 				04C73BE91DDD7CEE00E5D554 /* PPNumberButton */,
 				04A8DA2A1DDAEC33000CE048 /* WKSegMentView */,
 				04B862AD1DD59A8F00BDEA59 /* JXLayoutButton */,
@@ -3178,6 +3203,7 @@
 				DFA135841DD70C3E00805BA2 /* SouKuanHistoryTVC.m in Sources */,
 				DF630D2B1DD449C10076A92C /* ZLPurseViewController.m in Sources */,
 				04A8DA0D1DDAB1E3000CE048 /* ZLPPTOrderDetailViewController.m in Sources */,
+				041789CB1DDFE40500D55EA7 /* MZTimerLabel.m in Sources */,
 				DF98EC381DD2AE880006EBFE /* OrderGoodsThumbListView.m in Sources */,
 				DF7F1BF71DCDDCF500D2242B /* UserComplaintAddVC.m in Sources */,
 				DFF9325F1DD9A8A900BA8C8B /* BianMingVC.m in Sources */,
