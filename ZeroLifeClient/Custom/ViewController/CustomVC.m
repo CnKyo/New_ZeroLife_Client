@@ -493,6 +493,7 @@
     
 }
 - (void)mBackAction{
+    [self dismiss];
     [self popViewController];
 }
 - (void)mRightAction:(UIButton *)sender{
@@ -511,10 +512,20 @@
 -(void)showSuccessStatus:(NSString *)str//展示成功状态svprogressview
 {
     [SVProgressHUD showSuccessWithStatus:str];
+    [self dissMissSVPHUD];
 }
 -(void)showErrorStatus:(NSString *)astr//展示失败状态svprogressview
 {
     [SVProgressHUD showErrorWithStatus:astr];
+    [self dissMissSVPHUD];
+}
+
+- (void)dissMissSVPHUD{
+
+
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [SVProgressHUD dismiss];
+    });
 }
 
 @end

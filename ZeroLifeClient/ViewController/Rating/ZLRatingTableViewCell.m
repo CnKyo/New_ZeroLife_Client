@@ -1,28 +1,24 @@
 //
-//  ZLORderReturnCell.m
+//  ZLRatingTableViewCell.m
 //  ZeroLifeClient
 //
-//  Created by Mac on 2016/11/21.
+//  Created by Mac on 2016/11/22.
 //  Copyright © 2016年 ChaoerTEC. All rights reserved.
 //
 
-#import "ZLORderReturnCell.h"
+#import "ZLRatingTableViewCell.h"
 #import "CustomDefine.h"
-#import "ZLOrderReturnCustomLoadImgView.h"
 
 #import "HX_AddPhotoView.h"
 #import "HX_AssetManager.h"
+@interface ZLRatingTableViewCell ()<UITextViewDelegate,HX_AddPhotoViewDelegate>
 
-@interface ZLORderReturnCell ()<UITextViewDelegate,UIActionSheetDelegate,HX_AddPhotoViewDelegate>
-
-@property (strong,nonatomic) LPActionSheet *mReasonActionSheet;
-
-@property (strong,nonatomic) ZLOrderReturnCustomLoadImgView *mImgView;
+@property (strong,nonatomic) NSMutableArray *mImgArr;
 
 @end
 
-@implementation ZLORderReturnCell
-@synthesize mUpLoadImgArr;
+@implementation ZLRatingTableViewCell
+@synthesize mImgArr;
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
@@ -39,18 +35,16 @@
 
     [super layoutSubviews];
     
+    mImgArr = [NSMutableArray new];
+    [mImgArr removeAllObjects];
     
-    self.mCommitBtn.layer.masksToBounds = YES;
-    self.mCommitBtn.layer.cornerRadius = 3;
-    
-    
-    
-    self.mNote.delegate = self;
-    mUpLoadImgArr = [NSMutableArray new];
-    [mUpLoadImgArr removeAllObjects];
+    self.mRateBgkView.layer.masksToBounds = YES;
+    self.mRateBgkView.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.mRateBgkView.layer.borderWidth = 0.5;
+    self.mRateBgkView.layer.cornerRadius = 3;
     
     CGFloat xWidth = [UIScreen mainScreen].bounds.size.width;
-
+    
     // 只选择照片
     HX_AddPhotoView *addPhotoView = [[HX_AddPhotoView alloc] initWithMaxPhotoNum:3 WithSelectType:SelectPhoto];
     
@@ -74,8 +68,8 @@
     
     addPhotoView.delegate = self;
     addPhotoView.backgroundColor = [UIColor whiteColor];
-    addPhotoView.frame = CGRectMake(0, 20, xWidth - 0, 50);
-    [self.mUpLoadImgView addSubview:addPhotoView];
+    addPhotoView.frame = CGRectMake(0, 50, xWidth - 0, 50);
+    [self.mLoadImgView addSubview:addPhotoView];
     
     /**  当前选择的个数  */
     addPhotoView.selectNum;
@@ -83,40 +77,40 @@
     [addPhotoView setSelectPhotos:^(NSArray *photos, NSArray *videoFileNames, BOOL iforiginal) {
         MLLog(@"photo - %@",photos);
         
-        [mUpLoadImgArr removeAllObjects];
+        [mImgArr removeAllObjects];
         
         // 选择视频的沙盒文件路径  -  已压缩
         NSString *videoFileName = videoFileNames.firstObject;
         MLLog(@"videoFileNames - %@",videoFileName);
         
         [photos enumerateObjectsUsingBlock:^(id asset, NSUInteger idx, BOOL * _Nonnull stop) {
-            [mUpLoadImgArr removeAllObjects];
-
+            [mImgArr removeAllObjects];
+            
             // ios8.0 以下返回的是ALAsset对象 以上是PHAsset对象
             if (VERSION < 8.0f) {
                 ALAsset *oneAsset = (ALAsset *)asset;
                 // 缩略图
-//                UIImage *image = [UIImage imageWithCGImage:[asset aspectRatioThumbnail]];
+                //                UIImage *image = [UIImage imageWithCGImage:[asset aspectRatioThumbnail]];
                 
                 // 原图
                 CGImageRef fullImage = [[asset defaultRepresentation] fullResolutionImage];
                 UIImage *mNew = [UIImage imageWithCGImage:fullImage];
                 CGImageRelease(fullImage);
                 
-
+                
                 // url
                 //            NSURL *url = [[asset defaultRepresentation] url];
                 
                 MLLog(@"来一次");
-                [mUpLoadImgArr addObject:mNew];
+                [mImgArr addObject:mNew];
                 
-                if ([self.delegate respondsToSelector:@selector(ZLORderReturnCellWithUpLoadImages:)]) {
-                    [self.delegate ZLORderReturnCellWithUpLoadImages:mUpLoadImgArr];
+                if ([self.delegate respondsToSelector:@selector(ZLRatingTableViewCellWithImagesArr:)]) {
+                    [self.delegate ZLRatingTableViewCellWithImagesArr:mImgArr];
                 }
                 
             }else {
-                [mUpLoadImgArr removeAllObjects];
-
+                [mImgArr removeAllObjects];
+                
                 PHAsset *twoAsset = (PHAsset *)asset;
                 
                 CGFloat scale = [UIScreen mainScreen].scale;
@@ -124,18 +118,18 @@
                 // 根据输入的大小来控制返回的图片质量
                 CGSize size = CGSizeMake(300 * scale, 300 * scale);
                 [[HX_AssetManager sharedManager] accessToImageAccordingToTheAsset:twoAsset size:size resizeMode:PHImageRequestOptionsResizeModeFast completion:^(UIImage *image, NSDictionary *info) {
-
+                    
                     MLLog(@"来2次");
                     
-                    if (mUpLoadImgArr.count>=3) {
+                    if (mImgArr.count>=3) {
                         
                     }else{
                         // 高清图
-                        [mUpLoadImgArr addObject:image];
+                        [mImgArr addObject:image];
                         
                         
-                        if ([self.delegate respondsToSelector:@selector(ZLORderReturnCellWithUpLoadImages:)]) {
-                            [self.delegate ZLORderReturnCellWithUpLoadImages:mUpLoadImgArr];
+                        if ([self.delegate respondsToSelector:@selector(ZLRatingTableViewCellWithImagesArr:)]) {
+                            [self.delegate ZLRatingTableViewCellWithImagesArr:mImgArr];
                         }
                         
                     }
@@ -145,50 +139,21 @@
                 
             }
             
-        
+            
             
         }];
     }];
 
     
-}
-- (void)updateViewFrame:(CGRect)frame WithView:(UIView *)view
-{
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     
-    CGFloat buttonY = CGRectGetMaxY(frame);
-    
-    button.frame = CGRectMake(0, buttonY, 100, 100);
-    [self.mUpLoadImgView layoutSubviews];
 }
+
 - (void)textViewDidEndEditing:(UITextView *)textView{
-    
-    if ([self.delegate respondsToSelector:@selector(ZLORderReturnCellWithNoteTx:)]) {
-        [self.delegate ZLORderReturnCellWithNoteTx:textView.text];
+
+    if ([self.delegate respondsToSelector:@selector(ZLRatingTableViewCellWithRateContent:)]) {
+        [self.delegate ZLRatingTableViewCellWithRateContent:textView.text];
     }
     
-}
-
-- (IBAction)nReasonAction:(UIButton *)sender {
-
-    __weak __typeof(self)weak = self;
-    
-    _mReasonActionSheet  = [[LPActionSheet alloc] initWithTitle:@"为了保证服务质量，请选择以下信息" cancelButtonTitle:@"取消" destructiveButtonTitle:@"请选择原因" otherButtonTitles:self.mReasonArr handler:^(LPActionSheet *actionSheet, NSInteger index) {
-        
-        if (index == 0 || index == -1) {
-            return ;
-        }else{
-            [sender setTitle:self.mReasonArr[index-1] forState:0];
-            
-            if ([weak.delegate respondsToSelector:@selector(ZLORderReturnCellWithReasonAction:)]) {
-                [weak.delegate ZLORderReturnCellWithReasonAction:self.mReasonArr[index-1]];
-            }
-        }
-            
-        
-    }];
-    
-    [_mReasonActionSheet show];
 }
 
 

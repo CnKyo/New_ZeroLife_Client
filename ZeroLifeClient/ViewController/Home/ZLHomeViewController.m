@@ -27,7 +27,8 @@
 #import "ZLLoginViewController.h"
 #import "ZLWebViewViewController.h"
 #import "ZLOrderReturnViewController.h"
-
+#import "ZLAnounceMentViewController.h"
+#import "ZLRatingViewController.h"
 @interface ZLHomeViewController ()<UITableViewDelegate,UITableViewDataSource,ZLHomeScrollerTableCellDelegate,ZLHomeLocationViewDelegate,ZLCoupViewDelegate>
 
 @end
@@ -100,8 +101,10 @@
     
 //    ZLLoginViewController *vc = [ZLLoginViewController new];
 //    ZLWebViewViewController *vc = [ZLWebViewViewController new];
-    ZLOrderReturnViewController *vc = [ZLOrderReturnViewController new];
+//    ZLOrderReturnViewController *vc = [ZLOrderReturnViewController new];
+    ZLRatingViewController *vc = [ZLRatingViewController new];
 
+    
 
     vc.hidesBottomBarWhenPushed = YES;
 //    vc.mUrl = @"www.baidu.com";
@@ -313,6 +316,11 @@
     }
     else if (mIndex == 4) {
         BianMingVC *vc = [[BianMingVC alloc] init];
+        vc.hidesBottomBarWhenPushed = YES;
+        [self pushViewController:vc];
+    }
+    else if (mIndex == 6) {
+        ZLAnounceMentViewController *vc = [[ZLAnounceMentViewController alloc] init];
         vc.hidesBottomBarWhenPushed = YES;
         [self pushViewController:vc];
     }
