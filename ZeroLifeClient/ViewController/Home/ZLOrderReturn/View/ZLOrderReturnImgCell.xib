@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Z0U-gs-8rb" customClass="ZLORderReturnCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="360"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Z0U-gs-8rb" id="MTF-Iz-7Ag">
+                <frame key="frameInset" width="320" height="359"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="上传图片（最多3张）" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ukU-jq-5hW">
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="PLA-51-vnu"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XtP-9H-6Sw">
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="60" id="HWy-uC-TVj"/>
+                        </constraints>
+                    </view>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="02K-tV-QcG">
+                        <color key="backgroundColor" red="0.58661788699999995" green="0.77890688180000001" blue="0.1565182209" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="z6K-Xv-Ldv"/>
+                        </constraints>
+                        <state key="normal" title="提交">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sMO-EU-94k">
+                        <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="0.51030072773972601" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="60" id="6gL-Z9-kDB"/>
+                            <constraint firstAttribute="height" constant="60" id="aRl-jz-Yh7"/>
+                        </constraints>
+                        <state key="normal" title="添加"/>
+                    </button>
+                </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                <constraints>
+                    <constraint firstAttribute="leadingMargin" secondItem="sMO-EU-94k" secondAttribute="leading" id="1Ji-Jo-wmx"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="ukU-jq-5hW" secondAttribute="trailing" id="A9F-F3-yDO"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="XtP-9H-6Sw" secondAttribute="trailing" id="PKn-rQ-xjB"/>
+                    <constraint firstItem="sMO-EU-94k" firstAttribute="top" secondItem="ukU-jq-5hW" secondAttribute="bottom" constant="28" id="Yjm-Jy-aG5"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="02K-tV-QcG" secondAttribute="trailing" id="ZDB-UC-lBs"/>
+                    <constraint firstAttribute="leadingMargin" secondItem="02K-tV-QcG" secondAttribute="leading" id="e8r-pJ-Grh"/>
+                    <constraint firstItem="XtP-9H-6Sw" firstAttribute="top" secondItem="ukU-jq-5hW" secondAttribute="bottom" constant="28" id="mkM-O1-a0e"/>
+                    <constraint firstItem="XtP-9H-6Sw" firstAttribute="leading" secondItem="sMO-EU-94k" secondAttribute="trailing" constant="8" id="t9F-0g-8fc"/>
+                    <constraint firstAttribute="leadingMargin" secondItem="ukU-jq-5hW" secondAttribute="leading" id="wIm-yq-4KJ"/>
+                    <constraint firstAttribute="topMargin" secondItem="ukU-jq-5hW" secondAttribute="top" id="wv3-VB-kS2"/>
+                    <constraint firstItem="02K-tV-QcG" firstAttribute="top" secondItem="XtP-9H-6Sw" secondAttribute="bottom" constant="67" id="yLa-n4-IPI"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="mCommitBtn" destination="02K-tV-QcG" id="avX-bO-402"/>
+                <outlet property="mUpLoadImgView" destination="XtP-9H-6Sw" id="N1W-Ux-7kb"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>

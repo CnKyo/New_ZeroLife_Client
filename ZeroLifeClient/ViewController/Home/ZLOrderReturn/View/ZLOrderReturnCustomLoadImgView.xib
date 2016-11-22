@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ZLOrderReturnCustomLoadImgView">
+            <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9lT-sL-vyz"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hSZ-B2-QXS">
+                    <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="IzP-zI-8Li"/>
+                        <constraint firstAttribute="width" constant="20" id="vQt-lf-aoH"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <state key="normal" title="-">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="9lT-sL-vyz" secondAttribute="trailing" id="StG-sC-dtB"/>
+                <constraint firstItem="hSZ-B2-QXS" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="eyz-zx-WBg"/>
+                <constraint firstItem="9lT-sL-vyz" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="fDJ-LP-Lq2"/>
+                <constraint firstAttribute="trailing" secondItem="hSZ-B2-QXS" secondAttribute="trailing" id="ff1-xJ-g3q"/>
+                <constraint firstAttribute="bottom" secondItem="9lT-sL-vyz" secondAttribute="bottom" id="nAT-Ww-8PM"/>
+                <constraint firstItem="9lT-sL-vyz" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="rFP-lq-WPB"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="mDeleteBtn" destination="hSZ-B2-QXS" id="9eh-Yf-vEm"/>
+                <outlet property="mImg" destination="9lT-sL-vyz" id="A4v-FD-1U8"/>
+            </connections>
+            <point key="canvasLocation" x="-55" y="-169"/>
+        </view>
+    </objects>
+</document>

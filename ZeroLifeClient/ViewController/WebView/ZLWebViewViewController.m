@@ -7,7 +7,7 @@
 //
 
 #import "ZLWebViewViewController.h"
-
+#import "CustomDefine.h"
 @interface ZLWebViewViewController ()<UIWebViewDelegate>
 @property (nonatomic, weak) UIWebView * webView;
 
@@ -109,7 +109,8 @@
 
 #pragma mark - UIWebViewDelegate
 - (void)webViewDidStartLoad:(UIWebView *)webView{
-    self.activityView.hidden = NO;
+    [SVProgressHUD showWithStatus:@"加载中..."];
+
 }
 
 
@@ -126,12 +127,14 @@
 
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
-    self.activityView.hidden = YES;
     self.title = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
+    [SVProgressHUD dismiss];
+
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
-    self.activityView.hidden = YES;
+    [SVProgressHUD showErrorWithStatus:error.description];
+
 }
 
 
