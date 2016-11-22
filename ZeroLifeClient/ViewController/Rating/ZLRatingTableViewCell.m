@@ -11,7 +11,9 @@
 
 #import "HX_AddPhotoView.h"
 #import "HX_AssetManager.h"
-@interface ZLRatingTableViewCell ()<UITextViewDelegate,HX_AddPhotoViewDelegate>
+#import "LHRatingView.h"
+
+@interface ZLRatingTableViewCell ()<UITextViewDelegate,HX_AddPhotoViewDelegate,ratingViewDelegate>
 
 @property (strong,nonatomic) NSMutableArray *mImgArr;
 
@@ -42,6 +44,13 @@
     self.mRateBgkView.layer.borderColor = [UIColor lightGrayColor].CGColor;
     self.mRateBgkView.layer.borderWidth = 0.5;
     self.mRateBgkView.layer.cornerRadius = 3;
+    
+    LHRatingView * rView = [[LHRatingView alloc]initWithFrame:CGRectMake(DEVICE_Width/2-140, 0, 280, 60)];
+//    rView.center = self.mRateView.center;
+    rView.ratingType = INTEGER_TYPE;//整颗星
+    rView.delegate = self;
+    [self.mRateView addSubview:rView];
+
     
     CGFloat xWidth = [UIScreen mainScreen].bounds.size.width;
     
@@ -144,6 +153,17 @@
         }];
     }];
 
+    
+    
+}
+#pragma mark - ratingViewDelegate
+- (void)ratingView:(LHRatingView *)view score:(CGFloat)score
+{
+    
+    
+    if ([self.delegate respondsToSelector:@selector(ZLRatingTableViewCellWithRateNum:)]) {
+        [self.delegate ZLRatingTableViewCellWithRateNum:[[NSString stringWithFormat:@"%f",score] intValue]];
+    }
     
     
 }

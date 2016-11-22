@@ -54,7 +54,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tp2-Oc-gjH">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="41" id="XqB-uQ-DMv"/>
+                                    <constraint firstAttribute="height" constant="60" id="XqB-uQ-DMv"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -71,7 +71,7 @@
                             <constraint firstAttribute="trailing" secondItem="tp2-Oc-gjH" secondAttribute="trailing" constant="8" id="P90-Gy-LGY"/>
                             <constraint firstItem="cBG-rX-tEv" firstAttribute="leading" secondItem="vyH-7v-KkN" secondAttribute="trailing" constant="8" id="U9Y-Dw-Xyv"/>
                             <constraint firstItem="L51-sB-Kui" firstAttribute="top" secondItem="evF-zk-Vuq" secondAttribute="bottom" constant="8" id="Wp6-2q-L5W"/>
-                            <constraint firstItem="tp2-Oc-gjH" firstAttribute="top" secondItem="L51-sB-Kui" secondAttribute="bottom" constant="8" id="gAc-wk-JCb"/>
+                            <constraint firstItem="tp2-Oc-gjH" firstAttribute="top" secondItem="L51-sB-Kui" secondAttribute="bottom" id="gAc-wk-JCb"/>
                             <constraint firstItem="cBG-rX-tEv" firstAttribute="top" secondItem="KaM-iR-nIJ" secondAttribute="bottom" constant="10" id="jF8-QS-6gm"/>
                             <constraint firstItem="evF-zk-Vuq" firstAttribute="leading" secondItem="zcZ-Ff-n0n" secondAttribute="leading" id="lJp-aH-t7v"/>
                             <constraint firstItem="KaM-iR-nIJ" firstAttribute="leading" secondItem="vyH-7v-KkN" secondAttribute="trailing" constant="8" id="qpf-oa-8DE"/>

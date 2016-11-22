@@ -116,6 +116,7 @@
  @param mRateNum 返回评分数
  */
 - (void)ZLRatingTableViewCellWithRateNum:(int)mRateNum{
+    MLLog(@"分数  %d",mRateNum);
 
 }
 
