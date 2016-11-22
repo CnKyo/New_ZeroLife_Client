@@ -168,14 +168,7 @@
  */
 - (void)ZLORderReturnCellWithUpLoadImages:(NSMutableArray *)mImgArr{
 
+    MLLog(@"%@",mImgArr);
 }
-/**
- 删除图片
- 
- @param mIndex 图片的索引
- */
-- (void)ZLORderReturnCellWithDeleteImageIndex:(NSInteger)mIndex{
 
-    
-}
 @end

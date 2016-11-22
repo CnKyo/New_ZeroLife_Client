@@ -27,7 +27,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XtP-9H-6Sw">
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="60" id="HWy-uC-TVj"/>
+                            <constraint firstAttribute="height" constant="100" id="HWy-uC-TVj"/>
                         </constraints>
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="02K-tV-QcG">
@@ -39,25 +39,15 @@
                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sMO-EU-94k">
-                        <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="0.51030072773972601" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="60" id="6gL-Z9-kDB"/>
-                            <constraint firstAttribute="height" constant="60" id="aRl-jz-Yh7"/>
-                        </constraints>
-                        <state key="normal" title="添加"/>
-                    </button>
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 <constraints>
-                    <constraint firstAttribute="leadingMargin" secondItem="sMO-EU-94k" secondAttribute="leading" id="1Ji-Jo-wmx"/>
                     <constraint firstAttribute="trailingMargin" secondItem="ukU-jq-5hW" secondAttribute="trailing" id="A9F-F3-yDO"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="XtP-9H-6Sw" secondAttribute="trailing" id="PKn-rQ-xjB"/>
-                    <constraint firstItem="sMO-EU-94k" firstAttribute="top" secondItem="ukU-jq-5hW" secondAttribute="bottom" constant="28" id="Yjm-Jy-aG5"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="XtP-9H-6Sw" secondAttribute="trailing" constant="-8" id="PKn-rQ-xjB"/>
                     <constraint firstAttribute="trailingMargin" secondItem="02K-tV-QcG" secondAttribute="trailing" id="ZDB-UC-lBs"/>
                     <constraint firstAttribute="leadingMargin" secondItem="02K-tV-QcG" secondAttribute="leading" id="e8r-pJ-Grh"/>
+                    <constraint firstItem="XtP-9H-6Sw" firstAttribute="leading" secondItem="MTF-Iz-7Ag" secondAttribute="leadingMargin" constant="-8" id="ioT-ax-fU2"/>
                     <constraint firstItem="XtP-9H-6Sw" firstAttribute="top" secondItem="ukU-jq-5hW" secondAttribute="bottom" constant="28" id="mkM-O1-a0e"/>
-                    <constraint firstItem="XtP-9H-6Sw" firstAttribute="leading" secondItem="sMO-EU-94k" secondAttribute="trailing" constant="8" id="t9F-0g-8fc"/>
                     <constraint firstAttribute="leadingMargin" secondItem="ukU-jq-5hW" secondAttribute="leading" id="wIm-yq-4KJ"/>
                     <constraint firstAttribute="topMargin" secondItem="ukU-jq-5hW" secondAttribute="top" id="wv3-VB-kS2"/>
                     <constraint firstItem="02K-tV-QcG" firstAttribute="top" secondItem="XtP-9H-6Sw" secondAttribute="bottom" constant="67" id="yLa-n4-IPI"/>

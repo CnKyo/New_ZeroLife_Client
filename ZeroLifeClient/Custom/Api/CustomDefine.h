@@ -24,6 +24,9 @@
 #import <BlocksKit+UIKit.h>
 #import <LPActionSheet.h>
 #import <SVProgressHUD.h>
+#import <AssetsLibrary/AssetsLibrary.h>
+#import <Photos/Photos.h>
+
 
 #define  KEY_USERNAME_PASSWORD @"com.company.app.usernamepassword"
 #define  KEY_USERNAME @"com.company.app.username"
@@ -54,6 +57,7 @@
 
 #define M_CO    [UIColor colorWithRed:0.56 green:0.77 blue:0.18 alpha:1.00]
 
+#define VERSION [[UIDevice currentDevice].systemVersion doubleValue]
 
 #define SYSTEM_VERSION_EQUAL_TO(v)                  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)
 #define SYSTEM_VERSION_GREATER_THAN(v)              ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedDescending)

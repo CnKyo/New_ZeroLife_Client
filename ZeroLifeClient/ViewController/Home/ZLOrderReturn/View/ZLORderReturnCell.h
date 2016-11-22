@@ -42,12 +42,6 @@
  */
 - (void)ZLORderReturnCellWithUpLoadImages:(NSMutableArray *)mImgArr;
 
-/**
- 删除图片
-
- @param mIndex 图片的索引
- */
-- (void)ZLORderReturnCellWithDeleteImageIndex:(NSInteger)mIndex;
 
 @end
 @interface ZLORderReturnCell : UITableViewCell
@@ -83,7 +77,7 @@
 /**
  图片数组
  */
-@property (strong,nonatomic)NSArray *mUpLoadImgArr;
+@property (strong,nonatomic)NSMutableArray *mUpLoadImgArr;
 
 /**
  提交按钮
