@@ -42,6 +42,9 @@ target 'ZeroLifeClient' do
   pod 'AliPaySDK'
   pod 'WeChatSDK-iOS'
   pod 'LPActionSheet'
+  pod 'HcdGuideView'
+  pod 'JWLaunchAd'
+
 
 
 end

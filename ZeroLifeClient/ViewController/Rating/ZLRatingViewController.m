@@ -27,7 +27,7 @@
     
     
     UIButton *mBtn = [UIButton new];
-    mBtn.frame = CGRectMake(15, DEVICE_Height-130, DEVICE_Width-30, 45);
+    mBtn.frame = CGRectMake(15, DEVICE_Height-50, DEVICE_Width-30, 45);
     mBtn.backgroundColor = M_CO;
     mBtn.layer.masksToBounds = YES;
     mBtn.layer.cornerRadius = 4;

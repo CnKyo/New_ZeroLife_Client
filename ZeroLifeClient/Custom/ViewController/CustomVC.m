@@ -38,21 +38,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    /**
-     *  清空代理,默认用户的手势就是有效的
-     */
-    //    self.interactivePopGestureRecognizer.delegate = nil;
-    self.navigationController.navigationBar.translucent = NO;
-    self.navigationController.interactivePopGestureRecognizer.delegate = self;
-    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0.55 green:0.75 blue:0.15 alpha:1.00];
-    //设置导航栏文字
-    [self.navigationController.navigationBar setTitleTextAttributes:@{
-                                                 NSFontAttributeName : [UIFont boldSystemFontOfSize:17],NSForegroundColorAttributeName:[UIColor whiteColor]
-                                                 
-                                                 }];
 
-    self.navigationController.navigationBar.translucent = NO;
-
+    
+    
     self.view.backgroundColor = COLOR(247, 247, 247);
     navBarHairlineImageView = [self findHairlineImageViewUnder:self.navigationController.navigationBar];
 
@@ -66,7 +54,6 @@
     [super viewWillAppear:animated];
     
     navBarHairlineImageView.hidden = YES;
-
 
     
     [MTA trackPageViewBegin:self.navigationItem.title];
