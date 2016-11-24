@@ -16,20 +16,26 @@
 
 @implementation ZLCommitRepairsViewController
 {
+<<<<<<< Updated upstream
    NSURL *mVideoUrl;
     UIImage *mVideoImg;
+
+=======
     UIImage *mUpLoadImg;
+>>>>>>> Stashed changes
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationItem.title = @"提交订单";
-
+<<<<<<< Updated upstream
 
     mVideoImg = [UIImage new];
     mVideoUrl = nil;
     
+=======
     mUpLoadImg = [UIImage new];
+>>>>>>> Stashed changes
     [self addTableView];
     
     UINib   *nib = [UINib nibWithNibName:@"ZLCommitRepairsCell" bundle:nil];
