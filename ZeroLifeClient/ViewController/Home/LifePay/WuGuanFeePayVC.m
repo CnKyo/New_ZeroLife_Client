@@ -108,7 +108,7 @@
     [aView updateConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(superView.left).offset(padding);
         make.right.equalTo(superView.right).offset(-padding);
-        make.top.equalTo(superView.top).offset(padding*2);
+        make.top.equalTo(superView.top).offset(@84);
     }];
     
     

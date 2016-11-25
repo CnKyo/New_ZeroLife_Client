@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,21 +13,17 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="223"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="222"/>
+                <frame key="frameInset" width="320" height="222"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="userCenterBg.png" translatesAutoresizingMaskIntoConstraints="NO" id="pzN-6o-fvF">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="222"/>
-                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="userCenterBg.png" translatesAutoresizingMaskIntoConstraints="NO" id="pzN-6o-fvF"/>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_homepage_default" translatesAutoresizingMaskIntoConstraints="NO" id="qDO-cz-IUg">
-                        <rect key="frame" x="120" y="8" width="80" height="80"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="80" id="RJ4-vZ-eGd"/>
                             <constraint firstAttribute="height" constant="80" id="awh-di-Jdb"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="张三" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MR7-9o-qIB">
-                        <rect key="frame" x="18" y="96" width="284" height="30"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="Qna-Pg-vcU"/>
                         </constraints>
@@ -39,7 +32,6 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="女 已认证 超尔小区" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CpW-do-P7C">
-                        <rect key="frame" x="18" y="126" width="284" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="f2g-Ta-6yZ"/>
                         </constraints>
@@ -48,7 +40,6 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="18883248243" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RU0-J3-pRL">
-                        <rect key="frame" x="18" y="146" width="284" height="30"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="3Gr-lc-2aM"/>
                         </constraints>
@@ -57,10 +48,9 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1dZ-pi-IwC" userLabel="View1">
-                        <rect key="frame" x="85" y="176" width="150" height="35"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="申请跑跑腿" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DCL-Ri-3B2">
-                                <rect key="frame" x="38" y="7" width="87" height="21"/>
+                                <frame key="frameInset" minX="38" minY="7" width="87" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -74,10 +64,8 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5PL-3w-SJt" userLabel="View2">
-                        <rect key="frame" x="35" y="176" width="250" height="35"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="跑跑腿等级" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8dK-he-IVm">
-                                <rect key="frame" x="10" y="0.0" width="90" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="90" id="FQH-VC-o4j"/>
                                 </constraints>
@@ -86,7 +74,6 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LV3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tEw-zQ-qUq">
-                                <rect key="frame" x="200" y="0.0" width="40" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="YhQ-ON-Ufg"/>
                                 </constraints>
@@ -95,7 +82,6 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="aIN-Qx-RpY">
-                                <rect key="frame" x="105" y="13" width="90" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="jqT-sj-uT7"/>
                                 </constraints>
@@ -120,7 +106,7 @@
                 <color key="backgroundColor" red="0.58755028247833252" green="0.78307092189788818" blue="0.1672416627407074" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
                     <constraint firstItem="RU0-J3-pRL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="5Ws-F0-mZb"/>
-                    <constraint firstItem="pzN-6o-fvF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="CDu-rX-goa"/>
+                    <constraint firstItem="pzN-6o-fvF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="-64" id="CDu-rX-goa"/>
                     <constraint firstItem="RU0-J3-pRL" firstAttribute="top" secondItem="CpW-do-P7C" secondAttribute="bottom" id="Csu-Ug-7aX"/>
                     <constraint firstItem="qDO-cz-IUg" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="DU4-v1-dNX"/>
                     <constraint firstItem="CpW-do-P7C" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="GUJ-P1-Qqy"/>

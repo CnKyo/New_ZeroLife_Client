@@ -50,7 +50,7 @@
             <objects>
                 <navigationController id="O5U-oG-ZS8" sceneMemberID="viewController">
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
-                    <tabBarItem key="tabBarItem" title="首页" id="pLu-rL-xbE"/>
+                    <tabBarItem key="tabBarItem" title="首页" image="ZLTabbar_Home_Normal" selectedImage="ZLTabbar_Home_Selected" id="pLu-rL-xbE"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="i4C-dj-eo0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -105,7 +105,7 @@
         <scene sceneID="LOz-VP-Xd7">
             <objects>
                 <navigationController id="S3P-I2-NQ3" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="管家" id="lAb-U5-2jv"/>
+                    <tabBarItem key="tabBarItem" title="管家" image="ZLTabbar_My_Normal" selectedImage="ZLTabbar_My_Selected" id="lAb-U5-2jv"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZeA-xO-5IL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -141,7 +141,7 @@
         <scene sceneID="0zg-tq-4m4">
             <objects>
                 <navigationController id="VrR-Ww-dkf" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="钱包" id="Ycq-jF-ueK"/>
+                    <tabBarItem key="tabBarItem" title="钱包" image="ZLTabbar_Purse_Normal" selectedImage="ZLTabbar_Purse_Selected" id="Ycq-jF-ueK"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="xfD-c6-WDS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -176,7 +176,6 @@
         <!--Item-->
         <scene sceneID="mMu-Lf-vJD">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="xb2-35-5uR" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="hKh-wD-0w0" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="Jlp-Ak-dFX"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="hdE-vM-vFE">
@@ -187,6 +186,7 @@
                         <segue destination="MKo-UG-ula" kind="relationship" relationship="rootViewController" id="HLP-fr-HGl"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xb2-35-5uR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1585" y="1026"/>
         </scene>
@@ -205,7 +205,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HuU-TR-oZu">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="1xw-rL-01E">
-                                    <rect key="frame" x="0.0" y="64" width="375" height="190"/>
+                                    <rect key="frame" x="0.0" y="64" width="1000" height="190"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="7x1-k8-Sqe"/>
@@ -220,10 +220,10 @@
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="1Or-7L-2vQ">
-                                        <rect key="frame" x="0.0" y="282" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="282" width="1000" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1Or-7L-2vQ" id="sJl-YY-Qjg">
-                                            <frame key="frameInset" width="375" height="43"/>
+                                            <frame key="frameInset" width="1000" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bd1-4v-Wg1">
@@ -263,7 +263,7 @@
         <scene sceneID="yDg-pu-0FV">
             <objects>
                 <navigationController id="S8q-Gz-lsy" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="厨房" id="uZb-sB-XU5"/>
+                    <tabBarItem key="tabBarItem" title="厨房" image="ZLTabbar_Cook_normal" selectedImage="ZLTabbar_Cook_Selected" id="uZb-sB-XU5"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="3lk-PD-lHT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -298,6 +298,14 @@
     </scenes>
     <resources>
         <image name="ZLHome_Message" width="24" height="20"/>
+        <image name="ZLTabbar_Cook_Selected" width="20" height="20"/>
+        <image name="ZLTabbar_Cook_normal" width="20" height="20"/>
+        <image name="ZLTabbar_Home_Normal" width="20" height="19"/>
+        <image name="ZLTabbar_Home_Selected" width="20" height="19"/>
+        <image name="ZLTabbar_My_Normal" width="20" height="20"/>
+        <image name="ZLTabbar_My_Selected" width="20" height="20"/>
+        <image name="ZLTabbar_Purse_Normal" width="20" height="20"/>
+        <image name="ZLTabbar_Purse_Selected" width="20" height="20"/>
         <image name="bg.jpg" width="1000" height="667"/>
     </resources>
 </document>

@@ -36,7 +36,8 @@
     
     
     [noteView makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.top.equalTo(superView);
+        make.left.right.equalTo(superView);
+        make.top.equalTo(superView).offset(@64);
         make.height.equalTo(45);
     }];
     [headerView updateConstraints:^(MASConstraintMaker *make) {

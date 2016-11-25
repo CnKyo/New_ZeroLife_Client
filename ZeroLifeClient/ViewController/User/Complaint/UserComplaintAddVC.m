@@ -38,7 +38,8 @@
     [superView addSubview:seg];
     [seg addTarget:self action:@selector(segmentedControlChangedValue:) forControlEvents:UIControlEventValueChanged];
     [seg makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.top.equalTo(superView);
+        make.left.right.equalTo(superView);
+        make.top.equalTo(superView).offset(@64);
         make.height.equalTo(60);
     }];
     

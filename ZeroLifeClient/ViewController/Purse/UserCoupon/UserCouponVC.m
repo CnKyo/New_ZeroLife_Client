@@ -53,7 +53,8 @@
         view;
     });
     [topView makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.right.equalTo(superView);
+        make.left.right.equalTo(superView);
+        make.top.equalTo(superView).offset(@64);
         make.height.equalTo(80);
     }];
     

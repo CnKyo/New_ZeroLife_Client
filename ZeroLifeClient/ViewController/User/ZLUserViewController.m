@@ -19,6 +19,9 @@
 #import "FavoriteTVC.h"
 #import "OrderTVC.h"
 #import "ZLLoginViewController.h"
+#import <UINavigationBar+Awesome.h>
+#define NAVBAR_CHANGE_POINT 30
+
 @interface ZLUserViewController ()<QUItemBtnViewDelegate>
 
 @end
@@ -41,7 +44,6 @@
         [btn11 setTitle:@"退出登陆" forState:UIControlStateNormal];
         [btn11 setStyleNavColor];
         
-        __weak __typeof(self)weakSelf = self;
         
         [btn11 jk_addActionHandler:^(NSInteger tag) {
 
@@ -62,19 +64,44 @@
     [super viewDidLoad];
     
     //[self.navigationController.navigationBar.subviews[2] setHidden:YES];
+    [self.navigationController.navigationBar lt_setBackgroundColor:[UIColor clearColor]];
 
 }
 
--(void)viewWillAppear:(BOOL)animated
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    [super viewWillAppear:animated];
+    UIColor * color = M_CO;
+    CGFloat offsetY = scrollView.contentOffset.y;
     
-//    UINavigationBar *navigationBar = self.navigationController.navigationBar;
-//    [navigationBar setBackgroundImage:[UIImage jk_imageWithColor:COLOR_NavBar] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
-//    [navigationBar setShadowImage:[UIImage new]];
-    
+    MLLog(@"YYYYY是：%f",offsetY);
+    if (offsetY > NAVBAR_CHANGE_POINT) {
+        CGFloat alpha = MIN(1, 1 - ((NAVBAR_CHANGE_POINT + 64 - offsetY) / 64));
+        MLLog(@"Yaaaaaa是：%f",alpha);
+        [self.navigationController.navigationBar lt_setBackgroundColor:[color colorWithAlphaComponent:alpha]];
+        self.navigationItem.title = @"管家";
 
+    } else {
+        [self.navigationController.navigationBar lt_setBackgroundColor:[color colorWithAlphaComponent:0]];
+        self.navigationItem.title = nil;
+    }
 }
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    self.tableView.delegate = self;
+    [self scrollViewDidScroll:self.tableView];
+    
+    
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    self.tableView.delegate = nil;
+    [self.navigationController.navigationBar lt_reset];
+}
+
 
 
 

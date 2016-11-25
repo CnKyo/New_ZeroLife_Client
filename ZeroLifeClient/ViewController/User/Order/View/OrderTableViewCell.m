@@ -24,6 +24,10 @@
         UIColor *color = [UIColor colorWithWhite:0.3 alpha:1];
         UIView *superView = self.contentView;
         
+        UIView *mLineView = [UIView new];
+        mLineView.backgroundColor = [UIColor colorWithRed:0.96 green:0.95 blue:0.96 alpha:1.00];
+        [superView addSubview:mLineView];
+        
         self.shopView = [[OrderShopHeaderView alloc] init];
         [superView addSubview:_shopView];
 //        self.shopIconImgView = [superView newUIImageViewWithImg:IMG(@"choose_on.png")];
@@ -63,8 +67,14 @@
         [self.actionBtn2 setTitleColor:color forState:UIControlStateNormal];
         
         
-        [self.shopView makeConstraints:^(MASConstraintMaker *make) {
+        [mLineView makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.top.equalTo(superView);
+            make.height.equalTo(@10);
+        }];
+        
+        [self.shopView makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.equalTo(superView);
+            make.top.equalTo(mLineView.bottom).offset(@0);
             make.height.equalTo(40);
         }];
         

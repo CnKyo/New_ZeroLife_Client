@@ -7,7 +7,7 @@
 //
 
 #import "SystemSettingVC.h"
-
+#import <SDImageCache.h>
 @interface SystemSettingVC ()
 
 @end
@@ -106,6 +106,28 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    if (indexPath.row == 0) {
+        
+        NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+        
+        [queue addOperationWithBlock:^{
+            SDImageCache *cache = [SDImageCache sharedImageCache];
+            
+            NSUInteger cacheSize = cache.getDiskCount;
+            
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                NSString *str = [NSString stringWithFormat:@"缓存的大小：(%.2fM)",cacheSize/1000.0/1000.0];
+                MLLog(@"%@",str);
+            }];
+        }];
+        
+        [[SDImageCache sharedImageCache] clearDisk];
+        
+        [[SDImageCache sharedImageCache] clearMemory];//可有可无
+        
+        
+    }
     
     
 }

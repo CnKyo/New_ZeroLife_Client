@@ -121,6 +121,8 @@
 		04721A4E1DE4569100CE8639 /* starGray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04721A461DE4569100CE8639 /* starGray@2x.png */; };
 		04721A4F1DE4569100CE8639 /* starGray@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04721A471DE4569100CE8639 /* starGray@3x.png */; };
 		04721A501DE4569100CE8639 /* LHRatingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04721A491DE4569100CE8639 /* LHRatingView.m */; };
+		0472A9071DE7E03100D861D2 /* ZLHouseKeepingClearnCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0472A9051DE7E03100D861D2 /* ZLHouseKeepingClearnCell.m */; };
+		0472A9081DE7E03100D861D2 /* ZLHouseKeepingClearnCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0472A9061DE7E03100D861D2 /* ZLHouseKeepingClearnCell.xib */; };
 		04770EEF1DDE99A9008B7505 /* ZLLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04770EEE1DDE99A9008B7505 /* ZLLoginViewController.m */; };
 		04770EF31DDE99DC008B7505 /* ZLLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04770EF21DDE99DC008B7505 /* ZLLoginView.m */; };
 		04770EF51DDE99E4008B7505 /* ZLLoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04770EF41DDE99E4008B7505 /* ZLLoginView.xib */; };
@@ -713,6 +715,9 @@
 		04721A471DE4569100CE8639 /* starGray@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "starGray@3x.png"; sourceTree = "<group>"; };
 		04721A481DE4569100CE8639 /* LHRatingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHRatingView.h; sourceTree = "<group>"; };
 		04721A491DE4569100CE8639 /* LHRatingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHRatingView.m; sourceTree = "<group>"; };
+		0472A9041DE7E03100D861D2 /* ZLHouseKeepingClearnCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLHouseKeepingClearnCell.h; sourceTree = "<group>"; };
+		0472A9051DE7E03100D861D2 /* ZLHouseKeepingClearnCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLHouseKeepingClearnCell.m; sourceTree = "<group>"; };
+		0472A9061DE7E03100D861D2 /* ZLHouseKeepingClearnCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLHouseKeepingClearnCell.xib; sourceTree = "<group>"; };
 		04770EED1DDE99A9008B7505 /* ZLLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLLoginViewController.h; sourceTree = "<group>"; };
 		04770EEE1DDE99A9008B7505 /* ZLLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLLoginViewController.m; sourceTree = "<group>"; };
 		04770EF11DDE99DC008B7505 /* ZLLoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLLoginView.h; sourceTree = "<group>"; };
@@ -2375,6 +2380,9 @@
 				DF993D471DDAF1F80061D7CA /* DryCleanTimeChooseView.m */,
 				DF993D511DDAF54F0061D7CA /* NoticeTextView.h */,
 				DF993D521DDAF54F0061D7CA /* NoticeTextView.m */,
+				0472A9041DE7E03100D861D2 /* ZLHouseKeepingClearnCell.h */,
+				0472A9051DE7E03100D861D2 /* ZLHouseKeepingClearnCell.m */,
+				0472A9061DE7E03100D861D2 /* ZLHouseKeepingClearnCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -3152,6 +3160,7 @@
 				DF8DBCDA1DD0581F002E574B /* gouwu_order@2x.png in Resources */,
 				DF08E8501DD16A13003E4DD9 /* MobileRechargeMoneyView_kuangNormal@3x.png in Resources */,
 				04C73BF11DDD7D8D00E5D554 /* ZLHouseKeppingServiceCell.xib in Resources */,
+				0472A9081DE7E03100D861D2 /* ZLHouseKeepingClearnCell.xib in Resources */,
 				DFA1354F1DD6C7A900805BA2 /* gou_no@3x.png in Resources */,
 				DFA135701DD6FBE000805BA2 /* bankCard_add@2x.png in Resources */,
 				04D64D6D1DC9CCA5004E8859 /* ZLHomeLocationView.xib in Resources */,
@@ -3574,6 +3583,7 @@
 				DF55B4611DBAFE5800F89341 /* ZLCookViewController.m in Sources */,
 				DF0308881DCD67ED00E1EAB6 /* UserInfoVC.m in Sources */,
 				DFFAA7641DB744EF001CFBB5 /* CustomScrollVC.m in Sources */,
+				0472A9071DE7E03100D861D2 /* ZLHouseKeepingClearnCell.m in Sources */,
 				DF03088E1DCD698900E1EAB6 /* NSObject+PickPhoto.m in Sources */,
 				04866B911DD40EB9008DA56B /* ZLSuperMArketSearchGoodsView.m in Sources */,
 				047219F01DE3E66C00CE8639 /* HX_AddPhotoView.m in Sources */,

@@ -459,7 +459,8 @@
     
     
     [noteView updateConstraints:^(MASConstraintMaker *make) {
-        make.left.right.top.equalTo(superView);
+        make.left.right.equalTo(superView);
+        make.top.equalTo(superView).offset(@64);
         //make.height.equalTo(60);
     }];
     [noteLable1 makeConstraints:^(MASConstraintMaker *make) {

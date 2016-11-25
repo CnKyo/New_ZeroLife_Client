@@ -224,7 +224,8 @@
     }];
     
     [aView makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.top.equalTo(superView);
+        make.left.right.equalTo(superView);
+        make.top.equalTo(superView).offset(@64);
         make.height.equalTo(60);
     }];
     [self.moneyChooseView updateConstraints:^(MASConstraintMaker *make) {

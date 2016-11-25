@@ -80,7 +80,7 @@
     [aView makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(superView.left).offset(padding*2);
         make.right.equalTo(superView.right).offset(-padding*2);
-        make.top.equalTo(superView.top).offset(padding*2);
+        make.top.equalTo(superView.top).offset(@64);
         make.height.equalTo(aView.width).multipliedBy(1.1);
     }];
 

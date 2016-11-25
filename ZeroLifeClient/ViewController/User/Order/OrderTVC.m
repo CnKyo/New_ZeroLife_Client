@@ -16,7 +16,9 @@
 @end
 
 @implementation OrderTVC
-
+{
+    HMSegmentedControl *seg;
+}
 
 -(void)loadView
 {
@@ -50,7 +52,7 @@
     
     UIView *superView = self.view;
     
-    HMSegmentedControl *seg = [[HMSegmentedControl alloc] initWithSectionTitles:arr];
+    seg = [[HMSegmentedControl alloc] initWithSectionTitles:arr];
     seg.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
     seg.selectionIndicatorHeight = 2.0f;
     seg.titleTextAttributes = @{NSFontAttributeName : [UIFont systemFontOfSize:15], NSForegroundColorAttributeName : [UIColor blackColor]};
@@ -58,14 +60,7 @@
     seg.selectionIndicatorColor = COLOR_NavBar;
     [superView addSubview:seg];
     [seg addTarget:self action:@selector(segmentedControlChangedValue:) forControlEvents:UIControlEventValueChanged];
-    [seg makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.top.equalTo(superView);
-        make.height.equalTo(40);
-    }];
-    [self.tableView remakeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.bottom.equalTo(superView);
-        make.top.equalTo(seg.bottom);
-    }];
+
 }
 
 - (void)viewDidLoad {
@@ -105,26 +100,31 @@
 #pragma mark -- tableviewDelegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    if (self.tableArr.count > 0)
-        return self.tableArr.count;
     return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (self.tableArr.count > 0)
-        return 1;
+        return 10;
     else {
         if (self.tableIsReloading)
             return 0;
         else
-            return 1;
+            return 10;
     }
 }
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
 
+    return 40;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+
+    return seg;
+}
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.tableArr.count > 0)
-        return 200;
-    return 50;
+
+    return 210;
+
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -145,17 +145,6 @@
         return cell;
     }
     return [super tableView:tableView cellForRowAtIndexPath:indexPath];
-}
-
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 1;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
-    return 10;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

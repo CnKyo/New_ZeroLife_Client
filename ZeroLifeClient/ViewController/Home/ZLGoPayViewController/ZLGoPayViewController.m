@@ -166,7 +166,7 @@
     [UIView animateWithDuration:0.25 animations:^{
         mRedBgkView.alpha = 1;
         CGRect mRRR = mPopView.frame;
-        mRRR.origin.y = DEVICE_Height-200;
+        mRRR.origin.y = DEVICE_Height-160;
         mPopView.frame = mRRR;
     }];
 }
@@ -188,7 +188,7 @@
     mRedBgkView.alpha = 0;
     [self.view addSubview:mRedBgkView];
     
-    mPopView = [ZLGoPayPopRedBagView initShareViewWithFrame:CGRectMake(0, DEVICE_Height, DEVICE_Width, 200) andDataSource:@[@"a",@"s",@"d",@"w"]];
+    mPopView = [ZLGoPayPopRedBagView initShareViewWithFrame:CGRectMake(0, DEVICE_Height, DEVICE_Width, 160) andDataSource:@[@"a",@"s",@"d",@"w"]];
     mPopView.delegate = self;
     
     [mRedBgkView addSubview:mPopView];
