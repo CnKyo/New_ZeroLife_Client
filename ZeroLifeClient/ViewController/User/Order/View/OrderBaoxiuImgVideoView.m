@@ -22,7 +22,7 @@
         UIColor *color = [UIColor colorWithWhite:0.3 alpha:1];
         UIView *superView = self;
         
-        UILabel *noteLable = [superView newUILableWithText:@"维权信息" textColor:color font:font];
+        UILabel *noteLable = [superView newUILableWithText:@"图片信息" textColor:color font:font];
         
         self.imgBtn = [superView newUIButton];
         self.videoBtn = [superView newUIButton];
