@@ -25,8 +25,16 @@
 #import "ZLRunningManViewController.h"
 #import "BianMingVC.h"
 #import "ZLLoginViewController.h"
-
+#import "ZLWebViewViewController.h"
+#import "ZLOrderReturnViewController.h"
+#import "ZLAnounceMentViewController.h"
+#import "ZLRatingViewController.h"
+#import <HcdGuideView.h>
+#import <JWLaunchAd/JWLaunchAd.h>
+#import <UINavigationBar+Awesome.h>
+#define NAVBAR_CHANGE_POINT 30
 @interface ZLHomeViewController ()<UITableViewDelegate,UITableViewDataSource,ZLHomeScrollerTableCellDelegate,ZLHomeLocationViewDelegate,ZLCoupViewDelegate>
+@property (weak, nonatomic) IBOutlet UITableView *mTableView;
 
 @end
 
@@ -41,25 +49,115 @@
     //优惠券数据源
     NSMutableArray *mCoupArr;
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"首页";
 
+    NSNotificationCenter *mNotify = [NSNotificationCenter defaultCenter];
+    [mNotify addObserver:self selector:@selector(webAction:) name:@"ZLAdView" object:nil];
+    
+    [self initAdView];
+    
+    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(10, -60) forBarMetrics:UIBarMetricsDefault];
+
+    
     mBannerArr = [NSMutableArray new];
     mCoupArr = [NSMutableArray new];
 
-    
+    self.mTableView.dataSource = self;
+    self.mTableView.delegate = self;
+
     [self initLeftAndRightBarButton];
-    [self addTableView];
+//    [self addTableView];
     
     UINib   *nib = [UINib nibWithNibName:@"ZLHomeOtherCell" bundle:nil];
-    [self.tableView registerNib:nib forCellReuseIdentifier:@"cell2"];
+    [self.mTableView registerNib:nib forCellReuseIdentifier:@"cell2"];
 
     
     [self initCoupView];
     
     [self loadData];
+    [self.navigationController.navigationBar lt_setBackgroundColor:[UIColor clearColor]];
+    
+    
 }
+- (void)webAction:(NSNotification *)sender{
+    MLLog(@"得到的通知对象:%@",sender);
+    ZLWebViewViewController *vc = [ZLWebViewViewController new];
+    vc.mUrl = sender.userInfo[@"url"];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self pushViewController:vc];
+    
+}
+- (void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:@"ZLAdView"];
+}
+- (void)initAdView{
+    
+    
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+
+    NSMutableArray *images = [NSMutableArray new];
+    
+    [images addObject:[UIImage imageNamed:@"1"]];
+    [images addObject:[UIImage imageNamed:@"2"]];
+    [images addObject:[UIImage imageNamed:@"3"]];
+    
+    HcdGuideView *guideView = [HcdGuideView sharedInstance];
+    guideView.window = window;
+    [guideView showGuideViewWithImages:images
+                        andButtonTitle:@"立即体验"
+                   andButtonTitleColor:[UIColor whiteColor]
+                      andButtonBGColor:[UIColor clearColor]
+                  andButtonBorderColor:[UIColor whiteColor]];
+    
+    
+    
+    
+        
+
+}
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    UIColor * color = M_CO;
+    CGFloat offsetY = scrollView.contentOffset.y;
+    
+    MLLog(@"YYYYY是：%f",offsetY);
+    if (offsetY > NAVBAR_CHANGE_POINT) {
+        CGFloat alpha = MIN(1, 1 - ((NAVBAR_CHANGE_POINT + 64 - offsetY) / 64));
+        MLLog(@"Yaaaaaa是：%f",alpha);
+        [self.navigationController.navigationBar lt_setBackgroundColor:[color colorWithAlphaComponent:alpha]];
+        [mLocationView setBackgroundColor:[[UIColor whiteColor] colorWithAlphaComponent:alpha/2]];
+//        mLocationView.mLocation.image = [UIImage imageNamed:@"ZLCommitOrder_Location"];
+//        mLocationView.mDown.image = [UIImage imageNamed:@"ZLHomeLocationDown_Green"];
+//        mLocationView.mAddress.textColor = [UIColor whiteColor];
+        
+    } else {
+        [self.navigationController.navigationBar lt_setBackgroundColor:[color colorWithAlphaComponent:0]];
+        [mLocationView setBackgroundColor:[[UIColor whiteColor] colorWithAlphaComponent:0.5]];
+//        mLocationView.mLocation.image = [UIImage imageNamed:@"ZLHome_Location"];
+//        mLocationView.mDown.image = [UIImage imageNamed:@"ZLHom_Location_Down"];
+//        mLocationView.mAddress.textColor = [UIColor whiteColor];
+    }
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    self.mTableView.delegate = self;
+    [self scrollViewDidScroll:self.mTableView];
+    
+
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    self.mTableView.delegate = nil;
+    [self.navigationController.navigationBar lt_reset];
+}
+
 #pragma mark ----****----加载导航条左右按钮和中间的社区选择view
 - (void)initLeftAndRightBarButton{
 
@@ -96,10 +194,22 @@
 //
 //    [self pushViewController:ZLHomeMsgVC];
     
-    ZLLoginViewController *vc = [ZLLoginViewController new];
+//    ZLLoginViewController *vc = [ZLLoginViewController new];
+//    ZLWebViewViewController *vc = [ZLWebViewViewController new];
+//    ZLOrderReturnViewController *vc = [ZLOrderReturnViewController new];
+    ZLRatingViewController *vc = [ZLRatingViewController new];
+
+    
+
     vc.hidesBottomBarWhenPushed = YES;
+//    vc.mUrl = @"www.baidu.com";
+//    vc.title = @"web";
 
     [self pushViewController:vc];
+    
+    
+    
+    
 }
 - (void)loadData{
 
@@ -126,7 +236,7 @@
         [self.tableArr addObject:mTempDic];
     }
     
-    [self.tableView reloadData];
+    [self.mTableView reloadData];
     
 }
 - (void)didReceiveMemoryWarning {
@@ -146,7 +256,7 @@
 #pragma mark -- tableviewDelegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView              // Default is 1 if not implemented
 {
-    if (tableView == self.tableView) {
+    if (tableView == self.mTableView) {
         return 2;
     }else{
     
@@ -166,7 +276,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    if (tableView == self.tableView) {
+    if (tableView == self.mTableView) {
         if (section == 0) {
             return 1;
         }else{
@@ -184,7 +294,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    if (tableView == self.tableView) {
+    if (tableView == self.mTableView) {
         if (indexPath.section == 0) {
             
             if (self.tableArr.count<=4) {
@@ -212,7 +322,7 @@
     
     NSString *reuseCellId = nil;
     
-    if (tableView == self.tableView) {
+    if (tableView == self.mTableView) {
         if (indexPath.section == 0) {
             reuseCellId = @"cell1";
             
@@ -259,7 +369,7 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    if (tableView == self.tableView) {
+    if (tableView == self.mTableView) {
         [self showCoupView];
     }else{
         [self hiddenCoupView];
@@ -301,6 +411,11 @@
     }
     else if (mIndex == 4) {
         BianMingVC *vc = [[BianMingVC alloc] init];
+        vc.hidesBottomBarWhenPushed = YES;
+        [self pushViewController:vc];
+    }
+    else if (mIndex == 6) {
+        ZLAnounceMentViewController *vc = [[ZLAnounceMentViewController alloc] init];
         vc.hidesBottomBarWhenPushed = YES;
         [self pushViewController:vc];
     }

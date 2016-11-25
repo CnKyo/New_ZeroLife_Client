@@ -65,7 +65,7 @@
 
 - (IBAction)mUpLoadVideo:(UIButton *)sender {
     if ([self.delegate respondsToSelector:@selector(ZLCommitRepairsCellWithUpLoadVideoAction)]) {
-        [self.delegate ZLCommitRepairsCellWithUpLoadImgAction];
+        [self.delegate ZLCommitRepairsCellWithUpLoadVideoAction];
     }
     
 

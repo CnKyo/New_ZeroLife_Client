@@ -164,4 +164,12 @@
  */
 - (void)reloadWithTableArr:(NSArray *)arr info:(APIObject*) info;
 
+//调用svprogresssview加载框 参数：加载时显示的内容
+-(void)showWithStatus:(NSString *)str;
+//隐藏svprogressview
+-(void)dismiss;
+//展示成功状态svprogressview 参数:成功状态显示字符串
+-(void)showSuccessStatus:(NSString *)str;
+//展示失败状态svprogressview 参数:失败状态显示字符串
+-(void)showErrorStatus:(NSString *)astr;
 @end

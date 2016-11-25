@@ -101,6 +101,7 @@
         CGRect mBgkView1Rect = mBgkView1.frame;
         CGRect mBgkView2Rect = mBgkView2.frame;
         CGRect mSRR = scrollView.frame;
+        
         //创建8个
         for (int i = 0; i < mDataSource.count; i++) {
             if (i < 4) {

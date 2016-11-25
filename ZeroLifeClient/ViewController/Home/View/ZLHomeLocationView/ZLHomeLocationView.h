@@ -25,6 +25,9 @@
 
 @interface ZLHomeLocationView : UIView
 
+@property (weak, nonatomic) IBOutlet UIImageView *mLocation;
+@property (weak, nonatomic) IBOutlet UIImageView *mDown;
+
 /**
  地址
  */

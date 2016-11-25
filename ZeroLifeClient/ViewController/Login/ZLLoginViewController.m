@@ -9,6 +9,8 @@
 #import "ZLLoginViewController.h"
 #import "ZLLoginView.h"
 #import "ZLRegistForgetViewController.h"
+#import <ShareSDK/ShareSDK.h>
+
 @interface ZLLoginViewController ()<ZLLoginViewDelegate>
 
 @end
@@ -90,20 +92,22 @@
  登录
  */
 - (void)ZLLoginWithLoginAction{
-
+    [self showWithStatus:@"登陆中..."];
 }
 
 /**
  QQ登录
  */
 - (void)ZLLoginWithQQAction{
-
+    [self loginWithType:SSDKPlatformTypeQQ];
 }
 
 /**
  微信登录
  */
 - (void)ZLLoginWithWetchatAction{
+
+    [self loginWithType:SSDKPlatformTypeWechat];
 
 }
 
@@ -124,7 +128,18 @@
 - (void)ZLPwdTextFieldText:(NSString *)mText{
     MLLog(@"%@",mText);
 }
+#pragma mark----****----QQ微信登录
+- (void)loginWithType:(SSDKPlatformType)type{
 
-
+    [ShareSDK getUserInfo:type onStateChanged:^(SSDKResponseState state, SSDKUser *user, NSError *error) {
+        if (state == SSDKResponseStateSuccess) {
+            MLLog(@"%@",user);
+            MLLog(@"%@",user.uid);
+        }else{
+            MLLog(@"%@",error);
+        }
+    }];
+    
+}
 
 @end

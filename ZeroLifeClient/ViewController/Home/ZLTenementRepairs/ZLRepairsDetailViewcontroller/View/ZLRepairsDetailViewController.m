@@ -68,7 +68,7 @@
     }
     
     UIButton *mCommit = [UIButton new];
-    mCommit.frame = CGRectMake(0, DEVICE_Height-120, DEVICE_Width, 60);
+    mCommit.frame = CGRectMake(0, DEVICE_Height-50, DEVICE_Width, 50);
     mCommit.backgroundColor = M_CO;
     [mCommit setTitle:@"立即提交订单" forState:0];
     [mCommit setTitleColor:[UIColor whiteColor] forState:0];

@@ -8,17 +8,19 @@
 
 #import "AppDelegate.h"
 #import "ZLTabBarViewController.h"
+#import "ZLWebViewViewController.h"
 #import "MTA.h"
 #import "MTAConfig.h"
 #import "CustomDefine.h"
 #import <SVProgressHUD/SVProgressHUD.h>
-
+#import <HcdGuideView.h>
 #import <ShareSDK/ShareSDK.h>
 #import <ShareSDKConnector/ShareSDKConnector.h>
 #import <TencentOpenAPI/TencentOAuth.h>
 #import <TencentOpenAPI/QQApiInterface.h>
 #import <WXApi.h>
 #import <WeiboSDK.h>
+#import <JWLaunchAd/JWLaunchAd.h>
 
 @interface AppDelegate ()
 
@@ -29,17 +31,27 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    //创建窗口的根控制器
-    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    self.window.backgroundColor = COLOR_NavBar;
+//    //创建窗口的根控制器
+//    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+//    self.window.backgroundColor = COLOR_NavBar;
+    
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    [[UINavigationBar appearance] setBarTintColor:M_CO];
+    [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
+                                                           [UIColor whiteColor], NSForegroundColorAttributeName, [UIFont systemFontOfSize:21], NSFontAttributeName, nil]];
+    
+    
+    
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+ 
     
     [SVProgressHUD setDefaultStyle:SVProgressHUDStyleCustom];
     [SVProgressHUD setBackgroundColor:[UIColor colorWithWhite:0.9 alpha:1]];
     
-    //设置窗口的根控制器
-    self.window.rootViewController = [[ZLTabBarViewController alloc] init];
-    //显示窗口
-    [self.window makeKeyAndVisible];
+//    //设置窗口的根控制器
+//    self.window.rootViewController = [[ZLTabBarViewController alloc] init];
+//    //显示窗口
+//    [self.window makeKeyAndVisible];
 
     [self initLibraries];
     
@@ -108,6 +120,42 @@
      }];
     [WXApi registerApp:WXPAYKEY withDescription:[Util getAPPName]];// 配置info.plist的 Scheme,
 
+    
+    __weak __typeof(self)mSelf = self;
+    
+    //  清理缓存
+    [JWLaunchAd clearDiskCache];
+    
+    //  1.设置启动页广告图片的url
+    //    NSString *imgUrlString =@"http://imgstore.cdn.sogou.com/app/a/100540002/714860.jpg";
+    //  GIF
+    NSString *imgUrlString = @"http://img1.imgtn.bdimg.com/it/u=473895314,616407725&fm=206&gp=0.jpg";
+    
+    //  2.初始化启动页广告
+    [JWLaunchAd initImageWithAttribute:6.0 showSkipType:SkipShowTypeAnimation setLaunchAd:^(JWLaunchAd *launchAd) {
+        __block JWLaunchAd *weakSelf = launchAd;
+        
+        //如果选择 SkipShowTypeAnimation 需要设置动画跳过按钮的属性
+        [weakSelf setAnimationSkipWithAttribute:[UIColor redColor] lineWidth:3.0 backgroundColor:nil textColor:nil];
+        
+        
+        [launchAd setWebImageWithURL:imgUrlString options:JWWebImageDefault result:^(UIImage *image, NSURL *url) {
+            
+            //  3.异步加载图片完成回调(设置图片尺寸)
+            weakSelf.launchAdViewFrame = CGRectMake(0, 0, DEVICE_Width, DEVICE_Height);
+        } adClickBlock:^{
+            
+            //  4.点击广告回调
+            NSString *url = @"https://www.baidu.com";
+            NSNotification *mNotice = [NSNotification notificationWithName:@"ZLAdView" object:nil userInfo:@{@"url":url}];
+            [[NSNotificationCenter defaultCenter] postNotification:mNotice];
+
+            
+        }];
+    }];
+    
+
+    
 }
 
 

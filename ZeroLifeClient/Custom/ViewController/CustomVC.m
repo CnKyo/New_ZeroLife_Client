@@ -38,21 +38,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    /**
-     *  清空代理,默认用户的手势就是有效的
-     */
-    //    self.interactivePopGestureRecognizer.delegate = nil;
-    self.navigationController.navigationBar.translucent = NO;
-    self.navigationController.interactivePopGestureRecognizer.delegate = self;
-    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0.55 green:0.75 blue:0.15 alpha:1.00];
-    //设置导航栏文字
-    [self.navigationController.navigationBar setTitleTextAttributes:@{
-                                                 NSFontAttributeName : [UIFont boldSystemFontOfSize:17],NSForegroundColorAttributeName:[UIColor whiteColor]
-                                                 
-                                                 }];
 
-    self.navigationController.navigationBar.translucent = NO;
-
+    
+    
     self.view.backgroundColor = COLOR(247, 247, 247);
     navBarHairlineImageView = [self findHairlineImageViewUnder:self.navigationController.navigationBar];
 
@@ -66,7 +54,6 @@
     [super viewWillAppear:animated];
     
     navBarHairlineImageView.hidden = YES;
-
 
     
     [MTA trackPageViewBegin:self.navigationItem.title];
@@ -441,7 +428,8 @@
 #pragma mark ----****----设置左边的按钮
 - (void)addLeftBtn:(BOOL)mHidden andTitel:(NSString *)mBackTitle andImage:(UIImage *)mImage{
 
-    UIButton *mBackBtn = [[UIButton alloc]initWithFrame:CGRectMake(DEVICE_Width-80,15,13,20)];
+    
+    UIButton *mBackBtn = [[UIButton alloc]initWithFrame:CGRectMake(80,15,13,20)];
     
     if (!mHidden) {
         return;
@@ -492,9 +480,39 @@
     
 }
 - (void)mBackAction{
+    [self dismiss];
     [self popViewController];
 }
 - (void)mRightAction:(UIButton *)sender{
     
 }
+
+-(void)showWithStatus:(NSString *)str //调用svprogresssview加载框 参数：加载时显示的内容
+{
+    [SVProgressHUD showWithStatus:str];
+    
+}
+-(void)dismiss //隐藏svprogressview
+{
+    [SVProgressHUD dismiss];
+}
+-(void)showSuccessStatus:(NSString *)str//展示成功状态svprogressview
+{
+    [SVProgressHUD showSuccessWithStatus:str];
+    [self dissMissSVPHUD];
+}
+-(void)showErrorStatus:(NSString *)astr//展示失败状态svprogressview
+{
+    [SVProgressHUD showErrorWithStatus:astr];
+    [self dissMissSVPHUD];
+}
+
+- (void)dissMissSVPHUD{
+
+
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [SVProgressHUD dismiss];
+    });
+}
+
 @end

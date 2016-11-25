@@ -10,6 +10,7 @@
 #import "ZLLoginView.h"
 #import "CustomDefine.h"
 #import "MZTimerLabel.h"
+#import "otherLoginViewController.h"
 @interface ZLRegistForgetViewController ()<ZLLoginViewDelegate,MZTimerLabelDelegate>
 
 @end
@@ -60,6 +61,9 @@
  注册
  */
 - (void)ZLLoginWithRegistAction{
+    otherLoginViewController *ooo = [[otherLoginViewController alloc] initWithNibName:@"otherLoginViewController" bundle:nil];
+
+    [self pushViewController:ooo];
 
 }
 /**
