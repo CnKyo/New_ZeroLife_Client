@@ -32,5 +32,15 @@
         [self.sexWomanBtn setImage:IMG(@"shimingrenzheng_on.png") forState:UIControlStateNormal];
     }
 }
+- (IBAction)mSelectedCityAction:(UIButton *)sender {
+    
+    if ([self.delegate respondsToSelector:@selector(UserHouseEditTableViewCellSelectedCityBtnClicked)]) {
+        [self.delegate UserHouseEditTableViewCellSelectedCityBtnClicked];
+    }
+    
+    
+}
+
+
 
 @end

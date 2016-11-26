@@ -11,8 +11,11 @@
 #import "ZLPayTypeHeaderView.h"
 #import "ZLGoPayPopRedBagView.h"
 #import "ZLGoPaySucsessCell.h"
+#import "CustomDefine.h"
 @interface ZLGoPayViewController ()<UITableViewDelegate,UITableViewDataSource,ZLGoPayCellDelegate,ZLGoPayShareDelegate>
 @property (strong,nonatomic)ZLGoPayPopRedBagView *mPopView;
+@property (nonatomic,strong) ZLGoPayObject *selectModel;
+
 @end
 
 @implementation ZLGoPayViewController
@@ -25,6 +28,7 @@
     
     UIView *mRedBgkView;
     
+    NSMutableArray *mPayTypeArr;
 }
 @synthesize mPopView;
 - (void)viewDidLoad {
@@ -32,6 +36,8 @@
     // Do any additional setup after loading the view.
     self.navigationItem.title = @"收银台";
 
+    mPayTypeArr = [NSMutableArray new];
+    
     [self addTableView];
     
     UINib   *nib = [UINib nibWithNibName:@"ZLPayTypeTableViewCell" bundle:nil];
@@ -78,10 +84,21 @@
     }];
     
     [self initShareView];
+    [self initData];
 }
-#pragma mark----****----确定
+- (void)initData{
+    for (int i = 0; i < 3; i++) {
+        ZLGoPayObject *model = [[ZLGoPayObject alloc] init];
+        [self.tableArr addObject:model];
+    }
+    [self.tableView reloadData];
+
+}
+#pragma mark----****----确认支付
 - (void)mOKBtn:(UIButton *)sender{
 
+    MLLog(@"%@",mPayTypeArr);
+    
 }
 #pragma mark----****----发红包
 - (void)mRedBag:(UIButton *)sender{
@@ -124,7 +141,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return 3;
+    return self.tableArr.count;
 
     
 }
@@ -144,16 +161,18 @@
     reuseCellId = @"cell";
     
     ZLPayTypeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
-    
+    cell.delegate = self;
+    [cell cellWithData:self.tableArr[indexPath.row]];
+    cell.mIndexPath = indexPath;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return cell;
 }
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-}
+//-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+//    
+//}
 
 #pragma mark----****----状态按钮点击事件
 ///状态按钮点击事件
@@ -204,6 +223,28 @@
 - (void)ZLGoPayShareWithBtnClickIndex:(NSInteger)mIndex{
 
     MLLog(@"点击了%ld",(long)mIndex);
+    
+    
+}
+- (void)ZLSelectedBtnClicked:(NSIndexPath *)mIndexPath{
+    [mPayTypeArr removeAllObjects];
+    
+    MLLog(@"你选了第%ld行",(long)mIndexPath.row);
+
+    if (self.selectModel) {
+        self.selectModel.isSelected = !self.selectModel.isSelected;
+    }
+    ZLGoPayObject *model = self.tableArr[mIndexPath.row];
+    if (!model.isSelected) {
+        model.isSelected = !model.isSelected;
+        self.selectModel = model;
+    }
+    
+
+    [mPayTypeArr addObject:model];
+    
+    [self.tableView reloadData];
+
 }
 
 @end

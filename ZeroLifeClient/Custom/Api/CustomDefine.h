@@ -8,7 +8,6 @@
 
 #ifndef CustomDefine_h
 #define CustomDefine_h
-
 #import "Util.h"
 #import "UIViewExt.h"
 #import "DCPicScrollView.h"
@@ -161,7 +160,10 @@ typedef enum {
 //自定义的写在下面，通用的写在上面
 //-----------------------
 
+// 格式 0xff3737
+#define JHUDRGBHexAlpha(rgbValue,a) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:(a)]
 
+#define JHUDRGBA(r,g,b,a)     [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:a]
 #define COLOR_NavBar                COLOR(150, 200, 43)
 #define COLOR_LowNavBar             [UIColor colorWithRed:0.761 green:0.914 blue:0.769 alpha:1.000]
 #define COLOR_BtnBar                [UIColor colorWithRed:0.980 green:0.675 blue:0.082 alpha:1.000]

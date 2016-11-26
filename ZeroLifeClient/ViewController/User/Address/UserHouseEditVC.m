@@ -8,8 +8,10 @@
 
 #import "UserHouseEditVC.h"
 #import "UserHouseEditTableViewCell.h"
+#import "ZLSelectedCityViewController.h"
+#import "APIObjectDefine.h"
 
-@interface UserHouseEditVC ()<UITextFieldDelegate>
+@interface UserHouseEditVC ()<UITextFieldDelegate,UserHouseEditTableViewCellDelegate>
 @property(nonatomic,strong) UserHouseEditTableViewCell *customCell;
 @end
 
@@ -107,7 +109,7 @@
     cell.realNameField.delegate = self;
     cell.mobileField.delegate = self;
     cell.addressField.delegate = self;
-    
+    cell.delegate = self;
     [cell reloadSexUI:_item.sex];
     
     [cell.sexManBtn jk_addActionHandler:^(NSInteger tag) {
@@ -129,6 +131,15 @@
     return 5;
 }
 
+- (void)UserHouseEditTableViewCellSelectedCityBtnClicked{
+
+    ZLSelectedCityViewController *vc = [ZLSelectedCityViewController new];
+    vc.mTitle = @"选择省市区";
+    vc.mType = 1;
+   
+    [self pushViewController:vc];
+    
+}
 
 
 

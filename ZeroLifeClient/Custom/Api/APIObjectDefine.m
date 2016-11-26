@@ -273,4 +273,23 @@
 @implementation BankCardObject
 @end
 
+@implementation ZLGoPayObject
 
+@end
+
+@implementation ZLSeletedAddress
+
++ (ZLSeletedAddress *)ShareClient{
+
+    //只赋值一次
+    static ZLSeletedAddress *mAddress = nil;
+    
+    @synchronized (self) {
+        if (!mAddress) {
+            mAddress = [[ZLSeletedAddress alloc] init];
+        }
+    }
+    return mAddress;
+}
+
+@end

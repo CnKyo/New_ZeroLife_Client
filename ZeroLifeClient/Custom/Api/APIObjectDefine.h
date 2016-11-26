@@ -146,3 +146,25 @@
 @property (nonatomic,strong) NSString *         iD;         //
 @property (nonatomic,strong) NSString *         name;         //
 @end
+
+#pragma mark----****----收银台测试model
+@interface ZLGoPayObject : NSObject
+
+@property(nonatomic, assign) BOOL isSelected;
+
+@end
+
+@interface ZLSeletedAddress : NSObject
+
+@property (nonatomic,assign) int mProvince;
+@property (nonatomic,assign) int mCity;
+@property (nonatomic,assign) int mArear;
+
+@property (nonatomic,strong) NSString *mProvinceStr;
+@property (nonatomic,strong) NSString *mCityStr;
+@property (nonatomic,strong) NSString *mArearStr;
+
++ (ZLSeletedAddress *)ShareClient;
+
+@end
+

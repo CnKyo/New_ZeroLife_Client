@@ -32,4 +32,15 @@
     }
 }
 
+- (IBAction)mSelectedCityAction:(UIButton *)sender {
+    
+    if ([self.delegate respondsToSelector:@selector(UserAddressEditTableViewCellSelectedCityClicked)]) {
+        [self.delegate UserAddressEditTableViewCellSelectedCityClicked];
+    }
+    
+    
+}
+
+
+
 @end

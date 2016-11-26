@@ -149,6 +149,7 @@
 		04866BA71DD41E08008DA56B /* ZLCommitOrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04866BA51DD41E08008DA56B /* ZLCommitOrderCell.xib */; };
 		04866BA91DD41E71008DA56B /* ZLCommitShopSectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04866BA81DD41E71008DA56B /* ZLCommitShopSectionView.xib */; };
 		04866BAB1DD425F8008DA56B /* ZLCommitGoodsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04866BAA1DD425F8008DA56B /* ZLCommitGoodsCell.xib */; };
+		049A120D1DE95D2A0087238D /* ZLSelectedCityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 049A120C1DE95D2A0087238D /* ZLSelectedCityViewController.m */; };
 		049D49081DB75CCD005A1038 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 049D49071DB75CCD005A1038 /* libz.tbd */; };
 		049D490A1DB75CDA005A1038 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 049D49091DB75CDA005A1038 /* libsqlite3.tbd */; };
 		049D490C1DB75CE0005A1038 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 049D490B1DB75CE0005A1038 /* SystemConfiguration.framework */; };
@@ -755,6 +756,8 @@
 		04866BA51DD41E08008DA56B /* ZLCommitOrderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLCommitOrderCell.xib; sourceTree = "<group>"; };
 		04866BA81DD41E71008DA56B /* ZLCommitShopSectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLCommitShopSectionView.xib; sourceTree = "<group>"; };
 		04866BAA1DD425F8008DA56B /* ZLCommitGoodsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLCommitGoodsCell.xib; sourceTree = "<group>"; };
+		049A120B1DE95D2A0087238D /* ZLSelectedCityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLSelectedCityViewController.h; sourceTree = "<group>"; };
+		049A120C1DE95D2A0087238D /* ZLSelectedCityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLSelectedCityViewController.m; sourceTree = "<group>"; };
 		049D49071DB75CCD005A1038 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		049D49091DB75CDA005A1038 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		049D490B1DB75CE0005A1038 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -1826,6 +1829,15 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		049A120A1DE95D100087238D /* ZLSelectedCity */ = {
+			isa = PBXGroup;
+			children = (
+				049A120B1DE95D2A0087238D /* ZLSelectedCityViewController.h */,
+				049A120C1DE95D2A0087238D /* ZLSelectedCityViewController.m */,
+			);
+			path = ZLSelectedCity;
+			sourceTree = "<group>";
+		};
 		04A763161DDBF49F0061E2B0 /* ZLPPTRealeseORder */ = {
 			isa = PBXGroup;
 			children = (
@@ -2206,6 +2218,7 @@
 		DF08E8691DD1C072003E4DD9 /* Address */ = {
 			isa = PBXGroup;
 			children = (
+				049A120A1DE95D100087238D /* ZLSelectedCity */,
 				DF08E8701DD1C072003E4DD9 /* View */,
 				DF08E86A1DD1C072003E4DD9 /* UserAddressEditVC.h */,
 				DF08E86B1DD1C072003E4DD9 /* UserAddressEditVC.m */,
@@ -3665,6 +3678,7 @@
 				DF630CF61DD408240076A92C /* BaoXiuChooseShopTableViewCell.m in Sources */,
 				04C6A3811DCB08AF002C4D4A /* RSAEncryptor.m in Sources */,
 				047219F21DE3E66C00CE8639 /* HX_AlbumModel.m in Sources */,
+				049A120D1DE95D2A0087238D /* ZLSelectedCityViewController.m in Sources */,
 				041657121DD6B218004E7D9A /* ZLRepairsColumsView.m in Sources */,
 				DF7F1BD21DCDC1FB00D2242B /* UserPaoPaoRegisterVC.m in Sources */,
 				04A7631E1DDBFA540061E2B0 /* ZLPPTReleaseRewardCell.m in Sources */,

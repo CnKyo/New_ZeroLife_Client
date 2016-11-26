@@ -232,7 +232,13 @@
     for (int i=0; i<10; i++) {
         [self.tableArr addObject:@"111"];
     }
+    
     [self doneLoadingTableViewData];
+    
+    if (self.tableArr.count > 0) {
+        [self ZLShowEmptyView:@"暂无数据" andImage:@"ZLEmpty_Image" andHiddenRefreshBtn:NO];
+    }
+    
 }
 /**
  分类点击方法

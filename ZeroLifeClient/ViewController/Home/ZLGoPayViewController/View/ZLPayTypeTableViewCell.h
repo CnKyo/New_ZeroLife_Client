@@ -7,12 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "APIObjectDefine.h"
+
+@class ZLGoPayObject;
+
 ///设置代理
 @protocol ZLGoPayCellDelegate <NSObject>
 
 @optional
 ///状态按钮点击事件
 - (void)ZLGoPayStatusBtnClicked;
+
+- (void)ZLSelectedBtnClicked:(NSIndexPath *)mIndexPath;
 
 @end
 
@@ -24,6 +30,14 @@
 @property (weak, nonatomic) IBOutlet UILabel *mName;
 ///选择图片
 @property (weak, nonatomic) IBOutlet UIImageView *mSelectedImg;
+///选择按钮
+@property (weak, nonatomic) IBOutlet UIButton *mSelectedBtn;
+@property(assign, nonatomic)NSInteger mClickCount;
+
+@property(assign, nonatomic)NSIndexPath *mIndexPath;
+
+
+- (void)cellWithData:(ZLGoPayObject *)model;
 
 #pragma mark----****----支付成功或失败的cell
 ///状态图片

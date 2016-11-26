@@ -8,12 +8,25 @@
 
 #import "UserAddressEditVC.h"
 #import "UserAddressEditTableViewCell.h"
+#import "ZLSelectedCityViewController.h"
+#import "APIObjectDefine.h"
 
-@interface UserAddressEditVC ()<UITextFieldDelegate>
+@interface UserAddressEditVC ()<UITextFieldDelegate,UserAddressEditTableViewCellDelegate>
 @property(nonatomic,strong) UserAddressEditTableViewCell *customCell;
 @end
 
 @implementation UserAddressEditVC
+
+- (void)viewWillAppear:(BOOL)animated{
+
+    [super viewWillAppear:animated];
+    
+    ZLSeletedAddress *mAddressObj = [ZLSeletedAddress ShareClient];
+    
+    if (mAddressObj.mProvinceStr.length) {
+        self.navigationItem.title = mAddressObj.mProvinceStr;
+    }
+}
 
 -(void)loadView
 {
@@ -113,7 +126,7 @@
     cell.consigneeField.delegate = self;
     cell.mobileField.delegate = self;
     cell.addressField.delegate = self;
-    
+    cell.delegate = self;
     [cell reloadSexUI:_item.sex];
 
     [cell.sexManBtn jk_addActionHandler:^(NSInteger tag) {
@@ -136,5 +149,17 @@
 
 
 
+- (void)UserAddressEditTableViewCellSelectedCityClicked{
+
+    
+    ZLSeletedAddress *mJumpObj = [ZLSeletedAddress ShareClient];
+    mJumpObj.mProvinceStr = @"选择省市区";
+    
+    ZLSelectedCityViewController *vc = [ZLSelectedCityViewController new];
+    vc.mTitle = @"选择省市区";
+    vc.mType = 1;
+ 
+    [self pushViewController:vc];
+}
 
 @end

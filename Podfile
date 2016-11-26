@@ -44,6 +44,8 @@ target 'ZeroLifeClient' do
   pod 'LPActionSheet'
   pod 'HcdGuideView'
   pod 'JWLaunchAd'
+  pod 'JHUD'
+
 
 
 

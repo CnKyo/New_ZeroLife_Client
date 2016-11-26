@@ -36,7 +36,16 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ZLShopCar_Selected" translatesAutoresizingMaskIntoConstraints="NO" id="C0S-Dp-cYh">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yf3-nQ-0g4">
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <state key="normal" title="Button">
+                            <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="mBtnClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="0FX-g3-5cm"/>
+                        </connections>
+                    </button>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ZLShopCar_Normal" translatesAutoresizingMaskIntoConstraints="NO" id="C0S-Dp-cYh">
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="yFA-sL-38w"/>
                             <constraint firstAttribute="width" constant="20" id="zoq-cQ-dWq"/>
@@ -49,24 +58,29 @@
                     <constraint firstItem="C0S-Dp-cYh" firstAttribute="leading" secondItem="d2e-Nq-PzG" secondAttribute="trailing" constant="8" id="5Gv-xJ-sDy"/>
                     <constraint firstItem="PLm-wv-d8e" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-3" id="DGb-1O-fPc"/>
                     <constraint firstAttribute="bottomMargin" secondItem="C0S-Dp-cYh" secondAttribute="bottom" constant="6" id="Gpk-IK-bwp"/>
+                    <constraint firstItem="yf3-nQ-0g4" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-8" id="Jwv-PG-65q"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="yf3-nQ-0g4" secondAttribute="bottom" constant="-8" id="O8F-0X-pzw"/>
                     <constraint firstItem="GGC-Ka-Tby" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-8" id="Q11-rc-1u2"/>
                     <constraint firstAttribute="bottomMargin" secondItem="PLm-wv-d8e" secondAttribute="bottom" constant="-4" id="Qnj-5e-lgL"/>
                     <constraint firstItem="d2e-Nq-PzG" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="6" id="Uzi-Lu-xcE"/>
                     <constraint firstAttribute="trailingMargin" secondItem="C0S-Dp-cYh" secondAttribute="trailing" id="Vru-ho-MEs"/>
                     <constraint firstItem="GGC-Ka-Tby" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-8" id="cRL-Zc-FuK"/>
+                    <constraint firstItem="yf3-nQ-0g4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-8" id="e8w-Xf-OH1"/>
                     <constraint firstItem="C0S-Dp-cYh" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="7" id="eSz-J1-9Cz"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="yf3-nQ-0g4" secondAttribute="trailing" constant="-8" id="osl-cN-QWR"/>
                     <constraint firstAttribute="trailingMargin" secondItem="GGC-Ka-Tby" secondAttribute="trailing" constant="-8" id="yYX-QY-oNk"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="mLogo" destination="PLm-wv-d8e" id="sST-99-YPw"/>
                 <outlet property="mName" destination="d2e-Nq-PzG" id="Exz-Dl-q8U"/>
+                <outlet property="mSelectedBtn" destination="yf3-nQ-0g4" id="hRp-j4-JUF"/>
                 <outlet property="mSelectedImg" destination="C0S-Dp-cYh" id="yqX-PQ-raM"/>
             </connections>
             <point key="canvasLocation" x="-1" y="73"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="ZLShopCar_Selected" width="28" height="28"/>
+        <image name="ZLShopCar_Normal" width="28" height="28"/>
     </resources>
 </document>

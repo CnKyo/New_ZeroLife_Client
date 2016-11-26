@@ -10,7 +10,9 @@
 #import "MTA.h"
 #import "MTAConfig.h"
 #import "CustomDefine.h"
+#import <JHUD.h>
 @interface CustomVC ()<UIGestureRecognizerDelegate>
+@property (nonatomic) JHUD *hudView;
 
 @end
 
@@ -45,6 +47,16 @@
     navBarHairlineImageView = [self findHairlineImageViewUnder:self.navigationController.navigationBar];
 
     //[self addLeftBtn:YES andTitel:nil andImage:[UIImage imageNamed:@"ZLBackBtn_Image"]];
+    
+    // 建议基类中Lazy创建，进行二次封装，使用时直接调用，避免子类中频繁创建产生冗余代码的问题。
+    self.hudView = [[JHUD alloc]initWithFrame:self.view.bounds];
+    
+    __weak typeof(self)  _self = self;
+    [self.hudView setJHUDReloadButtonClickedBlock:^() {
+        MLLog(@"重新加载");
+        [_self reloadTableViewDataSource];
+    }];
+
 }
 
 
@@ -513,6 +525,30 @@
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [SVProgressHUD dismiss];
     });
+}
+
+- (void)ZLShowEmptyView:(NSString *)mText andImage:(NSString *)mImgName andHiddenRefreshBtn:(BOOL)mHidden{
+    self.hudView.indicatorViewSize = CGSizeMake(250, 200);
+    self.hudView.messageLabel.text = mText;
+    self.hudView.refreshButton.hidden = mHidden;
+    
+    [self.hudView.refreshButton setTitleColor:M_CO forState:0];
+    [self.hudView.refreshButton setTitleColor:[UIColor lightGrayColor] forState:1 | 2];
+
+    
+    self.hudView.refreshButton.layer.masksToBounds = YES;
+    self.hudView.refreshButton.layer.cornerRadius = 3;
+    self.hudView.refreshButton.layer.borderColor = M_CO.CGColor;
+    self.hudView.refreshButton.layer.borderWidth = 0.5;
+    
+    [self.hudView.refreshButton setTitle:@"重新加载" forState:UIControlStateNormal];
+    self.hudView.customImage = [UIImage imageNamed:mImgName];
+    [self.hudView showAtView:self.view hudType:JHUDLoadingTypeFailure];
+}
+
+- (void)ZLHideEmptyView{
+
+    [self.hudView hide];
 }
 
 @end

@@ -172,4 +172,11 @@
 -(void)showSuccessStatus:(NSString *)str;
 //展示失败状态svprogressview 参数:失败状态显示字符串
 -(void)showErrorStatus:(NSString *)astr;
+
+
+#pragma mark----****----恐是徒
+- (void)ZLShowEmptyView:(NSString *)mText andImage:(NSString *)mImgName andHiddenRefreshBtn:(BOOL)mHidden;
+
+- (void)ZLHideEmptyView;
+
 @end

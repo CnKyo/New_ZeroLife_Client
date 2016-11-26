@@ -33,5 +33,24 @@
 }
 
 
+- (void)cellWithData:(ZLGoPayObject *)model {
+    if (!model.isSelected) {
+        [self.mSelectedBtn setBackgroundColor:[UIColor clearColor]];
+        self.mSelectedImg.image = [UIImage imageNamed:@"ZLShopCar_Normal"];
+
+    } else {
+        [self.mSelectedBtn setBackgroundColor:[UIColor colorWithRed:0.67 green:0.67 blue:0.67 alpha:0.25]];
+        self.mSelectedImg.image = [UIImage imageNamed:@"ZLShopCar_Selected"];
+    }
+}
+
+- (IBAction)mBtnClicked:(UIButton *)sender {
+    
+    if ([self.delegate respondsToSelector:@selector(ZLSelectedBtnClicked:)]) {
+        [self.delegate ZLSelectedBtnClicked:self.mIndexPath];
+    }
+    
+}
+
 
 @end
