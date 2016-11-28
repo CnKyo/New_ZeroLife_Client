@@ -150,6 +150,9 @@
 		04866BA91DD41E71008DA56B /* ZLCommitShopSectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04866BA81DD41E71008DA56B /* ZLCommitShopSectionView.xib */; };
 		04866BAB1DD425F8008DA56B /* ZLCommitGoodsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04866BAA1DD425F8008DA56B /* ZLCommitGoodsCell.xib */; };
 		049A120D1DE95D2A0087238D /* ZLSelectedCityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 049A120C1DE95D2A0087238D /* ZLSelectedCityViewController.m */; };
+		049A12111DE9821E0087238D /* ZLSpeSelectedViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 049A12101DE9821E0087238D /* ZLSpeSelectedViewCell.m */; };
+		049A12141DE982C00087238D /* ZLSpeSmallClassViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 049A12131DE982C00087238D /* ZLSpeSmallClassViewCell.m */; };
+		049A12171DE983080087238D /* ZLSpeHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 049A12161DE983080087238D /* ZLSpeHeaderView.m */; };
 		049D49081DB75CCD005A1038 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 049D49071DB75CCD005A1038 /* libz.tbd */; };
 		049D490A1DB75CDA005A1038 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 049D49091DB75CDA005A1038 /* libsqlite3.tbd */; };
 		049D490C1DB75CE0005A1038 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 049D490B1DB75CE0005A1038 /* SystemConfiguration.framework */; };
@@ -200,6 +203,9 @@
 		04B07EC41DD9AEFA004A7294 /* ZLPPTMyOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B07EC31DD9AEFA004A7294 /* ZLPPTMyOrderViewController.m */; };
 		04B07EC71DD9AF12004A7294 /* ZLPPTMyOrderHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B07EC61DD9AF12004A7294 /* ZLPPTMyOrderHeaderView.m */; };
 		04B07EC91DD9AF1C004A7294 /* ZLPPTMyOrderHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04B07EC81DD9AF1C004A7294 /* ZLPPTMyOrderHeaderView.xib */; };
+		04B3008C1DEBC17C00EA75A6 /* ZLExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B3008B1DEBC17C00EA75A6 /* ZLExtension.m */; };
+		04B3008F1DEBC44700EA75A6 /* NSObject_Objc.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B3008E1DEBC44700EA75A6 /* NSObject_Objc.m */; };
+		04B300921DEBC60700EA75A6 /* ZLHttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B300911DEBC60700EA75A6 /* ZLHttpRequest.m */; };
 		04B862501DD55F1600BDEA59 /* ZLGoodsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B8624F1DD55F1600BDEA59 /* ZLGoodsDetailViewController.m */; };
 		04B862A01DD5732B00BDEA59 /* ZLGoodsDetailWithWeb.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B8629F1DD5732B00BDEA59 /* ZLGoodsDetailWithWeb.m */; };
 		04B862A41DD5786F00BDEA59 /* ZLGoodsDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B862A21DD5786F00BDEA59 /* ZLGoodsDetailCell.m */; };
@@ -758,6 +764,12 @@
 		04866BAA1DD425F8008DA56B /* ZLCommitGoodsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLCommitGoodsCell.xib; sourceTree = "<group>"; };
 		049A120B1DE95D2A0087238D /* ZLSelectedCityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLSelectedCityViewController.h; sourceTree = "<group>"; };
 		049A120C1DE95D2A0087238D /* ZLSelectedCityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLSelectedCityViewController.m; sourceTree = "<group>"; };
+		049A120F1DE9821E0087238D /* ZLSpeSelectedViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLSpeSelectedViewCell.h; sourceTree = "<group>"; };
+		049A12101DE9821E0087238D /* ZLSpeSelectedViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLSpeSelectedViewCell.m; sourceTree = "<group>"; };
+		049A12121DE982C00087238D /* ZLSpeSmallClassViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLSpeSmallClassViewCell.h; sourceTree = "<group>"; };
+		049A12131DE982C00087238D /* ZLSpeSmallClassViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLSpeSmallClassViewCell.m; sourceTree = "<group>"; };
+		049A12151DE983080087238D /* ZLSpeHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLSpeHeaderView.h; sourceTree = "<group>"; };
+		049A12161DE983080087238D /* ZLSpeHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLSpeHeaderView.m; sourceTree = "<group>"; };
 		049D49071DB75CCD005A1038 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		049D49091DB75CDA005A1038 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		049D490B1DB75CE0005A1038 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -831,6 +843,12 @@
 		04B07EC51DD9AF12004A7294 /* ZLPPTMyOrderHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPPTMyOrderHeaderView.h; sourceTree = "<group>"; };
 		04B07EC61DD9AF12004A7294 /* ZLPPTMyOrderHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPPTMyOrderHeaderView.m; sourceTree = "<group>"; };
 		04B07EC81DD9AF1C004A7294 /* ZLPPTMyOrderHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLPPTMyOrderHeaderView.xib; sourceTree = "<group>"; };
+		04B3008A1DEBC17C00EA75A6 /* ZLExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLExtension.h; sourceTree = "<group>"; };
+		04B3008B1DEBC17C00EA75A6 /* ZLExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLExtension.m; sourceTree = "<group>"; };
+		04B3008D1DEBC44700EA75A6 /* NSObject_Objc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSObject_Objc.h; sourceTree = "<group>"; };
+		04B3008E1DEBC44700EA75A6 /* NSObject_Objc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSObject_Objc.m; sourceTree = "<group>"; };
+		04B300901DEBC60700EA75A6 /* ZLHttpRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLHttpRequest.h; sourceTree = "<group>"; };
+		04B300911DEBC60700EA75A6 /* ZLHttpRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLHttpRequest.m; sourceTree = "<group>"; };
 		04B8624E1DD55F1600BDEA59 /* ZLGoodsDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLGoodsDetailViewController.h; sourceTree = "<group>"; };
 		04B8624F1DD55F1600BDEA59 /* ZLGoodsDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLGoodsDetailViewController.m; sourceTree = "<group>"; };
 		04B8629E1DD5732B00BDEA59 /* ZLGoodsDetailWithWeb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLGoodsDetailWithWeb.h; sourceTree = "<group>"; };
@@ -1393,6 +1411,7 @@
 		040917761DCC662F00DB2568 /* ZLSuperMarketShop */ = {
 			isa = PBXGroup;
 			children = (
+				049A120E1DE981EA0087238D /* ZLSpeView */,
 				0409177A1DCC677C00DB2568 /* View */,
 				040917771DCC664300DB2568 /* ZLSuperMarketShopViewController.h */,
 				040917781DCC664300DB2568 /* ZLSuperMarketShopViewController.m */,
@@ -1836,6 +1855,19 @@
 				049A120C1DE95D2A0087238D /* ZLSelectedCityViewController.m */,
 			);
 			path = ZLSelectedCity;
+			sourceTree = "<group>";
+		};
+		049A120E1DE981EA0087238D /* ZLSpeView */ = {
+			isa = PBXGroup;
+			children = (
+				049A120F1DE9821E0087238D /* ZLSpeSelectedViewCell.h */,
+				049A12101DE9821E0087238D /* ZLSpeSelectedViewCell.m */,
+				049A12121DE982C00087238D /* ZLSpeSmallClassViewCell.h */,
+				049A12131DE982C00087238D /* ZLSpeSmallClassViewCell.m */,
+				049A12151DE983080087238D /* ZLSpeHeaderView.h */,
+				049A12161DE983080087238D /* ZLSpeHeaderView.m */,
+			);
+			path = ZLSpeView;
 			sourceTree = "<group>";
 		};
 		04A763161DDBF49F0061E2B0 /* ZLPPTRealeseORder */ = {
@@ -2966,6 +2998,12 @@
 				DFFAA7571DB744EF001CFBB5 /* APIObjectDefine.m */,
 				DF7D0A131DB9FFF0005A62A7 /* APIClient.h */,
 				DF7D0A141DB9FFF0005A62A7 /* APIClient.m */,
+				04B3008A1DEBC17C00EA75A6 /* ZLExtension.h */,
+				04B3008B1DEBC17C00EA75A6 /* ZLExtension.m */,
+				04B3008D1DEBC44700EA75A6 /* NSObject_Objc.h */,
+				04B3008E1DEBC44700EA75A6 /* NSObject_Objc.m */,
+				04B300901DEBC60700EA75A6 /* ZLHttpRequest.h */,
+				04B300911DEBC60700EA75A6 /* ZLHttpRequest.m */,
 			);
 			path = Api;
 			sourceTree = "<group>";
@@ -3547,6 +3585,7 @@
 				DF08E8651DD1ACC5003E4DD9 /* FeePayHistoryDetailVC.m in Sources */,
 				DF8DBCD81DD055E8002E574B /* ImgNameView.m in Sources */,
 				DF98EC471DD2CBD90006EBFE /* OrderAddressView.m in Sources */,
+				04B300921DEBC60700EA75A6 /* ZLHttpRequest.m in Sources */,
 				04D64D741DC9CCDC004E8859 /* ZLHomeOtherCell.m in Sources */,
 				04866B9E1DD415AF008DA56B /* ZLCommitOrderHeaderView.m in Sources */,
 				DF630D6C1DD465B90076A92C /* UserYuEHeaderView.m in Sources */,
@@ -3559,11 +3598,14 @@
 				047109C51DE28EDE00CFA292 /* ZLOrderReturnViewController.m in Sources */,
 				DF7D0A1C1DBA0019005A62A7 /* CookCategoryTVC.m in Sources */,
 				DF98EC6F1DD31C6C0006EBFE /* OrderBaoxiuImgVideoView.m in Sources */,
+				049A12171DE983080087238D /* ZLSpeHeaderView.m in Sources */,
 				04721A231DE42C7F00CE8639 /* mBundleView.m in Sources */,
 				DF08E85E1DD1A82C003E4DD9 /* FeePayHistoryVC.m in Sources */,
 				041789D51DE01D9700D55EA7 /* ZLWebViewViewController.m in Sources */,
 				DFFAA7621DB744EF001CFBB5 /* APIObjectDefine.m in Sources */,
+				049A12111DE9821E0087238D /* ZLSpeSelectedViewCell.m in Sources */,
 				047219FA1DE3E66C00CE8639 /* HX_PhotosViewController.m in Sources */,
+				04B3008F1DEBC44700EA75A6 /* NSObject_Objc.m in Sources */,
 				DF8DBCB41DD0127D002E574B /* UIButton+CustomLocal.m in Sources */,
 				DF0308911DCD69DC00E1EAB6 /* UIViewController+Additions.m in Sources */,
 				0416572B1DD6EE12004E7D9A /* ZLRepairsDetailViewController.m in Sources */,
@@ -3617,6 +3659,7 @@
 				DF8DBCF31DD07CB2002E574B /* MobileRechargeVC.m in Sources */,
 				047219F31DE3E66C00CE8639 /* HX_AlbumViewController.m in Sources */,
 				DF539F041DD5932900AF228F /* UserPayTypeTableViewCell.m in Sources */,
+				049A12141DE982C00087238D /* ZLSpeSmallClassViewCell.m in Sources */,
 				04B07EA01DD964E7004A7294 /* ZLRunningManCell.m in Sources */,
 				04721A131DE4191900CE8639 /* ZLAnounceMentViewController.m in Sources */,
 				04B07EC41DD9AEFA004A7294 /* ZLPPTMyOrderViewController.m in Sources */,
@@ -3690,6 +3733,7 @@
 				DF08E8591DD19F06003E4DD9 /* WuGuanFeePayVC.m in Sources */,
 				DF8DBCBC1DD01C90002E574B /* ComplaintGongsiView.m in Sources */,
 				DF98EC351DD2AE460006EBFE /* OrderTVC.m in Sources */,
+				04B3008C1DEBC17C00EA75A6 /* ZLExtension.m in Sources */,
 				DF8DBCB71DD01A73002E574B /* ComplaintWuguanView.m in Sources */,
 				DFF9322D1DD95C1300BA8C8B /* UserScoreYuEVC.m in Sources */,
 				DF98EC4A1DD2D4FF0006EBFE /* OrderBeizhuView.m in Sources */,

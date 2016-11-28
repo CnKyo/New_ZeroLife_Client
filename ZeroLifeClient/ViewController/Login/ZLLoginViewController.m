@@ -47,7 +47,9 @@
     
     
     [mMainView makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.top.equalTo(self.view).offset(0);
+        make.left.right.equalTo(self.view).offset(0);
+        make.top.equalTo(self.view).offset(64);
+
           make.height.offset(225);
     }];
     

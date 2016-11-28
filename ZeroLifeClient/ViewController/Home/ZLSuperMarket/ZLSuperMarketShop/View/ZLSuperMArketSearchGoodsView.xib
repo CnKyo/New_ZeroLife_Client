@@ -30,8 +30,6 @@
                 <constraint firstItem="Ne0-ch-5BU" firstAttribute="leading" secondItem="p5M-bw-LPy" secondAttribute="leading" constant="5" id="6CQ-cb-O6g"/>
                 <constraint firstItem="Ne0-ch-5BU" firstAttribute="centerY" secondItem="p5M-bw-LPy" secondAttribute="centerY" id="Dj7-rs-S3k"/>
                 <constraint firstAttribute="trailing" secondItem="9m7-vg-o8B" secondAttribute="trailing" id="KDT-oL-KOf"/>
-                <constraint firstAttribute="height" constant="30" id="ZCa-2I-aBQ"/>
-                <constraint firstAttribute="width" constant="200" id="ehD-7G-cdT"/>
                 <constraint firstItem="9m7-vg-o8B" firstAttribute="centerY" secondItem="p5M-bw-LPy" secondAttribute="centerY" id="m1I-VO-p6L"/>
                 <constraint firstItem="9m7-vg-o8B" firstAttribute="leading" secondItem="Ne0-ch-5BU" secondAttribute="trailing" constant="8" id="ocR-LC-xnv"/>
             </constraints>

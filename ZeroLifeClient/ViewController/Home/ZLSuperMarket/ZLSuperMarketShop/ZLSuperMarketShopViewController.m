@@ -19,14 +19,18 @@
 #import "ZLGoodsDetailViewController.h"
 
 #import "ZLHouseKeppingServiceCell.h"
+
+#import "ZLSpeSelectedViewCell.h"
+#import "ZLSpeHeaderView.h"
+
 static const CGFloat mTopH = 156;
 
-@interface ZLSuperMarketShopViewController ()<UITableViewDelegate,UITableViewDataSource,ZLSuperMarketShopDelegate,ZLSuperMarketGoodsCellDelegate,UIScrollViewDelegate,ZLSuperMarketShopCarDelegate,ZLSuperMarketGoodsSpecDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,ZLHouseKeppingServiceCellDelegate>
+@interface ZLSuperMarketShopViewController ()<UITableViewDelegate,UITableViewDataSource,ZLSuperMarketShopDelegate,ZLSuperMarketGoodsCellDelegate,UIScrollViewDelegate,ZLSuperMarketShopCarDelegate,ZLSuperMarketGoodsSpecDelegate,UICollectionViewDelegate,ZLHouseKeppingServiceCellDelegate,ZLSpeSelectedViewCellDelegate>
 
 /**
  规格瀑布流
  */
-@property (nonatomic, strong) UICollectionView *mCollectionView;
+@property (nonatomic, strong) UITableView *mSpeTableView;
 
 /**
  规格数据源
@@ -37,6 +41,10 @@ static const CGFloat mTopH = 156;
  选择规格数据源
  */
 @property (nonatomic, strong) NSMutableArray *mSpeAddArray;
+
+@property(strong,nonatomic)ZLSpeHeaderView *mSpeHeaderView;
+
+
 
 @end
 
@@ -80,25 +88,29 @@ static const CGFloat mTopH = 156;
     
     [self addRightBtn:YES andTitel:nil andImage:[UIImage imageNamed:@"ZLSearch_white"]];
 
-    
+    [self initView];
+    [self initData];
+    [self initHeaderView];
+    [self initSpeView];
     
 }
 
 - (void)loadView{
 
     [super loadView];
-    [self initView];
-    [self initData];
-    [self initHeaderView];
-    [self initSpeView];
+
 }
 
 #pragma mark----****----加载数据
 - (void)initData{
 
-    for (int i=0; i<8; i++) {
-        [self.mSpeDataArray addObject:[NSString stringWithFormat:@"第%d种规格 %d元",i,i+150]];
-    }
+    NSArray *mAr = [NSArray arrayWithObjects:@{@"num":@[@"问题1",@"问题2",@"问题3",@"问题4",@"问题5",@"问题6",@"问题7",@"问题8",@"请点击复合你的)"]}, nil];
+    
+    [self.mSpeAddArray addObjectsFromArray:mAr];
+    
+//    for (int i=0; i<8; i++) {
+//        [self.mSpeDataArray addObject:[NSString stringWithFormat:@"第%d种规格 %d元",i,i+150]];
+//    }
 }
 #pragma mark----****----加载headerview
 - (void)initHeaderView{
@@ -187,45 +199,52 @@ static const CGFloat mTopH = 156;
     
     
 }
-//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-//    
-//    if (section == 3) {
-//        return 40;
-//    }else{
-//        return 0.5;
-//    }
-//    
-//}
-//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-//    if (section == 3) {
-//        ZLSuperMarketHeaderSectionView *mSectionHeader = [ZLSuperMarketHeaderSectionView shareView];
-//        return mSectionHeader;
-//    }else{
-//        return nil;
-//    }
-//    
-//}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    
+    if (tableView == self.mSpeTableView) {
+        return 40;
+    }else{
+        return 0.15;
+    }
+    
+}
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    if (tableView == self.mSpeTableView) {
+        _mSpeHeaderView = [[ZLSpeHeaderView alloc]initWithFrame:CGRectMake(0, 0, DEVICE_Width, 40)];
+        _mSpeHeaderView.mNameLabel.text = [NSString stringWithFormat:@"%@:",[[[self.mSpeAddArray objectAtIndex:0]objectForKey:@"num"]objectAtIndex:section]];
+        return _mSpeHeaderView;
+    }else{
+        return nil;
+    }
+    
+}
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
     if (tableView == mLeftTableView) {
         return 5;
-    }else{
+    }else if (tableView == mRightTableView){
         return 10;
+    }else{
+        return 3;
     }
     
     
     
     
 }
-
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 1.0;
+}
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
     if (tableView == mLeftTableView) {
         return 50;
-    }else{
+    }else if(tableView == mRightTableView){
         return 100;
+    }else{
+    return ([[[self.mSpeAddArray objectAtIndex:0]objectForKey:@"num"] count]/4 + [[[self.mSpeAddArray objectAtIndex:0]objectForKey:@"num"] count]%4) * 40;
     }
     
 }
@@ -245,7 +264,7 @@ static const CGFloat mTopH = 156;
         
         return cell;
         
-    }else{
+    }else if(tableView == mRightTableView){
         
         if (self.mType == 2) {
             reuseCellId = @"mHouseKeepCell";
@@ -267,6 +286,17 @@ static const CGFloat mTopH = 156;
         }
         
         
+    }else{
+    
+        static NSString *cellName = @"cellName";
+        ZLSpeSelectedViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellName];
+        if (!cell) {
+            cell = [[ZLSpeSelectedViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellName andDataSource:self.mSpeAddArray];
+            cell.delegate = self;
+            cell.mIndexPathSection = indexPath;
+        }
+        return cell;
+
     }
     
     
@@ -434,6 +464,9 @@ static const CGFloat mTopH = 156;
 #pragma mark----****----规格view
 - (void)initSpeView{
 
+
+
+    
     CGRect mSpeRect = self.view.bounds;
     mSpeRect.origin.y = DEVICE_Height;
     
@@ -441,22 +474,17 @@ static const CGFloat mTopH = 156;
     mSpeView = [ZLSuperMArketSearchGoodsView initWithSpeView:mSpeRect];
     mSpeView.delegate = self;
 
-    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    flowLayout.minimumLineSpacing = 5;
-    flowLayout.minimumInteritemSpacing = 5;
-    self.edgesForExtendedLayout = UIRectEdgeNone;
+    _mSpeTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, DEVICE_Width-40,152) style:UITableViewStyleGrouped];
+    _mSpeTableView.delegate = self;
+    _mSpeTableView.dataSource = self;
+    _mSpeTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+
+    [mSpeView.mGoodsSpeScrollView addSubview:_mSpeTableView];
     
-    _mCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, DEVICE_Width-40,152) collectionViewLayout:flowLayout];
-    _mCollectionView.delegate = self;
-    _mCollectionView.dataSource = self;
-    
-    [_mCollectionView setBackgroundColor:[UIColor clearColor]];
-    [mSpeView.mGoodsSpeScrollView addSubview:_mCollectionView];
-    //注册
-    [_mCollectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"mSpecCell"];
     
     [self.view addSubview:mSpeView];
-
+    [self initData];
+    [_mSpeTableView reloadData];
 }
 #pragma mark----****----显示规格view
 - (void)showSpeView{
@@ -478,78 +506,6 @@ static const CGFloat mTopH = 156;
     
 }
 
-
-#pragma mark----****----collectionviewdelegate
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
-    return self.mSpeDataArray.count;
-}
-
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
-{
-    return self.mSpeDataArray.count;
-}
-
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    CGFloat width = [self widthForLabel:[NSString stringWithFormat:@"%@",self.mSpeDataArray[indexPath.row]] fontSize:13];
-    return CGSizeMake(width+10,22);
-}
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"mSpecCell" forIndexPath:indexPath];
-    
-    for (UILabel *vvv in cell.contentView.subviews) {
-        [vvv removeFromSuperview];
-    }
-    
-    
-    UILabel *label = [[UILabel alloc] init];
-    label.text = [NSString stringWithFormat:@"%@",self.mSpeDataArray[indexPath.row]];
-    label.frame = CGRectMake(0, 0, ([self widthForLabel:label.text fontSize:13] + 10), 22);
-    label.font = [UIFont systemFontOfSize:13];
-    label.textColor = [UIColor lightGrayColor];
-    label.layer.cornerRadius = 3;
-    label.layer.masksToBounds = YES;
-    label.layer.borderWidth = 1.0;
-    label.textAlignment = NSTextAlignmentCenter;
-    [label.layer setBorderColor:[UIColor lightGrayColor].CGColor];
-    
-    [cell.contentView addSubview:label];
-    return cell;
-}
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    
-    UICollectionViewCell *selectedCell =
-    [collectionView cellForItemAtIndexPath:indexPath];
-    
-    [self.mSpeAddArray addObject:self.mSpeDataArray[indexPath.row]];
-    
-    selectedCell.contentView.backgroundColor = [UIColor colorWithRed:0.87 green:0.87 blue:0.87 alpha:1];
-//    [selectedCell.contentView.layer setBorderColor:[UIColor lightGrayColor].CGColor];
-//    [selectedCell.contentView.layer setBorderWidth:1];
-    
-    MLLog(@"%@",self.mSpeAddArray);
-    
-}
-- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    UICollectionViewCell *deselectedCell =
-    [collectionView cellForItemAtIndexPath:indexPath];
-    [self.mSpeAddArray removeObject:self.mSpeDataArray[indexPath.row]];
-    deselectedCell.contentView.backgroundColor = nil;
-//    [deselectedCell.contentView.layer setBorderColor:[UIColor colorWithRed:0.87 green:0.87 blue:0.87 alpha:0.75].CGColor];
-//    [deselectedCell.contentView.layer setBorderWidth:3.0f];
-    
-    MLLog(@"%@",self.mSpeAddArray);
-}
-/**
- *  计算文字长度
- */
-- (CGFloat)widthForLabel:(NSString *)text fontSize:(CGFloat)font
-{
-    CGSize size = [text sizeWithAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont systemFontOfSize:font], NSFontAttributeName, nil]];
-    return size.width;
-}
 
 #pragma mark----****---- 关闭按钮代理方法
 /**
@@ -602,5 +558,16 @@ static const CGFloat mTopH = 156;
 - (void)ZLHouseKeppingServiceCellWithNumChanged:(int)mNum andIndexPath:(NSIndexPath *)mIndexPath{
 
     MLLog(@"索引是：%ld     数量是：%d",(long)mIndexPath.row,mNum);
+}
+
+/**
+ 选择的代理方法
+ 
+ @param mIndexPathSection 返回索引的section分组
+ @param mIndexPathRow     返回索引的row
+ */
+- (void)ZLSpeSelectedViewCellWithSelectedBtnRow:(NSIndexPath *)mIndexPathSection andIndex:(NSIndexPath *)mIndexPathRow{
+    MLLog(@"%ld,%ld",(long)mIndexPathSection.section,(long)mIndexPathRow.row);
+
 }
 @end

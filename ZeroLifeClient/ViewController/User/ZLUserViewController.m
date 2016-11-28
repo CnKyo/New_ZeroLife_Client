@@ -20,6 +20,9 @@
 #import "OrderTVC.h"
 #import "ZLLoginViewController.h"
 #import <UINavigationBar+Awesome.h>
+
+#import "ZLLoginViewController.h"
+
 #define NAVBAR_CHANGE_POINT 30
 
 @interface ZLUserViewController ()<QUItemBtnViewDelegate>
@@ -37,6 +40,9 @@
     [self.tableView registerNib:[ZLUserHeaderTableViewCell jk_nib] forCellReuseIdentifier:[ZLUserHeaderTableViewCell reuseIdentifier]];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
+
+    __weak __typeof(self)weakSelf = self;
+    
     UIView *footerView = ({
         UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, DEVICE_Width, 70)];
         UIButton *btn11 = [view newUIButton];
@@ -47,7 +53,10 @@
         
         [btn11 jk_addActionHandler:^(NSInteger tag) {
 
-
+            ZLLoginViewController *vc = [ZLLoginViewController new];
+            vc.hidesBottomBarWhenPushed = YES;
+            [weakSelf pushViewController:vc];
+            
         }];
         view;
     });
