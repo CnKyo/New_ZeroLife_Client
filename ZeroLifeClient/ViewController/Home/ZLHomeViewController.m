@@ -82,6 +82,7 @@
     
     
 }
+
 - (void)webAction:(NSNotification *)sender{
     MLLog(@"得到的通知对象:%@",sender);
     ZLWebViewViewController *vc = [ZLWebViewViewController new];

@@ -10,10 +10,10 @@
 #import "AFURLResponseSerialization.h"
 #import "ZLExtension.h"
 #import "AFNetworking.h"
-
+#import "HDSingleton.h"
 NS_ASSUME_NONNULL_BEGIN
 
-static NSString* const  kAFAppDotNetAPIBaseURLString    = @"http://app.china-cr.com/";
+static NSString* const  kAFAppDotNetAPIBaseURLString    = @"http://192.168.1.114/api/app/client";
 
 @class ZLBaseObj;
 
@@ -36,7 +36,45 @@ HDSingletonH(HDNetworking) // 单例声明
 
 -(void)postUrl:(NSString *)URLString parameters:(id)parameters call:(void (^)( ZLBaseObj* info))callback;
 
+/**
+ *  上传图片大小(kb)
+ */
+@property (nonatomic, assign) NSUInteger picSize;
 
+/**
+ *  超时时间(默认20秒)
+ */
+@property (nonatomic, assign) NSTimeInterval timeoutInterval;
+
+/**
+ *  可接受的响应内容类型
+ */
+@property (nonatomic, copy) NSSet <NSString *> *acceptableContentTypes;
+#pragma mark----网络监测(在什么网络状态)
+/**
+ *  网络监测(在什么网络状态)
+ *
+ *  @param unknown          未知网络
+ *  @param reachable        无网络
+ *  @param reachableViaWWAN 蜂窝数据网
+ *  @param reachableViaWiFi WiFi网络
+ */
+- (void)networkStatusUnknown:(Unknown)unknown reachable:(Reachable)reachable reachableViaWWAN:(ReachableViaWWAN)reachableViaWWAN reachableViaWiFi:(ReachableViaWiFi)reachableViaWiFi;
+
+#pragma mark----返回当前url
+/**
+ *  返回当前url
+ *
+ *  @return 返回当前url
+ */
++ (NSString *)returnNowURL;
+#pragma mark----返回资源url
+/**
+ *  返回资源url
+ *
+ *  @return 返回资源url
+ */
++ (NSString *)currentResourceUrl;
 
 @end
 
