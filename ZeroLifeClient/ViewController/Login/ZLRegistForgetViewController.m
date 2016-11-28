@@ -68,14 +68,14 @@
         return;
     }
     [self showWithStatus:@"正在发送验证码..."];
-    [ZLUserInfo ZLGetVerigyCode:mView.mRegistPhoneTx.text andType:1 block:^(ZLBaseObj *mBaseObj) {
+    [[APIClient sharedClient] ZLGetVerigyCode:mView.mRegistPhoneTx.text andType:1 block:^(APIObject *mBaseObj) {
         [self dismiss];
-        if (mBaseObj.mSucess) {
-            [self showSuccessStatus:mBaseObj.mMessage];
+        if (mBaseObj.code == RESP_STATUS_YES) {
+            [self showSuccessStatus:mBaseObj.msg];
             [self timeCount];
         }else{
         
-            [self showErrorStatus:mBaseObj.mMessage];
+            [self showErrorStatus:mBaseObj.msg];
         }
         
     }];
@@ -108,17 +108,17 @@
         return;
     }
     [self showWithStatus:@"正在注册..."];
-    [ZLUserInfo ZLRegistPhone:mView.mRegistPhoneTx.text andPwd:mView.mRegistPwdTx.text andCode:mView.mRegistCodeTx.text block:^(ZLBaseObj *mBaseObj) {
+    [[APIClient sharedClient] ZLRegistPhone:mView.mRegistPhoneTx.text andPwd:mView.mRegistPwdTx.text andCode:mView.mRegistCodeTx.text block:^(APIObject *mBaseObj) {
         
         [self dismiss];
-        if (mBaseObj.mSucess) {
-            [self showSuccessStatus:mBaseObj.mMessage];
+        if (mBaseObj.code == RESP_STATUS_YES) {
+            [self showSuccessStatus:mBaseObj.msg];
             otherLoginViewController *ooo = [[otherLoginViewController alloc] initWithNibName:@"otherLoginViewController" bundle:nil];
             
             [self pushViewController:ooo];
         }else{
         
-            [self showErrorStatus:mBaseObj.mMessage];
+            [self showErrorStatus:mBaseObj.msg];
         }
         
     }];

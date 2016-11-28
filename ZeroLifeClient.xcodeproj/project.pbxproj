@@ -203,9 +203,6 @@
 		04B07EC41DD9AEFA004A7294 /* ZLPPTMyOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B07EC31DD9AEFA004A7294 /* ZLPPTMyOrderViewController.m */; };
 		04B07EC71DD9AF12004A7294 /* ZLPPTMyOrderHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B07EC61DD9AF12004A7294 /* ZLPPTMyOrderHeaderView.m */; };
 		04B07EC91DD9AF1C004A7294 /* ZLPPTMyOrderHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04B07EC81DD9AF1C004A7294 /* ZLPPTMyOrderHeaderView.xib */; };
-		04B3008C1DEBC17C00EA75A6 /* ZLExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B3008B1DEBC17C00EA75A6 /* ZLExtension.m */; };
-		04B3008F1DEBC44700EA75A6 /* NSObject_Objc.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B3008E1DEBC44700EA75A6 /* NSObject_Objc.m */; };
-		04B300921DEBC60700EA75A6 /* ZLHttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B300911DEBC60700EA75A6 /* ZLHttpRequest.m */; };
 		04B862501DD55F1600BDEA59 /* ZLGoodsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B8624F1DD55F1600BDEA59 /* ZLGoodsDetailViewController.m */; };
 		04B862A01DD5732B00BDEA59 /* ZLGoodsDetailWithWeb.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B8629F1DD5732B00BDEA59 /* ZLGoodsDetailWithWeb.m */; };
 		04B862A41DD5786F00BDEA59 /* ZLGoodsDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B862A21DD5786F00BDEA59 /* ZLGoodsDetailCell.m */; };
@@ -843,12 +840,6 @@
 		04B07EC51DD9AF12004A7294 /* ZLPPTMyOrderHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPPTMyOrderHeaderView.h; sourceTree = "<group>"; };
 		04B07EC61DD9AF12004A7294 /* ZLPPTMyOrderHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPPTMyOrderHeaderView.m; sourceTree = "<group>"; };
 		04B07EC81DD9AF1C004A7294 /* ZLPPTMyOrderHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLPPTMyOrderHeaderView.xib; sourceTree = "<group>"; };
-		04B3008A1DEBC17C00EA75A6 /* ZLExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLExtension.h; sourceTree = "<group>"; };
-		04B3008B1DEBC17C00EA75A6 /* ZLExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLExtension.m; sourceTree = "<group>"; };
-		04B3008D1DEBC44700EA75A6 /* NSObject_Objc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSObject_Objc.h; sourceTree = "<group>"; };
-		04B3008E1DEBC44700EA75A6 /* NSObject_Objc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSObject_Objc.m; sourceTree = "<group>"; };
-		04B300901DEBC60700EA75A6 /* ZLHttpRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLHttpRequest.h; sourceTree = "<group>"; };
-		04B300911DEBC60700EA75A6 /* ZLHttpRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLHttpRequest.m; sourceTree = "<group>"; };
 		04B300931DEBC9E600EA75A6 /* HDSingleton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HDSingleton.h; sourceTree = "<group>"; };
 		04B8624E1DD55F1600BDEA59 /* ZLGoodsDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLGoodsDetailViewController.h; sourceTree = "<group>"; };
 		04B8624F1DD55F1600BDEA59 /* ZLGoodsDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLGoodsDetailViewController.m; sourceTree = "<group>"; };
@@ -2999,12 +2990,6 @@
 				DFFAA7571DB744EF001CFBB5 /* APIObjectDefine.m */,
 				DF7D0A131DB9FFF0005A62A7 /* APIClient.h */,
 				DF7D0A141DB9FFF0005A62A7 /* APIClient.m */,
-				04B3008A1DEBC17C00EA75A6 /* ZLExtension.h */,
-				04B3008B1DEBC17C00EA75A6 /* ZLExtension.m */,
-				04B3008D1DEBC44700EA75A6 /* NSObject_Objc.h */,
-				04B3008E1DEBC44700EA75A6 /* NSObject_Objc.m */,
-				04B300901DEBC60700EA75A6 /* ZLHttpRequest.h */,
-				04B300911DEBC60700EA75A6 /* ZLHttpRequest.m */,
 				04B300931DEBC9E600EA75A6 /* HDSingleton.h */,
 			);
 			path = Api;
@@ -3587,7 +3572,6 @@
 				DF08E8651DD1ACC5003E4DD9 /* FeePayHistoryDetailVC.m in Sources */,
 				DF8DBCD81DD055E8002E574B /* ImgNameView.m in Sources */,
 				DF98EC471DD2CBD90006EBFE /* OrderAddressView.m in Sources */,
-				04B300921DEBC60700EA75A6 /* ZLHttpRequest.m in Sources */,
 				04D64D741DC9CCDC004E8859 /* ZLHomeOtherCell.m in Sources */,
 				04866B9E1DD415AF008DA56B /* ZLCommitOrderHeaderView.m in Sources */,
 				DF630D6C1DD465B90076A92C /* UserYuEHeaderView.m in Sources */,
@@ -3607,7 +3591,6 @@
 				DFFAA7621DB744EF001CFBB5 /* APIObjectDefine.m in Sources */,
 				049A12111DE9821E0087238D /* ZLSpeSelectedViewCell.m in Sources */,
 				047219FA1DE3E66C00CE8639 /* HX_PhotosViewController.m in Sources */,
-				04B3008F1DEBC44700EA75A6 /* NSObject_Objc.m in Sources */,
 				DF8DBCB41DD0127D002E574B /* UIButton+CustomLocal.m in Sources */,
 				DF0308911DCD69DC00E1EAB6 /* UIViewController+Additions.m in Sources */,
 				0416572B1DD6EE12004E7D9A /* ZLRepairsDetailViewController.m in Sources */,
@@ -3735,7 +3718,6 @@
 				DF08E8591DD19F06003E4DD9 /* WuGuanFeePayVC.m in Sources */,
 				DF8DBCBC1DD01C90002E574B /* ComplaintGongsiView.m in Sources */,
 				DF98EC351DD2AE460006EBFE /* OrderTVC.m in Sources */,
-				04B3008C1DEBC17C00EA75A6 /* ZLExtension.m in Sources */,
 				DF8DBCB71DD01A73002E574B /* ComplaintWuguanView.m in Sources */,
 				DFF9322D1DD95C1300BA8C8B /* UserScoreYuEVC.m in Sources */,
 				DF98EC4A1DD2D4FF0006EBFE /* OrderBeizhuView.m in Sources */,

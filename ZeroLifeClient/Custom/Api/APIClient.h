@@ -80,6 +80,22 @@ typedef void (^TableShareSdkBlock)(int totalpage, NSArray *tableArr, APIShareSdk
 
 
 
+#pragma mark----****----登录
+///登录
+- (void)ZLLoginWithPhone:(NSString *)mPhone andPwd:(NSString *)mPwd block:(void(^)(APIObject *mBaseObj,ZLUserInfo *mUser))block;
+#pragma mark----****----注册
+///注册
+- (void)ZLRegistPhone:(NSString *)mPhone andPwd:(NSString *)mPwd andCode:(NSString *)mCode block:(void(^)(APIObject *mBaseObj))block;
+#pragma mark----****----获取验证码
+///获取验证码
+- (void)ZLGetVerigyCode:(NSString *)mCode andType:(int)mtype block:(void(^)(APIObject *mBaseObj))block;
+#pragma mark----****----获取首页banner
+///获取首页banner
+- (void)ZLgetHomeBanner:(void(^)(APIObject *mBaseObj,NSArray *mArr))block;
+#pragma mark----****----获取首页数据
+///获取首页数据
+- (void)ZLGetHome:(NSString *)mLat andLng:(NSString *)mLng block:(void(^)(APIObject *mBaseObj,ZLHomeObj *mHome))block;
+
 
 
 @end

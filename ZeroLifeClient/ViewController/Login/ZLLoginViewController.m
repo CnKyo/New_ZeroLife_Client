@@ -113,8 +113,10 @@
     }
     
     [self showWithStatus:@"登陆中..."];
-    [ZLUserInfo ZLLoginWithPhone:mMainView.mLoginPhoneTx.text andPwd:mMainView.mLoginPwdTx.text block:^(ZLBaseObj *mBaseObj,ZLUserInfo *mUser) {
-        if (mBaseObj.mSucess) {
+    
+    
+    [[APIClient sharedClient] ZLLoginWithPhone:mMainView.mLoginPhoneTx.text andPwd:mMainView.mLoginPwdTx.text block:^(APIObject *mBaseObj,ZLUserInfo *mUser) {
+        if ( mBaseObj.code == RESP_STATUS_YES ) {
             [self showSuccessStatus:@"登录成功！"];
         }else{
             [self showSuccessStatus:@"登录失败！"];

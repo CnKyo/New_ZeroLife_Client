@@ -323,3 +323,149 @@
 }
 
 @end
+
+
+@implementation ZLUserInfo
+{
+    
+    NSOperationQueue *queue;
+    NSURLConnection *_connection;
+    NSMutableData *_reveivedData;
+}
+
+static ZLUserInfo *g_user = nil;
+bool g_bined = NO;
+
++ (ZLUserInfo *)ZLCurrentUser{
+    if (g_user) {
+        return g_user;
+    }
+    if (g_bined) {
+        MLLog(@"警告！递归错误！");
+        return nil;
+    }
+    g_bined = YES;
+    @synchronized (self) {
+        if (!g_user) {
+            g_user = [ZLUserInfo loadUserInfo];
+        }
+    }
+    g_bined = NO;
+    return g_user;
+    
+}
++(ZLUserInfo*)loadUserInfo
+{
+    NSUserDefaults* def = [NSUserDefaults standardUserDefaults];
+    NSDictionary* dat = [def objectForKey:@"userInfo"];
+    if( dat )
+    {
+        ZLUserInfo* tu = [ZLUserInfo mj_objectWithKeyValues:dat];
+        return tu;
+    }
+    return nil;
+}
++(void)cleanUserInfo
+{
+    NSUserDefaults* def = [NSUserDefaults standardUserDefaults];
+    [def setObject:nil forKey:@"userInfo"];
+    [def synchronize];
+}
+-(void)saveUserInfo:(NSDictionary *)dccat
+{
+    dccat = [Util delNUll:dccat];
+    
+    NSMutableDictionary *dcc = [[NSMutableDictionary alloc] initWithDictionary:dccat];
+    NSUserDefaults* def = [NSUserDefaults standardUserDefaults];
+    
+    [def setObject:dcc forKey:@"userInfo"];
+    
+    
+    
+    [def synchronize];
+}
+
++ (void)ZLDealSession:(APIObject *)info andPwd:(NSString *)mPwd andOpenId:(NSString *)mOpenId block:(void(^)(APIObject* resb, ZLUserInfo *user))block{
+    
+    if (info.code == 200) {
+        NSDictionary *mTempDic = info.data;
+        NSMutableDictionary* tdic = [[NSMutableDictionary alloc]initWithDictionary:info.data];
+        if (mPwd) {
+            [tdic setObject:mPwd forKey:@"mPwd"];
+        }
+        if (mOpenId) {
+            [tdic setObject:mOpenId forKey:@"mOpenId"];
+            
+        }
+        
+        ZLUserInfo *tu = [ZLUserInfo mj_objectWithKeyValues:tdic];
+        mTempDic = tdic;
+        
+        
+        if ([tu ZLUserIsValid]) {
+            [[ZLUserInfo alloc] saveUserInfo:mTempDic];
+            g_user = nil;
+            
+        }
+    }
+    
+    block(info,[ZLUserInfo ZLCurrentUser]);
+}
+- (BOOL)ZLUserIsValid{
+    
+    return self.user_id != 0;
+}
++ (BOOL)isNeedLogin{
+    
+    return [ZLUserInfo ZLCurrentUser] == nil;
+}
+//退出登陆
++(void)logOut
+{
+    //    [UserDefaults() loadUserZro];
+    //    [ZLUserInfo closePush];
+    /**
+     *  清除用户信息
+     */
+    [ZLUserInfo cleanUserInfo];
+    g_user = nil;
+    
+    
+}
+
+@end
+
+@implementation ZLWalletObj
+
+
+
+@end
+
+@implementation ZLUserCommunityObj
+
+
+
+@end
+@implementation ZLHomeBanner
+
+
+
+@end
+
+@implementation ZLHomeObj
+
+
+
+@end
+
+@implementation ZLHomeAdvList
+
+
+
+@end
+
+@implementation ZLHomeCompainNoticeList
+
+
+
+@end

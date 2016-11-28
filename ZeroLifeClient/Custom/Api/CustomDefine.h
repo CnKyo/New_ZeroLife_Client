@@ -173,9 +173,10 @@ typedef enum {
 
 
 
-
-static int const RESP_STATUS_YES                  = 0;             //成功
-static int const RESP_STATUS_NO                   = 1;             //失败
+///成功
+static int const RESP_STATUS_YES                  = 200;
+///失败
+static int const RESP_STATUS_NO                   = 1;
 
 #define RETCODE_SUCCESS  200
 
@@ -214,6 +215,52 @@ typedef enum {
     kCouponType_manjian,//满减
     kCouponType_lijian,//立减
 } kCouponType;
+
+typedef enum{
+
+    
+    ZLWalletNormal,//正常
+    ZLWalletLocked,//锁定
+    
+}ZLWalletStatu;
+
+typedef enum{
+    
+    
+    ZLHomeBannerTypeSystem,//banner类型为平台
+    ZLHomeBannerTypeShop,//banner类型为商家
+    
+}ZLHomeBannerType;
+
+typedef enum{
+    
+    
+    ZLHomeAdvTypeSystem,//1:原生
+    ZLHomeAdvTypeWeb,//0:WAP
+    
+}ZLHomeAdvType;//首页广告跳转类型
+
+typedef enum{
+    
+    
+    ZLHomeNoteTypeSystem,//0：平台
+    ZLHomeNoteTypeCommunity,//1：社区
+    
+}ZLHomeNoteType;//首页公告类型
+
+typedef enum{
+    
+    
+    ZLHomeNewsTypeNote,//1:公告
+    ZLHomeNewsTypeActivity,//2：活动
+    ZLHomeNewsTypeNews,//3：新闻
+    
+}ZLHomeNewsType;//首页新闻类型
+
+
+
+
+
 
 
 #endif /* CustomDefine_h */

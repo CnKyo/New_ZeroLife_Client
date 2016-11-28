@@ -8,7 +8,7 @@
 
 #import "ZLHomeScrollerTableViewCell.h"
 #import "CustomDefine.h"
-
+#import "APIObjectDefine.h"
 @interface ZLHomeScrollerTableViewCell ()<UIScrollViewDelegate>
 {
     //第一页
@@ -33,9 +33,15 @@
         
         self.backgroundColor = [UIColor colorWithRed:0.97 green:0.97 blue:0.97 alpha:1.00];
         
+        NSMutableArray *mImgUrl = [NSMutableArray new];
+        
+        for (ZLHomeBanner *mBanner in mBannerDataSource) {
+            [mImgUrl addObject:mBanner.bnr_image];
+        }
+        
         //显示顺序和数组顺序一致
         //设置图片url数组,和滚动视图位置
-        mScrollerView = [DCPicScrollView picScrollViewWithFrame:CGRectMake(0, 0, screen_width, 250) WithImageUrls:mBannerDataSource];
+        mScrollerView = [DCPicScrollView picScrollViewWithFrame:CGRectMake(0, 0, screen_width, 250) WithImageUrls:mImgUrl];
         
         //显示顺序和数组顺序一致
         //设置标题显示文本数组

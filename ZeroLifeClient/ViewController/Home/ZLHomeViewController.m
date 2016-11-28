@@ -48,12 +48,27 @@
     ZLHomeCoupView *mCoupView;
     //优惠券数据源
     NSMutableArray *mCoupArr;
+    ///纬度
+    NSString *mLat;
+    ///经度
+    NSString *mLng;
+    
+    ///活动广告数据源
+    NSMutableArray *mAdvDataSourceArr;
+    ///平台公告数据源
+    NSMutableArray *mComDataSourceArr;
+
+    
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"首页";
 
+    
+    mLng = nil;
+    mLat = nil;
+    
     NSNotificationCenter *mNotify = [NSNotificationCenter defaultCenter];
     [mNotify addObserver:self selector:@selector(webAction:) name:@"ZLAdView" object:nil];
     
@@ -64,6 +79,10 @@
     
     mBannerArr = [NSMutableArray new];
     mCoupArr = [NSMutableArray new];
+    
+    mAdvDataSourceArr = [NSMutableArray new];
+    mComDataSourceArr = [NSMutableArray new];
+
 
     self.mTableView.dataSource = self;
     self.mTableView.delegate = self;
@@ -212,6 +231,44 @@
     
     
 }
+
+- (void)reloadTableViewDataSource{
+
+    [super reloadTableViewDataSource];
+    
+    [[APIClient sharedClient] ZLgetHomeBanner:^(APIObject *mBaseObj, NSArray *mArr) {
+        [mBannerArr removeAllObjects];
+        if (mBaseObj.code == RESP_STATUS_YES) {
+
+            [mBannerArr addObjectsFromArray:mArr];
+           
+        
+        }else{
+        
+            [self showErrorStatus:mBaseObj.msg];
+        }
+    }];
+    
+    [[APIClient sharedClient] ZLGetHome:mLat andLng:mLng block:^(APIObject *mBaseObj, ZLHomeObj *mHome) {
+        [mComDataSourceArr removeAllObjects];
+        [mAdvDataSourceArr removeAllObjects];
+        if (mBaseObj.code == RESP_STATUS_YES) {
+
+            [mAdvDataSourceArr addObjectsFromArray:mHome.sAdvertList];
+            [mComDataSourceArr addObjectsFromArray:mHome.eCompanyNoticeList];
+            
+        }else{
+        
+            [self showErrorStatus:mBaseObj.msg];
+        }
+        
+    }];
+    
+    [self.tableView reloadData];
+    
+    
+}
+
 - (void)loadData{
 
     NSString * url1 = @"http://pic.newssc.org/upload/news/20161011/1476154849151.jpg";
@@ -330,7 +387,7 @@
             ZLHomeScrollerTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
             
             if (cell == nil) {
-                cell = [[ZLHomeScrollerTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseCellId andBannerDataSource:mBannerArr andDataSource:self.tableArr];
+                cell = [[ZLHomeScrollerTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseCellId andBannerDataSource:mBannerArr andDataSource:mBannerArr];
             }
             
             
