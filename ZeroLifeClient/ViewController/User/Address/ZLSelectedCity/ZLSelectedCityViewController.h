@@ -10,9 +10,11 @@
 
 @interface ZLSelectedCityViewController : CustomVC
 
-@property (strong,nonatomic) NSString *mTitle;
+
 ///跳转类型：1是省 2是市 3是区县
 @property (assign,nonatomic) int mType;
 
+//上级对象
+@property(nonatomic,strong) RegionObject *parentItem;
 
 @end

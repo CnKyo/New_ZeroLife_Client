@@ -181,7 +181,7 @@ static int const RESP_STATUS_NO                   = 1;             //失败
 #define RETCODE_SUCCESS  200
 
 
-static NSString* const  kAFAppDotNetApiBaseURLString_test    = @"http://192.168.1.114/api/app/client";
+static NSString* const  kAFAppDotNetApiBaseURLString_test    = @"http://192.168.1.114";
 static NSString* const  kAFAppDotNetApiBaseURLString    = @"http://shop.hookwin.com";
 
 

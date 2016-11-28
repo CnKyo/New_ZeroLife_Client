@@ -134,7 +134,7 @@
 - (void)UserHouseEditTableViewCellSelectedCityBtnClicked{
 
     ZLSelectedCityViewController *vc = [ZLSelectedCityViewController new];
-    vc.mTitle = @"选择省市区";
+    vc.title = @"选择省市区";
     vc.mType = 1;
    
     [self pushViewController:vc];

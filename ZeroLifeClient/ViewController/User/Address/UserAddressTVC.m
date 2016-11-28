@@ -202,7 +202,9 @@
 - (void)reloadTableViewDataSource{
     [super reloadTableViewDataSource];
     
-    [self performSelector:@selector(donwData) withObject:nil afterDelay:0.5];
+    [[APIClient sharedClient] addressListWithTag:self call:^(NSArray *tableArr, APIObject *info) {
+        [self reloadWithTableArr:tableArr info:info];
+    }];
 }
 
 -(void)donwData

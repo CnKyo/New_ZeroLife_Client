@@ -75,6 +75,11 @@ typedef void (^TableShareSdkBlock)(int totalpage, NSArray *tableArr, APIShareSdk
 
 -(void)regionListWithTag:(NSObject *)tag gion_level:(int)gion_level gion_id:(int)gion_id call:(TableArrBlock)callback;
 
+//地址相关接口
+-(void)addressListWithTag:(NSObject *)tag call:(TableArrBlock)callback;
+
+
+
 
 
 @end

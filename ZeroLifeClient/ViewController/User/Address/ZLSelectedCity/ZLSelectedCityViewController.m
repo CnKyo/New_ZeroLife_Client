@@ -18,15 +18,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    if (self.mTitle.length == 0) {
-        self.mTitle = @"选择省市区";
-    }
-    
-    
-    
-    self.navigationItem.title = self.mTitle;
+    if (self.parentItem == nil) {
+        self.title = @"选择省市区";
+    } else
+        self.title = _parentItem.gion_name;
     
     [self addTableView];
+    [self setTableViewHaveHeader];
     self.tableView.separatorStyle=UITableViewCellSeparatorStyleSingleLine;
 
 }
@@ -34,9 +32,6 @@
 - (void)viewWillDisappear:(BOOL)animated{
 
     [super viewWillDisappear:animated];
-    
-    ZLSeletedAddress *mAdd = [ZLSeletedAddress ShareClient];
-    mAdd.mProvinceStr = @"最终址";
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -52,30 +47,25 @@
     // Pass the selected object to the new view controller.
 }
 */
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-}
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return 10;
-}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cityCell"];
-    if (!cell) {
+    if (self.tableArr.count > 0) {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cityCell"];
+        if (!cell) {
+            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cityCell"];
+        }
         
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cityCell"];
+        RegionObject *item = [self.tableArr objectAtIndex:indexPath.row];
+        
+        
+        cell.textLabel.text = [item.gion_name compSelfIsNone];
+        
+        return cell;
     }
     
-    
-    
-    cell.textLabel.text = [NSString stringWithFormat:@"-----%@:%ld",self.mTitle,(long)indexPath.row];
-    
-    return cell;
-    
+    return [super tableView:tableView cellForRowAtIndexPath:indexPath];
 }
 
 
@@ -84,27 +74,48 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    if (self.mType == 1) {
-        ZLSelectedCityViewController *vc = [ZLSelectedCityViewController new];
-        ZLSeletedAddress *mAddressObg = [ZLSeletedAddress ShareClient];
-        mAddressObg.mProvinceStr = @"市";
-        vc.mTitle = mAddressObg.mProvinceStr;
-        vc.mType = 2;
-        [self pushViewController:vc];
-    }else if (self.mType == 2){
-        ZLSelectedCityViewController *vc = [ZLSelectedCityViewController new];
-        ZLSeletedAddress *mAddressObg = [ZLSeletedAddress ShareClient];
-        mAddressObg.mProvinceStr = @"区";
-        vc.mTitle = mAddressObg.mProvinceStr;
-        vc.mType = 3;
-        [self pushViewController:vc];
-    }else{
-
-        [self popViewController_3];
-
+    if (self.tableArr.count > 0) {
+        RegionObject *item = [self.tableArr objectAtIndex:indexPath.row];
+        
+        if (self.mType == 0) {
+            ZLSeletedAddress *mAddressObg = [ZLSeletedAddress ShareClient];
+            mAddressObg.mProvinceStr = item.gion_name;
+            mAddressObg.mProvince = item.gion_id;
+            
+            ZLSelectedCityViewController *vc = [ZLSelectedCityViewController new];
+            vc.parentItem = item;
+            vc.mType = 1;
+            [self pushViewController:vc];
+            
+        }else if (self.mType == 1){
+            ZLSeletedAddress *mAddressObg = [ZLSeletedAddress ShareClient];
+            mAddressObg.mCityStr = item.gion_name;
+            mAddressObg.mCity = item.gion_id;
+            
+            ZLSelectedCityViewController *vc = [ZLSelectedCityViewController new];
+            vc.parentItem = item;
+            vc.mType = 2;
+            [self pushViewController:vc];
+            
+        }else{
+            ZLSeletedAddress *mAddressObg = [ZLSeletedAddress ShareClient];
+            mAddressObg.mArearStr = item.gion_name;
+            mAddressObg.mArear = item.gion_id;
+            
+            [self popViewController_3];
+            
+        }
     }
     
+}
+
+
+- (void)reloadTableViewDataSource{
+    [super reloadTableViewDataSource];
     
+    [[APIClient sharedClient] regionListWithTag:self gion_level:_mType gion_id:_parentItem.gion_id call:^(NSArray *tableArr, APIObject *info) {
+        [self reloadWithTableArr:tableArr info:info];
+    }];
 }
 
 @end

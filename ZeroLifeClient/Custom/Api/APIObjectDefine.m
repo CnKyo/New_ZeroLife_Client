@@ -44,6 +44,19 @@
 
 
 
+@implementation NSString(QUAdd)
+-(NSString *)compSelfIsNone
+{
+    if (self==nil || self.length==0)
+        return @"无";
+    else
+        return self;
+}
+
+@end
+
+
+
 #pragma mark -
 #pragma mark APIObject
 @implementation APIShareSdkObject
@@ -292,6 +305,21 @@
         }
     }
     return mAddress;
+}
+
+-(NSString *)getAddress
+{
+    NSMutableString *str = [NSMutableString new];
+    if (_mProvinceStr.length > 0)
+        [str appendString:_mProvinceStr];
+    
+    if (_mCityStr.length > 0)
+        [str appendString:_mCityStr];
+    
+    if (_mArearStr.length > 0)
+        [str appendString:_mArearStr];
+    
+    return str;
 }
 
 @end

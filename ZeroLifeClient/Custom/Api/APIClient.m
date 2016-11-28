@@ -154,8 +154,8 @@
         APIShareSdkObject *info = nil;
         if (error == nil) {
             NSLog(@"\n\n ---APIObject----result:-----------%@", responseObject);
-            //        NSString *result = [[NSString alloc] initWithData:responseObject  encoding:NSUTF8StringEncoding];
-            //        NSLog(@"\n\n ---APIObject----result:-----------%@", result);
+                    NSString *result = [[NSString alloc] initWithData:responseObject  encoding:NSUTF8StringEncoding];
+                    NSLog(@"\n\n ---APIObject----result:-----------%@", result);
             info = [APIShareSdkObject mj_objectWithKeyValues:responseObject];
             if (info==nil)
                 info = [APIShareSdkObject infoWithErrorMessage:@"网络错误"];
@@ -552,8 +552,27 @@
     NSMutableDictionary* paramDic = [NSMutableDictionary dictionary];
     [paramDic setInt:gion_level forKey:@"gion_level"];
     [paramDic setInt:gion_id forKey:@"gion_id"];
-    [self loadAPITableListWithTag:tag path:@"/common/region_list" parameters:paramDic pageIndex:0 subClass:[RegionObject class] call:^(NSArray *tableArr, APIObject *info) {
-        callback(tableArr, info);
+    [self loadAPIWithTag:self path:@"/api/app/client/common/region_list" parameters:paramDic call:^(APIObject *info) {
+        NSArray *newArr = [RegionObject mj_objectArrayWithKeyValuesArray:info.data];
+        callback(newArr, info);
+    }];
+}
+
+
+
+/**
+ *   用户收货地址信息列表接口
+ *
+ *  @param tag      链接对象
+ *  @param callback 返回列表
+ */
+-(void)addressListWithTag:(NSObject *)tag call:(TableArrBlock)callback
+{
+    NSMutableDictionary* paramDic = [NSMutableDictionary dictionary];
+    [paramDic setInt:6 forKey:@"user_id"];
+    [self loadAPIWithTag:self path:@"/api/app/client/user/address/address_list" parameters:paramDic call:^(APIObject *info) {
+        NSArray *newArr = [AddressObject mj_objectArrayWithKeyValuesArray:info.data];
+        callback(newArr, info);
     }];
 }
 

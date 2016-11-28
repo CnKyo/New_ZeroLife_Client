@@ -20,12 +20,9 @@
 - (void)viewWillAppear:(BOOL)animated{
 
     [super viewWillAppear:animated];
-    
+
     ZLSeletedAddress *mAddressObj = [ZLSeletedAddress ShareClient];
-    
-    if (mAddressObj.mProvinceStr.length) {
-        self.navigationItem.title = mAddressObj.mProvinceStr;
-    }
+    self.customCell.areaField.text = [mAddressObj getAddress];
 }
 
 -(void)loadView
@@ -46,17 +43,17 @@
         [btn11 jk_addActionHandler:^(NSInteger tag) {
             [[IQKeyboardManager sharedManager] resignFirstResponder];
             
-            if (_item.consignee.length == 0) {
+            if (_item.addr_name.length == 0) {
                 [SVProgressHUD showErrorWithStatus:@"请输入收货联系人"];
                 return ;
             }
             
-            if (_item.mobile.length == 0) {
+            if (_item.addr_phone.length == 0) {
                 [SVProgressHUD showErrorWithStatus:@"请输入联系电话"];
                 return ;
             }
             
-            if (_item.address.length == 0) {
+            if (_item.addr_address.length == 0) {
                 [SVProgressHUD showErrorWithStatus:@"请输入详细地址"];
                 return ;
             }
@@ -73,7 +70,7 @@
     if (_item == nil) {
         self.title =  @"添加地址";
         self.item = [AddressObject new];
-        self.item.sex = kUserSexType_man;
+        self.item.addr_sex = kUserSexType_man;
     } else {
         self.title =  @"编辑地址";
     }
@@ -98,13 +95,13 @@
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
     if (textField == _customCell.consigneeField) {
-        self.item.consignee = textField.text;
+        self.item.addr_name = textField.text;
     }
     else if (textField == _customCell.mobileField) {
-        self.item.mobile = textField.text;
+        self.item.addr_phone = textField.text;
     }
     else if (textField == _customCell.addressField) {
-        self.item.address = textField.text;
+        self.item.addr_address = textField.text;
     }
 }
 
@@ -127,15 +124,26 @@
     cell.mobileField.delegate = self;
     cell.addressField.delegate = self;
     cell.delegate = self;
-    [cell reloadSexUI:_item.sex];
+    [cell reloadSexUI:_item.addr_sex];
+    
+    cell.areaField.enabled = NO;
+//    cell.areaField.hidden = NO;
+//    cell.mSelectedCityBtn.hidden = YES;
+    
+    //选择地区
+    [cell.areaView jk_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
+        ZLSelectedCityViewController *vc = [ZLSelectedCityViewController new];
+        vc.mType = 0;
+        [self pushViewController:vc];
+    }];
 
     [cell.sexManBtn jk_addActionHandler:^(NSInteger tag) {
-        self.item.sex = kUserSexType_man;
-        [cell reloadSexUI:_item.sex];
+        self.item.addr_sex = kUserSexType_man;
+        [cell reloadSexUI:_item.addr_sex];
     }];
     [cell.sexWomanBtn jk_addActionHandler:^(NSInteger tag) {
-        self.item.sex = kUserSexType_woman;
-        [cell reloadSexUI:_item.sex];
+        self.item.addr_sex = kUserSexType_woman;
+        [cell reloadSexUI:_item.addr_sex];
     }];
     
     self.customCell = cell;
@@ -149,17 +157,5 @@
 
 
 
-- (void)UserAddressEditTableViewCellSelectedCityClicked{
-
-    
-    ZLSeletedAddress *mJumpObj = [ZLSeletedAddress ShareClient];
-    mJumpObj.mProvinceStr = @"选择省市区";
-    
-    ZLSelectedCityViewController *vc = [ZLSelectedCityViewController new];
-    vc.mTitle = @"选择省市区";
-    vc.mType = 1;
- 
-    [self pushViewController:vc];
-}
 
 @end

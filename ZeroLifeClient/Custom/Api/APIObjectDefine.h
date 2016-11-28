@@ -25,6 +25,14 @@
 
 
 
+@interface NSString(QUAdd)
+-(NSString *)compSelfIsNone;
+@end
+
+
+
+
+
 #pragma mark - shareSDK 菜谱
 
 @interface APIShareSdkObject : NSObject
@@ -179,6 +187,7 @@
 @property (nonatomic,strong) NSString *mArearStr;
 
 + (ZLSeletedAddress *)ShareClient;
+-(NSString *)getAddress;
 
 @end
 
