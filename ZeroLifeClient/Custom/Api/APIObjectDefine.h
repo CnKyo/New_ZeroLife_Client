@@ -94,6 +94,18 @@
 @end
 
 
+#pragma mark -  省市区对象
+@interface RegionObject : NSObject
+@property(nonatomic,assign) int                     gion_id;         //
+@property(nonatomic,strong) NSString *              gion_code;            //地区编码
+@property(nonatomic,strong) NSString *              gion_name;          // 地区名字
+@property(nonatomic,assign) int                     parent_id;             // 上级ID
+@property(nonatomic,assign) int                     gion_level;              // 级别
+@property(nonatomic,strong) NSString *              gion_name_en;           //地区拼音名称
+@property(nonatomic,strong) NSString *              gion_name_en_s;            // 地区短名称
+@end
+
+
 
 #pragma mark -  用户订单对象
 @interface OrderObject : NSObject
@@ -106,15 +118,17 @@
 
 #pragma mark -  用户地址对象
 @interface AddressObject : NSObject
-@property(nonatomic,strong) NSString *              iD;         //
-@property(nonatomic,assign) kUserSexType            sex;         //
+@property(nonatomic,strong) NSString *              addr_id;         //
+@property(nonatomic,assign) kUserSexType            addr_sex;         //
 @property(nonatomic,strong) NSString *              user_id;            //用户id
-@property(nonatomic,strong) NSString *              consignee;          // 收货人姓名
-@property(nonatomic,strong) NSString *              mobile;             // 手机号
-@property(nonatomic,strong) NSString *              area_code;           //地区编码
-@property(nonatomic,strong) NSString *              address;            // 详细地址
-@property(nonatomic,assign) BOOL                    is_default;         // 是否为默认地址
-@property(nonatomic,strong) NSString *              zipcode;            // 邮编
+@property(nonatomic,strong) NSString *              addr_name;          // 收货人姓名
+@property(nonatomic,strong) NSString *              addr_phone;             // 手机号
+@property(nonatomic,strong) NSString *              addr_address;            // 详细地址
+@property(nonatomic,assign) int                     addr_province;         //
+@property(nonatomic,assign) int                     addr_city;         //
+@property(nonatomic,assign) int                     addr_county;         //
+@property(nonatomic,assign) int                     addr_sort;         //排序（从大到小，第一个为默认地址）
+@property(nonatomic,assign) BOOL                    addr_state;         // 可用状态
 +(AddressObject *)defaultAddress; //默认选择地区
 @end
 

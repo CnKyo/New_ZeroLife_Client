@@ -46,7 +46,7 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         //[APIClient loadDefault];
-        _sharedClient = [[APIClient alloc] initWithBaseURL:[NSURL URLWithString:kAFAppDotNetApiBaseURLString]];
+        _sharedClient = [[APIClient alloc] initWithBaseURL:[NSURL URLWithString:kAFAppDotNetApiBaseURLString_test]];
         _sharedClient.responseSerializer = [AFJSONResponseSerializer serializer];
         _sharedClient.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html", nil];
         
@@ -536,6 +536,26 @@
 //        callback(tableArr, info);
 //    }];
 //}
+
+
+
+/**
+ *   省市区列表接口
+ *
+ *  @param tag      链接对象
+ *  @param gion_level  省市县级别，0(省)、1(市)、2(县)
+ *  @param gion_id    上级ID，当grade为0时不传
+ *  @param callback 返回列表
+ */
+-(void)regionListWithTag:(NSObject *)tag gion_level:(int)gion_level gion_id:(int)gion_id call:(TableArrBlock)callback
+{
+    NSMutableDictionary* paramDic = [NSMutableDictionary dictionary];
+    [paramDic setInt:gion_level forKey:@"gion_level"];
+    [paramDic setInt:gion_id forKey:@"gion_id"];
+    [self loadAPITableListWithTag:tag path:@"/common/region_list" parameters:paramDic pageIndex:0 subClass:[RegionObject class] call:^(NSArray *tableArr, APIObject *info) {
+        callback(tableArr, info);
+    }];
+}
 
 
 @end

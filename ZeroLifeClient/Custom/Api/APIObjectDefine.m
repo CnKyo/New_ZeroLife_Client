@@ -241,7 +241,9 @@
 
 
 
+@implementation RegionObject
 
+@end
 
 
 
@@ -255,7 +257,7 @@
 @implementation AddressObject
 +(AddressObject *)defaultAddress
 {
-    AddressObject *item = [AddressObject searchSingleWithWhere:@"is_default=1" orderBy:nil];
+    AddressObject *item = [AddressObject searchSingleWithWhere:nil orderBy:nil];
     return item;
 }
 @end
