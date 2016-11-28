@@ -72,7 +72,8 @@
     
     view.mRegistCodeTx.delegate = view;
     view.mRegistPhoneTx.delegate = view;
-    
+    view.mRegistPwdTx.delegate = view;
+
     view.mregistBtn.userInteractionEnabled = YES;
     
     return view;
@@ -136,6 +137,7 @@
         
     }else if (textField.tag == 20) {
         _mPwd = textField.text;
+
         if ([self.delegate respondsToSelector:@selector(ZLPwdTextFieldText:)]) {
             [self.delegate ZLPwdTextFieldText:_mPwd];
         }

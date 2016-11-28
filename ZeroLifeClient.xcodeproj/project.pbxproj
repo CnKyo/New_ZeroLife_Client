@@ -849,6 +849,7 @@
 		04B3008E1DEBC44700EA75A6 /* NSObject_Objc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSObject_Objc.m; sourceTree = "<group>"; };
 		04B300901DEBC60700EA75A6 /* ZLHttpRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLHttpRequest.h; sourceTree = "<group>"; };
 		04B300911DEBC60700EA75A6 /* ZLHttpRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLHttpRequest.m; sourceTree = "<group>"; };
+		04B300931DEBC9E600EA75A6 /* HDSingleton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HDSingleton.h; sourceTree = "<group>"; };
 		04B8624E1DD55F1600BDEA59 /* ZLGoodsDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLGoodsDetailViewController.h; sourceTree = "<group>"; };
 		04B8624F1DD55F1600BDEA59 /* ZLGoodsDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLGoodsDetailViewController.m; sourceTree = "<group>"; };
 		04B8629E1DD5732B00BDEA59 /* ZLGoodsDetailWithWeb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLGoodsDetailWithWeb.h; sourceTree = "<group>"; };
@@ -3004,6 +3005,7 @@
 				04B3008E1DEBC44700EA75A6 /* NSObject_Objc.m */,
 				04B300901DEBC60700EA75A6 /* ZLHttpRequest.h */,
 				04B300911DEBC60700EA75A6 /* ZLHttpRequest.m */,
+				04B300931DEBC9E600EA75A6 /* HDSingleton.h */,
 			);
 			path = Api;
 			sourceTree = "<group>";

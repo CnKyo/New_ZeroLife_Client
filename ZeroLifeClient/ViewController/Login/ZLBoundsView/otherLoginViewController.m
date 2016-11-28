@@ -36,7 +36,7 @@
     [self.view addSubview:mView];
     [mView makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self.view).offset(@0);
-        make.top.equalTo(self.view).offset(@0);
+        make.top.equalTo(self.view).offset(@64);
         make.bottom.equalTo(self.view).offset(@0);
     }];
     
