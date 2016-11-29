@@ -369,13 +369,27 @@
  *
  *  @param tag      链接对象
  *  @param it       提交信息对象
+ *  @param is_default 是否设置为默认地址
  *  @param callback 返回信息
  */
--(void)addressInfoEditWithTag:(NSObject *)tag postItem:(AddressObject *)it call:(void (^)(APIObject* info))callback
+-(void)addressInfoEditWithTag:(NSObject *)tag postItem:(AddressObject *)it is_default:(BOOL)is_default call:(void (^)(APIObject* info))callback
 {
     NSMutableDictionary *paramDic = [it mj_keyValues];
     [paramDic setInt:6 forKey:@"user_id"];
-    [paramDic setInt:it.addr_sort forKey:@"is_default"];
+    
+    if (is_default) {
+        AddressObject *defultItem = [AddressObject defaultAddress];
+        if (defultItem != nil) {
+            if (defultItem.addr_id == it.addr_id)  //如果自身是默认地址，就不用再更新
+                [paramDic setInt:0 forKey:@"is_default"];
+            else
+                [paramDic setInt:defultItem.addr_sort+1 forKey:@"is_default"];
+        } else
+            [paramDic setInt:1 forKey:@"is_default"];
+    } else
+        [paramDic setInt:0 forKey:@"is_default"];
+
+    
     [self loadAPIWithTag:tag path:@"/user/address/address_edit" parameters:paramDic call:^(APIObject *info) {
         callback(info);
     }];
@@ -395,6 +409,7 @@
     [paramDic setInt:6 forKey:@"user_id"];
     [paramDic setInt:addr_id forKey:@"addr_id"];
     [self loadAPIWithTag:tag path:@"/user/address/address_delete" parameters:paramDic call:^(APIObject *info) {
+        
         callback(info);
     }];
 }

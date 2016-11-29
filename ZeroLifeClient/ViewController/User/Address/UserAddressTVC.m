@@ -69,7 +69,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    //self.beginHeaderRereshingWhenViewWillAppear = NO;
     self.title =  _isShowHouseView ? @"房屋地址" : @"收货地址";
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUserAddressChange:) name:MyUserAddressNeedUpdateNotification object:nil];
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+
+    //[self performSelector:@selector(beginHeaderRereshing) withObject:nil afterDelay:0.1];
 }
 
 
@@ -87,6 +98,12 @@
  // Pass the selected object to the new view controller.
  }
  */
+
+-(void)handleUserAddressChange:(NSNotification *)note
+{
+    [self beginHeaderRereshing];
+}
+
 
 #pragma mark -- tableviewDelegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -151,18 +168,18 @@
 //        }
         
         if (_isShowHouseView) {
-            HouseObject *item = [self.tableArr objectAtIndex:indexPath.row];
+            HouseObject *item = [self.tableArr objectAtIndex:indexPath.section];
             
-            if (item.real_sort == self.tableArr.count-1)
+            if (indexPath.section == 0)
                 [str1 appendString:@"<red>(默认地址)</red>"];
             [str1 appendString:[item getFullStr]];
             
             [str2 appendFormat:@"%@  %@  %@", item.real_name, item.real_phone, [NSString houseIsOwner:item.real_is_owner]];
             
         } else {
-            AddressObject *item = [self.tableArr objectAtIndex:indexPath.row];
+            AddressObject *item = [self.tableArr objectAtIndex:indexPath.section];
             
-            if (item.addr_sort == self.tableArr.count-1)
+            if (indexPath.section == 0)
                 [str1 appendString:@"<red>(默认地址)</red>"];
             [str1 appendString:[item getProvinceCityCountyAddressStr]];
             
@@ -181,30 +198,31 @@
         //删除方法
         [cell.delBtn jk_addActionHandler:^(NSInteger tag) {
             if (_isShowHouseView) {
-                HouseObject *it = [self.tableArr objectAtIndex:indexPath.row];
+                HouseObject *it = [self.tableArr objectAtIndex:indexPath.section];
                 [SVProgressHUD showWithStatus:@"删除中..."];
                 [[APIClient sharedClient] houseInfoDeleteWithTag:self real_id:it.real_id call:^(APIObject *info) {
                     if (info.code == RESP_STATUS_YES) {
-                        [self.tableArr removeObjectAtIndex:indexPath.row];
-                        if (self.tableArr.count > 0)
-                            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-                        else
-                            [self.tableView reloadData];
+                        [self.tableArr removeObjectAtIndex:indexPath.section];
+//                        if (self.tableArr.count > 0)
+//                            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+//                        else
+                        [self.tableView reloadData];
                         
                         [SVProgressHUD showSuccessWithStatus:info.msg];
                     } else
                         [SVProgressHUD showErrorWithStatus:info.msg];
                 }];
             } else {
-                AddressObject *it = [self.tableArr objectAtIndex:indexPath.row];
+                AddressObject *it = [self.tableArr objectAtIndex:indexPath.section];
                 [SVProgressHUD showWithStatus:@"删除中..."];
                 [[APIClient sharedClient] addressInfoDeleteWithTag:self addr_id:it.addr_id call:^(APIObject *info) {
                     if (info.code == RESP_STATUS_YES) {
-                        [self.tableArr removeObjectAtIndex:indexPath.row];
-                        if (self.tableArr.count > 0)
-                            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-                        else
-                            [self.tableView reloadData];
+                        [it deleteToDB]; //删除数据库对应
+                        [self.tableArr removeObjectAtIndex:indexPath.section];
+//                        if (self.tableArr.count > 0)
+//                            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationAutomatic];
+//                        else
+                        [self.tableView reloadData];
                         
                         [SVProgressHUD showSuccessWithStatus:info.msg];
                     } else
@@ -216,13 +234,13 @@
         //编辑方法
         [cell.editBtn jk_addActionHandler:^(NSInteger tag) {
             if (_isShowHouseView) {
-                HouseObject *item = [self.tableArr objectAtIndex:indexPath.row];
+                HouseObject *item = [self.tableArr objectAtIndex:indexPath.section];
                 
                 UserHouseEditVC *vc = [[UserHouseEditVC alloc] init];
                 vc.item = item;
                 [self.navigationController pushViewController:vc animated:YES];
             } else {
-                AddressObject *item = [self.tableArr objectAtIndex:indexPath.row];
+                AddressObject *item = [self.tableArr objectAtIndex:indexPath.section];
                 
                 UserAddressEditVC *vc = [[UserAddressEditVC alloc] init];
                 vc.item = item;

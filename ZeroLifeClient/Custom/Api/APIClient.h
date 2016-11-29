@@ -77,7 +77,7 @@ typedef void (^TableShareSdkBlock)(int totalpage, NSArray *tableArr, APIShareSdk
 
 //地址相关接口
 -(void)addressListWithTag:(NSObject *)tag call:(TableArrBlock)callback;
--(void)addressInfoEditWithTag:(NSObject *)tag postItem:(AddressObject *)it call:(void (^)(APIObject* info))callback;
+-(void)addressInfoEditWithTag:(NSObject *)tag postItem:(AddressObject *)it is_default:(BOOL)is_default call:(void (^)(APIObject* info))callback;
 -(void)addressInfoDeleteWithTag:(NSObject *)tag addr_id:(int)addr_id call:(void (^)(APIObject* info))callback;
 
 //房屋相关接口

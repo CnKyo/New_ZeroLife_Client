@@ -59,18 +59,23 @@
             }
             
             ZLSeletedAddress *mAddressObj = [ZLSeletedAddress ShareClient];
-            if (mAddressObj.mProvince==0 || mAddressObj.mCity==0 || mAddressObj.mArear==0) {
+            if (mAddressObj.mProvinceStr.length > 0) {
+                self.item.addr_province = mAddressObj.mProvince;
+                self.item.addr_city = mAddressObj.mCity;
+                self.item.addr_county = mAddressObj.mArear;
+            }
+            if (_item.addr_province==0 || _item.addr_city==0 || _item.addr_county==0) {
                 [SVProgressHUD showErrorWithStatus:@"请选择省市区"];
                 return ;
             }
-            
-            self.item.addr_province = mAddressObj.mProvince;
-            self.item.addr_city = mAddressObj.mCity;
-            self.item.addr_county = mAddressObj.mArear;
+
             
             [SVProgressHUD showWithStatus:@"处理中..."];
-            [[APIClient sharedClient] addressInfoEditWithTag:self postItem:_item call:^(APIObject *info) {
+            [[APIClient sharedClient] addressInfoEditWithTag:self postItem:_item is_default:_customCell.defaultAddressSwitch.on call:^(APIObject *info) {
                 if (info.code == RESP_STATUS_YES) {
+                    [[NSNotificationCenter defaultCenter] postNotificationName:MyUserAddressNeedUpdateNotification object:nil];
+                    
+                    [self performSelector:@selector(popViewController) withObject:nil afterDelay:0.5];
                     [SVProgressHUD showSuccessWithStatus:info.msg];
                 } else
                     [SVProgressHUD showErrorWithStatus:info.msg];
@@ -152,12 +157,14 @@
     cell.consigneeField.text = _item.addr_name;
     cell.mobileField.text = _item.addr_phone;
     cell.addressField.text = _item.addr_address;
+    cell.areaField.text = [_item getProvinceCityCountyStr];
     
-    NSInteger count = [AddressObject rowCountWithWhere:nil];
-    cell.defaultAddressSwitch.on = _item.addr_sort==(count-1) ? YES : NO;
+    AddressObject *defultItem = [AddressObject defaultAddress];
+    cell.defaultAddressSwitch.on = _item.addr_id==defultItem.addr_id ? YES : NO;
     
     //选择地区
     [cell.areaView jk_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
+        [[IQKeyboardManager sharedManager] resignFirstResponder];
         ZLSelectedCityViewController *vc = [ZLSelectedCityViewController new];
         vc.mType = 0;
         [self pushViewController:vc];
