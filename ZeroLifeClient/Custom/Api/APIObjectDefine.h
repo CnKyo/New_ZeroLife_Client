@@ -246,3 +246,210 @@
 @property (nonatomic,assign) int                status;         //
 @end
 
+#pragma mark----****----用户信息
+
+@class ZLWalletObj;
+///
+@interface ZLUserInfo : NSObject
+@property (assign,nonatomic) int user_id;
+///对应用户id
+
+@property (assign,nonatomic) int user_nick;
+///用户昵称
+
+@property (assign,nonatomic) kUserSexType user_sex;
+///性别（UNKNOW(0), MALE(1), FEMALE(2)）
+
+@property (strong,nonatomic) NSString* user_phone;
+//手机号
+
+@property (strong,nonatomic) NSString* user_header;
+//用户头像图片url
+
+@property (strong,nonatomic) NSString* user_birth;
+//生日
+
+@property (assign,nonatomic) int user_province;
+//所属省
+
+@property (assign,nonatomic) int user_city;
+//所属市
+
+@property (assign,nonatomic) int user_county;
+//所属县区
+
+@property (strong,nonatomic) NSString* user_qrcode;
+//用户二维码图片url
+
+@property (strong,nonatomic) NSString* user_emaill;
+//用户邮箱
+
+@property (assign,nonatomic) int user_is_notify;
+//是否开启推送消息功能（Y(1), N(0)）
+
+@property (strong,nonatomic) NSString* user_add_time;
+///
+@property (nonatomic,strong) ZLWalletObj        *ZLWallet;
+
+
+#pragma mark----****----登录
+///需要登录
+- (BOOL)ZLIsNeedLogin;
+///用户信息实效
+- (BOOL)ZLUserIsValid;
+/**
+ *  退出登录
+ */
++ (void)logOut;
+///返回当前用户信息
++ (ZLUserInfo *)ZLCurrentUser;
++ (void)ZLDealSession:(APIObject *)info andPwd:(NSString *)mPwd andOpenId:(NSString *)mOpenId block:(void(^)(APIObject* resb, ZLUserInfo *user))block;
+
+@end
+///用户默认绑定小区对象
+@interface ZLUserCommunityObj : NSObject
+///小区id
+@property (assign,nonatomic) int ZLUmut_id;
+///小区名称
+@property (strong,nonatomic) NSString* ZLUmut_name;
+///小区所属省id
+@property (assign,nonatomic) int ZLUmut_province;
+///小区所属市id
+@property (assign,nonatomic) int ZLUmut_city;
+///小区所属区县id
+@property (assign,nonatomic) int ZLUmut_county;
+///小区地址
+@property (strong,nonatomic) NSString* ZLUmut_address;
+///小区纬度
+@property (strong,nonatomic) NSString* ZLUmut_lng;
+///小区经度
+@property (strong,nonatomic) NSString* ZLUmut_lat;
+///小区所属县区名称
+@property (strong,nonatomic) NSString* ZLGion_name;
+
+
+@end
+///钱包对象
+@interface ZLWalletObj : NSObject
+///用户id
+@property (assign,nonatomic) int user_id;
+///余额
+@property (assign,nonatomic) float uwal_balance;
+///钱包ID
+@property (assign,nonatomic) int uwal_id;
+///积分
+@property (assign,nonatomic) int uwal_score;
+///钱包状态（normal 正常 locked 锁定）
+@property (assign,nonatomic) ZLWalletStatu uwal_state;
+
+
+@end
+///
+@interface ZLHomeBanner : NSObject
+///banner	ID
+@property (assign,nonatomic) int bnr_id;
+///类型(1:平台/2:超市)
+@property (assign,nonatomic) int bnr_type;
+///排序
+@property (assign,nonatomic) int bnr_sort;
+///banner说明
+@property (strong,nonatomic) NSString* bnr_explain;
+///page(跳转界面)
+@property (strong,nonatomic) NSString* bnr_page;
+///url（图片URL）
+@property (strong,nonatomic) NSString* bnr_image;
+///状态1平台 2超市
+@property (assign,nonatomic) ZLHomeBannerType bnr_state;
+
+
+@end
+
+@interface ZLHomeObj : NSObject
+
+//平台活动广告
+@property (strong,nonatomic) NSArray* sAdvertList;
+
+//平台公告(List)
+@property (strong,nonatomic) NSArray* eCompanyNoticeList;
+
+
+@end
+
+///平台活动广告
+@interface ZLHomeAdvList : NSObject
+
+
+//活动广告
+
+@property (assign,nonatomic) int shop_id;
+//店铺ID
+
+@property (assign,nonatomic) int adv_id;
+//广告活动ID
+
+@property (assign,nonatomic) int cpn_id;
+//公司ID
+
+@property (strong,nonatomic) NSString* distance;
+//活动距离(单位：米)
+
+@property (strong,nonatomic) NSString* adv_image;
+//活动图片
+
+@property (strong,nonatomic) NSString* adv_click_url;
+////点击的URL
+
+@property (assign,nonatomic) int adv_type;
+//类型（0:WAP;1:原生）
+
+@property (assign,nonatomic) int cam_type;
+//活动类型
+
+
+@end
+///平台公告(List)
+@interface ZLHomeCompainNoticeList : NSObject
+
+@property (assign,nonatomic) int not_id;
+//公告ID
+
+@property (strong,nonatomic) NSString* not_title;
+//公告标题;
+
+@property (assign,nonatomic) int cmut_id;
+//社区ID
+
+@property (assign,nonatomic) int not_is_cmut;
+//是否是社区发布(0：平台；1：社区)
+
+@property (assign,nonatomic) int not_state;
+//新闻状态
+
+@property (strong,nonatomic) NSString* not_sub;
+//内容简介
+
+@property (strong,nonatomic) NSString* not_add_time;
+//公告发布时间
+
+@property (strong,nonatomic) NSString* not_image;
+////公告图片
+
+@property (strong,nonatomic) NSString* not_deadline;
+//失效时间
+
+@property (strong,nonatomic) NSString* not_add_person;
+//发布者
+
+@property (strong,nonatomic) NSString* not_type;
+//
+
+
+
+@end
+
+
+
+
+
+
+

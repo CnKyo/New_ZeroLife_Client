@@ -33,7 +33,7 @@
     [mView makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self.view).offset(0);
         make.top.equalTo(self.view).offset(64);
-        make.height.offset(200);
+        make.height.offset(DEVICE_Height);
     }];
 
 }
@@ -56,15 +56,74 @@
  验证码
  */
 - (void)ZLLoginWithCodeAction{
-    [self timeCount];
+    
+    if (mView.mRegistPhoneTx.text.length <= 0) {
+        [self showErrorStatus:@"手机号码不能为空！"];
+        [mView.mRegistPhoneTx becomeFirstResponder];
+        return;
+    }
+    if (![Util isMobileNumber:mView.mRegistPhoneTx.text]) {
+        [self showErrorStatus:@"您输入的手机号码有误！请重新输入！"];
+        [mView.mRegistPhoneTx becomeFirstResponder];
+        return;
+    }
+    [self showWithStatus:@"正在发送验证码..."];
+    [[APIClient sharedClient] ZLGetVerigyCode:mView.mRegistPhoneTx.text andType:1 block:^(APIObject *mBaseObj) {
+        [self dismiss];
+        if (mBaseObj.code == RESP_STATUS_YES) {
+            [self showSuccessStatus:mBaseObj.msg];
+            [self timeCount];
+        }else{
+        
+            [self showErrorStatus:mBaseObj.msg];
+        }
+        
+    }];
+    
 }
 /**
  注册
  */
 - (void)ZLLoginWithRegistAction{
-    otherLoginViewController *ooo = [[otherLoginViewController alloc] initWithNibName:@"otherLoginViewController" bundle:nil];
+    
+    if (mView.mRegistPhoneTx.text.length <= 0) {
+        [self showErrorStatus:@"手机号码不能为空！"];
+        [mView.mRegistPhoneTx becomeFirstResponder];
+        return;
+    }
+    if (mView.mRegistCodeTx.text.length <= 0) {
+        [self showErrorStatus:@"验证码不能为空！"];
+        [mView.mRegistCodeTx becomeFirstResponder];
+        return;
+    }
+    if (mView.mRegistPwdTx.text.length <= 0) {
+        [self showErrorStatus:@"密码不能为空！"];
+        [mView.mRegistPwdTx becomeFirstResponder];
+        return;
+    }
+ 
+    if (![Util isMobileNumber:mView.mRegistPhoneTx.text]) {
+        [self showErrorStatus:@"您输入的手机号码有误！请重新输入！"];
+        [mView.mRegistPhoneTx becomeFirstResponder];
+        return;
+    }
+    [self showWithStatus:@"正在注册..."];
+    [[APIClient sharedClient] ZLRegistPhone:mView.mRegistPhoneTx.text andPwd:mView.mRegistPwdTx.text andCode:mView.mRegistCodeTx.text block:^(APIObject *mBaseObj) {
+        
+        [self dismiss];
+        if (mBaseObj.code == RESP_STATUS_YES) {
+            [self showSuccessStatus:mBaseObj.msg];
+            otherLoginViewController *ooo = [[otherLoginViewController alloc] initWithNibName:@"otherLoginViewController" bundle:nil];
+            
+            [self pushViewController:ooo];
+        }else{
+        
+            [self showErrorStatus:mBaseObj.msg];
+        }
+        
+    }];
+    
 
-    [self pushViewController:ooo];
 
 }
 /**
@@ -82,6 +141,10 @@
  */
 - (void)ZLCodeTextFieldText:(NSString *)mText{
     MLLog(@"验证码：%@",mText);
+}
+- (void)ZLPwdTextFieldText:(NSString *)mText{
+    MLLog(@"密码：%@",mText);
+
 }
 
 - (void)timeCount{//倒计时函数

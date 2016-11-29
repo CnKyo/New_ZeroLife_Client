@@ -94,7 +94,36 @@
  登录
  */
 - (void)ZLLoginWithLoginAction{
+    
+    if (mMainView.mLoginPhoneTx.text.length <=0) {
+        [self showErrorStatus:@"手机号不能为空"];
+        [mMainView.mLoginPhoneTx becomeFirstResponder];
+        return;
+    }if (mMainView.mLoginPwdTx.text.length <= 0) {
+        [self showErrorStatus:@"密码不能为空"];
+        [mMainView.mLoginPwdTx becomeFirstResponder];
+        return;
+    }
+    
+    if (![Util isMobileNumber:mMainView.mLoginPhoneTx.text]) {
+        [self showErrorStatus:@"您输入的手机号码有误！请重新输入！"];
+        [mMainView.mLoginPhoneTx becomeFirstResponder];
+
+        return;
+    }
+    
     [self showWithStatus:@"登陆中..."];
+    
+    
+    [[APIClient sharedClient] ZLLoginWithPhone:mMainView.mLoginPhoneTx.text andPwd:mMainView.mLoginPwdTx.text block:^(APIObject *mBaseObj,ZLUserInfo *mUser) {
+        if ( mBaseObj.code == RESP_STATUS_YES ) {
+            [self showSuccessStatus:@"登录成功！"];
+        }else{
+            [self showSuccessStatus:@"登录失败！"];
+        }
+    }];
+    
+    
 }
 
 /**

@@ -170,6 +170,10 @@
  注册验证吗tx
  */
 @property (weak, nonatomic) IBOutlet UITextField *mRegistCodeTx;
+/**
+ 注册密码tx
+ */
+@property (weak, nonatomic) IBOutlet UITextField *mRegistPwdTx;
 
 /**
  注册验证码按钮

@@ -728,4 +728,136 @@
 
 
 
+
+- (void)ZLLoginWithPhone:(NSString *)mPhone andPwd:(NSString *)mPwd block:(void(^)(APIObject *mBaseObj,ZLUserInfo *mUser))block{
+    
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    [para setObject:mPhone forKey:@"acc_phone"];
+    [para setObject:mPwd forKey:@"acc_pass"];
+    [para setObject:@"ios" forKey:@"sys_t"];
+    [para setObject:[Util getAppVersion] forKey:@"app_v"];
+    [para setObject:[Util getAPPBuildNum] forKey:@"sys_v"];
+    
+    [self loadAPIWithTag:self path:@"user/user_login" parameters:para call:^(APIObject *info) {
+        [ZLUserInfo ZLDealSession:info andPwd:mPwd andOpenId:nil block:block];
+    }];
+
+    
+}
+- (void)ZLRegistPhone:(NSString *)mPhone andPwd:(NSString *)mPwd andCode:(NSString *)mCode block:(void(^)(APIObject *mBaseObj))block{
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    [para setObject:mPhone forKey:@"acc_phone"];
+    [para setObject:mPwd forKey:@"acc_pass"];
+    [para setObject:mCode forKey:@"v_code"];
+    
+    [self loadAPIWithTag:self path:@"user/user_register" parameters:para call:^(APIObject *info) {
+        block(info);
+    }];
+    
+ 
+}
+
+- (void)ZLGetVerigyCode:(NSString *)mCode andType:(int)mtype block:(void(^)(APIObject *mBaseObj))block{
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    [para setObject:mCode forKey:@"mobile"];
+    [para setObject:NumberWithInt(mtype) forKey:@"type"];
+    
+    [self loadAPIWithTag:self path:@"common/get_sms_code" parameters:para call:^(APIObject *info) {
+        block(info);
+    }];
+
+}
+#pragma mark----****----获取首页banner
+- (void)ZLgetHomeBanner:(void(^)(APIObject *mBaseObj,NSArray *mArr))block{
+    
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    
+    
+    [self loadAPIWithTag:self path:@"home/banner" parameters:para call:^(APIObject *info) {
+
+        NSMutableArray *mtempArr = [NSMutableArray new];
+
+        if (info.code == 200) {
+            
+            id mArr = info.data;
+            
+            if ([mArr isKindOfClass:[NSArray class]]) {
+                for (NSDictionary *dic in info.data) {
+                    
+                    
+                    [mtempArr addObject:[ZLHomeBanner mj_objectWithKeyValues:dic]];
+                }
+                
+            }
+            
+            
+            block (info,mtempArr);
+            
+            
+        }else{
+            block (info,mtempArr);
+            
+        }
+    
+    }];
+    
+
+    
+}
+
+#pragma mark----****----获取首页数据
+///获取首页数据
+- (void)ZLGetHome:(NSString *)mLat andLng:(NSString *)mLng block:(void(^)(APIObject *mBaseObj,ZLHomeObj *mHome))block{
+
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    
+    
+    if (mLat) {
+        [para setNeedStr:mLat forKey:@"adv_lat"];
+    }
+    if (mLng) {
+        [para setNeedStr:mLat forKey:@"adv_lng"];
+
+    }
+    [para setInt:[ZLUserInfo ZLCurrentUser].user_id forKey:@"user_id"];
+    
+    [self loadAPIWithTag:self path:@"home/homePage" parameters:para call:^(APIObject *info) {
+        
+        
+        if (info.code == 200) {
+            
+            ZLHomeObj *mHomeObj = [[ZLHomeObj alloc] init];
+            
+            id mAdv = [info.data objectForKey:@"sAdvertList"];
+            
+            id mCom = [info.data objectForKey:@"eCompanyNoticeList"];
+            
+            
+            NSMutableArray *mAdvArr = [NSMutableArray new];
+            NSMutableArray *mComArr = [NSMutableArray new];
+            if ([mAdv isKindOfClass:[NSArray class]]) {
+                
+                [mAdvArr addObject:[ZLHomeAdvList mj_objectWithKeyValues:mAdv]];
+                
+            }
+            if ([mCom isKindOfClass:[NSArray class]]) {
+                
+                [mComArr addObject:[ZLHomeCompainNoticeList mj_objectWithKeyValues:mCom]];
+                
+            }
+            
+            mHomeObj.sAdvertList = mAdvArr;
+            mHomeObj.eCompanyNoticeList = mComArr;
+            
+            block(info,mHomeObj);
+            
+        }else{
+            block(info,nil);
+
+        }
+        
+    }];
+}
+
+
 @end
