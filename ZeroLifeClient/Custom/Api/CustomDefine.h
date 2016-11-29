@@ -191,6 +191,12 @@ static NSString* const  kAFAppDotNetApiBaseURLString    = @"http://192.168.1.114
 static NSString* const  kAFAppDotNetApiExtraURLString    = @"/api/app/client";
 
 
+
+static NSString * const MyUserNeedUpdateNotification     = @"MyUserNeedUpdateNotification";
+static NSString * const MyUserInfoChangedNotification   = @"MyUserInfoChangedNotification";
+
+static NSString * const MyUserAddressNeedUpdateNotification   = @"MyUserAddressNeedUpdateNotification"; //地址信息需要更新
+
 typedef enum {
     kUserSexType_man = 1,//
     kUserSexType_woman = 2,//

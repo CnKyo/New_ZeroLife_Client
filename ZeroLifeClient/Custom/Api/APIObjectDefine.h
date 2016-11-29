@@ -158,7 +158,7 @@
 @property(nonatomic,assign) int                     real_id;         //房屋认证ID
 @property(nonatomic,strong) NSString *              user_id;            //用户id
 @property(nonatomic,assign) kUserSexType            real_sex;         //
-@property(nonatomic,strong) NSString *              real_name;          // 联系人姓名
+@property(nonatomic,strong) NSString *              real_owner;          // 联系人姓名
 @property(nonatomic,strong) NSString *              real_phone;             // 手机号
 @property(nonatomic,assign) int                     real_province;         //所属省
 @property(nonatomic,assign) int                     real_city;         //所属市
@@ -175,6 +175,7 @@
 @property(nonatomic,assign) BOOL                    real_is_owner;         // 是否为业主（Y(1), N(0)）
 @property(nonatomic,assign) int                     real_sort;         //排序（从大到小）
 @property(nonatomic,strong) NSString *              real_add_time;           //认证时间
++(HouseObject *)defaultAddress;
 -(NSMutableString *)getProvinceCityCountyStr; //获取省市区文字
 -(NSMutableString *)getFullStr;
 @end

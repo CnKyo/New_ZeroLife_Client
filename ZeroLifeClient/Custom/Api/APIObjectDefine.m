@@ -324,6 +324,11 @@
 
 
 @implementation HouseObject
++(HouseObject *)defaultAddress
+{
+    HouseObject *item = [HouseObject searchSingleWithWhere:nil orderBy:nil];
+    return item;
+}
 -(NSMutableString *)getProvinceCityCountyStr
 {
     NSMutableString *str = [NSMutableString new];
