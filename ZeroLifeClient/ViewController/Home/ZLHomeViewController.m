@@ -66,38 +66,38 @@
     self.navigationItem.title = @"首页";
 
     
-    mLng = nil;
-    mLat = nil;
-    
-    NSNotificationCenter *mNotify = [NSNotificationCenter defaultCenter];
-    [mNotify addObserver:self selector:@selector(webAction:) name:@"ZLAdView" object:nil];
-    
-    [self initAdView];
-    
-    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(10, -60) forBarMetrics:UIBarMetricsDefault];
-
-    
-    mBannerArr = [NSMutableArray new];
-    mCoupArr = [NSMutableArray new];
-    
-    mAdvDataSourceArr = [NSMutableArray new];
-    mComDataSourceArr = [NSMutableArray new];
-
-
-    self.mTableView.dataSource = self;
-    self.mTableView.delegate = self;
-
-    [self initLeftAndRightBarButton];
-//    [self addTableView];
-    
-    UINib   *nib = [UINib nibWithNibName:@"ZLHomeOtherCell" bundle:nil];
-    [self.mTableView registerNib:nib forCellReuseIdentifier:@"cell2"];
-
-    
-    [self initCoupView];
-    
-    [self loadData];
-    [self.navigationController.navigationBar lt_setBackgroundColor:[UIColor clearColor]];
+//    mLng = nil;
+//    mLat = nil;
+//    
+//    NSNotificationCenter *mNotify = [NSNotificationCenter defaultCenter];
+//    [mNotify addObserver:self selector:@selector(webAction:) name:@"ZLAdView" object:nil];
+//    
+//    [self initAdView];
+//    
+//    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(10, -60) forBarMetrics:UIBarMetricsDefault];
+//
+//    
+//    mBannerArr = [NSMutableArray new];
+//    mCoupArr = [NSMutableArray new];
+//    
+//    mAdvDataSourceArr = [NSMutableArray new];
+//    mComDataSourceArr = [NSMutableArray new];
+//
+//
+//    self.mTableView.dataSource = self;
+//    self.mTableView.delegate = self;
+//
+//    [self initLeftAndRightBarButton];
+////    [self addTableView];
+//    
+//    UINib   *nib = [UINib nibWithNibName:@"ZLHomeOtherCell" bundle:nil];
+//    [self.mTableView registerNib:nib forCellReuseIdentifier:@"cell2"];
+//
+//    
+//    [self initCoupView];
+//    
+//    [self loadData];
+//    [self.navigationController.navigationBar lt_setBackgroundColor:[UIColor clearColor]];
     
     
 }
@@ -236,35 +236,35 @@
 
     [super reloadTableViewDataSource];
     
-    [[APIClient sharedClient] ZLgetHomeBanner:^(APIObject *mBaseObj, NSArray *mArr) {
-        [mBannerArr removeAllObjects];
-        if (mBaseObj.code == RESP_STATUS_YES) {
-
-            [mBannerArr addObjectsFromArray:mArr];
-           
-        
-        }else{
-        
-            [self showErrorStatus:mBaseObj.msg];
-        }
-    }];
-    
-    [[APIClient sharedClient] ZLGetHome:mLat andLng:mLng block:^(APIObject *mBaseObj, ZLHomeObj *mHome) {
-        [mComDataSourceArr removeAllObjects];
-        [mAdvDataSourceArr removeAllObjects];
-        if (mBaseObj.code == RESP_STATUS_YES) {
-
-            [mAdvDataSourceArr addObjectsFromArray:mHome.sAdvertList];
-            [mComDataSourceArr addObjectsFromArray:mHome.eCompanyNoticeList];
-            
-        }else{
-        
-            [self showErrorStatus:mBaseObj.msg];
-        }
-        
-    }];
-    
-    [self.tableView reloadData];
+//    [[APIClient sharedClient] ZLgetHomeBanner:^(APIObject *mBaseObj, NSArray *mArr) {
+//        [mBannerArr removeAllObjects];
+//        if (mBaseObj.code == RESP_STATUS_YES) {
+//
+//            [mBannerArr addObjectsFromArray:mArr];
+//           
+//        
+//        }else{
+//        
+//            [self showErrorStatus:mBaseObj.msg];
+//        }
+//    }];
+//    
+//    [[APIClient sharedClient] ZLGetHome:mLat andLng:mLng block:^(APIObject *mBaseObj, ZLHomeObj *mHome) {
+//        [mComDataSourceArr removeAllObjects];
+//        [mAdvDataSourceArr removeAllObjects];
+//        if (mBaseObj.code == RESP_STATUS_YES) {
+//
+//            [mAdvDataSourceArr addObjectsFromArray:mHome.sAdvertList];
+//            [mComDataSourceArr addObjectsFromArray:mHome.eCompanyNoticeList];
+//            
+//        }else{
+//        
+//            [self showErrorStatus:mBaseObj.msg];
+//        }
+//        
+//    }];
+//    
+//    [self.tableView reloadData];
     
     
 }

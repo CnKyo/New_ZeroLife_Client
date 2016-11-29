@@ -28,6 +28,7 @@
 @interface NSString(QUAdd)
 -(NSString *)compSelfIsNone;
 +(NSString *)houseIsOwner:(BOOL)is_owner; //得到房主租客文字
++(NSString *)urlWithExtra:(NSString *)str;  //组合url地址
 @end
 
 

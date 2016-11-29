@@ -58,6 +58,11 @@
     return is_owner ? @"房主" : @"租客";
 }
 
++(NSString *)urlWithExtra:(NSString *)str
+{
+    return [NSString stringWithFormat:@"%@%@", kAFAppDotNetApiExtraURLString, str];
+}
+
 @end
 
 @implementation NSObject(QUAdd)

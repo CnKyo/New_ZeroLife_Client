@@ -182,10 +182,12 @@ static int const RESP_STATUS_NO                   = 1;             //失败
 #define RETCODE_SUCCESS  200
 
 
-static NSString* const  kAFAppDotNetApiBaseURLString_test    = @"http://192.168.1.114";
-static NSString* const  kAFAppDotNetApiBaseURLString    = @"http://shop.hookwin.com";
 
-//static NSString* const  kAFAppDotNetApiBaseURLString_test    = @"http://localhost:8080/crkj_zlife/";
+//static NSString* const  kAFAppDotNetApiBaseURLString    = @"http://localhost:8080";
+
+static NSString* const  kAFAppDotNetApiBaseURLString    = @"http://192.168.1.114";
+static NSString* const  kAFAppDotNetApiExtraURLString    = @"/api/app/client";
+
 
 typedef enum {
     kUserSexType_man = 1,//
