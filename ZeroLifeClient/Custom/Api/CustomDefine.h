@@ -30,6 +30,7 @@
 #define  KEY_USERNAME_PASSWORD @"com.company.app.usernamepassword"
 #define  KEY_USERNAME @"com.company.app.username"
 #define  KEY_PASSWORD @"com.company.app.password"
+#define AMAP_KEY @"7970dba38f00e9b34aed65fb0bd29194"
 
 
 #define ColorRGB(_R_, _G_, _B_)       ([UIColor colorWithRed:_R_/255.0f green:_G_/255.0f blue:_B_/255.0f alpha:1])

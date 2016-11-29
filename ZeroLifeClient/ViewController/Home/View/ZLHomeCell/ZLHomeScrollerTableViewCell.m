@@ -33,55 +33,65 @@
         
         self.backgroundColor = [UIColor colorWithRed:0.97 green:0.97 blue:0.97 alpha:1.00];
         
-        NSMutableArray *mImgUrl = [NSMutableArray new];
-        
-        for (ZLHomeBanner *mBanner in mBannerDataSource) {
-            [mImgUrl addObject:mBanner.bnr_image];
+        if (mBannerDataSource.count <= 0) {
+
+        }else{
+            NSMutableArray *mImgUrl = [NSMutableArray new];
+            
+            
+            //        for (ZLHomeBanner *mBanner in mBannerDataSource) {
+            //            [mImgUrl addObject:mBanner.bnr_image];
+            //        }
+            
+            //显示顺序和数组顺序一致
+            //设置图片url数组,和滚动视图位置
+            mScrollerView = [DCPicScrollView picScrollViewWithFrame:CGRectMake(0, 0, screen_width, 250) WithImageUrls:mBannerDataSource];
+            
+            //显示顺序和数组顺序一致
+            //设置标题显示文本数组
+            
+            //占位图片,你可以在下载图片失败处修改占位图片
+            mScrollerView.placeImage = [UIImage imageNamed:@"ic_default_rectangle-1"];
+            
+            //图片被点击事件,当前第几张图片被点击了,和数组顺序一致
+            __weak __typeof(self)weakSelf = self;
+            
+            [mScrollerView setImageViewDidTapAtIndex:^(NSInteger index) {
+                
+                printf("第%zd张图片\n",index);
+                
+                if ([weakSelf.delegate respondsToSelector:@selector(ZLHomeBannerDidSelectedWithIndex:)]) {
+                    [weakSelf.delegate ZLHomeBannerDidSelectedWithIndex:index];
+                }
+                
+                
+                
+            }];
+            
+            //default is 2.0f,如果小于0.5不自动播放
+            mScrollerView.AutoScrollDelay = 2.5f;
+            //    picView.textColor = [UIColor redColor];
+            
+            
+            //下载失败重复下载次数,默认不重复,
+            [[DCWebImageManager shareManager] setDownloadImageRepeatCount:1];
+            
+            //图片下载失败会调用该block(如果设置了重复下载次数,则会在重复下载完后,假如还没下载成功,就会调用该block)
+            //error错误信息
+            //url下载失败的imageurl
+            [[DCWebImageManager shareManager] setDownLoadImageError:^(NSError *error, NSString *url) {
+                MLLog(@"%@",error);
+            }];
+            
+            
+            [self.contentView addSubview:mScrollerView];
         }
         
-        //显示顺序和数组顺序一致
-        //设置图片url数组,和滚动视图位置
-        mScrollerView = [DCPicScrollView picScrollViewWithFrame:CGRectMake(0, 0, screen_width, 250) WithImageUrls:mImgUrl];
         
-        //显示顺序和数组顺序一致
-        //设置标题显示文本数组
-        
-        //占位图片,你可以在下载图片失败处修改占位图片
-        mScrollerView.placeImage = [UIImage imageNamed:@"ic_default_rectangle-1"];
-        
-        //图片被点击事件,当前第几张图片被点击了,和数组顺序一致
-        __weak __typeof(self)weakSelf = self;
-        
-        [mScrollerView setImageViewDidTapAtIndex:^(NSInteger index) {
-            
-            printf("第%zd张图片\n",index);
-            
-            if ([weakSelf.delegate respondsToSelector:@selector(ZLHomeBannerDidSelectedWithIndex:)]) {
-                [weakSelf.delegate ZLHomeBannerDidSelectedWithIndex:index];
-            }
-            
-            
-            
-        }];
-        
-        //default is 2.0f,如果小于0.5不自动播放
-        mScrollerView.AutoScrollDelay = 2.5f;
-        //    picView.textColor = [UIColor redColor];
-        
-        
-        //下载失败重复下载次数,默认不重复,
-        [[DCWebImageManager shareManager] setDownloadImageRepeatCount:1];
-        
-        //图片下载失败会调用该block(如果设置了重复下载次数,则会在重复下载完后,假如还没下载成功,就会调用该block)
-        //error错误信息
-        //url下载失败的imageurl
-        [[DCWebImageManager shareManager] setDownLoadImageError:^(NSError *error, NSString *url) {
-            MLLog(@"%@",error);
-        }];
-        
-        
-        [self.contentView addSubview:mScrollerView];
 
+        
+        
+       
         
         int mPage;
         if (mDataSource.count>8) {

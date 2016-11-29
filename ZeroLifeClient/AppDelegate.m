@@ -21,7 +21,8 @@
 #import <WXApi.h>
 #import <WeiboSDK.h>
 #import <JWLaunchAd/JWLaunchAd.h>
-
+#import <AMapLocationKit/AMapLocationKit.h>
+#import <AMapFoundationKit/AMapFoundationKit.h>
 @interface AppDelegate ()
 
 @end
@@ -59,6 +60,10 @@
 }
 #pragma mark----初始化三方库
 - (void)initLibraries{
+    
+    [AMapServices sharedServices].apiKey = AMAP_KEY;
+
+
     //初始化腾讯统计
     [MTA startWithAppkey:@"IBW9PAI485ZQ"];
     

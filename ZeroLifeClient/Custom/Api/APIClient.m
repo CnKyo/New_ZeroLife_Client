@@ -587,7 +587,7 @@
     [para setObject:[Util getAppVersion] forKey:@"app_v"];
     [para setObject:[Util getAPPBuildNum] forKey:@"sys_v"];
     
-    [self loadAPIWithTag:self path:@"user/user_login" parameters:para call:^(APIObject *info) {
+    [self loadAPIWithTag:self path:@"/api/app/client/user/user_login" parameters:para call:^(APIObject *info) {
         [ZLUserInfo ZLDealSession:info andPwd:mPwd andOpenId:nil block:block];
     }];
 
@@ -599,7 +599,7 @@
     [para setObject:mPwd forKey:@"acc_pass"];
     [para setObject:mCode forKey:@"v_code"];
     
-    [self loadAPIWithTag:self path:@"user/user_register" parameters:para call:^(APIObject *info) {
+    [self loadAPIWithTag:self path:@"/api/app/client/user/user_register" parameters:para call:^(APIObject *info) {
         block(info);
     }];
     
@@ -611,7 +611,7 @@
     [para setObject:mCode forKey:@"mobile"];
     [para setObject:NumberWithInt(mtype) forKey:@"type"];
     
-    [self loadAPIWithTag:self path:@"common/get_sms_code" parameters:para call:^(APIObject *info) {
+    [self loadAPIWithTag:self path:@"/api/app/client/common/get_sms_code" parameters:para call:^(APIObject *info) {
         block(info);
     }];
 
@@ -622,11 +622,11 @@
     NSMutableDictionary *para = [NSMutableDictionary new];
     
     
-    [self loadAPIWithTag:self path:@"home/banner" parameters:para call:^(APIObject *info) {
+    [self loadAPIWithTag:self path:@"/api/app/client/home/banner" parameters:para call:^(APIObject *info) {
 
         NSMutableArray *mtempArr = [NSMutableArray new];
 
-        if (info.code == 200) {
+        if (info.code == RESP_STATUS_YES) {
             
             id mArr = info.data;
             
@@ -665,15 +665,15 @@
         [para setNeedStr:mLat forKey:@"adv_lat"];
     }
     if (mLng) {
-        [para setNeedStr:mLat forKey:@"adv_lng"];
+        [para setNeedStr:mLng forKey:@"adv_lng"];
 
     }
     [para setInt:[ZLUserInfo ZLCurrentUser].user_id forKey:@"user_id"];
     
-    [self loadAPIWithTag:self path:@"home/homePage" parameters:para call:^(APIObject *info) {
+    [self loadAPIWithTag:self path:@"/api/app/client/home/homePage" parameters:para call:^(APIObject *info) {
         
         
-        if (info.code == 200) {
+        if (info.code == RESP_STATUS_YES) {
             
             ZLHomeObj *mHomeObj = [[ZLHomeObj alloc] init];
             
@@ -686,13 +686,15 @@
             NSMutableArray *mComArr = [NSMutableArray new];
             if ([mAdv isKindOfClass:[NSArray class]]) {
                 
-                [mAdvArr addObject:[ZLHomeAdvList mj_objectWithKeyValues:mAdv]];
+                for ( NSDictionary *dic in mAdv) {
+                    [mAdvArr addObject:[ZLHomeAdvList mj_objectWithKeyValues:dic]];
+                }
                 
             }
             if ([mCom isKindOfClass:[NSArray class]]) {
-                
-                [mComArr addObject:[ZLHomeCompainNoticeList mj_objectWithKeyValues:mCom]];
-                
+                for ( NSDictionary *dic in mCom) {
+                    [mComArr addObject:[ZLHomeAdvList mj_objectWithKeyValues:dic]];
+                }                
             }
             
             mHomeObj.sAdvertList = mAdvArr;

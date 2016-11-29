@@ -31,9 +31,10 @@
 #import "ZLRatingViewController.h"
 #import <HcdGuideView.h>
 #import <JWLaunchAd/JWLaunchAd.h>
+#import <AMapLocationKit/AMapLocationKit.h>
 #import <UINavigationBar+Awesome.h>
 #define NAVBAR_CHANGE_POINT 30
-@interface ZLHomeViewController ()<UITableViewDelegate,UITableViewDataSource,ZLHomeScrollerTableCellDelegate,ZLHomeLocationViewDelegate,ZLCoupViewDelegate>
+@interface ZLHomeViewController ()<UITableViewDelegate,UITableViewDataSource,ZLHomeScrollerTableCellDelegate,ZLHomeLocationViewDelegate,ZLCoupViewDelegate,AMapLocationManagerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *mTableView;
 
 @end
@@ -58,7 +59,7 @@
     ///平台公告数据源
     NSMutableArray *mComDataSourceArr;
 
-    
+    AMapLocationManager *mLocation;
 }
 
 - (void)viewDidLoad {
@@ -96,10 +97,14 @@
     
     [self initCoupView];
     
-    [self loadData];
+//    [self loadData];
     [self.navigationController.navigationBar lt_setBackgroundColor:[UIColor clearColor]];
     
-    
+    [self TableViewHaveHeader];
+
+    [self loadAddress];
+
+   
 }
 
 - (void)webAction:(NSNotification *)sender{
@@ -231,21 +236,54 @@
     
     
 }
+- (void)TableViewHaveHeader{
+    __weak typeof(self) weakSelf = self;
+    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [weakSelf loadHeaderRefreshing];
+    }];
+    self.mTableView.mj_header = header;
+    
+    [header setTitle:@"" forState:MJRefreshStateIdle];
+    [header setTitle:@"" forState:MJRefreshStatePulling];
+    [header setTitle:@"" forState:MJRefreshStateRefreshing];
 
+}
+-(void)endHeaderRereshing
+{
+    if (self.mTableView.mj_footer != nil) {
+        if (self.tableArr.count > 0)
+            self.mTableView.mj_footer.hidden = NO;
+        else
+            self.mTableView.mj_footer.hidden = YES;
+    }
+    
+    self.tableIsReloading = NO;
+    
+    [self.mTableView reloadData];
+    [self.mTableView.mj_header endRefreshing];
+}
+#pragma mark----****----加载数据
 - (void)reloadTableViewDataSource{
 
     [super reloadTableViewDataSource];
+    if (mLat.length <= 0 || mLng.length <= 0 || [mLng  isEqualToString: @"0.000000"] || [mLat  isEqualToString: @"0.000000"]) {
+        return;
+    }
     
     [[APIClient sharedClient] ZLgetHomeBanner:^(APIObject *mBaseObj, NSArray *mArr) {
         [mBannerArr removeAllObjects];
+        [self ZLHideEmptyView];
         if (mBaseObj.code == RESP_STATUS_YES) {
 
-            [mBannerArr addObjectsFromArray:mArr];
+//            [mBannerArr addObjectsFromArray:mArr];
+            [self loadData];
+
            
         
         }else{
         
             [self showErrorStatus:mBaseObj.msg];
+            [self ZLShowEmptyView:mBaseObj.msg andImage:nil andHiddenRefreshBtn:NO];
         }
     }];
     
@@ -261,14 +299,50 @@
         
             [self showErrorStatus:mBaseObj.msg];
         }
-        
+        [self endHeaderRereshing];
+
     }];
-    
-    [self.tableView reloadData];
     
     
 }
+#pragma mark----****----加载地址
+- (void)loadAddress{
+    mLocation = [[AMapLocationManager alloc] init];
+    mLocation.delegate = self;
+    [mLocation setDesiredAccuracy:kCLLocationAccuracyHundredMeters];
+    mLocation.locationTimeout = 3;
+    mLocation.reGeocodeTimeout = 3;
+    [mLocation requestLocationWithReGeocode:YES completionBlock:^(CLLocation *location, AMapLocationReGeocode *regeocode, NSError *error) {
+        if (error)
+        {
+            NSString *eee =@"定位失败！请检查网络和定位设置！";
+//            [WJStatusBarHUD showErrorImageName:nil text:eee];
+//            
+//            mNavView.mAddress.text = eee;
+            [self showErrorStatus:eee];
+            MLLog(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
+            [self ZLHomLocationViewDidSelected];
+        }
 
+        
+        if (regeocode)
+        {
+            
+            MLLog(@"location:%f", location.coordinate.latitude);
+            
+            mLat = [NSString stringWithFormat:@"%f",location.coordinate.latitude];
+            mLng = [NSString stringWithFormat:@"%f",location.coordinate.longitude];
+//            [WJStatusBarHUD showSuccessImageName:nil text:@"定位成功"];
+            
+            MLLog(@"reGeocode:%@", regeocode);
+            mLocationView.mAddress.text = [NSString stringWithFormat:@"%@%@",regeocode.street,regeocode.number];
+            
+            [self reloadTableViewDataSource];
+
+        }
+    }];
+
+}
 - (void)loadData{
 
     NSString * url1 = @"http://pic.newssc.org/upload/news/20161011/1476154849151.jpg";
@@ -384,11 +458,10 @@
         if (indexPath.section == 0) {
             reuseCellId = @"cell1";
             
-            ZLHomeScrollerTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
             
-            if (cell == nil) {
-                cell = [[ZLHomeScrollerTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseCellId andBannerDataSource:mBannerArr andDataSource:mBannerArr];
-            }
+            
+            ZLHomeScrollerTableViewCell  *cell = [[ZLHomeScrollerTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseCellId andBannerDataSource:mBannerArr andDataSource:self.tableArr];
+            
             
             
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -482,6 +555,11 @@
 #pragma mark ----****----banner点击方法
 - (void)ZLHomeBannerDidSelectedWithIndex:(NSInteger)mIndex{
     MLLog(@"点击了第:%ld个",(long)mIndex);
+    
+    ZLHomeBanner *mBaner = mBannerArr[mIndex];
+    
+    
+    
 
 }
 #pragma mark ----****----优惠券view

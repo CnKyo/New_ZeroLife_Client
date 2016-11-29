@@ -3904,7 +3904,7 @@
 				GCC_PREFIX_HEADER = "$(SRCROOT)/ZeroLifeClient/ZeroLifeClient-Prefix.pch";
 				INFOPLIST_FILE = ZeroLifeClient/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.chaoer.ZeroLifeClient;
+				PRODUCT_BUNDLE_IDENTIFIER = chaoer.zerolif.buyer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -3920,7 +3920,7 @@
 				GCC_PREFIX_HEADER = "$(SRCROOT)/ZeroLifeClient/ZeroLifeClient-Prefix.pch";
 				INFOPLIST_FILE = ZeroLifeClient/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.chaoer.ZeroLifeClient;
+				PRODUCT_BUNDLE_IDENTIFIER = chaoer.zerolif.buyer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
