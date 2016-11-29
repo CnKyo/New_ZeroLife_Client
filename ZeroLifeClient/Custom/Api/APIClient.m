@@ -383,13 +383,12 @@
             if (defultItem.addr_id == it.addr_id)  //如果自身是默认地址，就不用再更新
                 [paramDic setInt:0 forKey:@"is_default"];
             else
-                [paramDic setInt:defultItem.addr_sort+1 forKey:@"is_default"];
+                [paramDic setInt:defultItem.addr_sort+1 forKey:@"is_default"]; //在默认地址的sort上加１
         } else
-            [paramDic setInt:1 forKey:@"is_default"];
+            [paramDic setInt:1 forKey:@"is_default"]; //没有默认地址设置为１
     } else
         [paramDic setInt:0 forKey:@"is_default"];
 
-    
     [self loadAPIWithTag:tag path:@"/user/address/address_edit" parameters:paramDic call:^(APIObject *info) {
         callback(info);
     }];
@@ -427,7 +426,7 @@
     NSMutableDictionary* paramDic = [NSMutableDictionary dictionary];
     [paramDic setInt:6 forKey:@"user_id"];
     [self loadAPIWithTag:self path:@"/user/house/house_list" parameters:paramDic call:^(APIObject *info) {
-        NSArray *newArr = [HouseObject mj_objectArrayWithKeyValuesArray:info.data];
+        NSArray *newArr = [HouseObject mj_objectArrayWithKeyValuesArray:[info.data objectWithKey:@"house"]];
         callback(newArr, info);
     }];
 }
@@ -440,9 +439,22 @@
  *  @param it       提交信息对象
  *  @param callback 返回信息
  */
--(void)houseInfoEditWithTag:(NSObject *)tag postItem:(HouseObject *)it call:(void (^)(APIObject* info))callback
+-(void)houseInfoEditWithTag:(NSObject *)tag postItem:(HouseObject *)it is_default:(BOOL)is_default call:(void (^)(APIObject* info))callback
 {
-    NSDictionary *paramDic = [it mj_keyValues];
+    NSMutableDictionary *paramDic = [it mj_keyValues];
+    [paramDic setInt:6 forKey:@"user_id"];
+    
+    if (is_default) {
+        HouseObject *defultItem = [HouseObject defaultAddress];
+        if (defultItem != nil) {
+            if (defultItem.real_id == it.real_id)  //如果自身是默认地址，就不用再更新
+                [paramDic setInt:0 forKey:@"is_default"];
+            else
+                [paramDic setInt:defultItem.real_id+1 forKey:@"is_default"]; //在默认地址的sort上加１
+        } else
+            [paramDic setInt:1 forKey:@"is_default"]; //没有默认地址设置为１
+    } else
+        [paramDic setInt:0 forKey:@"is_default"];
     [self loadAPIWithTag:tag path:@"/user/house/house_edit" parameters:paramDic call:^(APIObject *info) {
         callback(info);
     }];

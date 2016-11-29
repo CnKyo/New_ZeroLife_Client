@@ -17,13 +17,7 @@
 
 @implementation UserAddressEditVC
 
-- (void)viewWillAppear:(BOOL)animated{
 
-    [super viewWillAppear:animated];
-
-    ZLSeletedAddress *mAddressObj = [ZLSeletedAddress ShareClient];
-    self.customCell.areaField.text = [mAddressObj getAddress];
-}
 
 -(void)loadView
 {
@@ -98,6 +92,14 @@
     } else {
         self.title =  @"编辑地址";
     }
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:animated];
+    
+    ZLSeletedAddress *mAddressObj = [ZLSeletedAddress ShareClient];
+    self.customCell.areaField.text = [mAddressObj getAddress];
 }
 
 

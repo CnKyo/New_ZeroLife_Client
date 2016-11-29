@@ -174,7 +174,7 @@
                 [str1 appendString:@"<red>(默认地址)</red>"];
             [str1 appendString:[item getFullStr]];
             
-            [str2 appendFormat:@"%@  %@  %@", item.real_name, item.real_phone, [NSString houseIsOwner:item.real_is_owner]];
+            [str2 appendFormat:@"%@  %@  %@", item.real_owner, item.real_phone, [NSString houseIsOwner:item.real_is_owner]];
             
         } else {
             AddressObject *item = [self.tableArr objectAtIndex:indexPath.section];
@@ -203,9 +203,6 @@
                 [[APIClient sharedClient] houseInfoDeleteWithTag:self real_id:it.real_id call:^(APIObject *info) {
                     if (info.code == RESP_STATUS_YES) {
                         [self.tableArr removeObjectAtIndex:indexPath.section];
-//                        if (self.tableArr.count > 0)
-//                            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-//                        else
                         [self.tableView reloadData];
                         
                         [SVProgressHUD showSuccessWithStatus:info.msg];
@@ -219,9 +216,6 @@
                     if (info.code == RESP_STATUS_YES) {
                         [it deleteToDB]; //删除数据库对应
                         [self.tableArr removeObjectAtIndex:indexPath.section];
-//                        if (self.tableArr.count > 0)
-//                            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationAutomatic];
-//                        else
                         [self.tableView reloadData];
                         
                         [SVProgressHUD showSuccessWithStatus:info.msg];

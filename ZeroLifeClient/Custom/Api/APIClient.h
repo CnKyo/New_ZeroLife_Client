@@ -82,7 +82,7 @@ typedef void (^TableShareSdkBlock)(int totalpage, NSArray *tableArr, APIShareSdk
 
 //房屋相关接口
 -(void)houseListWithTag:(NSObject *)tag call:(TableArrBlock)callback;
--(void)houseInfoEditWithTag:(NSObject *)tag postItem:(HouseObject *)it call:(void (^)(APIObject* info))callback;
+-(void)houseInfoEditWithTag:(NSObject *)tag postItem:(HouseObject *)it is_default:(BOOL)is_default call:(void (^)(APIObject* info))callback;
 -(void)houseInfoDeleteWithTag:(NSObject *)tag real_id:(int)real_id call:(void (^)(APIObject* info))callback;
 
 

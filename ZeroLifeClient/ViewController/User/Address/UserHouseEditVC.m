@@ -35,13 +35,24 @@
         [btn11 jk_addActionHandler:^(NSInteger tag) {
             [[IQKeyboardManager sharedManager] resignFirstResponder];
             
-            if (_item.real_name.length == 0) {
+            if (_item.real_owner.length == 0) {
                 [SVProgressHUD showErrorWithStatus:@"请输入联系人姓名"];
                 return ;
             }
             
             if (_item.real_phone.length == 0) {
                 [SVProgressHUD showErrorWithStatus:@"请输入联系电话"];
+                return ;
+            }
+            
+            ZLSeletedAddress *mAddressObj = [ZLSeletedAddress ShareClient];
+            if (mAddressObj.mProvinceStr.length > 0) {
+                self.item.real_province = mAddressObj.mProvince;
+                self.item.real_city = mAddressObj.mCity;
+                self.item.real_county = mAddressObj.mArear;
+            }
+            if (_item.real_province==0 || _item.real_city==0 || _item.real_county==0) {
+                [SVProgressHUD showErrorWithStatus:@"请选择省市区"];
                 return ;
             }
             
@@ -60,6 +71,14 @@
     } else {
         self.title =  @"编辑房屋";
     }
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:animated];
+    
+    ZLSeletedAddress *mAddressObj = [ZLSeletedAddress ShareClient];
+    self.customCell.areaField.text = [mAddressObj getAddress];
 }
 
 
@@ -81,7 +100,7 @@
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
     if (textField == _customCell.realNameField) {
-        self.item.real_name = textField.text;
+        self.item.real_owner = textField.text;
     }
     else if (textField == _customCell.mobileField) {
         self.item.real_phone = textField.text;
