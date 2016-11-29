@@ -53,6 +53,28 @@
         return self;
 }
 
++(NSString *)houseIsOwner:(BOOL)is_owner
+{
+    return is_owner ? @"房主" : @"租客";
+}
+
+@end
+
+@implementation NSObject(QUAdd)
++(void)arrInsertToDB:(NSArray *)arr
+{
+    Class clazz = [self class];
+    //LKDBHelper* globalHelper = [clazz getUsingLKDBHelper];
+    [LKDBHelper clearTableData:clazz];
+    [clazz insertToDBWithArray:arr filter:^(id model, BOOL inserted, BOOL *rollback) {}];
+    //    [globalHelper executeDB:^(FMDatabase *db) {
+    //        [db beginTransaction];
+    //        for (id item in arr) {
+    //            [globalHelper insertToDB:item];
+    //        }
+    //        [db commit];
+    //    }];
+}
 @end
 
 
@@ -273,12 +295,61 @@
     AddressObject *item = [AddressObject searchSingleWithWhere:nil orderBy:nil];
     return item;
 }
+
+-(NSMutableString *)getProvinceCityCountyStr
+{
+    NSMutableString *str = [NSMutableString new];
+    if (_addr_province_val.length > 0)
+        [str appendString:_addr_province_val];
+    
+    if (_addr_city_val.length > 0)
+        [str appendString:_addr_city_val];
+    
+    if (_addr_county_val.length > 0)
+        [str appendString:_addr_county_val];
+    return str;
+}
+
+-(NSMutableString *)getProvinceCityCountyAddressStr
+{
+    NSMutableString *str = [self getProvinceCityCountyStr];
+    if (_addr_address.length > 0)
+        [str appendString:_addr_address];
+    return str;
+}
+
 @end
 
 
 
 @implementation HouseObject
+-(NSMutableString *)getProvinceCityCountyStr
+{
+    NSMutableString *str = [NSMutableString new];
+    if (_real_province_val.length > 0)
+        [str appendString:_real_province_val];
+    
+    if (_real_city_val.length > 0)
+        [str appendString:_real_city_val];
+    
+    if (_real_county_val.length > 0)
+        [str appendString:_real_county_val];
+    return str;
+}
+-(NSMutableString *)getFullStr
+{
+    NSMutableString *str = [self getProvinceCityCountyStr];
+    if (_real_cmut_name.length > 0)
+        [str appendString:_real_cmut_name];
+    return str;
+}
 @end
+
+
+
+@implementation CommunityObject
+@end
+
 
 
 @implementation CouponObject

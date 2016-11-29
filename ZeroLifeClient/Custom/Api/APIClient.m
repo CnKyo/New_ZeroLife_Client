@@ -560,6 +560,25 @@
 
 
 
+
+/**
+ *  用户资料编辑接口
+ *
+ *  @param tag      链接对象
+ *  @param it       提交信息对象
+ *  @param callback 返回信息
+ */
+-(void)userInfoEditWithTag:(NSObject *)tag postItem:(HouseObject *)it call:(void (^)(APIObject* info))callback
+{
+    NSDictionary *paramDic = [it mj_keyValues];
+    [self loadAPIWithTag:tag path:@"/api/app/client/user/user/user_edit" parameters:paramDic call:^(APIObject *info) {
+        callback(info);
+    }];
+}
+
+
+
+
 /**
  *   用户收货地址信息列表接口
  *
@@ -571,10 +590,142 @@
     NSMutableDictionary* paramDic = [NSMutableDictionary dictionary];
     [paramDic setInt:6 forKey:@"user_id"];
     [self loadAPIWithTag:self path:@"/api/app/client/user/address/address_list" parameters:paramDic call:^(APIObject *info) {
-        NSArray *newArr = [AddressObject mj_objectArrayWithKeyValuesArray:info.data];
+        NSArray *newArr = [AddressObject mj_objectArrayWithKeyValuesArray:[info.data objectWithKey:@"address"]];
+        if (newArr.count > 0)
+            [AddressObject arrInsertToDB:newArr];
+        
         callback(newArr, info);
     }];
 }
+
+
+/**
+ *  用户地址信息编辑接口
+ *
+ *  @param tag      链接对象
+ *  @param it       提交信息对象
+ *  @param callback 返回信息
+ */
+-(void)addressInfoEditWithTag:(NSObject *)tag postItem:(AddressObject *)it call:(void (^)(APIObject* info))callback
+{
+    NSMutableDictionary *paramDic = [it mj_keyValues];
+    [paramDic setInt:6 forKey:@"user_id"];
+    [paramDic setInt:it.addr_sort forKey:@"is_default"];
+    [self loadAPIWithTag:tag path:@"/api/app/client/user/address/address_edit" parameters:paramDic call:^(APIObject *info) {
+        callback(info);
+    }];
+}
+
+
+/**
+ *  用户地址信息删除接口
+ *
+ *  @param tag      链接对象
+ *  @param addr_id  地址id
+ *  @param callback 返回信息
+ */
+-(void)addressInfoDeleteWithTag:(NSObject *)tag addr_id:(int)addr_id call:(void (^)(APIObject* info))callback
+{
+    NSMutableDictionary* paramDic = [NSMutableDictionary dictionary];
+    [paramDic setInt:6 forKey:@"user_id"];
+    [paramDic setInt:addr_id forKey:@"addr_id"];
+    [self loadAPIWithTag:tag path:@"/api/app/client/user/address/address_delete" parameters:paramDic call:^(APIObject *info) {
+        callback(info);
+    }];
+}
+
+
+/**
+ *   用户房屋信息列表接口
+ *
+ *  @param tag      链接对象
+ *  @param callback 返回列表
+ */
+-(void)houseListWithTag:(NSObject *)tag call:(TableArrBlock)callback
+{
+    NSMutableDictionary* paramDic = [NSMutableDictionary dictionary];
+    [paramDic setInt:6 forKey:@"user_id"];
+    [self loadAPIWithTag:self path:@"/api/app/client/user/house/house_list" parameters:paramDic call:^(APIObject *info) {
+        NSArray *newArr = [HouseObject mj_objectArrayWithKeyValuesArray:info.data];
+        callback(newArr, info);
+    }];
+}
+
+
+/**
+ *  用户房屋信息编辑接口
+ *
+ *  @param tag      链接对象
+ *  @param it       提交信息对象
+ *  @param callback 返回信息
+ */
+-(void)houseInfoEditWithTag:(NSObject *)tag postItem:(HouseObject *)it call:(void (^)(APIObject* info))callback
+{
+    NSDictionary *paramDic = [it mj_keyValues];
+    [self loadAPIWithTag:tag path:@"/api/app/client/user/house/house_edit" parameters:paramDic call:^(APIObject *info) {
+        callback(info);
+    }];
+}
+
+
+/**
+ *  用户地址信息删除接口
+ *
+ *  @param tag      链接对象
+ *  @param real_id  房屋id
+ *  @param callback 返回信息
+ */
+-(void)houseInfoDeleteWithTag:(NSObject *)tag real_id:(int)real_id call:(void (^)(APIObject* info))callback
+{
+    NSMutableDictionary* paramDic = [NSMutableDictionary dictionary];
+    [paramDic setInt:6 forKey:@"user_id"];
+    [paramDic setInt:real_id forKey:@"real_id"];
+    [self loadAPIWithTag:tag path:@"/api/app/client/user/house/house_delete" parameters:paramDic call:^(APIObject *info) {
+        callback(info);
+    }];
+}
+
+
+
+/**
+ *   社区列表接口
+ *  1. 使用search搜索（请求参数：search）；2. 以省市县获取数据（请求参数cmut_province、 cmut_city、cmut_county）；3. 获取附近小区数据--默认请求方式（请求参数：lat、lng）
+ *
+ *  @param tag      链接对象
+ *  @param location  经维度
+ *  @param search    搜索小区文字,默认为空。非空返回搜索匹配文字小区
+ *  @param province  所属省id,默认为空
+ *  @param city      所属市id,默认为空
+ *  @param county    所属区县id,默认为空
+ *  @param callback 返回列表
+ */
+-(void)communityListWithTag:(NSObject *)tag location:(CLLocationCoordinate2D)location search:(NSString *)search province:(int)province city:(int)city county:(int)county call:(TableArrBlock)callback
+{
+    NSMutableDictionary* paramDic = [NSMutableDictionary dictionary];
+    [paramDic setInt:6 forKey:@"user_id"];
+    
+    if (search.length > 0)
+        [paramDic setObject:search forKey:@"search"];
+    
+    if (location.latitude>0 || location.longitude>0) {
+        [paramDic setObject:StringWithDouble(location.latitude) forKey:@"lat"];
+        [paramDic setObject:StringWithDouble(location.longitude) forKey:@"lng"];
+    }
+    
+    if (province > 0)
+        [paramDic setObject:StringWithInt(province) forKey:@"cmut_province"];
+    if (city > 0)
+        [paramDic setObject:StringWithInt(city) forKey:@"cmut_city"];
+    if (county > 0)
+        [paramDic setObject:StringWithInt(county) forKey:@"cmut_county"];
+    
+    [self loadAPIWithTag:self path:@"/api/app/client/user/house/house_list" parameters:paramDic call:^(APIObject *info) {
+        NSArray *newArr = [HouseObject mj_objectArrayWithKeyValuesArray:info.data];
+        callback(newArr, info);
+    }];
+}
+
+
 
 
 @end

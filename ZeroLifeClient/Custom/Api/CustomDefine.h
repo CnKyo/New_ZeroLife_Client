@@ -175,7 +175,7 @@ typedef enum {
 
 
 
-static int const RESP_STATUS_YES                  = 0;             //成功
+static int const RESP_STATUS_YES                  = 200;             //成功
 static int const RESP_STATUS_NO                   = 1;             //失败
 
 #define RETCODE_SUCCESS  200
@@ -184,11 +184,12 @@ static int const RESP_STATUS_NO                   = 1;             //失败
 static NSString* const  kAFAppDotNetApiBaseURLString_test    = @"http://192.168.1.114";
 static NSString* const  kAFAppDotNetApiBaseURLString    = @"http://shop.hookwin.com";
 
+//static NSString* const  kAFAppDotNetApiBaseURLString_test    = @"http://localhost:8080/crkj_zlife/";
 
 typedef enum {
-    kUserSexType_man,//
-    kUserSexType_woman,//
-    kUserSexType_uknown,//
+    kUserSexType_man = 1,//
+    kUserSexType_woman = 2,//
+    kUserSexType_uknown = 0,//
 } kUserSexType; //用户性别
 
 typedef enum {

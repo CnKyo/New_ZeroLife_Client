@@ -8,7 +8,7 @@
 
 #import "AFNetworking.h"
 #import "APIObjectDefine.h"
-
+#import <MapKit/MapKit.h>
 
 typedef void (^TableArrBlock)(NSArray *tableArr, APIObject* info);
 
@@ -77,9 +77,15 @@ typedef void (^TableShareSdkBlock)(int totalpage, NSArray *tableArr, APIShareSdk
 
 //地址相关接口
 -(void)addressListWithTag:(NSObject *)tag call:(TableArrBlock)callback;
+-(void)addressInfoEditWithTag:(NSObject *)tag postItem:(AddressObject *)it call:(void (^)(APIObject* info))callback;
+-(void)addressInfoDeleteWithTag:(NSObject *)tag addr_id:(int)addr_id call:(void (^)(APIObject* info))callback;
 
+//房屋相关接口
+-(void)houseListWithTag:(NSObject *)tag call:(TableArrBlock)callback;
+-(void)houseInfoEditWithTag:(NSObject *)tag postItem:(HouseObject *)it call:(void (^)(APIObject* info))callback;
+-(void)houseInfoDeleteWithTag:(NSObject *)tag real_id:(int)real_id call:(void (^)(APIObject* info))callback;
 
-
-
+//小区相关接口
+-(void)communityListWithTag:(NSObject *)tag location:(CLLocationCoordinate2D)location search:(NSString *)search province:(int)province city:(int)city county:(int)county call:(TableArrBlock)callback;
 
 @end
