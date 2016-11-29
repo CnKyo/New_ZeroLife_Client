@@ -227,12 +227,6 @@
 #pragma mark -
 #pragma mark APIObject
 @implementation APIObject
-+ (NSDictionary *)mj_replacedKeyFromPropertyName
-{
-    return @{@"msg": @"result"};
-}
-
-
 +(APIObject *)infoWithError:(NSError *)error
 {
     APIObject *info = [[APIObject alloc] init];
