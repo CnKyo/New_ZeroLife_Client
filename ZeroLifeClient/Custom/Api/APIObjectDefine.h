@@ -473,6 +473,42 @@
 @end
 
 
+#pragma mark----****----app初始化加载数据
+@class ZLAppSet;
+@class ZLAPPMethod;
+@interface ZLAPPInfo : NSObject
 
 
+@property (strong,nonatomic)ZLAppSet *set;
+
+@property (strong,nonatomic)ZLAPPMethod *app;
+///app信息失效
+- (BOOL)ZLAppinfoIsValid;
++ (ZLAPPInfo *)ZLCurrentAppInfo;
++ (void)ZLDealSession:(APIObject *)info  block:(void(^)(APIObject* resb, ZLAPPInfo *appInfo))block;
+
+@end
+@interface ZLAppSet : NSObject
+
+@property (strong,nonatomic) NSString* fig_android;
+
+@property (strong,nonatomic) NSString* fig_ios;
+
+@property (assign,nonatomic) int fig_is_upgrade;
+
+@property (strong,nonatomic) NSString* fig_phone;
+
+@property (strong,nonatomic) NSString* fig_qq;
+
+@property (strong,nonatomic) NSString* fig_version;
+
+
+@end
+@interface ZLAPPMethod : NSObject
+
+@property (strong,nonatomic) NSString* color;
+
+
+
+@end
 

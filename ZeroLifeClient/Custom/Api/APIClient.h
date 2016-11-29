@@ -98,6 +98,9 @@ typedef void (^TableShareSdkBlock)(int totalpage, NSArray *tableArr, APIShareSdk
 #pragma mark----****----获取验证码
 ///获取验证码
 - (void)ZLGetVerigyCode:(NSString *)mCode andType:(int)mtype block:(void(^)(APIObject *mBaseObj))block;
+#pragma mark----****----app初始化加载数据
+- (void)ZLAppInit:(void(^)(APIObject *mBaseObj,ZLAPPInfo *mAppInfo))block;
+
 #pragma mark----****----获取首页banner
 ///获取首页banner
 - (void)ZLgetHomeBanner:(void(^)(APIObject *mBaseObj,NSArray *mArr))block;

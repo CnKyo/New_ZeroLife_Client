@@ -521,7 +521,7 @@
 
 
 
-
+#pragma mark----****----登录
 - (void)ZLLoginWithPhone:(NSString *)mPhone andPwd:(NSString *)mPwd block:(void(^)(APIObject *mBaseObj,ZLUserInfo *mUser))block{
     
     NSMutableDictionary *para = [NSMutableDictionary new];
@@ -537,6 +537,7 @@
 
     
 }
+#pragma mark----****----注册
 - (void)ZLRegistPhone:(NSString *)mPhone andPwd:(NSString *)mPwd andCode:(NSString *)mCode block:(void(^)(APIObject *mBaseObj))block{
     NSMutableDictionary *para = [NSMutableDictionary new];
     [para setObject:mPhone forKey:@"acc_phone"];
@@ -549,7 +550,7 @@
     
  
 }
-
+#pragma mark----****----获取验证码
 - (void)ZLGetVerigyCode:(NSString *)mCode andType:(int)mtype block:(void(^)(APIObject *mBaseObj))block{
     NSMutableDictionary *para = [NSMutableDictionary new];
     [para setObject:mCode forKey:@"mobile"];
@@ -560,6 +561,21 @@
         block(info);
     }];
 
+}
+#pragma mark----****----app初始化加载数据
+- (void)ZLAppInit:(void(^)(APIObject *mBaseObj,ZLAPPInfo *mAppInfo))block{
+    
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    [para setInt:[ZLUserInfo ZLCurrentUser].user_id forKey:@"user_id"];
+    [para setObject:@"ios" forKey:@"sys_t"];
+    [para setObject:[Util getAppVersion] forKey:@"app_v"];
+    [para setObject:[Util getAPPBuildNum] forKey:@"sys_v"];
+
+    
+    [self loadAPIWithTag:self path:@"/common/initload" parameters:para call:^(APIObject *info) {
+
+        [ZLAPPInfo ZLDealSession:info block:block];
+    }];
 }
 #pragma mark----****----获取首页banner
 - (void)ZLgetHomeBanner:(void(^)(APIObject *mBaseObj,NSArray *mArr))block{
