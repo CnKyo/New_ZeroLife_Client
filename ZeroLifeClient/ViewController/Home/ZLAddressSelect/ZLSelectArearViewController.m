@@ -14,29 +14,29 @@
 <UITableViewDataSource,UITableViewDelegate,ZLSearchViewSearchDelegate>
 {
     UITableView                 *_tableView;
-    NSArray                     *_oldCityList;
     NSMutableDictionary         *_newCityDic;
     NSMutableArray              *_allKeysArray;
     
     ZLSearchArearView *mSearchView;
+    
+    int mType;
     
 }
 
 @end
 
 @implementation ZLSelectArearViewController
-
+@synthesize mCommunityAdd;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationItem.title = @"选择社区";
-    
+    mType = 0;
     [self addRightBtn:YES andTitel:nil andImage:[UIImage imageNamed:@"ZLSearch_white"]];
 
     [self addTableView];
     self.tableView.rowHeight = 53;
-    //初始化一个无序杂乱的城市列表数组
-    _oldCityList = @[@"北京",@"上海",@"广州",@"深圳",@"郑州",@"洛阳",@"西安",@"哈尔滨",@"拉萨",@"杭州",@"南京",@"成都",@"青岛",@"石家庄",@"张家界",@"香港",@"阿拉斯加"];
+
     
     //初始化数据源字典
     _newCityDic = [[NSMutableDictionary alloc]init];
@@ -44,12 +44,45 @@
     _allKeysArray = [[NSMutableArray alloc]init];
     
     
-    [self prepareCityListDatasourceWithArray:_oldCityList andToDictionary:_newCityDic];
     
     [self initSearchView];
 
+    [self setTableViewHaveHeader];
 }
+- (void)reloadTableViewDataSource{
+    [super reloadTableViewDataSource];
 
+    
+    
+    [[APIClient sharedClient] ZLGetHomeCommunity:mCommunityAdd.cmut_lat andLng:mCommunityAdd.cmut_lng andSearchText:mSearchView.mSearchTx.text andProvinceId:mCommunityAdd.cmut_province andCityId:mCommunityAdd.cmut_city andCountryId:mCommunityAdd.cmut_county block:^(APIObject *mBaseObj, NSArray *mArr) {
+        
+        [self ZLHideEmptyView];
+        [self.tableArr removeAllObjects];
+        [_newCityDic removeAllObjects];
+        if (mBaseObj.code == RESP_STATUS_YES) {
+            
+
+            [self.tableArr addObjectsFromArray:mArr];
+            [self prepareCityListDatasourceWithArray:self.tableArr andToDictionary:_newCityDic];
+
+            
+        }else{
+            [self ZLShowEmptyView:mBaseObj.msg andImage:nil andHiddenRefreshBtn:NO];
+            [self showErrorStatus:mBaseObj.msg];
+        }
+        
+        if (mType == 0) {
+            [self doneLoadingTableViewData];
+        }else{
+            [mSearchView.mSearchTableView reloadData];
+        }
+        
+        
+        
+
+    }];
+    
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -67,9 +100,9 @@
 #pragma mark-排序城市
 - (void)prepareCityListDatasourceWithArray:(NSArray *)array andToDictionary:(NSMutableDictionary *)dic
 {
-    for (NSString *city in array) {
+    for (ZLHomeCommunity *city in array) {
         
-        NSString *cityPinyin = [ChineseToPinyin pinyinFromChiniseString:city];
+        NSString *cityPinyin = [ChineseToPinyin pinyinFromChiniseString:city.cmut_name];
         
         NSString *firstLetter = [cityPinyin substringWithRange:NSMakeRange(0, 1)];
         
@@ -83,7 +116,7 @@
         }
         [[dic objectForKey:firstLetter]addObject:city];
     }
-    
+    [_allKeysArray removeAllObjects];
     [_allKeysArray addObjectsFromArray:[[dic allKeys] sortedArrayUsingSelector:@selector(compare:)]];
     
     [_tableView reloadData];
@@ -111,7 +144,9 @@
     
     NSArray *cityArray = [_newCityDic objectForKey:[_allKeysArray objectAtIndex:indexPath.section]];
     
-    cell.textLabel.text = [cityArray objectAtIndex:indexPath.row];
+    ZLHomeCommunity *mObj = cityArray[indexPath.row];
+    
+    cell.textLabel.text = mObj.cmut_name;
     
     return cell;
     
@@ -146,11 +181,18 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     NSArray *cityArray = [_newCityDic objectForKey:[_allKeysArray objectAtIndex:indexPath.section]];
+    ZLHomeCommunity *mObj = cityArray[indexPath.row];
 
+    self.block(mObj);
+
+    if (mType == 0) {
+        [self popViewController];
+    }else{
+        [self hiddenSearchView];
+        [self popViewController];
+    }
     
-    self.block([NSString stringWithFormat:@"%@",[cityArray objectAtIndex:indexPath.row]],[NSString stringWithFormat:@"%@",[cityArray objectAtIndex:indexPath.row]]);
-
-    [self popViewController];
+    
     
     
 }
@@ -203,11 +245,21 @@
         CGRect mRRR = mSearchView.frame;
         mRRR.origin.y = DEVICE_Height;
         mSearchView.frame = mRRR;
+        [mSearchView.mSearchTx resignFirstResponder];
     }];
 }
 #pragma mark----****----搜索事件
 - (void)ZLSearchBtnSelected{
-
+    
+    mType = 1;
+    
+    if (mSearchView.mSearchTx.text.length <= 0) {
+        [self showErrorStatus:@"搜索内容不能为空！请重新搜索！"];
+        [mSearchView.mSearchTx becomeFirstResponder];
+        return;
+    }
+    
+    [self reloadTableViewDataSource];
 }
 #pragma mark----****----关闭事件
 - (void)ZLCloseBtnSelected{

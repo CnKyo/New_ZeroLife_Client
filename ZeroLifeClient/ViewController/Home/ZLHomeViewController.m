@@ -49,10 +49,8 @@
     ZLHomeCoupView *mCoupView;
     //优惠券数据源
     NSMutableArray *mCoupArr;
-    ///纬度
-    NSString *mLat;
-    ///经度
-    NSString *mLng;
+    
+    ZLHomeCommunity *mCommunityObj;
     
     ///活动广告数据源
     NSMutableArray *mAdvDataSourceArr;
@@ -67,8 +65,7 @@
     self.navigationItem.title = @"首页";
 
     
-    mLng = nil;
-    mLat = nil;
+    mCommunityObj = [ZLHomeCommunity new];
     
     NSNotificationCenter *mNotify = [NSNotificationCenter defaultCenter];
     [mNotify addObserver:self selector:@selector(webAction:) name:@"ZLAdView" object:nil];
@@ -199,13 +196,24 @@
     
     
 }
+#pragma mark----****----更新回调界面
+- (void)upDatePage{
+
+    if (mCommunityObj.cmut_name.length > 0) {
+        mLocationView.mAddress.text = mCommunityObj.cmut_name;
+    }
+    
+    
+    [self reloadTableViewDataSource];
+}
 #pragma mark ----****----社区选择view代理方法
 - (void)ZLHomLocationViewDidSelected{
     ZLSelectArearViewController *ZLAddressVC = [ZLSelectArearViewController new];
-    ZLAddressVC.block = ^(NSString *mBlockAddress ,NSString *mBlockId){
-        mLocationView.mAddress.text = mBlockAddress;
-       
+    ZLAddressVC.block = ^(ZLHomeCommunity *mBlock){
+        mCommunityObj = mBlock;
+        [self upDatePage];
     };
+    ZLAddressVC.mCommunityAdd = mCommunityObj;
     ZLAddressVC.hidesBottomBarWhenPushed = YES;
 
     [self pushViewController:ZLAddressVC];
@@ -266,7 +274,7 @@
 - (void)reloadTableViewDataSource{
 
     [super reloadTableViewDataSource];
-    if (mLat.length <= 0 || mLng.length <= 0 || [mLng  isEqualToString: @"0.000000"] || [mLat  isEqualToString: @"0.000000"]) {
+    if (mCommunityObj.cmut_lat.length <= 0 || mCommunityObj.cmut_lng.length <= 0 || [mCommunityObj.cmut_lng  isEqualToString: @"0.000000"] || [mCommunityObj.cmut_lat  isEqualToString: @"0.000000"]) {
         return;
     }
     
@@ -287,7 +295,7 @@
         }
     }];
     
-    [[APIClient sharedClient] ZLGetHome:mLat andLng:mLng block:^(APIObject *mBaseObj, ZLHomeObj *mHome) {
+    [[APIClient sharedClient] ZLGetHome:mCommunityObj.cmut_lat andLng:mCommunityObj.cmut_lng block:^(APIObject *mBaseObj, ZLHomeObj *mHome) {
         [mComDataSourceArr removeAllObjects];
         [mAdvDataSourceArr removeAllObjects];
         if (mBaseObj.code == RESP_STATUS_YES) {
@@ -316,9 +324,8 @@
         if (error)
         {
             NSString *eee =@"定位失败！请检查网络和定位设置！";
-//            [WJStatusBarHUD showErrorImageName:nil text:eee];
-//            
-//            mNavView.mAddress.text = eee;
+            mLocationView.mAddress.text = eee;
+
             [self showErrorStatus:eee];
             MLLog(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
             [self ZLHomLocationViewDidSelected];
@@ -330,9 +337,8 @@
             
             MLLog(@"location:%f", location.coordinate.latitude);
             
-            mLat = [NSString stringWithFormat:@"%f",location.coordinate.latitude];
-            mLng = [NSString stringWithFormat:@"%f",location.coordinate.longitude];
-//            [WJStatusBarHUD showSuccessImageName:nil text:@"定位成功"];
+            mCommunityObj.cmut_lat = [NSString stringWithFormat:@"%f",location.coordinate.latitude];
+            mCommunityObj.cmut_lng = [NSString stringWithFormat:@"%f",location.coordinate.longitude];
             
             MLLog(@"reGeocode:%@", regeocode);
             mLocationView.mAddress.text = [NSString stringWithFormat:@"%@%@",regeocode.street,regeocode.number];

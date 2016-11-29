@@ -43,8 +43,16 @@
         [btn makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(view);
         }];
+        
+        //添加方法
         [btn jk_addActionHandler:^(NSInteger tag) {
-            
+            if (_isShowHouseView) {
+                UserHouseEditVC *vc = [[UserHouseEditVC alloc] init];
+                [self.navigationController pushViewController:vc animated:YES];
+            } else {
+                UserAddressEditVC *vc = [[UserAddressEditVC alloc] init];
+                [self.navigationController pushViewController:vc animated:YES];
+            }
         }];
         view;
     });
@@ -114,6 +122,8 @@
             cell = [[UserAddressTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
         
+        
+        
         if (_isChooseAddress == YES) {
             cell.chooseBtn.enabled = YES;
             cell.editBtn.enabled = NO;
@@ -131,19 +141,95 @@
         NSDictionary* style = @{@"body" : @[[UIFont systemFontOfSize:14], [UIColor grayColor]],
                                 @"red" : @[[UIFont systemFontOfSize:14], COLOR(253, 151, 0)]};
         
-        NSString *str1 = nil;
-        if (indexPath.section == 0) {
-            str1 = [NSString stringWithFormat:@"<red>(默认地址)</red>%@", @"重庆市渝中区石油路万科中心1栋1004 重庆超尔科技有限公司"];
+        NSMutableString *str1 = [NSMutableString new];
+        NSMutableString *str2 = [NSMutableString new];
+//        if (item.addr_sort == self.tableArr.count-1) {
+//            [str1 appendString:@"<red>(默认地址)</red>"];
+//            //str1 = [NSString stringWithFormat:@"<red>(默认地址)</red>%@", @"重庆市渝中区石油路万科中心1栋1004 重庆超尔科技有限公司"];
+//        } else {
+//            //str1 = [NSString stringWithFormat:@"%@", @"重庆市渝中区石油路万科中心1栋1004 重庆超尔科技有限公司"];
+//        }
+        
+        if (_isShowHouseView) {
+            HouseObject *item = [self.tableArr objectAtIndex:indexPath.row];
+            
+            if (item.real_sort == self.tableArr.count-1)
+                [str1 appendString:@"<red>(默认地址)</red>"];
+            [str1 appendString:[item getFullStr]];
+            
+            [str2 appendFormat:@"%@  %@  %@", item.real_name, item.real_phone, [NSString houseIsOwner:item.real_is_owner]];
+            
         } else {
-            str1 = [NSString stringWithFormat:@"%@", @"重庆市渝中区石油路万科中心1栋1004 重庆超尔科技有限公司"];
+            AddressObject *item = [self.tableArr objectAtIndex:indexPath.row];
+            
+            if (item.addr_sort == self.tableArr.count-1)
+                [str1 appendString:@"<red>(默认地址)</red>"];
+            [str1 appendString:[item getProvinceCityCountyAddressStr]];
+            
+            [str2 appendFormat:@"%@  %@", item.addr_name, item.addr_phone];
         }
+
+        
         
         cell.addressLable.attributedText = [str1 attributedStringWithStyleBook:style];
         
-        //UserAddressTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[UserAddressTableViewCell reuseIdentifier]];
+        
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundColor = [UIColor whiteColor];
-        cell.nameLable.text = @"张三  188****4324  户主";
+        cell.nameLable.text = str2;
+        
+        //删除方法
+        [cell.delBtn jk_addActionHandler:^(NSInteger tag) {
+            if (_isShowHouseView) {
+                HouseObject *it = [self.tableArr objectAtIndex:indexPath.row];
+                [SVProgressHUD showWithStatus:@"删除中..."];
+                [[APIClient sharedClient] houseInfoDeleteWithTag:self real_id:it.real_id call:^(APIObject *info) {
+                    if (info.code == RESP_STATUS_YES) {
+                        [self.tableArr removeObjectAtIndex:indexPath.row];
+                        if (self.tableArr.count > 0)
+                            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+                        else
+                            [self.tableView reloadData];
+                        
+                        [SVProgressHUD showSuccessWithStatus:info.msg];
+                    } else
+                        [SVProgressHUD showErrorWithStatus:info.msg];
+                }];
+            } else {
+                AddressObject *it = [self.tableArr objectAtIndex:indexPath.row];
+                [SVProgressHUD showWithStatus:@"删除中..."];
+                [[APIClient sharedClient] addressInfoDeleteWithTag:self addr_id:it.addr_id call:^(APIObject *info) {
+                    if (info.code == RESP_STATUS_YES) {
+                        [self.tableArr removeObjectAtIndex:indexPath.row];
+                        if (self.tableArr.count > 0)
+                            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+                        else
+                            [self.tableView reloadData];
+                        
+                        [SVProgressHUD showSuccessWithStatus:info.msg];
+                    } else
+                        [SVProgressHUD showErrorWithStatus:info.msg];
+                }];
+            }
+        }];
+        
+        //编辑方法
+        [cell.editBtn jk_addActionHandler:^(NSInteger tag) {
+            if (_isShowHouseView) {
+                HouseObject *item = [self.tableArr objectAtIndex:indexPath.row];
+                
+                UserHouseEditVC *vc = [[UserHouseEditVC alloc] init];
+                vc.item = item;
+                [self.navigationController pushViewController:vc animated:YES];
+            } else {
+                AddressObject *item = [self.tableArr objectAtIndex:indexPath.row];
+                
+                UserAddressEditVC *vc = [[UserAddressEditVC alloc] init];
+                vc.item = item;
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+        }];
+        
         return cell;
     }
     return [super tableView:tableView cellForRowAtIndexPath:indexPath];
@@ -166,13 +252,7 @@
             [self performSelector:@selector(popViewController) withObject:nil afterDelay:0.2];
             
         } else {
-            if (_isShowHouseView) {
-                UserHouseEditVC *vc = [[UserHouseEditVC alloc] init];
-                [self.navigationController pushViewController:vc animated:YES];
-            } else {
-                UserAddressEditVC *vc = [[UserAddressEditVC alloc] init];
-                [self.navigationController pushViewController:vc animated:YES];
-            }
+
         }
 
     }
@@ -202,9 +282,16 @@
 - (void)reloadTableViewDataSource{
     [super reloadTableViewDataSource];
     
-    [[APIClient sharedClient] addressListWithTag:self call:^(NSArray *tableArr, APIObject *info) {
-        [self reloadWithTableArr:tableArr info:info];
-    }];
+    if (_isShowHouseView) {
+        [[APIClient sharedClient] houseListWithTag:self call:^(NSArray *tableArr, APIObject *info) {
+            [self reloadWithTableArr:tableArr info:info];
+        }];
+    } else {
+        [[APIClient sharedClient] addressListWithTag:self call:^(NSArray *tableArr, APIObject *info) {
+            [self reloadWithTableArr:tableArr info:info];
+        }];
+    }
+
 }
 
 -(void)donwData

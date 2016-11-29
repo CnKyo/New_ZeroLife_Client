@@ -40,7 +40,7 @@
                 return ;
             }
             
-            if (_item.mobile.length == 0) {
+            if (_item.real_phone.length == 0) {
                 [SVProgressHUD showErrorWithStatus:@"请输入联系电话"];
                 return ;
             }
@@ -56,7 +56,7 @@
     if (_item == nil) {
         self.title =  @"添加房屋";
         self.item = [HouseObject new];
-        self.item.sex = kUserSexType_man;
+        self.item.real_sex = kUserSexType_man;
     } else {
         self.title =  @"编辑房屋";
     }
@@ -84,10 +84,10 @@
         self.item.real_name = textField.text;
     }
     else if (textField == _customCell.mobileField) {
-        self.item.mobile = textField.text;
+        self.item.real_phone = textField.text;
     }
     else if (textField == _customCell.addressField) {
-        self.item.address = textField.text;
+        self.item.real_add_time = textField.text;
     }
 }
 
@@ -110,15 +110,22 @@
     cell.mobileField.delegate = self;
     cell.addressField.delegate = self;
     cell.delegate = self;
-    [cell reloadSexUI:_item.sex];
+    [cell reloadSexUI:_item.real_sex];
+    
+    //选择地区
+    [cell.areaView jk_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
+        ZLSelectedCityViewController *vc = [ZLSelectedCityViewController new];
+        vc.mType = 0;
+        [self pushViewController:vc];
+    }];
     
     [cell.sexManBtn jk_addActionHandler:^(NSInteger tag) {
-        self.item.sex = kUserSexType_man;
-        [cell reloadSexUI:_item.sex];
+        self.item.real_sex = kUserSexType_man;
+        [cell reloadSexUI:_item.real_sex];
     }];
     [cell.sexWomanBtn jk_addActionHandler:^(NSInteger tag) {
-        self.item.sex = kUserSexType_woman;
-        [cell reloadSexUI:_item.sex];
+        self.item.real_sex = kUserSexType_woman;
+        [cell reloadSexUI:_item.real_sex];
     }];
     
     self.customCell = cell;
@@ -131,15 +138,6 @@
     return 5;
 }
 
-- (void)UserHouseEditTableViewCellSelectedCityBtnClicked{
-
-    ZLSelectedCityViewController *vc = [ZLSelectedCityViewController new];
-    vc.title = @"选择省市区";
-    vc.mType = 1;
-   
-    [self pushViewController:vc];
-    
-}
 
 
 

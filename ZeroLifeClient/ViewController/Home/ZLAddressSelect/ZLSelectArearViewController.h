@@ -10,9 +10,13 @@
 
 @interface ZLSelectArearViewController : CustomVC
 
+
+@property (strong,nonatomic) ZLHomeCommunity *mCommunityAdd;
+
+
 /**
  block
  */
-@property (nonatomic,strong) void(^block)(NSString *mBlockAddress ,NSString *mBlockId);
+@property (nonatomic,strong) void(^block)(ZLHomeCommunity *mBlock);
 
 @end

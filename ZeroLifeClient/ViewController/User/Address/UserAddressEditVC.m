@@ -57,6 +57,25 @@
                 [SVProgressHUD showErrorWithStatus:@"请输入详细地址"];
                 return ;
             }
+            
+            ZLSeletedAddress *mAddressObj = [ZLSeletedAddress ShareClient];
+            if (mAddressObj.mProvince==0 || mAddressObj.mCity==0 || mAddressObj.mArear==0) {
+                [SVProgressHUD showErrorWithStatus:@"请选择省市区"];
+                return ;
+            }
+            
+            self.item.addr_province = mAddressObj.mProvince;
+            self.item.addr_city = mAddressObj.mCity;
+            self.item.addr_county = mAddressObj.mArear;
+            
+            [SVProgressHUD showWithStatus:@"处理中..."];
+            [[APIClient sharedClient] addressInfoEditWithTag:self postItem:_item call:^(APIObject *info) {
+                if (info.code == RESP_STATUS_YES) {
+                    [SVProgressHUD showSuccessWithStatus:info.msg];
+                } else
+                    [SVProgressHUD showErrorWithStatus:info.msg];
+            }];
+            
         }];
         view;
     });
@@ -130,6 +149,13 @@
 //    cell.areaField.hidden = NO;
 //    cell.mSelectedCityBtn.hidden = YES;
     
+    cell.consigneeField.text = _item.addr_name;
+    cell.mobileField.text = _item.addr_phone;
+    cell.addressField.text = _item.addr_address;
+    
+    NSInteger count = [AddressObject rowCountWithWhere:nil];
+    cell.defaultAddressSwitch.on = _item.addr_sort==(count-1) ? YES : NO;
+    
     //选择地区
     [cell.areaView jk_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
         ZLSelectedCityViewController *vc = [ZLSelectedCityViewController new];
@@ -144,6 +170,10 @@
     [cell.sexWomanBtn jk_addActionHandler:^(NSInteger tag) {
         self.item.addr_sex = kUserSexType_woman;
         [cell reloadSexUI:_item.addr_sex];
+    }];
+    
+    [cell.defaultAddressSwitch jk_handleControlEvents:UIControlEventValueChanged withBlock:^(id weakSender) {
+
     }];
     
     self.customCell = cell;

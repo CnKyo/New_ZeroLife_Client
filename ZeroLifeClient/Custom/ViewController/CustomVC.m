@@ -542,6 +542,11 @@
     self.hudView.refreshButton.layer.borderWidth = 0.5;
     
     [self.hudView.refreshButton setTitle:@"重新加载" forState:UIControlStateNormal];
+    
+    if (mImgName.length <= 0) {
+        mImgName = @"ZLEmpty_Image";
+    }
+    
     self.hudView.customImage = [UIImage imageNamed:mImgName];
     [self.hudView showAtView:self.view hudType:JHUDLoadingTypeFailure];
 }

@@ -126,38 +126,38 @@
     [WXApi registerApp:WXPAYKEY withDescription:[Util getAPPName]];// 配置info.plist的 Scheme,
 
     
-    __weak __typeof(self)mSelf = self;
-    
-    //  清理缓存
-    [JWLaunchAd clearDiskCache];
-    
-    //  1.设置启动页广告图片的url
-    //    NSString *imgUrlString =@"http://imgstore.cdn.sogou.com/app/a/100540002/714860.jpg";
-    //  GIF
-    NSString *imgUrlString = @"http://img1.imgtn.bdimg.com/it/u=473895314,616407725&fm=206&gp=0.jpg";
-    
-    //  2.初始化启动页广告
-    [JWLaunchAd initImageWithAttribute:6.0 showSkipType:SkipShowTypeAnimation setLaunchAd:^(JWLaunchAd *launchAd) {
-        __block JWLaunchAd *weakSelf = launchAd;
-        
-        //如果选择 SkipShowTypeAnimation 需要设置动画跳过按钮的属性
-        [weakSelf setAnimationSkipWithAttribute:[UIColor redColor] lineWidth:3.0 backgroundColor:nil textColor:nil];
-        
-        
-        [launchAd setWebImageWithURL:imgUrlString options:JWWebImageDefault result:^(UIImage *image, NSURL *url) {
-            
-            //  3.异步加载图片完成回调(设置图片尺寸)
-            weakSelf.launchAdViewFrame = CGRectMake(0, 0, DEVICE_Width, DEVICE_Height);
-        } adClickBlock:^{
-            
-            //  4.点击广告回调
-            NSString *url = @"https://www.baidu.com";
-            NSNotification *mNotice = [NSNotification notificationWithName:@"ZLAdView" object:nil userInfo:@{@"url":url}];
-            [[NSNotificationCenter defaultCenter] postNotification:mNotice];
-
-            
-        }];
-    }];
+//    __weak __typeof(self)mSelf = self;
+//    
+//    //  清理缓存
+//    [JWLaunchAd clearDiskCache];
+//    
+//    //  1.设置启动页广告图片的url
+//    //    NSString *imgUrlString =@"http://imgstore.cdn.sogou.com/app/a/100540002/714860.jpg";
+//    //  GIF
+//    NSString *imgUrlString = @"http://img1.imgtn.bdimg.com/it/u=473895314,616407725&fm=206&gp=0.jpg";
+//    
+//    //  2.初始化启动页广告
+//    [JWLaunchAd initImageWithAttribute:6.0 showSkipType:SkipShowTypeAnimation setLaunchAd:^(JWLaunchAd *launchAd) {
+//        __block JWLaunchAd *weakSelf = launchAd;
+//        
+//        //如果选择 SkipShowTypeAnimation 需要设置动画跳过按钮的属性
+//        [weakSelf setAnimationSkipWithAttribute:[UIColor redColor] lineWidth:3.0 backgroundColor:nil textColor:nil];
+//        
+//        
+//        [launchAd setWebImageWithURL:imgUrlString options:JWWebImageDefault result:^(UIImage *image, NSURL *url) {
+//            
+//            //  3.异步加载图片完成回调(设置图片尺寸)
+//            weakSelf.launchAdViewFrame = CGRectMake(0, 0, DEVICE_Width, DEVICE_Height);
+//        } adClickBlock:^{
+//            
+//            //  4.点击广告回调
+//            NSString *url = @"https://www.baidu.com";
+//            NSNotification *mNotice = [NSNotification notificationWithName:@"ZLAdView" object:nil userInfo:@{@"url":url}];
+//            [[NSNotificationCenter defaultCenter] postNotification:mNotice];
+//
+//            
+//        }];
+//    }];
     
 
     

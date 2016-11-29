@@ -27,8 +27,20 @@
 
 @interface NSString(QUAdd)
 -(NSString *)compSelfIsNone;
++(NSString *)houseIsOwner:(BOOL)is_owner; //得到房主租客文字
++(NSString *)urlWithExtra:(NSString *)str;  //组合url地址
 @end
 
+
+#pragma mark - NSObject
+@interface NSObject (QUAdd)
+/**
+ *  把该对象object的数组集插入到db中
+ *
+ *  @param arr object的arr
+ */
++(void)arrInsertToDB:(NSArray *)arr;
+@end
 
 
 
@@ -115,18 +127,13 @@
 
 
 
-#pragma mark -  用户订单对象
-@interface OrderObject : NSObject
-@property (nonatomic,strong) NSString *         iD;         //
-@property (nonatomic,assign) kOrderClassType    type;         //
-@property (nonatomic,assign) int                status;         //
-@end
+
 
 
 
 #pragma mark -  用户地址对象
 @interface AddressObject : NSObject
-@property(nonatomic,strong) NSString *              addr_id;         //
+@property(nonatomic,assign) int                     addr_id;         //
 @property(nonatomic,assign) kUserSexType            addr_sex;         //
 @property(nonatomic,strong) NSString *              user_id;            //用户id
 @property(nonatomic,strong) NSString *              addr_name;          // 收货人姓名
@@ -135,22 +142,58 @@
 @property(nonatomic,assign) int                     addr_province;         //
 @property(nonatomic,assign) int                     addr_city;         //
 @property(nonatomic,assign) int                     addr_county;         //
+@property(nonatomic,strong) NSString *              addr_province_val;            // 省
+@property(nonatomic,strong) NSString *              addr_city_val;            // 市
+@property(nonatomic,strong) NSString *              addr_county_val;            // 区
 @property(nonatomic,assign) int                     addr_sort;         //排序（从大到小，第一个为默认地址）
 @property(nonatomic,assign) BOOL                    addr_state;         // 可用状态
 +(AddressObject *)defaultAddress; //默认选择地区
+-(NSMutableString *)getProvinceCityCountyStr; //获取省市区文字
+-(NSMutableString *)getProvinceCityCountyAddressStr; //获取完整地址
 @end
 
 
 #pragma mark -  用户房屋对象
 @interface HouseObject : NSObject
-@property(nonatomic,strong) NSString *              iD;         //
-@property(nonatomic,assign) kUserSexType            sex;         //
+@property(nonatomic,assign) int                     real_id;         //房屋认证ID
 @property(nonatomic,strong) NSString *              user_id;            //用户id
+@property(nonatomic,assign) kUserSexType            real_sex;         //
 @property(nonatomic,strong) NSString *              real_name;          // 联系人姓名
-@property(nonatomic,strong) NSString *              mobile;             // 手机号
-@property(nonatomic,strong) NSString *              xiaoqu;              // 小区id
-@property(nonatomic,strong) NSString *              area_code;           //地区编码
-@property(nonatomic,strong) NSString *              address;            // 详细地址
+@property(nonatomic,strong) NSString *              real_phone;             // 手机号
+@property(nonatomic,assign) int                     real_province;         //所属省
+@property(nonatomic,assign) int                     real_city;         //所属市
+@property(nonatomic,assign) int                     real_county;         //所属县区
+@property(nonatomic,strong) NSString *              real_province_val;            // 省
+@property(nonatomic,strong) NSString *              real_city_val;            // 市
+@property(nonatomic,strong) NSString *              real_county_val;            // 区
+@property(nonatomic,strong) NSString *              cmut_id;              // 小区id
+@property(nonatomic,strong) NSString *              real_cmut_name;           //小区名称
+@property(nonatomic,strong) NSString *              real_ban;           //楼栋
+@property(nonatomic,strong) NSString *              real_unit;           //单元
+@property(nonatomic,strong) NSString *              real_floor;           //楼层
+@property(nonatomic,strong) NSString *              real_number;           //房号
+@property(nonatomic,assign) BOOL                    real_is_owner;         // 是否为业主（Y(1), N(0)）
+@property(nonatomic,assign) int                     real_sort;         //排序（从大到小）
+@property(nonatomic,strong) NSString *              real_add_time;           //认证时间
+-(NSMutableString *)getProvinceCityCountyStr; //获取省市区文字
+-(NSMutableString *)getFullStr;
+@end
+
+
+
+
+
+#pragma mark -  小区对象
+@interface CommunityObject : NSObject
+@property(nonatomic,assign) int                     cmut_id;         //小区id
+@property(nonatomic,strong) NSString *              cmut_name;          // 小区名称
+@property(nonatomic,assign) int                     cmut_province;         //小区所属省id
+@property(nonatomic,assign) int                     cmut_city;         //小区所属市id
+@property(nonatomic,assign) int                     cmut_county;         //小区所属区县id
+@property(nonatomic,strong) NSString *              cmut_address;            // 小区地址
+@property(nonatomic,assign) double                  cmut_lng;         //小区经度
+@property(nonatomic,assign) double                  cmut_lat;         //小区纬度
+@property(nonatomic,strong) NSString *              gion_name;            // 小区所属县区名称
 @end
 
 
@@ -191,6 +234,18 @@
 
 @end
 
+
+
+
+
+
+
+#pragma mark -  用户订单对象
+@interface OrderObject : NSObject
+@property (nonatomic,strong) NSString *         iD;         //
+@property (nonatomic,assign) kOrderClassType    type;         //
+@property (nonatomic,assign) int                status;         //
+@end
 
 #pragma mark----****----用户信息
 
@@ -393,7 +448,28 @@
 
 @end
 
+@interface ZLHomeCommunity : NSObject
+///小区id
+@property (assign,nonatomic) int cmut_id;
+///小区名称
+@property (strong,nonatomic) NSString* cmut_name;
+///小区所属省id
+@property (assign,nonatomic) int cmut_province;
+///小区所属市id
+@property (assign,nonatomic) int cmut_city;
+///小区所属区县id
+@property (assign,nonatomic) int cmut_county;
+///小区地址
+@property (strong,nonatomic) NSString* cmut_address;
+///小区纬度
+@property (strong,nonatomic) NSString* cmut_lng;
+///小区经度
+@property (strong,nonatomic) NSString* cmut_lat;
+///小区所属县区名称
+@property (strong,nonatomic) NSString* gion_name;
 
+
+@end
 
 
 

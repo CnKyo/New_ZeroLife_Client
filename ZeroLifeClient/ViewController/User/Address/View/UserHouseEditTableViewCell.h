@@ -23,6 +23,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *sexWomanBtn;
 @property (weak, nonatomic) IBOutlet UITextField *mobileField;  // 手机号
 @property (weak, nonatomic) IBOutlet UITextField *areaField;    // 地区地址
+@property (weak, nonatomic) IBOutlet UIView *areaView;
+
 @property (weak, nonatomic) IBOutlet UITextField *xiaoquField;  //小区
 @property (weak, nonatomic) IBOutlet UITextField *addressField; // 详细地址
 
