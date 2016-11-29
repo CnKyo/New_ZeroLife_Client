@@ -172,5 +172,12 @@
     }];
     
 }
++(ZLLoginViewController *)startPresent:(UIViewController *)from
+{
+    ZLLoginViewController *vc = [[ZLLoginViewController alloc] init];
+    UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:vc];
 
+    [from presentViewController:navVC animated:YES completion:nil];
+    return vc;
+}
 @end

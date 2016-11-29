@@ -7,6 +7,8 @@
 //
 
 #import "APIObjectDefine.h"
+#import "UIViewController+Additions.h"
+#import "ZLLoginViewController.h"
 
 #pragma mark -
 #pragma mark NSDictionary
@@ -262,13 +264,13 @@
     if (code == 20004)
         [self performSelector:@selector(startLogin) withObject:nil afterDelay:0.8];
 }
-
+#pragma mark----****----登录
 -(void)startLogin
 {
-//    UIViewController *se = [UIViewController topViewController];
-//    if (![se isKindOfClass:[LoginTVC class]]) {
-//        [LoginTVC startPresent:se];
-//    }
+    UIViewController *se = [UIViewController topViewController];
+    if (![se isKindOfClass:[ZLLoginViewController class]]) {
+        [ZLLoginViewController startPresent:se];
+    }
 }
 
 @end

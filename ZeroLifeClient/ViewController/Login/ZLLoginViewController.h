@@ -10,4 +10,7 @@
 
 @interface ZLLoginViewController : CustomVC
 
+
++(ZLLoginViewController *)startPresent:(UIViewController *)from;
+
 @end
