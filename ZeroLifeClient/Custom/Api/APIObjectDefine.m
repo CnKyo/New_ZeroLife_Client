@@ -369,13 +369,11 @@
 
 @end
 
+
+static ZLSeletedAddress *mAddress = nil;
 @implementation ZLSeletedAddress
 
 + (ZLSeletedAddress *)ShareClient{
-
-    //只赋值一次
-    static ZLSeletedAddress *mAddress = nil;
-    
     @synchronized (self) {
         if (!mAddress) {
             mAddress = [[ZLSeletedAddress alloc] init];
@@ -397,6 +395,10 @@
         [str appendString:_mArearStr];
     
     return str;
+}
++(void)destory
+{
+    mAddress = nil;
 }
 
 @end

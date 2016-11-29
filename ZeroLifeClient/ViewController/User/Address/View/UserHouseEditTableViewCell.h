@@ -26,7 +26,10 @@
 @property (weak, nonatomic) IBOutlet UIView *areaView;
 
 @property (weak, nonatomic) IBOutlet UITextField *xiaoquField;  //小区
+@property (weak, nonatomic) IBOutlet UIView *xiaoquView;
+
 @property (weak, nonatomic) IBOutlet UITextField *addressField; // 详细地址
+@property (weak, nonatomic) IBOutlet UIView *addressView;
 
 @property (weak, nonatomic) IBOutlet UIButton *mSelectedCityBtn;
 

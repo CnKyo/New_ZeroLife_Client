@@ -10,6 +10,7 @@
 #import "UserHouseEditTableViewCell.h"
 #import "ZLSelectedCityViewController.h"
 #import "APIObjectDefine.h"
+#import "ZLSelectArearViewController.h"
 
 @interface UserHouseEditVC ()<UITextFieldDelegate,UserHouseEditTableViewCellDelegate>
 @property(nonatomic,strong) UserHouseEditTableViewCell *customCell;
@@ -45,14 +46,13 @@
                 return ;
             }
             
-            ZLSeletedAddress *mAddressObj = [ZLSeletedAddress ShareClient];
-            if (mAddressObj.mProvinceStr.length > 0) {
-                self.item.real_province = mAddressObj.mProvince;
-                self.item.real_city = mAddressObj.mCity;
-                self.item.real_county = mAddressObj.mArear;
-            }
             if (_item.real_province==0 || _item.real_city==0 || _item.real_county==0) {
                 [SVProgressHUD showErrorWithStatus:@"请选择省市区"];
+                return ;
+            }
+            
+            if (_item.cmut_id == 0) {
+                [SVProgressHUD showErrorWithStatus:@"请先选择小区"];
                 return ;
             }
             
@@ -78,7 +78,16 @@
     [super viewWillAppear:animated];
     
     ZLSeletedAddress *mAddressObj = [ZLSeletedAddress ShareClient];
-    self.customCell.areaField.text = [mAddressObj getAddress];
+    if (mAddressObj.mProvinceStr.length > 0) {
+        self.customCell.areaField.text = [mAddressObj getAddress];
+        
+        self.item.real_province = mAddressObj.mProvince;
+        self.item.real_city = mAddressObj.mCity;
+        self.item.real_county = mAddressObj.mArear;
+        
+        [ZLSeletedAddress destory];
+    }
+
 }
 
 
@@ -136,6 +145,40 @@
         ZLSelectedCityViewController *vc = [ZLSelectedCityViewController new];
         vc.mType = 0;
         [self pushViewController:vc];
+    }];
+    
+    //选择小区
+    [cell.xiaoquView jk_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
+        if (_item.real_province==0 || _item.real_city==0 || _item.real_county==0) {
+            [SVProgressHUD showErrorWithStatus:@"请先选择省市区"];
+            return ;
+        }
+        
+        ZLSelectArearViewController *vc = [ZLSelectArearViewController new];
+        vc.block = ^(ZLHomeCommunity *mBlock){
+            self.item.cmut_id = mBlock.cmut_id;
+            self.item.real_cmut_name = mBlock.cmut_name;
+            cell.xiaoquField.text = mBlock.cmut_name;
+        };
+        ZLHomeCommunity *at = [ZLHomeCommunity new];
+        at.cmut_province = _item.real_province;
+        at.cmut_city = _item.real_city;
+        at.cmut_county = _item.real_county;
+        vc.mCommunityAdd = at;
+        [self pushViewController:vc];
+    }];
+    
+    [cell.addressView jk_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
+        if (_item.real_province==0 || _item.real_city==0 || _item.real_county==0) {
+            [SVProgressHUD showErrorWithStatus:@"请先选择省市区"];
+            return ;
+        }
+        if (_item.cmut_id == 0) {
+            [SVProgressHUD showErrorWithStatus:@"请先选择小区"];
+            return ;
+        }
+        
+        
     }];
     
     [cell.sexManBtn jk_addActionHandler:^(NSInteger tag) {

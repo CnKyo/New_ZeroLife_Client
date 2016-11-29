@@ -51,13 +51,7 @@
                 [SVProgressHUD showErrorWithStatus:@"请输入详细地址"];
                 return ;
             }
-            
-            ZLSeletedAddress *mAddressObj = [ZLSeletedAddress ShareClient];
-            if (mAddressObj.mProvinceStr.length > 0) {
-                self.item.addr_province = mAddressObj.mProvince;
-                self.item.addr_city = mAddressObj.mCity;
-                self.item.addr_county = mAddressObj.mArear;
-            }
+
             if (_item.addr_province==0 || _item.addr_city==0 || _item.addr_county==0) {
                 [SVProgressHUD showErrorWithStatus:@"请选择省市区"];
                 return ;
@@ -99,7 +93,16 @@
     [super viewWillAppear:animated];
     
     ZLSeletedAddress *mAddressObj = [ZLSeletedAddress ShareClient];
-    self.customCell.areaField.text = [mAddressObj getAddress];
+    if (mAddressObj.mProvinceStr.length > 0) {
+        self.customCell.areaField.text = [mAddressObj getAddress];
+        
+        self.item.addr_province = mAddressObj.mProvince;
+        self.item.addr_city = mAddressObj.mCity;
+        self.item.addr_county = mAddressObj.mArear;
+        
+        [ZLSeletedAddress destory];
+    }
+    
 }
 
 

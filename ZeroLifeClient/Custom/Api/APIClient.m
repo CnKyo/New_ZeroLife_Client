@@ -688,10 +688,10 @@
         [para setInt:mProvince forKey:@"cmut_province"];
     }
     if (mCityId) {
-        [para setInt:mProvince forKey:@"cmut_city"];
+        [para setInt:mCityId forKey:@"cmut_city"];
     }
     if (mCountryId) {
-        [para setInt:mProvince forKey:@"cmut_county"];
+        [para setInt:mCountryId forKey:@"cmut_county"];
     }
     
     

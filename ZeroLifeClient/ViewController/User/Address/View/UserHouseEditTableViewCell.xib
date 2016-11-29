@@ -208,7 +208,7 @@
                                 <color key="textColor" red="0.45081108809999998" green="0.45487439629999998" blue="0.45897156" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择小区" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kph-Vw-XiK">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择小区" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kph-Vw-XiK">
                                 <rect key="frame" x="93" y="0.0" width="217" height="50"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -248,7 +248,7 @@
                                 <color key="textColor" red="0.45081108809999998" green="0.45487439629999998" blue="0.45897156" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择楼栋号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="esR-Da-MJk">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择楼栋号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="esR-Da-MJk">
                                 <rect key="frame" x="93" y="0.0" width="217" height="50"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -304,6 +304,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="addressField" destination="esR-Da-MJk" id="OUd-jn-Kbh"/>
+                <outlet property="addressView" destination="Ju5-Nl-2yd" id="QRQ-qv-HoE"/>
                 <outlet property="areaField" destination="i0c-DE-WuE" id="7HQ-HB-XzE"/>
                 <outlet property="areaView" destination="Rxl-GM-Cdp" id="sUN-0Z-1rk"/>
                 <outlet property="mobileField" destination="bHa-S1-Wgc" id="d2c-wV-MyU"/>
@@ -311,6 +312,7 @@
                 <outlet property="sexManBtn" destination="4Vr-hQ-Duf" id="2BF-xa-I1x"/>
                 <outlet property="sexWomanBtn" destination="Bnv-K3-mxP" id="gyA-mX-6nW"/>
                 <outlet property="xiaoquField" destination="kph-Vw-XiK" id="ucX-nG-my9"/>
+                <outlet property="xiaoquView" destination="Lq9-Vw-x2g" id="70n-jn-nPa"/>
             </connections>
             <point key="canvasLocation" x="25" y="192.5"/>
         </tableViewCell>

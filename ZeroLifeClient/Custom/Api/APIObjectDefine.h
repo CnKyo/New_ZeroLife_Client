@@ -166,7 +166,7 @@
 @property(nonatomic,strong) NSString *              real_province_val;            // 省
 @property(nonatomic,strong) NSString *              real_city_val;            // 市
 @property(nonatomic,strong) NSString *              real_county_val;            // 区
-@property(nonatomic,strong) NSString *              cmut_id;              // 小区id
+@property(nonatomic,assign) int                     cmut_id;              // 小区id
 @property(nonatomic,strong) NSString *              real_cmut_name;           //小区名称
 @property(nonatomic,strong) NSString *              real_ban;           //楼栋
 @property(nonatomic,strong) NSString *              real_unit;           //单元
@@ -231,6 +231,7 @@
 @property (nonatomic,strong) NSString *mArearStr;
 
 + (ZLSeletedAddress *)ShareClient;
++(void)destory;
 -(NSString *)getAddress;
 
 @end
