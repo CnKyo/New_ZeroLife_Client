@@ -10,6 +10,7 @@
 #import "CustomDefine.h"
 #import <LKDBHelper/LKDBHelper.h>
 #import <MJExtension/MJExtension.h>
+#import <JKCategories/NSString+JKHash.h>
 
 
 #pragma mark - NSDictionary自定义
@@ -28,6 +29,7 @@
 @interface NSString(QUAdd)
 -(NSString *)compSelfIsNone;
 +(NSString *)houseIsOwner:(BOOL)is_owner; //得到房主租客文字
++(NSString *)strUserSexType:(kUserSexType)type;  //得到性别文字
 +(NSString *)urlWithExtra:(NSString *)str;  //组合url地址
 @end
 
@@ -195,8 +197,31 @@
 @property(nonatomic,assign) double                  cmut_lng;         //小区经度
 @property(nonatomic,assign) double                  cmut_lat;         //小区纬度
 @property(nonatomic,strong) NSString *              gion_name;            // 小区所属县区名称
+@property(nonatomic,strong) NSString *              cmut_add_time;            // 小区添加时间
 @end
 
+
+#pragma mark -  小区楼栋对象
+@interface CommunityBansetObject : NSObject //楼栋对象
+@property(nonatomic,assign) int                     bset_unit;         //单元
+@property(nonatomic,assign) int                     bset_number;         //户数最大值
+@property(nonatomic,assign) int                     bset_floor;         //楼层最大值
+@end
+
+@interface CommunityUmitsetObject : NSObject //单元对象
+@property(nonatomic,assign) int                     bset_ban;         //楼栋号
+@property(nonatomic,strong) NSArray *               umitList;          //单元列表
+@end
+
+
+///钱包对象
+@interface WalletObject : NSObject
+@property (assign,nonatomic) int                    user_id;           ///用户id
+@property (assign,nonatomic) float                  uwal_balance;       ///余额
+@property (assign,nonatomic) int                    uwal_id;      ///钱包ID
+@property (assign,nonatomic) int                    uwal_score;     ///积分
+@property (strong,nonatomic) NSString *             uwal_state;///钱包状态（normal 正常 locked 锁定）
+@end
 
 
 #pragma mark -  用户优惠券对象
@@ -244,128 +269,103 @@
 
 #pragma mark -  用户订单对象
 @interface OrderObject : NSObject
-@property (nonatomic,strong) NSString *         iD;         //
-@property (nonatomic,assign) kOrderClassType    type;         //
-@property (nonatomic,assign) int                status;         //
+@property (nonatomic,strong) NSString *             iD;         //
+@property (nonatomic,assign) kOrderClassType        type;         //
+@property (nonatomic,assign) int                    status;         //
 @end
 
 #pragma mark----****----用户信息
 
-@class ZLWalletObj;
+@class WalletObject;
+@class CommunityObject;
 ///
 @interface ZLUserInfo : NSObject
-@property (assign,nonatomic) int user_id;
-///对应用户id
+@property (assign,nonatomic) int                    user_id; ///对应用户id
+@property (strong,nonatomic) NSString*              user_nick; ///用户昵称
+@property (assign,nonatomic) kUserSexType           user_sex; ///性别（UNKNOW(0), MALE(1), FEMALE(2)）
+@property (strong,nonatomic) NSString*              user_phone; //手机号
+@property (strong,nonatomic) NSString*              user_header; //用户头像图片url
+@property (strong,nonatomic) NSString*              user_birth; //生日
+@property (assign,nonatomic) int                    user_province; //所属省
+@property (assign,nonatomic) int                    user_city; //所属市
+@property (assign,nonatomic) int                    user_county; //所属县区
+@property (strong,nonatomic) NSString*              user_qrcode; //用户二维码图片url
+@property (strong,nonatomic) NSString*              user_emaill; //用户邮箱
+@property (assign,nonatomic) int                    user_is_notify; //是否开启推送消息功能（Y(1), N(0)）
+@property (strong,nonatomic) NSString*              user_add_time; ///
 
-@property (assign,nonatomic) int user_nick;
-///用户昵称
-
-@property (assign,nonatomic) kUserSexType user_sex;
-///性别（UNKNOW(0), MALE(1), FEMALE(2)）
-
-@property (strong,nonatomic) NSString* user_phone;
-//手机号
-
-@property (strong,nonatomic) NSString* user_header;
-//用户头像图片url
-
-@property (strong,nonatomic) NSString* user_birth;
-//生日
-
-@property (assign,nonatomic) int user_province;
-//所属省
-
-@property (assign,nonatomic) int user_city;
-//所属市
-
-@property (assign,nonatomic) int user_county;
-//所属县区
-
-@property (strong,nonatomic) NSString* user_qrcode;
-//用户二维码图片url
-
-@property (strong,nonatomic) NSString* user_emaill;
-//用户邮箱
-
-@property (assign,nonatomic) int user_is_notify;
-//是否开启推送消息功能（Y(1), N(0)）
-
-@property (strong,nonatomic) NSString* user_add_time;
-///
-@property (nonatomic,strong) ZLWalletObj        *ZLWallet;
-
+@property (nonatomic,strong) WalletObject*           wallet; //用户钱包信息
+@property (nonatomic,strong) CommunityObject*       community; //用户绑定小区信息
 
 #pragma mark----****----登录
 ///需要登录
-- (BOOL)ZLIsNeedLogin;
+- (BOOL)isNeedLogin;
 ///用户信息实效
 - (BOOL)ZLUserIsValid;
+
+//更新用户数据
++(void)updateUserInfo:(ZLUserInfo *)user;
 /**
  *  退出登录
  */
 + (void)logOut;
 ///返回当前用户信息
 + (ZLUserInfo *)ZLCurrentUser;
-+ (void)ZLDealSession:(APIObject *)info andPwd:(NSString *)mPwd andOpenId:(NSString *)mOpenId block:(void(^)(APIObject* resb, ZLUserInfo *user))block;
+//+ (void)ZLDealSession:(APIObject *)info andPwd:(NSString *)mPwd andOpenId:(NSString *)mOpenId block:(void(^)(APIObject* resb, ZLUserInfo *user))block;
 
 @end
-///用户默认绑定小区对象
-@interface ZLUserCommunityObj : NSObject
-///小区id
-@property (assign,nonatomic) int ZLUmut_id;
-///小区名称
-@property (strong,nonatomic) NSString* ZLUmut_name;
-///小区所属省id
-@property (assign,nonatomic) int ZLUmut_province;
-///小区所属市id
-@property (assign,nonatomic) int ZLUmut_city;
-///小区所属区县id
-@property (assign,nonatomic) int ZLUmut_county;
-///小区地址
-@property (strong,nonatomic) NSString* ZLUmut_address;
-///小区纬度
-@property (strong,nonatomic) NSString* ZLUmut_lng;
-///小区经度
-@property (strong,nonatomic) NSString* ZLUmut_lat;
-///小区所属县区名称
-@property (strong,nonatomic) NSString* ZLGion_name;
-
-
-@end
-///钱包对象
-@interface ZLWalletObj : NSObject
-///用户id
-@property (assign,nonatomic) int user_id;
-///余额
-@property (assign,nonatomic) float uwal_balance;
-///钱包ID
-@property (assign,nonatomic) int uwal_id;
-///积分
-@property (assign,nonatomic) int uwal_score;
-///钱包状态（normal 正常 locked 锁定）
-@property (assign,nonatomic) ZLWalletStatu uwal_state;
-
-
-@end
+/////用户默认绑定小区对象
+//@interface ZLUserCommunityObj : NSObject
+/////小区id
+//@property (assign,nonatomic) int ZLUmut_id;
+/////小区名称
+//@property (strong,nonatomic) NSString* ZLUmut_name;
+/////小区所属省id
+//@property (assign,nonatomic) int ZLUmut_province;
+/////小区所属市id
+//@property (assign,nonatomic) int ZLUmut_city;
+/////小区所属区县id
+//@property (assign,nonatomic) int ZLUmut_county;
+/////小区地址
+//@property (strong,nonatomic) NSString* ZLUmut_address;
+/////小区纬度
+//@property (strong,nonatomic) NSString* ZLUmut_lng;
+/////小区经度
+//@property (strong,nonatomic) NSString* ZLUmut_lat;
+/////小区所属县区名称
+//@property (strong,nonatomic) NSString* ZLGion_name;
+//
+//
+//@end
+/////钱包对象
+//@interface ZLWalletObj : NSObject
+/////用户id
+//@property (assign,nonatomic) int user_id;
+/////余额
+//@property (assign,nonatomic) float uwal_balance;
+/////钱包ID
+//@property (assign,nonatomic) int uwal_id;
+/////积分
+//@property (assign,nonatomic) int uwal_score;
+/////钱包状态（normal 正常 locked 锁定）
+//@property (assign,nonatomic) ZLWalletStatu uwal_state;
+//
+//
+//@end
 ///
+
+
 @interface ZLHomeBanner : NSObject
-///banner	ID
-@property (assign,nonatomic) int bnr_id;
-///类型(1:平台/2:超市)
-@property (assign,nonatomic) int bnr_type;
-///排序
-@property (assign,nonatomic) int bnr_sort;
-///banner说明
-@property (strong,nonatomic) NSString* bnr_explain;
-///page(跳转界面)
-@property (strong,nonatomic) NSString* bnr_page;
-///url（图片URL）
-@property (strong,nonatomic) NSString* bnr_image;
-///状态1平台 2超市
-@property (assign,nonatomic) ZLHomeBannerType bnr_state;
-
-
+@property (assign,nonatomic) int                    bnr_id; ///banner	ID
+@property (assign,nonatomic) int                    bnr_type;///类型(1:平台/2:超市)
+@property (assign,nonatomic) int                    bnr_sort;///排序
+@property (strong,nonatomic) NSString*              bnr_explain;///banner说明
+@property (strong,nonatomic) NSString*              bnr_page;///page(跳转界面)
+@property (strong,nonatomic) NSString*              bnr_image;///url（图片URL）
+@property (assign,nonatomic) ZLHomeBannerType       bnr_state;///状态1平台 2超市
 @end
+
+
 
 @interface ZLHomeObj : NSObject
 
@@ -378,99 +378,49 @@
 
 @end
 
-///平台活动广告
+
+
+///平台活动广告  //活动广告
 @interface ZLHomeAdvList : NSObject
-
-
-//活动广告
-
-@property (assign,nonatomic) int shop_id;
-//店铺ID
-
-@property (assign,nonatomic) int adv_id;
-//广告活动ID
-
-@property (assign,nonatomic) int cpn_id;
-//公司ID
-
-@property (strong,nonatomic) NSString* distance;
-//活动距离(单位：米)
-
-@property (strong,nonatomic) NSString* adv_image;
-//活动图片
-
-@property (strong,nonatomic) NSString* adv_click_url;
-////点击的URL
-
-@property (assign,nonatomic) int adv_type;
-//类型（0:WAP;1:原生）
-
-@property (assign,nonatomic) int cam_type;
-//活动类型
-
-
+@property (assign,nonatomic) int                    shop_id;//店铺ID
+@property (assign,nonatomic) int                    adv_id;//广告活动ID
+@property (assign,nonatomic) int                    cpn_id;//公司ID
+@property (strong,nonatomic) NSString*              distance;//活动距离(单位：米)
+@property (strong,nonatomic) NSString*              adv_image;//活动图片
+@property (strong,nonatomic) NSString*              adv_click_url;////点击的URL
+@property (assign,nonatomic) int                    adv_type;//类型（0:WAP;1:原生）
+@property (assign,nonatomic) int                    cam_type;//活动类型
 @end
+
+
+
 ///平台公告(List)
 @interface ZLHomeCompainNoticeList : NSObject
-
-@property (assign,nonatomic) int not_id;
-//公告ID
-
-@property (strong,nonatomic) NSString* not_title;
-//公告标题;
-
-@property (assign,nonatomic) int cmut_id;
-//社区ID
-
-@property (assign,nonatomic) int not_is_cmut;
-//是否是社区发布(0：平台；1：社区)
-
-@property (assign,nonatomic) int not_state;
-//新闻状态
-
-@property (strong,nonatomic) NSString* not_sub;
-//内容简介
-
-@property (strong,nonatomic) NSString* not_add_time;
-//公告发布时间
-
-@property (strong,nonatomic) NSString* not_image;
-////公告图片
-
-@property (strong,nonatomic) NSString* not_deadline;
-//失效时间
-
-@property (strong,nonatomic) NSString* not_add_person;
-//发布者
-
-@property (strong,nonatomic) NSString* not_type;
-//
-
-
-
+@property (assign,nonatomic) int                    not_id;//公告ID
+@property (strong,nonatomic) NSString*              not_title;//公告标题;
+@property (assign,nonatomic) int                    cmut_id;//社区ID
+@property (assign,nonatomic) int                    not_is_cmut;//是否是社区发布(0：平台；1：社区)
+@property (assign,nonatomic) int                    not_state;//新闻状态
+@property (strong,nonatomic) NSString*              not_sub;//内容简介
+@property (strong,nonatomic) NSString*              not_add_time;//公告发布时间
+@property (strong,nonatomic) NSString*              not_image;////公告图片
+@property (strong,nonatomic) NSString*              not_deadline;//失效时间
+@property (strong,nonatomic) NSString*              not_add_person;//发布者
+@property (strong,nonatomic) NSString*              not_type;
 @end
 
+
+
 @interface ZLHomeCommunity : NSObject
-///小区id
-@property (assign,nonatomic) int cmut_id;
-///小区名称
-@property (strong,nonatomic) NSString* cmut_name;
-///小区所属省id
-@property (assign,nonatomic) int cmut_province;
-///小区所属市id
-@property (assign,nonatomic) int cmut_city;
-///小区所属区县id
-@property (assign,nonatomic) int cmut_county;
-///小区地址
-@property (strong,nonatomic) NSString* cmut_address;
-///小区纬度
-@property (strong,nonatomic) NSString* cmut_lng;
-///小区经度
-@property (strong,nonatomic) NSString* cmut_lat;
-///小区所属县区名称
-@property (strong,nonatomic) NSString* gion_name;
-
-
+@property (assign,nonatomic) int                    cmut_id;///小区id
+@property (strong,nonatomic) NSString*              cmut_name;///小区名称
+@property (assign,nonatomic) int                    cmut_province;///小区所属省id
+@property (assign,nonatomic) int                    cmut_city;///小区所属市id
+@property (assign,nonatomic) int                    cmut_county;///小区所属区县id
+@property (strong,nonatomic) NSString*              cmut_address;///小区地址
+@property (strong,nonatomic) NSString*              cmut_lng;///小区纬度
+@property (strong,nonatomic) NSString*              cmut_lat;///小区经度
+@property (strong,nonatomic) NSString*              gion_name;///小区所属县区名称
 @end
 
 

@@ -52,10 +52,9 @@
         
         
         [btn11 jk_addActionHandler:^(NSInteger tag) {
-
-            ZLLoginViewController *vc = [ZLLoginViewController new];
-            vc.hidesBottomBarWhenPushed = YES;
-            [weakSelf pushViewController:vc];
+            [ZLUserInfo logOut];
+            
+            [ZLLoginViewController startPresent:self];
             
         }];
         view;
@@ -74,6 +73,10 @@
     
     //[self.navigationController.navigationBar.subviews[2] setHidden:YES];
     [self.navigationController.navigationBar lt_setBackgroundColor:[UIColor clearColor]];
+    
+    
+    NSString *homeDir = NSHomeDirectory();
+    NSLog(@"%@", homeDir);
 
 }
 

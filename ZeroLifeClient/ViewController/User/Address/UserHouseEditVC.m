@@ -178,7 +178,14 @@
             return ;
         }
         
-        
+        [SVProgressHUD showWithStatus:@"加载中..."];
+        [[APIClient sharedClient] communityBansetListWithTag:self cmut_id:_item.cmut_id call:^(NSArray *tableArr, APIObject *info) {
+            if (info.code == RESP_STATUS_YES) {
+                
+                [SVProgressHUD showSuccessWithStatus:info.msg];
+            } else
+                [SVProgressHUD showErrorWithStatus:info.msg];
+        }];
     }];
     
     [cell.sexManBtn jk_addActionHandler:^(NSInteger tag) {

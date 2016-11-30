@@ -42,6 +42,9 @@
 }
 */
 
+
+
+
 #pragma mark -- tableviewDelegate
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -85,6 +88,18 @@
         {
             UISwitch *swi = [[UISwitch alloc] initWithFrame:CGRectMake(0, 0, 80, 20)];
             cell.accessoryView = swi;
+            [swi jk_handleControlEvents:UIControlEventTouchUpInside withBlock:^(id weakSender) {
+                BOOL newStatus = swi.on;
+                [SVProgressHUD showWithStatus:@"修改中..."];
+                [[APIClient sharedClient] userPushSettingWithTag:self isOn:newStatus call:^(APIObject *info) {
+                    if (info.code == RESP_STATUS_YES) {
+                        [SVProgressHUD showSuccessWithStatus:info.msg];
+                    } else {
+                        swi.on = !newStatus;
+                        [SVProgressHUD showErrorWithStatus:info.msg];
+                    }
+                }];
+            }];
         }
             break;
         case 2:

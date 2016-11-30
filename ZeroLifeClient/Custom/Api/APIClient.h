@@ -55,22 +55,8 @@ typedef void (^TableShareSdkBlock)(int totalpage, NSArray *tableArr, APIShareSdk
 
 
 
-//-(void)dryClearnShopInfoWithTag:(NSObject *)tag shopId:(int)sid call:(void (^)(DryClearnShopObject* item, int coupon, int focus, APIObject* info))callback;
-//-(void)dryClearnShopCollectWithTag:(NSObject *)tag shopId:(int)sid actionType:(BOOL)collect call:(void (^)(APIObject* info))callback;
-//-(void)dryClearnShopClassListWithTag:(NSObject *)tag shopId:(int)sid call:(TableArrBlock)callback;
-//-(void)dryClearnShopServerListWithTag:(NSObject *)tag shopId:(int)sid classId:(int)cid call:(TableArrBlock)callback;
-//-(void)dryClearnShopServerInfoWithTag:(NSObject *)tag serverId:(int)sid call:(void (^)(DryClearnShopServerObject *item, APIObject* info))callback;
-//-(void)dryClearnShopOpeningTimeListWithTag:(NSObject *)tag shopId:(int)sid dateStr:(NSString *)dateStr call:(TableArrBlock)callback;
-//-(void)dryClearnShopOrderInfoWithTag:(NSObject *)tag serverId:(int)sid cartJson:(NSString *)cartStr call:(void (^)(DryClearnShopOrderShowObject *item, APIObject* info))callback;
-//
-//-(void)dryClearnShopOrderSubmmitWithTag:(NSObject *)tag postItem:(DryClearnShopOrderPostObject *)it call:(void (^)(APIObject* info))callback;
-//
-//-(void)dryClearnShopOrderCommentSubmmitWithTag:(NSObject *)tag postItem:(DryClearnShopOrderCommentPostObject *)it call:(void (^)(APIObject* info))callback;
-//
-//-(void)shopCommentImgUpdateWithTag:(NSObject *)tag img:(UIImage *)img call:( void(^)(NSString *file, APIObject* info))callback;
-//
-//-(void)complainListWithTag:(NSObject *)tag call:(TableArrBlock)callback;
-
+-(void)userInfoEditWithTag:(NSObject *)tag postItem:(ZLUserInfo *)it call:(void (^)(APIObject* info))callback;
+-(void)userPushSettingWithTag:(NSObject *)tag isOn:(BOOL)ison call:(void (^)(APIObject* info))callback;
 
 
 -(void)regionListWithTag:(NSObject *)tag gion_level:(int)gion_level gion_id:(int)gion_id call:(TableArrBlock)callback;
@@ -117,5 +103,7 @@ typedef void (^TableShareSdkBlock)(int totalpage, NSArray *tableArr, APIShareSdk
  @param block      返回值
  */
 - (void)ZLGetHomeCommunity:(NSString *)mLat andLng:(NSString *)mLng andSearchText:(NSString *)mSearchTx andProvinceId:(int)mProvince andCityId:(int)mCityId andCountryId:(int)mCountryId block:(void(^)(APIObject *mBaseObj,NSArray *mArr))block;
+-(void)communityBansetListWithTag:(NSObject *)tag cmut_id:(int)cmut_id call:(TableArrBlock)callback;
+
 
 @end

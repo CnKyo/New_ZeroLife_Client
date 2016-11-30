@@ -30,6 +30,9 @@
     // Do any additional setup after loading the view.
     self.title = @"登录";
     [self initView];
+    
+    mMainView.mLoginPhoneTx.text = @"13637959618";
+    mMainView.mLoginPwdTx.text = @"123456";
 }
 
 - (void)initView{
@@ -118,6 +121,7 @@
     [[APIClient sharedClient] ZLLoginWithPhone:mMainView.mLoginPhoneTx.text andPwd:mMainView.mLoginPwdTx.text block:^(APIObject *mBaseObj,ZLUserInfo *mUser) {
         if ( mBaseObj.code == RESP_STATUS_YES ) {
             [self showSuccessStatus:@"登录成功！"];
+            [self performSelector:@selector(dismissViewController) withObject:nil afterDelay:0.5];
         }else{
             [self showSuccessStatus:@"登录失败！"];
         }

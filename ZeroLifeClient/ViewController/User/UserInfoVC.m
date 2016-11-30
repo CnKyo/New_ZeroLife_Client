@@ -11,8 +11,14 @@
 #import "UserHouseEditVC.h"
 #import "UserAddressTVC.h"
 
-@interface UserInfoVC ()
+@interface UserInfoVC ()<UITextFieldDelegate>
+@property(nonatomic,strong) ZLUserInfo *user;
 
+@property(nonatomic,assign) BOOL isDataEditChaged;
+
+@property(nonatomic,strong) UIImage *userLocalImg;
+@property(nonatomic,strong) UITextField *nikeNameField;
+@property(nonatomic,strong) UITextField *sexField;
 @end
 
 @implementation UserInfoVC
@@ -26,6 +32,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title =  @"个人信息";
+    
+    self.user = [ZLUserInfo ZLCurrentUser];
+    if (self.user == nil)
+        self.user = [ZLUserInfo new];
 }
 
 
@@ -43,6 +53,45 @@
  // Pass the selected object to the new view controller.
  }
  */
+
+
+-(void)setIsDataEditChaged:(BOOL)isDataEditChaged
+{
+    if (_isDataEditChaged != isDataEditChaged) {
+        _isDataEditChaged = isDataEditChaged;
+        
+        if (isDataEditChaged == YES) {
+            self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] bk_initWithTitle:@"更新" style:UIBarButtonItemStylePlain handler:^(id sender) {
+                [[IQKeyboardManager sharedManager] resignFirstResponder];
+                
+                [SVProgressHUD showWithStatus:@"修改中..."];
+                [[APIClient sharedClient] userInfoEditWithTag:self postItem:_user call:^(APIObject *info) {
+                    if (info.code == RESP_STATUS_YES) {
+                        self.isDataEditChaged = NO;
+                        
+                        [SVProgressHUD showSuccessWithStatus:info.msg];
+                        
+                        [self performSelector:@selector(popViewController) withObject:nil afterDelay:0.5];
+                    } else
+                        [SVProgressHUD showErrorWithStatus:info.msg];
+                }];
+            }];
+        } else {
+            self.navigationItem.rightBarButtonItem = nil;
+            self.navigationItem.rightBarButtonItem.customView.hidden=YES;
+        }
+    }
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    NSLog(@"Text:%@", textField.text);
+    if (textField == _nikeNameField) {
+        if (![textField.text isEqualToString:_user.user_nick])
+            self.isDataEditChaged = YES;
+        self.user.user_nick = textField.text;
+    }
+}
 
 #pragma mark -- tableviewDelegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -115,7 +164,7 @@
     UILabel *textLabel = (UILabel *)[cell.contentView viewWithTag:12];
     UITextField *field = (UITextField *)[cell.contentView viewWithTag:13];
     field.hidden = NO;
-    field.enabled = YES;
+    field.enabled = NO;
     if (indexPath.section == 0) {
         switch (indexPath.row) {
             case 0:
@@ -124,7 +173,10 @@
                 field.hidden = YES;
             {
                 UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
-                imgView.image = IMG(@"cell_img_touxiang_defult.png");
+                if (_userLocalImg != nil)
+                    imgView.image = _userLocalImg;
+                else
+                    [imgView setImageWithURL:[NSURL URLWithString:_user.user_header] placeholderImage:IMG(@"cell_img_touxiang_defult.png")];
                 cell.accessoryView = imgView;
             }
                 break;
@@ -133,11 +185,16 @@
                 imgView.image = IMG(@"cell_img_nike.png");
                 textLabel.text = @"昵称";
                 field.placeholder = @"请输入昵称";
+                field.enabled = YES;
+                field.delegate = self;
+                field.text = _user.user_nick;
+                self.nikeNameField = field;
                 break;
             case 2:
                 imgView.image = IMG(@"cell_img_six.png");
                 textLabel.text = @"性别";
                 field.placeholder = @"请选择性别";
+                field.text = [NSString strUserSexType:_user.user_sex];
                 break;
             default:
                 break;
@@ -148,13 +205,13 @@
                 imgView.image = IMG(@"cell_img_mobile.png");
                 textLabel.text = @"电话";
                 field.placeholder = @"请输入联系电话";
+                field.text = [_user.user_phone compSelfIsNone];
                 break;
             case 1:
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
                 imgView.image = IMG(@"cell_img_hourse.png");
                 textLabel.text = @"房屋管理";
                 field.placeholder = @"请添加房屋地址";
-                field.enabled = NO;
                 break;
             default:
                 break;
@@ -171,8 +228,36 @@
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
             [self startChoosePhotoCall:^(UIImage *img) {
-                
+                self.userLocalImg = img;
+                self.isDataEditChaged = YES;
+                [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
             }];
+        } else if (indexPath.row == 2) { //性别
+            
+//            UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"选择性别" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+//            [alertVC addTextFieldWithConfigurationHandler:^(UITextField *textField){
+//                textField.placeholder = @"登录";
+//            }];
+//            [alertVC addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+//                textField.placeholder = @"密码";
+//                textField.secureTextEntry = YES;
+//            }];
+            
+            UIActionSheet *sheet = [UIActionSheet bk_actionSheetWithTitle:@"选择性别"];
+            [sheet bk_setCancelButtonWithTitle:@"取消" handler:^{}];
+            [sheet bk_addButtonWithTitle:@"男" handler:^{
+                self.user.user_sex = kUserSexType_man;
+                self.isDataEditChaged = YES;
+                [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            }];
+            [sheet bk_addButtonWithTitle:@"女" handler:^{
+                self.user.user_sex = kUserSexType_woman;
+                self.isDataEditChaged = YES;
+                [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            }];
+            [sheet showInView:self.view];
+            
+            
         }
     } else {
         if (indexPath.row == 1) {
