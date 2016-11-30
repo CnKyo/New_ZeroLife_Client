@@ -153,12 +153,8 @@
     cell.mobileField.delegate = self;
     cell.addressField.delegate = self;
     cell.delegate = self;
+    
     [cell reloadSexUI:_item.addr_sex];
-    
-    cell.areaField.enabled = NO;
-//    cell.areaField.hidden = NO;
-//    cell.mSelectedCityBtn.hidden = YES;
-    
     cell.consigneeField.text = _item.addr_name;
     cell.mobileField.text = _item.addr_phone;
     cell.addressField.text = _item.addr_address;

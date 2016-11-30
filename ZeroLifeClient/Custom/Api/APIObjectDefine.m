@@ -368,6 +368,15 @@
         [str appendString:_real_cmut_name];
     return str;
 }
+-(NSString *)getBanUnitFloorNumberStr
+{
+    if (_real_ban==0 || _real_unit==0 || _real_floor==0 || _real_number==0) {
+        return nil;
+    }
+    return [NSString stringWithFormat:@"%i-%i-%i-%i", _real_ban, _real_unit, _real_floor, _real_number];
+}
+
+
 @end
 
 

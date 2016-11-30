@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "APIObjectDefine.h"
+#import "BanUnitFloorNumberTextField.h"
 
 @protocol UserHouseEditTableViewCellDelegate <NSObject>
 
@@ -28,8 +29,10 @@
 @property (weak, nonatomic) IBOutlet UITextField *xiaoquField;  //小区
 @property (weak, nonatomic) IBOutlet UIView *xiaoquView;
 
-@property (weak, nonatomic) IBOutlet UITextField *addressField; // 详细地址
+@property (weak, nonatomic) IBOutlet BanUnitFloorNumberTextField *addressField; // 详细地址
 @property (weak, nonatomic) IBOutlet UIView *addressView;
+
+@property (weak, nonatomic) IBOutlet UISwitch *defaultAddressSwitch;
 
 @property (weak, nonatomic) IBOutlet UIButton *mSelectedCityBtn;
 

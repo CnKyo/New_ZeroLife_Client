@@ -50,9 +50,9 @@
 #pragma mark - shareSDK 菜谱
 
 @interface APIShareSdkObject : NSObject
-@property (nonatomic,strong) id                 result;         //正文
-@property (nonatomic,strong) NSString *         msg;   //错误消息
-@property (nonatomic,assign) int                retCode;         //非0表示 错误,调试使用
+@property (nonatomic,strong) id                     result;         //正文
+@property (nonatomic,strong) NSString *             msg;   //错误消息
+@property (nonatomic,assign) int                    retCode;         //非0表示 错误,调试使用
 +(APIShareSdkObject *)infoWithError:(NSError *)error;
 +(APIShareSdkObject *)infoWithErrorMessage:(NSString *)errMsg;
 @end
@@ -107,13 +107,14 @@
 
 #pragma mark - APIObject 接口外层对象
 @interface APIObject : NSObject
-@property (nonatomic,strong) id                 data;         //正文
-@property (nonatomic,strong) NSString *         msg;   //错误消息
-@property (nonatomic,assign) int                code;         //非0表示 错误,调试使用
+@property (nonatomic,strong) id                     data;         //正文
+@property (nonatomic,strong) NSString *             msg;   //错误消息
+@property (nonatomic,assign) int                    code;         //非0表示 错误,调试使用
 +(APIObject *)infoWithError:(NSError *)error;
 +(APIObject *)infoWithErrorMessage:(NSString *)errMsg;
 +(APIObject *)infoWithReLoginErrorMessage:(NSString *)errMsg;
 @end
+
 
 
 #pragma mark -  省市区对象
@@ -128,7 +129,20 @@
 @end
 
 
+//用户选择省市区对象
+@interface ZLSeletedAddress : NSObject
+@property (nonatomic,assign) int                    mProvince;
+@property (nonatomic,assign) int                    mCity;
+@property (nonatomic,assign) int                    mArear;
+@property (nonatomic,strong) NSString *             mProvinceStr;
+@property (nonatomic,strong) NSString *             mCityStr;
+@property (nonatomic,strong) NSString *             mArearStr;
 
++ (ZLSeletedAddress *)ShareClient;
++(void)destory;
+-(NSString *)getAddress;
+
+@end
 
 
 
@@ -158,7 +172,7 @@
 #pragma mark -  用户房屋对象
 @interface HouseObject : NSObject
 @property(nonatomic,assign) int                     real_id;         //房屋认证ID
-@property(nonatomic,strong) NSString *              user_id;            //用户id
+@property(nonatomic,assign) int                     user_id;            //用户id
 @property(nonatomic,assign) kUserSexType            real_sex;         //
 @property(nonatomic,strong) NSString *              real_owner;          // 联系人姓名
 @property(nonatomic,strong) NSString *              real_phone;             // 手机号
@@ -170,16 +184,17 @@
 @property(nonatomic,strong) NSString *              real_county_val;            // 区
 @property(nonatomic,assign) int                     cmut_id;              // 小区id
 @property(nonatomic,strong) NSString *              real_cmut_name;           //小区名称
-@property(nonatomic,strong) NSString *              real_ban;           //楼栋
-@property(nonatomic,strong) NSString *              real_unit;           //单元
-@property(nonatomic,strong) NSString *              real_floor;           //楼层
-@property(nonatomic,strong) NSString *              real_number;           //房号
+@property(nonatomic,assign) int                     real_ban;           //楼栋
+@property(nonatomic,assign) int                     real_unit;           //单元
+@property(nonatomic,assign) int                     real_floor;           //楼层
+@property(nonatomic,assign) int                     real_number;           //房号
 @property(nonatomic,assign) BOOL                    real_is_owner;         // 是否为业主（Y(1), N(0)）
 @property(nonatomic,assign) int                     real_sort;         //排序（从大到小）
 @property(nonatomic,strong) NSString *              real_add_time;           //认证时间
 +(HouseObject *)defaultAddress;
 -(NSMutableString *)getProvinceCityCountyStr; //获取省市区文字
--(NSMutableString *)getFullStr;
+-(NSMutableString *)getFullStr; //获取完整地址文字
+-(NSString *)getBanUnitFloorNumberStr; //获取楼单元文字
 @end
 
 
@@ -226,40 +241,24 @@
 
 #pragma mark -  用户优惠券对象
 @interface CouponObject : NSObject
-@property (nonatomic,strong) NSString *         iD;         //
-@property (nonatomic,assign) kCouponType        type;
+@property (nonatomic,strong) NSString *             iD;         //
+@property (nonatomic,assign) kCouponType            type;
 @end
 
 
 
 #pragma mark -  用户银行卡对象
 @interface BankCardObject : NSObject
-@property (nonatomic,strong) NSString *         iD;         //
-@property (nonatomic,strong) NSString *         name;         //
+@property (nonatomic,strong) NSString *             iD;         //
+@property (nonatomic,strong) NSString *             name;         //
 @end
 
 #pragma mark----****----收银台测试model
 @interface ZLGoPayObject : NSObject
-
-@property(nonatomic, assign) BOOL isSelected;
-
+@property(nonatomic, assign) BOOL                   isSelected;
 @end
 
-@interface ZLSeletedAddress : NSObject
 
-@property (nonatomic,assign) int mProvince;
-@property (nonatomic,assign) int mCity;
-@property (nonatomic,assign) int mArear;
-
-@property (nonatomic,strong) NSString *mProvinceStr;
-@property (nonatomic,strong) NSString *mCityStr;
-@property (nonatomic,strong) NSString *mArearStr;
-
-+ (ZLSeletedAddress *)ShareClient;
-+(void)destory;
--(NSString *)getAddress;
-
-@end
 
 
 
