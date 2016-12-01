@@ -739,5 +739,80 @@
     }];
     
 }
+#pragma mark----****----获取社区超市首页
+/**
+ 获取社区超市首页
+ 
+ @param mLat  纬度
+ @param mLng  经度
+ @param mType 类型：1超市  2报修 3家政干洗
+ @param block 返回值
+ */
+- (void)ZLGetShopHomePage:(NSString *)mLat andLng:(NSString *)mLng andType:(int)mType block:(void(^)(APIObject *mBaseObj,ZLShopHomePage *mShopHome))block{
 
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    
+    
+    if (mLat) {
+        [para setNeedStr:mLat forKey:@"lat"];
+    }
+    if (mLng) {
+        [para setNeedStr:mLng forKey:@"lng"];
+        
+    }
+    
+    [para setInt:mType forKey:@"shop_type"];
+    
+    [self loadAPIWithTag:self path:@"/shop/shop_home" parameters:para call:^(APIObject *info) {
+        
+        
+        if (info.code == RESP_STATUS_YES) {
+            
+            NSMutableArray *mBannerArr = [NSMutableArray new];
+            NSMutableArray *mCampainArr = [NSMutableArray new];
+            NSMutableArray *mClassifyArr = [NSMutableArray new];
+            
+            id mBanner = [info.data objectForKey:@"banner"];
+            id mCanpain = [info.data objectForKey:@"campaign"];
+            id mClassify = [info.data objectForKey:@"classify"];
+            
+            if ([mBanner isKindOfClass:[NSArray class]]) {
+                for (NSDictionary *dic in mBanner) {
+                    
+                    [mBannerArr addObject:[ZLHomeBanner mj_objectWithKeyValues:dic]];
+                    
+                }
+            }
+            if ([mCanpain isKindOfClass:[NSArray class]]) {
+                for (NSDictionary *dic in mCanpain) {
+                    
+                    [mCampainArr addObject:[ZLShopHomeCampaign mj_objectWithKeyValues:dic]];
+                    
+                }
+            }
+            if ([mClassify isKindOfClass:[NSArray class]]) {
+                for (NSDictionary *dic in mClassify) {
+                    
+                    [mClassifyArr addObject:[ZLShopHomeClassify mj_objectWithKeyValues:dic]];
+                    
+                }
+            }
+            
+            ZLShopHomePage *mShopHomePage = [[ZLShopHomePage alloc] init];
+            mShopHomePage.banner = mBannerArr;
+            mShopHomePage.campaign = mCampainArr;
+            mShopHomePage.classify = mClassifyArr;
+            block(info,mShopHomePage);
+            
+        }else{
+            block(info,nil);
+            
+        }
+        
+    }];
+    
+    
+    
+    
+}
 @end

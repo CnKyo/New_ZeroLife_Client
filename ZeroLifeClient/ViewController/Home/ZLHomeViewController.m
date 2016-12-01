@@ -223,7 +223,8 @@
         mCommunityObj = mBlock;
         [self upDatePage];
     };
-    ZLAddressVC.mCommunityAdd = mCommunityObj;
+    ZLAddressVC.mCommunityAdd.cmut_lng = mCommunityObj.cmut_lng;
+    ZLAddressVC.mCommunityAdd.cmut_lat = mCommunityObj.cmut_lat;
     ZLAddressVC.hidesBottomBarWhenPushed = YES;
 
     [self pushViewController:ZLAddressVC];
@@ -537,6 +538,9 @@
         
     } else if (mIndex == 1) {
         ZLSuperMarketViewController *mSuperMarketVC = [ZLSuperMarketViewController new];
+        mSuperMarketVC.mType = 1;
+        mSuperMarketVC.mLat = mCommunityObj.cmut_lat;
+        mSuperMarketVC.mLng = mCommunityObj.cmut_lng;
         mSuperMarketVC.hidesBottomBarWhenPushed = YES;
         [self pushViewController:mSuperMarketVC];
         

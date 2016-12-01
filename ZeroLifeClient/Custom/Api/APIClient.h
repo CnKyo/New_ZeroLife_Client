@@ -121,4 +121,16 @@ typedef void (^TableShareSdkBlock)(int totalpage, NSArray *tableArr, APIShareSdk
  */
 - (void)ZLGetHomeCommunity:(NSString *)mLat andLng:(NSString *)mLng andSearchText:(NSString *)mSearchTx andProvinceId:(int)mProvince andCityId:(int)mCityId andCountryId:(int)mCountryId block:(void(^)(APIObject *mBaseObj,NSArray *mArr))block;
 
+#pragma mark----****----获取社区超市首页
+/**
+ 获取社区超市首页
+
+ @param mLat  纬度
+ @param mLng  经度
+ @param mType 类型：1超市  2报修 3家政干洗
+ @param block 返回值
+ */
+- (void)ZLGetShopHomePage:(NSString *)mLat andLng:(NSString *)mLng andType:(int)mType block:(void(^)(APIObject *mBaseObj,ZLShopHomePage *mShopHome))block;
+
+
 @end

@@ -360,6 +360,9 @@
 @property (strong,nonatomic) NSString* bnr_page;
 ///url（图片URL）
 @property (strong,nonatomic) NSString* bnr_image;
+///跳转的url
+@property (strong,nonatomic) NSString* bnr_url;
+
 ///状态1平台 2超市
 @property (assign,nonatomic) ZLHomeBannerType bnr_state;
 
@@ -489,17 +492,17 @@
 
 @end
 @interface ZLAppSet : NSObject
-
+///
 @property (strong,nonatomic) NSString* fig_android;
-
+///
 @property (strong,nonatomic) NSString* fig_ios;
-
+///
 @property (assign,nonatomic) int fig_is_upgrade;
-
+///
 @property (strong,nonatomic) NSString* fig_phone;
-
+///
 @property (strong,nonatomic) NSString* fig_qq;
-
+///
 @property (strong,nonatomic) NSString* fig_version;
 
 
@@ -511,4 +514,61 @@
 
 
 @end
+#pragma mark----****----社区超市首页
+///社区超市首页
+@interface ZLShopHomePage : NSObject
+///banner
+@property (strong,nonatomic) NSArray* banner;
+///活动
+@property (strong,nonatomic) NSArray* campaign;
+///分类
+@property (strong,nonatomic) NSArray* classify;
+
+
+@end
+#pragma mark----****----社区超市首页banner
+///社区超市首页活动
+@interface ZLShopHomeCampaign : NSObject
+///活动ID
+@property (assign,nonatomic) int adv_id;
+///公司ID
+@property (assign,nonatomic) int cpn_id;
+///活动标题
+@property (strong,nonatomic) NSString* adv_title;
+///活动图片
+@property (strong,nonatomic) NSString* adv_image;
+///点击跳转类型（0:WAP;1:原生）
+@property (assign,nonatomic) ZLShopHomeCampainType adv_click_type;
+///Wap页面URL
+@property (strong,nonatomic) NSString* adv_click_url;
+///店铺ID
+@property (assign,nonatomic) int shop_id;
+
+
+@end
+
+#pragma mark----****----社区超市首页分类
+///社区超市首页分类
+@interface ZLShopHomeClassify : NSObject
+///分类ID
+@property (assign,nonatomic) int cls_id;
+///店铺ID（通用分类为0）
+@property (assign,nonatomic) int shop_id;
+///父级ID
+@property (assign,nonatomic) int cls_parent;
+///级别
+@property (assign,nonatomic) int cls_level;
+///名称
+@property (strong,nonatomic) NSString* cls_name;
+///图片
+@property (strong,nonatomic) NSString* cls_image;
+///排序
+@property (assign,nonatomic) int cls_sort;
+
+
+@end
+
+
+
+
 

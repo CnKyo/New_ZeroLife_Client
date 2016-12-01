@@ -644,3 +644,19 @@ bool m_bind = NO;
 
 @end
 
+
+@implementation ZLShopHomePage
+
+
+
+@end
+@implementation ZLShopHomeClassify
+
+
+
+@end
+@implementation ZLShopHomeCampaign
+
+
+
+@end
