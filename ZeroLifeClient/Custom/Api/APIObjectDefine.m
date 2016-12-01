@@ -521,6 +521,7 @@ static ZLUserInfo *g_user = nil;
 //    
 //    block(info,[ZLUserInfo ZLCurrentUser]);
 //}
+
 - (BOOL)ZLUserIsValid{
     
     return self.user_id != 0;
@@ -577,6 +578,114 @@ static ZLUserInfo *g_user = nil;
 @end
 
 @implementation ZLHomeCommunity
+
+
+
+@end
+@implementation ZLAPPInfo
+{
+    
+    NSOperationQueue *queue;
+    NSURLConnection *_connection;
+    NSMutableData *_reveivedData;
+}
+
+static ZLAPPInfo *m_Appinfo = nil;
+bool m_bind = NO;
+
++ (ZLAPPInfo *)ZLCurrentAppInfo{
+    if (m_Appinfo) {
+        return m_Appinfo;
+    }
+    if (m_bind) {
+        return nil;
+    }
+    
+    m_bind = YES;
+    
+    @synchronized (self) {
+        if (!m_Appinfo) {
+            m_Appinfo = [ZLAPPInfo loadAppInfo];
+        }
+    }
+    m_bind = NO;
+    return m_Appinfo;
+}
++(ZLAPPInfo*)loadAppInfo
+{
+    NSUserDefaults* def = [NSUserDefaults standardUserDefaults];
+    NSDictionary* dat = [def objectForKey:@"appInfo"];
+    if( dat )
+    {
+        ZLAPPInfo* tu = [ZLAPPInfo mj_objectWithKeyValues:dat];
+        return tu;
+    }
+    return nil;
+}
++(void)cleanAppInfo
+{
+    NSUserDefaults* def = [NSUserDefaults standardUserDefaults];
+    [def setObject:nil forKey:@"appInfo"];
+    [def synchronize];
+}
+-(void)saveAppInfo:(NSDictionary *)dccat
+{
+    dccat = [Util delNUll:dccat];
+    
+    NSMutableDictionary *dcc = [[NSMutableDictionary alloc] initWithDictionary:dccat];
+    NSUserDefaults* def = [NSUserDefaults standardUserDefaults];
+    
+    [def setObject:dcc forKey:@"appInfo"];
+    
+    
+    
+    [def synchronize];
+}
+- (BOOL)ZLAppinfoIsValid{
+    return self.set.fig_phone != nil;
+}
+
++ (void)ZLDealSession:(APIObject *)info  block:(void(^)(APIObject* resb, ZLAPPInfo *appInfo))block{
+    
+    if (info.code == 200) {
+        NSDictionary *mTempDic = info.data;
+        NSMutableDictionary* tdic = [[NSMutableDictionary alloc]initWithDictionary:info.data];
+        
+        ZLAPPInfo *tu = [ZLAPPInfo mj_objectWithKeyValues:tdic];
+        mTempDic = tdic;
+        
+        if ([tu ZLAppinfoIsValid]) {
+            [[ZLAPPInfo alloc] saveAppInfo:mTempDic];
+            m_Appinfo = nil;
+        }
+    }
+    
+    block(info,[ZLAPPInfo ZLCurrentAppInfo]);
+}
+@end
+@implementation ZLAppSet
+
+
+
+@end
+@implementation ZLAPPMethod
+
+
+
+@end
+
+
+@implementation ZLShopHomePage
+
+
+
+@end
+@implementation ZLShopHomeClassify
+
+
+
+@end
+@implementation ZLShopHomeCampaign
 
 
 

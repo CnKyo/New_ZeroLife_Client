@@ -10,4 +10,9 @@
 
 @interface ZLSuperMarketViewController : CustomVC
 
+///店铺类型（1超市 2报修 3干洗服务
+@property (assign,nonatomic) int mType;
+@property (strong,nonatomic) NSString *mLat;
+@property (strong,nonatomic) NSString *mLng;
+
 @end

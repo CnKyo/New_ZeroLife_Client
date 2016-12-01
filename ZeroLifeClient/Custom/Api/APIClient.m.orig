@@ -333,14 +333,40 @@
  *  @param it       提交信息对象
  *  @param callback 返回信息
  */
--(void)userInfoEditWithTag:(NSObject *)tag postItem:(HouseObject *)it call:(void (^)(APIObject* info))callback
+-(void)userInfoEditWithTag:(NSObject *)tag postItem:(ZLUserInfo *)it call:(void (^)(APIObject* info))callback
 {
-    NSDictionary *paramDic = [it mj_keyValues];
-    [self loadAPIWithTag:tag path:@"/user/user/user_edit" parameters:paramDic call:^(APIObject *info) {
+    NSMutableDictionary* paramDic = [NSMutableDictionary dictionary];
+    [paramDic setInt:it.user_id forKey:@"user_id"];
+    [paramDic setInt:it.user_sex forKey:@"user_sex"];
+    [paramDic setNeedStr:it.user_nick forKey:@"user_nick_name"];
+    [paramDic setNeedStr:it.user_header forKey:@"user_header_url"];
+    [self loadAPIWithTag:tag path:@"/user/user_edit" parameters:paramDic call:^(APIObject *info) {
         callback(info);
     }];
 }
 
+
+
+/**
+ *  用户资料编辑接口
+ *
+ *  @param tag      链接对象
+ *  @param ison     是否开启推送 0不开启 1开启
+ *  @param callback 返回信息
+ */
+-(void)userPushSettingWithTag:(NSObject *)tag isOn:(BOOL)ison call:(void (^)(APIObject* info))callback
+{
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    if (user.user_id > 0) {
+        NSMutableDictionary* paramDic = [NSMutableDictionary dictionary];
+        [paramDic setObject:StringWithBool(ison) forKey:@"user_is_notify"];
+        [paramDic setInt:user.user_id forKey:@"user_id"];
+        [self loadAPIWithTag:tag path:@"/user/user_edit" parameters:paramDic call:^(APIObject *info) {
+            callback(info);
+        }];
+    } else
+        callback([APIObject infoWithReLoginErrorMessage:@"请重新登陆"]);
+}
 
 
 #pragma mark----****----用户地址管理
@@ -352,15 +378,19 @@
  */
 -(void)addressListWithTag:(NSObject *)tag call:(TableArrBlock)callback
 {
-    NSMutableDictionary* paramDic = [NSMutableDictionary dictionary];
-    [paramDic setInt:6 forKey:@"user_id"];
-    [self loadAPIWithTag:self path:@"/user/address/address_list" parameters:paramDic call:^(APIObject *info) {
-        NSArray *newArr = [AddressObject mj_objectArrayWithKeyValuesArray:[info.data objectWithKey:@"address"]];
-        if (newArr.count > 0)
-            [AddressObject arrInsertToDB:newArr];
-        
-        callback(newArr, info);
-    }];
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    if (user.user_id > 0) {
+        NSMutableDictionary* paramDic = [NSMutableDictionary dictionary];
+        [paramDic setInt:user.user_id forKey:@"user_id"];
+        [self loadAPIWithTag:self path:@"/user/address/address_list" parameters:paramDic call:^(APIObject *info) {
+            NSArray *newArr = [AddressObject mj_objectArrayWithKeyValuesArray:[info.data objectWithKey:@"address"]];
+            if (newArr.count > 0)
+                [AddressObject arrInsertToDB:newArr];
+            
+            callback(newArr, info);
+        }];
+    } else
+        callback(nil, [APIObject infoWithReLoginErrorMessage:@"请重新登陆"]);
 }
 
 
@@ -369,16 +399,33 @@
  *
  *  @param tag      链接对象
  *  @param it       提交信息对象
+ *  @param is_default 是否设置为默认地址
  *  @param callback 返回信息
  */
--(void)addressInfoEditWithTag:(NSObject *)tag postItem:(AddressObject *)it call:(void (^)(APIObject* info))callback
+-(void)addressInfoEditWithTag:(NSObject *)tag postItem:(AddressObject *)it is_default:(BOOL)is_default call:(void (^)(APIObject* info))callback
 {
-    NSMutableDictionary *paramDic = [it mj_keyValues];
-    [paramDic setInt:6 forKey:@"user_id"];
-    [paramDic setInt:it.addr_sort forKey:@"is_default"];
-    [self loadAPIWithTag:tag path:@"/user/address/address_edit" parameters:paramDic call:^(APIObject *info) {
-        callback(info);
-    }];
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    if (user.user_id > 0) {
+        NSMutableDictionary *paramDic = [it mj_keyValues];
+        [paramDic setInt:user.user_id forKey:@"user_id"];
+        
+        if (is_default) {
+            AddressObject *defultItem = [AddressObject defaultAddress];
+            if (defultItem != nil) {
+                if (defultItem.addr_id == it.addr_id)  //如果自身是默认地址，就不用再更新
+                    [paramDic setInt:0 forKey:@"is_default"];
+                else
+                    [paramDic setInt:defultItem.addr_sort+1 forKey:@"is_default"]; //在默认地址的sort上加１
+            } else
+                [paramDic setInt:1 forKey:@"is_default"]; //没有默认地址设置为１
+        } else
+            [paramDic setInt:0 forKey:@"is_default"];
+        
+        [self loadAPIWithTag:tag path:@"/user/address/address_edit" parameters:paramDic call:^(APIObject *info) {
+            callback(info);
+        }];
+    } else
+        callback([APIObject infoWithReLoginErrorMessage:@"请重新登陆"]);
 }
 
 
@@ -391,12 +438,16 @@
  */
 -(void)addressInfoDeleteWithTag:(NSObject *)tag addr_id:(int)addr_id call:(void (^)(APIObject* info))callback
 {
-    NSMutableDictionary* paramDic = [NSMutableDictionary dictionary];
-    [paramDic setInt:6 forKey:@"user_id"];
-    [paramDic setInt:addr_id forKey:@"addr_id"];
-    [self loadAPIWithTag:tag path:@"/user/address/address_delete" parameters:paramDic call:^(APIObject *info) {
-        callback(info);
-    }];
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    if (user.user_id > 0) {
+        NSMutableDictionary* paramDic = [NSMutableDictionary dictionary];
+        [paramDic setInt:user.user_id forKey:@"user_id"];
+        [paramDic setInt:addr_id forKey:@"addr_id"];
+        [self loadAPIWithTag:tag path:@"/user/address/address_delete" parameters:paramDic call:^(APIObject *info) {
+            callback(info);
+        }];
+    } else
+        callback([APIObject infoWithReLoginErrorMessage:@"请重新登陆"]);
 }
 
 
@@ -409,12 +460,18 @@
  */
 -(void)houseListWithTag:(NSObject *)tag call:(TableArrBlock)callback
 {
-    NSMutableDictionary* paramDic = [NSMutableDictionary dictionary];
-    [paramDic setInt:6 forKey:@"user_id"];
-    [self loadAPIWithTag:self path:@"/user/house/house_list" parameters:paramDic call:^(APIObject *info) {
-        NSArray *newArr = [HouseObject mj_objectArrayWithKeyValuesArray:info.data];
-        callback(newArr, info);
-    }];
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    if (user.user_id > 0) {
+        NSMutableDictionary* paramDic = [NSMutableDictionary dictionary];
+        [paramDic setInt:user.user_id forKey:@"user_id"];
+        [self loadAPIWithTag:self path:@"/user/house/house_list" parameters:paramDic call:^(APIObject *info) {
+            NSArray *newArr = [HouseObject mj_objectArrayWithKeyValuesArray:[info.data objectWithKey:@"house"]];
+            if (newArr.count > 0)
+                [HouseObject arrInsertToDB:newArr];
+            callback(newArr, info);
+        }];
+    } else
+        callback(nil, [APIObject infoWithReLoginErrorMessage:@"请重新登陆"]);
 }
 
 
@@ -425,12 +482,29 @@
  *  @param it       提交信息对象
  *  @param callback 返回信息
  */
--(void)houseInfoEditWithTag:(NSObject *)tag postItem:(HouseObject *)it call:(void (^)(APIObject* info))callback
+-(void)houseInfoEditWithTag:(NSObject *)tag postItem:(HouseObject *)it is_default:(BOOL)is_default call:(void (^)(APIObject* info))callback
 {
-    NSDictionary *paramDic = [it mj_keyValues];
-    [self loadAPIWithTag:tag path:@"/user/house/house_edit" parameters:paramDic call:^(APIObject *info) {
-        callback(info);
-    }];
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    if (user.user_id > 0) {
+        NSMutableDictionary *paramDic = [it mj_keyValues];
+        [paramDic setInt:user.user_id forKey:@"user_id"];
+        
+        if (is_default) {
+            HouseObject *defultItem = [HouseObject defaultAddress];
+            if (defultItem != nil) {
+                if (defultItem.real_id == it.real_id)  //如果自身是默认地址，就不用再更新
+                    [paramDic setInt:0 forKey:@"is_default"];
+                else
+                    [paramDic setInt:defultItem.real_id+1 forKey:@"is_default"]; //在默认地址的sort上加１
+            } else
+                [paramDic setInt:1 forKey:@"is_default"]; //没有默认地址设置为１
+        } else
+            [paramDic setInt:0 forKey:@"is_default"];
+        [self loadAPIWithTag:tag path:@"/user/house/house_edit" parameters:paramDic call:^(APIObject *info) {
+            callback(info);
+        }];
+    } else
+        callback([APIObject infoWithReLoginErrorMessage:@"请重新登陆"]);
 }
 
 
@@ -443,16 +517,20 @@
  */
 -(void)houseInfoDeleteWithTag:(NSObject *)tag real_id:(int)real_id call:(void (^)(APIObject* info))callback
 {
-    NSMutableDictionary* paramDic = [NSMutableDictionary dictionary];
-    [paramDic setInt:6 forKey:@"user_id"];
-    [paramDic setInt:real_id forKey:@"real_id"];
-    [self loadAPIWithTag:tag path:@"/user/house/house_delete" parameters:paramDic call:^(APIObject *info) {
-        callback(info);
-    }];
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    if (user.user_id > 0) {
+        NSMutableDictionary* paramDic = [NSMutableDictionary dictionary];
+        [paramDic setInt:6 forKey:@"user_id"];
+        [paramDic setInt:real_id forKey:@"real_id"];
+        [self loadAPIWithTag:tag path:@"/user/house/house_delete" parameters:paramDic call:^(APIObject *info) {
+            callback(info);
+        }];
+    } else
+        callback([APIObject infoWithReLoginErrorMessage:@"请重新登陆"]);
 }
 
 
-
+#pragma mark----****----社区管理
 /**
  *   社区列表接口
  *  1. 使用search搜索（请求参数：search）；2. 以省市县获取数据（请求参数cmut_province、 cmut_city、cmut_county）；3. 获取附近小区数据--默认请求方式（请求参数：lat、lng）
@@ -492,9 +570,33 @@
 }
 
 
+/**
+ *   社区楼栋列表接口
+ *
+ *  @param tag      链接对象
+ *  @param callback 返回列表
+ */
+-(void)communityBansetListWithTag:(NSObject *)tag cmut_id:(int)cmut_id call:(TableArrBlock)callback
+{
+    NSMutableDictionary* paramDic = [NSMutableDictionary dictionary];
+    [paramDic setInt:cmut_id forKey:@"cmut_id"];
+    [self loadAPIWithTag:self path:@"/community/communityBanset" parameters:paramDic call:^(APIObject *info) {
+        if (info.code == RESP_STATUS_YES && [info.data isKindOfClass:[NSArray class]]) {
+            NSArray *newArr = [CommunityUmitsetObject mj_objectArrayWithKeyValuesArray:info.data];
+            callback(newArr, info);
+        } else
+            callback(nil, info);
+    }];
+}
 
 
+<<<<<<< HEAD
 
+
+#pragma mark----****----用户登录注册管理
+=======
+#pragma mark----****----登录
+>>>>>>> local_master
 - (void)ZLLoginWithPhone:(NSString *)mPhone andPwd:(NSString *)mPwd block:(void(^)(APIObject *mBaseObj,ZLUserInfo *mUser))block{
     
     NSMutableDictionary *para = [NSMutableDictionary new];
@@ -504,58 +606,80 @@
     [para setObject:[Util getAppVersion] forKey:@"app_v"];
     [para setObject:[Util getAPPBuildNum] forKey:@"sys_v"];
     
-<<<<<<< HEAD
-    [self loadAPIWithTag:self path:@"/api/app/client/user/user_login" parameters:para call:^(APIObject *info) {
-=======
     [self loadAPIWithTag:self path:@"/user/user_login" parameters:para call:^(APIObject *info) {
->>>>>>> a34e49da3332a988accb3707cfdfd5e4925952df
-        [ZLUserInfo ZLDealSession:info andPwd:mPwd andOpenId:nil block:block];
+        if (info.code == RESP_STATUS_YES) {
+            ZLUserInfo *user = [ZLUserInfo mj_objectWithKeyValues:[info.data objectWithKey:@"user"]];
+            CommunityObject *community = [CommunityObject mj_objectWithKeyValues:[info.data objectWithKey:@"community"]];
+            WalletObject *wallet = [WalletObject mj_objectWithKeyValues:[info.data objectWithKey:@"wallet"]];
+            if (user != nil) {
+                if (community != nil)
+                    user.community = community;
+                
+                if (wallet != nil)
+                    user.wallet = wallet;
+                
+                [ZLUserInfo updateUserInfo:user];
+            }
+            block(info, user);
+        } else
+            block(info, nil);
     }];
-
-    
 }
+<<<<<<< HEAD
+
+
+=======
+#pragma mark----****----注册
+>>>>>>> local_master
 - (void)ZLRegistPhone:(NSString *)mPhone andPwd:(NSString *)mPwd andCode:(NSString *)mCode block:(void(^)(APIObject *mBaseObj))block{
     NSMutableDictionary *para = [NSMutableDictionary new];
     [para setObject:mPhone forKey:@"acc_phone"];
     [para setObject:mPwd forKey:@"acc_pass"];
     [para setObject:mCode forKey:@"v_code"];
     
-<<<<<<< HEAD
-    [self loadAPIWithTag:self path:@"/api/app/client/user/user_register" parameters:para call:^(APIObject *info) {
-=======
     [self loadAPIWithTag:self path:@"/user/user_register" parameters:para call:^(APIObject *info) {
->>>>>>> a34e49da3332a988accb3707cfdfd5e4925952df
         block(info);
     }];
-    
- 
 }
-
+#pragma mark----****----获取验证码
 - (void)ZLGetVerigyCode:(NSString *)mCode andType:(int)mtype block:(void(^)(APIObject *mBaseObj))block{
     NSMutableDictionary *para = [NSMutableDictionary new];
     [para setObject:mCode forKey:@"mobile"];
     [para setObject:NumberWithInt(mtype) forKey:@"type"];
     
-<<<<<<< HEAD
-    [self loadAPIWithTag:self path:@"/api/app/client/common/get_sms_code" parameters:para call:^(APIObject *info) {
-=======
+
     [self loadAPIWithTag:self path:@"/common/get_sms_code" parameters:para call:^(APIObject *info) {
->>>>>>> a34e49da3332a988accb3707cfdfd5e4925952df
         block(info);
     }];
-
 }
+<<<<<<< HEAD
+
+
+=======
+#pragma mark----****----app初始化加载数据
+- (void)ZLAppInit:(void(^)(APIObject *mBaseObj,ZLAPPInfo *mAppInfo))block{
+    
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    [para setInt:[ZLUserInfo ZLCurrentUser].user_id forKey:@"user_id"];
+    [para setObject:@"ios" forKey:@"sys_t"];
+    [para setObject:[Util getAppVersion] forKey:@"app_v"];
+    [para setObject:[Util getAPPBuildNum] forKey:@"sys_v"];
+
+    
+    [self loadAPIWithTag:self path:@"/common/initload" parameters:para call:^(APIObject *info) {
+
+        [ZLAPPInfo ZLDealSession:info block:block];
+    }];
+}
+>>>>>>> local_master
 #pragma mark----****----获取首页banner
 - (void)ZLgetHomeBanner:(void(^)(APIObject *mBaseObj,NSArray *mArr))block{
     
     NSMutableDictionary *para = [NSMutableDictionary new];
     
     
-<<<<<<< HEAD
-    [self loadAPIWithTag:self path:@"/api/app/client/home/banner" parameters:para call:^(APIObject *info) {
-=======
+
     [self loadAPIWithTag:self path:@"/home/banner" parameters:para call:^(APIObject *info) {
->>>>>>> a34e49da3332a988accb3707cfdfd5e4925952df
 
         NSMutableArray *mtempArr = [NSMutableArray new];
 
@@ -603,11 +727,8 @@
     }
     [para setInt:[ZLUserInfo ZLCurrentUser].user_id forKey:@"user_id"];
     
-<<<<<<< HEAD
-    [self loadAPIWithTag:self path:@"/api/app/client/home/homePage" parameters:para call:^(APIObject *info) {
-=======
+
     [self loadAPIWithTag:self path:@"/home/homePage" parameters:para call:^(APIObject *info) {
->>>>>>> a34e49da3332a988accb3707cfdfd5e4925952df
         
         
         if (info.code == RESP_STATUS_YES) {
@@ -647,5 +768,146 @@
     }];
 }
 
+#pragma mark----****----获取首页社区地址数据
+/**
+ 获取首页社区地址数据
+ 
+ @param mLat       纬度
+ @param mLng       经度
+ @param mSearchTx  搜索内容
+ @param mProvince  省份id
+ @param mCityId    城市id
+ @param mCountryId 区县id
+ @param block      返回值
+ */
+- (void)ZLGetHomeCommunity:(NSString *)mLat andLng:(NSString *)mLng andSearchText:(NSString *)mSearchTx andProvinceId:(int)mProvince andCityId:(int)mCityId andCountryId:(int)mCountryId block:(void(^)(APIObject *mBaseObj,NSArray *mArr))block{
 
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    
+    
+    if (mLat) {
+        [para setNeedStr:mLat forKey:@"lat"];
+    }
+    if (mLng) {
+        [para setNeedStr:mLng forKey:@"lng"];
+        
+    }
+    if (mSearchTx.length>0 || ![mSearchTx isEqualToString:@""]) {
+        [para setNeedStr:mSearchTx forKey:@"search"];
+    }
+    if (mProvince) {
+        [para setInt:mProvince forKey:@"cmut_province"];
+    }
+    if (mCityId) {
+        [para setInt:mCityId forKey:@"cmut_city"];
+    }
+    if (mCountryId) {
+        [para setInt:mCountryId forKey:@"cmut_county"];
+    }
+    
+    
+    [self loadAPIWithTag:self path:@"/community/community_search_list" parameters:para call:^(APIObject *info) {
+        
+        
+        if (info.code == RESP_STATUS_YES) {
+            
+            NSMutableArray *mTempArr = [NSMutableArray new];
+            
+            id mArrTemp = info.data;
+            
+            if ([mArrTemp isKindOfClass:[NSArray class]]) {
+                for (NSDictionary *dic in mArrTemp) {
+                    
+                    [mTempArr addObject:[ZLHomeCommunity mj_objectWithKeyValues:dic]];
+                    
+                }
+            }
+        
+            
+            block(info,mTempArr);
+         
+        }else{
+            block(info,nil);
+            
+        }
+        
+    }];
+    
+}
+#pragma mark----****----获取社区超市首页
+/**
+ 获取社区超市首页
+ 
+ @param mLat  纬度
+ @param mLng  经度
+ @param mType 类型：1超市  2报修 3家政干洗
+ @param block 返回值
+ */
+- (void)ZLGetShopHomePage:(NSString *)mLat andLng:(NSString *)mLng andType:(int)mType block:(void(^)(APIObject *mBaseObj,ZLShopHomePage *mShopHome))block{
+
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    
+    
+    if (mLat) {
+        [para setNeedStr:mLat forKey:@"lat"];
+    }
+    if (mLng) {
+        [para setNeedStr:mLng forKey:@"lng"];
+        
+    }
+    
+    [para setInt:mType forKey:@"shop_type"];
+    
+    [self loadAPIWithTag:self path:@"/shop/shop_home" parameters:para call:^(APIObject *info) {
+        
+        
+        if (info.code == RESP_STATUS_YES) {
+            
+            NSMutableArray *mBannerArr = [NSMutableArray new];
+            NSMutableArray *mCampainArr = [NSMutableArray new];
+            NSMutableArray *mClassifyArr = [NSMutableArray new];
+            
+            id mBanner = [info.data objectForKey:@"banner"];
+            id mCanpain = [info.data objectForKey:@"campaign"];
+            id mClassify = [info.data objectForKey:@"classify"];
+            
+            if ([mBanner isKindOfClass:[NSArray class]]) {
+                for (NSDictionary *dic in mBanner) {
+                    
+                    [mBannerArr addObject:[ZLHomeBanner mj_objectWithKeyValues:dic]];
+                    
+                }
+            }
+            if ([mCanpain isKindOfClass:[NSArray class]]) {
+                for (NSDictionary *dic in mCanpain) {
+                    
+                    [mCampainArr addObject:[ZLShopHomeCampaign mj_objectWithKeyValues:dic]];
+                    
+                }
+            }
+            if ([mClassify isKindOfClass:[NSArray class]]) {
+                for (NSDictionary *dic in mClassify) {
+                    
+                    [mClassifyArr addObject:[ZLShopHomeClassify mj_objectWithKeyValues:dic]];
+                    
+                }
+            }
+            
+            ZLShopHomePage *mShopHomePage = [[ZLShopHomePage alloc] init];
+            mShopHomePage.banner = mBannerArr;
+            mShopHomePage.campaign = mCampainArr;
+            mShopHomePage.classify = mClassifyArr;
+            block(info,mShopHomePage);
+            
+        }else{
+            block(info,nil);
+            
+        }
+        
+    }];
+    
+    
+    
+    
+}
 @end

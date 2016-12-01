@@ -23,6 +23,11 @@
     //banner数据源
     NSMutableArray *mBannerArr;
     
+    //活动数据源
+    NSMutableArray *mCampainArr;
+    //分类数据源
+    NSMutableArray *mClassifyArr;
+    
     ZLSuperMarketSearchView *mSearchView;
     
 
@@ -32,6 +37,11 @@
     // Do any additional setup after loading the view.
     self.navigationItem.title = @"首页";
     mBannerArr = [NSMutableArray new];
+
+    mCampainArr = [NSMutableArray new];
+
+    mClassifyArr = [NSMutableArray new];
+
     
     mSearchView = [ZLSuperMarketSearchView shareView];
     mSearchView.frame = CGRectMake(0, 0, 200, 30);
@@ -54,9 +64,34 @@
     [self.tableView registerNib:nib forCellReuseIdentifier:@"actovotyTypeCell2"];
 
     
-    [self loadData];
-
+//    [self loadData];
+    
+    [self setTableViewHaveHeader];
 }
+
+
+- (void)reloadTableViewDataSource{
+
+    [super reloadTableViewDataSource];
+    
+    [[APIClient sharedClient] ZLGetShopHomePage:self.mLat andLng:self.mLng andType:self.mType block:^(APIObject *mBaseObj, ZLShopHomePage *mShopHome) {
+        
+        [self.tableArr removeAllObjects];
+        [self ZLHideEmptyView];
+        if (mBaseObj.code == RESP_STATUS_YES) {
+            [mBannerArr addObjectsFromArray:mShopHome.banner];
+            [mCampainArr addObjectsFromArray:mShopHome.campaign];
+            [mClassifyArr addObjectsFromArray:mShopHome.classify];
+        }else{
+        
+            [self showErrorStatus:mBaseObj.msg];
+            [self ZLShowEmptyView:mBaseObj.msg andImage:nil andHiddenRefreshBtn:NO];
+        }
+        
+        [self doneLoadingTableViewData];
+    }];
+}
+
 - (void)loadData{
     
     NSString * url1 = @"http://pic.newssc.org/upload/news/20161011/1476154849151.jpg";

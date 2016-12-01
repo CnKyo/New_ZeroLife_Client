@@ -592,6 +592,7 @@
 
 
 
+
 #pragma mark----****----用户登录注册管理
 - (void)ZLLoginWithPhone:(NSString *)mPhone andPwd:(NSString *)mPwd block:(void(^)(APIObject *mBaseObj,ZLUserInfo *mUser))block{
     
@@ -622,7 +623,8 @@
     }];
 }
 
-
+   
+#pragma mark----****----注册
 - (void)ZLRegistPhone:(NSString *)mPhone andPwd:(NSString *)mPwd andCode:(NSString *)mCode block:(void(^)(APIObject *mBaseObj))block{
     NSMutableDictionary *para = [NSMutableDictionary new];
     [para setObject:mPhone forKey:@"acc_phone"];
@@ -633,7 +635,7 @@
         block(info);
     }];
 }
-
+#pragma mark----****----获取验证码
 - (void)ZLGetVerigyCode:(NSString *)mCode andType:(int)mtype block:(void(^)(APIObject *mBaseObj))block{
     NSMutableDictionary *para = [NSMutableDictionary new];
     [para setObject:mCode forKey:@"mobile"];
@@ -646,6 +648,21 @@
 }
 
 
+#pragma mark----****----app初始化加载数据
+- (void)ZLAppInit:(void(^)(APIObject *mBaseObj,ZLAPPInfo *mAppInfo))block{
+    
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    [para setInt:[ZLUserInfo ZLCurrentUser].user_id forKey:@"user_id"];
+    [para setObject:@"ios" forKey:@"sys_t"];
+    [para setObject:[Util getAppVersion] forKey:@"app_v"];
+    [para setObject:[Util getAPPBuildNum] forKey:@"sys_v"];
+
+    
+    [self loadAPIWithTag:self path:@"/common/initload" parameters:para call:^(APIObject *info) {
+
+        [ZLAPPInfo ZLDealSession:info block:block];
+    }];
+}
 #pragma mark----****----获取首页banner
 - (void)ZLgetHomeBanner:(void(^)(APIObject *mBaseObj,NSArray *mArr))block{
     
@@ -808,5 +825,80 @@
     }];
     
 }
+#pragma mark----****----获取社区超市首页
+/**
+ 获取社区超市首页
+ 
+ @param mLat  纬度
+ @param mLng  经度
+ @param mType 类型：1超市  2报修 3家政干洗
+ @param block 返回值
+ */
+- (void)ZLGetShopHomePage:(NSString *)mLat andLng:(NSString *)mLng andType:(int)mType block:(void(^)(APIObject *mBaseObj,ZLShopHomePage *mShopHome))block{
 
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    
+    
+    if (mLat) {
+        [para setNeedStr:mLat forKey:@"lat"];
+    }
+    if (mLng) {
+        [para setNeedStr:mLng forKey:@"lng"];
+        
+    }
+    
+    [para setInt:mType forKey:@"shop_type"];
+    
+    [self loadAPIWithTag:self path:@"/shop/shop_home" parameters:para call:^(APIObject *info) {
+        
+        
+        if (info.code == RESP_STATUS_YES) {
+            
+            NSMutableArray *mBannerArr = [NSMutableArray new];
+            NSMutableArray *mCampainArr = [NSMutableArray new];
+            NSMutableArray *mClassifyArr = [NSMutableArray new];
+            
+            id mBanner = [info.data objectForKey:@"banner"];
+            id mCanpain = [info.data objectForKey:@"campaign"];
+            id mClassify = [info.data objectForKey:@"classify"];
+            
+            if ([mBanner isKindOfClass:[NSArray class]]) {
+                for (NSDictionary *dic in mBanner) {
+                    
+                    [mBannerArr addObject:[ZLHomeBanner mj_objectWithKeyValues:dic]];
+                    
+                }
+            }
+            if ([mCanpain isKindOfClass:[NSArray class]]) {
+                for (NSDictionary *dic in mCanpain) {
+                    
+                    [mCampainArr addObject:[ZLShopHomeCampaign mj_objectWithKeyValues:dic]];
+                    
+                }
+            }
+            if ([mClassify isKindOfClass:[NSArray class]]) {
+                for (NSDictionary *dic in mClassify) {
+                    
+                    [mClassifyArr addObject:[ZLShopHomeClassify mj_objectWithKeyValues:dic]];
+                    
+                }
+            }
+            
+            ZLShopHomePage *mShopHomePage = [[ZLShopHomePage alloc] init];
+            mShopHomePage.banner = mBannerArr;
+            mShopHomePage.campaign = mCampainArr;
+            mShopHomePage.classify = mClassifyArr;
+            block(info,mShopHomePage);
+            
+        }else{
+            block(info,nil);
+            
+        }
+        
+    }];
+    
+    
+    
+    
+}
 @end

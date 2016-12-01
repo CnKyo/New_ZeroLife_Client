@@ -271,6 +271,14 @@ typedef enum{
 }ZLHomeNewsType;//首页新闻类型
 
 
+typedef enum{
+    
+    
+    ZLShopHomeCampainTypeWap,//0:wap
+    ZLShopHomeCampainTypeSys,//1是原生
+    
+}ZLShopHomeCampainType;//社区超市首页活动类型
+
 
 
 

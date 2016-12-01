@@ -64,7 +64,7 @@
     [super viewDidLoad];
     self.navigationItem.title = @"首页";
 
-    
+    [self appInit];
     mCommunityObj = [ZLHomeCommunity new];
     
     NSNotificationCenter *mNotify = [NSNotificationCenter defaultCenter];
@@ -101,9 +101,19 @@
 
     [self loadAddress];
 
-   
+    
 }
+#pragma mark----****----初始化app
+- (void)appInit{
 
+    [[APIClient sharedClient] ZLAppInit:^(APIObject *mBaseObj,ZLAPPInfo *mAppInfo) {
+        if (mBaseObj.code == RESP_STATUS_YES) {
+            
+        }else{
+            [self showErrorStatus:mBaseObj.msg];
+        }
+    }];
+}
 - (void)webAction:(NSNotification *)sender{
     MLLog(@"得到的通知对象:%@",sender);
     ZLWebViewViewController *vc = [ZLWebViewViewController new];
@@ -213,14 +223,16 @@
         mCommunityObj = mBlock;
         [self upDatePage];
     };
-    ZLAddressVC.mCommunityAdd = mCommunityObj;
+    ZLAddressVC.mCommunityAdd.cmut_lng = mCommunityObj.cmut_lng;
+    ZLAddressVC.mCommunityAdd.cmut_lat = mCommunityObj.cmut_lat;
     ZLAddressVC.hidesBottomBarWhenPushed = YES;
 
     [self pushViewController:ZLAddressVC];
 }
 #pragma mark ----****----消息按钮方法
 - (void)mRightAction:(UIButton *)sender{
-    MLLog(@"right");
+    MLLog(@"----******:%@",[ZLAPPInfo ZLCurrentAppInfo].set.fig_phone);
+    
     
 //    ZLHomeMessageViewController *ZLHomeMsgVC = [ZLHomeMessageViewController new];
 //    ZLHomeMsgVC.hidesBottomBarWhenPushed = YES;
@@ -526,6 +538,9 @@
         
     } else if (mIndex == 1) {
         ZLSuperMarketViewController *mSuperMarketVC = [ZLSuperMarketViewController new];
+        mSuperMarketVC.mType = 1;
+        mSuperMarketVC.mLat = mCommunityObj.cmut_lat;
+        mSuperMarketVC.mLng = mCommunityObj.cmut_lng;
         mSuperMarketVC.hidesBottomBarWhenPushed = YES;
         [self pushViewController:mSuperMarketVC];
         
