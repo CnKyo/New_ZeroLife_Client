@@ -9,6 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface ZLUserHeaderTableViewCell : UITableViewCell
+
+@property (weak, nonatomic) IBOutlet UIView *userInfoView; //用户登录后显示ui
+@property (weak, nonatomic) IBOutlet UIView *userLoginView; //用户登录前显示ui
+
+
 @property (weak, nonatomic) IBOutlet UIImageView *userImgView; //用户头像
 @property (weak, nonatomic) IBOutlet UILabel *userNameLable; //用户姓名
 @property (weak, nonatomic) IBOutlet UILabel *userNoteLable; //用户信息
