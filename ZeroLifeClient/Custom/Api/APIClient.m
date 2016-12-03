@@ -383,11 +383,15 @@
         NSMutableDictionary* paramDic = [NSMutableDictionary dictionary];
         [paramDic setInt:user.user_id forKey:@"user_id"];
         [self loadAPIWithTag:self path:@"/user/address/address_list" parameters:paramDic call:^(APIObject *info) {
-            NSArray *newArr = [AddressObject mj_objectArrayWithKeyValuesArray:[info.data objectWithKey:@"address"]];
-            if (newArr.count > 0)
-                [AddressObject arrInsertToDB:newArr];
-            
-            callback(newArr, info);
+            if (info.code == RESP_STATUS_YES) {
+                NSArray *newArr = [AddressObject mj_objectArrayWithKeyValuesArray:[info.data objectWithKey:@"address"]];
+                if (newArr.count > 0)
+                    [AddressObject arrInsertToDB:newArr];
+                
+                callback(newArr, info);
+            } else
+                callback(nil, info);
+
         }];
     } else
         callback(nil, [APIObject infoWithReLoginErrorMessage:@"请重新登陆"]);
@@ -465,10 +469,13 @@
         NSMutableDictionary* paramDic = [NSMutableDictionary dictionary];
         [paramDic setInt:user.user_id forKey:@"user_id"];
         [self loadAPIWithTag:self path:@"/user/house/house_list" parameters:paramDic call:^(APIObject *info) {
-            NSArray *newArr = [HouseObject mj_objectArrayWithKeyValuesArray:[info.data objectWithKey:@"house"]];
-            if (newArr.count > 0)
-                [HouseObject arrInsertToDB:newArr];
-            callback(newArr, info);
+            if (info.code == RESP_STATUS_YES) {
+                NSArray *newArr = [HouseObject mj_objectArrayWithKeyValuesArray:[info.data objectWithKey:@"house"]];
+                if (newArr.count > 0)
+                    [HouseObject arrInsertToDB:newArr];
+                callback(newArr, info);
+            } else
+                callback(nil, info);
         }];
     } else
         callback(nil, [APIObject infoWithReLoginErrorMessage:@"请重新登陆"]);
