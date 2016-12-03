@@ -35,7 +35,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.navigationItem.title = @"首页";
+    self.navigationItem.title = @"社区超市";
     mBannerArr = [NSMutableArray new];
 
     mCampainArr = [NSMutableArray new];
@@ -43,14 +43,14 @@
     mClassifyArr = [NSMutableArray new];
 
     
-    mSearchView = [ZLSuperMarketSearchView shareView];
-    mSearchView.frame = CGRectMake(0, 0, 200, 30);
-    self.navigationItem.titleView = mSearchView;
+//    mSearchView = [ZLSuperMarketSearchView shareView];
+//    mSearchView.frame = CGRectMake(0, 0, 200, 30);
+//    self.navigationItem.titleView = mSearchView;
+//    [self addRightBtn:YES andTitel:@"搜索" andImage:nil];
 
     
     [self addTableView];
 
-    [self addRightBtn:YES andTitel:@"搜索" andImage:nil];
     
     UINib   *nib = [UINib nibWithNibName:@"ZLSuperMarketShopCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"shopCell"];
@@ -69,6 +69,7 @@
     [self setTableViewHaveHeader];
 }
 
+//- (void)loadData{
 
 - (void)reloadTableViewDataSource{
 
@@ -77,6 +78,9 @@
     [[APIClient sharedClient] ZLGetShopHomePage:self.mLat andLng:self.mLng andType:self.mType block:^(APIObject *mBaseObj, ZLShopHomePage *mShopHome) {
         
         [self.tableArr removeAllObjects];
+        [mBannerArr removeAllObjects];
+        [mCampainArr removeAllObjects];
+        [mClassifyArr removeAllObjects];
         [self ZLHideEmptyView];
         if (mBaseObj.code == RESP_STATUS_YES) {
             [mBannerArr addObjectsFromArray:mShopHome.banner];
@@ -88,12 +92,30 @@
             [self ZLShowEmptyView:mBaseObj.msg andImage:nil andHiddenRefreshBtn:NO];
         }
         
-        [self doneLoadingTableViewData];
+        [self doneHeaderRereshing];
+
     }];
+    
+    [[APIClient sharedClient] ZLGetShopHomeShopList:self.mType andLat:self.mLat andLng:self.mLng andClassId:nil andPage:1 block:^(APIObject *mBaseObj, ZLShopHomeShopList *mShopList) {
+        
+        [self.tableArr removeAllObjects];
+        if (mBaseObj.code == RESP_STATUS_YES) {
+            
+            [self.tableArr addObjectsFromArray:mShopList.list];
+            
+        }else{
+            
+            [self showErrorStatus:mBaseObj.msg];
+        }
+        [self doneHeaderRereshing];
+
+    }];
+
 }
 
 - (void)loadData{
-    
+//- (void)reloadTableViewDataSource{
+
     NSString * url1 = @"http://pic.newssc.org/upload/news/20161011/1476154849151.jpg";
     NSString * url2 = @"http://img.mp.itc.cn/upload/20160328/f512a3a808c44b1ab9b18a96a04f46cc_th.jpg";
     NSString * url3 = @"http://p1.ifengimg.com/cmpp/2016/10/10/08/f2016fa9-f1ea-4da5-a0f5-ba388de46a96_size80_w550_h354.JPG";
@@ -135,13 +157,13 @@
 #pragma mark -- tableviewDelegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView              // Default is 1 if not implemented
 {
-    return 4;
+    return 3;
     
     
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     
-    if (section == 3) {
+    if (section == 2) {
         return 40;
     }else{
         return 0.5;
@@ -149,7 +171,7 @@
     
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    if (section == 3) {
+    if (section == 2) {
         ZLSuperMarketHeaderSectionView *mSectionHeader = [ZLSuperMarketHeaderSectionView shareView];
         return mSectionHeader;
     }else{
@@ -160,10 +182,10 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    if (section == 3) {
-        return 10;
+    if (section == 2) {
+        return self.tableArr.count;
     }else{
-        return 1;
+        return mCampainArr.count;
     }
     
     
@@ -175,7 +197,7 @@
     
     if (indexPath.section == 0) {
         
-        if (self.tableArr.count<=4) {
+        if (mBannerArr.count<=4) {
             return 330-90;
         }else{
             return 330;
@@ -183,8 +205,7 @@
         
         
     }else if (indexPath.section == 1){
-        return 100;
-    }else if(indexPath.section == 2){
+  
         return 180;
     }else{
         return 80;
@@ -205,32 +226,19 @@
         if (indexPath.section == 0) {
             reuseCellId = @"cell1";
             
-            ZLSupMarketCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
-            
-            if (cell == nil) {
-                cell = [[ZLSupMarketCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseCellId andBannerDataSource:mBannerArr andDataSource:self.tableArr];
-            }
-            
-            
+            ZLSupMarketCell *cell = [[ZLSupMarketCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseCellId andBannerDataSource:mBannerArr andDataSource:mClassifyArr];
+
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
             cell.delegate = self;
             
             return cell;
         }else if (indexPath.section == 1){
-            reuseCellId = @"actovotyTypeCell1";
-            
-            ZLSuperMarketShopCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
-            
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            
-            return cell;
-
-        }else if (indexPath.section == 2){
+ 
             reuseCellId = @"actovotyTypeCell2";
             
             ZLSuperMarketShopCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
-            
+            [cell setMCampain:mCampainArr[indexPath.row]];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
             return cell;
@@ -241,6 +249,8 @@
             reuseCellId = @"shopCell";
             
             ZLSuperMarketShopCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
+            
+            [cell setMShopObj:self.tableArr[indexPath.row]];
             
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
@@ -257,8 +267,19 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    ZLSuperMarketShopViewController *ZLSuperMarketShopVC = [ZLSuperMarketShopViewController new];
-    [self pushViewController:ZLSuperMarketShopVC];
+    if (indexPath.section == 0) {
+        
+    }else if (indexPath.section == 1){
+    
+        ZLShopHomeCampaign *mCampain = mCampainArr[indexPath.row];
+        
+    }else{
+        ZLSuperMarketShopViewController *ZLSuperMarketShopVC = [ZLSuperMarketShopViewController new];
+        ZLSuperMarketShopVC.mShopObj = self.tableArr[indexPath.row];
+        [self pushViewController:ZLSuperMarketShopVC];
+    }
+    
+    
     
     
     
@@ -270,9 +291,25 @@
  @param mIndex 索引
  */
 - (void)ZLSupermarketClassCellDidSelectedWithIndex:(NSInteger)mIndex{
-
+    [self upDatePage:mClassifyArr[mIndex]];
 }
+- (void)upDatePage:(ZLShopHomeClassify *)mClassiFy{
 
+    [[APIClient sharedClient] ZLGetShopHomeShopList:self.mType andLat:self.mLat andLng:self.mLng andClassId:[NSString stringWithFormat:@"%d",mClassiFy.cls_id] andPage:1 block:^(APIObject *mBaseObj, ZLShopHomeShopList *mShopList) {
+        
+        [self.tableArr removeAllObjects];
+        if (mBaseObj.code == RESP_STATUS_YES) {
+            
+            [self.tableArr addObjectsFromArray:mShopList.list];
+            
+        }else{
+        
+            [self showErrorStatus:mBaseObj.msg];
+        }
+        [self.tableView reloadData];
+    }];
+    
+}
 #pragma mark ----****----banner点击方法
 /**
  baner的代理方法v

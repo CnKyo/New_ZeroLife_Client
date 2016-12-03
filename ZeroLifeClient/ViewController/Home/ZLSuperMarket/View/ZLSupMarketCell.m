@@ -9,6 +9,7 @@
 #import "ZLSupMarketCell.h"
 #import "CustomDefine.h"
 #import "RKImageBrowser.h"
+#import "APIObjectDefine.h"
 
 @interface ZLSupMarketCell()
 <UIScrollViewDelegate>
@@ -45,102 +46,117 @@
     if (self) {
         
         self.backgroundColor = [UIColor colorWithRed:0.97 green:0.97 blue:0.97 alpha:1.00];
-        
-       mScrollerView = [[RKImageBrowser alloc] initWithFrame:CGRectMake(0, 0, screen_width, 150)];
-        mScrollerView.backgroundColor = [UIColor whiteColor];
-        [mScrollerView setBrowserWithImagesArray:mBannerDataSource];
-        __weak __typeof(self)weakSelf = self;
-
-        mScrollerView.didselectRowBlock = ^(NSInteger clickRow) {
-            MLLog(@"333点击了图片%ld", clickRow);
-            if ([weakSelf.delegate respondsToSelector:@selector(ZLSupermarketBannerDidSelectedWithIndex:)]) {
-                [weakSelf.delegate ZLSupermarketBannerDidSelectedWithIndex:clickRow];
+        if (mBannerDataSource.count > 0) {
+            mScrollerView = [[RKImageBrowser alloc] initWithFrame:CGRectMake(0, 0, screen_width, 150)];
+            mScrollerView.backgroundColor = [UIColor whiteColor];
+            [mScrollerView setBrowserWithImagesArray:mBannerDataSource];
+            __weak __typeof(self)weakSelf = self;
+            
+            mScrollerView.didselectRowBlock = ^(NSInteger clickRow) {
+                MLLog(@"333点击了图片%ld", clickRow);
+                if ([weakSelf.delegate respondsToSelector:@selector(ZLSupermarketBannerDidSelectedWithIndex:)]) {
+                    [weakSelf.delegate ZLSupermarketBannerDidSelectedWithIndex:clickRow];
+                    
+                }
                 
-            }
+            };
+            [self.contentView addSubview:mScrollerView];
 
-        };
-        [self.contentView addSubview:mScrollerView];
-       
-        int mPage;
-        if (mDataSource.count>8) {
-            mPage = 2;
-        }else{
-            mPage = 1;
         }
-        
-        //
-        mBgkView1 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, screen_width, 160)];
-        mBgkView2 = [[UIView alloc] initWithFrame:CGRectMake(screen_width, 0, screen_width, 160)];
-        UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 150, screen_width, 178)];
-        scrollView.backgroundColor = [UIColor whiteColor];
-        scrollView.contentSize = CGSizeMake(mPage*screen_width-16, 178);
-        
-        scrollView.pagingEnabled = YES;
-        scrollView.delegate = self;
-        scrollView.showsHorizontalScrollIndicator = NO;
-        
-        
-        CGRect mBgkView1Rect = mBgkView1.frame;
-        CGRect mBgkView2Rect = mBgkView2.frame;
-        CGRect mSRR = scrollView.frame;
-        //创建8个
-        for (int i = 0; i < mDataSource.count; i++) {
-            if (i < 4) {
-                CGRect frame = CGRectMake(i*screen_width/4, 0, screen_width/4, 80);
-                NSString *title = [mDataSource[i] objectForKey:@"title"];
-                NSString *imageStr = [mDataSource[i] objectForKey:@"image"];
-                ZLCustomBtnView *btnView = [[ZLCustomBtnView alloc] initWithZLCustomBtnViewFrame:frame Title:title ImageStr:imageStr];
-                btnView.tag = i;
-                [mBgkView1 addSubview:btnView];
-                UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(OnTapBtnView:)];
-                [btnView addGestureRecognizer:tap];
-                
-                mBgkView1Rect.size.height = 160/2;
-                mSRR.size.height = 178/2;
-            }else if(i<8){
-                CGRect frame = CGRectMake((i-4)*screen_width/4, 80, screen_width/4, 80);
-                NSString *title = [mDataSource[i] objectForKey:@"title"];
-                NSString *imageStr = [mDataSource[i] objectForKey:@"image"];
-                ZLCustomBtnView *btnView = [[ZLCustomBtnView alloc] initWithZLCustomBtnViewFrame:frame Title:title ImageStr:imageStr];
-                btnView.tag = i;
-                [mBgkView1 addSubview:btnView];
-                UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(OnTapBtnView:)];
-                [btnView addGestureRecognizer:tap];
-                mBgkView1Rect.size.height = 160;
-                mSRR.size.height = 178;
-            }else if(i < 12){
-                CGRect frame = CGRectMake((i-8)*screen_width/4, 0, screen_width/4, 80);
-                NSString *title = [mDataSource[i] objectForKey:@"title"];
-                NSString *imageStr = [mDataSource[i] objectForKey:@"image"];
-                ZLCustomBtnView *btnView = [[ZLCustomBtnView alloc] initWithZLCustomBtnViewFrame:frame Title:title ImageStr:imageStr];
-                btnView.tag = i;
-                [mBgkView2 addSubview:btnView];
-                UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(OnTapBtnView:)];
-                [btnView addGestureRecognizer:tap];
-                mBgkView2Rect.size.height = 160;
-                mSRR.size.height = 178;
-                
+        if (mDataSource.count > 0 ) {
+            int mPage;
+            if (mDataSource.count>8) {
+                mPage = 2;
             }else{
-                CGRect frame = CGRectMake((i-12)*screen_width/4, 80, screen_width/4, 80);
-                NSString *title = [mDataSource[i] objectForKey:@"title"];
-                NSString *imageStr = [mDataSource[i] objectForKey:@"image"];
-                ZLCustomBtnView *btnView = [[ZLCustomBtnView alloc] initWithZLCustomBtnViewFrame:frame Title:title ImageStr:imageStr];
-                btnView.tag = i;
-                [mBgkView2 addSubview:btnView];
-                UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(OnTapBtnView:)];
-                [btnView addGestureRecognizer:tap];
-                mBgkView2Rect.size.height = 160;
-                mSRR.size.height = 178;
-                
+                mPage = 1;
             }
+            
+            //
+            mBgkView1 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, screen_width, 160)];
+            mBgkView2 = [[UIView alloc] initWithFrame:CGRectMake(screen_width, 0, screen_width, 160)];
+            UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 150, screen_width, 178)];
+            scrollView.backgroundColor = [UIColor whiteColor];
+            scrollView.contentSize = CGSizeMake(mPage*screen_width-16, 178);
+            
+            scrollView.pagingEnabled = YES;
+            scrollView.delegate = self;
+            scrollView.showsHorizontalScrollIndicator = NO;
+            
+            
+            CGRect mBgkView1Rect = mBgkView1.frame;
+            CGRect mBgkView2Rect = mBgkView2.frame;
+            CGRect mSRR = scrollView.frame;
+            //创建8个
+            for (int i = 0; i < mDataSource.count; i++) {
+                if (i < 4) {
+                    
+                    
+                    CGRect frame = CGRectMake(i*screen_width/4, 0, screen_width/4, 80);
+                    ZLShopHomeClassify *ZLClassify = mDataSource[i];
+                    NSString *title = ZLClassify.cls_name;
+                    NSString *imageStr = ZLClassify.cls_image;
+                    ZLCustomBtnView *btnView = [[ZLCustomBtnView alloc] initWithZLCustomBtnViewFrame:frame Title:title ImageStr:imageStr];
+                    btnView.tag = i;
+                    [mBgkView1 addSubview:btnView];
+                    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(OnTapBtnView:)];
+                    [btnView addGestureRecognizer:tap];
+                    
+                    mBgkView1Rect.size.height = 160/2;
+                    mSRR.size.height = 178/2;
+                }else if(i<8){
+
+                    CGRect frame = CGRectMake((i-4)*screen_width/4, 80, screen_width/4, 80);
+                    ZLShopHomeClassify *ZLClassify = mDataSource[i];
+                    NSString *title = ZLClassify.cls_name;
+                    NSString *imageStr = ZLClassify.cls_image;
+                    ZLCustomBtnView *btnView = [[ZLCustomBtnView alloc] initWithZLCustomBtnViewFrame:frame Title:title ImageStr:imageStr];
+                    btnView.tag = i;
+                    [mBgkView1 addSubview:btnView];
+                    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(OnTapBtnView:)];
+                    [btnView addGestureRecognizer:tap];
+                    mBgkView1Rect.size.height = 160;
+                    mSRR.size.height = 178;
+                }else if(i < 12){
+
+                    CGRect frame = CGRectMake((i-8)*screen_width/4, 0, screen_width/4, 80);
+                    ZLShopHomeClassify *ZLClassify = mDataSource[i];
+                    NSString *title = ZLClassify.cls_name;
+                    NSString *imageStr = ZLClassify.cls_image;
+                    ZLCustomBtnView *btnView = [[ZLCustomBtnView alloc] initWithZLCustomBtnViewFrame:frame Title:title ImageStr:imageStr];
+                    btnView.tag = i;
+                    [mBgkView2 addSubview:btnView];
+                    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(OnTapBtnView:)];
+                    [btnView addGestureRecognizer:tap];
+                    mBgkView2Rect.size.height = 160;
+                    mSRR.size.height = 178;
+                    
+                }else{
+
+                    CGRect frame = CGRectMake((i-12)*screen_width/4, 80, screen_width/4, 80);
+                    ZLShopHomeClassify *ZLClassify = mDataSource[i];
+                    NSString *title = ZLClassify.cls_name;
+                    NSString *imageStr = ZLClassify.cls_image;
+                    ZLCustomBtnView *btnView = [[ZLCustomBtnView alloc] initWithZLCustomBtnViewFrame:frame Title:title ImageStr:imageStr];
+                    btnView.tag = i;
+                    [mBgkView2 addSubview:btnView];
+                    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(OnTapBtnView:)];
+                    [btnView addGestureRecognizer:tap];
+                    mBgkView2Rect.size.height = 160;
+                    mSRR.size.height = 178;
+                    
+                }
+            }
+            
+            mBgkView1.frame =mBgkView1Rect;
+            mBgkView2.frame =mBgkView2Rect;
+            scrollView.frame = mSRR;
+            [scrollView addSubview:mBgkView1];
+            [scrollView addSubview:mBgkView2];
+            [self addSubview:scrollView];
+
         }
         
-        mBgkView1.frame =mBgkView1Rect;
-        mBgkView2.frame =mBgkView2Rect;
-        scrollView.frame = mSRR;
-        [scrollView addSubview:mBgkView1];
-        [scrollView addSubview:mBgkView2];
-        [self addSubview:scrollView];
+        
     }
     return self;
 }

@@ -23,7 +23,7 @@
     
     ZLRepairsCustomView *view = [[[NSBundle mainBundle] loadNibNamed:@"ZLRepairsCustomView" owner:self options:nil] objectAtIndex:0];
     
-    [view.mFixLogo sd_setImageWithURL:[NSURL URLWithString:mLogoStr] placeholderImage:[UIImage imageNamed:@""]];
+    [view.mFixLogo sd_setImageWithURL:[NSURL URLWithString:mLogoStr] placeholderImage:[UIImage imageNamed:@"ZLDefault_Green"]];
     view.mFixName.text = mFixName;
     view.mFixContent.text = mFixContent;
     view.mClickBtn.tag = mTag;

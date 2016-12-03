@@ -31,6 +31,7 @@
 +(NSString *)houseIsOwner:(BOOL)is_owner; //得到房主租客文字
 +(NSString *)strUserSexType:(kUserSexType)type;  //得到性别文字
 +(NSString *)urlWithExtra:(NSString *)str;  //组合url地址
+
 @end
 
 
@@ -353,7 +354,15 @@
 //@end
 ///
 
+@interface ZLHomeFunvtionAndBanner : NSObject
 
+@property (strong,nonatomic) NSArray*              banners;///banner
+@property (strong,nonatomic) NSArray*              functions;///功能
+
+
+@end
+
+#pragma mark----****----首页banner
 @interface ZLHomeBanner : NSObject
 @property (assign,nonatomic) int                    bnr_id; ///banner	ID
 @property (assign,nonatomic) int                    bnr_type;///类型(1:平台/2:超市)
@@ -363,8 +372,20 @@
 @property (strong,nonatomic) NSString*              bnr_image;///url（图片URL）
 @property (assign,nonatomic) ZLHomeBannerType       bnr_state;///状态1平台 2超市
 @end
+#pragma mark----****----首页功能分类
+@interface ZLHomeFunctions : NSObject
 
+@property (assign,nonatomic) int                    fct_id;///功能ID
 
+@property (strong,nonatomic) NSString*              fct_name;///名称
+@property (strong,nonatomic) NSString*              fct_logo;///图片（没有图片用默认图片）
+
+@property (assign,nonatomic) ZLHomeFunctionType     fct_type;///类型（1.缴费；2.超市；3.报修；4.家政；5.便民；6.跑跑腿；7.公告；8.邻里圈）
+
+@property (assign,nonatomic) int                    fct_sort;///排序（从大到小）
+
+@property (strong,nonatomic) NSString*             fct_state;///状态
+@end
 
 
 @interface ZLHomeObj : NSObject
@@ -467,6 +488,9 @@
 @interface ZLShopHomePage : NSObject
 ///banner
 @property (strong,nonatomic) NSArray* banner;
+///功能分类
+@property (strong,nonatomic) NSArray* functions;
+
 ///活动
 @property (strong,nonatomic) NSArray* campaign;
 ///分类
@@ -475,10 +499,30 @@
 
 @end
 #pragma mark----****----社区超市首页banner
+
 ///社区超市首页活动
 @interface ZLShopHomeCampaign : NSObject
+///距离
+@property (assign,nonatomic) int distance;
+///类型？
+@property (assign,nonatomic) int adv_type;
+///活动类型？
+@property (assign,nonatomic) int cam_type;
+///添加时间？
+@property (strong,nonatomic) NSString* adv_add_time;
+///状态？
+@property (strong,nonatomic) NSString* adv_state;
+///？
+@property (strong,nonatomic) NSString* adv_add_person;
+///经度
+@property (strong,nonatomic) NSString* adv_lng;
+///纬度
+@property (strong,nonatomic) NSString* adv_lat;
+
 ///活动ID
 @property (assign,nonatomic) int adv_id;
+///店铺ID
+@property (assign,nonatomic) int shop_id;
 ///公司ID
 @property (assign,nonatomic) int cpn_id;
 ///活动标题
@@ -489,8 +533,7 @@
 @property (assign,nonatomic) ZLShopHomeCampainType adv_click_type;
 ///Wap页面URL
 @property (strong,nonatomic) NSString* adv_click_url;
-///店铺ID
-@property (assign,nonatomic) int shop_id;
+
 
 
 @end
@@ -516,7 +559,333 @@
 
 @end
 
+#pragma mark----****----社区超市首页店铺列表
+@interface ZLShopHomeShopList : NSObject
+///数据总条数
+@property (assign,nonatomic) int totalRow;
+///数据总分页数
+@property (assign,nonatomic) int totalPage;
+///当前分页页码
+@property (assign,nonatomic) int pageNumber;
+///当前分页标准（每页多少条数据）
+@property (assign,nonatomic) int pageSize;
+///店铺列表数据
+@property (strong,nonatomic) NSArray *list;
 
 
+@end
+#pragma mark----****----社区超市首页店铺对象
+@interface ZLShopHomeShopObj : NSObject
+///店铺id
+@property (assign,nonatomic) int shop_id;
+///名称
+@property (strong,nonatomic) NSString* shop_name;
+///图片
+@property (strong,nonatomic) NSString* shop_logo;
+///地址
+@property (strong,nonatomic) NSString* shop_address;
+///距离
+@property (strong,nonatomic) NSString* distance;
+///销量
+@property (assign,nonatomic) int ext_sales_month;
+
+///送达时间
+@property (strong,nonatomic) NSString* ext_max_time;
+
+///配送费
+@property (assign,nonatomic) float ext_min_price;
+
+@end
+#pragma mark----****----社区超市店铺对象
+@class ZLShopMsg;
+@class ZLShopCoupon;
+
+@interface ZLShopObj : NSObject
+///店铺信息
+@property (strong,nonatomic) ZLShopMsg *mShopMsg;
+///店铺优惠
+@property (strong,nonatomic) ZLShopCoupon *mShopCoupon;
+///店铺分类
+@property (strong,nonatomic) NSArray *mShopClassify;
+///店铺活动 
+@property (strong,nonatomic) NSArray *mShopCampains;
 
 
+@end
+#pragma mark----****----社区超市店铺对象
+
+@interface ZLShopMsg : NSObject
+///店铺id
+@property (assign,nonatomic) int shop_id;
+///名称
+@property (strong,nonatomic) NSString* shop_name;
+///店铺描述
+@property (strong,nonatomic) NSString* shop_desc;
+///店铺Logo图片URL
+@property (strong,nonatomic) NSString* shop_logo;
+///店铺地址
+@property (strong,nonatomic) NSString* shop_address;
+///店铺联系电话
+@property (strong,nonatomic) NSString* shop_phone;
+///店铺定位纬度
+@property (strong,nonatomic) NSString* shop_lat;
+///店铺定位经度
+@property (strong,nonatomic) NSString* shop_lng;
+///营业时间
+@property (strong,nonatomic) NSString* ext_open_time;
+///休业时间
+@property (strong,nonatomic) NSString* ext_close_time;
+///最低起送金额（0表示无限制）
+@property (assign,nonatomic) float ext_min_price;
+///配送时间描述
+@property (strong,nonatomic) NSString* ext_max_time;
+///整体评分
+@property (assign,nonatomic) float ext_score;
+///月销量
+@property (assign,nonatomic) int ext_sales_month;
+///店铺关闭时间（与休业时间不同），店铺关闭为年月日（2016.12.01）
+@property (strong,nonatomic) NSString* ext_closed_time;
+
+@end
+#pragma mark----****----社区超市店铺分类对象
+
+@interface ZLShopClassify : NSObject
+///分类ID
+@property (assign,nonatomic) int cls_id;
+///分类名称
+@property (strong,nonatomic) NSString* cls_name;
+///分类图标（视前端情况显示分类图片，如超市店铺列表页面的分类有图标，在店铺详情页面中的商品分类无图片）
+@property (strong,nonatomic) NSString* cls_image;
+///分类排序（从大到小）
+@property (assign,nonatomic) int cls_sort;
+
+@end
+#pragma mark----****----社区超市店铺优惠券对象
+
+@interface ZLShopCoupon : NSObject
+///是否有优惠券，0代表没有，1代表有
+@property (assign,nonatomic) int is_coupon;
+///优惠券领取WAP页面URL
+@property (strong,nonatomic) NSString* cup_url;
+@end
+#pragma mark----****----社区超市店铺活动对象
+
+@interface ZLShopCampain : NSObject
+///活动ID
+@property (assign,nonatomic) int cam_id;
+///活动名称
+@property (strong,nonatomic) NSString* cam_name;
+///是否为商品活动（0-否，1-是）
+@property (assign,nonatomic) int cam_is_goods;
+///类型（1.2.3...具体类型待定）
+@property (assign,nonatomic) int cam_type;
+///开始时间
+@property (strong,nonatomic) NSString* cam_begin;
+///结束时间
+@property (strong,nonatomic) NSString* cam_end;
+///状态
+@property (strong,nonatomic) NSString* cam_state;
+@end
+///店铺左边数据源
+@interface ZLShopLeftTableArr : NSObject
+///左边的类型
+@property (assign,nonatomic) int mLeftType;
+///活动
+@property (strong,nonatomic) NSArray* mCampainArr;
+///分类
+@property (strong,nonatomic) NSArray* mClassArr;
+
+
+@end
+
+#pragma mark----****----店铺商品对象
+///店铺商品列表
+@interface ZLShopGoodsList : NSObject
+///行数
+@property (assign,nonatomic) int totalRow;
+///页数
+@property (assign,nonatomic) int pageNumber;
+///最后一页
+@property (assign,nonatomic) BOOL lastPage;
+///第一页
+@property (assign,nonatomic) BOOL firstPage;
+///总页数
+@property (assign,nonatomic) int totalPage;
+///一页数量
+@property (assign,nonatomic) int pageSize;
+///列表数据
+@property (strong,nonatomic) NSArray* list;
+
+
+@end
+#pragma mark----****----商品类型返回对象
+///商品类型返回对象
+@interface ZLGoodsWithClass : NSObject
+///商品单位
+@property (strong,nonatomic) NSString* pro_unit;
+///活动商品限购量（0表示无限制），活动商品列表特有
+@property (assign,nonatomic) int pro_purchase_num;
+///商品SKU列表数据；注：活动商品时，数据和商品数据同一级
+@property (strong,nonatomic) NSArray* skus;
+///商品id
+@property (assign,nonatomic) int pro_id;
+///商品重量
+@property (strong,nonatomic) NSString* pro_weight;
+///商品小图URL
+@property (strong,nonatomic) NSString* img_url;
+///SKU id
+@property (assign,nonatomic) int sku_id;
+///保质期
+@property (strong,nonatomic) NSString* pro_date_life;
+///销售量
+@property (assign,nonatomic) int pro_sales_total;
+///生产日期
+@property (strong,nonatomic) NSString* pro_date_create;
+///商品名称
+@property (strong,nonatomic) NSString* pro_name;
+
+@end
+#pragma mark----****----商品库存对象
+///商品库存对象
+@interface ZLGoodsSKU : NSObject
+///规格值名称
+@property (strong,nonatomic) NSString* sta_val_name;
+///规格类型名称
+@property (strong,nonatomic) NSString* sta_name;
+///规格类型是否必选标识，1-是，0-否
+@property (assign,nonatomic) int sta_required;
+///商品对应SKU价格
+@property (assign,nonatomic) int sku_price;
+///规格类型ID
+@property (assign,nonatomic) int sta_id;
+///对应SKU库存
+@property (assign,nonatomic) int sku_stock;
+///SKU id
+@property (assign,nonatomic) int sku_id;
+///商品对应SKU成本
+@property (assign,nonatomic) int sku_cost;
+///规格值id
+@property (assign,nonatomic) int sta_val_id;
+
+@end
+#pragma mark----****----活动商品类型返回对象
+///活动商品类型返回对象
+@interface ZLGoodsWithCamp : NSObject
+
+///规格值名称
+@property (strong,nonatomic) NSString* sta_val_name;
+@property (strong,nonatomic) NSString* sta_val_state;
+
+///规格类型名称
+@property (strong,nonatomic) NSString* sta_name;
+///规格类型是否必选标识，1-是，0-否
+@property (assign,nonatomic) int sta_required;
+///对应SKU库存
+@property (assign,nonatomic) int sku_stock;
+///活动id，活动商品列表特有
+@property (assign,nonatomic) int cam_gid;
+///SKU id
+@property (assign,nonatomic) int sku_id;
+///活动商品限购量（0表示无限制），活动商品列表特有
+@property (assign,nonatomic) int cam_purchase_num;
+///生产日期
+@property (strong,nonatomic) NSString* pro_date_create;
+///
+@property (assign,nonatomic) int sku_id_def;
+///活动商品池商品数量，活动商品列表特有
+@property (assign,nonatomic) int cam_stock;
+///活动id，活动商品列表特有
+@property (assign,nonatomic) int cam_id;
+///商品单位
+@property (strong,nonatomic) NSString* pro_unit;
+///商品限购量（0表示无限制）
+@property (assign,nonatomic) int pro_purchase_num;
+///商品id
+@property (assign,nonatomic) int pro_id;
+///商品重量
+@property (strong,nonatomic) NSString* pro_weight;
+///活动价格，活动商品列表特有
+@property (assign,nonatomic) int cam_price;
+///商品小图URL
+@property (strong,nonatomic) NSString* img_url;
+///规格类型ID
+@property (assign,nonatomic) int sta_id;
+///商品对应SKU价格
+@property (assign,nonatomic) int sku_price;
+///保质期
+@property (strong,nonatomic) NSString* pro_date_life;
+///销售量
+@property (assign,nonatomic) int pro_sales_total;
+///商品对应SKU成本
+@property (assign,nonatomic) int sku_cost;
+///商品名称
+@property (strong,nonatomic) NSString* pro_name;
+///规格值id
+@property (assign,nonatomic) int sta_val_id;
+
+
+@end
+#pragma mark----****----活动商品详情返回对象
+///活动商品详情返回对象
+@interface ZLGoodsDetail : NSObject
+///商品编号
+@property (strong,nonatomic) NSString* pro_code;
+///图片数组
+@property (strong,nonatomic) NSArray* images;
+///商品材质、成分
+@property (strong,nonatomic) NSString* pro_component;
+///商品条码
+@property (strong,nonatomic) NSString* pro_code_bar;
+///活动商品ID
+@property (assign,nonatomic) int cam_gid;
+///商品描述
+@property (strong,nonatomic) NSString* pro_spec;
+///商品配件、备注
+@property (strong,nonatomic) NSString* pro_remark;
+///默认SKU ID
+@property (assign,nonatomic) int sku_id;
+///活动商品限购，0无限制
+@property (assign,nonatomic) int cam_purchase_num;
+///生产日期
+@property (strong,nonatomic) NSString* pro_date_create;
+///商品品牌英文名称
+@property (strong,nonatomic) NSString* bra_name_en;
+///商品品牌中文名称
+@property (strong,nonatomic) NSString* bra_name_cn;
+///活动商品池数量
+@property (assign,nonatomic) int cam_stock;
+///活动ID
+@property (assign,nonatomic) int cam_id;
+///商品单位
+@property (strong,nonatomic) NSString* pro_unit;
+///商品限购，0无限制；当为活动商品时，参照cam_purchase_num
+@property (assign,nonatomic) int pro_purchase_num;
+///商品ID
+@property (assign,nonatomic) int pro_id;
+///商品重量
+@property (strong,nonatomic) NSString* pro_weight;
+///商品品牌LOGO
+@property (strong,nonatomic) NSString* bra_logo;
+///活动价格，注：以上数据为活动商品特有数据
+@property (assign,nonatomic) int cam_price;
+///保质期描述，如《2年》
+@property (strong,nonatomic) NSString* pro_date_life;
+///销量
+@property (assign,nonatomic) int pro_sales_total;
+///商品自定义属性
+@property (strong,nonatomic) NSString* pro_property;
+///商品名称
+@property (strong,nonatomic) NSString* pro_name;
+
+@end
+#pragma mark----****----活动商品详情图片返回对象
+///
+@interface ZLGoodsDetailImg : NSObject
+///商品图片URL
+@property (strong,nonatomic) NSString* img_url;
+///商品图片ID
+@property (assign,nonatomic) int img_id;
+///商品图片排序，从大到小
+@property (assign,nonatomic) int img_sort;
+
+@end

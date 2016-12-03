@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "APIObjectDefine.h"
 @interface ZLSuperMarketShopLeftCellType : UITableViewCell
 
 /**
@@ -25,5 +25,7 @@
  */
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *mContentLeftContraint;
 
+@property (strong,nonatomic) ZLShopClassify *mClassify;
+@property (strong,nonatomic) ZLShopCampain *mCampain;
 
 @end

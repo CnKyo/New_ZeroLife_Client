@@ -89,7 +89,7 @@ typedef void (^TableShareSdkBlock)(int totalpage, NSArray *tableArr, APIShareSdk
 
 #pragma mark----****----获取首页banner
 ///获取首页banner
-- (void)ZLgetHomeBanner:(void(^)(APIObject *mBaseObj,NSArray *mArr))block;
+- (void)ZLgetHomeBanner:(void(^)(APIObject *mBaseObj,ZLHomeFunvtionAndBanner *mFunc))block;
 #pragma mark----****----获取首页数据
 ///获取首页数据
 - (void)ZLGetHome:(NSString *)mLat andLng:(NSString *)mLng block:(void(^)(APIObject *mBaseObj,ZLHomeObj *mHome))block;
@@ -120,5 +120,49 @@ typedef void (^TableShareSdkBlock)(int totalpage, NSArray *tableArr, APIShareSdk
  */
 - (void)ZLGetShopHomePage:(NSString *)mLat andLng:(NSString *)mLng andType:(int)mType block:(void(^)(APIObject *mBaseObj,ZLShopHomePage *mShopHome))block;
 
+#pragma mark----****----获取社区超市店铺列表
+/**
+ 获取社区超市店铺列表
+ 
+ @param mLat  纬度
+ @param mLng  经度
+ @param mClassId 店铺分类id
+ @param mPage 分页
+ @param block 返回值
+ */
+- (void)ZLGetShopHomeShopList:(int)mShopType andLat:(NSString *)mLat andLng:(NSString *)mLng andClassId:(NSString *)mClassId andPage:(int)mPage  block:(void(^)(APIObject *mBaseObj,ZLShopHomeShopList *mShopList))block;
+
+#pragma mark----****----获取社区超市店铺信息
+/**
+ 获取社区超市店铺信息
+
+ @param mShopType 店铺类型
+ @param mShopId   店铺id
+ @param block     返回值
+ */
+- (void)ZLGetShopMsgWithShopType:(int)mShopType andShopId:(int)mShopId block:(void(^)(APIObject *mBaseObj,ZLShopObj *mShop,ZLShopLeftTableArr *mLeftTabArr))block;
+
+#pragma mark----****----获取店铺商品信息
+/**
+ 获取店铺商品信息
+
+ @param mShopId  店铺id
+ @param mCamId   活动id
+ @param mClassId 分类id
+ @param mPage    分页
+ @param mType    类型
+ @param block    返回值
+ */
+- (void)ZLGetShopGoodsList:(int)mShopId andCamId:(int)mCamId andClassId:(int)mClassId andPage:(int)mPage andType:(ZLRightGoodsType)mType block:(void(^)(APIObject *mBaseObj,ZLShopGoodsList *mShopGoodsObj))block;
+
+#pragma mark----****----获取商品详情
+/**
+ 获取商品详情
+
+ @param mGoodsId 商品id
+ @param mCamId   活动id
+ @param block    返回值
+ */
+- (void)ZLGetGoodsDetail:(NSString *)mGoodsId andCamId:(NSString *)mCamId block:(void(^)(APIObject *mBaseObj,ZLGoodsDetail *mGoodsDetailObj,NSArray *mGoodsDetailImgArr))block;
 
 @end

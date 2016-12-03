@@ -550,10 +550,19 @@ static ZLUserInfo *g_user = nil;
 
 //@implementation ZLUserCommunityObj
 //@end
+@implementation ZLHomeFunvtionAndBanner
 
+
+
+@end
 
 
 @implementation ZLHomeBanner
+
+
+
+@end
+@implementation ZLHomeFunctions
 
 
 
@@ -686,6 +695,80 @@ bool m_bind = NO;
 
 @end
 @implementation ZLShopHomeCampaign
+
+
+
+@end
+@implementation ZLShopHomeShopList
+
+
+
+@end
+@implementation ZLShopHomeShopObj
+
+
+
+@end
+
+
+
+@implementation ZLShopObj
+
+
+
+@end
+@implementation ZLShopMsg
+
+
+
+@end
+@implementation ZLShopClassify
+
+
+
+@end
+@implementation ZLShopCoupon
+
+
+
+@end
+@implementation ZLShopCampain
+
+
+
+@end
+
+@implementation ZLShopLeftTableArr
+
+
+
+@end
+@implementation ZLShopGoodsList
+
+
+
+@end
+@implementation ZLGoodsWithClass
+
+
+
+@end
+@implementation ZLGoodsSKU
+
+
+
+@end
+@implementation ZLGoodsWithCamp
+
+
+
+@end
+@implementation ZLGoodsDetail
+
+
+
+@end
+@implementation ZLGoodsDetailImg
 
 
 

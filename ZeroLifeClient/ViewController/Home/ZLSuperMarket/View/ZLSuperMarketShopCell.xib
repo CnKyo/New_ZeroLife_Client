@@ -13,26 +13,26 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <frame key="frameInset" width="320" height="80"/>
+                <frame key="frameInset" width="320" height="79"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x7L-P8-nrr">
-                        <frame key="frameInset" width="1000" height="1000"/>
+                        <frame key="frameInset" minX="7" minY="2" width="60" height="60"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="60" id="3Lg-nZ-IuW"/>
                             <constraint firstAttribute="height" constant="60" id="DOL-qR-bz7"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="永辉超市" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IW8-5Z-EaG">
-                        <frame key="frameInset" width="1000" height="1000"/>
+                        <frame key="frameInset" minX="68" width="1000" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="hro-c8-Zyg"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="10000km" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I4e-kr-4It">
-                        <frame key="frameInset" width="1000" height="1000"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="10000km" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="I4e-kr-4It">
+                        <frame key="frameInset" minY="2" width="70" height="21"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="70" id="b1z-I5-TKI"/>
                             <constraint firstAttribute="height" constant="21" id="ejw-mi-Iae"/>
@@ -42,7 +42,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="ZLSuperMarket_Time" translatesAutoresizingMaskIntoConstraints="NO" id="eO4-ZN-5ws">
-                        <frame key="frameInset" width="1000" height="1000"/>
+                        <frame key="frameInset" minX="8" width="15" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="lDf-vD-nAS"/>
                             <constraint firstAttribute="width" constant="15" id="y6N-nZ-JtP"/>

@@ -14,5 +14,5 @@
  页面类型：1是超市2是家政
  */
 @property (assign,nonatomic) int mType;
-
+@property (strong,nonatomic) ZLShopHomeShopObj *mShopObj;
 @end

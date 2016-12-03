@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "APIObjectDefine.h"
 
 /**
  设置代理
@@ -96,5 +96,9 @@
 @property (strong, nonatomic) NSArray *mActivityDataSource;
 
 @property (assign,nonatomic) CGFloat mCellH;
+
+@property (assign,nonatomic) ZLGoodsDetail *mGoodsDetail;
+
+
 
 @end

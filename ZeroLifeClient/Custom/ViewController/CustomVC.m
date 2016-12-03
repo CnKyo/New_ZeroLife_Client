@@ -46,6 +46,9 @@
     self.view.backgroundColor = COLOR(247, 247, 247);
     navBarHairlineImageView = [self findHairlineImageViewUnder:self.navigationController.navigationBar];
 
+    
+    self.tableArr = [NSMutableArray new];
+    
     //[self addLeftBtn:YES andTitel:nil andImage:[UIImage imageNamed:@"ZLBackBtn_Image"]];
     
     // 建议基类中Lazy创建，进行二次封装，使用时直接调用，避免子类中频繁创建产生冗余代码的问题。
@@ -55,6 +58,7 @@
     [self.hudView setJHUDReloadButtonClickedBlock:^() {
         MLLog(@"重新加载");
         [_self reloadTableViewDataSource];
+        [_self reloadTableViewData];
     }];
 
 }
@@ -555,5 +559,8 @@
 
     [self.hudView hide];
 }
+///重新加载数据
+- (void)reloadTableViewData{
 
+}
 @end

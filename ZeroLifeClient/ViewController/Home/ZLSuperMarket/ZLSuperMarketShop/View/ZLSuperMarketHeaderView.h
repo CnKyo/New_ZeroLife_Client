@@ -53,6 +53,9 @@
  店铺内容
  */
 @property (weak, nonatomic) IBOutlet UILabel *mContent;
+///店铺子内容
+@property (weak, nonatomic) IBOutlet UILabel *mSubContent;
+
 
 /**
  优惠券按钮

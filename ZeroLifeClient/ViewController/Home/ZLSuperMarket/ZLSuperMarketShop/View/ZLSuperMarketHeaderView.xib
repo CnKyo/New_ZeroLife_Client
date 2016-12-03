@@ -27,7 +27,7 @@
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="askjashdk打开来是打算考虑到拉萨看到卡拉斯科德令哈时代阿斯顿好" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="Jbu-4X-S2H">
                     <constraints>
-                        <constraint firstAttribute="height" constant="42" id="xoK-qf-UgD"/>
+                        <constraint firstAttribute="height" constant="20" id="xoK-qf-UgD"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <nil key="textColor"/>
@@ -91,6 +91,14 @@
                         <constraint firstAttribute="height" constant="1" id="wOx-ya-e9g"/>
                     </constraints>
                 </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="askjashdk打开来是打算考虑到拉萨看到卡拉斯科德令哈时代阿斯顿好" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="HOz-VK-OjC">
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="fDD-iN-Jex"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -98,22 +106,25 @@
                 <constraint firstAttribute="trailing" secondItem="o7A-af-9CE" secondAttribute="trailing" id="4EU-Z7-Pze"/>
                 <constraint firstAttribute="trailing" secondItem="2h3-tu-kSl" secondAttribute="trailing" constant="17" id="53i-mJ-kRu"/>
                 <constraint firstAttribute="trailing" secondItem="szp-o2-yCd" secondAttribute="trailing" constant="17" id="5mO-vU-XIf"/>
+                <constraint firstItem="HOz-VK-OjC" firstAttribute="leading" secondItem="f1B-36-Xn6" secondAttribute="trailing" constant="8" id="6nl-Vy-UQG"/>
                 <constraint firstItem="O5E-fw-wUn" firstAttribute="leading" secondItem="f1B-36-Xn6" secondAttribute="trailing" constant="8" id="AmP-Mb-ihD"/>
                 <constraint firstItem="szp-o2-yCd" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="BQf-zR-q4z"/>
                 <constraint firstItem="o7A-af-9CE" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="GH6-Si-Q3f"/>
                 <constraint firstItem="Jbu-4X-S2H" firstAttribute="top" secondItem="O5E-fw-wUn" secondAttribute="bottom" constant="9" id="H0E-iL-n77"/>
-                <constraint firstItem="nud-Lb-Mlj" firstAttribute="top" secondItem="PH6-iC-10G" secondAttribute="bottom" constant="9" id="HUh-c6-AFm"/>
                 <constraint firstItem="nud-Lb-Mlj" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="J08-fg-8bo"/>
                 <constraint firstItem="SHM-iL-M3N" firstAttribute="top" secondItem="2h3-tu-kSl" secondAttribute="bottom" constant="8" id="JIa-zq-tpr"/>
                 <constraint firstItem="o7A-af-9CE" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="JuK-Tj-W1Z"/>
                 <constraint firstItem="2h3-tu-kSl" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="LZu-w2-frt"/>
                 <constraint firstAttribute="bottom" secondItem="o7A-af-9CE" secondAttribute="bottom" id="Mjl-Sh-tOH"/>
+                <constraint firstItem="HOz-VK-OjC" firstAttribute="top" secondItem="Jbu-4X-S2H" secondAttribute="bottom" constant="8" id="SSo-AP-KO7"/>
                 <constraint firstAttribute="trailing" secondItem="SHM-iL-M3N" secondAttribute="trailing" id="Tqu-6i-OOL"/>
                 <constraint firstAttribute="trailing" secondItem="PH6-iC-10G" secondAttribute="trailing" id="Tt6-MF-5ap"/>
                 <constraint firstItem="f1B-36-Xn6" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="WOL-M3-N8I"/>
                 <constraint firstItem="f1B-36-Xn6" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="Wfy-md-lrF"/>
                 <constraint firstItem="Jbu-4X-S2H" firstAttribute="leading" secondItem="f1B-36-Xn6" secondAttribute="trailing" constant="8" id="ax8-iu-gen"/>
+                <constraint firstItem="SHM-iL-M3N" firstAttribute="leading" secondItem="HOz-VK-OjC" secondAttribute="trailing" constant="8" id="b0A-iu-Bc5"/>
                 <constraint firstItem="2h3-tu-kSl" firstAttribute="leading" secondItem="O5E-fw-wUn" secondAttribute="trailing" constant="8" id="cl5-pj-6To"/>
+                <constraint firstItem="nud-Lb-Mlj" firstAttribute="top" secondItem="821-6X-J0V" secondAttribute="bottom" constant="9" id="g3b-AI-rYe"/>
                 <constraint firstItem="821-6X-J0V" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="68" id="oqO-kb-Fe3"/>
                 <constraint firstItem="821-6X-J0V" firstAttribute="top" secondItem="szp-o2-yCd" secondAttribute="bottom" constant="15" id="qg9-8h-glo"/>
                 <constraint firstAttribute="trailing" secondItem="nud-Lb-Mlj" secondAttribute="trailing" id="tpj-Vn-YIa"/>
@@ -133,8 +144,9 @@
                 <outlet property="mRateBtn" destination="SHM-iL-M3N" id="yM2-ua-AJj"/>
                 <outlet property="mRateView" destination="O5E-fw-wUn" id="df8-Y3-7Ca"/>
                 <outlet property="mShopLogo" destination="f1B-36-Xn6" id="rsa-ZT-EtB"/>
+                <outlet property="mSubContent" destination="HOz-VK-OjC" id="NXW-a8-39x"/>
             </connections>
-            <point key="canvasLocation" x="-49.5" y="-112"/>
+            <point key="canvasLocation" x="7" y="-110"/>
         </view>
     </objects>
 </document>

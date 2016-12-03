@@ -355,4 +355,18 @@ typedef enum _RelDic
 
 + (UIImage *)fullResolutionImageFromALAsset:(ALAsset *)asset;
 
+#pragma mark----截取字符串
+/**
+ 截取字符串第几位
+
+ @param mText  要截取的内容
+ @param mLocation 从第几位开始截取
+ @param mLength 要截取的长度
+
+ @return 返回结果
+ */
++ (NSString *)ZLCutStringWithText:(NSString *)mText andRangeWithLocation:(NSInteger)mLocation andRangeWithLength:(NSInteger)mLength;
+#pragma mark----是否有优惠券
+///是否有优惠券
++ (BOOL)iscoupon:(int)mCoupon;
 @end

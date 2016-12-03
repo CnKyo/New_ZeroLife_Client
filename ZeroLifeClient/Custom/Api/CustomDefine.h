@@ -185,11 +185,11 @@ static int const RESP_STATUS_LOGIN                  = 300;             //需要�
 
 
 
-static NSString* const  kAFAppDotNetApiBaseURLString    = @"http://localhost:8080";
-static NSString* const  kAFAppDotNetApiExtraURLString    = @"/crkj_zlife/api/app/client";
+//static NSString* const  kAFAppDotNetApiBaseURLString    = @"http://localhost:8080";
+//static NSString* const  kAFAppDotNetApiExtraURLString    = @"/crkj_zlife/api/app/client";
 
-//static NSString* const  kAFAppDotNetApiBaseURLString    = @"http://192.168.1.114";
-//static NSString* const  kAFAppDotNetApiExtraURLString    = @"/api/app/client";
+static NSString* const  kAFAppDotNetApiBaseURLString    = @"http://192.168.1.114";
+static NSString* const  kAFAppDotNetApiExtraURLString    = @"/api/app/client";
 
 
 
@@ -244,29 +244,41 @@ typedef enum{
     ZLHomeBannerTypeShop,//banner类型为商家
     
 }ZLHomeBannerType;
-
 typedef enum{
     
     
-    ZLHomeAdvTypeSystem,//1:原生
-    ZLHomeAdvTypeWeb,//0:WAP
+    ZLHomeFunctionTypeQuik,//Function类型为缴费
+    ZLHomeFunctionTypeSuperMarket,//Function类型为超市
+    ZLHomeFunctionTypeRepair,//Function类型为报修
+    ZLHomeFunctionTypeHouseKeeping,//Function类型为家政
+    ZLHomeFunctionTypeConvenience,//Function类型为便民服务
+    ZLHomeFunctionTypeRunningMan,//Function类型为跑跑腿
+    ZLHomeFunctionTypeNote,//Function类型为公告
+    ZLHomeFunctionTypeNeighbor,//Function类型为邻里圈
+    
+}ZLHomeFunctionType;
+typedef enum{
+    
+    
+    ZLHomeAdvTypeSystem = 1,//1:原生
+    ZLHomeAdvTypeWeb = 0,//0:WAP
     
 }ZLHomeAdvType;//首页广告跳转类型
 
 typedef enum{
     
     
-    ZLHomeNoteTypeSystem,//0：平台
-    ZLHomeNoteTypeCommunity,//1：社区
+    ZLHomeNoteTypeSystem = 0,//0：平台
+    ZLHomeNoteTypeCommunity = 1,//1：社区
     
 }ZLHomeNoteType;//首页公告类型
 
 typedef enum{
     
     
-    ZLHomeNewsTypeNote,//1:公告
-    ZLHomeNewsTypeActivity,//2：活动
-    ZLHomeNewsTypeNews,//3：新闻
+    ZLHomeNewsTypeNote = 1,//1:公告
+    ZLHomeNewsTypeActivity = 2,//2：活动
+    ZLHomeNewsTypeNews = 3,//3：新闻
     
 }ZLHomeNewsType;//首页新闻类型
 
@@ -279,6 +291,13 @@ typedef enum{
     
 }ZLShopHomeCampainType;//社区超市首页活动类型
 
+typedef enum{
+    
+    
+    ZLRightGoodsTypeFromCamp = 1,//1:从活动来
+    ZLRightGoodsTypeFromClass = 2,//2:从分类来
+    
+}ZLRightGoodsType;//社区超市首页活动类型
 
 
 

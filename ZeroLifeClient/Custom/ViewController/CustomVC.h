@@ -19,6 +19,7 @@
 #import "UIView+AutoSize.h"
 #import "UIButton+CustomLocal.h"
 #import "APIClient.h"
+#import "ZLWebViewViewController.h"
 @interface CustomVC : UIViewController<UITableViewDataSource, UITableViewDelegate>
 
 @property(nonatomic,assign) BOOL                beginHeaderRereshingWhenViewWillAppear;
@@ -177,5 +178,7 @@
 - (void)ZLShowEmptyView:(NSString *)mText andImage:(NSString *)mImgName andHiddenRefreshBtn:(BOOL)mHidden;
 
 - (void)ZLHideEmptyView;
+///重新加载数据
+- (void)reloadTableViewData;
 
 @end

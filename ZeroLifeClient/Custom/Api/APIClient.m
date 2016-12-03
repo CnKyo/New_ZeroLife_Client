@@ -664,7 +664,7 @@
     }];
 }
 #pragma mark----****----获取首页banner
-- (void)ZLgetHomeBanner:(void(^)(APIObject *mBaseObj,NSArray *mArr))block{
+- (void)ZLgetHomeBanner:(void(^)(APIObject *mBaseObj,ZLHomeFunvtionAndBanner *mFunc))block{
     
     NSMutableDictionary *para = [NSMutableDictionary new];
     
@@ -672,27 +672,38 @@
 
     [self loadAPIWithTag:self path:@"/home/banner" parameters:para call:^(APIObject *info) {
 
-        NSMutableArray *mtempArr = [NSMutableArray new];
-
+       
         if (info.code == RESP_STATUS_YES) {
             
-            id mArr = info.data;
+            ZLHomeFunvtionAndBanner *mFuncTion = [ZLHomeFunvtionAndBanner new];
             
-            if ([mArr isKindOfClass:[NSArray class]]) {
-                for (NSDictionary *dic in info.data) {
-                    
-                    
-                    [mtempArr addObject:[ZLHomeBanner mj_objectWithKeyValues:dic]];
+            NSMutableArray *mBannerArr = [NSMutableArray new];
+            NSMutableArray *mFuncArr = [NSMutableArray new];
+            
+            id mBanner = [info.data objectForKey:@"banners"];
+            id mFunction = [info.data objectForKey:@"functions"];
+            
+            if ([mBanner isKindOfClass:[NSArray class]]) {
+                for (NSDictionary *dic in mBanner) {
+                    [mBannerArr addObject:[ZLHomeBanner mj_objectWithKeyValues:dic]];
+                }
+                
+            }
+            if ([mFunction isKindOfClass:[NSArray class]]) {
+                for (NSDictionary *dic in mFunction) {
+                    [mFuncArr addObject:[ZLHomeFunctions mj_objectWithKeyValues:dic]];
                 }
                 
             }
             
+            mFuncTion.banners = mBannerArr;
+            mFuncTion.functions = mFuncArr;
             
-            block (info,mtempArr);
+            block (info,mFuncTion);
             
             
         }else{
-            block (info,mtempArr);
+            block (info,nil);
             
         }
     
@@ -858,7 +869,7 @@
             NSMutableArray *mCampainArr = [NSMutableArray new];
             NSMutableArray *mClassifyArr = [NSMutableArray new];
             
-            id mBanner = [info.data objectForKey:@"banner"];
+            id mBanner = [info.data objectForKey:@"banners"];
             id mCanpain = [info.data objectForKey:@"campaign"];
             id mClassify = [info.data objectForKey:@"classify"];
             
@@ -898,6 +909,291 @@
     }];
     
     
+    
+    
+}
+
+#pragma mark----****----获取社区超市店铺列表
+/**
+ 获取社区超市店铺列表
+ 
+ @param mLat  纬度
+ @param mLng  经度
+ @param mClassId 店铺分类id
+ @param mPage 分页
+ @param block 返回值
+ */
+- (void)ZLGetShopHomeShopList:(int)mShopType andLat:(NSString *)mLat andLng:(NSString *)mLng andClassId:(NSString *)mClassId andPage:(int)mPage  block:(void(^)(APIObject *mBaseObj,ZLShopHomeShopList *mShopList))block{
+
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    
+    
+    [para setInt:mShopType forKey:@"shop_type"];
+    [para setNeedStr:mLat forKey:@"lat"];
+    [para setNeedStr:mLng forKey:@"lng"];
+    
+    if (mClassId != 0) {
+        [para setNeedStr:mClassId forKey:@"cls_id"];
+
+    }
+    if (mPage) {
+        [para setInt:mPage forKey:@"page"];
+
+    }
+
+    
+    [self loadAPIWithTag:self path:@"/shop/shop_list" parameters:para call:^(APIObject *info) {
+        
+        
+        if (info.code == RESP_STATUS_YES) {
+            
+            ZLShopHomeShopList *mShopList = [ZLShopHomeShopList new];
+            
+            mShopList.totalRow = [[info.data objectForKey:@"totalRow"] intValue];
+            mShopList.totalPage = [[info.data objectForKey:@"totalPage"] intValue];
+            mShopList.pageNumber = [[info.data objectForKey:@"pageNumber"] intValue];
+            mShopList.pageSize = [[info.data objectForKey:@"pageSize"] intValue];
+            
+            NSMutableArray *mTempArr = [NSMutableArray new];
+            id mList = [info.data objectForKey:@"list"];
+            if ([mList isKindOfClass:[NSArray class]]) {
+                for (NSDictionary *dic in mList) {
+                    [mTempArr addObject:[ZLShopHomeShopObj mj_objectWithKeyValues:dic]];
+                }
+
+            }
+            mShopList.list = mTempArr;
+            block(info,mShopList);
+            
+        }else{
+            block(info,nil);
+            
+        }
+        
+    }];
+}
+
+#pragma mark----****----获取社区超市店铺信息
+/**
+ 获取社区超市店铺信息
+ 
+ @param mShopType 店铺类型
+ @param mShopId   店铺id
+ @param block     返回值
+ */
+- (void)ZLGetShopMsgWithShopType:(int)mShopType andShopId:(int)mShopId block:(void(^)(APIObject *mBaseObj,ZLShopObj *mShop,ZLShopLeftTableArr *mLeftTabArr))block{
+
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    
+    [para setInt:mShopType forKey:@"shop_type"];
+    [para setInt:mShopId forKey:@"shop_id"];
+    
+    [self loadAPIWithTag:self path:@"/shop/shop_info" parameters:para call:^(APIObject *info) {
+        
+        
+        if (info.code == RESP_STATUS_YES) {
+            
+            ZLShopObj *mShopList = [ZLShopObj new];
+            ZLShopLeftTableArr *mLeftArr = [ZLShopLeftTableArr new];
+            mShopList.mShopMsg = [ZLShopMsg mj_objectWithKeyValues:[info.data objectForKey:@"shop"]];
+            mShopList.mShopCoupon =[ZLShopCoupon mj_objectWithKeyValues:[info.data objectForKey:@"coupons"]];
+            
+            
+            id mClass = [info.data objectForKey:@"classify"];
+            id mCampain = [info.data objectForKey:@"campaigns"];
+            
+            NSMutableArray *mClassArr = [NSMutableArray new];
+            NSMutableArray *mCampainArr = [NSMutableArray new];
+            
+            if ([mClass isKindOfClass:[NSArray class]]) {
+                for (NSDictionary *dic in mClass) {
+                    [mClassArr addObject:[ZLShopClassify mj_objectWithKeyValues:dic]];
+                }
+                
+            }
+            if ([mCampain isKindOfClass:[NSArray class]]) {
+                for (NSDictionary *dic in mCampain) {
+                    [mCampainArr addObject:[ZLShopCampain mj_objectWithKeyValues:dic]];
+                }
+                
+            }
+            mShopList.mShopClassify = mClassArr;
+            mShopList.mShopCampains = mCampainArr;
+
+            
+            
+            if (mCampainArr.count > 0 && mClassArr.count<=0) {
+                mLeftArr.mLeftType = 1;
+                mLeftArr.mCampainArr = mCampainArr;
+            }else if (mCampainArr.count <= 0 && mClassArr.count>0){
+                mLeftArr.mLeftType = 2;
+                mLeftArr.mClassArr = mClassArr;
+            }else{
+            
+                mLeftArr.mLeftType = 3;
+                mLeftArr.mCampainArr = mCampainArr;
+                mLeftArr.mClassArr = mClassArr;
+            }
+            
+            block(info,mShopList,mLeftArr);
+            
+        }else{
+            block(info,nil,nil);
+            
+        }
+        
+    }];
+    
+}
+
+#pragma mark----****----获取店铺商品信息
+/**
+ 获取店铺商品信息
+ 
+ @param mShopId  店铺id
+ @param mCamId   活动id
+ @param mClassId 分类id
+ @param mPage    分页
+ @param block    返回值
+ */
+- (void)ZLGetShopGoodsList:(int)mShopId andCamId:(int)mCamId andClassId:(int)mClassId andPage:(int)mPage andType:(ZLRightGoodsType)mType block:(void(^)(APIObject *mBaseObj,ZLShopGoodsList *mShopGoodsObj))block{
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    
+    [para setInt:mShopId forKey:@"shop_id"];
+    [para setInt:mPage forKey:@"page"];
+
+    if (mCamId) {
+        [para setInt:mCamId forKey:@"cam_id"];
+    }
+    if(mClassId){
+        [para setInt:mClassId forKey:@"cls_id"];
+    }
+    
+    [self loadAPIWithTag:self path:@"/shop/product_list" parameters:para call:^(APIObject *info) {
+        
+        
+        if (info.code == RESP_STATUS_YES) {
+            
+            ZLShopGoodsList *mShopGoodsList = [ZLShopGoodsList mj_objectWithKeyValues:info.data];
+            
+            NSMutableArray *mGoodsList = [NSMutableArray new];
+            
+            id mList = [info.data objectForKey:@"list"];
+            
+            
+            if ([mList isKindOfClass:[NSArray class]]) {
+                for (NSDictionary *dic in mList) {
+                    
+                    switch (mType) {
+                        case ZLRightGoodsTypeFromCamp:
+                        {
+                            [mGoodsList addObject:[ZLGoodsWithCamp mj_objectWithKeyValues:dic]];
+
+                        }
+                            break;
+                        case ZLRightGoodsTypeFromClass:
+                        {
+                         
+                            ZLGoodsWithClass *mGoods = [ZLGoodsWithClass new];
+                            mGoods.img_url = [dic objectForKey:@"img_url"];
+                            mGoods.pro_date_create = [dic objectForKey:@"pro_date_create"];
+                            mGoods.pro_date_life = [dic objectForKey:@"pro_date_life"];
+                            mGoods.pro_id = [[dic objectForKey:@"pro_id"] intValue];
+                            mGoods.pro_name = [dic objectForKey:@"pro_name"];
+                            mGoods.pro_purchase_num = [[dic objectForKey:@"pro_purchase_num"] intValue];
+                            mGoods.pro_sales_total = [[dic objectForKey:@"pro_sales_total"] intValue];
+                            mGoods.pro_unit = [dic objectForKey:@"pro_unit"];
+                            mGoods.pro_weight = [dic objectForKey:@"pro_weight"];
+                            mGoods.sku_id = [[dic objectForKey:@"sku_id"] intValue];
+                            
+                            id mSkus = [dic objectForKey:@"skus"];
+                            NSMutableArray *mSkuArr = [NSMutableArray new];
+                            if ([mSkus isKindOfClass:[NSArray class]]) {
+                                for (NSDictionary *mdic in mSkus) {
+                                    [mSkuArr addObject:[ZLGoodsSKU mj_objectWithKeyValues:mdic]];
+                                }
+                            }
+                            mGoods.skus = mSkus;
+                            [mGoodsList addObject:mGoods];
+
+                        }
+                            break;
+                            
+                        default:
+                            break;
+                    }
+                    
+                }
+                
+            }
+            
+            mShopGoodsList.list = mGoodsList;
+            block(info,mShopGoodsList);
+            
+        }else{
+            block(info,nil);
+            
+        }
+        
+    }];
+    
+    
+}
+
+#pragma mark----****----获取商品详情
+/**
+ 获取商品详情
+ 
+ @param mGoodsId 商品id
+ @param mCamId   活动id
+ @param block    返回值
+ */
+- (void)ZLGetGoodsDetail:(NSString *)mGoodsId andCamId:(NSString *)mCamId block:(void(^)(APIObject *mBaseObj,ZLGoodsDetail *mGoodsDetailObj,NSArray *mGoodsDetailImgArr))block{
+
+    
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    
+    
+    if (mCamId) {
+        [para setNeedStr:mCamId forKey:@"cam_gid"];
+        
+    }
+    if(mGoodsId){
+        [para setNeedStr:mGoodsId forKey:@"pro_id"];
+    }
+    
+    [self loadAPIWithTag:self path:@"/shop/product_info" parameters:para call:^(APIObject *info) {
+        
+        
+        if (info.code == RESP_STATUS_YES) {
+            
+            ZLGoodsDetail *mGoodsDetail = [ZLGoodsDetail mj_objectWithKeyValues:info.data];
+            
+            NSMutableArray *mImgArr = [NSMutableArray new];
+            
+            id mImg = [info.data objectForKey:@"images"];
+            
+            if ([mImg isKindOfClass:[NSArray class]]) {
+            
+                for (NSDictionary *dic in mImg) {
+                    [mImgArr addObject:[ZLGoodsDetailImg mj_objectWithKeyValues:dic]];
+                }
+                
+                
+                
+            }
+            
+            mGoodsDetail.images = mImgArr;
+            block(info,mGoodsDetail,mImgArr);
+            
+        }else{
+            block(info,nil,nil);
+            
+        }
+        
+    }];
+    
+
     
     
 }

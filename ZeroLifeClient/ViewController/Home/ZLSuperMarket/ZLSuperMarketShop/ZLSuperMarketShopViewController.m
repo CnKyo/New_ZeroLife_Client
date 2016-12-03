@@ -23,6 +23,8 @@
 #import "ZLSpeSelectedViewCell.h"
 #import "ZLSpeHeaderView.h"
 
+#import "ZLShopCampainSubView.h"
+
 static const CGFloat mTopH = 156;
 
 @interface ZLSuperMarketShopViewController ()<UITableViewDelegate,UITableViewDataSource,ZLSuperMarketShopDelegate,ZLSuperMarketGoodsCellDelegate,UIScrollViewDelegate,ZLSuperMarketShopCarDelegate,ZLSuperMarketGoodsSpecDelegate,UICollectionViewDelegate,ZLHouseKeppingServiceCellDelegate,ZLSpeSelectedViewCellDelegate>
@@ -75,19 +77,34 @@ static const CGFloat mTopH = 156;
 
     BOOL mIsScroller;
     
+    
+    ZLShopObj *mShopObj;
+    ///店铺活动子view
+    ZLShopCampainSubView *mCampSubView;
+    
+    ZLShopLeftTableArr *mLeftDataSource;
+    
+    ZLRightGoodsType mRightTabType;
 }
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.navigationItem.title = @"店铺首页";
+    self.navigationItem.title = self.mShopObj.shop_name;
 
     self.mSpeDataArray = [NSMutableArray new];
     self.mSpeAddArray = [NSMutableArray new];
     
+    mLeftDataArr = [NSMutableArray new];
+    mRightDataArr = [NSMutableArray new];
+
+    mLeftDataSource = [ZLShopLeftTableArr new];
+    
     [self addRightBtn:YES andTitel:nil andImage:[UIImage imageNamed:@"ZLSearch_white"]];
 
+    mShopObj = [ZLShopObj new];
+    [self loadData];
     [self initView];
     [self initData];
     [self initHeaderView];
@@ -115,17 +132,96 @@ static const CGFloat mTopH = 156;
 #pragma mark----****----加载headerview
 - (void)initHeaderView{
     mHeaderView = [ZLSuperMarketHeaderView shareView];
+    mHeaderView.mRateBtn.hidden = YES;
+    mHeaderView.delegaate = self;
     [self.view addSubview:mHeaderView];
     
     [mHeaderView makeConstraints:^(MASConstraintMaker *make) {
-        make.left.top.right.equalTo(self.view).offset(0);
+        make.left.right.equalTo(self.view).offset(0);
+        make.top.equalTo(self.view).offset(64);
         make.height.offset(@156);
     }];
     
     
 
 }
+- (void)loadData{
+    [self showWithStatus:@"正在加载..."];
+    [[APIClient sharedClient] ZLGetShopMsgWithShopType:1 andShopId:self.mShopObj.shop_id block:^(APIObject *mBaseObj, ZLShopObj *mShop,ZLShopLeftTableArr *mLeftTabArr) {
+        
+        [mLeftDataArr removeAllObjects];
+        
+        if (mBaseObj.code == RESP_STATUS_YES) {
+            [self dismiss];
+            mShopObj = mShop;
+            
+            mLeftDataSource = mLeftTabArr;
+            [self upDatePage:mShop];
+            [mLeftTableView reloadData];
+        }else{
+        
+            [self showErrorStatus:mBaseObj.msg];
+            [self ZLShowEmptyView:mBaseObj.msg andImage:nil andHiddenRefreshBtn:YES];
+        }
+        
+    }];
+}
+- (void)upDatePage:(ZLShopObj *)mShop{
+    
+    [mHeaderView.mShopLogo sd_setImageWithURL:[NSURL URLWithString:mShop.mShopMsg.shop_logo] placeholderImage:[UIImage imageNamed:@"ZLDefault_Shop"]];
+    self.navigationItem.title = mShop.mShopMsg.shop_name;
+    
+    mHeaderView.mContent.text = [NSString stringWithFormat:@"满%.0f元起送 %@",mShop.mShopMsg.ext_min_price,mShop.mShopMsg.ext_max_time];
+    mHeaderView.mSubContent.text = [NSString stringWithFormat:@"月销售:%d单",mShop.mShopMsg.ext_sales_month];
+    
+    
+    mHeaderView.mCoupBtn.hidden = [Util iscoupon:mShop.mShopCoupon.is_coupon];
+    
+    
+    CGRect mHeadFrame = mHeaderView.frame;
+    
+    CGFloat mH = 0;
+    
+    for (ZLShopCampainSubView *vvv in mHeaderView.mActivityView.subviews) {
+        [vvv removeFromSuperview];
+    }
+    if (mShop.mShopCampains.count > 0) {
+        
+        for (int i =0; i<mShop.mShopCampains.count; i++) {
+     
+            if (i >= 1) {
+                return;
+            }
+            
+            ZLShopCampain *mCampain = mShop.mShopCampains[i];
+            
+            mCampSubView = [ZLShopCampainSubView shareView];
+            mCampSubView.frame = CGRectMake(0, 30*i, mHeaderView.mActivityView.mwidth, 30);
+            
+            mCampSubView.mTitle.text = [Util ZLCutStringWithText:mCampain.cam_name andRangeWithLocation:0 andRangeWithLength:1];
+            mCampSubView.mContent.text = mCampain.cam_name;
+            [mHeaderView.mActivityView addSubview:mCampSubView];
+            mH+=30;
+        }
+    }else{
+        mCampSubView = [ZLShopCampainSubView shareView];
+        mCampSubView.frame = CGRectMake(0, 0, mHeaderView.mActivityView.mwidth, 30);
+        
+        mCampSubView.mTitle.text = @"无";
+        mCampSubView.mContent.text = @"暂无活动";
+        [mHeaderView.mActivityView addSubview:mCampSubView];
+        mH = 30;
+    }
+    
+   
+    mHeadFrame.size.height = 126+mH;
+    mHeaderView.frame = mHeadFrame;
+    
+    
+    
+  
 
+}
 - (void)initView{
 
    
@@ -161,7 +257,7 @@ static const CGFloat mTopH = 156;
     
     [mLeftTableView makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view).offset(0);
-        make.top.equalTo(self.view).offset(0);
+        make.top.equalTo(self.view).offset(64);
         make.bottom.equalTo(self.view).offset(-50);
         make.right.equalTo(mRightTableView.left).offset(0);
         make.width.offset(DEVICE_Width/3);
@@ -169,7 +265,7 @@ static const CGFloat mTopH = 156;
     
     [mRightTableView makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.view).offset(0);
-        make.top.equalTo(self.view).offset(0);
+        make.top.equalTo(self.view).offset(64);
         make.bottom.equalTo(self.view).offset(-50);
         make.left.equalTo(mLeftTableView.right).offset(0);
         make.width.offset(DEVICE_Width-DEVICE_Width/3);
@@ -195,7 +291,18 @@ static const CGFloat mTopH = 156;
 #pragma mark -- tableviewDelegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView              // Default is 1 if not implemented
 {
-    return 1;
+    if (tableView == mLeftTableView) {
+        
+        if (mLeftDataSource.mLeftType == 1 || mLeftDataSource.mLeftType == 2) {
+            return 1;
+        }else{
+            return 2;
+        }
+        
+    }else
+        return 1;
+    
+    
     
     
 }
@@ -222,11 +329,25 @@ static const CGFloat mTopH = 156;
 {
     
     if (tableView == mLeftTableView) {
-        return 5;
+        
+        if (section == 0) {
+            if (mLeftDataSource.mLeftType == 1) {
+                return mLeftDataSource.mCampainArr.count;
+            }else if(mLeftDataSource.mLeftType == 2 ){
+                return mLeftDataSource.mClassArr.count;
+            }else{
+                return mLeftDataSource.mCampainArr.count;
+
+            }
+        }else{
+            return mLeftDataSource.mClassArr.count;
+        }
+        
+        
     }else if (tableView == mRightTableView){
-        return 10;
+        return mRightDataArr.count;
     }else{
-        return 3;
+        return self.mSpeAddArray.count;
     }
     
     
@@ -242,7 +363,27 @@ static const CGFloat mTopH = 156;
     if (tableView == mLeftTableView) {
         return 50;
     }else if(tableView == mRightTableView){
-        return 100;
+        
+        switch (mRightTabType) {
+            case ZLRightGoodsTypeFromCamp:
+            {
+                return 85;
+
+                
+            }
+                break;
+            case ZLRightGoodsTypeFromClass:
+            {
+                return 100;
+                
+            }
+                break;
+                
+            default:
+                break;
+        }
+
+        
     }else{
     return ([[[self.mSpeAddArray objectAtIndex:0]objectForKey:@"num"] count]/4 + [[[self.mSpeAddArray objectAtIndex:0]objectForKey:@"num"] count]%4) * 40;
     }
@@ -255,12 +396,29 @@ static const CGFloat mTopH = 156;
     
     NSString *reuseCellId = nil;
     
-     if (tableView == mLeftTableView){
+    if (tableView == mLeftTableView){
         reuseCellId = @"mLeftCell";
         
         ZLSuperMarketShopLeftCellType *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        if (indexPath.section == 0) {
+            if (mLeftDataSource.mLeftType == 1) {
+                [cell setMCampain:mLeftDataSource.mCampainArr[indexPath.row]];
+
+            }else if(mLeftDataSource.mLeftType == 2 ){
+                [cell setMClassify:mLeftDataSource.mClassArr[indexPath.row]];
+            }else{
+                [cell setMCampain:mLeftDataSource.mCampainArr[indexPath.row]];
+                
+            }
+        }else{
+            [cell setMClassify:mLeftDataSource.mClassArr[indexPath.row]];
+
+        }
+
+        
         
         return cell;
         
@@ -276,25 +434,52 @@ static const CGFloat mTopH = 156;
             
             return cell;
         }else{
-            reuseCellId = @"mRightCell";
+  
+            switch (mRightTabType) {
+                case ZLRightGoodsTypeFromCamp:
+                {
+                    reuseCellId = @"mHouseKeepCell";
+                    
+                    ZLHouseKeppingServiceCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
+                    cell.delegate = self;
+                    cell.mIndexPath = indexPath;
+                    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                    [cell setMGoodsObj:mRightDataArr[indexPath.row]];
+
+                    return cell;
+                    
+                }
+                    break;
+                case ZLRightGoodsTypeFromClass:
+                {
+                    reuseCellId = @"mRightCell";
+                    
+                    ZLSuperMarketShopRightCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
+                    cell.delegate = self;
+                    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                    cell.mIndexPath = indexPath;
+                    [cell setMGoods:mRightDataArr[indexPath.row]];
+                    return cell;
+
+                }
+                    break;
+                    
+                default:
+                    break;
+            }
             
-            ZLSuperMarketShopRightCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
-            cell.delegate = self;
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
-            return cell;
         }
         
         
     }else{
     
         static NSString *cellName = @"cellName";
-        ZLSpeSelectedViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellName];
-        if (!cell) {
-            cell = [[ZLSpeSelectedViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellName andDataSource:self.mSpeAddArray];
-            cell.delegate = self;
-            cell.mIndexPathSection = indexPath;
-        }
+        
+        ZLSpeSelectedViewCell *cell = [[ZLSpeSelectedViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellName andDataSource:self.mSpeAddArray];
+        cell.delegate = self;
+        cell.mIndexPathSection = indexPath;
+        
         return cell;
 
     }
@@ -309,9 +494,92 @@ static const CGFloat mTopH = 156;
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    ZLGoodsDetailViewController *mShopVC = [ZLGoodsDetailViewController new];
-    [self pushViewController:mShopVC];
+    if (tableView == _mSpeTableView) {
+        
+    }else if (tableView == mRightTableView) {
+        ZLGoodsDetailViewController *mShopVC = [ZLGoodsDetailViewController new];
+
+        switch (mRightTabType) {
+            case ZLRightGoodsTypeFromCamp:
+            {
+                mShopVC.mGoodsObj = mRightDataArr[indexPath.row];
+                
+            }
+                break;
+            case ZLRightGoodsTypeFromClass:
+            {
+                mShopVC.mGoods = mRightDataArr[indexPath.row];
+                
+            }
+                break;
+                
+            default:
+                break;
+        }
+        [self pushViewController:mShopVC];
+
+        
+    }else{
+        
+        ZLShopClassify *mClassObj = [ZLShopClassify new];
+        ZLShopCampain *mCampObj = [ZLShopCampain new];
+
+        if (indexPath.section == 0) {
+            if (mLeftDataSource.mLeftType == 1) {
+                
+                mCampObj = mLeftDataSource.mCampainArr[indexPath.row];
+                
+                [self upDateRightTableView:mShopObj.mShopMsg.shop_id andCampId:[NSString stringWithFormat:@"%d",mCampObj.cam_id] andClassId:nil andPage:1 andType:ZLRightGoodsTypeFromCamp];
+                
+            }else if(mLeftDataSource.mLeftType == 2 ){
+                mClassObj = mLeftDataSource.mClassArr[indexPath.row];
+                [self upDateRightTableView:mShopObj.mShopMsg.shop_id andCampId:nil andClassId:[NSString stringWithFormat:@"%d",mClassObj.cls_id] andPage:1 andType:ZLRightGoodsTypeFromClass];
+            }else{
+                mCampObj = mLeftDataSource.mCampainArr[indexPath.row];
+                [self upDateRightTableView:mShopObj.mShopMsg.shop_id andCampId:[NSString stringWithFormat:@"%d",mCampObj.cam_id] andClassId:nil andPage:1 andType:ZLRightGoodsTypeFromCamp];
+
+            }
+        }else{
+                mClassObj = mLeftDataSource.mClassArr[indexPath.row];
+            [self upDateRightTableView:mShopObj.mShopMsg.shop_id andCampId:nil andClassId:[NSString stringWithFormat:@"%d",mClassObj.cls_id] andPage:1 andType:ZLRightGoodsTypeFromClass];
+
+        }
+
+    }
+
     
+    
+    
+}
+#pragma mark----****----更新商品列表
+///更新商品列表
+- (void)upDateRightTableView:(int)mShopId andCampId:(NSString *)mCampId andClassId:(NSString *)mClassId andPage:(int)mPage andType:(ZLRightGoodsType)mType{
+    mRightTabType = mType;
+    NSString *mCamptr = nil;
+    NSString *mClassstr = nil;
+    
+    if (mCampId) {
+        mCamptr = mCampId;
+    }
+    if (mClassId) {
+        mClassstr = mClassId;
+    }
+    
+    [self showWithStatus:@"正在加载中..."];
+    [[APIClient sharedClient] ZLGetShopGoodsList:mShopId andCamId:[[NSString stringWithFormat:@"%@",mCamptr] intValue] andClassId:[[NSString stringWithFormat:@"%@",mClassstr] intValue] andPage:mPage andType:mType block:^(APIObject *mBaseObj, ZLShopGoodsList *mShopGoodsObj) {
+        [mRightDataArr removeAllObjects];
+        if (mBaseObj.code == RESP_STATUS_YES) {
+            [self dismiss];
+
+            [mRightDataArr addObjectsFromArray:mShopGoodsObj.list];
+
+        }else{
+        
+            [self showErrorStatus:mBaseObj.msg];
+        }
+        [mRightTableView reloadData];
+
+    }];
     
     
 }
@@ -332,6 +600,11 @@ static const CGFloat mTopH = 156;
  */
 - (void)ZLSuperMarketCoupBtnSelected{
 
+    ZLWebViewViewController *mWebvc = [ZLWebViewViewController new];
+    mWebvc.mUrl = mShopObj.mShopCoupon.cup_url;
+    
+    [self pushViewController:mWebvc];
+    
 }
 #pragma mark----****----查看评价按钮
 /**
@@ -355,6 +628,30 @@ static const CGFloat mTopH = 156;
  */
 - (void)ZLSuperMarketGoodsCellWithSpecBtnSelectedIndexPath:(NSIndexPath *)mIndexPath{
 
+    [_mSpeDataArray removeAllObjects];
+    [_mSpeAddArray removeAllObjects];
+    switch (mRightTabType) {
+        case ZLRightGoodsTypeFromCamp:
+        {
+
+            ZLGoodsWithCamp *mCampGoods = mRightDataArr[mIndexPath.row];
+            [_mSpeDataArray addObject:mCampGoods];
+        }
+            break;
+        case ZLRightGoodsTypeFromClass:
+        {
+            
+
+            ZLGoodsWithClass *mGoods = mRightDataArr[mIndexPath.row];
+//            [_mSpeDataArray addObjectsFromArray:mGoods.skus];
+//            [_mSpeTableView reloadData];
+
+        }
+            break;
+            
+        default:
+            break;
+    }
     [self showSpeView];
 }
 
@@ -382,7 +679,7 @@ static const CGFloat mTopH = 156;
         else if (offsetY <= -mTopH){
             
             
-            [self setHeaderViewY:0];
+            [self setHeaderViewY:64];
             mLeftTableView.contentInset = UIEdgeInsetsMake(mTopH, 0, 0, 0);
             mRightTableView.contentInset = UIEdgeInsetsMake(mTopH, 0, 0, 0);
         }

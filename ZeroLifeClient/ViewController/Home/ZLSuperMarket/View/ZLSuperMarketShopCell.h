@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "APIObjectDefine.h"
 @interface ZLSuperMarketShopCell : UITableViewCell
 #pragma mark----****----店铺cell样式
 /**
@@ -44,4 +44,9 @@
  活动类型2
  */
 @property (weak, nonatomic) IBOutlet UIImageView *mActivityImage2;
+
+@property (strong,nonatomic) ZLShopHomeCampaign *mCampain;
+
+@property (strong,nonatomic) ZLShopHomeShopObj *mShopObj;
+
 @end

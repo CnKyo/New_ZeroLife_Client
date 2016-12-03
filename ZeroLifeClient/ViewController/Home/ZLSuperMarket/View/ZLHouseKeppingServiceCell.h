@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "APIObjectDefine.h"
 /**
  设置代理
  */
@@ -61,5 +61,8 @@
  设置代理
  */
 @property (assign,nonatomic) id<ZLHouseKeppingServiceCellDelegate>delegate;
+
+@property (strong,nonatomic) ZLGoodsWithCamp *mGoodsObj;
+
 
 @end

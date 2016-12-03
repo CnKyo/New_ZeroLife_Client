@@ -25,6 +25,10 @@
 {
 
     ZLActivityView *mBottomView;
+    
+    NSMutableArray *mImageArr;
+    
+    ZLGoodsDetail *mGoodsDetail;
 }
 
 - (void)viewDidLoad {
@@ -32,6 +36,8 @@
     // Do any additional setup after loading the view.
     self.navigationItem.title = @"商品详情";
 
+    mImageArr = [NSMutableArray new];
+    mGoodsDetail = [ZLGoodsDetail new];
     [self initBottomView];
 
 }
@@ -64,18 +70,58 @@
         make.left.right.bottom.equalTo(self.view).offset(0);
         make.height.offset(@50);
     }];
+    [self reloadTableViewData];
     
-    [self loadWebViewURL];
-
 }
+#pragma mark----****----加载数据
+///加载数据
+- (void)reloadTableViewData{
 
+    [self showWithStatus:@"正在加载中..."];
+    
+    
+    NSString *mGoodsId = [NSString stringWithFormat:@"%d",_mGoods.pro_id];
+    NSString *mCamId =  [NSString stringWithFormat:@"%d",_mGoodsObj.cam_gid];
+    
+    if (mGoodsId) {
+        mGoodsId = [NSString stringWithFormat:@"%d",_mGoods.pro_id];
+    }else{
+        mGoodsId = nil;
+    }
+    if (mCamId) {
+        mCamId =  [NSString stringWithFormat:@"%d",_mGoodsObj.cam_gid];
+    }else{
+        mCamId = nil;
+    }
+    
+    
+    [[APIClient sharedClient] ZLGetGoodsDetail:mGoodsId andCamId:mCamId block:^(APIObject *mBaseObj, ZLGoodsDetail *mGoodsDetailObj, NSArray *mGoodsDetailImgArr) {
+        [mImageArr removeAllObjects];
+        if (mBaseObj.code == RESP_STATUS_YES) {
+            [self dismiss];
+            mGoodsDetail = mGoodsDetailObj;
+            [mImageArr addObjectsFromArray:mGoodsDetailImgArr];
+            [self loadWebViewWithURL:mGoodsDetailObj.pro_spec];
+        }else{
+        
+            [self showErrorStatus:mBaseObj.msg];
+            [self ZLShowEmptyView:mBaseObj.msg andImage:nil andHiddenRefreshBtn:YES];
+        }
+        [self.mTableView reloadData];
+    }];
+    
+}
 /**
  *  加载网页
  */
-- (void)loadWebViewURL
+- (void)loadWebViewWithURL:(NSString *)mWebUrl
 {
 
-    NSString *mUrlStr = [NSString stringWithFormat:@"%@",@"http://www.baidu.com"];
+    if (mWebUrl.length == 0 || [mWebUrl isEqualToString:@" "] || [mWebUrl isEqualToString:@""]) {
+        mWebUrl = @"http://www.baidu.com";
+    }
+    
+    NSString *mUrlStr = [NSString stringWithFormat:@"%@",mWebUrl];
     
     NSURL *mUrl = [NSURL URLWithString:mUrlStr];
     
@@ -143,8 +189,10 @@
         ZLGoodsDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
         cell.delegate = self;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        [cell setMBanerDataSource:mImageArr];
         
         [cell setMActivityDataSource:@[@"1",@"2"]];
+        
         return cell.mCellH;
     }else{
         return 166;
@@ -167,7 +215,7 @@
         ZLGoodsDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
         cell.delegate = self;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
+        [cell setMGoodsDetail:mGoodsDetail];
         [cell setMActivityDataSource:@[@"1",@"2"]];
         return cell;
     }else{

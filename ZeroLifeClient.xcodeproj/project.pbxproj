@@ -232,6 +232,8 @@
 		04CBF02D1DC19F2A0098BF52 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CBF02C1DC19F2A0098BF52 /* UIKit.framework */; };
 		04CBF02F1DC19F310098BF52 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CBF02E1DC19F310098BF52 /* Security.framework */; };
 		04CBF0311DC19F430098BF52 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CBF0301DC19F430098BF52 /* UserNotifications.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		04D07C151DF011F400A83CD9 /* ZLShopCampainSubView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D07C141DF011F400A83CD9 /* ZLShopCampainSubView.m */; };
+		04D07C171DF011FD00A83CD9 /* ZLShopCampainSubView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D07C161DF011FD00A83CD9 /* ZLShopCampainSubView.xib */; };
 		04D382011DE6B713002B1A4B /* ZLTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D382001DE6B713002B1A4B /* ZLTestViewController.m */; };
 		04D382031DE6BA35002B1A4B /* bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 04D382021DE6BA35002B1A4B /* bg.jpg */; };
 		04D382061DE6BEF3002B1A4B /* ZLTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D382051DE6BEF3002B1A4B /* ZLTabBarController.m */; };
@@ -886,6 +888,9 @@
 		04CBF02E1DC19F310098BF52 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		04CBF0301DC19F430098BF52 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		04CBF0321DC19F890098BF52 /* ZeroLifeClient.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ZeroLifeClient.entitlements; sourceTree = "<group>"; };
+		04D07C131DF011F400A83CD9 /* ZLShopCampainSubView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLShopCampainSubView.h; sourceTree = "<group>"; };
+		04D07C141DF011F400A83CD9 /* ZLShopCampainSubView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLShopCampainSubView.m; sourceTree = "<group>"; };
+		04D07C161DF011FD00A83CD9 /* ZLShopCampainSubView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLShopCampainSubView.xib; sourceTree = "<group>"; };
 		04D381FF1DE6B713002B1A4B /* ZLTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLTestViewController.h; sourceTree = "<group>"; };
 		04D382001DE6B713002B1A4B /* ZLTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLTestViewController.m; sourceTree = "<group>"; };
 		04D382021DE6BA35002B1A4B /* bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg.jpg; sourceTree = "<group>"; };
@@ -1437,6 +1442,9 @@
 				04C73BED1DDD7D8D00E5D554 /* ZLHouseKeppingServiceCell.h */,
 				04C73BEE1DDD7D8D00E5D554 /* ZLHouseKeppingServiceCell.m */,
 				04C73BEF1DDD7D8D00E5D554 /* ZLHouseKeppingServiceCell.xib */,
+				04D07C131DF011F400A83CD9 /* ZLShopCampainSubView.h */,
+				04D07C141DF011F400A83CD9 /* ZLShopCampainSubView.m */,
+				04D07C161DF011FD00A83CD9 /* ZLShopCampainSubView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3136,6 +3144,7 @@
 				DFE178B01DD55A9A00E06F21 /* jiantou_hui@3x.png in Resources */,
 				DF630D4B1DD45D790076A92C /* purse_anquanma@2x.png in Resources */,
 				04B862AC1DD5983200BDEA59 /* ZLGoodsDetailBottomView.xib in Resources */,
+				04D07C171DF011FD00A83CD9 /* ZLShopCampainSubView.xib in Resources */,
 				040917611DCC371D00DB2568 /* ZLSuperMarketShopActivityCell1.xib in Resources */,
 				DF7F1BFC1DCDDD4900D2242B /* ComplaintJumingView.xib in Resources */,
 				DF539F1A1DD5C01F00AF228F /* user_coupon_red.png in Resources */,
@@ -3584,6 +3593,7 @@
 				DF08E8791DD1C072003E4DD9 /* UserAddressEditVC.m in Sources */,
 				04A8DA2D1DDAEC33000CE048 /* WKSegmentControl.m in Sources */,
 				0445AD7E1DD44CE600788779 /* ZLPayTypeTableViewCell.m in Sources */,
+				04D07C151DF011F400A83CD9 /* ZLShopCampainSubView.m in Sources */,
 				0409178E1DCCA9D500DB2568 /* ZLSuperMarketShopCarView.m in Sources */,
 				DFF634C11DB873D200B5C917 /* ScrollModelVC.m in Sources */,
 				DF5C49031DBA1BEC006E4825 /* DCPicScrollView.m in Sources */,

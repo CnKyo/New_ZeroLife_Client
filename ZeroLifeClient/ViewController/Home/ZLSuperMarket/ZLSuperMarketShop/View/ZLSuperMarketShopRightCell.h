@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "CustomDefine.h"
-
+#import "APIObjectDefine.h"
 
 /**
  设置代理
@@ -97,5 +97,10 @@
 
 #pragma mark----****----规格cell
 @property (weak, nonatomic) IBOutlet UIButton *mSpecBtn;
+
+
+@property (strong,nonatomic) ZLGoodsWithCamp *mGoodsObj;
+
+@property (strong,nonatomic) ZLGoodsWithClass *mGoods;
 
 @end

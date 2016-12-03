@@ -9,5 +9,7 @@
 #import "CustomVC.h"
 
 @interface ZLGoodsDetailViewController : CustomVC
+@property (strong,nonatomic) ZLGoodsWithCamp *mGoodsObj;
 
+@property (strong,nonatomic) ZLGoodsWithClass *mGoods;
 @end

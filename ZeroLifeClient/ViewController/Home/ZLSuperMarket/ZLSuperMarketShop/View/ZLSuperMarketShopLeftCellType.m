@@ -21,4 +21,15 @@
     // Configure the view for the selected state
 }
 
+- (void)setMClassify:(ZLShopClassify *)mClassify{
+
+    self.mContent.text = mClassify.cls_name;
+    
+}
+
+- (void)setMCampain:(ZLShopCampain *)mCampain{
+    self.mContent.text = mCampain.cam_name;
+
+}
+
 @end

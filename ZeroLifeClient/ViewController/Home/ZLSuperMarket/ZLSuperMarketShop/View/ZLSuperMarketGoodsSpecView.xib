@@ -114,6 +114,9 @@
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oaB-Zu-AtR">
                             <color key="backgroundColor" red="0.59415739769999998" green="0.78603571650000004" blue="0.16135776039999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50.5" id="PU6-52-AXh"/>
+                            </constraints>
                             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <state key="normal" title="Button">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -137,7 +140,6 @@
                         <constraint firstAttribute="width" constant="375" id="7af-ug-622"/>
                         <constraint firstItem="NY9-qZ-DN3" firstAttribute="top" secondItem="HfI-X4-i0M" secondAttribute="bottom" constant="10" id="9Z5-KP-L0s"/>
                         <constraint firstItem="BSm-za-XMO" firstAttribute="leading" secondItem="AgH-3N-ELA" secondAttribute="trailing" constant="8" id="B8i-Fz-VXG"/>
-                        <constraint firstAttribute="bottom" secondItem="oaB-Zu-AtR" secondAttribute="bottom" id="ClB-Yd-jSy"/>
                         <constraint firstItem="yKp-VM-FBv" firstAttribute="top" secondItem="AgH-3N-ELA" secondAttribute="top" id="Cst-0V-xQB"/>
                         <constraint firstItem="OYS-aH-Hdb" firstAttribute="top" secondItem="4Xl-Zm-gfV" secondAttribute="bottom" constant="5" id="DwB-EQ-J3q"/>
                         <constraint firstItem="ejN-H5-gPV" firstAttribute="top" secondItem="O2N-M2-5U3" secondAttribute="bottom" constant="8" id="Edv-vb-Wr6"/>
@@ -170,7 +172,6 @@
                 <constraint firstAttribute="trailing" secondItem="Yfx-l8-4mV" secondAttribute="trailing" id="6Du-z0-frh"/>
                 <constraint firstItem="X3I-Cb-4xt" firstAttribute="top" secondItem="Yfx-l8-4mV" secondAttribute="top" constant="-40" id="7q8-Ic-LKG"/>
                 <constraint firstItem="Yfx-l8-4mV" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="ExD-55-prg"/>
-                <constraint firstItem="Yfx-l8-4mV" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="302" id="IW1-zo-rmH"/>
                 <constraint firstAttribute="trailing" secondItem="X3I-Cb-4xt" secondAttribute="trailing" constant="16" id="KXA-Fx-AtQ"/>
                 <constraint firstAttribute="bottom" secondItem="Yfx-l8-4mV" secondAttribute="bottom" id="d31-QL-Ldg"/>
             </constraints>

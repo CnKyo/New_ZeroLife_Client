@@ -10,6 +10,7 @@
 #import "RKImageBrowser.h"
 #import "CustomDefine.h"
 #import "ZLActivityView.h"
+
 @interface ZLGoodsDetailCell ()
 
 {
@@ -40,9 +41,18 @@
     if (mBanerDataSource.count<=0) {
         return;
     }
+    
+    NSMutableArray *mImgArr = [NSMutableArray new];
+    
+    for (ZLGoodsDetailImg *mImg in mBanerDataSource) {
+    
+        [mImgArr addObject:mImg.img_url];
+        
+    }
+    
     mScrollerView = [[RKImageBrowser alloc] initWithFrame:CGRectMake(0, 0, DEVICE_Width, self.mBanerView.mheight)];
     mScrollerView.backgroundColor = [UIColor whiteColor];
-    [mScrollerView setBrowserWithImagesArray:mBanerDataSource];
+    [mScrollerView setBrowserWithImagesArray:mImgArr];
 //    __weak __typeof(self)weakSelf = self;
     
     mScrollerView.didselectRowBlock = ^(NSInteger clickRow) {
@@ -94,7 +104,10 @@
     
 }
 
+- (void)setMGoodsDetail:(ZLGoodsDetail *)mGoodsDetail{
 
+    
+}
 
 
 @end

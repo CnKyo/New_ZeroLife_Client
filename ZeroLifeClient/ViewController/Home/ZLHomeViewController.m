@@ -43,6 +43,8 @@
 {
     //banner数据源
     NSMutableArray *mBannerArr;
+    //功能分类数据源
+    NSMutableArray *mFunctionArr;
     //地址选择view
     ZLHomeLocationView *mLocationView;
     //优惠券弹框
@@ -76,6 +78,7 @@
 
     
     mBannerArr = [NSMutableArray new];
+    mFunctionArr = [NSMutableArray new];
     mCoupArr = [NSMutableArray new];
     
     mAdvDataSourceArr = [NSMutableArray new];
@@ -84,6 +87,7 @@
 
     self.mTableView.dataSource = self;
     self.mTableView.delegate = self;
+    self.mTableView.separatorStyle = UITableViewCellSelectionStyleNone;
 
     [self initLeftAndRightBarButton];
 //    [self addTableView];
@@ -223,6 +227,7 @@
         mCommunityObj = mBlock;
         [self upDatePage];
     };
+    ZLAddressVC.mCommunityAdd = [ZLHomeCommunity new];
     ZLAddressVC.mCommunityAdd.cmut_lng = mCommunityObj.cmut_lng;
     ZLAddressVC.mCommunityAdd.cmut_lat = mCommunityObj.cmut_lat;
     ZLAddressVC.hidesBottomBarWhenPushed = YES;
@@ -290,21 +295,24 @@
         return;
     }
     
-    [[APIClient sharedClient] ZLgetHomeBanner:^(APIObject *mBaseObj, NSArray *mArr) {
+    [[APIClient sharedClient] ZLgetHomeBanner:^(APIObject *mBaseObj, ZLHomeFunvtionAndBanner *mFunc) {
         [mBannerArr removeAllObjects];
+        [mFunctionArr removeAllObjects];
+
         [self ZLHideEmptyView];
         if (mBaseObj.code == RESP_STATUS_YES) {
 
-//            [mBannerArr addObjectsFromArray:mArr];
-            [self loadData];
-
-           
+            [mBannerArr addObjectsFromArray:mFunc.banners];
+            [mFunctionArr addObjectsFromArray:mFunc.functions];
+  
         
         }else{
         
             [self showErrorStatus:mBaseObj.msg];
             [self ZLShowEmptyView:mBaseObj.msg andImage:nil andHiddenRefreshBtn:NO];
         }
+        [self endHeaderRereshing];
+
     }];
     
     [[APIClient sharedClient] ZLGetHome:mCommunityObj.cmut_lat andLng:mCommunityObj.cmut_lng block:^(APIObject *mBaseObj, ZLHomeObj *mHome) {
@@ -361,34 +369,6 @@
     }];
 
 }
-- (void)loadData{
-
-    NSString * url1 = @"http://pic.newssc.org/upload/news/20161011/1476154849151.jpg";
-    NSString * url2 = @"http://img.mp.itc.cn/upload/20160328/f512a3a808c44b1ab9b18a96a04f46cc_th.jpg";
-    NSString * url3 = @"http://p1.ifengimg.com/cmpp/2016/10/10/08/f2016fa9-f1ea-4da5-a0f5-ba388de46a96_size80_w550_h354.JPG";
-    NSString * url4 = @"http://image.xinmin.cn/2016/10/11/6150190064053734729.jpg";
-    NSString * url5 = @"http://imgtu.lishiquwen.com/20160919/63e053727778a18993545741f4028c67.jpg";
-    NSString * url6 = @"http://imgtu.lishiquwen.com/20160919/590346287e6e45faf1070a07159314b7.jpg";
-    NSArray *mArr = @[url1,url2,url3,url4,url5,url6];
-    
-    
-    
-    [mBannerArr addObjectsFromArray:mArr];
-    
-    NSDictionary *mTempDic = [NSMutableDictionary new];
-    self.tableArr = [NSMutableArray new];
-    for (int i = 0; i<11; i++) {
-        if (i == 3) {
-            [mTempDic setValue:@"家政" forKey:@"title"];
-        } else
-            [mTempDic setValue:[NSString stringWithFormat:@"这是第%d",i] forKey:@"title"];
-        [mTempDic setValue:@"icon_homepage_default" forKey:@"image"];
-        [self.tableArr addObject:mTempDic];
-    }
-    
-    [self.mTableView reloadData];
-    
-}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -407,7 +387,16 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView              // Default is 1 if not implemented
 {
     if (tableView == self.mTableView) {
-        return 2;
+        
+        if (mComDataSourceArr.count <=0 && mAdvDataSourceArr.count <= 0) {
+            return 1;
+        }else if ((mComDataSourceArr && mAdvDataSourceArr.count <= 0) || (mAdvDataSourceArr && mComDataSourceArr.count <= 0)){
+            return 2;
+        }else{
+            return 3;
+        }
+        
+        
     }else{
     
         return 1;
@@ -427,10 +416,18 @@
 {
     
     if (tableView == self.mTableView) {
+        
         if (section == 0) {
             return 1;
-        }else{
-            return 5;
+        }else {
+            if (mComDataSourceArr.count <=0 && mAdvDataSourceArr.count <= 0) {
+                return mComDataSourceArr.count;
+            }else if (mComDataSourceArr && mAdvDataSourceArr.count <= 0){
+                return mComDataSourceArr.count;
+            }else{
+                return mAdvDataSourceArr.count;
+            }
+
         }
     }else{
         
@@ -447,7 +444,7 @@
     if (tableView == self.mTableView) {
         if (indexPath.section == 0) {
             
-            if (self.tableArr.count<=4) {
+            if (mFunctionArr.count<=4) {
                 return 360-90;
             }else{
                 return 360;
@@ -478,7 +475,7 @@
             
             
             
-            ZLHomeScrollerTableViewCell  *cell = [[ZLHomeScrollerTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseCellId andBannerDataSource:mBannerArr andDataSource:self.tableArr];
+            ZLHomeScrollerTableViewCell  *cell = [[ZLHomeScrollerTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseCellId andBannerDataSource:mBannerArr andDataSource:mFunctionArr];
             
             
             
@@ -489,12 +486,24 @@
             return cell;
         }else{
             
-            
+    
             reuseCellId = @"cell2";
             
             ZLHomeOtherCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
             
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            if (mComDataSourceArr.count <=0 && mAdvDataSourceArr.count <= 0) {
+                
+            }else if (mComDataSourceArr && mAdvDataSourceArr.count <= 0){
+                
+                ZLHomeCompainNoticeList *mCampain = mComDataSourceArr[indexPath.row];
+                
+                [cell.mImage sd_setImageWithURL:[NSURL URLWithString:mCampain.not_image] placeholderImage:[UIImage imageNamed:@"ZLDefault_Activity"]];
+            }else{
+                ZLHomeAdvList *mAdv = mAdvDataSourceArr[indexPath.row];
+                [cell.mImage sd_setImageWithURL:[NSURL URLWithString:mAdv.adv_image] placeholderImage:[UIImage imageNamed:@"ZLDefault_Activity"]];
+            }
             
             return cell;
         }
