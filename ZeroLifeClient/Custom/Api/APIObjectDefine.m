@@ -749,7 +749,10 @@ bool m_bind = NO;
 
 @end
 @implementation ZLGoodsWithClass
++ (NSDictionary *)mj_objectClassInArray{
 
+    return @{@"skus":@"ZLGoodsSKU"};
+}
 
 
 @end
@@ -769,6 +772,17 @@ bool m_bind = NO;
 
 @end
 @implementation ZLGoodsDetailImg
+
+
+
+@end
+
+@implementation ZLGoodsSpeList
+
+
+
+@end
+@implementation ZLSpeObj
 
 
 

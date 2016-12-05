@@ -57,7 +57,7 @@
     
     [self.mImg sd_setImageWithURL:[NSURL URLWithString:mGoodsObj.img_url] placeholderImage:[UIImage imageNamed:@"ZLDefault_Img"]];
     self.mName.text = mGoodsObj.pro_name;
-    self.mContent.text = [NSString stringWithFormat:@"%d元",mGoodsObj.sku_price];
+    self.mContent.text = [NSString stringWithFormat:@"%.1f元",mGoodsObj.sku_price];
     self.mSailsNum.text = [NSString stringWithFormat:@"月销：%d件",mGoodsObj.pro_sales_total];
 //    self.mContent.text = [NSString stringWithFormat:@"库存:%d件",mGoodsObj.sku_stock];
 }

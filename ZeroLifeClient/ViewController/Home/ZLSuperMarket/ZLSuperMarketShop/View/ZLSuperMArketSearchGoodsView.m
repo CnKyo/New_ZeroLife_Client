@@ -30,7 +30,8 @@
 
     view.mGoodsImg.layer.masksToBounds = YES;
     view.mGoodsImg.layer.cornerRadius = 6;
-    
+    view.mGoodsImg.layer.borderColor = [UIColor whiteColor].CGColor;
+    view.mGoodsImg.layer.borderWidth = 3;
     view.frame = mFrame;
     
 

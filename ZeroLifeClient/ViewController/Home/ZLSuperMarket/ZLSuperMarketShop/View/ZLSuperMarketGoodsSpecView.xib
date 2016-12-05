@@ -29,7 +29,7 @@
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yfx-l8-4mV">
                     <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="O2N-M2-5U3">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ZLDefault_Img" translatesAutoresizingMaskIntoConstraints="NO" id="O2N-M2-5U3">
                             <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="100" id="7Mg-bl-k4U"/>
@@ -41,12 +41,12 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="原价：998  现价：998" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Xl-Zm-gfV">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Xl-Zm-gfV">
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                             <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="原价：998  现价：998" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OYS-aH-Hdb">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OYS-aH-Hdb">
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                             <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
@@ -63,6 +63,12 @@
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="152" id="oS1-WA-bjA"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WsP-MF-6y0">
+                            <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="0.24925085616438356" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="LjZ-dG-X7A"/>
                             </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="数量" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NY9-qZ-DN3">
@@ -135,6 +141,7 @@
                         <constraint firstItem="BSm-za-XMO" firstAttribute="top" secondItem="HfI-X4-i0M" secondAttribute="bottom" constant="8" id="3o6-11-KIn"/>
                         <constraint firstAttribute="trailing" secondItem="ejN-H5-gPV" secondAttribute="trailing" constant="8" id="45P-kD-NZR"/>
                         <constraint firstItem="1Gc-Nl-SB2" firstAttribute="top" secondItem="Yfx-l8-4mV" secondAttribute="top" constant="5" id="5MK-LM-FQX"/>
+                        <constraint firstAttribute="trailing" secondItem="WsP-MF-6y0" secondAttribute="trailing" id="6ZI-GG-sUa"/>
                         <constraint firstItem="yKp-VM-FBv" firstAttribute="baseline" secondItem="BSm-za-XMO" secondAttribute="firstBaseline" id="7Gz-M0-Uys"/>
                         <constraint firstItem="ejN-H5-gPV" firstAttribute="leading" secondItem="Yfx-l8-4mV" secondAttribute="leading" constant="20" id="7ID-70-olo"/>
                         <constraint firstAttribute="width" constant="375" id="7af-ug-622"/>
@@ -144,6 +151,7 @@
                         <constraint firstItem="OYS-aH-Hdb" firstAttribute="top" secondItem="4Xl-Zm-gfV" secondAttribute="bottom" constant="5" id="DwB-EQ-J3q"/>
                         <constraint firstItem="ejN-H5-gPV" firstAttribute="top" secondItem="O2N-M2-5U3" secondAttribute="bottom" constant="8" id="Edv-vb-Wr6"/>
                         <constraint firstItem="4Xl-Zm-gfV" firstAttribute="leading" secondItem="O2N-M2-5U3" secondAttribute="trailing" constant="8" id="G27-wY-c9C"/>
+                        <constraint firstItem="WsP-MF-6y0" firstAttribute="top" secondItem="HfI-X4-i0M" secondAttribute="bottom" id="JsO-2k-zAG"/>
                         <constraint firstItem="oaB-Zu-AtR" firstAttribute="top" secondItem="NY9-qZ-DN3" secondAttribute="bottom" constant="25" id="Msd-xf-h6z"/>
                         <constraint firstItem="O2N-M2-5U3" firstAttribute="leading" secondItem="Yfx-l8-4mV" secondAttribute="leading" constant="20" id="Om1-Up-KRR"/>
                         <constraint firstItem="AgH-3N-ELA" firstAttribute="leading" secondItem="yKp-VM-FBv" secondAttribute="trailing" constant="8" id="Oqb-GA-qdo"/>
@@ -161,6 +169,7 @@
                         <constraint firstAttribute="trailing" secondItem="4Xl-Zm-gfV" secondAttribute="trailing" constant="8" id="jxL-bA-aIt"/>
                         <constraint firstItem="yKp-VM-FBv" firstAttribute="top" secondItem="BSm-za-XMO" secondAttribute="top" id="oFh-j5-Z9l"/>
                         <constraint firstAttribute="trailing" secondItem="yKp-VM-FBv" secondAttribute="trailing" constant="74" id="uef-0F-UAq"/>
+                        <constraint firstItem="WsP-MF-6y0" firstAttribute="leading" secondItem="Yfx-l8-4mV" secondAttribute="leading" id="ume-6o-5d3"/>
                         <constraint firstItem="yKp-VM-FBv" firstAttribute="baseline" secondItem="NY9-qZ-DN3" secondAttribute="baseline" id="wYK-fm-2IZ"/>
                         <constraint firstItem="NY9-qZ-DN3" firstAttribute="leading" secondItem="Yfx-l8-4mV" secondAttribute="leading" constant="8" id="yKm-5C-moD"/>
                         <constraint firstItem="oaB-Zu-AtR" firstAttribute="leading" secondItem="Yfx-l8-4mV" secondAttribute="leading" id="ywt-1d-nLD"/>
@@ -192,6 +201,7 @@
         </view>
     </objects>
     <resources>
+        <image name="ZLDefault_Img" width="140" height="140"/>
         <image name="ZLSuperMarket_Close_Spec" width="42" height="42"/>
     </resources>
 </document>

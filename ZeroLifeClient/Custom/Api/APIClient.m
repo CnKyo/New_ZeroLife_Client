@@ -1094,27 +1094,7 @@
                         case ZLRightGoodsTypeFromClass:
                         {
                          
-                            ZLGoodsWithClass *mGoods = [ZLGoodsWithClass new];
-                            mGoods.img_url = [dic objectForKey:@"img_url"];
-                            mGoods.pro_date_create = [dic objectForKey:@"pro_date_create"];
-                            mGoods.pro_date_life = [dic objectForKey:@"pro_date_life"];
-                            mGoods.pro_id = [[dic objectForKey:@"pro_id"] intValue];
-                            mGoods.pro_name = [dic objectForKey:@"pro_name"];
-                            mGoods.pro_purchase_num = [[dic objectForKey:@"pro_purchase_num"] intValue];
-                            mGoods.pro_sales_total = [[dic objectForKey:@"pro_sales_total"] intValue];
-                            mGoods.pro_unit = [dic objectForKey:@"pro_unit"];
-                            mGoods.pro_weight = [dic objectForKey:@"pro_weight"];
-                            mGoods.sku_id = [[dic objectForKey:@"sku_id"] intValue];
-                            
-                            id mSkus = [dic objectForKey:@"skus"];
-                            NSMutableArray *mSkuArr = [NSMutableArray new];
-                            if ([mSkus isKindOfClass:[NSArray class]]) {
-                                for (NSDictionary *mdic in mSkus) {
-                                    [mSkuArr addObject:[ZLGoodsSKU mj_objectWithKeyValues:mdic]];
-                                }
-                            }
-                            mGoods.skus = mSkus;
-                            [mGoodsList addObject:mGoods];
+                            [mGoodsList addObject:[ZLGoodsWithClass mj_objectWithKeyValues:dic]];
 
                         }
                             break;

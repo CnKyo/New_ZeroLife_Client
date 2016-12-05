@@ -744,6 +744,8 @@
 ///商品名称
 @property (strong,nonatomic) NSString* pro_name;
 
+
+
 @end
 #pragma mark----****----商品库存对象
 ///商品库存对象
@@ -752,10 +754,12 @@
 @property (strong,nonatomic) NSString* sta_val_name;
 ///规格类型名称
 @property (strong,nonatomic) NSString* sta_name;
+@property (strong,nonatomic) NSString* sta_val_state;
+
 ///规格类型是否必选标识，1-是，0-否
 @property (assign,nonatomic) int sta_required;
 ///商品对应SKU价格
-@property (assign,nonatomic) int sku_price;
+@property (assign,nonatomic) float sku_price;
 ///规格类型ID
 @property (assign,nonatomic) int sta_id;
 ///对应SKU库存
@@ -811,7 +815,7 @@
 ///规格类型ID
 @property (assign,nonatomic) int sta_id;
 ///商品对应SKU价格
-@property (assign,nonatomic) int sku_price;
+@property (assign,nonatomic) float sku_price;
 ///保质期
 @property (strong,nonatomic) NSString* pro_date_life;
 ///销售量
@@ -889,3 +893,36 @@
 @property (assign,nonatomic) int img_sort;
 
 @end
+///规格列表
+@interface ZLGoodsSpeList : NSObject
+///规格名
+@property (strong,nonatomic) NSString* mSpeName;
+///规格数据源
+@property (strong,nonatomic) NSMutableArray* mSpeArr;
+///staid
+@property (assign,nonatomic) int mStaId;
+///规格id
+@property (assign,nonatomic) int mSkuId;
+
+
+@end
+@class ZLGoodsSKU;
+///规格值对象
+@interface ZLSpeObj : NSObject
+///规格商品名称
+@property (strong,nonatomic) NSString* mSpeGoodsName;
+
+@property (assign,nonatomic) int mSta_val_id;
+
+///价格
+@property (assign,nonatomic) float mPrice;
+///库存
+@property (assign,nonatomic) int mStock;
+///是否有效
+@property (assign,nonatomic) int mIsValid;
+///sku对象
+@property (strong,nonatomic) ZLGoodsSKU *mSku;
+
+
+@end
+

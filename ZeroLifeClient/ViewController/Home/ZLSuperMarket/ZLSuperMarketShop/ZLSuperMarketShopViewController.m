@@ -25,9 +25,12 @@
 
 #import "ZLShopCampainSubView.h"
 
+#import "StandardsView.h"
+#import "ZLSkuCell.h"
+
 static const CGFloat mTopH = 156;
 
-@interface ZLSuperMarketShopViewController ()<UITableViewDelegate,UITableViewDataSource,ZLSuperMarketShopDelegate,ZLSuperMarketGoodsCellDelegate,UIScrollViewDelegate,ZLSuperMarketShopCarDelegate,ZLSuperMarketGoodsSpecDelegate,UICollectionViewDelegate,ZLHouseKeppingServiceCellDelegate,ZLSpeSelectedViewCellDelegate>
+@interface ZLSuperMarketShopViewController ()<UITableViewDelegate,UITableViewDataSource,ZLSuperMarketShopDelegate,ZLSuperMarketGoodsCellDelegate,UIScrollViewDelegate,ZLSuperMarketShopCarDelegate,ZLSuperMarketGoodsSpecDelegate,UICollectionViewDelegate,ZLHouseKeppingServiceCellDelegate,ZLSpeSelectedViewCellDelegate,StandardsViewDelegate,ZLSKUCellDelegate>
 
 /**
  规格瀑布流
@@ -35,14 +38,13 @@ static const CGFloat mTopH = 156;
 @property (nonatomic, strong) UITableView *mSpeTableView;
 
 /**
- 规格数据源
- */
-@property (nonatomic, strong) NSMutableArray *mSpeDataArray;
-
-/**
  选择规格数据源
  */
 @property (nonatomic, strong) NSMutableArray *mSpeAddArray;
+
+
+@property (nonatomic, strong) NSMutableArray *mSelectedSpeArray;
+
 
 @property(strong,nonatomic)ZLSpeHeaderView *mSpeHeaderView;
 
@@ -93,11 +95,11 @@ static const CGFloat mTopH = 156;
     // Do any additional setup after loading the view.
     self.navigationItem.title = self.mShopObj.shop_name;
 
-    self.mSpeDataArray = [NSMutableArray new];
     self.mSpeAddArray = [NSMutableArray new];
     
     mLeftDataArr = [NSMutableArray new];
     mRightDataArr = [NSMutableArray new];
+    self.mSelectedSpeArray = [NSMutableArray new];
 
     mLeftDataSource = [ZLShopLeftTableArr new];
     
@@ -106,7 +108,7 @@ static const CGFloat mTopH = 156;
     mShopObj = [ZLShopObj new];
     [self loadData];
     [self initView];
-    [self initData];
+//    [self initData];
     [self initHeaderView];
     [self initSpeView];
     
@@ -121,13 +123,14 @@ static const CGFloat mTopH = 156;
 #pragma mark----****----加载数据
 - (void)initData{
 
-    NSArray *mAr = [NSArray arrayWithObjects:@{@"num":@[@"问题1",@"问题2",@"问题3",@"问题4",@"问题5",@"问题6",@"问题7",@"问题8",@"请点击复合你的)"]}, nil];
+    NSArray *mAr = @[@"问题1",@"问题2",@"问题3",@"问题4",@"问题5",@"问题6",@"问题7",@"问题8",@"请点击复合你的)"];
     
     [self.mSpeAddArray addObjectsFromArray:mAr];
-    
+    [_mSpeTableView reloadData];
 //    for (int i=0; i<8; i++) {
 //        [self.mSpeDataArray addObject:[NSString stringWithFormat:@"第%d种规格 %d元",i,i+150]];
 //    }
+    
 }
 #pragma mark----****----加载headerview
 - (void)initHeaderView{
@@ -155,7 +158,18 @@ static const CGFloat mTopH = 156;
             [self dismiss];
             mShopObj = mShop;
             
-            mLeftDataSource = mLeftTabArr;
+            NSMutableArray *mCamArr = [NSMutableArray new];
+            
+            for (ZLShopCampain *mCam in mLeftTabArr.mCampainArr) {
+                if (mCam.cam_is_goods == 1) {
+                    [mCamArr addObject:mCam];
+                }
+            }
+            
+            mLeftDataSource.mCampainArr = mCamArr;
+            mLeftDataSource.mClassArr = mLeftTabArr.mClassArr;
+            mLeftDataSource.mLeftType = mLeftTabArr.mLeftType;
+
             [self upDatePage:mShop];
             [mLeftTableView reloadData];
         }else{
@@ -308,21 +322,15 @@ static const CGFloat mTopH = 156;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     
-    if (tableView == self.mSpeTableView) {
-        return 40;
-    }else{
+
         return 0.15;
-    }
+    
     
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    if (tableView == self.mSpeTableView) {
-        _mSpeHeaderView = [[ZLSpeHeaderView alloc]initWithFrame:CGRectMake(0, 0, DEVICE_Width, 40)];
-        _mSpeHeaderView.mNameLabel.text = [NSString stringWithFormat:@"%@:",[[[self.mSpeAddArray objectAtIndex:0]objectForKey:@"num"]objectAtIndex:section]];
-        return _mSpeHeaderView;
-    }else{
+  
         return nil;
-    }
+    
     
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -385,7 +393,14 @@ static const CGFloat mTopH = 156;
 
         
     }else{
-    return ([[[self.mSpeAddArray objectAtIndex:0]objectForKey:@"num"] count]/4 + [[[self.mSpeAddArray objectAtIndex:0]objectForKey:@"num"] count]%4) * 40;
+        
+        
+        ZLSkuCell *cell = [tableView dequeueReusableCellWithIdentifier:@"mSpeCell"];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        ZLGoodsSpeList *mGoodSpe = self.mSpeAddArray[indexPath.row];
+        [cell setMDataSource:mGoodSpe.mSpeArr];
+        return cell.mCellH;
     }
     
 }
@@ -474,11 +489,17 @@ static const CGFloat mTopH = 156;
         
     }else{
     
-        static NSString *cellName = @"cellName";
+        reuseCellId = @"mSpeCell";
         
-        ZLSpeSelectedViewCell *cell = [[ZLSpeSelectedViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellName andDataSource:self.mSpeAddArray];
+        ZLSkuCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        ZLGoodsSpeList *mGoodSpe = self.mSpeAddArray[indexPath.row];
         cell.delegate = self;
-        cell.mIndexPathSection = indexPath;
+        cell.mIndexPath = indexPath;
+        [cell setMName:mGoodSpe.mSpeName];
+
+        [cell setMDataSource:mGoodSpe.mSpeArr];
         
         return cell;
 
@@ -628,23 +649,24 @@ static const CGFloat mTopH = 156;
  */
 - (void)ZLSuperMarketGoodsCellWithSpecBtnSelectedIndexPath:(NSIndexPath *)mIndexPath{
 
-    [_mSpeDataArray removeAllObjects];
     [_mSpeAddArray removeAllObjects];
     switch (mRightTabType) {
         case ZLRightGoodsTypeFromCamp:
         {
 
             ZLGoodsWithCamp *mCampGoods = mRightDataArr[mIndexPath.row];
-            [_mSpeDataArray addObject:mCampGoods];
+            [_mSpeAddArray addObject:mCampGoods];
         }
             break;
         case ZLRightGoodsTypeFromClass:
         {
             
 
-            ZLGoodsWithClass *mGoods = mRightDataArr[mIndexPath.row];
 //            [_mSpeDataArray addObjectsFromArray:mGoods.skus];
 //            [_mSpeTableView reloadData];
+            [self.mSelectedSpeArray removeAllObjects];
+            [self.mSelectedSpeArray addObject:mRightDataArr[mIndexPath.row]];
+            [self showSpeView:mIndexPath];
 
         }
             break;
@@ -652,7 +674,6 @@ static const CGFloat mTopH = 156;
         default:
             break;
     }
-    [self showSpeView];
 }
 
 #pragma mark----****----滚动代理方法
@@ -758,7 +779,7 @@ static const CGFloat mTopH = 156;
     }
     
 }
-#pragma mark----****----规格view
+#pragma mark----****----加载规格view
 - (void)initSpeView{
 
 
@@ -774,25 +795,264 @@ static const CGFloat mTopH = 156;
     _mSpeTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, DEVICE_Width-40,152) style:UITableViewStyleGrouped];
     _mSpeTableView.delegate = self;
     _mSpeTableView.dataSource = self;
+    _mSpeTableView.backgroundColor = [UIColor whiteColor];
     _mSpeTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-
+    
+    UINib   *nib = [UINib nibWithNibName:@"ZLSkuCell" bundle:nil];
+    [_mSpeTableView registerNib:nib forCellReuseIdentifier:@"mSpeCell"];
+    
     [mSpeView.mGoodsSpeScrollView addSubview:_mSpeTableView];
     
     
     [self.view addSubview:mSpeView];
-    [self initData];
-    [_mSpeTableView reloadData];
 }
 #pragma mark----****----显示规格view
-- (void)showSpeView{
+- (void)showSpeView:(NSIndexPath *)mIndexPath{
+    
+    ZLGoodsWithClass *mGoodObj = mRightDataArr[mIndexPath.row];
+    
+    float mP = 0;
+    int count = 0;
+    for (ZLGoodsSKU *sku in mGoodObj.skus) {
+        if (mGoodObj.sku_id == sku.sku_id) {
+            mP = sku.sku_price;
+            count = sku.sku_stock;
+        }
+    }
+    
+    [self UpdateSpeViewPage:mGoodObj.img_url andGoodsName:mGoodObj.pro_name andGoodsPrice:mP andSkuCount:count];
+    
+    ///规格数组
+    NSMutableArray *mSkuTempArr = [NSMutableArray new];
+    
+    ///从这里取值
+    ZLGoodsWithClass *mGoods = mRightDataArr[mIndexPath.row];
+    
+    
+    for (int i = 0;i<mGoods.skus.count;i++) {
+        
+        ZLGoodsSKU *mOne = mGoods.skus[i];
+        
+        BOOL mIsAdd = YES;
+        
+        for (int j = 0; j<mSkuTempArr.count ; j++) {
+            
+            
+            
+            ZLGoodsSpeList *mTwo = mSkuTempArr[j];
+            
+            if (mOne.sta_id == mTwo.mStaId) {
+                
+                
+                
+                ZLSpeObj *mSkuValue  = [ZLSpeObj new];
+                mSkuValue.mSpeGoodsName = mOne.sta_val_name;
+                mSkuValue.mSku = mOne;
+                mSkuValue.mSta_val_id = mOne.sta_val_id;
+                
+                [mTwo.mSpeArr addObject:mSkuValue];
+                [mSkuTempArr replaceObjectAtIndex:j withObject:mTwo];
+                mIsAdd = NO;
+                continue;
+                
+            }
+            
+        }
+        
+        
+        if (mIsAdd == YES) {
+            
+            ZLGoodsSpeList *mSpeListObj = [ZLGoodsSpeList new];
+            mSpeListObj.mSpeName = mOne.sta_name;
+            mSpeListObj.mStaId = mOne.sta_id;
+            
+            ZLSpeObj *mSkuValue  = [ZLSpeObj new];
+            mSkuValue.mSpeGoodsName = mOne.sta_val_name;
+            mSkuValue.mSku = mOne;
+            mSkuValue.mSta_val_id = mOne.sta_val_id;
+            
+            NSMutableArray *tempArr = [NSMutableArray new];
+            [tempArr addObject:mSkuValue];
+            mSpeListObj.mSpeArr = tempArr;
+            
+            [mSkuTempArr addObject:mSpeListObj];
+            
+        }
+        
+        
+    }
 
+    [self.mSpeAddArray addObjectsFromArray:mSkuTempArr];
+    
+    [_mSpeTableView reloadData];
     [self dismissSearchView];
     [UIView animateWithDuration:0.25 animations:^{
         CGRect mSpeRect = mSpeView.frame;
         mSpeRect.origin.y = 0;
         mSpeView.frame = mSpeRect;
     }];
+
+
+    
+//    StandardsView *mystandardsView = [self buildStandardView:[UIImage imageNamed:@"bg.jpg"] andIndex:mIndexPath.row];
+//    mystandardsView.GoodDetailView = self.view;//设置该属性 对应的view 会缩小
+//    
+//    mystandardsView.showAnimationType = StandsViewShowAnimationShowFrombelow;
+//    mystandardsView.dismissAnimationType = StandsViewDismissAnimationDisFrombelow;
+//    
+//    
+//    [mystandardsView show];
+
 }
+#pragma mark----****----更新规格页面数据
+/**
+ 更新规格页面数据
+
+ @param mGoodsImg 商品图片
+ @param mName     商品名称
+ @param mPrice    商品价格
+ @param mcount    库存
+ */
+- (void)UpdateSpeViewPage:(NSString *)mGoodsImg andGoodsName:(NSString *)mName andGoodsPrice:(float)mPrice andSkuCount:(int)mcount{
+
+    
+    [mSpeView.mGoodsImg sd_setImageWithURL:[NSURL URLWithString:mGoodsImg] placeholderImage:[UIImage imageNamed:@"ZLDefault_Img"]];
+    mSpeView.mGoodsName.text = mName;
+    mSpeView.mGoodsPrice.text = [NSString stringWithFormat:@"价格：%.2f元",mPrice];
+    mSpeView.mGoodsRep.text = [NSString stringWithFormat:@"库存：%d",mcount];
+    
+}
+-(StandardsView *)buildStandardView:(UIImage *)img andIndex:(NSInteger)index
+{
+    ///规格数组
+    NSMutableArray *mSkuTempArr = [NSMutableArray new];
+    
+    ///从这里取值
+    ZLGoodsWithClass *mGoods = mRightDataArr[index];
+    
+    
+    for (int i = 0;i<mGoods.skus.count;i++) {
+        
+        ZLGoodsSKU *mOne = mGoods.skus[i];
+        
+        BOOL mIsAdd = YES;
+        
+        for (int j = 0; j<mSkuTempArr.count ; j++) {
+            
+            
+            
+            ZLGoodsSpeList *mTwo = mSkuTempArr[j];
+            
+            if (mOne.sta_id == mTwo.mStaId) {
+                
+                
+                
+                ZLSpeObj *mSkuValue  = [ZLSpeObj new];
+                mSkuValue.mSpeGoodsName = mOne.sta_val_name;
+                mSkuValue.mSku = mOne;
+                mSkuValue.mSta_val_id = mOne.sta_val_id;
+                
+                [mTwo.mSpeArr addObject:mSkuValue];
+                [mSkuTempArr replaceObjectAtIndex:j withObject:mTwo];
+                mIsAdd = NO;
+                continue;
+                
+            }
+            
+        }
+        
+        
+        if (mIsAdd == YES) {
+            
+            ZLGoodsSpeList *mSpeListObj = [ZLGoodsSpeList new];
+            mSpeListObj.mSpeName = mOne.sta_name;
+            mSpeListObj.mStaId = mOne.sta_id;
+            
+            ZLSpeObj *mSkuValue  = [ZLSpeObj new];
+            mSkuValue.mSpeGoodsName = mOne.sta_val_name;
+            mSkuValue.mSku = mOne;
+            mSkuValue.mSta_val_id = mOne.sta_val_id;
+            
+            NSMutableArray *tempArr = [NSMutableArray new];
+            [tempArr addObject:mSkuValue];
+            mSpeListObj.mSpeArr = tempArr;
+            
+            [mSkuTempArr addObject:mSpeListObj];
+            
+        }
+        
+        
+    }
+    
+    
+    StandardsView *standview = [[StandardsView alloc] init];
+    standview.tag = index;
+    standview.delegate = self;
+    
+    standview.mainImgView.image = img;
+    standview.mainImgView.backgroundColor = [UIColor whiteColor];
+    standview.priceLab.text = @"¥100.0";
+    standview.tipLab.text = @"请选择规格";
+    standview.goodNum.text = @"库存 10件";
+    
+    
+    standview.customBtns = @[@"加入购物车",@"立即购买"];
+    
+    
+    standardClassInfo *tempClassInfo1 = [standardClassInfo StandardClassInfoWith:@"0" andStandClassName:@"红色das"];
+    standardClassInfo *tempClassInfo2 = [standardClassInfo StandardClassInfoWith:@"1" andStandClassName:@"蓝色ads"];
+    
+    NSArray *tempClassInfoArr = @[tempClassInfo1,tempClassInfo2];
+    StandardModel *tempModel = [StandardModel StandardModelWith:tempClassInfoArr andStandName:@"颜色"];
+    
+    
+    
+    standardClassInfo *tempClassInfo3 = [standardClassInfo StandardClassInfoWith:@"2" andStandClassName:@"XL"];
+    standardClassInfo *tempClassInfo4 = [standardClassInfo StandardClassInfoWith:@"3" andStandClassName:@"XXL"];
+    
+    NSArray *tempClassInfoArr2 = @[tempClassInfo3,tempClassInfo4];
+    StandardModel *tempModel2 = [StandardModel StandardModelWith:tempClassInfoArr2 andStandName:@"尺寸"];
+    standview.standardArr = @[tempModel,tempModel2];
+    
+    
+    
+    return standview;
+}
+
+#pragma mark - standardView  delegate
+//点击自定义按键
+-(void)StandardsView:(StandardsView *)standardView CustomBtnClickAction:(UIButton *)sender
+{
+    if (sender.tag == 0) {
+        //将商品图片抛到指定点
+        [standardView ThrowGoodTo:CGPointMake(200, 100) andDuration:1.6 andHeight:150 andScale:20];
+    }
+    else
+    {
+        [standardView dismiss];
+    }
+}
+
+//点击规格代理
+-(void)Standards:(StandardsView *)standardView SelectBtnClick:(UIButton *)sender andSelectID:(NSString *)selectID andStandName:(NSString *)standName andIndex:(NSInteger)index
+{
+    
+    MLLog(@"selectID = %@ standName = %@ index = %ld",selectID,standName,(long)index);
+    
+}
+//设置自定义btn的属性
+-(void)StandardsView:(StandardsView *)standardView SetBtn:(UIButton *)btn
+{
+    if (btn.tag == 0) {
+        btn.backgroundColor = M_CO;
+    }
+    else if (btn.tag == 1)
+    {
+        btn.backgroundColor = [UIColor redColor];
+    }
+}
+
+
 #pragma mark----****----隐藏规格view
 - (void)hiddenSpeView{
     [UIView animateWithDuration:0.25 animations:^{
@@ -867,4 +1127,35 @@ static const CGFloat mTopH = 156;
     MLLog(@"%ld,%ld",(long)mIndexPathSection.section,(long)mIndexPathRow.row);
 
 }
+#pragma mark----****---- 选中规格的代理方法
+/**
+ 选中规格的代理方法
+
+ @param mIndexPath 索引row
+ @param mIndex     下标
+ */
+- (void)ZLSkuCellWithSelectedIndexPath:(NSIndexPath *)mIndexPath andIndex:(NSInteger)mIndex{
+
+    
+    MLLog(@"点击了第几个规格？：%ld----%ld",(long)mIndexPath.row,(long)mIndex);
+    
+    
+    if (self.mSelectedSpeArray.count<=0) {
+        return;
+    }
+    
+    ZLGoodsWithClass *mGoodObj = self.mSelectedSpeArray[0];
+    ZLGoodsSpeList *mSpe = self.mSpeAddArray[mIndexPath.row];
+    ZLSpeObj *mSku = mSpe.mSpeArr[mIndex];
+    
+    if (mSku.mSku.sta_required == 1) {
+        [self UpdateSpeViewPage:mGoodObj.img_url andGoodsName:mGoodObj.pro_name andGoodsPrice:mSku.mSku.sku_price andSkuCount:mSku.mSku.sku_stock];
+
+    }
+    
+    
+    
+}
+
+
 @end
