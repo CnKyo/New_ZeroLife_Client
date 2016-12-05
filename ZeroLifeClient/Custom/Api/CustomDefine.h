@@ -198,6 +198,13 @@ static NSString * const MyUserInfoChangedNotification   = @"MyUserInfoChangedNot
 
 static NSString * const MyUserAddressNeedUpdateNotification   = @"MyUserAddressNeedUpdateNotification"; //地址信息需要更新
 
+//功能参数（用户头像-U_PHOTO，用户认证文件-U_AUT，用户跑跑腿申请资料-U_APPLY，用户订单处理-U_ORDERS）
+static NSString* const  kFileUploadPath_Photo       = @"U_PHOTO";
+static NSString* const  kFileUploadPath_Aut         = @"U_AUT";
+static NSString* const  kFileUploadPath_Apply       = @"U_APPLY";
+static NSString* const  kFileUploadPath_Orders      = @"U_ORDERS";
+
+
 typedef enum {
     kUserSexType_man = 1,//
     kUserSexType_woman = 2,//
@@ -269,6 +276,12 @@ typedef enum{
     ZLHomeNewsTypeNews,//3：新闻
     
 }ZLHomeNewsType;//首页新闻类型
+
+
+typedef enum {
+    kFileType_photo = 1,//
+    kFileType_video = 2,//
+} kFileType; //文件类型（1-图片，2-音频）
 
 
 

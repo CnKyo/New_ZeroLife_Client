@@ -10,8 +10,9 @@
 #import "NSObject+PickPhoto.h"
 #import "UserHouseEditVC.h"
 #import "UserAddressTVC.h"
+#import <RSKImageCropper/RSKImageCropper.h>
 
-@interface UserInfoVC ()<UITextFieldDelegate>
+@interface UserInfoVC ()<UITextFieldDelegate, RSKImageCropViewControllerDelegate>
 @property(nonatomic,strong) ZLUserInfo *user;
 
 @property(nonatomic,assign) BOOL isDataEditChaged;
@@ -228,36 +229,31 @@
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
             [self startChoosePhotoCall:^(UIImage *img) {
-                self.userLocalImg = img;
-                self.isDataEditChaged = YES;
-                [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+                //UIImage *image = [UIImage imageNamed:@"image"];
+                RSKImageCropViewController *imageCropVC = [[RSKImageCropViewController alloc] initWithImage:img];
+                imageCropVC.delegate = self;
+                [self.navigationController pushViewController:imageCropVC animated:YES];
+                
+//                self.userLocalImg = img;
+//                self.isDataEditChaged = YES;
+//                [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
             }];
         } else if (indexPath.row == 2) { //性别
             
-//            UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"选择性别" message:@"" preferredStyle:UIAlertControllerStyleAlert];
-//            [alertVC addTextFieldWithConfigurationHandler:^(UITextField *textField){
-//                textField.placeholder = @"登录";
-//            }];
-//            [alertVC addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-//                textField.placeholder = @"密码";
-//                textField.secureTextEntry = YES;
-//            }];
-            
-            UIActionSheet *sheet = [UIActionSheet bk_actionSheetWithTitle:@"选择性别"];
-            [sheet bk_setCancelButtonWithTitle:@"取消" handler:^{}];
-            [sheet bk_addButtonWithTitle:@"男" handler:^{
+            UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"选择性别" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+            [alertVC addAction:[UIAlertAction actionWithTitle:@"取消"style:UIAlertActionStyleCancel handler:nil]];
+            [alertVC addAction:[UIAlertAction actionWithTitle:@"男"style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 self.user.user_sex = kUserSexType_man;
                 self.isDataEditChaged = YES;
                 [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-            }];
-            [sheet bk_addButtonWithTitle:@"女" handler:^{
+            }]];
+            [alertVC addAction:[UIAlertAction actionWithTitle:@"女"style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 self.user.user_sex = kUserSexType_woman;
                 self.isDataEditChaged = YES;
                 [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-            }];
-            [sheet showInView:self.view];
-            
-            
+            }]];
+            [self presentViewController:alertVC animated:YES completion:nil];
+
         }
     } else {
         if (indexPath.row == 1) {
@@ -266,6 +262,59 @@
             [self.navigationController pushViewController:vc animated:YES];
         }
     }
+}
+
+
+
+// Crop image has been canceled.
+- (void)imageCropViewControllerDidCancelCrop:(RSKImageCropViewController *)controller
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+// The original image has been cropped.
+- (void)imageCropViewController:(RSKImageCropViewController *)controller
+                   didCropImage:(UIImage *)croppedImage
+                  usingCropRect:(CGRect)cropRect
+{
+    //[self updateFileWithImg:croppedImage];
+    //self.imageView.image = croppedImage;
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+// The original image has been cropped. Additionally provides a rotation angle used to produce image.
+- (void)imageCropViewController:(RSKImageCropViewController *)controller
+                   didCropImage:(UIImage *)croppedImage
+                  usingCropRect:(CGRect)cropRect
+                  rotationAngle:(CGFloat)rotationAngle
+{
+    [self updateFileWithImg:croppedImage];
+    //self.imageView.image = croppedImage;
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+// The original image will be cropped.
+- (void)imageCropViewController:(RSKImageCropViewController *)controller
+                  willCropImage:(UIImage *)originalImage
+{
+    // Use when `applyMaskToCroppedImage` set to YES.
+    //[SVProgressHUD show];
+}
+
+-(void)updateFileWithImg:(UIImage *)img
+{
+    NSData* data = UIImageJPEGRepresentation(img, 1.0);
+    
+    [SVProgressHUD showWithStatus:@"头像上传中..."];
+    [[APIClient sharedClient] fileUploadWithTag:self data:data type:kFileType_photo path:kFileUploadPath_Photo call:^(NSString *fileUrlStr, APIObject *info) {
+        if (info.code == RESP_STATUS_YES) {
+            self.userLocalImg = img;
+            self.isDataEditChaged = YES;
+            [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
+        } else
+            [SVProgressHUD showErrorWithStatus:info.msg];
+    }];
+
 }
 
 

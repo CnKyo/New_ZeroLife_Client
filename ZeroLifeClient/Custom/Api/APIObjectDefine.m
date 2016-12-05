@@ -581,3 +581,11 @@ static ZLUserInfo *g_user = nil;
 
 
 @end
+
+
+
+
+
+@implementation ExternalPlatformObject
+@end
+

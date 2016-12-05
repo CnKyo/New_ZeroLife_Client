@@ -12,6 +12,7 @@
 #import <MJRefresh/MJRefresh.h>
 #import "APIObjectDefine.h"
 #import "UIView+AutoSize.h"
+#import "APIClient.h"
 
 @interface CustomScrollVC : UIViewController
 

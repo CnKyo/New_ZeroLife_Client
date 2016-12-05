@@ -25,6 +25,20 @@
     [super viewDidLoad];
     self.title = @"便民服务";
     
+    
+//    [SVProgressHUD showWithStatus:@"加载中..."];
+//    [[APIClient sharedClient] externalPlatformListWithTag:self call:^(NSArray *tableArr, APIObject *info) {
+//        if (info.code == RESP_STATUS_YES) {
+//            if (tableArr.count > 0) {
+//                self.arr = [tableArr mutableCopy];
+//                [self initViews];
+//            } else
+//                [SVProgressHUD showErrorWithStatus:@"暂无数据"];
+//        } else
+//            [SVProgressHUD showErrorWithStatus:info.msg];
+//    }];
+    
+    
     self.arr = [NSArray arrayWithObjects:@"百度罗米1", @"百度罗米2", @"百度罗米3", @"百度罗米4", @"百度罗米5", @"百度罗米6", @"百度罗米7", @"百度罗米8", @"百度罗米9", @"百度罗米0", nil];
 
     [self initViews];
@@ -49,6 +63,8 @@
 {
     UIView *superView = self.contentView;
     int padding = 10;
+    
+    [superView removeAllSubviews];
     
     UILabel *noteLable = [superView newUILableWithText:@"第三方服务平台" textColor:[UIColor grayColor] font:[UIFont systemFontOfSize:14]];
     [noteLable makeConstraints:^(MASConstraintMaker *make) {

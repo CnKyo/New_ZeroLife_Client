@@ -324,6 +324,48 @@
 }
 
 
+/**
+ *   文件上传接口
+ *
+ *  @param tag      链接对象
+ *  @param data     上传数据
+ *  @param type     文件类型（1-图片，2-音频）
+ *  @param path     功能参数（用户头像-U_PHOTO，用户认证文件-U_AUT，用户跑跑腿申请资料-U_APPLY，用户订单处理-U_ORDERS）
+ *  @param callback 返回列表
+ */
+-(void)fileUploadWithTag:(NSObject *)tag data:(NSData *)data type:(kFileType)type path:(NSString *)path call:(void (^)(NSString *fileUrlStr, APIObject* info))callback
+{
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    if (user.user_id > 0) {
+        NSMutableDictionary* paramDic = [NSMutableDictionary dictionary];
+        [paramDic setInt:type forKey:@"type"];
+        [paramDic setObject:path forKey:@"path"];
+        [paramDic setInt:user.user_id forKey:@"user_id"];
+        [self postWithTag:tag path:@"/resource/api/app/client/file/upload" parameters:paramDic constructingBodyWithBlockBack:^(id<AFMultipartFormData> formData) {
+            if (type == kFileType_photo)
+                [formData appendPartWithFileData:data name:@"file" fileName:@"img.png" mimeType:@"image/jpg/png"];
+            
+            if (type == kFileType_video)
+                [formData appendPartWithFileData:data name:@"file" fileName:@"aa.mp4" mimeType:@"video/mpeg4"];
+            
+        } call:^(NSError *error, id responseObject) {
+            if (error == nil) {
+                APIObject *info = [APIObject mj_objectWithKeyValues:responseObject];
+                if (info.code == RESP_STATUS_YES) {
+                    NSString *full_path = [info.data objectWithKey:@"name"];
+                    callback(full_path, info);
+                } else
+                    callback(nil, info);
+
+            } else {
+                NSLog(@"error:%@", error);
+                callback(nil, [APIObject infoWithError:error]);
+            }
+        }];
+    } else
+        callback(nil, [APIObject infoWithReLoginErrorMessage:@"请重新登陆"]);
+}
+
 
 #pragma mark----****----用户资料
 /**
@@ -814,6 +856,25 @@
         
     }];
     
+}
+
+
+#pragma mark----****----便民服务接口
+/**
+ *   便民服务接口列表接口
+ *
+ *  @param tag      链接对象
+ *  @param callback 返回列表
+ */
+-(void)externalPlatformListWithTag:(NSObject *)tag call:(TableArrBlock)callback
+{
+    [self loadAPIWithTag:self path:@"/other/external_platform_list" parameters:nil call:^(APIObject *info) {
+        if (info.code == RESP_STATUS_YES) {
+            NSArray *newArr = [ExternalPlatformObject mj_objectArrayWithKeyValuesArray:info.data];
+            callback(newArr, info);
+        } else
+            callback(nil, info);
+    }];
 }
 
 @end

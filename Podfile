@@ -45,6 +45,7 @@ target 'ZeroLifeClient' do
   pod 'HcdGuideView'
   pod 'JWLaunchAd'
   pod 'JHUD'
+  pod 'RSKImageCropper'
 
 
 
