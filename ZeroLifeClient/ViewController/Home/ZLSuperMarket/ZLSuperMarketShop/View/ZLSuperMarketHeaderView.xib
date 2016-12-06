@@ -20,9 +20,25 @@
                     </constraints>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O5E-fw-wUn">
-                    <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fRf-Gd-vua" customClass="LDXScore">
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="150" id="eID-Qw-gvC"/>
+                                <constraint firstAttribute="height" constant="20" id="pTD-UM-SGW"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isSelect" value="YES"/>
+                                <userDefinedRuntimeAttribute type="image" keyPath="normalImg" value="btn_star_evaluation_normal"/>
+                                <userDefinedRuntimeAttribute type="image" keyPath="highlightImg" value="btn_star_evaluation_press"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
+                        <constraint firstItem="fRf-Gd-vua" firstAttribute="leading" secondItem="O5E-fw-wUn" secondAttribute="leading" id="9jN-XE-omJ"/>
                         <constraint firstAttribute="height" constant="20" id="p57-gS-Ide"/>
+                        <constraint firstItem="fRf-Gd-vua" firstAttribute="top" secondItem="O5E-fw-wUn" secondAttribute="top" id="wzy-Lb-Wwh"/>
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="askjashdk打开来是打算考虑到拉萨看到卡拉斯科德令哈时代阿斯顿好" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="Jbu-4X-S2H">
@@ -143,10 +159,15 @@
                 <outlet property="mCoupBtn" destination="2h3-tu-kSl" id="ckB-Yz-Jn6"/>
                 <outlet property="mRateBtn" destination="SHM-iL-M3N" id="yM2-ua-AJj"/>
                 <outlet property="mRateView" destination="O5E-fw-wUn" id="df8-Y3-7Ca"/>
+                <outlet property="mScoreView" destination="fRf-Gd-vua" id="IeY-j6-me7"/>
                 <outlet property="mShopLogo" destination="f1B-36-Xn6" id="rsa-ZT-EtB"/>
                 <outlet property="mSubContent" destination="HOz-VK-OjC" id="NXW-a8-39x"/>
             </connections>
             <point key="canvasLocation" x="7" y="-110"/>
         </view>
     </objects>
+    <resources>
+        <image name="btn_star_evaluation_normal" width="100" height="100"/>
+        <image name="btn_star_evaluation_press" width="100" height="100"/>
+    </resources>
 </document>

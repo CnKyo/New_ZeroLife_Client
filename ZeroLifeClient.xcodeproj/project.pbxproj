@@ -58,6 +58,7 @@
 		041789D71DE03C1500D55EA7 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 041789D61DE03C1500D55EA7 /* WebKit.framework */; };
 		041BD65B1DF5380300057756 /* ZLSkuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 041BD6591DF5380300057756 /* ZLSkuCell.m */; };
 		041BD65C1DF5380300057756 /* ZLSkuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 041BD65A1DF5380300057756 /* ZLSkuCell.xib */; };
+		043347911DF6519700052FBE /* LDXScore.m in Sources */ = {isa = PBXBuildFile; fileRef = 043347901DF6519700052FBE /* LDXScore.m */; };
 		0445AD791DD44AF300788779 /* ZLGoPayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0445AD781DD44AF300788779 /* ZLGoPayViewController.m */; };
 		0445AD7E1DD44CE600788779 /* ZLPayTypeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0445AD7C1DD44CE600788779 /* ZLPayTypeTableViewCell.m */; };
 		0445AD7F1DD44CE600788779 /* ZLPayTypeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0445AD7D1DD44CE600788779 /* ZLPayTypeTableViewCell.xib */; };
@@ -648,6 +649,8 @@
 		041BD6581DF5380300057756 /* ZLSkuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLSkuCell.h; sourceTree = "<group>"; };
 		041BD6591DF5380300057756 /* ZLSkuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLSkuCell.m; sourceTree = "<group>"; };
 		041BD65A1DF5380300057756 /* ZLSkuCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLSkuCell.xib; sourceTree = "<group>"; };
+		0433478F1DF6519700052FBE /* LDXScore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDXScore.h; sourceTree = "<group>"; };
+		043347901DF6519700052FBE /* LDXScore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDXScore.m; sourceTree = "<group>"; };
 		0445AD771DD44AF300788779 /* ZLGoPayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLGoPayViewController.h; sourceTree = "<group>"; };
 		0445AD781DD44AF300788779 /* ZLGoPayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLGoPayViewController.m; sourceTree = "<group>"; };
 		0445AD7B1DD44CE600788779 /* ZLPayTypeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPayTypeTableViewCell.h; sourceTree = "<group>"; };
@@ -1607,6 +1610,15 @@
 			name = ZLHomeLocationView;
 			sourceTree = "<group>";
 		};
+		0433478E1DF6519700052FBE /* LDXScore */ = {
+			isa = PBXGroup;
+			children = (
+				0433478F1DF6519700052FBE /* LDXScore.h */,
+				043347901DF6519700052FBE /* LDXScore.m */,
+			);
+			path = LDXScore;
+			sourceTree = "<group>";
+		};
 		0445AD761DD44ADF00788779 /* ZLGoPayViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -1808,6 +1820,7 @@
 		04721A401DE4569100CE8639 /* StarView */ = {
 			isa = PBXGroup;
 			children = (
+				0433478E1DF6519700052FBE /* LDXScore */,
 				04721A411DE4569100CE8639 /* image */,
 				04721A481DE4569100CE8639 /* LHRatingView.h */,
 				04721A491DE4569100CE8639 /* LHRatingView.m */,
@@ -3134,7 +3147,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DFFAA7461DB744C5001CFBB5 /* Build configuration list for PBXNativeTarget "ZeroLifeClient" */;
 			buildPhases = (
-				1B4D3CEB002661B9593DDC86 /* 📦 Check Pods Manifest.lock */,
+				1B4D3CEB002661B9593DDC86 /* [CP] Check Pods Manifest.lock */,
 				3AD80649A67A16B6F8D6A7D8 /* [CP] Check Pods Manifest.lock */,
 				44E03DBD70E9B398E23265A7 /* [CP] Check Pods Manifest.lock */,
 				FA2F72B750A76F5318A85DA7 /* [CP] Check Pods Manifest.lock */,
@@ -3512,14 +3525,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1B4D3CEB002661B9593DDC86 /* 📦 Check Pods Manifest.lock */ = {
+		1B4D3CEB002661B9593DDC86 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3702,6 +3715,7 @@
 				DF7D0A1C1DBA0019005A62A7 /* CookCategoryTVC.m in Sources */,
 				DF98EC6F1DD31C6C0006EBFE /* OrderBaoxiuImgVideoView.m in Sources */,
 				049A12171DE983080087238D /* ZLSpeHeaderView.m in Sources */,
+				043347911DF6519700052FBE /* LDXScore.m in Sources */,
 				04721A231DE42C7F00CE8639 /* mBundleView.m in Sources */,
 				DF08E85E1DD1A82C003E4DD9 /* FeePayHistoryVC.m in Sources */,
 				041789D51DE01D9700D55EA7 /* ZLWebViewViewController.m in Sources */,

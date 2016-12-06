@@ -168,5 +168,6 @@ typedef void (^TableShareSdkBlock)(int totalpage, NSArray *tableArr, APIShareSdk
 
 -(void)externalPlatformListWithTag:(NSObject *)tag call:(TableArrBlock)callback;
 
+-(void)fileUploadWithTag:(NSObject *)tag data:(NSData *)data type:(kFileType)type path:(NSString *)path call:(void (^)(NSString *fileUrlStr, APIObject* info))callback;
 
 @end

@@ -27,10 +27,11 @@
 
 #import "StandardsView.h"
 #import "ZLSkuCell.h"
+#import "LDXScore.h"
 
 static const CGFloat mTopH = 156;
 
-@interface ZLSuperMarketShopViewController ()<UITableViewDelegate,UITableViewDataSource,ZLSuperMarketShopDelegate,ZLSuperMarketGoodsCellDelegate,UIScrollViewDelegate,ZLSuperMarketShopCarDelegate,ZLSuperMarketGoodsSpecDelegate,UICollectionViewDelegate,ZLHouseKeppingServiceCellDelegate,ZLSpeSelectedViewCellDelegate,StandardsViewDelegate,ZLSKUCellDelegate>
+@interface ZLSuperMarketShopViewController ()<UITableViewDelegate,UITableViewDataSource,ZLSuperMarketShopDelegate,ZLSuperMarketGoodsCellDelegate,UIScrollViewDelegate,ZLSuperMarketShopCarDelegate,ZLSuperMarketGoodsSpecDelegate,UICollectionViewDelegate,ZLHouseKeppingServiceCellDelegate,ZLSpeSelectedViewCellDelegate,StandardsViewDelegate,ZLSKUCellDelegate,LDXScoreDelegate>
 
 /**
  规格瀑布流
@@ -87,6 +88,8 @@ static const CGFloat mTopH = 156;
     ZLShopLeftTableArr *mLeftDataSource;
     
     ZLRightGoodsType mRightTabType;
+    
+    
 }
 
 
@@ -191,6 +194,14 @@ static const CGFloat mTopH = 156;
     
     mHeaderView.mCoupBtn.hidden = [Util iscoupon:mShop.mShopCoupon.is_coupon];
     
+    NSInteger mScore = [[NSString stringWithFormat:@"%.1f",mShop.mShopMsg.ext_score] integerValue];
+    
+  
+    mHeaderView.mScoreView.isSelect = NO;
+    mHeaderView.mScoreView.delegate = self;
+    mHeaderView.mScoreView.show_star = mScore;
+
+
     
     CGRect mHeadFrame = mHeaderView.frame;
     
@@ -232,9 +243,13 @@ static const CGFloat mTopH = 156;
     mHeaderView.frame = mHeadFrame;
     
     
-    
+    mBottomView.mNum.text = @"0";
   
 
+}
+- (void)LDXScoreWithScore:(NSInteger)mScore{
+    
+    MLLog(@"分数是：%ld",(long)mScore);
 }
 - (void)initView{
 
@@ -696,6 +711,8 @@ static const CGFloat mTopH = 156;
             [self setHeaderViewY:-mHH];
             mLeftTableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
             mRightTableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+            
+            MLLog(@"执行A");
         }
         else if (offsetY <= -mTopH){
             
@@ -703,11 +720,13 @@ static const CGFloat mTopH = 156;
             [self setHeaderViewY:64];
             mLeftTableView.contentInset = UIEdgeInsetsMake(mTopH, 0, 0, 0);
             mRightTableView.contentInset = UIEdgeInsetsMake(mTopH, 0, 0, 0);
+            MLLog(@"执行B");
         }
         else{
             CGFloat mH = -mTopH - offsetY;
+            MLLog(@"mHH----------:  %f",mH);
             [self setHeaderViewY:mH];
-            
+            MLLog(@"执行C");
             mLeftTableView.contentOffset = mRightTableView.contentOffset;
             mLeftTableView.contentInset = UIEdgeInsetsMake(-offsetY, 0, 0, 0 );
             mRightTableView.contentInset = UIEdgeInsetsMake(-offsetY, 0, 0, 0 );
@@ -729,7 +748,7 @@ static const CGFloat mTopH = 156;
     
 }
 
-#pragma mark----****---- 购物车代理方法
+#pragma mark----****---- 加入购物车代理方法
 /**
  购物车代理方法
  */
@@ -737,6 +756,14 @@ static const CGFloat mTopH = 156;
     ZLSuperMarketShopCarViewController *ZLShopCarVC = [ZLSuperMarketShopCarViewController new];
     [self pushViewController:ZLShopCarVC];
 }
+#pragma mark----****---- 立即购买代理方法
+/**
+ 立即购买代理方法
+ */
+- (void)ZLSuperMarketBuyNowBtnSelected{
+
+}
+
 #pragma mark----****----去结算代理方法
 /**
  去结算代理方法

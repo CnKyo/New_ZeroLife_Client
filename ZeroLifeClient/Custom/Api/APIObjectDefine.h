@@ -744,6 +744,7 @@
 ///商品名称
 @property (strong,nonatomic) NSString* pro_name;
 
+@end
 //便民服务对象
 @interface ExternalPlatformObject : NSObject
 @property (assign,nonatomic) int                    pla_id;///对应id
@@ -754,8 +755,6 @@
 
 
 
-
-@end
 #pragma mark----****----商品库存对象
 ///商品库存对象
 @interface ZLGoodsSKU : NSObject

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "LDXScore.h"
 /**
  设置代理
  */
@@ -76,6 +76,10 @@
  查看更多按钮
  */
 @property (weak, nonatomic) IBOutlet UIButton *mCheckMoreBtn;
+
+@property (weak, nonatomic) IBOutlet LDXScore *mScoreView;
+
+
 
 /**
  设置代理

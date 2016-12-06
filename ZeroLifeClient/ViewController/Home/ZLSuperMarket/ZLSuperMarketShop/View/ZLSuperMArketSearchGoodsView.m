@@ -81,6 +81,14 @@
 }
 
 
+- (IBAction)mBuyNow:(UIButton *)sender {
+    
+    
+    if ([self.delegate respondsToSelector:@selector(ZLSuperMarketBuyNowBtnSelected)]) {
+        [self.delegate ZLSuperMarketBuyNowBtnSelected];
+    }
+
+}
 
 
 

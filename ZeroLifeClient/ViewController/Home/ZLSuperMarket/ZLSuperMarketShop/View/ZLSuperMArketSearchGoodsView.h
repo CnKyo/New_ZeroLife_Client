@@ -35,6 +35,10 @@
  */
 - (void)ZLSuperMarketShopCarBtnSelected;
 
+/**
+ 立即购买代理方法
+ */
+- (void)ZLSuperMarketBuyNowBtnSelected;
 
 @end
 
@@ -95,6 +99,10 @@
  确认购物车按钮
  */
 @property (weak, nonatomic) IBOutlet UIButton *mOkBtn;
+/**
+ 立即购买
+ */
+@property (weak, nonatomic) IBOutlet UIButton *mBuyNowBtn;
 
 /**
  
