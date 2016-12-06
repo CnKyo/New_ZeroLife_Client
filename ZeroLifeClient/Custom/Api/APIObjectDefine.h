@@ -744,6 +744,15 @@
 ///商品名称
 @property (strong,nonatomic) NSString* pro_name;
 
+//便民服务对象
+@interface ExternalPlatformObject : NSObject
+@property (assign,nonatomic) int                    pla_id;///对应id
+@property (strong,nonatomic) NSString*              pla_name;///第三方名称
+@property (strong,nonatomic) NSString*              pla_logo;///Logo图片URL
+@property (strong,nonatomic) NSString*              pla_uri;///点击链接url
+@end
+
+
 
 
 @end

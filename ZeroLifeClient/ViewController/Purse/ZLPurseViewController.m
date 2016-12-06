@@ -19,6 +19,8 @@
 #import "SouKuanVC.h"
 #import "SecurityPasswordVC.h"
 
+#import "SingInView.h"
+
 
 @implementation PurseHeaderView
 
@@ -64,7 +66,7 @@
 
 
 
-@interface ZLPurseViewController ()
+@interface ZLPurseViewController ()<QUItemBtnViewDelegate>
 
 @end
 
@@ -78,8 +80,14 @@
     float padding = 10;
     UIView *superView = self.view;
     
-    PurseHeaderView *headerView = [[PurseHeaderView alloc] init];
+    //PurseHeaderView *headerView = [[PurseHeaderView alloc] init];
+    SingInHeaderView *headerView = [[SingInHeaderView alloc] init];
+    headerView.singView.delegate = self;
+    [headerView loadUIWithDay:15];
     [superView addSubview:headerView];
+    [headerView updateConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.equalTo(superView);
+    }];
     
     UIView *aView = ({
         UIView *view = [superView newUIViewWithBgColor:[UIColor whiteColor]];
@@ -90,9 +98,9 @@
         [view addSubview:yuEView];
         [view addSubview:jiFenView];
         [view addSubview:youHuiView];
-        [yuEView loadName:@"我的余额" value:@"￥1000"];
-        [jiFenView loadName:@"我的积分" value:@"1000"];
-        [youHuiView loadName:@"我的优惠券" value:@"3"];
+        [yuEView loadName:@"我的余额" value:@"---"];
+        [jiFenView loadName:@"我的积分" value:@"---"];
+        [youHuiView loadName:@"我的优惠券" value:@"-"];
         
         UIColor *textColor = [UIColor colorWithWhite:0.3 alpha:1];
         UIFont *font = [UIFont systemFontOfSize:16];
@@ -237,18 +245,13 @@
         view;
     });
     
-    [headerView makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.top.equalTo(superView);
-        make.height.equalTo(headerView.width).multipliedBy(0.6);
-    }];
+
     [aView updateConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(superView);
-        make.top.equalTo(headerView.bottom);
+        make.top.equalTo(headerView.bottom).offset(padding);
     }];
     
-    [headerView.singInBtn jk_addActionHandler:^(NSInteger tag) {
-        [headerView.singInBtn setImage:IMG(@"sigin_qianYes.png") forState:UIControlStateNormal];
-    }];
+
 }
 
 - (void)viewDidLoad {
@@ -272,6 +275,12 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)selectItemBtnView:(QUItemBtnView *)view
+{
+    SingInView *singView = (SingInView *)view;
+    singView.is_singin = !singView.is_singin;
 }
 
 /*

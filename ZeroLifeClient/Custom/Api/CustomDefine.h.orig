@@ -290,6 +290,7 @@ typedef enum{
 }ZLHomeNewsType;//首页新闻类型
 
 
+<<<<<<< HEAD
 typedef enum{
     
     
@@ -297,11 +298,6 @@ typedef enum{
     ZLShopHomeCampainTypeSys,//1是原生
     
 }ZLShopHomeCampainType;//社区超市首页活动类型
-typedef enum {
-    kFileType_photo = 1,//
-    kFileType_video = 2,//
-} kFileType; //文件类型（1-图片，2-音频）
-
 
 typedef enum{
     
@@ -310,6 +306,14 @@ typedef enum{
     ZLRightGoodsTypeFromClass = 2,//2:从分类来
     
 }ZLRightGoodsType;//社区超市首页活动类型
+=======
+typedef enum {
+    kFileType_photo = 1,//
+    kFileType_video = 2,//
+} kFileType; //文件类型（1-图片，2-音频）
+
+
+>>>>>>> a930975d62b042910dda038a313db52896eb3362
 
 
 

@@ -37,7 +37,7 @@
 
 - (void)initView{
 
-    
+    [self addLeftBtn:YES andTitel:nil andImage:IMG(@"login_close.png")];
     [self addRightBtn:YES andTitel:@"注册" andImage:nil];
 
     mMainView = [ZLLoginView initLoginView];
@@ -64,6 +64,12 @@
     
     
 }
+
+-(void)mBackAction
+{
+    [self dismissViewController];
+}
+
 - (void)mRightAction:(UIButton *)sender{
     ZLRegistForgetViewController *vc = [ZLRegistForgetViewController new];
     vc.mTitle = @"注册";

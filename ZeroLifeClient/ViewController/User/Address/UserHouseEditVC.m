@@ -150,16 +150,17 @@
 {
     BanUnitFloorNumberTextField *textField = note.object;
    
-//    if (_item.real_province==0 || _item.real_city==0 || _item.real_county==0) {
-//        [SVProgressHUD showErrorWithStatus:@"请先选择省市区"];
-//        return ;
-//    }
-//    if (_item.cmut_id == 0) {
-//        [SVProgressHUD showErrorWithStatus:@"请先选择小区"];
-//        return ;
-//    }
+    if (_item.real_province==0 || _item.real_city==0 || _item.real_county==0) {
+        [SVProgressHUD showErrorWithStatus:@"请先选择省市区"];
+        [textField resignFirstResponder];
+        return ;
+    }
+    if (_item.cmut_id == 0) {
+        [SVProgressHUD showErrorWithStatus:@"请先选择小区"];
+        [textField resignFirstResponder];
+        return ;
+    }
     
-    self.item.cmut_id = 1;
     
     [self reloadBanData];
 }

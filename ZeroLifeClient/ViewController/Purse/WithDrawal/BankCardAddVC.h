@@ -10,7 +10,13 @@
 
 @interface BankCardAddVC : CustomVC
 @property (weak, nonatomic) IBOutlet UITextField *bankCardNumberField;
+@property (weak, nonatomic) IBOutlet UITextField *bankCardMobileField;
+
+
 @property (weak, nonatomic) IBOutlet UITextField *realNameField;
+@property (weak, nonatomic) IBOutlet UITextField *idCardField;
+
+
 @property (weak, nonatomic) IBOutlet UIButton *doneBtn;
 
 @end

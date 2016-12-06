@@ -22,6 +22,7 @@
 #import <UINavigationBar+Awesome.h>
 
 #import "ZLLoginViewController.h"
+#import "ZLLoginViewController.h"
 
 #define NAVBAR_CHANGE_POINT 30
 
@@ -39,27 +40,11 @@
     [self addTableViewWithStyleGrouped];
     [self.tableView registerNib:[ZLUserHeaderTableViewCell jk_nib] forCellReuseIdentifier:[ZLUserHeaderTableViewCell reuseIdentifier]];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.showsVerticalScrollIndicator = NO;
     
 
-    __weak __typeof(self)weakSelf = self;
-    
-    UIView *footerView = ({
-        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, DEVICE_Width, 70)];
-        UIButton *btn11 = [view newUIButton];
-        btn11.frame = CGRectMake(10, 10, view.bounds.size.width-20, 50);
-        [btn11 setTitle:@"退出登陆" forState:UIControlStateNormal];
-        [btn11 setStyleNavColor];
-        
-        
-        [btn11 jk_addActionHandler:^(NSInteger tag) {
-            [ZLUserInfo logOut];
-            
-            [ZLLoginViewController startPresent:self];
-            
-        }];
-        view;
-    });
-    self.tableView.tableFooterView = footerView;
+
+
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] bk_initWithImage:IMG(@"itemBar_setting.png") style:UIBarButtonItemStylePlain handler:^(id  _Nonnull sender) {
         SystemSettingVC *vc = [[SystemSettingVC alloc] init];
@@ -80,6 +65,48 @@
 
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    
+    
+    self.tableView.delegate = self;
+    [self scrollViewDidScroll:self.tableView];
+    [self.tableView reloadData];
+    
+    //__weak __typeof(self)weakSelf = self;
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    if (user != nil) {
+        UIView *footerView = ({
+            UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, DEVICE_Width, 70)];
+            UIButton *btn11 = [view newUIButton];
+            btn11.frame = CGRectMake(10, 10, view.bounds.size.width-20, 50);
+            [btn11 setTitle:@"退出登陆" forState:UIControlStateNormal];
+            [btn11 setStyleNavColor];
+            
+            [btn11 jk_addActionHandler:^(NSInteger tag) {
+                [ZLUserInfo logOut];
+                
+                [ZLLoginViewController startPresent:self];
+            }];
+            view;
+        });
+        self.tableView.tableFooterView = footerView;
+    } else
+        self.tableView.tableFooterView = nil;
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+
+    self.tableView.delegate = nil;
+    [self.navigationController.navigationBar lt_reset];
+}
+
+
+
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     UIColor * color = M_CO;
@@ -98,21 +125,7 @@
     }
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:YES];
-    self.tableView.delegate = self;
-    [self scrollViewDidScroll:self.tableView];
-    
-    
-}
 
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    self.tableView.delegate = nil;
-    [self.navigationController.navigationBar lt_reset];
-}
 
 
 
@@ -164,9 +177,9 @@
 {
     CGFloat height = 50;
     if (indexPath.section == 0)
-        height = 230;
+        height = 250;
     else if (indexPath.section == 1)
-        height = 100;
+        height = 120;
     return height;
 }
 
@@ -176,14 +189,39 @@
     if (indexPath.section == 0) {
         ZLUserHeaderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[ZLUserHeaderTableViewCell reuseIdentifier]];
         //cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.paopaoRegisterView.hidden = NO;
-        cell.paopaoInfoView.hidden = YES;
         
-        [cell.paopaoRegisterView jk_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
-            UserPaoPaoRegisterVC *vc = [[UserPaoPaoRegisterVC alloc] initWithNibName:@"UserPaoPaoRegisterVC" bundle:nil];
-            vc.hidesBottomBarWhenPushed = YES;
-            [self.navigationController pushViewController:vc animated:YES];
-        }];
+        ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+        if (user == nil) { //显示登录ui
+            cell.userLoginView.hidden = NO;
+            cell.userInfoView.hidden = YES;
+            
+            //进入登录界面
+            [cell.userLoginView jk_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
+                [ZLLoginViewController startPresent:self];
+            }];
+        } else {
+            cell.userLoginView.hidden = YES;
+            cell.userInfoView.hidden = NO;
+            
+            cell.paopaoRegisterView.hidden = NO;
+            cell.paopaoInfoView.hidden = YES;
+            
+            //进入个人信息界面
+            [cell.userInfoView jk_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
+                UserInfoVC *vc = [[UserInfoVC alloc] init];
+                vc.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:vc animated:YES];
+            }];
+            
+            //进入跑跑腿注册界面
+            [cell.paopaoRegisterView jk_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
+                UserPaoPaoRegisterVC *vc = [[UserPaoPaoRegisterVC alloc] initWithNibName:@"UserPaoPaoRegisterVC" bundle:nil];
+                vc.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:vc animated:YES];
+            }];
+        }
+
+
         
         return cell;
         
@@ -296,9 +334,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if (indexPath.section == 0) {
-        UserInfoVC *vc = [[UserInfoVC alloc] init];
-        vc.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:vc animated:YES];
+
         
     } else if (indexPath.section == 2) {
         if (indexPath.row == 0) {

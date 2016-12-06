@@ -324,6 +324,48 @@
 }
 
 
+/**
+ *   文件上传接口
+ *
+ *  @param tag      链接对象
+ *  @param data     上传数据
+ *  @param type     文件类型（1-图片，2-音频）
+ *  @param path     功能参数（用户头像-U_PHOTO，用户认证文件-U_AUT，用户跑跑腿申请资料-U_APPLY，用户订单处理-U_ORDERS）
+ *  @param callback 返回列表
+ */
+-(void)fileUploadWithTag:(NSObject *)tag data:(NSData *)data type:(kFileType)type path:(NSString *)path call:(void (^)(NSString *fileUrlStr, APIObject* info))callback
+{
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    if (user.user_id > 0) {
+        NSMutableDictionary* paramDic = [NSMutableDictionary dictionary];
+        [paramDic setInt:type forKey:@"type"];
+        [paramDic setObject:path forKey:@"path"];
+        [paramDic setInt:user.user_id forKey:@"user_id"];
+        [self postWithTag:tag path:@"/resource/api/app/client/file/upload" parameters:paramDic constructingBodyWithBlockBack:^(id<AFMultipartFormData> formData) {
+            if (type == kFileType_photo)
+                [formData appendPartWithFileData:data name:@"file" fileName:@"img.png" mimeType:@"image/jpg/png"];
+            
+            if (type == kFileType_video)
+                [formData appendPartWithFileData:data name:@"file" fileName:@"aa.mp4" mimeType:@"video/mpeg4"];
+            
+        } call:^(NSError *error, id responseObject) {
+            if (error == nil) {
+                APIObject *info = [APIObject mj_objectWithKeyValues:responseObject];
+                if (info.code == RESP_STATUS_YES) {
+                    NSString *full_path = [info.data objectWithKey:@"name"];
+                    callback(full_path, info);
+                } else
+                    callback(nil, info);
+
+            } else {
+                NSLog(@"error:%@", error);
+                callback(nil, [APIObject infoWithError:error]);
+            }
+        }];
+    } else
+        callback(nil, [APIObject infoWithReLoginErrorMessage:@"请重新登陆"]);
+}
+
 
 #pragma mark----****----用户资料
 /**
@@ -383,11 +425,15 @@
         NSMutableDictionary* paramDic = [NSMutableDictionary dictionary];
         [paramDic setInt:user.user_id forKey:@"user_id"];
         [self loadAPIWithTag:self path:@"/user/address/address_list" parameters:paramDic call:^(APIObject *info) {
-            NSArray *newArr = [AddressObject mj_objectArrayWithKeyValuesArray:[info.data objectWithKey:@"address"]];
-            if (newArr.count > 0)
-                [AddressObject arrInsertToDB:newArr];
-            
-            callback(newArr, info);
+            if (info.code == RESP_STATUS_YES) {
+                NSArray *newArr = [AddressObject mj_objectArrayWithKeyValuesArray:[info.data objectWithKey:@"address"]];
+                if (newArr.count > 0)
+                    [AddressObject arrInsertToDB:newArr];
+                
+                callback(newArr, info);
+            } else
+                callback(nil, info);
+
         }];
     } else
         callback(nil, [APIObject infoWithReLoginErrorMessage:@"请重新登陆"]);
@@ -465,10 +511,13 @@
         NSMutableDictionary* paramDic = [NSMutableDictionary dictionary];
         [paramDic setInt:user.user_id forKey:@"user_id"];
         [self loadAPIWithTag:self path:@"/user/house/house_list" parameters:paramDic call:^(APIObject *info) {
-            NSArray *newArr = [HouseObject mj_objectArrayWithKeyValuesArray:[info.data objectWithKey:@"house"]];
-            if (newArr.count > 0)
-                [HouseObject arrInsertToDB:newArr];
-            callback(newArr, info);
+            if (info.code == RESP_STATUS_YES) {
+                NSArray *newArr = [HouseObject mj_objectArrayWithKeyValuesArray:[info.data objectWithKey:@"house"]];
+                if (newArr.count > 0)
+                    [HouseObject arrInsertToDB:newArr];
+                callback(newArr, info);
+            } else
+                callback(nil, info);
         }];
     } else
         callback(nil, [APIObject infoWithReLoginErrorMessage:@"请重新登陆"]);
@@ -590,13 +639,10 @@
 }
 
 
-<<<<<<< HEAD
+
 
 
 #pragma mark----****----用户登录注册管理
-=======
-#pragma mark----****----登录
->>>>>>> local_master
 - (void)ZLLoginWithPhone:(NSString *)mPhone andPwd:(NSString *)mPwd block:(void(^)(APIObject *mBaseObj,ZLUserInfo *mUser))block{
     
     NSMutableDictionary *para = [NSMutableDictionary new];
@@ -625,12 +671,9 @@
             block(info, nil);
     }];
 }
-<<<<<<< HEAD
 
-
-=======
+   
 #pragma mark----****----注册
->>>>>>> local_master
 - (void)ZLRegistPhone:(NSString *)mPhone andPwd:(NSString *)mPwd andCode:(NSString *)mCode block:(void(^)(APIObject *mBaseObj))block{
     NSMutableDictionary *para = [NSMutableDictionary new];
     [para setObject:mPhone forKey:@"acc_phone"];
@@ -652,10 +695,8 @@
         block(info);
     }];
 }
-<<<<<<< HEAD
 
 
-=======
 #pragma mark----****----app初始化加载数据
 - (void)ZLAppInit:(void(^)(APIObject *mBaseObj,ZLAPPInfo *mAppInfo))block{
     
@@ -671,9 +712,8 @@
         [ZLAPPInfo ZLDealSession:info block:block];
     }];
 }
->>>>>>> local_master
 #pragma mark----****----获取首页banner
-- (void)ZLgetHomeBanner:(void(^)(APIObject *mBaseObj,NSArray *mArr))block{
+- (void)ZLgetHomeBanner:(void(^)(APIObject *mBaseObj,ZLHomeFunvtionAndBanner *mFunc))block{
     
     NSMutableDictionary *para = [NSMutableDictionary new];
     
@@ -681,27 +721,38 @@
 
     [self loadAPIWithTag:self path:@"/home/banner" parameters:para call:^(APIObject *info) {
 
-        NSMutableArray *mtempArr = [NSMutableArray new];
-
+       
         if (info.code == RESP_STATUS_YES) {
             
-            id mArr = info.data;
+            ZLHomeFunvtionAndBanner *mFuncTion = [ZLHomeFunvtionAndBanner new];
             
-            if ([mArr isKindOfClass:[NSArray class]]) {
-                for (NSDictionary *dic in info.data) {
-                    
-                    
-                    [mtempArr addObject:[ZLHomeBanner mj_objectWithKeyValues:dic]];
+            NSMutableArray *mBannerArr = [NSMutableArray new];
+            NSMutableArray *mFuncArr = [NSMutableArray new];
+            
+            id mBanner = [info.data objectForKey:@"banners"];
+            id mFunction = [info.data objectForKey:@"functions"];
+            
+            if ([mBanner isKindOfClass:[NSArray class]]) {
+                for (NSDictionary *dic in mBanner) {
+                    [mBannerArr addObject:[ZLHomeBanner mj_objectWithKeyValues:dic]];
+                }
+                
+            }
+            if ([mFunction isKindOfClass:[NSArray class]]) {
+                for (NSDictionary *dic in mFunction) {
+                    [mFuncArr addObject:[ZLHomeFunctions mj_objectWithKeyValues:dic]];
                 }
                 
             }
             
+            mFuncTion.banners = mBannerArr;
+            mFuncTion.functions = mFuncArr;
             
-            block (info,mtempArr);
+            block (info,mFuncTion);
             
             
         }else{
-            block (info,mtempArr);
+            block (info,nil);
             
         }
     
@@ -845,6 +896,7 @@
  */
 - (void)ZLGetShopHomePage:(NSString *)mLat andLng:(NSString *)mLng andType:(int)mType block:(void(^)(APIObject *mBaseObj,ZLShopHomePage *mShopHome))block{
 
+<<<<<<< HEAD
     NSMutableDictionary *para = [NSMutableDictionary new];
     
     
@@ -867,7 +919,7 @@
             NSMutableArray *mCampainArr = [NSMutableArray new];
             NSMutableArray *mClassifyArr = [NSMutableArray new];
             
-            id mBanner = [info.data objectForKey:@"banner"];
+            id mBanner = [info.data objectForKey:@"banners"];
             id mCanpain = [info.data objectForKey:@"campaign"];
             id mClassify = [info.data objectForKey:@"classify"];
             
@@ -910,4 +962,290 @@
     
     
 }
+
+#pragma mark----****----获取社区超市店铺列表
+/**
+ 获取社区超市店铺列表
+ 
+ @param mLat  纬度
+ @param mLng  经度
+ @param mClassId 店铺分类id
+ @param mPage 分页
+ @param block 返回值
+ */
+- (void)ZLGetShopHomeShopList:(int)mShopType andLat:(NSString *)mLat andLng:(NSString *)mLng andClassId:(NSString *)mClassId andPage:(int)mPage  block:(void(^)(APIObject *mBaseObj,ZLShopHomeShopList *mShopList))block{
+
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    
+    
+    [para setInt:mShopType forKey:@"shop_type"];
+    [para setNeedStr:mLat forKey:@"lat"];
+    [para setNeedStr:mLng forKey:@"lng"];
+    
+    if (mClassId != 0) {
+        [para setNeedStr:mClassId forKey:@"cls_id"];
+
+    }
+    if (mPage) {
+        [para setInt:mPage forKey:@"page"];
+
+    }
+
+    
+    [self loadAPIWithTag:self path:@"/shop/shop_list" parameters:para call:^(APIObject *info) {
+        
+        
+        if (info.code == RESP_STATUS_YES) {
+            
+            ZLShopHomeShopList *mShopList = [ZLShopHomeShopList new];
+            
+            mShopList.totalRow = [[info.data objectForKey:@"totalRow"] intValue];
+            mShopList.totalPage = [[info.data objectForKey:@"totalPage"] intValue];
+            mShopList.pageNumber = [[info.data objectForKey:@"pageNumber"] intValue];
+            mShopList.pageSize = [[info.data objectForKey:@"pageSize"] intValue];
+            
+            NSMutableArray *mTempArr = [NSMutableArray new];
+            id mList = [info.data objectForKey:@"list"];
+            if ([mList isKindOfClass:[NSArray class]]) {
+                for (NSDictionary *dic in mList) {
+                    [mTempArr addObject:[ZLShopHomeShopObj mj_objectWithKeyValues:dic]];
+                }
+
+            }
+            mShopList.list = mTempArr;
+            block(info,mShopList);
+            
+        }else{
+            block(info,nil);
+            
+        }
+        
+    }];
+}
+
+#pragma mark----****----获取社区超市店铺信息
+/**
+ 获取社区超市店铺信息
+ 
+ @param mShopType 店铺类型
+ @param mShopId   店铺id
+ @param block     返回值
+ */
+- (void)ZLGetShopMsgWithShopType:(int)mShopType andShopId:(int)mShopId block:(void(^)(APIObject *mBaseObj,ZLShopObj *mShop,ZLShopLeftTableArr *mLeftTabArr))block{
+
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    
+    [para setInt:mShopType forKey:@"shop_type"];
+    [para setInt:mShopId forKey:@"shop_id"];
+    
+    [self loadAPIWithTag:self path:@"/shop/shop_info" parameters:para call:^(APIObject *info) {
+        
+        
+        if (info.code == RESP_STATUS_YES) {
+            
+            ZLShopObj *mShopList = [ZLShopObj new];
+            ZLShopLeftTableArr *mLeftArr = [ZLShopLeftTableArr new];
+            mShopList.mShopMsg = [ZLShopMsg mj_objectWithKeyValues:[info.data objectForKey:@"shop"]];
+            mShopList.mShopCoupon =[ZLShopCoupon mj_objectWithKeyValues:[info.data objectForKey:@"coupons"]];
+            
+            
+            id mClass = [info.data objectForKey:@"classify"];
+            id mCampain = [info.data objectForKey:@"campaigns"];
+            
+            NSMutableArray *mClassArr = [NSMutableArray new];
+            NSMutableArray *mCampainArr = [NSMutableArray new];
+            
+            if ([mClass isKindOfClass:[NSArray class]]) {
+                for (NSDictionary *dic in mClass) {
+                    [mClassArr addObject:[ZLShopClassify mj_objectWithKeyValues:dic]];
+                }
+                
+            }
+            if ([mCampain isKindOfClass:[NSArray class]]) {
+                for (NSDictionary *dic in mCampain) {
+                    [mCampainArr addObject:[ZLShopCampain mj_objectWithKeyValues:dic]];
+                }
+                
+            }
+            mShopList.mShopClassify = mClassArr;
+            mShopList.mShopCampains = mCampainArr;
+
+            
+            
+            if (mCampainArr.count > 0 && mClassArr.count<=0) {
+                mLeftArr.mLeftType = 1;
+                mLeftArr.mCampainArr = mCampainArr;
+            }else if (mCampainArr.count <= 0 && mClassArr.count>0){
+                mLeftArr.mLeftType = 2;
+                mLeftArr.mClassArr = mClassArr;
+            }else{
+            
+                mLeftArr.mLeftType = 3;
+                mLeftArr.mCampainArr = mCampainArr;
+                mLeftArr.mClassArr = mClassArr;
+            }
+            
+            block(info,mShopList,mLeftArr);
+            
+        }else{
+            block(info,nil,nil);
+            
+        }
+        
+    }];
+    
+}
+
+#pragma mark----****----获取店铺商品信息
+/**
+ 获取店铺商品信息
+ 
+ @param mShopId  店铺id
+ @param mCamId   活动id
+ @param mClassId 分类id
+ @param mPage    分页
+ @param block    返回值
+ */
+- (void)ZLGetShopGoodsList:(int)mShopId andCamId:(int)mCamId andClassId:(int)mClassId andPage:(int)mPage andType:(ZLRightGoodsType)mType block:(void(^)(APIObject *mBaseObj,ZLShopGoodsList *mShopGoodsObj))block{
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    
+    [para setInt:mShopId forKey:@"shop_id"];
+    [para setInt:mPage forKey:@"page"];
+
+    if (mCamId) {
+        [para setInt:mCamId forKey:@"cam_id"];
+    }
+    if(mClassId){
+        [para setInt:mClassId forKey:@"cls_id"];
+    }
+    
+    [self loadAPIWithTag:self path:@"/shop/product_list" parameters:para call:^(APIObject *info) {
+        
+        
+        if (info.code == RESP_STATUS_YES) {
+            
+            ZLShopGoodsList *mShopGoodsList = [ZLShopGoodsList mj_objectWithKeyValues:info.data];
+            
+            NSMutableArray *mGoodsList = [NSMutableArray new];
+            
+            id mList = [info.data objectForKey:@"list"];
+            
+            
+            if ([mList isKindOfClass:[NSArray class]]) {
+                for (NSDictionary *dic in mList) {
+                    
+                    switch (mType) {
+                        case ZLRightGoodsTypeFromCamp:
+                        {
+                            [mGoodsList addObject:[ZLGoodsWithCamp mj_objectWithKeyValues:dic]];
+
+                        }
+                            break;
+                        case ZLRightGoodsTypeFromClass:
+                        {
+                         
+                            [mGoodsList addObject:[ZLGoodsWithClass mj_objectWithKeyValues:dic]];
+
+                        }
+                            break;
+                            
+                        default:
+                            break;
+                    }
+                    
+                }
+                
+            }
+            
+            mShopGoodsList.list = mGoodsList;
+            block(info,mShopGoodsList);
+            
+        }else{
+            block(info,nil);
+            
+        }
+        
+    }];
+    
+    
+}
+
+#pragma mark----****----获取商品详情
+/**
+ 获取商品详情
+ 
+ @param mGoodsId 商品id
+ @param mCamId   活动id
+ @param block    返回值
+ */
+- (void)ZLGetGoodsDetail:(NSString *)mGoodsId andCamId:(NSString *)mCamId block:(void(^)(APIObject *mBaseObj,ZLGoodsDetail *mGoodsDetailObj,NSArray *mGoodsDetailImgArr))block{
+
+    
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    
+    
+    if (mCamId) {
+        [para setNeedStr:mCamId forKey:@"cam_gid"];
+        
+    }
+    if(mGoodsId){
+        [para setNeedStr:mGoodsId forKey:@"pro_id"];
+    }
+    
+    [self loadAPIWithTag:self path:@"/shop/product_info" parameters:para call:^(APIObject *info) {
+        
+        
+        if (info.code == RESP_STATUS_YES) {
+            
+            ZLGoodsDetail *mGoodsDetail = [ZLGoodsDetail mj_objectWithKeyValues:info.data];
+            
+            NSMutableArray *mImgArr = [NSMutableArray new];
+            
+            id mImg = [info.data objectForKey:@"images"];
+            
+            if ([mImg isKindOfClass:[NSArray class]]) {
+            
+                for (NSDictionary *dic in mImg) {
+                    [mImgArr addObject:[ZLGoodsDetailImg mj_objectWithKeyValues:dic]];
+                }
+                
+                
+                
+            }
+            
+            mGoodsDetail.images = mImgArr;
+            block(info,mGoodsDetail,mImgArr);
+            
+        }else{
+            block(info,nil,nil);
+            
+        }
+        
+    }];
+    
+
+    
+    
+}
+=======
+
+#pragma mark----****----便民服务接口
+/**
+ *   便民服务接口列表接口
+ *
+ *  @param tag      链接对象
+ *  @param callback 返回列表
+ */
+-(void)externalPlatformListWithTag:(NSObject *)tag call:(TableArrBlock)callback
+{
+    [self loadAPIWithTag:self path:@"/other/external_platform_list" parameters:nil call:^(APIObject *info) {
+        if (info.code == RESP_STATUS_YES) {
+            NSArray *newArr = [ExternalPlatformObject mj_objectArrayWithKeyValuesArray:info.data];
+            callback(newArr, info);
+        } else
+            callback(nil, info);
+    }];
+}
+
+>>>>>>> a930975d62b042910dda038a313db52896eb3362
 @end
