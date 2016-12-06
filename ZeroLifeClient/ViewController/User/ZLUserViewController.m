@@ -24,6 +24,8 @@
 #import "ZLLoginViewController.h"
 #import "ZLLoginViewController.h"
 
+#import "WebTestVC.h"
+
 #define NAVBAR_CHANGE_POINT 30
 
 @interface ZLUserViewController ()<QUItemBtnViewDelegate>
@@ -159,7 +161,7 @@
 {
     NSInteger row = 1;
     if (section == 2)
-        row = 3;
+        row = 4;
     return row;
 }
 
@@ -322,6 +324,10 @@
                 cell.imageView.image = IMG(@"cell_tousu.png");
                 cell.textLabel.text = @"投诉建议";
                 break;
+            case 3:
+                cell.imageView.image = IMG(@"cell_tousu.png");
+                cell.textLabel.text = @"网页测试";
+                break;
             default:
                 break;
         }
@@ -352,6 +358,11 @@
             
         } else if (indexPath.row == 2) {
             UserComplaintAddVC *vc = [[UserComplaintAddVC alloc] init];
+            vc.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:vc animated:YES];
+            
+        } else if (indexPath.row == 3) {
+            WebTestVC *vc = [[WebTestVC alloc] init];
             vc.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:vc animated:YES];
         }
