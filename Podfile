@@ -46,6 +46,7 @@ target 'ZeroLifeClient' do
   pod 'JWLaunchAd'
   pod 'JHUD'
   pod 'RSKImageCropper'
+  pod 'WebViewJavascriptBridge'
 
 
 

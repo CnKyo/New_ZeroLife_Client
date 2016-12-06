@@ -294,6 +294,7 @@
 		DF08E8861DD1C0B2003E4DD9 /* FavoriteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF08E8851DD1C0B2003E4DD9 /* FavoriteTableViewCell.m */; };
 		DF08E8881DD1C39B003E4DD9 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF08E8871DD1C39B003E4DD9 /* CoreText.framework */; };
 		DF1278DB1DDA96A60067AEC5 /* UserPaoPaoRegister_top_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1278DA1DDA96A60067AEC5 /* UserPaoPaoRegister_top_bg.png */; };
+		DF3B4F0D1DF560F200583D24 /* WebTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF3B4F0C1DF560F200583D24 /* WebTestVC.m */; };
 		DF539F041DD5932900AF228F /* UserPayTypeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF539F031DD5932900AF228F /* UserPayTypeTableViewCell.m */; };
 		DF539F091DD595F400AF228F /* user_payTyple_alipay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF539F051DD595F400AF228F /* user_payTyple_alipay@2x.png */; };
 		DF539F0A1DD595F400AF228F /* user_payTyple_alipay@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF539F061DD595F400AF228F /* user_payTyple_alipay@3x.png */; };
@@ -1004,6 +1005,8 @@
 		DF08E8871DD1C39B003E4DD9 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		DF1278DA1DDA96A60067AEC5 /* UserPaoPaoRegister_top_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UserPaoPaoRegister_top_bg.png; sourceTree = "<group>"; };
 		DF1278DC1DDA9B740067AEC5 /* CustomDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomDefine.h; sourceTree = "<group>"; };
+		DF3B4F0B1DF560F200583D24 /* WebTestVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebTestVC.h; sourceTree = "<group>"; };
+		DF3B4F0C1DF560F200583D24 /* WebTestVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebTestVC.m; sourceTree = "<group>"; };
 		DF539F021DD5932900AF228F /* UserPayTypeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserPayTypeTableViewCell.h; sourceTree = "<group>"; };
 		DF539F031DD5932900AF228F /* UserPayTypeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserPayTypeTableViewCell.m; sourceTree = "<group>"; };
 		DF539F051DD595F400AF228F /* user_payTyple_alipay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_payTyple_alipay@2x.png"; sourceTree = "<group>"; };
@@ -2849,6 +2852,8 @@
 				DF7F1BCF1DCDC1FB00D2242B /* UserPaoPaoRegisterVC.h */,
 				DF7F1BD01DCDC1FB00D2242B /* UserPaoPaoRegisterVC.m */,
 				DF7F1BD11DCDC1FB00D2242B /* UserPaoPaoRegisterVC.xib */,
+				DF3B4F0B1DF560F200583D24 /* WebTestVC.h */,
+				DF3B4F0C1DF560F200583D24 /* WebTestVC.m */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -3778,6 +3783,7 @@
 				047219F31DE3E66C00CE8639 /* HX_AlbumViewController.m in Sources */,
 				DF539F041DD5932900AF228F /* UserPayTypeTableViewCell.m in Sources */,
 				049A12141DE982C00087238D /* ZLSpeSmallClassViewCell.m in Sources */,
+				DF3B4F0D1DF560F200583D24 /* WebTestVC.m in Sources */,
 				04B07EA01DD964E7004A7294 /* ZLRunningManCell.m in Sources */,
 				04721A131DE4191900CE8639 /* ZLAnounceMentViewController.m in Sources */,
 				04B07EC41DD9AEFA004A7294 /* ZLPPTMyOrderViewController.m in Sources */,
