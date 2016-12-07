@@ -192,7 +192,7 @@
     if (_banArr.count == 0) {
         [self.customCell.addressField resignFirstResponder];
         
-        [SVProgressHUD showWithStatus:@"加载中..."];
+        [SVProgressHUD showWithStatus:@"楼栋信息加载中..."];
         [[APIClient sharedClient] communityBansetListWithTag:self cmut_id:_item.cmut_id call:^(NSArray *tableArr, APIObject *info) {
             if (info.code == RESP_STATUS_YES) {
                 [self.banArr setArray:tableArr];

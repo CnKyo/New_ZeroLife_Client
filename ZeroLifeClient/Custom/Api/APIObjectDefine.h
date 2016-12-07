@@ -230,6 +230,20 @@
 @end
 
 
+
+#pragma mark -  投诉建议对象
+@interface ComplaintObject : NSObject
+@property(nonatomic,assign) int                     cpm_id;         //对应id
+@property(nonatomic,assign) kComplaintType          cpm_type;         //投诉类型
+@property(nonatomic,assign) int                     user_id;         //用户id
+@property(nonatomic,strong) NSString *              cpm_staff;          // 被投诉者
+@property(nonatomic,assign) int                     cmut_id;         //小区id
+@property(nonatomic,strong) NSString *              cpm_content;          // 投诉类容
+@property(nonatomic,strong) NSString *              cpm_handle_content;            //处理结果
+@property(nonatomic,strong) NSString *              cpm_add_time;            // 生成时间
+@end
+
+
 ///钱包对象
 @interface WalletObject : NSObject
 @property (assign,nonatomic) int                    user_id;           ///用户id
@@ -238,6 +252,8 @@
 @property (assign,nonatomic) int                    uwal_score;     ///积分
 @property (strong,nonatomic) NSString *             uwal_state;///钱包状态（normal 正常 locked 锁定）
 @end
+
+
 
 
 #pragma mark -  用户优惠券对象

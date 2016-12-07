@@ -66,19 +66,27 @@
             cell.selectionStyle = UITableViewCellSelectionStyleGray;
             cell.backgroundColor = [UIColor whiteColor];
         }
-
-        cell.timeLable.text = @"2016-09-10";
-        cell.msgLable.text = @"投诉内容投诉内容投诉内容投诉内容投诉内容投诉内容";
         
-        if (indexPath.row == 0) {
-            cell.iconImgView.image = IMG(@"cell_complaint_juming.png");
-            cell.nameLable.text = @"居民投诉";
-        } else if (indexPath.row == 1) {
-            cell.iconImgView.image = IMG(@"cell_complaint_wuguan.png");
-            cell.nameLable.text = @"物管投诉";
-        } else {
-            cell.iconImgView.image = IMG(@"cell_complaint_gongsi.png");
-            cell.nameLable.text = @"对公司投诉";
+        ComplaintObject *item = [self.tableArr objectAtIndex:indexPath.row];
+
+        cell.timeLable.text = item.cpm_add_time;
+        cell.msgLable.text = item.cpm_content;
+        
+        switch (item.cpm_type) {
+            case kComplaintType_company:
+                cell.iconImgView.image = IMG(@"cell_complaint_gongsi.png");
+                cell.nameLable.text = @"对公司投诉";
+                break;
+            case kComplaintType_community:
+                cell.iconImgView.image = IMG(@"cell_complaint_wuguan.png");
+                cell.nameLable.text = @"物管投诉";
+                break;
+            case kComplaintType_people:
+                cell.iconImgView.image = IMG(@"cell_complaint_juming.png");
+                cell.nameLable.text = @"居民投诉";
+                break;
+            default:
+                break;
         }
         
         return cell;
@@ -101,7 +109,10 @@
 - (void)reloadTableViewDataSource{
     [super reloadTableViewDataSource];
     
-    [self performSelector:@selector(donwData) withObject:nil afterDelay:0.5];
+    [[APIClient sharedClient] complaintListWithTag:self page:self.page call:^(int totalPage, NSArray *tableArr, APIObject *info) {
+        [self reloadWithTableArr:tableArr info:info];
+    }];
+    //[self performSelector:@selector(donwData) withObject:nil afterDelay:0.5];
 }
 
 -(void)donwData

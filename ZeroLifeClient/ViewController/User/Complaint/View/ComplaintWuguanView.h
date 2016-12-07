@@ -12,7 +12,11 @@
 
 @interface ComplaintWuguanView : UIView
 @property (weak, nonatomic) IBOutlet UITextField *cityField;
+@property (weak, nonatomic) IBOutlet UIView *cityView;
+
 @property (weak, nonatomic) IBOutlet UITextField *xiaoquField;
+@property (weak, nonatomic) IBOutlet UIView *xiaoquView;
+
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
 @property (weak, nonatomic) IBOutlet IQTextView *questionTextView;
 @property (weak, nonatomic) IBOutlet UIButton *doneBtn;

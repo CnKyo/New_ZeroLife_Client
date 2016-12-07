@@ -12,14 +12,36 @@
 #import "ComplaintWuguanView.h"
 #import "ComplaintGongsiView.h"
 #import "UserComplaintHistoryTVC.h"
+#import "ZLSelectedCityViewController.h"
+#import "ZLSelectArearViewController.h"
 
 @interface UserComplaintAddVC ()
 @property(nonatomic,strong) ComplaintJumingView *view1;
 @property(nonatomic,strong) ComplaintWuguanView *view2;
 @property(nonatomic,strong) ComplaintGongsiView *view3;
+
+@property(nonatomic,strong) ZLSeletedAddress *view1ChooseAddress;
+@property(nonatomic,strong) ZLSeletedAddress *view2ChooseAddress;
+
+@property(nonatomic,strong) ZLHomeCommunity *view1ChooseCommunity;
+@property(nonatomic,strong) ZLHomeCommunity *view2ChooseCommunity;
+
+@property(nonatomic,strong) NSMutableArray *view1ChooseBanArr;
 @end
 
+
+
 @implementation UserComplaintAddVC
+
+-(id)init
+{
+    self = [super init];
+    if (self) {
+        self.view1ChooseBanArr = [NSMutableArray array];
+    }
+    return self;
+}
+
 
 -(void)loadView
 {
@@ -82,6 +104,180 @@
         UserComplaintHistoryTVC *vc = [[UserComplaintHistoryTVC alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
     }];
+    
+    
+    //投诉居民--选择地区
+    [self.view1.cityView jk_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
+        [[IQKeyboardManager sharedManager] resignFirstResponder];
+        ZLSelectedCityViewController *vc = [ZLSelectedCityViewController new];
+        vc.mType = 0;
+        [self pushViewController:vc];
+    }];
+    
+    //投诉物管--选择地区
+    [self.view2.cityView jk_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
+        [[IQKeyboardManager sharedManager] resignFirstResponder];
+        ZLSelectedCityViewController *vc = [ZLSelectedCityViewController new];
+        vc.mType = 0;
+        [self pushViewController:vc];
+    }];
+    
+    //投诉居民--选择小区
+    [self.view1.xiaoquView jk_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
+        [[IQKeyboardManager sharedManager] resignFirstResponder];
+        
+        if (_view1ChooseAddress.mProvince==0 || _view1ChooseAddress.mCity==0 || _view1ChooseAddress.mArear==0) {
+            [SVProgressHUD showErrorWithStatus:@"请先选择省市区"];
+            return ;
+        }
+        
+        ZLSelectArearViewController *vc = [ZLSelectArearViewController new];
+        vc.block = ^(ZLHomeCommunity *mBlock){
+            self.view1ChooseCommunity = mBlock;
+            self.view1.xiaoquField.text = mBlock.cmut_name;
+        };
+        ZLHomeCommunity *at = [ZLHomeCommunity new];
+        at.cmut_province = _view1ChooseAddress.mProvince;
+        at.cmut_city = _view1ChooseAddress.mCity;
+        at.cmut_county = _view1ChooseAddress.mArear;
+        vc.mCommunityAdd = at;
+        [self pushViewController:vc];
+    }];
+    
+    //投诉物管--选择小区
+    [self.view2.xiaoquView jk_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
+        [[IQKeyboardManager sharedManager] resignFirstResponder];
+        
+        if (_view2ChooseAddress.mProvince==0 || _view2ChooseAddress.mCity==0 || _view2ChooseAddress.mArear==0) {
+            [SVProgressHUD showErrorWithStatus:@"请先选择省市区"];
+            return ;
+        }
+        
+        ZLSelectArearViewController *vc = [ZLSelectArearViewController new];
+        vc.block = ^(ZLHomeCommunity *mBlock){
+            self.view2ChooseCommunity = mBlock;
+            self.view2.xiaoquField.text = mBlock.cmut_name;
+        };
+        ZLHomeCommunity *at = [ZLHomeCommunity new];
+        at.cmut_province = _view2ChooseAddress.mProvince;
+        at.cmut_city = _view2ChooseAddress.mCity;
+        at.cmut_county = _view2ChooseAddress.mArear;
+        vc.mCommunityAdd = at;
+        [self pushViewController:vc];
+    }];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(noticeTextFieldTextDidBeginEditing:) name:UITextFieldTextDidBeginEditingNotification object:_view1.addressField];
+    self.view1.addressField.callBack = ^(NSString *currentText, int ban, int unit, int floor, int number) {
+//        self.item.real_ban = ban;
+//        self.item.real_unit = unit;
+//        self.item.real_floor = floor;
+//        self.item.real_number = number;
+    };
+//    //投诉居民--选择楼栋
+//    [self.view1.addressView jk_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
+//        [[IQKeyboardManager sharedManager] resignFirstResponder];
+//        
+//        if (_view1ChooseAddress.mProvince==0 || _view1ChooseAddress.mCity==0 || _view1ChooseAddress.mArear==0) {
+//            [SVProgressHUD showErrorWithStatus:@"请先选择省市区"];
+//            return ;
+//        }
+//        
+//        if (_view1ChooseCommunity == nil) {
+//            [SVProgressHUD showErrorWithStatus:@"请先选择小区"];
+//            return ;
+//        }
+//        
+//        [self reloadBanDataView1];
+//    }];
+    
+    
+    
+    //居民建议
+    [self.view1.doneBtn jk_addActionHandler:^(NSInteger tag) {
+        [[IQKeyboardManager sharedManager] resignFirstResponder];
+        
+        if (_view1.questionTextView.text.length == 0) {
+            [SVProgressHUD showInfoWithStatus:@"请输入投诉内容"];
+            return ;
+        }
+        
+        if (_view1ChooseAddress == nil) {
+            [SVProgressHUD showInfoWithStatus:@"请选择省市区"];
+            return ;
+        }
+        
+        if (_view1ChooseCommunity == nil) {
+            [SVProgressHUD showInfoWithStatus:@"请选择投诉小区"];
+            return ;
+        }
+        
+        if (_view1.addressField.text.length == 0) {
+            [SVProgressHUD showInfoWithStatus:@"请选择楼栋房间号"];
+            return ;
+        }
+        
+        [SVProgressHUD showWithStatus:@"上传中..."];
+        [[APIClient sharedClient] complaintPeopleAddWithTag:self content:_view1.questionTextView.text cmut_id:_view1ChooseCommunity.cmut_id address:_view1.addressField.text call:^(APIObject *info) {
+            if (info.code == RESP_STATUS_YES) {
+                [SVProgressHUD showSuccessWithStatus:info.msg];
+                self.view1.questionTextView.text = nil;
+            } else
+                [SVProgressHUD showErrorWithStatus:info.msg];
+        }];
+        
+    }];
+    
+    
+    //物管建议
+    [self.view2.doneBtn jk_addActionHandler:^(NSInteger tag) {
+        [[IQKeyboardManager sharedManager] resignFirstResponder];
+        
+        if (_view2.questionTextView.text.length == 0) {
+            [SVProgressHUD showInfoWithStatus:@"请输入投诉内容"];
+            return ;
+        }
+        
+        if (_view2ChooseAddress == nil) {
+            [SVProgressHUD showInfoWithStatus:@"请选择省市区"];
+            return ;
+        }
+        
+        if (_view2ChooseCommunity == nil) {
+            [SVProgressHUD showInfoWithStatus:@"请选择投诉小区"];
+            return ;
+        }
+        
+        [SVProgressHUD showWithStatus:@"上传中..."];
+        [[APIClient sharedClient] complaintCommunityAddWithTag:self content:_view2.questionTextView.text cmut_id:_view2ChooseCommunity.cmut_id user_name:_view2.nameField.text call:^(APIObject *info) {
+            if (info.code == RESP_STATUS_YES) {
+                [SVProgressHUD showSuccessWithStatus:info.msg];
+                self.view2.questionTextView.text = nil;
+            } else
+                [SVProgressHUD showErrorWithStatus:info.msg];
+        }];
+        
+    }];
+    
+    
+    //公司建议
+    [self.view3.doneBtn jk_addActionHandler:^(NSInteger tag) {
+        [[IQKeyboardManager sharedManager] resignFirstResponder];
+        
+        if (_view3.questionTextView.text.length == 0) {
+            [SVProgressHUD showInfoWithStatus:@"请输入建议内容"];
+            return ;
+        }
+        
+        [SVProgressHUD showWithStatus:@"上传中..."];
+        [[APIClient sharedClient] complaintCompanyAddWithTag:self content:_view3.questionTextView.text call:^(APIObject *info) {
+            if (info.code == RESP_STATUS_YES) {
+                [SVProgressHUD showSuccessWithStatus:info.msg];
+                self.view3.questionTextView.text = nil;
+            } else
+                [SVProgressHUD showErrorWithStatus:info.msg];
+        }];
+        
+    }];
 }
 
 - (void)viewDidLoad {
@@ -91,9 +287,89 @@
     [self loadWithSeg:0];
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:animated];
+    
+    ZLSeletedAddress *mAddressObj = [ZLSeletedAddress ShareClient];
+    if (mAddressObj.mProvinceStr.length > 0) {
+        if (_view1.hidden == NO) { //如果是投诉居民
+            self.view1ChooseAddress = mAddressObj;
+            self.view1.cityField.text = [mAddressObj getAddress];
+            
+            [self clearnXiqoquView1];
+            
+        } else if (_view2.hidden == NO) {//如果是投诉物管
+            self.view2ChooseAddress = mAddressObj;
+            self.view2.cityField.text = [mAddressObj getAddress];
+            
+            self.view2ChooseCommunity = nil;
+            self.view2.xiaoquField.text = nil;
+        }
+        
+        [ZLSeletedAddress destory];
+    }
+    
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+-(void)clearnXiqoquView1
+{
+    self.view1ChooseCommunity = nil;
+    self.view1.xiaoquField.text = nil;
+    
+    [self clearnBanDataView1];
+}
+-(void)clearnBanDataView1
+{
+    [self.view1ChooseBanArr removeAllObjects];
+    
+    self.view1.addressField.text = nil;
+    self.view1.addressField.dataArr = nil;
+}
+
+-(void)reloadBanDataView1
+{
+    if (_view1ChooseBanArr.count == 0) {
+        [self.view1.addressField resignFirstResponder];
+        
+        [SVProgressHUD showWithStatus:@"楼栋信息加载中..."];
+        [[APIClient sharedClient] communityBansetListWithTag:self cmut_id:_view1ChooseCommunity.cmut_id call:^(NSArray *tableArr, APIObject *info) {
+            if (info.code == RESP_STATUS_YES) {
+                [self.view1ChooseBanArr setArray:tableArr];
+                self.view1.addressField.dataArr = _view1ChooseBanArr;
+                
+                [SVProgressHUD showSuccessWithStatus:info.msg];
+            } else
+                [SVProgressHUD showErrorWithStatus:info.msg];
+        }];
+        
+    } else
+        self.view1.addressField.dataArr = _view1ChooseBanArr;
+}
+
+- (void)noticeTextFieldTextDidBeginEditing:(NSNotification *)note
+{
+    BanUnitFloorNumberTextField *textField = note.object;
+    
+    if (_view1ChooseAddress.mProvince==0 || _view1ChooseAddress.mCity==0 || _view1ChooseAddress.mArear==0) {
+        [SVProgressHUD showErrorWithStatus:@"请先选择省市区"];
+        [textField resignFirstResponder];
+        return ;
+    }
+    
+    if (_view1ChooseCommunity == nil) {
+        [SVProgressHUD showErrorWithStatus:@"请先选择小区"];
+        [textField resignFirstResponder];
+        return ;
+    }
+    
+    [self reloadBanDataView1];
 }
 
 /*

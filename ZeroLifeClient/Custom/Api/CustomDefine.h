@@ -230,6 +230,13 @@ typedef enum {
 } kOrderFixStatus; //报修流程状态
 
 
+typedef enum {
+    kComplaintType_company      = 1,//
+    kComplaintType_community    = 2,//
+    kComplaintType_people       = 3,//
+} kComplaintType; //用户投诉建议类型 1:公司建议；2：社区物管投诉 3:投诉居民
+
+
 
 typedef enum {
     kCouponType_manjian,//满减

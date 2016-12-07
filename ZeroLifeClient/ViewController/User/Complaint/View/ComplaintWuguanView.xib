@@ -27,7 +27,7 @@
                             <color key="textColor" red="0.45081108809999998" green="0.45487439629999998" blue="0.45897156" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择居住城市" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aop-CW-gxF">
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择居住城市" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aop-CW-gxF">
                             <rect key="frame" x="113" y="0.0" width="252" height="50"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -65,7 +65,7 @@
                             <color key="textColor" red="0.45081108809999998" green="0.45487439629999998" blue="0.45897156" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择小区" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ubz-wE-d0r">
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择小区" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ubz-wE-d0r">
                             <rect key="frame" x="113" y="0.0" width="252" height="50"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -177,10 +177,12 @@
             </constraints>
             <connections>
                 <outlet property="cityField" destination="aop-CW-gxF" id="sh4-pB-LLQ"/>
+                <outlet property="cityView" destination="EFN-AY-9Aw" id="QMG-yg-E5a"/>
                 <outlet property="doneBtn" destination="ZMj-Km-SfA" id="2oW-uN-E7Y"/>
                 <outlet property="nameField" destination="tLo-SZ-bAd" id="P3X-la-TSC"/>
                 <outlet property="questionTextView" destination="BLe-25-ask" id="ian-G8-jd0"/>
-                <outlet property="xiaoquField" destination="tLo-SZ-bAd" id="pCw-1N-1yC"/>
+                <outlet property="xiaoquField" destination="Ubz-wE-d0r" id="plf-eT-Qtk"/>
+                <outlet property="xiaoquView" destination="cJu-LL-Ez8" id="EPM-J5-mVk"/>
             </connections>
         </view>
     </objects>

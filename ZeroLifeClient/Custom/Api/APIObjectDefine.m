@@ -395,6 +395,9 @@
 
 
 
+@implementation ComplaintObject
+@end
+
 @implementation WalletObject
 @end
 

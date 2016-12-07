@@ -285,17 +285,21 @@
 }
 
 
--(void)loadAPITableListWithTag:(NSObject *)tag path:(NSString *)URLString parameters:(NSDictionary *)parameters pageIndex:(int)page subClass:(Class)aClass call:(TableArrBlock)callback
+-(void)loadAPITableListWithTag:(NSObject *)tag path:(NSString *)URLString parameters:(NSDictionary *)parameters pageIndex:(int)page subClass:(Class)aClass call:(TablePageArrBlock)callback
 {
     NSMutableDictionary *dic = [NSMutableDictionary quDicWithPage:page pageRow:TABLE_PAGE_ROW];
     if ([parameters isKindOfClass:[NSDictionary class]])
         [dic addEntriesFromDictionary:parameters];
     [self loadAPIWithTag:tag path:URLString parameters:dic call:^(APIObject *info) {
+        int total = 0;
         NSArray *newArr = nil;
-        if (info.code == RESP_STATUS_YES && [info.data isKindOfClass:[NSArray class]]) {
-            newArr = [aClass mj_objectArrayWithKeyValuesArray:info.data];
+        if (info.code == RESP_STATUS_YES && [info.data isKindOfClass:[NSDictionary class]]) {
+            total = [[info.data objectForKey:@"totalPage"] intValue];
+            NSArray *list = [info.data objectForKey:@"list"];
+            if (list.count > 0)
+                newArr = [aClass mj_objectArrayWithKeyValuesArray:list];
         }
-        callback(newArr, info);
+        callback(total, newArr, info);
     }];
 }
 
@@ -1246,5 +1250,101 @@
 }
 
 
+
+#pragma mark----****----投诉建议接口
+/**
+ *   投诉建议接口列表接口
+ *
+ *  @param tag      链接对象
+ *  @param callback 返回列表
+ */
+-(void)complaintListWithTag:(NSObject *)tag page:(int)page call:(TablePageArrBlock)callback
+{
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    if (user.user_id > 0) {
+        NSMutableDictionary* paramDic = [NSMutableDictionary dictionary];
+        [paramDic setInt:user.user_id forKey:@"user_id"];
+        [self loadAPITableListWithTag:self path:@"/user/complaint/complaint_list" parameters:paramDic pageIndex:page subClass:[ComplaintObject class] call:^(int totalPage, NSArray *tableArr, APIObject *info) {
+            callback(totalPage, tableArr, info);
+        }];
+    } else
+        callback(0, nil, [APIObject infoWithReLoginErrorMessage:@"请重新登陆"]);
+}
+
+
+/**
+ *  投诉建议-公司接口
+ *
+ *  @param tag      链接对象
+ *  @param content  投诉正文
+ *  @param callback 返回信息
+ */
+-(void)complaintCompanyAddWithTag:(NSObject *)tag content:(NSString *)content call:(void (^)(APIObject* info))callback
+{
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    if (user.user_id > 0) {
+        NSMutableDictionary *paramDic = [NSMutableDictionary dictionary];
+        [paramDic setInt:user.user_id forKey:@"user_id"];
+        [paramDic setNeedStr:content forKey:@"content"];
+        [self loadAPIWithTag:tag path:@"/user/complaint/complaint_company" parameters:paramDic call:^(APIObject *info) {
+            callback(info);
+        }];
+    } else
+        callback([APIObject infoWithReLoginErrorMessage:@"请重新登陆"]);
+}
+
+
+
+/**
+ *  投诉建议-小区物管接口
+ *
+ *  @param tag      链接对象
+ *  @param content  投诉正文
+ *  @param cmut_id  小区id
+ *  @param user_name 投诉者姓名，默认为空
+ *  @param callback 返回信息
+ */
+-(void)complaintCommunityAddWithTag:(NSObject *)tag content:(NSString *)content cmut_id:(int)cmut_id user_name:(NSString *)user_name call:(void (^)(APIObject* info))callback
+{
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    if (user.user_id > 0) {
+        NSMutableDictionary *paramDic = [NSMutableDictionary dictionary];
+        [paramDic setInt:user.user_id forKey:@"user_id"];
+        [paramDic setInt:cmut_id forKey:@"cmut_id"];
+        [paramDic setValidStr:user_name forKey:@"complaint_user_name"];
+        [paramDic setNeedStr:content forKey:@"content"];
+        [self loadAPIWithTag:tag path:@"/user/complaint/complaint_community" parameters:paramDic call:^(APIObject *info) {
+            callback(info);
+        }];
+    } else
+        callback([APIObject infoWithReLoginErrorMessage:@"请重新登陆"]);
+}
+
+
+
+/**
+ *  投诉建议-小区居民接口
+ *
+ *  @param tag      链接对象
+ *  @param content  投诉正文
+ *  @param cmut_id  小区id
+ *  @param address  小区里面楼栋房间号
+ *  @param callback 返回信息
+ */
+-(void)complaintPeopleAddWithTag:(NSObject *)tag content:(NSString *)content cmut_id:(int)cmut_id address:(NSString *)address call:(void (^)(APIObject* info))callback
+{
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    if (user.user_id > 0) {
+        NSMutableDictionary *paramDic = [NSMutableDictionary dictionary];
+        [paramDic setInt:user.user_id forKey:@"user_id"];
+        [paramDic setInt:cmut_id forKey:@"cmut_id"];
+        [paramDic setValidStr:address forKey:@"address"];
+        [paramDic setNeedStr:content forKey:@"content"];
+        [self loadAPIWithTag:tag path:@"/user/complaint/complaint_people" parameters:paramDic call:^(APIObject *info) {
+            callback(info);
+        }];
+    } else
+        callback([APIObject infoWithReLoginErrorMessage:@"请重新登陆"]);
+}
 
 @end

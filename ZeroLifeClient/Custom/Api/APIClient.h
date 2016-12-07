@@ -11,6 +11,8 @@
 #import <MapKit/MapKit.h>
 
 typedef void (^TableArrBlock)(NSArray *tableArr, APIObject* info);
+typedef void (^TablePageArrBlock)(int totalPage, NSArray *tableArr, APIObject* info);
+
 
 typedef void (^TableArrShareSdkBlock)(NSArray *tableArr, APIShareSdkObject* info);
 typedef void (^TableShareSdkBlock)(int totalpage, NSArray *tableArr, APIShareSdkObject* info);
@@ -70,6 +72,12 @@ typedef void (^TableShareSdkBlock)(int totalpage, NSArray *tableArr, APIShareSdk
 -(void)houseListWithTag:(NSObject *)tag call:(TableArrBlock)callback;
 -(void)houseInfoEditWithTag:(NSObject *)tag postItem:(HouseObject *)it is_default:(BOOL)is_default call:(void (^)(APIObject* info))callback;
 -(void)houseInfoDeleteWithTag:(NSObject *)tag real_id:(int)real_id call:(void (^)(APIObject* info))callback;
+
+//投诉相关接口
+-(void)complaintListWithTag:(NSObject *)tag page:(int)page call:(TablePageArrBlock)callback;
+-(void)complaintCompanyAddWithTag:(NSObject *)tag content:(NSString *)content call:(void (^)(APIObject* info))callback;
+-(void)complaintCommunityAddWithTag:(NSObject *)tag content:(NSString *)content cmut_id:(int)cmut_id user_name:(NSString *)user_name call:(void (^)(APIObject* info))callback;
+-(void)complaintPeopleAddWithTag:(NSObject *)tag content:(NSString *)content cmut_id:(int)cmut_id address:(NSString *)address call:(void (^)(APIObject* info))callback;
 
 
 //小区相关接口

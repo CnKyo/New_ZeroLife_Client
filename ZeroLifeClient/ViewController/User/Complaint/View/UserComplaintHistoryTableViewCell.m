@@ -43,7 +43,7 @@
         [self.timeLable makeConstraints:^(MASConstraintMaker *make) {
             make.top.bottom.equalTo(_nameLable);
             make.right.equalTo(superView.right).offset(-padding);
-            make.width.lessThanOrEqualTo(100);
+            make.width.lessThanOrEqualTo(150);
         }];
         [self.msgLable makeConstraints:^(MASConstraintMaker *make) {
             make.bottom.equalTo(superView.bottom).offset(-padding/2);

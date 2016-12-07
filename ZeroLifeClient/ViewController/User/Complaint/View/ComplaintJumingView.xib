@@ -27,7 +27,7 @@
                             <color key="textColor" red="0.45081108809999998" green="0.45487439629999998" blue="0.45897156" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择居住城市" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PtR-bt-YkN">
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择居住城市" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PtR-bt-YkN">
                             <rect key="frame" x="93" y="0.0" width="272" height="50"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -67,7 +67,7 @@
                             <color key="textColor" red="0.45081108809999998" green="0.45487439629999998" blue="0.45897156" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择小区" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qrp-NI-gEy">
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择小区" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qrp-NI-gEy">
                             <rect key="frame" x="93" y="0.0" width="272" height="50"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -108,7 +108,7 @@
                             <color key="textColor" red="0.45081108809999998" green="0.45487439629999998" blue="0.45897156" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择详细地址" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mzO-vW-TJm">
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择详细地址" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mzO-vW-TJm" customClass="BanUnitFloorNumberTextField">
                             <rect key="frame" x="93" y="0.0" width="272" height="50"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -183,10 +183,13 @@
             </constraints>
             <connections>
                 <outlet property="addressField" destination="mzO-vW-TJm" id="qu8-O0-WZ5"/>
+                <outlet property="addressView" destination="nOk-C3-nLa" id="l0c-fh-Z5B"/>
                 <outlet property="cityField" destination="PtR-bt-YkN" id="tJb-7o-Pi2"/>
+                <outlet property="cityView" destination="pSD-Bp-wCz" id="A7f-be-rzw"/>
                 <outlet property="doneBtn" destination="jXO-QK-XFB" id="Fgr-Er-6T1"/>
                 <outlet property="questionTextView" destination="VDR-5Y-DTo" id="hKL-9a-anW"/>
                 <outlet property="xiaoquField" destination="Qrp-NI-gEy" id="H6g-VV-CJK"/>
+                <outlet property="xiaoquView" destination="sDv-3p-cBm" id="pDs-wr-nmR"/>
             </connections>
             <point key="canvasLocation" x="21" y="66"/>
         </view>
