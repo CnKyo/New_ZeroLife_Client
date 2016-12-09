@@ -767,7 +767,7 @@ static const CGFloat mTopH = 156;
             
             CGFloat mHH = offsetY;
             MLLog(@"mHH----------:  %f",mHH);
-            if (mHH>=mTopH) {
+            if (mHH>=mTopH || mHH >= 0) {
                 mHH = mTopH;
             }
             
@@ -788,7 +788,7 @@ static const CGFloat mTopH = 156;
         else{
             CGFloat mH = -mTopH - offsetY;
             MLLog(@"mHH----------:  %f",mH);
-            [self setHeaderViewY:mH];
+            [self setHeaderViewY:64+mH];
             MLLog(@"执行C");
             mLeftTableView.contentOffset = mRightTableView.contentOffset;
             mLeftTableView.contentInset = UIEdgeInsetsMake(-offsetY, 0, 0, 0 );
