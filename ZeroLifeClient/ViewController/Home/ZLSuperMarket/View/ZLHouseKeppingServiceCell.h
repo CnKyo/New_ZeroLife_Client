@@ -15,13 +15,15 @@
 
 @optional
 
+- (void)ZLHouseKeppingServiceCellWithNumChanged:(int)mNum andIndexPath:(NSIndexPath *)mIndexPath;
+
 /**
  加减代理方法
-
+ @param mType       按钮类型: 1 加  2是减
  @param mNum       数量
  @param mIndexPath 索引
  */
-- (void)ZLHouseKeppingServiceCellWithNumChanged:(int)mNum andIndexPath:(NSIndexPath *)mIndexPath;
+- (void)ZLHouseKeppingServiceCellWithNumChanged:(int)mType andNum:(int)mNum andIndexPath:(NSIndexPath *)mIndexPath;
 
 @end
 

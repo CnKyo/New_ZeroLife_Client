@@ -8,6 +8,11 @@
 
 #import "ZLHouseKeppingServiceCell.h"
 #import "CustomDefine.h"
+
+@interface ZLHouseKeppingServiceCell()<PPNumberButtonDelegate>
+
+@end
+
 @implementation ZLHouseKeppingServiceCell
 
 - (void)awakeFromNib {
@@ -31,6 +36,7 @@
     
     PPNumberButton *numberButton = [PPNumberButton numberButtonWithFrame:CGRectMake(0, 0, 100, 30)];
     numberButton.decreaseHide = YES;
+    numberButton.delegate = self;
     numberButton.increaseImage = [UIImage imageNamed:@"ZLSuperMarket_Add"];
     numberButton.decreaseImage = [UIImage imageNamed:@"ZLSuperMarket_Substruct"];
     
@@ -52,6 +58,25 @@
     
     [self.mNumView addSubview:numberButton];
 
+}
+- (void)pp_numberButton:(__kindof UIView *)numberButton number:(NSString *)number{
+
+}
+/**
+ 加减按钮的代理方法
+ 
+ @param mBtn   哪一个按钮
+ @param number 数量
+ */
+- (void)pp_numberButtonSelected:(int)mBtn andNumber:(int)number{
+
+    
+    if ([_delegate respondsToSelector:@selector(ZLHouseKeppingServiceCellWithNumChanged:andNum:andIndexPath:)]) {
+        [self.delegate ZLHouseKeppingServiceCellWithNumChanged:mBtn andNum:number andIndexPath:self.mIndexPath];
+    }
+    
+    
+    
 }
 - (void)setMGoodsObj:(ZLGoodsWithCamp *)mGoodsObj{
     

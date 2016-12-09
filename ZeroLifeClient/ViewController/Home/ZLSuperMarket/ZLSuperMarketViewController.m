@@ -86,6 +86,7 @@
             [mBannerArr addObjectsFromArray:mShopHome.banner];
             [mCampainArr addObjectsFromArray:mShopHome.campaign];
             [mClassifyArr addObjectsFromArray:mShopHome.classify];
+            [self loadData];
         }else{
         
             [self showErrorStatus:mBaseObj.msg];
@@ -96,48 +97,30 @@
 
     }];
     
-    [[APIClient sharedClient] ZLGetShopHomeShopList:self.mType andLat:self.mLat andLng:self.mLng andClassId:nil andPage:1 block:^(APIObject *mBaseObj, ZLShopHomeShopList *mShopList) {
-        
-        [self.tableArr removeAllObjects];
-        if (mBaseObj.code == RESP_STATUS_YES) {
-            
-            [self.tableArr addObjectsFromArray:mShopList.list];
-            
-        }else{
-            
-            [self showErrorStatus:mBaseObj.msg];
-        }
-        [self doneHeaderRereshing];
 
-    }];
-
+    
+    
 }
 
 - (void)loadData{
-//- (void)reloadTableViewDataSource{
-
-    NSString * url1 = @"http://pic.newssc.org/upload/news/20161011/1476154849151.jpg";
-    NSString * url2 = @"http://img.mp.itc.cn/upload/20160328/f512a3a808c44b1ab9b18a96a04f46cc_th.jpg";
-    NSString * url3 = @"http://p1.ifengimg.com/cmpp/2016/10/10/08/f2016fa9-f1ea-4da5-a0f5-ba388de46a96_size80_w550_h354.JPG";
-    NSString * url4 = @"http://image.xinmin.cn/2016/10/11/6150190064053734729.jpg";
-    NSString * url5 = @"http://imgtu.lishiquwen.com/20160919/63e053727778a18993545741f4028c67.jpg";
-    NSString * url6 = @"http://imgtu.lishiquwen.com/20160919/590346287e6e45faf1070a07159314b7.jpg";
-    NSArray *mArr = @[url1,url2,url3,url4,url5,url6];
-    
-    
-    
-    [mBannerArr addObjectsFromArray:mArr];
-    
-    NSDictionary *mTempDic = [NSMutableDictionary new];
-    self.tableArr = [NSMutableArray new];
-    for (int i = 0; i<8; i++) {
-        [mTempDic setValue:[NSString stringWithFormat:@"这是第%d",i] forKey:@"title"];
-        [mTempDic setValue:@"icon_homepage_default" forKey:@"image"];
-        [self.tableArr addObject:mTempDic];
+    if (mClassifyArr.count>0) {
+        ZLShopHomeClassify *mShopClassify = mClassifyArr[0];
+        [[APIClient sharedClient] ZLGetShopHomeShopList:self.mType andLat:self.mLat andLng:self.mLng andClassId:[NSString stringWithFormat:@"%d",mShopClassify.cls_id] andPage:1 block:^(APIObject *mBaseObj, ZLShopHomeShopList *mShopList) {
+            
+            [self.tableArr removeAllObjects];
+            if (mBaseObj.code == RESP_STATUS_YES) {
+                
+                [self.tableArr addObjectsFromArray:mShopList.list];
+                
+            }else{
+                
+                [self showErrorStatus:mBaseObj.msg];
+            }
+            [self doneHeaderRereshing];
+            
+        }];
+        
     }
-    
-    [self.tableView reloadData];
-    
 }
 
 - (void)didReceiveMemoryWarning {

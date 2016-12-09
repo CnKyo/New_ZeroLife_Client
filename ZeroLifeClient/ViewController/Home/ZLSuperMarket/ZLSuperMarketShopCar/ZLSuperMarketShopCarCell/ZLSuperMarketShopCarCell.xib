@@ -15,24 +15,15 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="90"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EEp-7v-tGR" id="Xme-6h-hGs">
-                <frame key="frameInset" width="320" height="89"/>
+                <frame key="frameInset" width="320" height="89.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="40M-87-SQZ">
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MS2-jl-DrB">
                         <constraints>
-                            <constraint firstAttribute="height" constant="25" id="M3Y-ru-VoT"/>
-                            <constraint firstAttribute="width" constant="25" id="u50-cI-1sp"/>
+                            <constraint firstAttribute="height" constant="25" id="hlb-Zi-ZAg"/>
+                            <constraint firstAttribute="width" constant="25" id="sxz-04-yeY"/>
                         </constraints>
-                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <state key="normal" title="!" backgroundImage="ZLShopCar_Normal">
-                            <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        </state>
-                        <state key="selected" backgroundImage="ZLShopCar_Selected"/>
-                        <connections>
-                            <action selector="mSelectedAction:" destination="EEp-7v-tGR" eventType="touchUpInside" id="TAs-Yb-jx5"/>
-                        </connections>
-                    </button>
+                    </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gcb-9I-Vhx">
                         <constraints>
                             <constraint firstAttribute="height" constant="70" id="Qat-Ce-eRk"/>
@@ -51,16 +42,18 @@
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fpc-Qa-HTG">
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <nil key="textColor"/>
+                        <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gCV-oH-qoX">
-                        <color key="backgroundColor" red="0.59415739769999998" green="0.78603571650000004" blue="0.16135776039999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="25" id="PpR-Pi-Vjq"/>
                             <constraint firstAttribute="width" constant="25" id="gdn-oC-sbF"/>
                         </constraints>
-                        <state key="normal" title="N"/>
+                        <state key="normal" backgroundImage="ZLDelete">
+                            <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        </state>
                         <connections>
                             <action selector="mDeleteAction:" destination="EEp-7v-tGR" eventType="touchUpInside" id="aRx-bc-wt7"/>
                         </connections>
@@ -80,13 +73,13 @@
                         </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="111" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="2Dm-bb-MXS">
-                        <color key="backgroundColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="25" id="Fei-OB-9oE"/>
                             <constraint firstAttribute="width" constant="25" id="edI-Nc-ABX"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                        <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wyv-9y-Vew">
@@ -103,21 +96,29 @@
                             <action selector="mAddAction:" destination="EEp-7v-tGR" eventType="touchUpInside" id="NGl-a8-KMA"/>
                         </connections>
                     </button>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MNh-gp-p0Y">
+                        <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="0.2987478595890411" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="fnC-m4-bCq"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="MS2-jl-DrB" firstAttribute="leading" secondItem="Xme-6h-hGs" secondAttribute="leadingMargin" constant="2" id="1Uh-pz-eSD"/>
                     <constraint firstItem="2Dm-bb-MXS" firstAttribute="top" secondItem="FQa-ZQ-Cef" secondAttribute="bottom" constant="1" id="1yG-FQ-gDF"/>
                     <constraint firstItem="gCV-oH-qoX" firstAttribute="leading" secondItem="fpc-Qa-HTG" secondAttribute="trailing" constant="74" id="54g-5y-ddD"/>
                     <constraint firstItem="kg2-Ch-FOz" firstAttribute="top" secondItem="2Dm-bb-MXS" secondAttribute="top" id="5v6-wt-KN4"/>
                     <constraint firstItem="lXg-up-5yj" firstAttribute="top" secondItem="Xme-6h-hGs" secondAttribute="topMargin" constant="1" id="7ZN-Kh-9XU"/>
                     <constraint firstItem="kg2-Ch-FOz" firstAttribute="baseline" secondItem="Wyv-9y-Vew" secondAttribute="baseline" id="D6P-Ca-ut7"/>
-                    <constraint firstItem="gcb-9I-Vhx" firstAttribute="leading" secondItem="40M-87-SQZ" secondAttribute="trailing" constant="8" id="DsO-br-bNa"/>
+                    <constraint firstItem="gcb-9I-Vhx" firstAttribute="leading" secondItem="MS2-jl-DrB" secondAttribute="trailing" constant="5" id="GzM-ep-Wkv"/>
                     <constraint firstItem="kg2-Ch-FOz" firstAttribute="firstBaseline" secondItem="Wyv-9y-Vew" secondAttribute="baseline" id="M93-eM-U2B"/>
                     <constraint firstItem="FQa-ZQ-Cef" firstAttribute="leading" secondItem="gcb-9I-Vhx" secondAttribute="trailing" constant="8" id="OHd-ld-7nG"/>
+                    <constraint firstItem="MS2-jl-DrB" firstAttribute="centerY" secondItem="Xme-6h-hGs" secondAttribute="centerY" id="Q4f-HA-LNX"/>
+                    <constraint firstItem="MNh-gp-p0Y" firstAttribute="leading" secondItem="Xme-6h-hGs" secondAttribute="leadingMargin" constant="7" id="ShT-TH-U3e"/>
                     <constraint firstItem="kg2-Ch-FOz" firstAttribute="top" secondItem="Wyv-9y-Vew" secondAttribute="top" id="Xsu-ZE-bw2"/>
                     <constraint firstItem="lXg-up-5yj" firstAttribute="leading" secondItem="gcb-9I-Vhx" secondAttribute="trailing" constant="8" id="Y4K-eC-b73"/>
                     <constraint firstItem="kg2-Ch-FOz" firstAttribute="centerY" secondItem="fpc-Qa-HTG" secondAttribute="centerY" id="Ypw-OF-sF9"/>
                     <constraint firstItem="gCV-oH-qoX" firstAttribute="top" secondItem="Xme-6h-hGs" secondAttribute="topMargin" constant="1" id="Zq1-4g-1jQ"/>
-                    <constraint firstItem="40M-87-SQZ" firstAttribute="leading" secondItem="Xme-6h-hGs" secondAttribute="leadingMargin" constant="2" id="a2e-zN-O74"/>
                     <constraint firstItem="fpc-Qa-HTG" firstAttribute="leading" secondItem="gcb-9I-Vhx" secondAttribute="trailing" constant="8" id="bIH-Hd-9c6"/>
                     <constraint firstItem="FQa-ZQ-Cef" firstAttribute="top" secondItem="lXg-up-5yj" secondAttribute="bottom" constant="4" id="cW6-zy-Epc"/>
                     <constraint firstItem="gCV-oH-qoX" firstAttribute="leading" secondItem="FQa-ZQ-Cef" secondAttribute="trailing" constant="21" id="d2u-OX-XLt"/>
@@ -130,7 +131,8 @@
                     <constraint firstItem="gcb-9I-Vhx" firstAttribute="centerY" secondItem="Xme-6h-hGs" secondAttribute="centerY" id="lEs-cl-FUL"/>
                     <constraint firstAttribute="trailingMargin" secondItem="gCV-oH-qoX" secondAttribute="trailing" id="o4F-dq-bRl"/>
                     <constraint firstItem="kg2-Ch-FOz" firstAttribute="baseline" secondItem="Wyv-9y-Vew" secondAttribute="firstBaseline" id="ogO-fH-AL4"/>
-                    <constraint firstItem="40M-87-SQZ" firstAttribute="centerY" secondItem="Xme-6h-hGs" secondAttribute="centerY" id="vSD-qF-BJH"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="MNh-gp-p0Y" secondAttribute="trailing" constant="-8" id="wcQ-bZ-cJK"/>
+                    <constraint firstItem="MNh-gp-p0Y" firstAttribute="top" secondItem="gcb-9I-Vhx" secondAttribute="bottom" constant="9" id="y1x-CH-hUe"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
@@ -141,15 +143,14 @@
                 <outlet property="mGoodsName" destination="lXg-up-5yj" id="dDX-Zg-gVC"/>
                 <outlet property="mNum" destination="2Dm-bb-MXS" id="C5b-b4-Jao"/>
                 <outlet property="mPrice" destination="fpc-Qa-HTG" id="Lk4-Vk-BEO"/>
-                <outlet property="mSelectedBtn" destination="40M-87-SQZ" id="XDq-HL-LvU"/>
+                <outlet property="mSelectedImg" destination="MS2-jl-DrB" id="FcU-9a-rju"/>
                 <outlet property="mSubstructBtn" destination="kg2-Ch-FOz" id="Zzb-xp-1bC"/>
             </connections>
             <point key="canvasLocation" x="-36" y="47"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="ZLShopCar_Normal" width="28" height="28"/>
-        <image name="ZLShopCar_Selected" width="28" height="28"/>
+        <image name="ZLDelete" width="32" height="32"/>
         <image name="ZLSuperMarket_Add" width="30" height="30"/>
         <image name="ZLSuperMarket_Substruct" width="30" height="30"/>
     </resources>

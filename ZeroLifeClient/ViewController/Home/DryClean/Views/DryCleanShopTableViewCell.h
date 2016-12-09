@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "UIView+AutoSize.h"
 #import "CustomDefine.h"
+#import "APIObjectDefine.h"
 
 @interface DryCleanShopTableViewCell : UITableViewCell
 @property(nonatomic,strong) UIImageView *iconImgView;
@@ -16,4 +17,6 @@
 @property(nonatomic,strong) UILabel *timeLable;
 @property(nonatomic,strong) UILabel *saleLable;
 @property(nonatomic,strong) UILabel *distanceLable;
+@property (strong,nonatomic) ZLShopHomeShopObj *mShopObj;
+
 @end

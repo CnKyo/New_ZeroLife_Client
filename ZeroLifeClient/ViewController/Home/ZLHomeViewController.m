@@ -239,23 +239,23 @@
     MLLog(@"----******:%@",[ZLAPPInfo ZLCurrentAppInfo].set.fig_phone);
     
     
-//    ZLHomeMessageViewController *ZLHomeMsgVC = [ZLHomeMessageViewController new];
-//    ZLHomeMsgVC.hidesBottomBarWhenPushed = YES;
-//
-//    [self pushViewController:ZLHomeMsgVC];
+    ZLHomeMessageViewController *ZLHomeMsgVC = [ZLHomeMessageViewController new];
+    ZLHomeMsgVC.hidesBottomBarWhenPushed = YES;
+
+    [self pushViewController:ZLHomeMsgVC];
     
 //    ZLLoginViewController *vc = [ZLLoginViewController new];
 //    ZLWebViewViewController *vc = [ZLWebViewViewController new];
 //    ZLOrderReturnViewController *vc = [ZLOrderReturnViewController new];
-    ZLRatingViewController *vc = [ZLRatingViewController new];
+//    ZLRatingViewController *vc = [ZLRatingViewController new];
 
     
 
-    vc.hidesBottomBarWhenPushed = YES;
+//    vc.hidesBottomBarWhenPushed = YES;
 //    vc.mUrl = @"www.baidu.com";
 //    vc.title = @"web";
 
-    [self pushViewController:vc];
+//    [self pushViewController:vc];
     
     
     
@@ -547,7 +547,7 @@
         
     } else if (mIndex == 1) {
         ZLSuperMarketViewController *mSuperMarketVC = [ZLSuperMarketViewController new];
-        mSuperMarketVC.mType = 1;
+        mSuperMarketVC.mType = ZLShopTypeSuperMarket;
         mSuperMarketVC.mLat = mCommunityObj.cmut_lat;
         mSuperMarketVC.mLng = mCommunityObj.cmut_lng;
         mSuperMarketVC.hidesBottomBarWhenPushed = YES;
@@ -556,12 +556,17 @@
     }else if (mIndex == 2){
         ZLTenementRepairsViewController *ZLFixVC = [ZLTenementRepairsViewController new];
         ZLFixVC.hidesBottomBarWhenPushed = YES;
-
+        ZLFixVC.mType = ZLShopTypeFix;
+        ZLFixVC.mLat = mCommunityObj.cmut_lat;
+        ZLFixVC.mLng = mCommunityObj.cmut_lng;
         [self pushViewController:ZLFixVC];
     }
     else if (mIndex == 3) {
         DryCleanShopTVC *vc = [[DryCleanShopTVC alloc] init];
         vc.hidesBottomBarWhenPushed = YES;
+        vc.mType = ZLShopTypeHouseKeeping;
+        vc.mLat = mCommunityObj.cmut_lat;
+        vc.mLng = mCommunityObj.cmut_lng;
         [self pushViewController:vc];
     }
 	else if (mIndex == 5){

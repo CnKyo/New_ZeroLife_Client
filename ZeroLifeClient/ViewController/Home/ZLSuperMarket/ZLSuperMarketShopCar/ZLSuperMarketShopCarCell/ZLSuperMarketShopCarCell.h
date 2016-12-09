@@ -8,6 +8,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "APIObjectDefine.h"
+
+
 @class ZLSuperMarketShopCarCell;
 
 
@@ -52,9 +55,10 @@
 @interface ZLSuperMarketShopCarCell : UITableViewCell
 
 /**
- 选择按钮
+ 选择图片
  */
-@property (weak, nonatomic) IBOutlet UIButton *mSelectedBtn;
+@property (weak, nonatomic) IBOutlet UIImageView *mSelectedImg;
+
 
 /**
  商品图片
@@ -100,6 +104,8 @@
  索引
  */
 @property (assign,nonatomic) NSIndexPath *mIndexPAth;
+
+@property (strong,nonatomic) LKDBHelperGoodsObj *mGoods;
 
 /**
  设置代理

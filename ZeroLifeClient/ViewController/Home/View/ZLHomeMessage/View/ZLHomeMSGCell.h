@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "APIObjectDefine.h"
+
 
 @interface ZLHomeMSGCell : UITableViewCell
 #pragma mark ----****----消息列表cell样式
@@ -61,6 +63,8 @@
  */
 @property (assign,nonatomic) CGFloat mCellH;
 
-@property (strong,nonatomic) NSString *mModel;
+///消息对象
+@property (strong,nonatomic) ZLMessageObj *mMessage;
+
 
 @end

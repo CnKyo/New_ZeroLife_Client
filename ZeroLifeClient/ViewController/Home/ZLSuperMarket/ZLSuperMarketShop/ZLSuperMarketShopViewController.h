@@ -13,6 +13,6 @@
 /**
  页面类型：1是超市2是家政
  */
-@property (assign,nonatomic) int mType;
+@property (assign,nonatomic) ZLShopType mType;
 @property (strong,nonatomic) ZLShopHomeShopObj *mShopObj;
 @end

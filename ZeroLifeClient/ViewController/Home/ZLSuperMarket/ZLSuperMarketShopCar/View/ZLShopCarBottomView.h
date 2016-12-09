@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ZLCustomImgButton.h"
 
 /**
  设置代理
@@ -32,7 +33,7 @@
 /**
  全选
  */
-@property (weak, nonatomic) IBOutlet UIButton *mSelecAllBtn;
+@property (weak, nonatomic) IBOutlet ZLCustomImgButton *mSelecAllBtn;
 
 /**
  去结算

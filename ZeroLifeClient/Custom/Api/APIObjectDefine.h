@@ -572,6 +572,10 @@
 ///排序
 @property (assign,nonatomic) int cls_sort;
 
+@property (strong,nonatomic) NSString* cls_state;
+
+@property (strong,nonatomic) NSString* parent_name;
+
 
 @end
 
@@ -930,6 +934,7 @@
 
 
 @end
+#pragma mark-----****----///规格值对象
 @class ZLGoodsSKU;
 ///规格值对象
 @interface ZLSpeObj : NSObject
@@ -946,6 +951,174 @@
 @property (assign,nonatomic) int mIsValid;
 ///sku对象
 @property (strong,nonatomic) ZLGoodsSKU *mSku;
+
+
+@end
+#pragma mark-----****----///店铺加入购物车扩展对象
+@interface ZLAddShopCarExObj : NSObject
+///商品数量
+@property (assign,nonatomic) int mGoodsNum;
+///总价格
+@property (assign,nonatomic) float mTotlePrice;
+
+@end
+#pragma mark-----****----///物业报修父类扩展对象
+///物业报修父类扩展对象
+@interface ZLFixClassExtObj : NSObject
+///父级id
+@property (assign,nonatomic) int mParentId;
+///父级名称
+@property (strong,nonatomic) NSString* mParentName;
+///子类数组
+@property (strong,nonatomic) NSMutableArray* mClassArr;
+
+
+@end
+#pragma mark-----****----物业报修子类扩展对象
+///物业报修子类扩展对象
+@interface ZLFixSubExtObj : NSObject
+///子类id
+@property (assign,nonatomic) int mClassId;
+///子类名称
+@property (strong,nonatomic) NSString* mClassName;
+///子类图片
+@property (strong,nonatomic) NSString* mClassImg;
+
+@end
+#pragma mark-----****----首页便民服务对象
+@interface ZLHomeServicePerson : NSObject
+///添加的状态
+@property (strong,nonatomic) NSString* pla_state;
+///添加的时间
+@property (strong,nonatomic) NSString* pla_add_time;
+///添加人？
+@property (strong,nonatomic) NSString* pla_add_person;
+///对应id
+@property (assign,nonatomic) int pla_id;
+///点击链接url
+@property (strong,nonatomic) NSString* pla_uri;
+///第三方名称
+@property (strong,nonatomic) NSString* pla_name;
+///Logo图片URL
+@property (strong,nonatomic) NSString* pla_logo;
+
+
+
+
+@end
+
+
+#pragma mark-----****----首页消息对象
+///首页消息对象
+@interface ZLHomeMsgObj : NSObject
+///总排数
+@property (assign,nonatomic) int totalRow;
+///第几页
+@property (assign,nonatomic) int pageNumber;
+///总页数
+@property (assign,nonatomic) int totalPage;
+///页数条数
+@property (assign,nonatomic) int pageSize;
+///消息列表
+@property (strong,nonatomic) NSArray* msgList;
+
+
+@end
+#pragma mark-----****----消息对象
+///消息对象
+@interface ZLMessageObj : NSObject
+
+///消息已读？还是未读
+@property (assign,nonatomic) BOOL mIsRead;
+///消息状态
+@property (strong,nonatomic) NSString* msg_state;
+///消息标题
+@property (strong,nonatomic) NSString* msg_title;
+///消息内容
+@property (strong,nonatomic) NSString* msg_content;
+///消息附带数据
+@property (strong,nonatomic) NSString* msg_extras;
+///消息类型
+@property (assign,nonatomic) int msg_type;
+///消息ID
+@property (assign,nonatomic) int msg_id;
+///消息简介
+@property (strong,nonatomic) NSString* msg_sub;
+///消息来源
+@property (strong,nonatomic) NSString* msg_auth;
+
+@end
+#pragma mark-----****----公告列表对象
+///公告列表对象
+@interface ZLHomeAnouncementListObj : NSObject
+
+///总排数
+@property (assign,nonatomic) int totalRow;
+///第几页
+@property (assign,nonatomic) int pageNumber;
+///总页数
+@property (assign,nonatomic) BOOL firstPage;
+///页数条数
+@property (assign,nonatomic) BOOL lastPage;
+///总页数
+@property (assign,nonatomic) int totalPage;
+///
+@property (assign,nonatomic) int pageSize;
+///列表数据
+@property (strong,nonatomic) NSArray* list;
+
+@end
+#pragma mark-----****----公告对象
+///公告对象
+@interface ZLHomeAnouncement : NSObject
+///公告id
+@property (assign,nonatomic) int not_id;
+///标题
+@property (strong,nonatomic) NSString* not_title;
+///小区id
+@property (assign,nonatomic) int cmut_id;
+///是否为小区公告
+@property (assign,nonatomic) int not_is_cmut;
+///
+@property (strong,nonatomic) NSString* not_state;
+///主题简要描述
+@property (strong,nonatomic) NSString* not_sub;
+///添加时间
+@property (strong,nonatomic) NSString* not_add_time;
+///图片url
+@property (strong,nonatomic) NSString* not_image;
+///
+@property (strong,nonatomic) NSString* not_deadline;
+///
+@property (strong,nonatomic) NSString* not_add_person;
+///类型
+@property (assign,nonatomic) int not_type;
+
+
+
+@end
+
+
+@class ZLAddShopCarExObj;
+@class ZLSpeObj;
+///商品加入数据库
+@interface LKDBHelperGoodsObj : NSObject
+
+@property (strong,nonatomic) NSString* mGoodsName;
+@property (strong,nonatomic) NSString* mGoodsImg;
+@property (assign,nonatomic) int mGoodsId;
+
+///是否选中
+@property (assign,nonatomic) BOOL mSelected;
+///店铺id
+@property (assign,nonatomic) int mShopId;
+///商品数据
+@property (strong,nonatomic) ZLSpeObj* mSpe;
+
+@property (strong,nonatomic) ZLAddShopCarExObj* mExtObj;
+
+@property (strong,nonatomic) NSArray* mGoodsSKU;
+
 
 
 @end

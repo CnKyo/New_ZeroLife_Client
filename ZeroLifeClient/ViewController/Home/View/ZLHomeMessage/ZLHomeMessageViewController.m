@@ -25,16 +25,44 @@
     
     UINib   *nib = [UINib nibWithNibName:@"ZLHomeMSGCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
-}
+    
+    [self setTableViewHaveHeader];
 
+}
+- (void)reloadTableViewDataSource{
+    [super reloadTableViewDataSource];
+    
+    [self showWithStatus:@"加载中..."];
+    [[APIClient sharedClient] ZLGetHomeMsgList:^(APIObject *mBaseObj, ZLHomeMsgObj *mHomeMsg) {
+        [self.tableArr removeAllObjects];
+        if (mBaseObj.code == RESP_STATUS_YES) {
+            
+            if (mHomeMsg.msgList.count <= 0) {
+                [self showErrorStatus:@"暂无数据"];
+
+                [self ZLShowEmptyView:@"暂无数 据" andImage:nil andHiddenRefreshBtn:NO];
+
+            }else{
+                [self showSuccessStatus:mBaseObj.msg];
+                [self.tableArr addObjectsFromArray:mHomeMsg.msgList];
+            }
+      
+            
+        }else{
+        
+            [self ZLShowEmptyView:mBaseObj.msg andImage:nil andHiddenRefreshBtn:NO];
+            [self showErrorStatus:mBaseObj.msg];
+        }
+        [self doneHeaderRereshing];
+
+    }];
+    
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-- (void)reloadTableViewDataSource{
 
-    
-}
 /*
 #pragma mark - Navigation
 
@@ -55,7 +83,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return 5;
+    return self.tableArr.count;
    
     
     
@@ -76,7 +104,8 @@
     reuseCellId = @"cell";
     
     ZLHomeMSGCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
-    
+    [cell setMMessage:self.tableArr[indexPath.row]];
+
     return cell;
     
     
@@ -89,6 +118,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     ZLHomeMessageDetailViewController *mDetailVC = [ZLHomeMessageDetailViewController new];
+    mDetailVC.mMessage = self.tableArr[indexPath.row];
     [self pushViewController:mDetailVC];
     
 

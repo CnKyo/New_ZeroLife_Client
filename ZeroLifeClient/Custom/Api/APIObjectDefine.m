@@ -798,3 +798,65 @@ bool m_bind = NO;
 @implementation ExternalPlatformObject
 @end
 
+@implementation ZLAddShopCarExObj
+
+
+
+@end
+@implementation ZLFixClassExtObj : NSObject
+
+
+
+@end
+@implementation ZLFixSubExtObj
+
+
+
+@end
+
+@implementation ZLHomeServicePerson
+
+
+
+@end
+@implementation ZLHomeMsgObj
+
++ (NSDictionary *)mj_objectClassInArray{
+    
+    return @{@"msgList":@"ZLMessageObj"};
+}
+
+@end
+
+
+@implementation ZLMessageObj
+
+
+
+@end
+
+@implementation ZLHomeAnouncementListObj
+
++ (NSDictionary *)mj_objectClassInArray{
+    
+    return @{@"list":@"ZLHomeAnouncement"};
+}
+
+@end
+
+
+@implementation ZLHomeAnouncement
+
+
+
+@end
+
+@implementation LKDBHelperGoodsObj
+
++ (NSString *)getPrimaryKey{
+
+    return @"mGoodsId";
+}
+
+@end
+

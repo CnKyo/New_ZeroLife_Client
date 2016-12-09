@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "APIObjectDefine.h"
 /**
  设置代理
  */
@@ -23,22 +23,22 @@
 /**
  添加按钮
  */
-- (void)ZLSuperMarketAddBtnSelected;
+- (void)ZLSuperMarketAddBtnSelected:(NSIndexPath *)mIndexPath;
 
 /**
  减按钮
  */
-- (void)ZLSuperMarketSubsructBtnSelected;
+- (void)ZLSuperMarketSubsructBtnSelected:(NSIndexPath *)mIndexPath;
 
 /**
  购物车按钮
  */
-- (void)ZLSuperMarketShopCarBtnSelected;
+- (void)ZLSuperMarketShopCarBtnSelected:(NSIndexPath *)mIndexPath;
 
 /**
  立即购买代理方法
  */
-- (void)ZLSuperMarketBuyNowBtnSelected;
+- (void)ZLSuperMarketBuyNowBtnSelected:(NSIndexPath *)mIndexPath;
 
 @end
 
@@ -103,6 +103,10 @@
  立即购买
  */
 @property (weak, nonatomic) IBOutlet UIButton *mBuyNowBtn;
+
+@property (strong,nonatomic) ZLGoodsWithClass *mModel;
+@property (assign,nonatomic) NSIndexPath *mIndexPath;
+
 
 /**
  
