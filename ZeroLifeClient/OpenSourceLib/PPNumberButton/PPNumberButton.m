@@ -66,7 +66,7 @@
     self.layer.cornerRadius = 3.f;
     self.clipsToBounds = YES;
     
-    _minValue = 1;
+    _minValue = 0;
     _maxValue = NSIntegerMax;
     _inputFieldFont = 15;
     _buttonTitleFont = 17;
@@ -131,9 +131,12 @@
     NSString *maxValueString = [NSString stringWithFormat:@"%ld",_maxValue];
     
     [textField.text isNotBlank] == NO || textField.text.integerValue < _minValue ? _textField.text = minValueString : nil;
+    
     textField.text.integerValue > _maxValue ? _textField.text = maxValueString : nil;
     _numberBlock ? _numberBlock(_textField.text) : nil;
+    
     _delegate ? [_delegate pp_numberButton:self number:_textField.text] : nil;
+
 }
 
 #pragma mark - 加减按钮点击响应
@@ -188,6 +191,9 @@
         _textField.text = [NSString stringWithFormat:@"%ld", number];
         _numberBlock ? _numberBlock(_textField.text) : nil;
         _delegate ? [_delegate pp_numberButton:self number:_textField.text] : nil;
+        
+        
+        _delegate ? [_delegate pp_numberButtonSelected:1 andNumber:[[NSString stringWithFormat:@"%@",_textField.text] intValue]] : nil;
     }
     else
     {
@@ -209,6 +215,8 @@
         _textField.text = [NSString stringWithFormat:@"%ld", number];
         _numberBlock ? _numberBlock(_textField.text) : nil;
         _delegate ? [_delegate pp_numberButton:self number:_textField.text] : nil;
+        _delegate ? [_delegate pp_numberButtonSelected:2 andNumber:[[NSString stringWithFormat:@"%@",_textField.text] intValue]] : nil;
+
     }
     else
     {

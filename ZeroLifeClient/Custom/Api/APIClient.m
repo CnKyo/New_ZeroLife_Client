@@ -1245,6 +1245,100 @@
     }];
 }
 
+#pragma mark----*****----获取便民服务
+/**
+ 获取便民服务
+ 
+ @param block 返回值
+ */
+- (void)ZLGetHomeSercicePeron:(void (^)(APIObject *mBaseObj, NSArray* mArr))block{
+
+    
+    [self loadAPIWithTag:self path:@"/other/external_platform_list" parameters:nil call:^(APIObject *info) {
+        
+        
+        if (info.code == RESP_STATUS_YES) {
+            
+            NSMutableArray *mTempArr = [NSMutableArray new];
+            for (NSDictionary *dic in info.data) {
+                [mTempArr addObject:[ZLHomeServicePerson mj_objectWithKeyValues:dic]];
+            }
+            
+            
+            block(info,mTempArr);
+            
+        }else{
+            block(info,nil);
+            
+        }
+        
+    }];
+    
+    
+
+}
+
+#pragma mark----*****----获取首页消息列表
+/**
+ 获取首页消息列表
+ 
+ @param block 返回值
+ */
+- (void)ZLGetHomeMsgList:(void (^)(APIObject *mBaseObj, ZLHomeMsgObj* mHomeMsg))block{
+    
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    [para setInt:[ZLUserInfo ZLCurrentUser].user_id forKey:@"user_id"];
+    
+    [self loadAPIWithTag:self path:@"/user/message/message_list" parameters:para call:^(APIObject *info) {
+        
+        
+        if (info.code == RESP_STATUS_YES) {
+            
+            ZLHomeMsgObj *mHomeMsg = [ZLHomeMsgObj mj_objectWithKeyValues:info.data];
+            
+        
+            block(info,mHomeMsg);
+            
+        }else{
+            block(info,nil);
+            
+        }
+        
+    }];
+}
+
+#pragma mark----*****----获取首页公告列表
+/**
+ 获取首页公告列表
+ @param mPage 页码默认值: 1
+ @param block 返回值
+ */
+- (void)ZLGetHomeAnouncement:(int)mPage block:(void (^)(APIObject *mBaseObj, ZLHomeAnouncementListObj* mNouncementList))block{
+
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    [para setInt:[ZLUserInfo ZLCurrentUser].user_id forKey:@"user_id"];
+    [para setInt:mPage forKey:@"page"];
+    [para setInt:20 forKey:@"rows"];
+
+    [self loadAPIWithTag:self path:@"/other/notice/notice_list" parameters:para call:^(APIObject *info) {
+        
+        
+        if (info.code == RESP_STATUS_YES) {
+            
+            ZLHomeAnouncementListObj *mList = [ZLHomeAnouncementListObj mj_objectWithKeyValues:info.data];
+            
+            
+            block(info,mList);
+            
+        }else{
+            block(info,nil);
+            
+        }
+        
+    }];
+    
+    
+}
 
 
 @end

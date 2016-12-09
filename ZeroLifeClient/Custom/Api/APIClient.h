@@ -170,4 +170,27 @@ typedef void (^TableShareSdkBlock)(int totalpage, NSArray *tableArr, APIShareSdk
 
 -(void)fileUploadWithTag:(NSObject *)tag data:(NSData *)data type:(kFileType)type path:(NSString *)path call:(void (^)(NSString *fileUrlStr, APIObject* info))callback;
 
+#pragma mark----*****----获取便民服务
+/**
+ 获取便民服务
+
+ @param block 返回值
+ */
+- (void)ZLGetHomeSercicePeron:(void (^)(APIObject *mBaseObj, NSArray* mArr))block;
+#pragma mark----*****----获取首页消息列表
+/**
+ 获取首页消息列表
+ 
+ @param block 返回值
+ */
+- (void)ZLGetHomeMsgList:(void (^)(APIObject *mBaseObj, ZLHomeMsgObj* mHomeMsg))block;
+
+#pragma mark----*****----获取首页公告列表
+/**
+ 获取首页公告列表
+ @param mPage 页码默认值: 1
+ @param block 返回值
+ */
+- (void)ZLGetHomeAnouncement:(int)mPage block:(void (^)(APIObject *mBaseObj, ZLHomeAnouncementListObj* mNouncementList))block;
+
 @end

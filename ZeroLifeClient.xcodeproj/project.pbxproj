@@ -59,6 +59,9 @@
 		041BD65B1DF5380300057756 /* ZLSkuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 041BD6591DF5380300057756 /* ZLSkuCell.m */; };
 		041BD65C1DF5380300057756 /* ZLSkuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 041BD65A1DF5380300057756 /* ZLSkuCell.xib */; };
 		043347911DF6519700052FBE /* LDXScore.m in Sources */ = {isa = PBXBuildFile; fileRef = 043347901DF6519700052FBE /* LDXScore.m */; };
+		043BFAE61DF68C4E0037A835 /* mCheckMoreActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 043BFAE41DF68C4E0037A835 /* mCheckMoreActivityView.m */; };
+		043BFAE71DF68C4E0037A835 /* mCheckMoreActivityView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043BFAE51DF68C4E0037A835 /* mCheckMoreActivityView.xib */; };
+		044021AB1DF94A5800234066 /* ZLCustomImgButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 044021AA1DF94A5800234066 /* ZLCustomImgButton.m */; };
 		0445AD791DD44AF300788779 /* ZLGoPayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0445AD781DD44AF300788779 /* ZLGoPayViewController.m */; };
 		0445AD7E1DD44CE600788779 /* ZLPayTypeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0445AD7C1DD44CE600788779 /* ZLPayTypeTableViewCell.m */; };
 		0445AD7F1DD44CE600788779 /* ZLPayTypeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0445AD7D1DD44CE600788779 /* ZLPayTypeTableViewCell.xib */; };
@@ -651,6 +654,11 @@
 		041BD65A1DF5380300057756 /* ZLSkuCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLSkuCell.xib; sourceTree = "<group>"; };
 		0433478F1DF6519700052FBE /* LDXScore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDXScore.h; sourceTree = "<group>"; };
 		043347901DF6519700052FBE /* LDXScore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDXScore.m; sourceTree = "<group>"; };
+		043BFAE31DF68C4E0037A835 /* mCheckMoreActivityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mCheckMoreActivityView.h; sourceTree = "<group>"; };
+		043BFAE41DF68C4E0037A835 /* mCheckMoreActivityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mCheckMoreActivityView.m; sourceTree = "<group>"; };
+		043BFAE51DF68C4E0037A835 /* mCheckMoreActivityView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mCheckMoreActivityView.xib; sourceTree = "<group>"; };
+		044021A91DF94A5700234066 /* ZLCustomImgButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLCustomImgButton.h; sourceTree = "<group>"; };
+		044021AA1DF94A5800234066 /* ZLCustomImgButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLCustomImgButton.m; sourceTree = "<group>"; };
 		0445AD771DD44AF300788779 /* ZLGoPayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLGoPayViewController.h; sourceTree = "<group>"; };
 		0445AD781DD44AF300788779 /* ZLGoPayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLGoPayViewController.m; sourceTree = "<group>"; };
 		0445AD7B1DD44CE600788779 /* ZLPayTypeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPayTypeTableViewCell.h; sourceTree = "<group>"; };
@@ -1490,6 +1498,9 @@
 				04D07C131DF011F400A83CD9 /* ZLShopCampainSubView.h */,
 				04D07C141DF011F400A83CD9 /* ZLShopCampainSubView.m */,
 				04D07C161DF011FD00A83CD9 /* ZLShopCampainSubView.xib */,
+				043BFAE31DF68C4E0037A835 /* mCheckMoreActivityView.h */,
+				043BFAE41DF68C4E0037A835 /* mCheckMoreActivityView.m */,
+				043BFAE51DF68C4E0037A835 /* mCheckMoreActivityView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1617,6 +1628,15 @@
 				043347901DF6519700052FBE /* LDXScore.m */,
 			);
 			path = LDXScore;
+			sourceTree = "<group>";
+		};
+		044021A81DF94A4300234066 /* ZLImgBtn */ = {
+			isa = PBXGroup;
+			children = (
+				044021A91DF94A5700234066 /* ZLCustomImgButton.h */,
+				044021AA1DF94A5800234066 /* ZLCustomImgButton.m */,
+			);
+			path = ZLImgBtn;
 			sourceTree = "<group>";
 		};
 		0445AD761DD44ADF00788779 /* ZLGoPayViewController */ = {
@@ -3055,6 +3075,7 @@
 		DFFAA7531DB744EF001CFBB5 /* OpenSourceLib */ = {
 			isa = PBXGroup;
 			children = (
+				044021A81DF94A4300234066 /* ZLImgBtn */,
 				04721A401DE4569100CE8639 /* StarView */,
 				047219BB1DE3E66B00CE8639 /* HXImagePicker */,
 				041789C81DDFE40500D55EA7 /* MZTimerLabel */,
@@ -3479,6 +3500,7 @@
 				04B862B21DD5AEDF00BDEA59 /* ZLGoodsDetailCell2.xib in Resources */,
 				04721A091DE3E66C00CE8639 /* qrcode_ar_failed@2x.png in Resources */,
 				DFE178CF1DD575E700E06F21 /* cell_complaint_wuguan@2x.png in Resources */,
+				043BFAE71DF68C4E0037A835 /* mCheckMoreActivityView.xib in Resources */,
 				0459558A1DE2FEED00998459 /* ZLOrderReturnCustomLoadImgView.xib in Resources */,
 				04B07E971DD96003004A7294 /* ZLRunningManHomeCell.xib in Resources */,
 				DF993D3E1DDAE7640061D7CA /* baoxiuShop_jishu@3x.png in Resources */,
@@ -3838,11 +3860,13 @@
 				04D64D7A1DC9CD35004E8859 /* ZLHomeCoupView.m in Sources */,
 				DF630CF61DD408240076A92C /* BaoXiuChooseShopTableViewCell.m in Sources */,
 				04C6A3811DCB08AF002C4D4A /* RSAEncryptor.m in Sources */,
+				043BFAE61DF68C4E0037A835 /* mCheckMoreActivityView.m in Sources */,
 				047219F21DE3E66C00CE8639 /* HX_AlbumModel.m in Sources */,
 				049A120D1DE95D2A0087238D /* ZLSelectedCityViewController.m in Sources */,
 				041657121DD6B218004E7D9A /* ZLRepairsColumsView.m in Sources */,
 				DF7F1BD21DCDC1FB00D2242B /* UserPaoPaoRegisterVC.m in Sources */,
 				04A7631E1DDBFA540061E2B0 /* ZLPPTReleaseRewardCell.m in Sources */,
+				044021AB1DF94A5800234066 /* ZLCustomImgButton.m in Sources */,
 				047219F61DE3E66C00CE8639 /* HX_AssetManager.m in Sources */,
 				DF630D651DD462F60076A92C /* UserIDAuthTableViewCell.m in Sources */,
 				040D92F41DCAE15300DBE42E /* ZLHomeMessageViewController.m in Sources */,

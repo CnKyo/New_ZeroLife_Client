@@ -50,13 +50,13 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2h3-tu-kSl">
-                    <color key="backgroundColor" red="0.99569243190000001" green="0.85008782149999995" blue="0.001528226538" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="45" id="FD5-ix-PnH"/>
                         <constraint firstAttribute="width" constant="45" id="e5L-P4-TvI"/>
                     </constraints>
                     <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <state key="normal">
+                    <state key="normal" backgroundImage="coupon_top_icon.png">
                         <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
@@ -169,5 +169,6 @@
     <resources>
         <image name="btn_star_evaluation_normal" width="100" height="100"/>
         <image name="btn_star_evaluation_press" width="100" height="100"/>
+        <image name="coupon_top_icon.png" width="29" height="20"/>
     </resources>
 </document>

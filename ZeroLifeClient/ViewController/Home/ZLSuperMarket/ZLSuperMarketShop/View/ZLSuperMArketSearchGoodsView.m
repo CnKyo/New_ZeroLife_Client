@@ -56,8 +56,9 @@
 
 - (IBAction)mSubstructAtion:(UIButton *)sender {
     
-    if ([self.delegate respondsToSelector:@selector(ZLSuperMarketSubsructBtnSelected)]) {
-        [self.delegate ZLSuperMarketSubsructBtnSelected];
+    if ([self.delegate respondsToSelector:@selector(ZLSuperMarketSubsructBtnSelected:)]) {
+        [_delegate ZLSuperMarketSubsructBtnSelected:self.mIndexPath];
+
     }
     
     
@@ -65,16 +66,16 @@
 
 - (IBAction)mAddAction:(UIButton *)sender {
     
-    if ([self.delegate respondsToSelector:@selector(ZLSuperMarketAddBtnSelected)]) {
-        [self.delegate ZLSuperMarketAddBtnSelected];
+    if ([self.delegate respondsToSelector:@selector(ZLSuperMarketAddBtnSelected:)]) {
+        [_delegate ZLSuperMarketAddBtnSelected:self.mIndexPath];
     }
     
 }
 
 - (IBAction)mOKAction:(UIButton *)sender {
     
-    if ([self.delegate respondsToSelector:@selector(ZLSuperMarketShopCarBtnSelected)]) {
-        [self.delegate ZLSuperMarketShopCarBtnSelected];
+    if ([self.delegate respondsToSelector:@selector(ZLSuperMarketShopCarBtnSelected:)]) {
+        [self.delegate ZLSuperMarketShopCarBtnSelected:self.mIndexPath];
     }
     
     
@@ -84,8 +85,8 @@
 - (IBAction)mBuyNow:(UIButton *)sender {
     
     
-    if ([self.delegate respondsToSelector:@selector(ZLSuperMarketBuyNowBtnSelected)]) {
-        [self.delegate ZLSuperMarketBuyNowBtnSelected];
+    if ([self.delegate respondsToSelector:@selector(ZLSuperMarketBuyNowBtnSelected:)]) {
+        [self.delegate ZLSuperMarketBuyNowBtnSelected:self.mIndexPath];
     }
 
 }

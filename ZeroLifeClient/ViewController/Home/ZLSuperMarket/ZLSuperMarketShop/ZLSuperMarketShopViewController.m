@@ -28,10 +28,13 @@
 #import "StandardsView.h"
 #import "ZLSkuCell.h"
 #import "LDXScore.h"
+#import "mCheckMoreActivityView.h"
+#import <LKDBHelper.h>
+
 
 static const CGFloat mTopH = 156;
 
-@interface ZLSuperMarketShopViewController ()<UITableViewDelegate,UITableViewDataSource,ZLSuperMarketShopDelegate,ZLSuperMarketGoodsCellDelegate,UIScrollViewDelegate,ZLSuperMarketShopCarDelegate,ZLSuperMarketGoodsSpecDelegate,UICollectionViewDelegate,ZLHouseKeppingServiceCellDelegate,ZLSpeSelectedViewCellDelegate,StandardsViewDelegate,ZLSKUCellDelegate,LDXScoreDelegate>
+@interface ZLSuperMarketShopViewController ()<UITableViewDelegate,UITableViewDataSource,ZLSuperMarketShopDelegate,ZLSuperMarketGoodsCellDelegate,UIScrollViewDelegate,ZLSuperMarketShopCarDelegate,ZLSuperMarketGoodsSpecDelegate,UICollectionViewDelegate,ZLHouseKeppingServiceCellDelegate,ZLSpeSelectedViewCellDelegate,StandardsViewDelegate,ZLSKUCellDelegate,LDXScoreDelegate,mCheckMoreActivityViewDelegate>
 
 /**
  规格瀑布流
@@ -45,6 +48,10 @@ static const CGFloat mTopH = 156;
 
 
 @property (nonatomic, strong) NSMutableArray *mSelectedSpeArray;
+
+
+
+@property (nonatomic, strong) NSMutableArray *mAddSkuArray;
 
 
 @property(strong,nonatomic)ZLSpeHeaderView *mSpeHeaderView;
@@ -88,10 +95,20 @@ static const CGFloat mTopH = 156;
     ZLShopLeftTableArr *mLeftDataSource;
     
     ZLRightGoodsType mRightTabType;
+    ///加入购物车扩展对象
+    ZLAddShopCarExObj *mAddShopCarEx;
     
+    ///查看更多活动view
+    mCheckMoreActivityView *mMoreCampView;
     
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+
+    [super viewWillAppear:animated];
+    [self updateBottomView:mAddShopCarEx];
+
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -103,18 +120,19 @@ static const CGFloat mTopH = 156;
     mLeftDataArr = [NSMutableArray new];
     mRightDataArr = [NSMutableArray new];
     self.mSelectedSpeArray = [NSMutableArray new];
+    self.mAddSkuArray = [NSMutableArray new];
 
+    mAddShopCarEx = [ZLAddShopCarExObj new];
     mLeftDataSource = [ZLShopLeftTableArr new];
     
-    [self addRightBtn:YES andTitel:nil andImage:[UIImage imageNamed:@"ZLSearch_white"]];
+    [self addRightBtn:NO andTitel:nil andImage:[UIImage imageNamed:@"ZLSearch_white"]];
 
     mShopObj = [ZLShopObj new];
-    [self loadData];
     [self initView];
-//    [self initData];
     [self initHeaderView];
     [self initSpeView];
-    
+    [self initMoreCampView];
+    [self loadData];
 }
 
 - (void)loadView{
@@ -123,18 +141,6 @@ static const CGFloat mTopH = 156;
 
 }
 
-#pragma mark----****----加载数据
-- (void)initData{
-
-    NSArray *mAr = @[@"问题1",@"问题2",@"问题3",@"问题4",@"问题5",@"问题6",@"问题7",@"问题8",@"请点击复合你的)"];
-    
-    [self.mSpeAddArray addObjectsFromArray:mAr];
-    [_mSpeTableView reloadData];
-//    for (int i=0; i<8; i++) {
-//        [self.mSpeDataArray addObject:[NSString stringWithFormat:@"第%d种规格 %d元",i,i+150]];
-//    }
-    
-}
 #pragma mark----****----加载headerview
 - (void)initHeaderView{
     mHeaderView = [ZLSuperMarketHeaderView shareView];
@@ -174,7 +180,9 @@ static const CGFloat mTopH = 156;
             mLeftDataSource.mLeftType = mLeftTabArr.mLeftType;
 
             [self upDatePage:mShop];
+            [self updaMoreView:mShop];
             [mLeftTableView reloadData];
+            [self updateBottomView:mAddShopCarEx];
         }else{
         
             [self showErrorStatus:mBaseObj.msg];
@@ -243,9 +251,58 @@ static const CGFloat mTopH = 156;
     mHeaderView.frame = mHeadFrame;
     
     
-    mBottomView.mNum.text = @"0";
   
 
+}
+#pragma mark----****----更新底部数量和总价
+///更新底部数量和总价
+- (void)updateBottomView:(ZLAddShopCarExObj *)mEx{
+    
+    int num = 0;
+    float price = 0.0;
+    
+    NSArray *mLKDArr =  [LKDBHelperGoodsObj searchWithWhere:[NSString stringWithFormat:@"%d",self.mShopObj.shop_id]];
+
+    for (int i = 0; i<mLKDArr.count; i++) {
+        LKDBHelperGoodsObj *mLKD = mLKDArr[i];
+        num+=mLKD.mExtObj.mGoodsNum;
+        price+=mLKD.mExtObj.mTotlePrice;
+    }
+    
+    if (num<=0) {
+        num=0;
+    }if (price<=0) {
+        price=0;
+    }
+    
+    if (num<=0) {
+        mBottomView.mNum.hidden = YES;
+    }else{
+    
+        mBottomView.mNum.hidden = NO;
+
+    }
+    
+    NSString *mbtnContent = nil;
+    
+    if (price<mShopObj.mShopMsg.ext_min_price) {
+        mbtnContent = [NSString stringWithFormat:@"还差%.2f元起送",mShopObj.mShopMsg.ext_min_price-price];
+        mBottomView.mGopayBtn.userInteractionEnabled = NO;
+        [mBottomView.mGopayBtn setBackgroundColor:[UIColor lightGrayColor]];
+    }else if (price<=0){
+        mbtnContent = [NSString stringWithFormat:@"还差%.2f元起送",mShopObj.mShopMsg.ext_min_price];
+        mBottomView.mGopayBtn.userInteractionEnabled = NO;
+        [mBottomView.mGopayBtn setBackgroundColor:[UIColor lightGrayColor]];
+    }else{
+        mbtnContent = @"去结算";
+        mBottomView.mGopayBtn.userInteractionEnabled = YES;
+        [mBottomView.mGopayBtn setBackgroundColor:[UIColor redColor]];
+    }
+    [mBottomView.mGopayBtn setTitle:mbtnContent forState:0];
+    mBottomView.mNum.text = [NSString stringWithFormat:@"%lu",(unsigned long)mLKDArr.count];
+
+    mBottomView.mTotlePrice.text = [NSString stringWithFormat:@"总价：%.2f元",price];
+    
 }
 - (void)LDXScoreWithScore:(NSInteger)mScore{
     
@@ -305,6 +362,8 @@ static const CGFloat mTopH = 156;
 
     mBottomView = [ZLSuperMarketShopCarView shareView];
     mBottomView.delegate = self;
+    mBottomView.mNum.hidden = YES;
+    mBottomView.mTotlePrice.text = @"";
     [self.view addSubview:mBottomView];
     [mBottomView makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.equalTo(self.view).offset(0);
@@ -454,7 +513,7 @@ static const CGFloat mTopH = 156;
         
     }else if(tableView == mRightTableView){
         
-        if (self.mType == 2) {
+        if (self.mType == ZLShopTypeHouseKeeping) {
             reuseCellId = @"mHouseKeepCell";
             
             ZLHouseKeppingServiceCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
@@ -654,7 +713,7 @@ static const CGFloat mTopH = 156;
  查看更多活动按钮
  */
 - (void)ZLSuperMarketCheckMoreBtnSelected{
-
+    [self showMoreView];
 }
 #pragma mark----****----规格按钮代理方法
 /**
@@ -664,7 +723,11 @@ static const CGFloat mTopH = 156;
  */
 - (void)ZLSuperMarketGoodsCellWithSpecBtnSelectedIndexPath:(NSIndexPath *)mIndexPath{
 
+    
     [_mSpeAddArray removeAllObjects];
+    mAddShopCarEx.mGoodsNum = 0;
+    mAddShopCarEx.mTotlePrice = 0.0;
+    
     switch (mRightTabType) {
         case ZLRightGoodsTypeFromCamp:
         {
@@ -748,21 +811,25 @@ static const CGFloat mTopH = 156;
     
 }
 
-#pragma mark----****---- 加入购物车代理方法
+#pragma mark----****---- 购物车代理方法
 /**
  购物车代理方法
  */
 - (void)ZLSuperMarketShopCarDidSelected{
+    
+    
+    if ([LKDBHelperGoodsObj searchWithWhere:[NSString stringWithFormat:@"%d",self.mShopObj.shop_id]].count <= 0) {
+        [self showErrorStatus:@"购物车空空如也，快去挑选商品吧！"];
+        return;
+    }
+    
     ZLSuperMarketShopCarViewController *ZLShopCarVC = [ZLSuperMarketShopCarViewController new];
+    ZLShopCarVC.mShopId = self.mShopObj.shop_id;
+    ZLShopCarVC.mType = self.mType;
+    ZLShopCarVC.mShopMinSendPrice = mShopObj.mShopMsg.ext_min_price;
     [self pushViewController:ZLShopCarVC];
 }
-#pragma mark----****---- 立即购买代理方法
-/**
- 立即购买代理方法
- */
-- (void)ZLSuperMarketBuyNowBtnSelected{
 
-}
 
 #pragma mark----****----去结算代理方法
 /**
@@ -837,7 +904,8 @@ static const CGFloat mTopH = 156;
 - (void)showSpeView:(NSIndexPath *)mIndexPath{
     
     ZLGoodsWithClass *mGoodObj = mRightDataArr[mIndexPath.row];
-    
+    mSpeView.mIndexPath = mIndexPath;
+    mSpeView.mModel = mGoodObj;
     float mP = 0;
     int count = 0;
     for (ZLGoodsSKU *sku in mGoodObj.skus) {
@@ -947,6 +1015,7 @@ static const CGFloat mTopH = 156;
     mSpeView.mGoodsName.text = mName;
     mSpeView.mGoodsPrice.text = [NSString stringWithFormat:@"价格：%.2f元",mPrice];
     mSpeView.mGoodsRep.text = [NSString stringWithFormat:@"库存：%d",mcount];
+    mSpeView.mNum.text = [NSString stringWithFormat:@"%d",mAddShopCarEx.mGoodsNum];
     
 }
 -(StandardsView *)buildStandardView:(UIImage *)img andIndex:(NSInteger)index
@@ -1100,48 +1169,153 @@ static const CGFloat mTopH = 156;
     [self hiddenSpeView];
     
 }
-#pragma mark----****----  加按钮代理方法
+#pragma mark----****---- 规格 加按钮代理方法
 /**
  添加按钮
  */
-- (void)ZLSuperMarketAddBtnSelected{
+- (void)ZLSuperMarketAddBtnSelected:(NSIndexPath *)mIndexPath{
 
+    ZLGoodsWithClass *mGoodObj = mRightDataArr[mIndexPath.row];
     
+    if (self.mAddSkuArray.count<= 0) {
+        [self showErrorStatus:@"请先选择规格！"];
+        return;
+    }
+
+    for (ZLSpeObj *mObj  in self.mAddSkuArray) {
+        if (mObj.mSku.sta_required == 1) {
+            mAddShopCarEx.mTotlePrice+=mObj.mSku.sku_price;
+
+        }
+    }
+    mAddShopCarEx.mGoodsNum += 1;
+    mSpeView.mNum.text = [NSString stringWithFormat:@"%d",mAddShopCarEx.mGoodsNum];
+//    [self updateBottomView:mAddShopCarEx];
+
 }
-#pragma mark----****---- 减按钮代理方法
+#pragma mark----****---- 规格 减按钮代理方法
 /**
  减按钮
  */
-- (void)ZLSuperMarketSubsructBtnSelected{
+- (void)ZLSuperMarketSubsructBtnSelected:(NSIndexPath *)mIndexPath{
+    ZLGoodsWithClass *mGoodObj = mRightDataArr[mIndexPath.row];
 
+    if (mAddShopCarEx.mGoodsNum <= 0) {
+        return;
+    }
+    
+    for (ZLSpeObj *mObj  in self.mAddSkuArray) {
+        if (mObj.mSku.sta_required == 1) {
+            mAddShopCarEx.mTotlePrice-=mObj.mSku.sku_price;
+            
+        }
+    }
+    mAddShopCarEx.mGoodsNum -= 1;
 
+    mSpeView.mNum.text = [NSString stringWithFormat:@"%d",mAddShopCarEx.mGoodsNum];
+
+//    [self updateBottomView:mAddShopCarEx];
+    
 }
-#pragma mark----****----规格ok按钮代理方法
+#pragma mark----****----规格加入购物车按钮代理方法
 /**
  规格ok按钮
  */
-- (void)ZLSuperMarketShopCarBtnSelected{
+- (void)ZLSuperMarketShopCarBtnSelected:(NSIndexPath *)mIndexPath{
+    
+    
+    
+    if (self.mAddSkuArray.count<= 0) {
+        [self showErrorStatus:@"请先选择规格！"];
+        return;
+    }
+    
+
+    if(mAddShopCarEx.mGoodsNum<=0){
+        [self showErrorStatus:@"请选择数量！"];
+        return;
+    }
+    ZLSpeObj *mObj = self.mAddSkuArray[0];
+
+    ZLGoodsWithClass *mGoodObj = mRightDataArr[mIndexPath.row];
+    LKDBHelperGoodsObj *ZLAddObj = [LKDBHelperGoodsObj new];
+    ZLAddObj.mGoodsId = mGoodObj.pro_id;
+    ZLAddObj.mGoodsName =mGoodObj.pro_name;
+    ZLAddObj.mGoodsImg = mGoodObj.img_url;
+    ZLAddObj.mExtObj = mAddShopCarEx;
+    ZLAddObj.mShopId = self.mShopObj.shop_id;
+    ZLAddObj.mGoodsSKU = self.mAddSkuArray;
+    [ZLAddObj saveToDB];
+
+    
+    NSArray *mLKDArr =  [LKDBHelperGoodsObj searchWithWhere:[NSString stringWithFormat:@"%d",self.mShopObj.shop_id]];
+    
+
 
 
     
+    [self updateBottomView:mAddShopCarEx];
+    [self hiddenSpeView];
+
 }
 
+#pragma mark----****---- 规格立即购买代理方法
+/**
+ 立即购买代理方法
+ */
+- (void)ZLSuperMarketBuyNowBtnSelected:(NSIndexPath *)mIndexPath{
+    ZLGoodsWithClass *mGoodObj = mRightDataArr[mIndexPath.row];
+
+}
 - (void)mBackAction{
 
     [self dismissSearchView];
     [self hiddenSpeView];
     [self popViewController];
 }
-#pragma mark----****----加减代理方法
+#pragma mark----****----加减商品代理方法
 /**
  加减代理方法
- 
+ @param mType       按钮类型: 1 加  2是减
  @param mNum       数量
  @param mIndexPath 索引
  */
-- (void)ZLHouseKeppingServiceCellWithNumChanged:(int)mNum andIndexPath:(NSIndexPath *)mIndexPath{
+- (void)ZLHouseKeppingServiceCellWithNumChanged:(int)mType andNum:(int)mNum andIndexPath:(NSIndexPath *)mIndexPath{
 
     MLLog(@"索引是：%ld     数量是：%d",(long)mIndexPath.row,mNum);
+    
+    mAddShopCarEx.mGoodsNum = mNum;
+
+    switch (mRightTabType) {
+        case ZLRightGoodsTypeFromCamp:
+        {
+            
+            ZLGoodsWithCamp *mCamGoods = mRightDataArr[mIndexPath.row];
+            
+            mAddShopCarEx.mTotlePrice = mCamGoods.sku_price*mNum;
+            
+            if (mAddShopCarEx.mTotlePrice <= 0 || mAddShopCarEx.mGoodsNum <= 0) {
+                mAddShopCarEx.mTotlePrice = 0.0;
+            }
+            MLLog(@"得到的购物车扩展对象是:商品数量：%d   商品总价：%.2f",mAddShopCarEx.mGoodsNum,mAddShopCarEx.mTotlePrice);
+
+            [self updateBottomView:mAddShopCarEx];
+            
+        }
+            break;
+        case ZLRightGoodsTypeFromClass:
+        {
+            ZLGoodsWithClass *mClasGoods = mRightDataArr[mIndexPath.row];
+
+
+            
+        }
+            break;
+            
+        default:
+            break;
+    }
+
 }
 
 /**
@@ -1163,7 +1337,6 @@ static const CGFloat mTopH = 156;
  */
 - (void)ZLSkuCellWithSelectedIndexPath:(NSIndexPath *)mIndexPath andIndex:(NSInteger)mIndex{
 
-    
     MLLog(@"点击了第几个规格？：%ld----%ld",(long)mIndexPath.row,(long)mIndex);
     
     
@@ -1175,7 +1348,32 @@ static const CGFloat mTopH = 156;
     ZLGoodsSpeList *mSpe = self.mSpeAddArray[mIndexPath.row];
     ZLSpeObj *mSku = mSpe.mSpeArr[mIndex];
     
+    if (self.mAddSkuArray.count <= 0) {
+        [self.mAddSkuArray addObject:mSku];
+    }else{
+        for (int i = 0;i<self.mAddSkuArray.count;i++) {
+            
+            ZLSpeObj *mOne =  self.mAddSkuArray[i];
+            
+            
+            if (mOne.mSku.sta_id == mSku.mSku.sta_id) {
+                [self.mAddSkuArray removeObject:mOne];
+                [self.mAddSkuArray addObject:mSku];
+
+            }else{
+                [self.mAddSkuArray addObject:mSku];
+                
+            }
+            
+            
+          
+        }
+    }
+ 
+    
     if (mSku.mSku.sta_required == 1) {
+      
+//        mAddShopCarEx.mTotlePrice = mSku.mSku.sku_price;
         [self UpdateSpeViewPage:mGoodObj.img_url andGoodsName:mGoodObj.pro_name andGoodsPrice:mSku.mSku.sku_price andSkuCount:mSku.mSku.sku_stock];
 
     }
@@ -1184,5 +1382,63 @@ static const CGFloat mTopH = 156;
     
 }
 
+
+- (void)initMoreCampView{
+    mMoreCampView = [mCheckMoreActivityView shareView];
+    mMoreCampView.frame = self.view.bounds;
+    mMoreCampView.alpha = 0;
+    mMoreCampView.delegate = self;
+    [self.view addSubview:mMoreCampView];
+    
+}
+- (void)closeMCheckMoreActivityView{
+    [self hiddenMoreView];
+}
+- (void)showMoreView{
+
+    [UIView animateWithDuration:0.25 animations:^{
+        mMoreCampView.alpha = 1;
+    }];
+}
+- (void)hiddenMoreView{
+    [UIView animateWithDuration:0.25 animations:^{
+        mMoreCampView.alpha = 0;
+    }];
+}
+
+- (void)updaMoreView:(ZLShopObj *)mShop{
+    
+    for (ZLShopCampainSubView *vvv in mMoreCampView.mCampainView.subviews) {
+        [vvv removeFromSuperview];
+    }
+    if (mShop.mShopCampains.count > 0) {
+        
+        for (int i =0; i<mShop.mShopCampains.count; i++) {
+            
+            
+            ZLShopCampain *mCampain = mShop.mShopCampains[i];
+            
+            mCampSubView = [ZLShopCampainSubView shareView];
+            mCampSubView.mContent.textColor = [UIColor whiteColor];
+            mCampSubView.backgroundColor = [UIColor clearColor];
+            mCampSubView.frame = CGRectMake(mHeaderView.mActivityView.mwidth/2, 30*i, 300, 30);
+            mCampSubView.mTitle.text = [Util ZLCutStringWithText:mCampain.cam_name andRangeWithLocation:0 andRangeWithLength:1];
+            mCampSubView.mContent.text = mCampain.cam_name;
+            [mMoreCampView.mCampainView addSubview:mCampSubView];
+        }
+    }else{
+        mCampSubView = [ZLShopCampainSubView shareView];
+        mCampSubView.frame = CGRectMake(0, 0, mHeaderView.mActivityView.mwidth, 30);
+        
+        mCampSubView.mTitle.text = @"无";
+        mCampSubView.mContent.text = @"暂无活动";
+        [mMoreCampView.mCampainView addSubview:mCampSubView];
+    }
+
+    
+    mMoreCampView.mShopName.text = mShop.mShopMsg.shop_name;
+    mMoreCampView.mContent.text = [NSString stringWithFormat:@"营业时间：%@-%@",mShop.mShopMsg.ext_open_time,mShop.mShopMsg.ext_close_time];
+    
+}
 
 @end

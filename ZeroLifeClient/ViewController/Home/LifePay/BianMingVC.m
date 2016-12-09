@@ -25,25 +25,25 @@
     [super viewDidLoad];
     self.title = @"便民服务";
     
-    
-//    [SVProgressHUD showWithStatus:@"加载中..."];
-//    [[APIClient sharedClient] externalPlatformListWithTag:self call:^(NSArray *tableArr, APIObject *info) {
-//        if (info.code == RESP_STATUS_YES) {
-//            if (tableArr.count > 0) {
-//                self.arr = [tableArr mutableCopy];
-//                [self initViews];
-//            } else
-//                [SVProgressHUD showErrorWithStatus:@"暂无数据"];
-//        } else
-//            [SVProgressHUD showErrorWithStatus:info.msg];
-//    }];
-    
-    
-    self.arr = [NSArray arrayWithObjects:@"百度罗米1", @"百度罗米2", @"百度罗米3", @"百度罗米4", @"百度罗米5", @"百度罗米6", @"百度罗米7", @"百度罗米8", @"百度罗米9", @"百度罗米0", nil];
-
-    [self initViews];
+    [self loadData];
 }
+- (void)loadData{
 
+    [SVProgressHUD showWithStatus:@"加载中..."];
+    
+    [[APIClient sharedClient] ZLGetHomeSercicePeron:^(APIObject *mBaseObj, NSArray *mArr) {
+        if (mBaseObj.code == RESP_STATUS_YES) {
+            if (mArr.count > 0) {
+                [SVProgressHUD showSuccessWithStatus:@"加载成功"];
+                self.arr = [mArr mutableCopy];
+                [self initViews];
+            } else
+                [SVProgressHUD showErrorWithStatus:@"暂无数据"];
+        } else
+            [SVProgressHUD showErrorWithStatus:mBaseObj.msg];
+
+    }];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -87,7 +87,8 @@
         double heightTotal = ceilf(_arr.count/(double)row) * (width + offset);
         
         for (int i=0; i<_arr.count; i++) {
-            NSString *title = [_arr objectAtIndex:i];
+            ZLHomeServicePerson *mObj = [_arr objectAtIndex:i];
+            NSString *title = mObj.pla_name;
             
             double originX = (i%row) * (width + offset);
             double originY = (i/row) * (width + offset);
@@ -101,9 +102,10 @@
                 UIView *lineViewS = [view newDefaultLineView];
                 lineViewS.frame = CGRectMake(originX, 0, offset, heightTotal);
             }
+            UIImageView *mImgv = [UIImageView new];
+            [mImgv sd_setImageWithURL:[NSURL URLWithString:mObj.pla_logo] placeholderImage:IMG(@"ZLDefault_Green")];
             
-            
-            CustomBtnView *btn = [CustomBtnView initWithTag:i title:title img:IMG(@"anquantishi.png")];
+            CustomBtnView *btn = [CustomBtnView initWithTag:i title:title img:mImgv.image];
             [view addSubview:btn];
             btn.frame = CGRectMake(originX, originY, width, width);
             lastView = btn;

@@ -41,7 +41,7 @@
 @property (nonatomic,assign) CGFloat cellHeight;
 
 //单元格的下标
-@property (nonatomic,strong) NSIndexPath * indexPath;
+@property (nonatomic,assign) NSIndexPath * indexPath;
 
 @property (nonatomic,strong) id<ZLRepairsColumsViewDelegate>delegate;
 

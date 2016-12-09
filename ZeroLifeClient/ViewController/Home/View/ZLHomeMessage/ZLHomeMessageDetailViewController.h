@@ -7,7 +7,10 @@
 //
 
 #import "CustomVC.h"
+#import "APIObjectDefine.h"
 
 @interface ZLHomeMessageDetailViewController : CustomVC
+///消息对象
+@property (strong,nonatomic) ZLMessageObj *mMessage;
 
 @end

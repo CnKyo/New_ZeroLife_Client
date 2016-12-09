@@ -20,6 +20,13 @@
 
     // Configure the view for the selected state
 }
+
+- (void)layoutSubviews{
+
+    [super layoutSubviews];
+    self.mSpecBtn.layer.masksToBounds = YES;
+    self.mSpecBtn.layer.cornerRadius = 8;
+}
 - (IBAction)mSubstructAction:(UIButton *)sender {
     
     if ([self.delegate respondsToSelector:@selector(ZLSuperMarketGoodsCellWithSubstructSelectedIndexPath:)]) {

@@ -35,6 +35,15 @@
 @optional
 /** 加减按钮点击响应的代理回调*/
 - (void)pp_numberButton:(__kindof UIView *)numberButton number:(NSString *)number;
+
+/**
+ 加减按钮的代理方法
+
+ @param mBtn   哪一个按钮
+ @param number 数量
+ */
+- (void)pp_numberButtonSelected:(int)mBtn andNumber:(int)number;
+
 @end
 
 IB_DESIGNABLE

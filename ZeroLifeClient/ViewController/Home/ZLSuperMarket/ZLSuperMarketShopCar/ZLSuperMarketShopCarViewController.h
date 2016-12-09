@@ -9,5 +9,17 @@
 #import "CustomVC.h"
 
 @interface ZLSuperMarketShopCarViewController : CustomVC
+/**
+ 页面类型：1是超市2是家政
+ */
+@property (assign,nonatomic) ZLShopType mType;
+///店铺ID
+@property (assign,nonatomic)int mShopId;
+
+///购物车数组
+@property (strong,nonatomic) NSArray *mShopCarArr;
+///店铺最低起送价
+@property (assign,nonatomic)float mShopMinSendPrice;
+
 
 @end

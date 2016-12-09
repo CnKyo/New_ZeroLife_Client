@@ -10,6 +10,7 @@
 #import "NoticeTextView.h"
 #import "ZLCustomBtnView.h"
 #import "CustomDefine.h"
+#import "APIObjectDefine.h"
 
 @interface ZLHouseKeepingClearnCell ()
 
@@ -77,8 +78,9 @@
         for (int i = 0; i < mDataSource.count; i++) {
             if (i < 4) {
                 CGRect frame = CGRectMake(i*screen_width/4, 0, screen_width/4, 80);
-                NSString *title = [mDataSource[i] objectForKey:@"title"];
-                NSString *imageStr = [mDataSource[i] objectForKey:@"image"];
+                ZLShopHomeClassify *ZLClassify = mDataSource[i];
+                NSString *title = ZLClassify.cls_name;
+                NSString *imageStr = ZLClassify.cls_image;
                 ZLCustomBtnView *btnView = [[ZLCustomBtnView alloc] initWithZLCustomBtnViewFrame:frame Title:title ImageStr:imageStr];
                 btnView.tag = i;
                 [mBgkView1 addSubview:btnView];
@@ -89,8 +91,9 @@
                 mSRR.size.height = 178/2;
             }else if(i<8){
                 CGRect frame = CGRectMake((i-4)*screen_width/4, 80, screen_width/4, 80);
-                NSString *title = [mDataSource[i] objectForKey:@"title"];
-                NSString *imageStr = [mDataSource[i] objectForKey:@"image"];
+                ZLShopHomeClassify *ZLClassify = mDataSource[i];
+                NSString *title = ZLClassify.cls_name;
+                NSString *imageStr = ZLClassify.cls_image;
                 ZLCustomBtnView *btnView = [[ZLCustomBtnView alloc] initWithZLCustomBtnViewFrame:frame Title:title ImageStr:imageStr];
                 btnView.tag = i;
                 [mBgkView1 addSubview:btnView];
@@ -100,8 +103,9 @@
                 mSRR.size.height = 178;
             }else if(i < 12){
                 CGRect frame = CGRectMake((i-8)*screen_width/4, 0, screen_width/4, 80);
-                NSString *title = [mDataSource[i] objectForKey:@"title"];
-                NSString *imageStr = [mDataSource[i] objectForKey:@"image"];
+                ZLShopHomeClassify *ZLClassify = mDataSource[i];
+                NSString *title = ZLClassify.cls_name;
+                NSString *imageStr = ZLClassify.cls_image;
                 ZLCustomBtnView *btnView = [[ZLCustomBtnView alloc] initWithZLCustomBtnViewFrame:frame Title:title ImageStr:imageStr];
                 btnView.tag = i;
                 [mBgkView2 addSubview:btnView];
@@ -112,8 +116,9 @@
                 
             }else{
                 CGRect frame = CGRectMake((i-12)*screen_width/4, 80, screen_width/4, 80);
-                NSString *title = [mDataSource[i] objectForKey:@"title"];
-                NSString *imageStr = [mDataSource[i] objectForKey:@"image"];
+                ZLShopHomeClassify *ZLClassify = mDataSource[i];
+                NSString *title = ZLClassify.cls_name;
+                NSString *imageStr = ZLClassify.cls_image;
                 ZLCustomBtnView *btnView = [[ZLCustomBtnView alloc] initWithZLCustomBtnViewFrame:frame Title:title ImageStr:imageStr];
                 btnView.tag = i;
                 [mBgkView2 addSubview:btnView];

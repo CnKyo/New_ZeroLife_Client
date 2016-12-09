@@ -7,18 +7,18 @@
 //
 
 #import "ZLShopCarBottomView.h"
-
 @implementation ZLShopCarBottomView
 
 + (ZLShopCarBottomView *)shareView{
 
     ZLShopCarBottomView *view = [[[NSBundle mainBundle] loadNibNamed:@"ZLShopCarBottomView" owner:self options:nil] objectAtIndex:0];
-    
+    [view.mSelecAllBtn setButtonTitleWithImageAlignment:UIButtonTitleWithImageAlignmentRight];
     return view;
 }
 
 - (IBAction)mSelectedAll:(UIButton *)sender {
-    
+    sender.selected = !sender.selected;
+    NSLog(@"---***%d",sender.selected);
     if ([self.delegate respondsToSelector:@selector(ZLShopCarBottomSelecteAllWithSelected:)]) {
         [self.delegate ZLShopCarBottomSelecteAllWithSelected:sender.selected];
     }

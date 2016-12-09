@@ -18,8 +18,7 @@
 
 @implementation DryCleanShopTVC
 {
-
-    NSMutableArray *mArr;
+    NSMutableArray *mShopArr;
 }
 -(void)loadView
 {
@@ -31,66 +30,64 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"家政干洗";
-    mArr = [NSMutableArray new];
+    
+    mShopArr = [NSMutableArray new];
     
     UIView *superView = self.view;
-    //int padding = 10;
-    
-    //    HMSegmentedControl *seg = [[HMSegmentedControl alloc] initWithSectionImages:@[IMG(@"juming_off.png"), IMG(@"wuguan_off.png"), IMG(@"gongsi_off.png")]
-    //                                                          sectionSelectedImages:@[IMG(@"juming_on.png"), IMG(@"wuguan_on.png"), IMG(@"gongsi_on.png")]
-    //                                                              titlesForSections:@[@"洗衣家坊", @"洗鞋", @"窗帘清洗"]];
-    //    seg.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
-    //    seg.selectionIndicatorHeight = 2.0f;
-    //    seg.titleTextAttributes = @{NSFontAttributeName : [UIFont systemFontOfSize:15], NSForegroundColorAttributeName : [UIColor grayColor]};
-    //    seg.selectedTitleTextAttributes = @{NSForegroundColorAttributeName : COLOR_NavBar};
-    //    seg.selectionIndicatorColor = COLOR_NavBar;
-    //    [superView addSubview:seg];
-    //    [seg addTarget:self action:@selector(segmentedControlChangedValue:) forControlEvents:UIControlEventValueChanged];
-    
-    
+
     [self addTableView];
     [self setTableViewHaveHeaderFooter];
     
-    //    NoticeTextView *noticeView = [[NoticeTextView alloc] init];
-    //    [superView addSubview:noticeView];
-    //
-    //    [seg makeConstraints:^(MASConstraintMaker *make) {
-    //        make.left.right.equalTo(superView);
-    //        make.top.equalTo(superView).offset(@64);
-    //        make.height.equalTo(60);
-    //    }];
-    //    [noticeView makeConstraints:^(MASConstraintMaker *make) {
-    //        make.left.right.equalTo(superView);
-    //        make.top.equalTo(seg.bottom).offset(OnePixNumber);
-    //        make.height.equalTo(40);
-    //    }];
-    //    [self.tableView remakeConstraints:^(MASConstraintMaker *make) {
-    //        make.left.right.bottom.equalTo(self.view);
-    //        make.top.equalTo(noticeView.bottom).offset(TenPixNumber);
-    //    }];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     
-    //    UINib   *nib = [UINib nibWithNibName:@"ZLHouseKeepingClearnCell" bundle:nil];
-    //    [self.tableView registerNib:nib forCellReuseIdentifier:@"cell2"];
-    
-    [self loadData];
+
+    [self setTableViewHaveHeader];
 
 }
+- (void)reloadTableViewDataSource{
+    [super reloadTableViewDataSource];
+    
+    [[APIClient sharedClient] ZLGetShopHomePage:self.mLat andLng:self.mLng andType:self.mType block:^(APIObject *mBaseObj, ZLShopHomePage *mShopHome) {
+        
+        [self.tableArr removeAllObjects];
+        
+        [self ZLHideEmptyView];
+        if (mBaseObj.code == RESP_STATUS_YES) {
+            
+            [self.tableArr addObjectsFromArray:mShopHome.classify];
+            [self loadData];
+        }else{
+            
+            [self showErrorStatus:mBaseObj.msg];
+            [self ZLShowEmptyView:mBaseObj.msg andImage:nil andHiddenRefreshBtn:NO];
+        }
+        
+        [self doneHeaderRereshing];
+        
+    }];
+    
+    
+    
+}
 - (void)loadData{
-    
-    
-    NSDictionary *mTempDic = [NSMutableDictionary new];
-    for (int i = 0; i<11; i++) {
-        if (i == 3) {
-            [mTempDic setValue:@"家政" forKey:@"title"];
-        } else
-            [mTempDic setValue:[NSString stringWithFormat:@"这是第%d",i] forKey:@"title"];
-        [mTempDic setValue:@"icon_homepage_default" forKey:@"image"];
-        [mArr addObject:mTempDic];
+    if (self.tableArr.count>0) {
+        ZLShopHomeClassify *mShopClassify = self.tableArr[0];
+        [[APIClient sharedClient] ZLGetShopHomeShopList:self.mType andLat:self.mLat andLng:self.mLng andClassId:[NSString stringWithFormat:@"%d",mShopClassify.cls_id] andPage:1 block:^(APIObject *mBaseObj, ZLShopHomeShopList *mShopList) {
+            
+            [mShopArr removeAllObjects];
+            if (mBaseObj.code == RESP_STATUS_YES) {
+                
+                [mShopArr addObjectsFromArray:mShopList.list];
+                
+            }else{
+                
+                [self showErrorStatus:mBaseObj.msg];
+            }
+            [self doneHeaderRereshing];
+            
+        }];
+        
     }
-    
-    [self.tableView reloadData];
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -135,7 +132,7 @@
     if (section == 0) {
         return 1;
     }else{
-        return 10;
+        return mShopArr.count;
     }
     
     
@@ -144,7 +141,7 @@
 {
     if (indexPath.section == 0) {
         
-        if (mArr.count<=4) {
+        if (self.tableArr.count<=4) {
             return 220-90;
         }else{
             return 220;
@@ -165,11 +162,7 @@
     if (indexPath.section == 0) {
         
 
-        ZLHouseKeepingClearnCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell2"];
-     
-        if (cell == nil) {
-            cell = [[ZLHouseKeepingClearnCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell2" andDataSource:mArr];
-        }
+        ZLHouseKeepingClearnCell *cell = [[ZLHouseKeepingClearnCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell2" andDataSource:self.tableArr];
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
      
@@ -178,25 +171,17 @@
         return cell;
 
     }else{
-//        if (self.tableArr.count > 0) {
-            static NSString *CellIdentifier = @"Cell_DryCleanShopTVCTableViewCell";
-            DryCleanShopTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-            if (cell == nil) {
-                cell = [[DryCleanShopTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-                cell.selectionStyle = UITableViewCellSelectionStyleGray;
-            }
-            
-            cell.backgroundColor = [UIColor whiteColor];
-            cell.iconImgView.image = IMG(@"choose_on.png");
-            cell.nameLable.text = @"乐天马特干洗店";
-            cell.timeLable.text = @"30分钟内送达";
-            cell.saleLable.text = @"月售300份";
-            cell.distanceLable.text = @"200m";
-            return cell;
-//        }
+        static NSString *CellIdentifier = @"Cell_DryCleanShopTVCTableViewCell";
+        DryCleanShopTableViewCell *cell = [[DryCleanShopTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell.selectionStyle = UITableViewCellSelectionStyleGray;
+        
+        
+        cell.backgroundColor = [UIColor whiteColor];
+
+        return cell;
+        
 
     }
-//    return [super tableView:tableView cellForRowAtIndexPath:indexPath];
 
 }
 
@@ -219,27 +204,6 @@
     
 }
 
-
-
-- (void)reloadTableViewDataSource{
-    [super reloadTableViewDataSource];
-    
-    [self performSelector:@selector(donwData) withObject:nil afterDelay:0.5];
-}
-
--(void)donwData
-{
-    for (int i=0; i<10; i++) {
-        [self.tableArr addObject:@"111"];
-    }
-    
-    [self doneLoadingTableViewData];
-    
-    if (self.tableArr.count > 0) {
-        [self ZLShowEmptyView:@"暂无数据" andImage:@"ZLEmpty_Image" andHiddenRefreshBtn:NO];
-    }
-    
-}
 /**
  分类点击方法
  
@@ -248,6 +212,24 @@
 - (void)ZLHouseKeepingClearnCellWithCatigryDidSelectedIndex:(NSInteger)mIndex{
 
     MLLog(@"----------******---：%ld",(long)mIndex);
+    [self upDatePage:self.tableArr[mIndex]];
+}
+- (void)upDatePage:(ZLShopHomeClassify *)mClassiFy{
+    [self showWithStatus:@"加载中..."];
+    [[APIClient sharedClient] ZLGetShopHomeShopList:self.mType andLat:self.mLat andLng:self.mLng andClassId:[NSString stringWithFormat:@"%d",mClassiFy.cls_id] andPage:1 block:^(APIObject *mBaseObj, ZLShopHomeShopList *mShopList) {
+        
+        [mShopArr removeAllObjects];
+        if (mBaseObj.code == RESP_STATUS_YES) {
+            [self showSuccessStatus:mBaseObj.msg];
+            [mShopArr addObjectsFromArray:mShopList.list];
+            
+        }else{
+            
+            [self showErrorStatus:mBaseObj.msg];
+        }
+        [self.tableView reloadData];
+    }];
+    
 }
 
 @end

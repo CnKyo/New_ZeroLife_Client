@@ -35,10 +35,11 @@
     
     nib = [UINib nibWithNibName:@"ZLSuperMarketShopCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"mShopCell"];
-    
+
     [self loadData];
     
 }
+
 - (void)loadData{
     
     NSString * url1 = @"http://pic.newssc.org/upload/news/20161011/1476154849151.jpg";

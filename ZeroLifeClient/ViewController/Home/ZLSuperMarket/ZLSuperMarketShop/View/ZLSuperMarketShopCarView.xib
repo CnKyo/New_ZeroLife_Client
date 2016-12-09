@@ -12,14 +12,20 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ba6-XA-HLV">
+                    <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="0.30391160102739728" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="1sg-QO-HiR"/>
+                    </constraints>
+                </view>
                 <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YzS-gZ-Pfi">
-                    <color key="backgroundColor" red="0.49106055500000001" green="0.35072216389999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="40" id="Rm8-OR-gk7"/>
                         <constraint firstAttribute="height" constant="40" id="Z7R-98-O0M"/>
                     </constraints>
                     <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <state key="normal">
+                    <state key="normal" backgroundImage="ZLShopCar">
                         <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
@@ -64,11 +70,14 @@
                 <constraint firstItem="eLg-Af-wMj" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="GRK-0n-vyd"/>
                 <constraint firstItem="3bs-cI-JuV" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="-5" id="STp-TL-jVi"/>
                 <constraint firstItem="HZN-Ps-K2J" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="TyV-L1-OcV"/>
+                <constraint firstItem="ba6-XA-HLV" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="WGT-Jk-xqs"/>
                 <constraint firstItem="YzS-gZ-Pfi" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="-5" id="XuE-zT-7ZB"/>
                 <constraint firstItem="HZN-Ps-K2J" firstAttribute="leading" secondItem="eLg-Af-wMj" secondAttribute="trailing" constant="8" id="YkW-eO-WYL"/>
                 <constraint firstAttribute="trailing" secondItem="HZN-Ps-K2J" secondAttribute="trailing" id="cit-6k-ODV"/>
                 <constraint firstItem="YzS-gZ-Pfi" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="dya-pC-8aU"/>
                 <constraint firstItem="eLg-Af-wMj" firstAttribute="leading" secondItem="3bs-cI-JuV" secondAttribute="trailing" constant="2" id="evr-uR-rN0"/>
+                <constraint firstItem="ba6-XA-HLV" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="gZQ-Q9-6PF"/>
+                <constraint firstAttribute="trailing" secondItem="ba6-XA-HLV" secondAttribute="trailing" id="iuG-NB-ZfB"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -81,4 +90,7 @@
             <point key="canvasLocation" x="-49.5" y="-32"/>
         </view>
     </objects>
+    <resources>
+        <image name="ZLShopCar" width="39" height="40"/>
+    </resources>
 </document>

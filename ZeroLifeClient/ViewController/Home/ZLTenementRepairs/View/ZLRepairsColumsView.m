@@ -10,7 +10,7 @@
 #import "ZLRepairsColumsView.h"
 #import "ZLRepairsCustomView.h"
 #import "CustomDefine.h"
-
+#import "APIObjectDefine.h"
 
 #define kJianXi 2.0f
 #define kViewWidth  [UIScreen mainScreen].bounds.size.width
@@ -99,6 +99,8 @@
         
         for (NSInteger i = 0; i < self.dataArray.count ; i++) {
          
+            ZLFixSubExtObj *mClass = self.dataArray[i];
+            
             UIView *mBtnView = [UIView new];
             mBtnView.frame = [self frameForItemIndex:i];
             mBtnView.backgroundColor = [UIColor clearColor];
@@ -107,24 +109,28 @@
             
             UIImageView *mLogo = [UIImageView new];
             mLogo.frame = CGRectMake(0, 10, 35, 35);
-//            [mLogo sd_setImageWithURL:nil placeholderImage:[UIImage imageNamed:@"PictureFile"]];
-            mLogo.image = [UIImage imageNamed:@"icon_homepage_default"];
-//            mLogo.backgroundColor = [UIColor redColor];
+            [mLogo sd_setImageWithURL:[NSURL URLWithString:mClass.mClassImg] placeholderImage:[UIImage imageNamed:@"ZLDefault_Green"]];
 
             [mBtnView addSubview:mLogo];
             
             UILabel *mName = [UILabel new];
-            mName.frame = CGRectMake(mLogo.mright+2, 10, mBtnView.mwidth-mLogo.mwidth-4, 16);
+            mName.frame = CGRectMake(mLogo.mright+5, 22, mBtnView.mwidth-mLogo.mwidth-4, 16);
             mName.font = [UIFont systemFontOfSize:13];
-            mName.text = [NSString stringWithFormat:@"QQQQQQQQQ%@",self.dataArray[i]];
+            mName.text = mClass.mClassName;
             [mBtnView addSubview:mName];
-            
-            UILabel *mContent = [UILabel new];
-            mContent.frame = CGRectMake(mLogo.mright+2, mName.mbottom+6, mBtnView.mwidth-mLogo.mwidth-4, 14);
-            mContent.text = [NSString stringWithFormat:@"QQQQQQQQQ%@",self.dataArray[i]];
 
-            mContent.font = [UIFont systemFontOfSize:11];
-            [mBtnView addSubview:mContent];
+//            UILabel *mName = [UILabel new];
+//            mName.frame = CGRectMake(mLogo.mright+2, 10, mBtnView.mwidth-mLogo.mwidth-4, 16);
+//            mName.font = [UIFont systemFontOfSize:13];
+//            mName.text = mClass.mClassName;
+//            [mBtnView addSubview:mName];
+//            
+//            UILabel *mContent = [UILabel new];
+//            mContent.frame = CGRectMake(mLogo.mright+2, mName.mbottom+6, mBtnView.mwidth-mLogo.mwidth-4, 14);
+//            mContent.text = mClass.mClassName;
+//
+//            mContent.font = [UIFont systemFontOfSize:11];
+//            [mBtnView addSubview:mContent];
             
             
             UIButton *mBtn = [UIButton new];

@@ -312,7 +312,12 @@ typedef enum{
 }ZLRightGoodsType;//社区超市首页活动类型
 
 
+typedef enum{
+    ZLShopTypeSuperMarket = 1,///1:社区超市
+    ZLShopTypeFix = 2,///2:物业报修
+    ZLShopTypeHouseKeeping = 3,///3:家政干洗
 
+}ZLShopType;//社区超市首页活动类型
 
 
 #endif /* CustomDefine_h */

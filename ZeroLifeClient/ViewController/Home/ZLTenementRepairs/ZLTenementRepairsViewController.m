@@ -14,13 +14,14 @@
 
 
 @interface ZLTenementRepairsViewController ()<UITableViewDelegate,UITableViewDataSource,ZLRepairsColumsViewDelegate>
-@property (nonatomic,strong) NSMutableDictionary * dataDictionary;
-@property (nonatomic,strong) NSArray * allkeys;
 
 @end
 
 @implementation ZLTenementRepairsViewController
+{
 
+    
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -30,32 +31,98 @@
 
     
     [self initView];
+
 }
 
 - (void)initView{
 
-    self.allkeys = @[@"A",@"B",@"C",@"D",@"E",@"F",@"G",@"H",@"I",@"J",@"K",@"L",@"M",@"N",@"O",@"P",@"Q",@"R",@"S",@"T",@"U",@"V",@"W",@"X",@"Y",@"Z",@"#",];
     
-    self.dataDictionary = [NSMutableDictionary dictionary];
     
-    for (NSString * keyStr in self.allkeys) {
-        
-        NSMutableArray * array = [NSMutableArray array];
-        int count = arc4random() % 9 + 1;
-        
-        for (int i = 1; i <= count; i++) {
-            
-            [array addObject:[NSString stringWithFormat:@"%2d",i]];
-        }
-        
-        [self.dataDictionary setObject:array forKey:keyStr];
-    }
     
     [self addTableView];
     
     UINib   *nib = [UINib nibWithNibName:@"ZLRepairsCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
+    [self setTableViewHaveHeader];
 
+    
+}
+
+- (void)reloadTableViewDataSource{
+    [super reloadTableViewDataSource];
+    
+    [[APIClient sharedClient] ZLGetShopHomePage:self.mLat andLng:self.mLng andType:self.mType block:^(APIObject *mBaseObj, ZLShopHomePage *mShopHome) {
+        
+        [self.tableArr removeAllObjects];
+      
+        [self ZLHideEmptyView];
+        if (mBaseObj.code == RESP_STATUS_YES) {
+
+            [self.tableArr addObjectsFromArray:mShopHome.classify];
+            [self replaceDataSource];
+            
+        }else{
+            
+            [self showErrorStatus:mBaseObj.msg];
+            [self ZLShowEmptyView:mBaseObj.msg andImage:nil andHiddenRefreshBtn:NO];
+        }
+        
+        [self doneHeaderRereshing];
+        
+    }];
+
+
+    
+}
+- (void)replaceDataSource{
+
+    NSMutableArray *mClassArr = [NSMutableArray new];
+    
+    for (int i =0; i<self.tableArr.count; i++) {
+        ZLShopHomeClassify *mOne = self.tableArr[i];
+        BOOL mIsAdd = YES;
+        for (int j = 0; j<mClassArr.count; j++) {
+            
+        ZLFixClassExtObj *mTwo = mClassArr[j];
+            
+            if (mOne.cls_parent == mTwo.mParentId) {
+                
+                ZLFixSubExtObj *mC = [ZLFixSubExtObj new];
+                mC.mClassId = mOne.cls_id;
+                mC.mClassName = mOne.cls_name;
+                mC.mClassImg = mOne.cls_image;
+
+                [mTwo.mClassArr addObject:mC];
+                
+                [mClassArr replaceObjectAtIndex:j withObject:mTwo];
+                mIsAdd = NO;
+                continue;
+                
+            }
+            
+        }
+        if (mIsAdd == YES) {
+            ZLFixClassExtObj *mP = [ZLFixClassExtObj new];
+            mP.mParentId = mOne.cls_parent;
+            mP.mParentName = mOne.parent_name;
+            
+            ZLFixSubExtObj *mC = [ZLFixSubExtObj new];
+            mC.mClassId = mOne.cls_id;
+            mC.mClassName = mOne.cls_name;
+            mC.mClassImg = mOne.cls_image;
+            
+            NSMutableArray *mTempArr = [NSMutableArray new];
+            [mTempArr addObject:mC];
+            mP.mClassArr = mTempArr;
+            [mClassArr addObject:mP];
+     
+        }
+        
+    }
+    
+    [self.tableArr removeAllObjects];
+    [self.tableArr addObjectsFromArray:mClassArr];
+    [self.tableView reloadData];
     
 }
 - (void)didReceiveMemoryWarning {
@@ -74,7 +141,7 @@
 */
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return self.allkeys.count;
+    return self.tableArr.count;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     //    NSArray * array = [self.dataDictionary objectForKey:self.allkeys[section]];
@@ -91,17 +158,22 @@
         cell = [[[NSBundle mainBundle] loadNibNamed:@"ZLRepairsCell" owner:nil options:nil] objectAtIndex:0];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-    NSString * keyStr = self.allkeys[indexPath.section];
-    NSArray * array = [self.dataDictionary objectForKey:keyStr];
-    cell.dataArray = array;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
+    ZLFixClassExtObj *mP = self.tableArr[indexPath.section];
+    cell.mTitle.text = mP.mParentName;
+    cell.dataArray = mP.mClassArr;
     cell.indexPath = indexPath;
+    cell.mMainView.indexPath = indexPath;
     cell.mMainView.delegate = self;
 
     return cell;
 }
-//-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-//    return self.allkeys[section];
-//}
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    ZLFixClassExtObj *mP = self.tableArr[section];
+
+    return mP.mParentName;
+}
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return 8;
 }
@@ -114,11 +186,10 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     CGFloat cellHt = 0.0;
-    NSString * keyStr = self.allkeys[indexPath.section];
-    NSArray * array = [self.dataDictionary objectForKey:keyStr];
-    if (array.count != 0) {
+   
+    if (self.tableArr.count != 0) {
         ZLRepairsColumsView * cellView = [[ZLRepairsColumsView alloc] init];
-        cellView.dataArrayCount = array.count;
+        cellView.dataArrayCount = self.tableArr.count;
         cellHt += cellView.cellHeight;
     }
     
@@ -136,7 +207,12 @@
  */
 - (void)ZLRepairsColumsViewClickedWithItem:(NSIndexPath *)mItem andIndex:(NSInteger)mIndex{
      MLLog(@"----###----###---(%ld,%ld)----##---%ld----###-----",mItem.section,mItem.row,mIndex);
+    ZLFixClassExtObj *mP = self.tableArr[mItem.section];
+    ZLFixSubExtObj *mC = mP.mClassArr[mIndex];
+    
     ZLRepairsDetailViewController *ZLRepDetailVC = [ZLRepairsDetailViewController new];
+    ZLRepDetailVC.mParentObj = mP;
+    ZLRepDetailVC.mClassObj = mC;
     [self pushViewController:ZLRepDetailVC];
 }
 

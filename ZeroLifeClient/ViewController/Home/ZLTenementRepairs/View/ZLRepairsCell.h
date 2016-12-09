@@ -26,4 +26,6 @@
 
 @property (nonatomic,strong) id<ZLRepairsCellDelegate>delegate;
 
+@property (weak, nonatomic) IBOutlet UILabel *mTitle;
+
 @end
