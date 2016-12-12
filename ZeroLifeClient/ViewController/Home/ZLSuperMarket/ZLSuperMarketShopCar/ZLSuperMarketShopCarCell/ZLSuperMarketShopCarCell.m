@@ -64,15 +64,22 @@
     self.mPrice.text = [NSString stringWithFormat:@"%.2f元",mGoods.mExtObj.mTotlePrice];
     self.mNum.text = [NSString stringWithFormat:@"%d",mGoods.mExtObj.mGoodsNum];
     NSString *mSpe = @"";
-    for (int i =0;i<mGoods.mGoodsSKU.count;i++) {
-        ZLSpeObj *mSku = mGoods.mGoodsSKU[i];
-        if (i==mGoods.mGoodsSKU.count-1) {
-            mSpe = [mSpe stringByAppendingString:[NSString stringWithFormat:@"%@",mSku.mSpeGoodsName]];
-
-        }else{
-            mSpe = [mSpe stringByAppendingString:[NSString stringWithFormat:@"%@-",mSku.mSpeGoodsName]];
+    
+    if (mGoods.mGoodsSKU.count<= 0) {
+        mSpe = mGoods.mSpe.mSpeGoodsName;
+    }else{
+        for (int i =0;i<mGoods.mGoodsSKU.count;i++) {
+            ZLSpeObj *mSku = mGoods.mGoodsSKU[i];
+            if (i==mGoods.mGoodsSKU.count-1) {
+                mSpe = [mSpe stringByAppendingString:[NSString stringWithFormat:@"%@",mSku.mSpeGoodsName]];
+                
+            }else{
+                mSpe = [mSpe stringByAppendingString:[NSString stringWithFormat:@"%@-",mSku.mSpeGoodsName]];
+            }
         }
+
     }
+    
     
     self.mGoodsContent.text = mSpe;
     

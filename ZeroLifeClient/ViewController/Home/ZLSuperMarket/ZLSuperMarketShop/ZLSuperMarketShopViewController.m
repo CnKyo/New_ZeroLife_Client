@@ -106,6 +106,7 @@ static const CGFloat mTopH = 156;
 - (void)viewWillAppear:(BOOL)animated{
 
     [super viewWillAppear:animated];
+    [self reloadTableViewData];
     [self updateBottomView:mAddShopCarEx];
 
 }
@@ -1259,13 +1260,10 @@ static const CGFloat mTopH = 156;
 
     
     NSArray *mLKDArr =  [LKDBHelperGoodsObj searchWithWhere:[NSString stringWithFormat:@"%d",self.mShopObj.shop_id]];
-    
 
-
-
-    
     [self updateBottomView:mAddShopCarEx];
     [self hiddenSpeView];
+    [self.mAddSkuArray removeAllObjects];
 
 }
 
@@ -1292,9 +1290,10 @@ static const CGFloat mTopH = 156;
  */
 - (void)ZLHouseKeppingServiceCellWithNumChanged:(int)mType andNum:(int)mNum andIndexPath:(NSIndexPath *)mIndexPath{
 
+    int mTnum = mNum-1;
     MLLog(@"索引是：%ld     数量是：%d",(long)mIndexPath.row,mNum);
     
-    mAddShopCarEx.mGoodsNum = mNum;
+    mAddShopCarEx.mGoodsNum += mTnum;
 
     switch (mRightTabType) {
         case ZLRightGoodsTypeFromCamp:
@@ -1302,7 +1301,7 @@ static const CGFloat mTopH = 156;
             
             ZLGoodsWithCamp *mCamGoods = mRightDataArr[mIndexPath.row];
             
-            mAddShopCarEx.mTotlePrice = mCamGoods.sku_price*mNum;
+            mAddShopCarEx.mTotlePrice += mCamGoods.sku_price*mTnum;
             
             if (mAddShopCarEx.mTotlePrice <= 0 || mAddShopCarEx.mGoodsNum <= 0) {
                 mAddShopCarEx.mTotlePrice = 0.0;
@@ -1318,6 +1317,10 @@ static const CGFloat mTopH = 156;
             ZLAddObj.mExtObj = mAddShopCarEx;
             ZLAddObj.mShopId = self.mShopObj.shop_id;
             ZLAddObj.mGoodsSKU = self.mAddSkuArray;
+            ZLAddObj.mSpe = [ZLSpeObj new];
+            ZLAddObj.mSpe.mSpeGoodsName = mGoodObj.sta_val_name;
+            
+        
             [ZLAddObj saveToDB];
             
             [self updateBottomView:mAddShopCarEx];
