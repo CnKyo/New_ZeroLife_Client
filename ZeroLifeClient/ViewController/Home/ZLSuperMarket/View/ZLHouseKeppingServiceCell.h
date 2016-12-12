@@ -17,6 +17,21 @@
 
 - (void)ZLHouseKeppingServiceCellWithNumChanged:(int)mNum andIndexPath:(NSIndexPath *)mIndexPath;
 
+
+/**
+ 加按钮代理方法
+
+ @param mIndexPath 索引
+ */
+- (void)ZLHouseKeepingAddBtnClicked:(NSIndexPath *)mIndexPath;
+
+/**
+ 减按钮代理方法
+
+ @param mIndexPath 索引
+ */
+- (void)ZLHouseKeepingSubstructBtnClicked:(NSIndexPath *)mIndexPath;
+
 /**
  加减代理方法
  @param mType       按钮类型: 1 加  2是减
@@ -58,6 +73,21 @@
  索引
  */
 @property (strong,nonatomic) NSIndexPath *mIndexPath;
+
+/**
+ 减按钮
+ */
+@property (weak, nonatomic) IBOutlet UIButton *mSubstructBtn;
+
+/**
+ 数量
+ */
+@property (weak, nonatomic) IBOutlet UILabel *mNum;
+
+/**
+ 加按钮
+ */
+@property (weak, nonatomic) IBOutlet UIButton *mAddBtn;
 
 /**
  设置代理

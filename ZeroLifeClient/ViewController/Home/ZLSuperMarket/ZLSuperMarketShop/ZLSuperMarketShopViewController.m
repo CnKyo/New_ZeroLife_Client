@@ -106,7 +106,7 @@ static const CGFloat mTopH = 156;
 - (void)viewWillAppear:(BOOL)animated{
 
     [super viewWillAppear:animated];
-    [self reloadTableViewData];
+    [self loadData];
     [self updateBottomView:mAddShopCarEx];
 
 }
@@ -1281,6 +1281,132 @@ static const CGFloat mTopH = 156;
     [self hiddenSpeView];
     [self popViewController];
 }
+
+/**
+ 加按钮代理方法
+ 
+ @param mIndexPath 索引
+ */
+- (void)ZLHouseKeepingAddBtnClicked:(NSIndexPath *)mIndexPath{
+    
+    
+    ZLGoodsWithCamp *mCamGoods = mRightDataArr[mIndexPath.row];
+
+    
+    switch (mRightTabType) {
+        case ZLRightGoodsTypeFromCamp:
+        {
+            
+            mAddShopCarEx.mGoodsNum+=1;
+            mAddShopCarEx.mTotlePrice += mCamGoods.sku_price;
+            mCamGoods.mNum+=1;
+            if (mAddShopCarEx.mTotlePrice <= 0 || mAddShopCarEx.mGoodsNum <= 0) {
+                mAddShopCarEx.mTotlePrice = 0.0;
+            }
+            MLLog(@"得到的购物车扩展对象是:商品数量：%d   商品总价：%.2f",mAddShopCarEx.mGoodsNum,mAddShopCarEx.mTotlePrice);
+            
+            LKDBHelperGoodsObj *ZLAddObj = [LKDBHelperGoodsObj new];
+            ZLAddObj.mCampId = mCamGoods.cam_gid;
+            ZLAddObj.mGoodsId = mCamGoods.pro_id;
+            ZLAddObj.mGoodsName =mCamGoods.pro_name;
+            ZLAddObj.mGoodsImg = mCamGoods.img_url;
+            ZLAddObj.mExtObj = mAddShopCarEx;
+            ZLAddObj.mShopId = self.mShopObj.shop_id;
+            ZLAddObj.mGoodsSKU = self.mAddSkuArray;
+            ZLAddObj.mSpe = [ZLSpeObj new];
+            ZLAddObj.mSpe.mSpeGoodsName = mCamGoods.sta_val_name;
+            
+            
+            [ZLAddObj saveToDB];
+            [mRightDataArr replaceObjectAtIndex:mIndexPath.row withObject:mCamGoods];
+            
+            [mRightTableView beginUpdates];
+            [mRightTableView reloadRowsAtIndexPaths:@[mIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [mRightTableView endUpdates];
+
+            [self updateBottomView:mAddShopCarEx];
+            
+        }
+            break;
+        case ZLRightGoodsTypeFromClass:
+        {
+            ZLGoodsWithClass *mClasGoods = mRightDataArr[mIndexPath.row];
+            
+            
+            
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
+
+    
+}
+
+/**
+ 减按钮代理方法
+ 
+ @param mIndexPath 索引
+ */
+- (void)ZLHouseKeepingSubstructBtnClicked:(NSIndexPath *)mIndexPath{
+
+    
+    ZLGoodsWithCamp *mCamGoods = mRightDataArr[mIndexPath.row];
+    if (mCamGoods.mNum<=0) {
+        return;
+    }
+    switch (mRightTabType) {
+        case ZLRightGoodsTypeFromCamp:
+        {
+            
+            mAddShopCarEx.mGoodsNum-=1;
+            mAddShopCarEx.mTotlePrice -= mCamGoods.sku_price;
+            mCamGoods.mNum-=1;
+            if (mAddShopCarEx.mTotlePrice <= 0 || mAddShopCarEx.mGoodsNum <= 0) {
+                mAddShopCarEx.mTotlePrice = 0.0;
+            }
+            MLLog(@"得到的购物车扩展对象是:商品数量：%d   商品总价：%.2f",mAddShopCarEx.mGoodsNum,mAddShopCarEx.mTotlePrice);
+            
+            LKDBHelperGoodsObj *ZLAddObj = [LKDBHelperGoodsObj new];
+            ZLAddObj.mCampId = mCamGoods.cam_gid;
+            ZLAddObj.mGoodsId = mCamGoods.pro_id;
+            ZLAddObj.mGoodsName =mCamGoods.pro_name;
+            ZLAddObj.mGoodsImg = mCamGoods.img_url;
+            ZLAddObj.mExtObj = mAddShopCarEx;
+            ZLAddObj.mShopId = self.mShopObj.shop_id;
+            ZLAddObj.mGoodsSKU = self.mAddSkuArray;
+            ZLAddObj.mSpe = [ZLSpeObj new];
+            ZLAddObj.mSpe.mSpeGoodsName = mCamGoods.sta_val_name;
+            
+            
+            [ZLAddObj saveToDB];
+            [mRightDataArr replaceObjectAtIndex:mIndexPath.row withObject:mCamGoods];
+            
+            [mRightTableView beginUpdates];
+            [mRightTableView reloadRowsAtIndexPaths:@[mIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [mRightTableView endUpdates];
+            [self updateBottomView:mAddShopCarEx];
+            
+        }
+            break;
+        case ZLRightGoodsTypeFromClass:
+        {
+            ZLGoodsWithClass *mClasGoods = mRightDataArr[mIndexPath.row];
+            
+            
+            
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
+
+}
+
 #pragma mark----****----加减商品代理方法
 /**
  加减代理方法

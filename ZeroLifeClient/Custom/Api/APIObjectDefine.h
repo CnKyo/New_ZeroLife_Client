@@ -804,6 +804,7 @@
 ///活动商品类型返回对象
 @interface ZLGoodsWithCamp : NSObject
 
+@property (assign,nonatomic) int mNum;
 ///规格值名称
 @property (strong,nonatomic) NSString* sta_val_name;
 @property (strong,nonatomic) NSString* sta_val_state;

@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,21 +16,24 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="85"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <frame key="frameInset" width="320" height="85"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="84"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dni-1K-MT8">
+                        <rect key="frame" x="10" y="10" width="60" height="60"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="60" id="93R-Es-Wll"/>
                             <constraint firstAttribute="width" constant="60" id="uc0-Nz-eJ2"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xTL-qf-1lf">
+                        <rect key="frame" x="78" y="10" width="160" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="售出：1100" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qFK-II-rDJ">
+                        <rect key="frame" x="246" y="10" width="64" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="fe2-3q-bLc"/>
                             <constraint firstAttribute="width" constant="64" id="oJa-wK-tc4"/>
@@ -37,18 +43,67 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G8q-l4-3mX">
+                        <rect key="frame" x="78" y="52" width="126" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e40-bc-xx5">
+                        <rect key="frame" x="212" y="44" width="100" height="30"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TOe-aX-sSO">
+                                <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="PWk-ha-NUf"/>
+                                    <constraint firstAttribute="width" constant="25" id="y9Z-hY-ddk"/>
+                                </constraints>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <state key="normal" backgroundImage="ZLSuperMarket_Substruct">
+                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="mSubStructAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="YYI-Q1-8K0"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="93B-kh-Wpx">
+                                <rect key="frame" x="29" y="2" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZDm-5A-KHT">
+                                <rect key="frame" x="75" y="0.0" width="25" height="25"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="25" id="MSd-Qf-nV5"/>
+                                    <constraint firstAttribute="height" constant="25" id="WLM-0D-38b"/>
+                                </constraints>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <state key="normal" backgroundImage="ZLSuperMarket_Add">
+                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="mAddAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="epX-Yj-VnS"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="ZDm-5A-KHT" firstAttribute="top" secondItem="e40-bc-xx5" secondAttribute="top" id="6TO-k4-0x1"/>
+                            <constraint firstAttribute="bottom" secondItem="93B-kh-Wpx" secondAttribute="bottom" constant="7" id="H66-jy-ugK"/>
+                            <constraint firstItem="93B-kh-Wpx" firstAttribute="leading" secondItem="TOe-aX-sSO" secondAttribute="trailing" constant="4" id="LWP-IO-d8p"/>
+                            <constraint firstItem="TOe-aX-sSO" firstAttribute="top" secondItem="e40-bc-xx5" secondAttribute="top" id="WVA-h9-Z3x"/>
+                            <constraint firstItem="93B-kh-Wpx" firstAttribute="top" secondItem="e40-bc-xx5" secondAttribute="top" constant="2" id="YYA-ER-78t"/>
                             <constraint firstAttribute="height" constant="30" id="aqV-Dp-XjU"/>
+                            <constraint firstItem="ZDm-5A-KHT" firstAttribute="leading" secondItem="93B-kh-Wpx" secondAttribute="trailing" constant="4" id="dQK-5T-g8B"/>
                             <constraint firstAttribute="width" constant="100" id="lK6-lF-h3k"/>
+                            <constraint firstAttribute="trailing" secondItem="ZDm-5A-KHT" secondAttribute="trailing" id="mso-9g-PDX"/>
+                            <constraint firstItem="TOe-aX-sSO" firstAttribute="leading" secondItem="e40-bc-xx5" secondAttribute="leading" id="tLY-9L-sLz"/>
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZSi-aL-K7c">
+                        <rect key="frame" x="10" y="84" width="310" height="1"/>
                         <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="0.25232769691780821" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="Etr-ui-Goz"/>
@@ -74,13 +129,20 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="mAddBtn" destination="ZDm-5A-KHT" id="7cK-N6-kRp"/>
                 <outlet property="mContent" destination="G8q-l4-3mX" id="dmy-Sn-NBN"/>
                 <outlet property="mImg" destination="dni-1K-MT8" id="7Es-iT-kga"/>
                 <outlet property="mName" destination="xTL-qf-1lf" id="Vjx-6P-GOD"/>
+                <outlet property="mNum" destination="93B-kh-Wpx" id="nfo-R5-Om4"/>
                 <outlet property="mNumView" destination="e40-bc-xx5" id="Giv-eK-dRn"/>
                 <outlet property="mSailsNum" destination="qFK-II-rDJ" id="cWC-1y-ErI"/>
+                <outlet property="mSubstructBtn" destination="TOe-aX-sSO" id="6vI-RF-jUK"/>
             </connections>
             <point key="canvasLocation" x="-21" y="43.5"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="ZLSuperMarket_Add" width="30" height="30"/>
+        <image name="ZLSuperMarket_Substruct" width="30" height="30"/>
+    </resources>
 </document>

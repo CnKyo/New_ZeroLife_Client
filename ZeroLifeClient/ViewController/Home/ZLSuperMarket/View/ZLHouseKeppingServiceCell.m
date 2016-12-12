@@ -30,33 +30,33 @@
 
     [super layoutSubviews];
     
-    for (PPNumberButton *mNumberView in self.mNumView.subviews) {
-        [mNumberView removeFromSuperview];
-    }
+//    for (PPNumberButton *mNumberView in self.mNumView.subviews) {
+//        [mNumberView removeFromSuperview];
+//    }
     
-    PPNumberButton *numberButton = [PPNumberButton numberButtonWithFrame:CGRectMake(0, 0, 100, 30)];
-    numberButton.decreaseHide = YES;
-    numberButton.delegate = self;
-    numberButton.increaseImage = [UIImage imageNamed:@"ZLSuperMarket_Add"];
-    numberButton.decreaseImage = [UIImage imageNamed:@"ZLSuperMarket_Substruct"];
-    
-    __weak __typeof(self)weakSelf = self;
-
-    numberButton.numberBlock = ^(NSString *num){
-        
-        int mNum = [num intValue];
-        
-        MLLog(@"%d",mNum);
-        
-        if ([weakSelf.delegate respondsToSelector:@selector(ZLHouseKeppingServiceCellWithNumChanged:andIndexPath:)]) {
-            [weakSelf.delegate ZLHouseKeppingServiceCellWithNumChanged:mNum andIndexPath:weakSelf.mIndexPath];
-            
-        }
-        
-        
-    };
-    
-    [self.mNumView addSubview:numberButton];
+//    PPNumberButton *numberButton = [PPNumberButton numberButtonWithFrame:CGRectMake(0, 0, 100, 30)];
+//    numberButton.decreaseHide = YES;
+//    numberButton.delegate = self;
+//    numberButton.increaseImage = [UIImage imageNamed:@"ZLSuperMarket_Add"];
+//    numberButton.decreaseImage = [UIImage imageNamed:@"ZLSuperMarket_Substruct"];
+//    
+//    __weak __typeof(self)weakSelf = self;
+//
+//    numberButton.numberBlock = ^(NSString *num){
+//        
+//        int mNum = [num intValue];
+//        
+//        MLLog(@"%d",mNum);
+//        
+//        if ([weakSelf.delegate respondsToSelector:@selector(ZLHouseKeppingServiceCellWithNumChanged:andIndexPath:)]) {
+//            [weakSelf.delegate ZLHouseKeppingServiceCellWithNumChanged:mNum andIndexPath:weakSelf.mIndexPath];
+//            
+//        }
+//        
+//        
+//    };
+//    
+//    [self.mNumView addSubview:numberButton];
 
 }
 - (void)pp_numberButton:(__kindof UIView *)numberButton number:(NSString *)number{
@@ -85,5 +85,40 @@
     self.mContent.text = [NSString stringWithFormat:@"%.1f元",mGoodsObj.sku_price];
     self.mSailsNum.text = [NSString stringWithFormat:@"月销：%d件",mGoodsObj.pro_sales_total];
     self.mContent.text = [NSString stringWithFormat:@"%@",mGoodsObj.sta_val_name];
+    
+    if (mGoodsObj.mNum<=0) {
+        self.mSubstructBtn.hidden = YES;
+        self.mNum.hidden = YES;
+    }else{
+        self.mSubstructBtn.hidden = NO;
+        self.mNum.hidden = NO;
+    }
+    
+    self.mNum.text = [NSString stringWithFormat:@"%d",mGoodsObj.mNum];
+    
 }
+
+- (IBAction)mSubStructAction:(UIButton *)sender {
+    
+    if ([_delegate respondsToSelector:@selector(ZLHouseKeepingSubstructBtnClicked:)]) {
+        [_delegate ZLHouseKeepingSubstructBtnClicked:self.mIndexPath];
+    }
+    
+}
+
+
+- (IBAction)mAddAction:(UIButton *)sender {
+    
+    if ([_delegate respondsToSelector:@selector(ZLHouseKeepingAddBtnClicked:)]) {
+        [_delegate ZLHouseKeepingAddBtnClicked:self.mIndexPath];
+    }
+    
+    
+}
+
+
+
+
+
+
 @end

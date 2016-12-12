@@ -61,10 +61,9 @@
     
     [self.mGoodsImg sd_setImageWithURL:[NSURL URLWithString:mGoods.mGoodsImg] placeholderImage:IMG(@"ZLDefault_Green")];
     self.mGoodsName.text = mGoods.mGoodsName;
-    self.mPrice.text = [NSString stringWithFormat:@"%.2f元",mGoods.mExtObj.mTotlePrice];
     self.mNum.text = [NSString stringWithFormat:@"%d",mGoods.mExtObj.mGoodsNum];
     NSString *mSpe = @"";
-    
+    CGFloat mPP = 0.0;
     if (mGoods.mGoodsSKU.count<= 0) {
         mSpe = mGoods.mSpe.mSpeGoodsName;
     }else{
@@ -76,11 +75,17 @@
             }else{
                 mSpe = [mSpe stringByAppendingString:[NSString stringWithFormat:@"%@-",mSku.mSpeGoodsName]];
             }
+            
+            if (mSku.mSku.sta_required == 1) {
+                mPP = mGoods.mExtObj.mGoodsNum*mSku.mSku.sku_price;
+            }
+            
         }
 
     }
     
-    
+    self.mPrice.text = [NSString stringWithFormat:@"%.2f元",mPP];
+
     self.mGoodsContent.text = mSpe;
     
     if (mGoods.mSelected == YES) {
