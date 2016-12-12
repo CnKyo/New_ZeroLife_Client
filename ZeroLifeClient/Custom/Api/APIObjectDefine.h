@@ -1107,6 +1107,7 @@
 @property (strong,nonatomic) NSString* mGoodsName;
 @property (strong,nonatomic) NSString* mGoodsImg;
 @property (assign,nonatomic) int mGoodsId;
+@property (assign,nonatomic) int mCampId;
 
 ///是否选中
 @property (assign,nonatomic) BOOL mSelected;

@@ -1441,4 +1441,38 @@
         callback([APIObject infoWithReLoginErrorMessage:@"请重新登陆"]);
 }
 
+
+#pragma mark----*****----提交预订单
+/**
+ 提交预订单
+ 
+ @param mShopId 店铺id
+ @param mGoods 商品json数组
+ @param block 返回值
+ */
+- (void)ZLCommitOrder:(int)mShopId andGoodsArr:(NSString *)mGoods block:(void (^)(APIObject *mBaseObj))block{
+
+
+    NSMutableDictionary* para = [NSMutableDictionary dictionary];
+
+    [para setInt:[ZLUserInfo ZLCurrentUser].user_id forKey:@"user_id"];
+    
+    if (mShopId) {
+        [para setInt:mShopId forKey:@"shop_id"];
+    }
+    
+    [para setObject:mGoods forKey:@"goods_list"];
+
+    [self loadAPIWithTag:self path:@"/preorder/preorder_info" parameters:para call:^(APIObject *info) {
+
+        block(info);
+    }];
+    
+
+
+    
+}
+
+
+
 @end

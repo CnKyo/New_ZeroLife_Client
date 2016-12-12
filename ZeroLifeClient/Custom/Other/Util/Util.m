@@ -1282,6 +1282,13 @@
     return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
     
 }
+#pragma mark----数组转json字符串
+/**
+ 数组转json
+ 
+ @param arr 转换的数组
+ @return 返回json字符串
+ */
 + (NSString *)arrToJson:(NSArray *)arr{
     NSError *parseError = nil;
 

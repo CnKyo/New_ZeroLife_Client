@@ -200,5 +200,16 @@ typedef void (^TableShareSdkBlock)(int totalpage, NSArray *tableArr, APIShareSdk
  @param block 返回值
  */
 - (void)ZLGetHomeAnouncement:(int)mPage block:(void (^)(APIObject *mBaseObj, ZLHomeAnouncementListObj* mNouncementList))block;
+#pragma mark----*****----提交预订单
+/**
+ 提交预订单
+
+ @param mShopId 店铺id
+ @param mGoods 商品json数组
+ @param block 返回值
+ */
+- (void)ZLCommitOrder:(int)mShopId andGoodsArr:(NSString *)mGoods block:(void (^)(APIObject *mBaseObj))block;
+
+
 
 @end

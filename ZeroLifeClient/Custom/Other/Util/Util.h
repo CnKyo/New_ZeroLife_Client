@@ -318,7 +318,13 @@ typedef enum _RelDic
  *  @return 返回字符串
  */
 + (NSString*)dictionaryToJson:(NSDictionary *)dic;
+#pragma mark----数组转json字符串
+/**
+ 数组转json
 
+ @param arr 转换的数组
+ @return 返回json字符串
+ */
 + (NSString *)arrToJson:(NSArray *)arr;
 
 #pragma mark----过滤非法字符
@@ -369,4 +375,7 @@ typedef enum _RelDic
 #pragma mark----是否有优惠券
 ///是否有优惠券
 + (BOOL)iscoupon:(int)mCoupon;
+
+
+
 @end

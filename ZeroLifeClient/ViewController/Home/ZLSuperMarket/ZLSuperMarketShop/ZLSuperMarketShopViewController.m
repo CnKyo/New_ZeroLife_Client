@@ -836,7 +836,17 @@ static const CGFloat mTopH = 156;
  去结算代理方法
  */
 - (void)ZLSuperMarketGoPayDidSelected{
+    
+    NSArray *mShopCarArrSource = [LKDBHelperGoodsObj searchWithWhere:[NSString stringWithFormat:@"%d",self.mShopObj.shop_id]];
+    
+    if (mShopCarArrSource.count <= 0) {
+        [self showErrorStatus:@"购物车空空如也，快去挑选商品吧！"];
+        return;
+    }
+    
+    
     ZLSuperMarketCommitOrderViewController *ZLCommitVC = [ZLSuperMarketCommitOrderViewController new];
+    ZLCommitVC.mShopCarDataSource = mShopCarArrSource;
     [self pushViewController:ZLCommitVC];
 }
 
@@ -1299,6 +1309,17 @@ static const CGFloat mTopH = 156;
             }
             MLLog(@"得到的购物车扩展对象是:商品数量：%d   商品总价：%.2f",mAddShopCarEx.mGoodsNum,mAddShopCarEx.mTotlePrice);
 
+            ZLGoodsWithCamp *mGoodObj = mRightDataArr[mIndexPath.row];
+            LKDBHelperGoodsObj *ZLAddObj = [LKDBHelperGoodsObj new];
+            ZLAddObj.mCampId = mGoodObj.cam_gid;
+            ZLAddObj.mGoodsId = mGoodObj.pro_id;
+            ZLAddObj.mGoodsName =mGoodObj.pro_name;
+            ZLAddObj.mGoodsImg = mGoodObj.img_url;
+            ZLAddObj.mExtObj = mAddShopCarEx;
+            ZLAddObj.mShopId = self.mShopObj.shop_id;
+            ZLAddObj.mGoodsSKU = self.mAddSkuArray;
+            [ZLAddObj saveToDB];
+            
             [self updateBottomView:mAddShopCarEx];
             
         }

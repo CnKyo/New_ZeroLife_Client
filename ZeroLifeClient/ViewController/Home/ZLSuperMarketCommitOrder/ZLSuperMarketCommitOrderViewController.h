@@ -9,5 +9,7 @@
 #import "CustomVC.h"
 
 @interface ZLSuperMarketCommitOrderViewController : CustomVC
+///购物车数据源
+@property (strong,nonatomic)NSArray *mShopCarDataSource;
 
 @end

@@ -9,6 +9,7 @@
 #import "ZLSuperMarketShopCarViewController.h"
 #import "ZLShopCarBottomView.h"
 #import "ZLSuperMarketShopCarCell.h"
+#import "ZLSuperMarketCommitOrderViewController.h"
 @interface ZLSuperMarketShopCarViewController ()<UITableViewDelegate,UITableViewDataSource,ZLShopCarBottomDelegate,ZLShopCarCellDelegate,UIAlertViewDelegate>
 
 @end
@@ -225,8 +226,13 @@
         LKDBHelperGoodsObj *mGoods = self.tableArr[i];
         mGoods.mSelected = mSelected;
         [self.tableArr replaceObjectAtIndex:i withObject:mGoods];
-
+        if (mGoods.mSelected) {
+            [mAddArr addObject:mGoods];
+        }else{
+            [mAddArr removeObject:mGoods];
+        }
     }
+    
     [mTableView reloadData];
     [self updateBottomView];
 
@@ -237,6 +243,53 @@
  去结算
  */
 - (void)ZLShopCarBottomGoPay{
+    
+    if (mAddArr.count <= 0) {
+        [self showErrorStatus:@"亲，快去选择商品结算吧！"];
+        return;
+    }
+    
+    
+    NSMutableArray *mPayArr = [NSMutableArray new];
+    NSMutableDictionary *mPara = [NSMutableDictionary new];
+    NSString *mContent = @"";
+
+    for (LKDBHelperGoodsObj *mGoods in mAddArr) {
+        [mPara setInt:mGoods.mGoodsId forKey:@"goods_list.pro_id"];
+        [mPara setInt:mGoods.mExtObj.mGoodsNum forKey:@"goods_list.num"];
+        [mPara setInt:mGoods.mCampId forKey:@"goods_list.cam_id"];
+
+        for (int i =0;i<mGoods.mGoodsSKU.count;i++) {
+            ZLSpeObj *mSpe = mGoods.mGoodsSKU[i];
+            
+            if (mSpe.mSku.sta_required == 1) {
+                [mPara setInt:mSpe.mSku.sku_id forKey:@"goods_list.sku_id"];
+            }
+
+            if (i==mGoods.mGoodsSKU.count-1) {
+                mContent = [mContent stringByAppendingString:[NSString stringWithFormat:@"%@",mSpe.mSpeGoodsName]];
+                
+            }else{
+                mContent = [mContent stringByAppendingString:[NSString stringWithFormat:@"%@,",mSpe.mSpeGoodsName]];
+            }
+        }
+        [mPara setObject:mContent forKey:@"goods_list.standard_val_note"];
+   
+        [mPayArr addObject:mPara];
+    }
+    [self showErrorStatus:@"正在提交订单..."];
+    [[APIClient sharedClient] ZLCommitOrder:self.mShopId andGoodsArr:[Util arrToJson:mPayArr] block:^(APIObject *mBaseObj) {
+        if (mBaseObj.code == RESP_STATUS_YES) {
+            [self dismiss];
+            ZLSuperMarketCommitOrderViewController *ZLCommitVC = [ZLSuperMarketCommitOrderViewController new];
+            ZLCommitVC.mShopCarDataSource = mAddArr;
+            [self pushViewController:ZLCommitVC];
+        }else{
+            [self showErrorStatus:mBaseObj.msg];
+        }
+    }];
+    
+    
 
 }
 #pragma mark----****----左边选择按钮

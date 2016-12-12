@@ -66,7 +66,7 @@
     self.layer.cornerRadius = 3.f;
     self.clipsToBounds = YES;
     
-    _minValue = 0;
+    _minValue = 1;
     _maxValue = NSIntegerMax;
     _inputFieldFont = 15;
     _buttonTitleFont = 17;
