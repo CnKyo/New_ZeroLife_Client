@@ -30,6 +30,7 @@
 #import "LDXScore.h"
 #import "mCheckMoreActivityView.h"
 #import <LKDBHelper.h>
+#import "ZLSuperMarketCommitOrderViewController.h"
 
 
 static const CGFloat mTopH = 156;
@@ -1252,24 +1253,11 @@ static const CGFloat mTopH = 156;
  */
 - (void)ZLSuperMarketShopCarBtnSelected:(NSIndexPath *)mIndexPath{
     
-    
-    
-    if (self.mAddSkuArray.count<= 0) {
-        [self showErrorStatus:@"请先选择规格！"];
-        return;
-    }
-    
-
-    if(mAddShopCarEx.mGoodsNum<=0){
-        [self showErrorStatus:@"请选择数量！"];
-        return;
-    }
-    
-    
-
     ZLGoodsWithClass *mGoodObj = mRightDataArr[mIndexPath.row];
     LKDBHelperGoodsObj *ZLAddObj = [LKDBHelperGoodsObj new];
     ZLAddObj.mExtObj = [ZLAddShopCarExObj new];
+    
+
     NSString *mSKUname = @"";
 
     
@@ -1277,7 +1265,7 @@ static const CGFloat mTopH = 156;
         
         ZLSpeObj *mSpeO = self.mAddSkuArray[i];
         
-        if (mSpeO.mSku.sta_required) {
+        if (mSpeO.mSku.sta_required == 1) {
             ZLAddObj.mSKUID = mSpeO.mSku.sku_id;
             ZLAddObj.mExtObj.mTotlePrice = mGoodObj.mNum*mSpeO.mSku.sku_price;
 
@@ -1301,6 +1289,14 @@ static const CGFloat mTopH = 156;
     ZLAddObj.mGoodsSKU = self.mAddSkuArray;
     ZLAddObj.mSpe = [ZLSpeObj new];
     ZLAddObj.mSpe.mSpeGoodsName = mSKUname;
+    if (!ZLAddObj.mSKUID) {
+        [self showErrorStatus:@"请先选择规格！"];
+        return;
+    }
+    if (ZLAddObj.mExtObj.mGoodsNum<=0) {
+        [self showErrorStatus:@"请选择数量！"];
+        return;
+    }
     [ZLAddObj saveToDB];
 
     
@@ -1319,6 +1315,97 @@ static const CGFloat mTopH = 156;
 - (void)ZLSuperMarketBuyNowBtnSelected:(NSIndexPath *)mIndexPath{
     ZLGoodsWithClass *mGoodObj = mRightDataArr[mIndexPath.row];
 
+    LKDBHelperGoodsObj *ZLAddObj = [LKDBHelperGoodsObj new];
+    ZLAddObj.mExtObj = [ZLAddShopCarExObj new];
+    
+    
+    NSString *mSKUname = @"";
+    
+    
+    for (int i = 0;i<self.mAddSkuArray.count;i++) {
+        
+        ZLSpeObj *mSpeO = self.mAddSkuArray[i];
+        
+        if (mSpeO.mSku.sta_required == 1) {
+            ZLAddObj.mSKUID = mSpeO.mSku.sku_id;
+            ZLAddObj.mExtObj.mTotlePrice = mGoodObj.mNum*mSpeO.mSku.sku_price;
+            
+        }
+        
+        if (i==self.mAddSkuArray.count-1) {
+            mSKUname = [mSKUname stringByAppendingString:[NSString stringWithFormat:@"%@",mSpeO.mSku.sta_val_name]];
+            
+        }else{
+            mSKUname = [mSKUname stringByAppendingString:[NSString stringWithFormat:@"%@-",mSpeO.mSku.sta_val_name]];
+        }
+        
+    }
+    
+    ZLAddObj.mNum = mGoodObj.mNum;
+    ZLAddObj.mGoodsId = mGoodObj.pro_id;
+    ZLAddObj.mGoodsName =mGoodObj.pro_name;
+    ZLAddObj.mGoodsImg = mGoodObj.img_url;
+    ZLAddObj.mExtObj.mGoodsNum = mGoodObj.mNum;
+    ZLAddObj.mShopId = self.mShopObj.shop_id;
+    ZLAddObj.mGoodsSKU = self.mAddSkuArray;
+    ZLAddObj.mSpe = [ZLSpeObj new];
+    ZLAddObj.mSpe.mSpeGoodsName = mSKUname;
+    if (!ZLAddObj.mSKUID) {
+        [self showErrorStatus:@"请先选择规格！"];
+        return;
+    }
+    if (ZLAddObj.mExtObj.mGoodsNum<=0) {
+        [self showErrorStatus:@"请选择数量！"];
+        return;
+    }
+    NSMutableArray *mShopCarArr = [NSMutableArray new];
+    [mShopCarArr addObject:ZLAddObj];
+    
+    [self hiddenSpeView];
+    [self.mAddSkuArray removeAllObjects];
+    
+    NSMutableArray *mPayArr = [NSMutableArray new];
+    NSMutableDictionary *mPara = [NSMutableDictionary new];
+    NSString *mContent = @"";
+    
+    for (LKDBHelperGoodsObj *mGoods in mShopCarArr) {
+        [mPara setInt:mGoods.mGoodsId forKey:@"pro_id"];
+        [mPara setInt:mGoods.mExtObj.mGoodsNum forKey:@"num"];
+        [mPara setInt:mGoods.mCampId forKey:@"cam_id"];
+        
+        for (int i =0;i<mGoods.mGoodsSKU.count;i++) {
+            ZLSpeObj *mSpe = mGoods.mGoodsSKU[i];
+            
+            if (mSpe.mSku.sta_required == 1) {
+                [mPara setInt:mSpe.mSku.sku_id forKey:@"sku_id"];
+            }
+            
+            if (i==mGoods.mGoodsSKU.count-1) {
+                mContent = [mContent stringByAppendingString:[NSString stringWithFormat:@"%@",mSpe.mSpeGoodsName]];
+                
+            }else{
+                mContent = [mContent stringByAppendingString:[NSString stringWithFormat:@"%@,",mSpe.mSpeGoodsName]];
+            }
+        }
+        [mPara setObject:mContent forKey:@"standard_val_note"];
+        
+        [mPayArr addObject:mPara];
+    }
+    [self showErrorStatus:@"正在提交订单..."];
+    [[APIClient sharedClient] ZLCommitOrder:self.mShopObj.shop_id andGoodsArr:[Util arrToJson:mPayArr] block:^(APIObject *mBaseObj) {
+        if (mBaseObj.code == RESP_STATUS_YES) {
+            [self dismiss];
+            ZLSuperMarketCommitOrderViewController *ZLCommitVC = [ZLSuperMarketCommitOrderViewController new];
+            ZLCommitVC.mShopCarDataSource = mShopCarArr;
+            [self pushViewController:ZLCommitVC];
+        }else{
+            [self showErrorStatus:mBaseObj.msg];
+        }
+    }];
+    
+
+
+    
 }
 - (void)mBackAction{
 

@@ -255,15 +255,15 @@
     NSString *mContent = @"";
 
     for (LKDBHelperGoodsObj *mGoods in mAddArr) {
-        [mPara setInt:mGoods.mGoodsId forKey:@"goods_list.pro_id"];
-        [mPara setInt:mGoods.mExtObj.mGoodsNum forKey:@"goods_list.num"];
-        [mPara setInt:mGoods.mCampId forKey:@"goods_list.cam_id"];
+        [mPara setInt:mGoods.mGoodsId forKey:@"pro_id"];
+        [mPara setInt:mGoods.mExtObj.mGoodsNum forKey:@"num"];
+        [mPara setInt:mGoods.mCampId forKey:@"cam_id"];
 
         for (int i =0;i<mGoods.mGoodsSKU.count;i++) {
             ZLSpeObj *mSpe = mGoods.mGoodsSKU[i];
             
             if (mSpe.mSku.sta_required == 1) {
-                [mPara setInt:mSpe.mSku.sku_id forKey:@"goods_list.sku_id"];
+                [mPara setInt:mSpe.mSku.sku_id forKey:@"sku_id"];
             }
 
             if (i==mGoods.mGoodsSKU.count-1) {
@@ -273,7 +273,7 @@
                 mContent = [mContent stringByAppendingString:[NSString stringWithFormat:@"%@,",mSpe.mSpeGoodsName]];
             }
         }
-        [mPara setObject:mContent forKey:@"goods_list.standard_val_note"];
+        [mPara setObject:mContent forKey:@"standard_val_note"];
    
         [mPayArr addObject:mPara];
     }
