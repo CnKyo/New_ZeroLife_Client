@@ -855,7 +855,7 @@ bool m_bind = NO;
 
 + (NSString *)getPrimaryKey{
 
-    return @"mGoodsId";
+    return @"mSKUID";
 }
 
 @end

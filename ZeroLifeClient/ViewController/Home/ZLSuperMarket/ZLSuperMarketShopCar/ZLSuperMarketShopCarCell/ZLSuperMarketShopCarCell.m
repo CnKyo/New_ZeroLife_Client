@@ -84,7 +84,7 @@
 
     }
     
-    self.mPrice.text = [NSString stringWithFormat:@"%.2f元",mPP];
+    self.mPrice.text = [NSString stringWithFormat:@"%.2f元",mGoods.mExtObj.mTotlePrice];
 
     self.mGoodsContent.text = mSpe;
     

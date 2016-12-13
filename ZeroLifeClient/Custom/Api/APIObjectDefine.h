@@ -741,6 +741,9 @@
 #pragma mark----****----商品类型返回对象
 ///商品类型返回对象
 @interface ZLGoodsWithClass : NSObject
+///商品数量
+@property (assign,nonatomic) int mNum;
+
 ///商品单位
 @property (strong,nonatomic) NSString* pro_unit;
 ///活动商品限购量（0表示无限制），活动商品列表特有
@@ -1104,12 +1107,18 @@
 @class ZLSpeObj;
 ///商品加入数据库
 @interface LKDBHelperGoodsObj : NSObject
-
+///商品名称
 @property (strong,nonatomic) NSString* mGoodsName;
+///商品图片
 @property (strong,nonatomic) NSString* mGoodsImg;
+///商品id
 @property (assign,nonatomic) int mGoodsId;
+///活动id
 @property (assign,nonatomic) int mCampId;
-
+///规格id
+@property (assign,nonatomic) int mSKUID;
+///数量
+@property (assign,nonatomic) int mNum;
 ///是否选中
 @property (assign,nonatomic) BOOL mSelected;
 ///店铺id

@@ -259,14 +259,14 @@ static const CGFloat mTopH = 156;
 ///更新底部数量和总价
 - (void)updateBottomView:(ZLAddShopCarExObj *)mEx{
     
-    int num = 0;
+    NSInteger num = 0;
     float price = 0.0;
     
     NSArray *mLKDArr =  [LKDBHelperGoodsObj searchWithWhere:[NSString stringWithFormat:@"%d",self.mShopObj.shop_id]];
-
+    num = mLKDArr.count;
+    
     for (int i = 0; i<mLKDArr.count; i++) {
         LKDBHelperGoodsObj *mLKD = mLKDArr[i];
-        num+=mLKD.mExtObj.mGoodsNum;
         price+=mLKD.mExtObj.mTotlePrice;
     }
     
@@ -897,7 +897,7 @@ static const CGFloat mTopH = 156;
     mSpeView = [ZLSuperMArketSearchGoodsView initWithSpeView:mSpeRect];
     mSpeView.delegate = self;
 
-    _mSpeTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, DEVICE_Width-40,152) style:UITableViewStyleGrouped];
+    _mSpeTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, DEVICE_Width-40,187) style:UITableViewStyleGrouped];
     _mSpeTableView.delegate = self;
     _mSpeTableView.dataSource = self;
     _mSpeTableView.backgroundColor = [UIColor whiteColor];
@@ -926,7 +926,7 @@ static const CGFloat mTopH = 156;
         }
     }
     
-    [self UpdateSpeViewPage:mGoodObj.img_url andGoodsName:mGoodObj.pro_name andGoodsPrice:mP andSkuCount:count];
+    [self UpdateSpeViewPage:mGoodObj.img_url andGoodsName:mGoodObj.pro_name andGoodsPrice:mP andSkuCount:count andGoodsNum:mGoodObj.mNum];
     
     ///规格数组
     NSMutableArray *mSkuTempArr = [NSMutableArray new];
@@ -1019,14 +1019,18 @@ static const CGFloat mTopH = 156;
  @param mPrice    商品价格
  @param mcount    库存
  */
-- (void)UpdateSpeViewPage:(NSString *)mGoodsImg andGoodsName:(NSString *)mName andGoodsPrice:(float)mPrice andSkuCount:(int)mcount{
+- (void)UpdateSpeViewPage:(NSString *)mGoodsImg andGoodsName:(NSString *)mName andGoodsPrice:(float)mPrice andSkuCount:(int)mcount andGoodsNum:(int)mNum{
 
+    int num = mNum;
+    if (num<=0) {
+        num = 1;
+    }
     
     [mSpeView.mGoodsImg sd_setImageWithURL:[NSURL URLWithString:mGoodsImg] placeholderImage:[UIImage imageNamed:@"ZLDefault_Img"]];
     mSpeView.mGoodsName.text = mName;
     mSpeView.mGoodsPrice.text = [NSString stringWithFormat:@"价格：%.2f元",mPrice];
     mSpeView.mGoodsRep.text = [NSString stringWithFormat:@"库存：%d",mcount];
-    mSpeView.mNum.text = [NSString stringWithFormat:@"%d",mAddShopCarEx.mGoodsNum];
+    mSpeView.mNum.text = [NSString stringWithFormat:@"%d",num];
     
 }
 -(StandardsView *)buildStandardView:(UIImage *)img andIndex:(NSInteger)index
@@ -1187,7 +1191,13 @@ static const CGFloat mTopH = 156;
 - (void)ZLSuperMarketAddBtnSelected:(NSIndexPath *)mIndexPath{
 
     ZLGoodsWithClass *mGoodObj = mRightDataArr[mIndexPath.row];
+    if (mGoodObj.mNum == 0) {
+        mGoodObj.mNum = 1;
+    }
     
+    mGoodObj.mNum +=1;
+    [mRightDataArr replaceObjectAtIndex:mIndexPath.row withObject:mGoodObj];
+
     if (self.mAddSkuArray.count<= 0) {
         [self showErrorStatus:@"请先选择规格！"];
         return;
@@ -1200,7 +1210,7 @@ static const CGFloat mTopH = 156;
         }
     }
     mAddShopCarEx.mGoodsNum += 1;
-    mSpeView.mNum.text = [NSString stringWithFormat:@"%d",mAddShopCarEx.mGoodsNum];
+    mSpeView.mNum.text = [NSString stringWithFormat:@"%d",mGoodObj.mNum];
 //    [self updateBottomView:mAddShopCarEx];
 
 }
@@ -1210,10 +1220,18 @@ static const CGFloat mTopH = 156;
  */
 - (void)ZLSuperMarketSubsructBtnSelected:(NSIndexPath *)mIndexPath{
     ZLGoodsWithClass *mGoodObj = mRightDataArr[mIndexPath.row];
-
-    if (mAddShopCarEx.mGoodsNum <= 0) {
-        return;
+    if (mGoodObj.mNum == 0) {
+        mGoodObj.mNum = 1;
     }
+    if (mGoodObj.mNum <= 0) {
+        mGoodObj.mNum = 0;
+    }else{
+        mGoodObj.mNum -=1;
+
+    }
+    
+    [mRightDataArr replaceObjectAtIndex:mIndexPath.row withObject:mGoodObj];
+    
     
     for (ZLSpeObj *mObj  in self.mAddSkuArray) {
         if (mObj.mSku.sta_required == 1) {
@@ -1223,7 +1241,7 @@ static const CGFloat mTopH = 156;
     }
     mAddShopCarEx.mGoodsNum -= 1;
 
-    mSpeView.mNum.text = [NSString stringWithFormat:@"%d",mAddShopCarEx.mGoodsNum];
+    mSpeView.mNum.text = [NSString stringWithFormat:@"%d",mGoodObj.mNum];
 
 //    [self updateBottomView:mAddShopCarEx];
     
@@ -1246,16 +1264,43 @@ static const CGFloat mTopH = 156;
         [self showErrorStatus:@"请选择数量！"];
         return;
     }
-    ZLSpeObj *mObj = self.mAddSkuArray[0];
+    
+    
 
     ZLGoodsWithClass *mGoodObj = mRightDataArr[mIndexPath.row];
     LKDBHelperGoodsObj *ZLAddObj = [LKDBHelperGoodsObj new];
+    ZLAddObj.mExtObj = [ZLAddShopCarExObj new];
+    NSString *mSKUname = @"";
+
+    
+    for (int i = 0;i<self.mAddSkuArray.count;i++) {
+        
+        ZLSpeObj *mSpeO = self.mAddSkuArray[i];
+        
+        if (mSpeO.mSku.sta_required) {
+            ZLAddObj.mSKUID = mSpeO.mSku.sku_id;
+            ZLAddObj.mExtObj.mTotlePrice = mGoodObj.mNum*mSpeO.mSku.sku_price;
+
+        }
+        
+        if (i==self.mAddSkuArray.count-1) {
+            mSKUname = [mSKUname stringByAppendingString:[NSString stringWithFormat:@"%@",mSpeO.mSku.sta_val_name]];
+            
+        }else{
+            mSKUname = [mSKUname stringByAppendingString:[NSString stringWithFormat:@"%@-",mSpeO.mSku.sta_val_name]];
+        }
+
+    }
+    
+    ZLAddObj.mNum = mGoodObj.mNum;
     ZLAddObj.mGoodsId = mGoodObj.pro_id;
     ZLAddObj.mGoodsName =mGoodObj.pro_name;
     ZLAddObj.mGoodsImg = mGoodObj.img_url;
-    ZLAddObj.mExtObj = mAddShopCarEx;
+    ZLAddObj.mExtObj.mGoodsNum = mGoodObj.mNum;
     ZLAddObj.mShopId = self.mShopObj.shop_id;
     ZLAddObj.mGoodsSKU = self.mAddSkuArray;
+    ZLAddObj.mSpe = [ZLSpeObj new];
+    ZLAddObj.mSpe.mSpeGoodsName = mSKUname;
     [ZLAddObj saveToDB];
 
     
@@ -1306,11 +1351,17 @@ static const CGFloat mTopH = 156;
             MLLog(@"得到的购物车扩展对象是:商品数量：%d   商品总价：%.2f",mAddShopCarEx.mGoodsNum,mAddShopCarEx.mTotlePrice);
             
             LKDBHelperGoodsObj *ZLAddObj = [LKDBHelperGoodsObj new];
+            ZLAddObj.mExtObj = [ZLAddShopCarExObj new];
+            ZLAddObj.mSKUID = mCamGoods.sku_id;
+
             ZLAddObj.mCampId = mCamGoods.cam_gid;
             ZLAddObj.mGoodsId = mCamGoods.pro_id;
             ZLAddObj.mGoodsName =mCamGoods.pro_name;
             ZLAddObj.mGoodsImg = mCamGoods.img_url;
-            ZLAddObj.mExtObj = mAddShopCarEx;
+            ZLAddObj.mNum = mCamGoods.mNum;
+            ZLAddObj.mExtObj.mGoodsNum = mCamGoods.mNum;
+            ZLAddObj.mExtObj.mTotlePrice = mCamGoods.mNum*mCamGoods.sku_price;
+
             ZLAddObj.mShopId = self.mShopObj.shop_id;
             ZLAddObj.mGoodsSKU = self.mAddSkuArray;
             ZLAddObj.mSpe = [ZLSpeObj new];
@@ -1370,11 +1421,14 @@ static const CGFloat mTopH = 156;
             MLLog(@"得到的购物车扩展对象是:商品数量：%d   商品总价：%.2f",mAddShopCarEx.mGoodsNum,mAddShopCarEx.mTotlePrice);
             
             LKDBHelperGoodsObj *ZLAddObj = [LKDBHelperGoodsObj new];
+            ZLAddObj.mExtObj = [ZLAddShopCarExObj new];
+            ZLAddObj.mSKUID = mCamGoods.sku_id;
             ZLAddObj.mCampId = mCamGoods.cam_gid;
             ZLAddObj.mGoodsId = mCamGoods.pro_id;
             ZLAddObj.mGoodsName =mCamGoods.pro_name;
             ZLAddObj.mGoodsImg = mCamGoods.img_url;
-            ZLAddObj.mExtObj = mAddShopCarEx;
+            ZLAddObj.mExtObj.mGoodsNum = mCamGoods.mNum;
+            ZLAddObj.mExtObj.mTotlePrice = mCamGoods.mNum*mCamGoods.sku_price;
             ZLAddObj.mShopId = self.mShopObj.shop_id;
             ZLAddObj.mGoodsSKU = self.mAddSkuArray;
             ZLAddObj.mSpe = [ZLSpeObj new];
@@ -1524,7 +1578,7 @@ static const CGFloat mTopH = 156;
     if (mSku.mSku.sta_required == 1) {
       
 //        mAddShopCarEx.mTotlePrice = mSku.mSku.sku_price;
-        [self UpdateSpeViewPage:mGoodObj.img_url andGoodsName:mGoodObj.pro_name andGoodsPrice:mSku.mSku.sku_price andSkuCount:mSku.mSku.sku_stock];
+        [self UpdateSpeViewPage:mGoodObj.img_url andGoodsName:mGoodObj.pro_name andGoodsPrice:mSku.mSku.sku_price andSkuCount:mSku.mSku.sku_stock andGoodsNum:mGoodObj.mNum];
 
     }
     

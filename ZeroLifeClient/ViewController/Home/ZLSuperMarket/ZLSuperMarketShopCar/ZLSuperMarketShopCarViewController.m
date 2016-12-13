@@ -341,16 +341,21 @@
 
     LKDBHelperGoodsObj *mGoods = self.tableArr[mIndexPath.row];
     
-    
-    for (ZLSpeObj *mSpe in mGoods.mGoodsSKU) {
-        if (mSpe.mSku.sta_required == 1) {
-            mGoods.mExtObj.mTotlePrice-=mSpe.mSku.sku_price;
-            
+    if (mGoods.mGoodsSKU.count>0) {
+        for (ZLSpeObj *mSpe in mGoods.mGoodsSKU) {
+            if (mSpe.mSku.sta_required == 1) {
+                mGoods.mExtObj.mTotlePrice-=mSpe.mSku.sku_price;
+                
+            }
         }
+    }else{
+        mGoods.mExtObj.mTotlePrice-=mGoods.mExtObj.mTotlePrice/mGoods.mExtObj.mGoodsNum;
+
     }
+
     mGoods.mExtObj.mGoodsNum-=1;
     if (mGoods.mExtObj.mGoodsNum<=0) {
-        [self.tableArr removeObject:mGoods];
+        [self.tableArr removeObjectAtIndex:mIndexPath.row];
         if(self.tableArr.count <= 0){
             [LKDBHelperGoodsObj deleteWithWhere:[NSString stringWithFormat:@"%d",self.mShopId]];
             [self.tableArr removeAllObjects];
@@ -358,6 +363,8 @@
             [self ZLShowEmptyView:@"购物车空空如也，快去选购吧" andImage:nil andHiddenRefreshBtn:YES];
             return;
         }
+        [mTableView reloadData];
+
     }else{
         [self.tableArr replaceObjectAtIndex:mIndexPath.row withObject:mGoods];
         [mTableView beginUpdates];
@@ -381,12 +388,21 @@
     
     LKDBHelperGoodsObj *mGoods = self.tableArr[mIndexPath.row];
     
-    for (ZLSpeObj *mSpe in mGoods.mGoodsSKU) {
-        if (mSpe.mSku.sta_required == 1) {
-            mGoods.mExtObj.mTotlePrice+=mSpe.mSku.sku_price;
-
+   
+    
+    if (mGoods.mGoodsSKU.count>0) {
+        for (ZLSpeObj *mSpe in mGoods.mGoodsSKU) {
+            if (mSpe.mSku.sta_required == 1) {
+                mGoods.mExtObj.mTotlePrice+=mSpe.mSku.sku_price;
+                
+            }
         }
+    }else{
+        mGoods.mExtObj.mTotlePrice+=mGoods.mExtObj.mTotlePrice/mGoods.mExtObj.mGoodsNum;
+        
     }
+
+    
     
     mGoods.mExtObj.mGoodsNum+=1;
 
