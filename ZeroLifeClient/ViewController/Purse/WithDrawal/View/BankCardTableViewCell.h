@@ -15,4 +15,5 @@
 @property(nonatomic,strong) UILabel *bankNameLable;
 @property(nonatomic,strong) UILabel *cardTypeLable;
 @property(nonatomic,strong) UILabel *cardNumberLable;
+@property(nonatomic,strong) UIButton *deleteBtn;
 @end

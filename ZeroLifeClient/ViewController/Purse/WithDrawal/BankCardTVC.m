@@ -92,6 +92,12 @@
             cell = [[BankCardTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
             cell.selectionStyle = UITableViewCellSelectionStyleGray;
         }
+        
+        //删除
+        [cell.deleteBtn jk_addActionHandler:^(NSInteger tag) {
+            [SVProgressHUD showSuccessWithStatus:@"删除成功!"];
+        }];
+        
         return cell;
     }
     return [super tableView:tableView cellForRowAtIndexPath:indexPath];

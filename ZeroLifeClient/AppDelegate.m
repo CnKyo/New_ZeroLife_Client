@@ -48,6 +48,7 @@
     
     [SVProgressHUD setDefaultStyle:SVProgressHUDStyleCustom];
     [SVProgressHUD setBackgroundColor:[UIColor colorWithWhite:0.9 alpha:1]];
+    [SVProgressHUD setMinimumDismissTimeInterval:2.0];
     
 //    //设置窗口的根控制器
 //    self.window.rootViewController = [[ZLTabBarViewController alloc] init];

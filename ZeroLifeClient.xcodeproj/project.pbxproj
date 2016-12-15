@@ -297,6 +297,8 @@
 		DF08E8861DD1C0B2003E4DD9 /* FavoriteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF08E8851DD1C0B2003E4DD9 /* FavoriteTableViewCell.m */; };
 		DF08E8881DD1C39B003E4DD9 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF08E8871DD1C39B003E4DD9 /* CoreText.framework */; };
 		DF1278DB1DDA96A60067AEC5 /* UserPaoPaoRegister_top_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1278DA1DDA96A60067AEC5 /* UserPaoPaoRegister_top_bg.png */; };
+		DF300D101E02816700AC23CC /* bankcar_del@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF300D0E1E02816700AC23CC /* bankcar_del@3x.png */; };
+		DF300D111E02816700AC23CC /* bankcar_del@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF300D0F1E02816700AC23CC /* bankcar_del@2x.png */; };
 		DF3B4F0D1DF560F200583D24 /* WebTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF3B4F0C1DF560F200583D24 /* WebTestVC.m */; };
 		DF539F041DD5932900AF228F /* UserPayTypeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF539F031DD5932900AF228F /* UserPayTypeTableViewCell.m */; };
 		DF539F091DD595F400AF228F /* user_payTyple_alipay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF539F051DD595F400AF228F /* user_payTyple_alipay@2x.png */; };
@@ -1013,6 +1015,8 @@
 		DF08E8871DD1C39B003E4DD9 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		DF1278DA1DDA96A60067AEC5 /* UserPaoPaoRegister_top_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UserPaoPaoRegister_top_bg.png; sourceTree = "<group>"; };
 		DF1278DC1DDA9B740067AEC5 /* CustomDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomDefine.h; sourceTree = "<group>"; };
+		DF300D0E1E02816700AC23CC /* bankcar_del@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bankcar_del@3x.png"; sourceTree = "<group>"; };
+		DF300D0F1E02816700AC23CC /* bankcar_del@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bankcar_del@2x.png"; sourceTree = "<group>"; };
 		DF3B4F0B1DF560F200583D24 /* WebTestVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebTestVC.h; sourceTree = "<group>"; };
 		DF3B4F0C1DF560F200583D24 /* WebTestVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebTestVC.m; sourceTree = "<group>"; };
 		DF539F021DD5932900AF228F /* UserPayTypeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserPayTypeTableViewCell.h; sourceTree = "<group>"; };
@@ -2891,6 +2895,8 @@
 		DFFAA7521DB744EF001CFBB5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DF300D0E1E02816700AC23CC /* bankcar_del@3x.png */,
+				DF300D0F1E02816700AC23CC /* bankcar_del@2x.png */,
 				DFBAA9821DF16525004315F9 /* login_close@2x.png */,
 				DFBAA9831DF16525004315F9 /* login_close@3x.png */,
 				DFBAA97E1DF159B9004315F9 /* user_header@3x.png */,
@@ -3293,6 +3299,7 @@
 				DFBAA97D1DF149AD004315F9 /* singIn_n@2x.png in Resources */,
 				DF7F1BF01DCDD5F200D2242B /* juming_on@2x.png in Resources */,
 				DFE178651DD555C100E06F21 /* cell_tousu@2x.png in Resources */,
+				DF300D111E02816700AC23CC /* bankcar_del@2x.png in Resources */,
 				DF0308A01DCD77E100E1EAB6 /* choose_on.png in Resources */,
 				04866BA91DD41E71008DA56B /* ZLCommitShopSectionView.xib in Resources */,
 				DFE178641DD555C100E06F21 /* cell_souchang@3x.png in Resources */,
@@ -3540,6 +3547,7 @@
 				DF630D551DD45D790076A92C /* purse_zhuanzhuang@3x.png in Resources */,
 				DF630D081DD413F00076A92C /* Images.xcassets in Resources */,
 				DFE178B21DD55B6000E06F21 /* userCenterBg.png in Resources */,
+				DF300D101E02816700AC23CC /* bankcar_del@3x.png in Resources */,
 				DF8DBCB91DD01A90002E574B /* ComplaintWuguanView.xib in Resources */,
 				04B862A51DD5786F00BDEA59 /* ZLGoodsDetailCell.xib in Resources */,
 				04770EF91DDEA409008B7505 /* ZLLoginTopView.xib in Resources */,

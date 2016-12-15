@@ -33,15 +33,22 @@
             self.bankNameLable = [superView newUILableWithText:@"中国建设银行" textColor:[UIColor blackColor] font:[UIFont systemFontOfSize:14]];
             self.cardTypeLable = [superView newUILableWithText:@"储蓄卡" textColor:[UIColor blackColor] font:[UIFont systemFontOfSize:14]];
             self.cardNumberLable = [superView newUILableWithText:@"**** **** **** 3243" textColor:[UIColor blackColor] font:[UIFont systemFontOfSize:14]];
+            self.deleteBtn = [superView newUIButton];
+            [self.deleteBtn setImage:IMG(@"bankcar_del.png") forState:UIControlStateNormal];
             
             [self.bankImgView makeConstraints:^(MASConstraintMaker *make) {
                 make.left.equalTo(view.left).offset(padding);
                 make.top.equalTo(view.top).offset(padding);
                 make.width.height.equalTo(50);
             }];
+            [self.deleteBtn makeConstraints:^(MASConstraintMaker *make) {
+                make.width.height.equalTo(30);
+                make.centerY.equalTo(_bankNameLable.centerY);
+                make.right.equalTo(view.right).offset(-padding);
+            }];
             [self.bankNameLable makeConstraints:^(MASConstraintMaker *make) {
                 make.left.equalTo(_bankImgView.right).offset(padding);
-                make.right.equalTo(view.right).offset(-padding);
+                make.right.equalTo(_deleteBtn.left).offset(-padding/2);
                 make.top.equalTo(_bankImgView.top);
             }];
             [self.cardTypeLable makeConstraints:^(MASConstraintMaker *make) {
