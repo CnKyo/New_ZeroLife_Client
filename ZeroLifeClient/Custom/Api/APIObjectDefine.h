@@ -238,6 +238,7 @@
 @property(nonatomic,assign) int                     user_id;         //用户id
 @property(nonatomic,strong) NSString *              cpm_staff;          // 被投诉者
 @property(nonatomic,assign) int                     cmut_id;         //小区id
+@property(nonatomic,strong) NSString *              cmut_name;         //社区名称
 @property(nonatomic,strong) NSString *              cpm_content;          // 投诉类容
 @property(nonatomic,strong) NSString *              cpm_handle_content;            //处理结果
 @property(nonatomic,strong) NSString *              cpm_add_time;            // 生成时间
@@ -256,6 +257,9 @@
 
 
 
+
+
+
 #pragma mark -  用户优惠券对象
 @interface CouponObject : NSObject
 @property (nonatomic,strong) NSString *             iD;         //
@@ -266,8 +270,15 @@
 
 #pragma mark -  用户银行卡对象
 @interface BankCardObject : NSObject
-@property (nonatomic,strong) NSString *             iD;         //
-@property (nonatomic,strong) NSString *             name;         //
+@property(nonatomic,assign) int                     bank_id;         //对应id
+@property(nonatomic,assign) int                     user_id;         //用户id
+@property(nonatomic,strong) NSString *              bank_name;          // 银行名称
+@property(nonatomic,strong) NSString *              bank_code;         //银行代码
+@property(nonatomic,strong) NSString *              bank_real_name;          // 银行真实名称
+@property(nonatomic,strong) NSString *              bank_type;            //银行类型
+@property(nonatomic,strong) NSString *              id_card;            // 银行卡号
+@property(nonatomic,strong) NSString *              id_card_url;            // 银行卡正面图片url
+@property(nonatomic,strong) NSString *              id_card_back_url;            // 银行卡背面图片url
 @end
 
 #pragma mark----****----收银台测试model

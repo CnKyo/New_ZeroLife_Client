@@ -13,7 +13,7 @@
 #import "UserIDAuthVC.h"
 #import "UserAddressTVC.h"
 #import "UserPaoPaoRegisterVC.h"
-#import "UserComplaintAddVC.h"
+#import "UserComplaintUpVC.h"
 #import <JKCategories/UIButton+JKImagePosition.h>
 #import "CustomBtnView.h"
 #import "FavoriteTVC.h"
@@ -357,7 +357,7 @@
             [self.navigationController pushViewController:vc animated:YES];
             
         } else if (indexPath.row == 2) {
-            UserComplaintAddVC *vc = [[UserComplaintAddVC alloc] init];
+            UserComplaintUpVC *vc = [[UserComplaintUpVC alloc] init];
             vc.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:vc animated:YES];
             
