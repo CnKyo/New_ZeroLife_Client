@@ -58,6 +58,8 @@
 		041789D71DE03C1500D55EA7 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 041789D61DE03C1500D55EA7 /* WebKit.framework */; };
 		041BD65B1DF5380300057756 /* ZLSkuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 041BD6591DF5380300057756 /* ZLSkuCell.m */; };
 		041BD65C1DF5380300057756 /* ZLSkuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 041BD65A1DF5380300057756 /* ZLSkuCell.xib */; };
+		0425E4251E03B651007D742B /* MTVersionHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0425E4221E03B651007D742B /* MTVersionHelper.m */; };
+		0425E4261E03B651007D742B /* MTVersionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0425E4241E03B651007D742B /* MTVersionModel.m */; };
 		043347911DF6519700052FBE /* LDXScore.m in Sources */ = {isa = PBXBuildFile; fileRef = 043347901DF6519700052FBE /* LDXScore.m */; };
 		043BFAE61DF68C4E0037A835 /* mCheckMoreActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 043BFAE41DF68C4E0037A835 /* mCheckMoreActivityView.m */; };
 		043BFAE71DF68C4E0037A835 /* mCheckMoreActivityView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043BFAE51DF68C4E0037A835 /* mCheckMoreActivityView.xib */; };
@@ -653,6 +655,10 @@
 		041BD6581DF5380300057756 /* ZLSkuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLSkuCell.h; sourceTree = "<group>"; };
 		041BD6591DF5380300057756 /* ZLSkuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLSkuCell.m; sourceTree = "<group>"; };
 		041BD65A1DF5380300057756 /* ZLSkuCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLSkuCell.xib; sourceTree = "<group>"; };
+		0425E4211E03B651007D742B /* MTVersionHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTVersionHelper.h; sourceTree = "<group>"; };
+		0425E4221E03B651007D742B /* MTVersionHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTVersionHelper.m; sourceTree = "<group>"; };
+		0425E4231E03B651007D742B /* MTVersionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTVersionModel.h; sourceTree = "<group>"; };
+		0425E4241E03B651007D742B /* MTVersionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTVersionModel.m; sourceTree = "<group>"; };
 		0433478F1DF6519700052FBE /* LDXScore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDXScore.h; sourceTree = "<group>"; };
 		043347901DF6519700052FBE /* LDXScore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDXScore.m; sourceTree = "<group>"; };
 		043BFAE31DF68C4E0037A835 /* mCheckMoreActivityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mCheckMoreActivityView.h; sourceTree = "<group>"; };
@@ -1622,6 +1628,17 @@
 				04D64D6B1DC9CCA5004E8859 /* ZLHomeLocationView.xib */,
 			);
 			name = ZLHomeLocationView;
+			sourceTree = "<group>";
+		};
+		0425E4201E03B651007D742B /* ZLCheckAppVersion */ = {
+			isa = PBXGroup;
+			children = (
+				0425E4211E03B651007D742B /* MTVersionHelper.h */,
+				0425E4221E03B651007D742B /* MTVersionHelper.m */,
+				0425E4231E03B651007D742B /* MTVersionModel.h */,
+				0425E4241E03B651007D742B /* MTVersionModel.m */,
+			);
+			path = ZLCheckAppVersion;
 			sourceTree = "<group>";
 		};
 		0433478E1DF6519700052FBE /* LDXScore */ = {
@@ -3080,6 +3097,7 @@
 		DFFAA7531DB744EF001CFBB5 /* OpenSourceLib */ = {
 			isa = PBXGroup;
 			children = (
+				0425E4201E03B651007D742B /* ZLCheckAppVersion */,
 				044021A81DF94A4300234066 /* ZLImgBtn */,
 				04721A401DE4569100CE8639 /* StarView */,
 				047219BB1DE3E66B00CE8639 /* HXImagePicker */,
@@ -3759,6 +3777,7 @@
 				0409177D1DCC679900DB2568 /* ZLSuperMarketHeaderView.m in Sources */,
 				DFA135561DD6CB0400805BA2 /* TransferAccountHistoryTableViewCell.m in Sources */,
 				DF539F111DD5991500AF228F /* UserCouponVC.m in Sources */,
+				0425E4261E03B651007D742B /* MTVersionModel.m in Sources */,
 				DF7D0A231DBA0023005A62A7 /* ImageTextTableViewCell.m in Sources */,
 				04A8DA111DDAB1FF000CE048 /* ZLPPTOrderDetailCell.m in Sources */,
 				DF7D0A1D1DBA0019005A62A7 /* CookTVC.m in Sources */,
@@ -3904,6 +3923,7 @@
 				04A7632F1DDC42590061E2B0 /* ZLPPTReleaseShorSendCell.m in Sources */,
 				04162DF81DCB2C9300FB4229 /* ZLHomeCoupCell.m in Sources */,
 				047109C91DE294BF00CFA292 /* ZLORderReturnCell.m in Sources */,
+				0425E4251E03B651007D742B /* MTVersionHelper.m in Sources */,
 				DF7F1BE61DCDD0CF00D2242B /* HMSegmentedControl.m in Sources */,
 				04B862A01DD5732B00BDEA59 /* ZLGoodsDetailWithWeb.m in Sources */,
 				04721A501DE4569100CE8639 /* LHRatingView.m in Sources */,

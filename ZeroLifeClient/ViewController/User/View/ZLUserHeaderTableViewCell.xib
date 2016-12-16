@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -16,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="298"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="297.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="297"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="userCenterBg.png" translatesAutoresizingMaskIntoConstraints="NO" id="pzN-6o-fvF">
@@ -199,6 +199,7 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="mBgkImg" destination="pzN-6o-fvF" id="1Wb-gs-Csv"/>
                 <outlet property="paopaoInfoView" destination="5PL-3w-SJt" id="kHN-95-WlS"/>
                 <outlet property="paopaoLevelLable" destination="tEw-zQ-qUq" id="TxC-wy-psB"/>
                 <outlet property="paopaoProgressView" destination="aIN-Qx-RpY" id="e47-Nf-37e"/>

@@ -1297,10 +1297,27 @@ static const CGFloat mTopH = 156;
         [self showErrorStatus:@"请选择数量！"];
         return;
     }
-    [ZLAddObj saveToDB];
-
+    
     
     NSArray *mLKDArr =  [LKDBHelperGoodsObj searchWithWhere:[NSString stringWithFormat:@"%d",self.mShopObj.shop_id]];
+    
+    BOOL mIsNeedAdd = YES;
+    
+    for (LKDBHelperGoodsObj *old in mLKDArr) {
+        
+        if ([ZLAddObj.mSpe.mSpeGoodsName isEqualToString:old.mSpe.mSpeGoodsName] && ZLAddObj.mSKUID == old.mSKUID) {
+            mIsNeedAdd = NO;
+            old.mNum+=ZLAddObj.mNum;
+            [old updateToDB];
+            break;
+            
+        }
+    }
+    if (mIsNeedAdd) {
+        [ZLAddObj saveToDB];
+
+    }
+
 
     [self updateBottomView:mAddShopCarEx];
     [self hiddenSpeView];
