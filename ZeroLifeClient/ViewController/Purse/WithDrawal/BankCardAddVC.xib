@@ -15,7 +15,7 @@
                 <outlet property="bankCardNumberField" destination="3bL-qy-sbg" id="hGZ-oh-mq1"/>
                 <outlet property="doneBtn" destination="4qV-MF-6Sm" id="cyy-Ln-6in"/>
                 <outlet property="idCardField" destination="LbJ-vg-8iP" id="UgB-Y7-wzp"/>
-                <outlet property="realNameField" destination="aLT-0v-eYX" id="fN5-1p-8Re"/>
+                <outlet property="realNameField" destination="xB4-qm-MeR" id="RX2-zO-aYA"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -136,7 +136,7 @@
                             <rect key="frame" x="83" y="0.0" width="282" height="50"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            <textInputTraits key="textInputTraits"/>
                         </textField>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -174,7 +174,7 @@
                             <rect key="frame" x="83" y="0.0" width="282" height="50"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
                         </textField>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

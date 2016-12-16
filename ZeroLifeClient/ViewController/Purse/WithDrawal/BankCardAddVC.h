@@ -12,7 +12,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *bankCardNumberField;
 @property (weak, nonatomic) IBOutlet UITextField *bankCardMobileField;
 
-
 @property (weak, nonatomic) IBOutlet UITextField *realNameField;
 @property (weak, nonatomic) IBOutlet UITextField *idCardField;
 

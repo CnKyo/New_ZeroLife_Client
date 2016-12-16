@@ -9,6 +9,7 @@
 #import "BankCardTVC.h"
 #import "BankCardTableViewCell.h"
 #import "BankCardAddVC.h"
+#import "SecurityPasswordVC.h"
 
 @interface BankCardTVC ()
 
@@ -92,11 +93,39 @@
             cell = [[BankCardTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
             cell.selectionStyle = UITableViewCellSelectionStyleGray;
         }
+        BankCardObject *item = [self.tableArr objectAtIndex:indexPath.row];
+        cell.bankNameLable.text = [NSString compIsNone:item.bank_name];
+        cell.cardTypeLable.text = [NSString compIsNone:item.bank_type];
+        cell.cardNumberLable.text = [NSString compIsNone:item.bank_card_val];
         
         //删除
         [cell.deleteBtn jk_addActionHandler:^(NSInteger tag) {
-            [SVProgressHUD showSuccessWithStatus:@"删除成功!"];
+            
+            SecurityPasswordAlertView *alertView = [[SecurityPasswordAlertView alloc] init];
+            __strong __typeof(SecurityPasswordAlertView *)strongSelf = alertView;
+            alertView.inputPwdCallBack = ^(NSString* pwd) {
+                [strongSelf close];
+                
+                [SVProgressHUD showWithStatus:@"银行卡删除中..."];
+                [[APIClient sharedClient] bankCardDeleteWithTag:self bank_id:item.bank_id call:^(APIObject *info) {
+                    if (info.code == RESP_STATUS_YES) {
+                        if (self.tableArr.count > 1) {
+                            [self.tableArr removeObjectAtIndex:indexPath.row];
+                            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+                        } else {
+                            [self.tableArr removeAllObjects];
+                            [self.tableView reloadData];
+                        }
+                        
+                        
+                        [SVProgressHUD showSuccessWithStatus:info.msg];
+                    } else
+                        [SVProgressHUD showErrorWithStatus:info.msg];
+                }];
+            };
+            [alertView showAlert];
         }];
+
         
         return cell;
     }
@@ -125,7 +154,10 @@
 - (void)reloadTableViewDataSource{
     [super reloadTableViewDataSource];
     
-    [self performSelector:@selector(donwData) withObject:nil afterDelay:0.5];
+    [[APIClient sharedClient] bankCardListWithTag:self call:^(NSArray *tableArr, APIObject *info) {
+        [self reloadWithTableArr:tableArr info:info];
+    }];
+    //[self performSelector:@selector(donwData) withObject:nil afterDelay:0.5];
 }
 
 -(void)donwData

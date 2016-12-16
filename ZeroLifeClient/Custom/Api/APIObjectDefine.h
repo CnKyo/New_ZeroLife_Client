@@ -28,6 +28,7 @@
 
 @interface NSString(QUAdd)
 -(NSString *)compSelfIsNone;
++(NSString *)compIsNone:(NSString *)str;
 +(NSString *)houseIsOwner:(BOOL)is_owner; //得到房主租客文字
 +(NSString *)strUserSexType:(kUserSexType)type;  //得到性别文字
 +(NSString *)urlWithExtra:(NSString *)str;  //组合url地址
@@ -274,9 +275,13 @@
 @property(nonatomic,assign) int                     user_id;         //用户id
 @property(nonatomic,strong) NSString *              bank_name;          // 银行名称
 @property(nonatomic,strong) NSString *              bank_code;         //银行代码
-@property(nonatomic,strong) NSString *              bank_real_name;          // 银行真实名称
 @property(nonatomic,strong) NSString *              bank_type;            //银行类型
-@property(nonatomic,strong) NSString *              id_card;            // 银行卡号
+@property(nonatomic,strong) NSString *              bank_card;            // 银行卡号
+@property(nonatomic,strong) NSString *              bank_card_val;            // 银行卡-模糊
+@property(nonatomic,strong) NSString *              bank_mobile;            //银行卡预留手机号
+@property(nonatomic,strong) NSString *              bank_real_name;            //银行卡对应真实姓名
+@property(nonatomic,strong) NSString *              id_card;            // 身份证号
+@property(nonatomic,strong) NSString *              id_card_val;            // 身份证号-模糊
 @property(nonatomic,strong) NSString *              id_card_url;            // 银行卡正面图片url
 @property(nonatomic,strong) NSString *              id_card_back_url;            // 银行卡背面图片url
 @end
