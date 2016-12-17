@@ -10,6 +10,6 @@
 
 @interface ZLSuperMarketCommitOrderViewController : CustomVC
 ///购物车数据源
-@property (strong,nonatomic)NSArray *mShopCarDataSource;
+@property (strong,nonatomic)ZLPreOrderObj *mPreOrder;
 
 @end

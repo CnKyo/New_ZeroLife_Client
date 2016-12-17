@@ -1569,23 +1569,35 @@
  @param mGoods 商品json数组
  @param block 返回值
  */
-- (void)ZLCommitOrder:(int)mShopId andGoodsArr:(NSString *)mGoods block:(void (^)(APIObject *mBaseObj))block{
+- (void)ZLCommitOrder:(int)mShopId andGoodsArr:(NSString *)mGoods block:(void (^)(APIObject *mBaseObj,ZLPreOrderObj *mPreOrder))block{
 
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    if (user.user_id > 0) {
+        NSMutableDictionary* para = [NSMutableDictionary dictionary];
+        
+        [para setInt:[ZLUserInfo ZLCurrentUser].user_id forKey:@"user_id"];
+        
+        if (mShopId) {
+            [para setInt:mShopId forKey:@"shop_id"];
+        }
+        
+        [para setObject:mGoods forKey:@"goods"];
+        
+        [self loadAPIWithTag:self path:@"/preorder/pre_products" parameters:para call:^(APIObject *info) {
+            if (info.code == RESP_STATUS_YES) {
+                block(info,[ZLPreOrderObj mj_objectWithKeyValues:info.data]);
+            }else{
+                block(info,nil);
+            }
+            
+        }];
+        
+    }else{
+        block([APIObject infoWithReLoginErrorMessage:@"请重新登陆"],nil);
 
-    NSMutableDictionary* para = [NSMutableDictionary dictionary];
-
-    [para setInt:[ZLUserInfo ZLCurrentUser].user_id forKey:@"user_id"];
-    
-    if (mShopId) {
-        [para setInt:mShopId forKey:@"shop_id"];
     }
     
-    [para setObject:mGoods forKey:@"goods_list"];
 
-    [self loadAPIWithTag:self path:@"/preorder/preorder_info" parameters:para call:^(APIObject *info) {
-
-        block(info);
-    }];
     
 
 

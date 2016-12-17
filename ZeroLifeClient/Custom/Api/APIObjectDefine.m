@@ -865,3 +865,27 @@ bool m_bind = NO;
 
 @end
 
+
+@implementation ZLPreOrderObj
++ (NSDictionary *)mj_objectClassInArray{
+    
+    return @{@"campaigns":@"ZLPreOrderCampains",@"coupons":@"ZLPreOrderCoupons",@"goods":@"ZLPreOrderGoods"};
+}
+
+
+@end
+@implementation ZLPreOrderGoods
+
+
+
+@end
+@implementation ZLPreOrderCoupons
+
+
+
+@end
+@implementation ZLPreOrderCampains
+
+
+
+@end

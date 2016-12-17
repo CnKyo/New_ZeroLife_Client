@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "APIObjectDefine.h"
 #import "IQTextView.h"
 
 ///设置代理
@@ -50,5 +50,8 @@
 ///设置代理
 @property (strong, nonatomic) id <ZLCommitDelegate>delegate;
 
+@property (strong,nonatomic) ZLPreOrderGoods *mGoodsObj;
+
+@property (strong,nonatomic) ZLPreOrderObj *mPreOrderObj;
 
 @end

@@ -256,8 +256,8 @@
 
     for (LKDBHelperGoodsObj *mGoods in mAddArr) {
         [mPara setInt:mGoods.mGoodsId forKey:@"pro_id"];
-        [mPara setInt:mGoods.mExtObj.mGoodsNum forKey:@"num"];
-        [mPara setInt:mGoods.mCampId forKey:@"cam_id"];
+        [mPara setInt:mGoods.mExtObj.mGoodsNum forKey:@"odrg_number"];
+        [mPara setInt:mGoods.mCampId forKey:@"cam_gid"];
 
         for (int i =0;i<mGoods.mGoodsSKU.count;i++) {
             ZLSpeObj *mSpe = mGoods.mGoodsSKU[i];
@@ -273,16 +273,18 @@
                 mContent = [mContent stringByAppendingString:[NSString stringWithFormat:@"%@,",mSpe.mSpeGoodsName]];
             }
         }
-        [mPara setObject:mContent forKey:@"standard_val_note"];
+        [mPara setObject:mContent forKey:@"odrg_spec"];
    
         [mPayArr addObject:mPara];
     }
-    [self showErrorStatus:@"正在提交订单..."];
-    [[APIClient sharedClient] ZLCommitOrder:self.mShopId andGoodsArr:[Util arrToJson:mPayArr] block:^(APIObject *mBaseObj) {
+    
+    [self showWithStatus:@"正在提交订单..."];
+    [[APIClient sharedClient] ZLCommitOrder:self.mShopId andGoodsArr:[Util arrToJson:mPayArr] block:^( APIObject *mBaseObj,ZLPreOrderObj *mPreOrder) {
         if (mBaseObj.code == RESP_STATUS_YES) {
             [self dismiss];
             ZLSuperMarketCommitOrderViewController *ZLCommitVC = [ZLSuperMarketCommitOrderViewController new];
-            ZLCommitVC.mShopCarDataSource = mAddArr;
+            ZLCommitVC.mPreOrder = [ZLPreOrderObj new];
+            ZLCommitVC.mPreOrder =  mPreOrder;
             [self pushViewController:ZLCommitVC];
         }else{
             [self showErrorStatus:mBaseObj.msg];

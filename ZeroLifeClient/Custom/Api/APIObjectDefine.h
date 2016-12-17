@@ -1150,3 +1150,116 @@
 
 @end
 
+
+@interface ZLPreOrderObj : NSObject
+
+@property (assign,nonatomic) float deliver_price_free;
+
+@property (assign,nonatomic) int shop_id;
+
+@property (strong,nonatomic) NSArray* campaigns;
+
+@property (strong,nonatomic) NSString* shop_logo;
+
+@property (strong,nonatomic) NSString* shop_name;
+
+@property (assign,nonatomic) float totalMoney;
+
+@property (assign,nonatomic) float payMoney;
+
+@property (assign,nonatomic) int odr_type;
+
+@property (strong,nonatomic) NSArray* coupons;
+
+@property (assign,nonatomic) float deliver_price;
+
+@property (assign,nonatomic) float campaignMoney;
+
+@property (strong,nonatomic) NSArray* goods;
+
+@property (assign,nonatomic) int deliver_id;
+
+@property (strong,nonatomic) NSString* sign;
+#pragma mark----****----确认订单扩展字段
+///配送方式
+@property (assign,nonatomic) int mSendType;
+///联系人
+@property (strong,nonatomic) NSString* mConnectPepole;
+///联系地址
+@property (strong,nonatomic) NSString* mConnectAddress;
+///备注
+@property (strong,nonatomic) NSString* mNote;
+///选择优惠卷优惠金额
+@property (assign,nonatomic) float mCoupMoney;
+
+
+@end
+
+
+@interface ZLPreOrderGoods : NSObject
+
+@property (assign,nonatomic) int cam_gid;
+
+@property (strong,nonatomic) NSString* odrg_img;
+
+@property (assign,nonatomic) int odrg_number;
+
+@property (assign,nonatomic) float odrg_price;
+
+@property (strong,nonatomic) NSString* odrg_pro_name;
+
+@property (strong,nonatomic) NSString* odrg_spec;
+
+@property (assign,nonatomic) int pro_id;
+
+@property (assign,nonatomic) int sku_cost;
+
+@property (assign,nonatomic) int sku_id;
+
+@end
+
+@interface ZLPreOrderCoupons : NSObject
+
+@property (strong,nonatomic) NSString* cuc_add_time;
+
+@property (assign,nonatomic) int cuc_id;
+
+@property (strong,nonatomic) NSString* cuc_overdue;
+
+@property (strong,nonatomic) NSString* cuc_state;
+
+@property (strong,nonatomic) NSString* cup_author;
+
+@property (strong,nonatomic) NSString* cup_content;
+
+@property (assign,nonatomic) int cup_id;
+
+@property (assign,nonatomic) int cup_is_shop;
+
+@property (strong,nonatomic) NSString* cup_logo;
+
+@property (assign,nonatomic) float cup_min_price;
+
+@property (strong,nonatomic) NSString* cup_name;
+
+@property (assign,nonatomic) int cup_mould_id;
+
+@property (assign,nonatomic) float cup_price;
+
+@property (assign,nonatomic) int user_id;
+
+@end
+
+@interface ZLPreOrderCampains : NSObject
+
+@property (assign,nonatomic) int cam_act_satisfy;
+
+@property (assign,nonatomic) int cam_id;
+
+@property (strong,nonatomic) NSString* cam_name;
+
+@property (assign,nonatomic) int cam_satisfy;
+
+@property (assign,nonatomic) int cam_type;
+
+@end

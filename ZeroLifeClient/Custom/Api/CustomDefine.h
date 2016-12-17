@@ -33,6 +33,13 @@
 #define AMAP_KEY @"7970dba38f00e9b34aed65fb0bd29194"
 
 
+#define ZLDefaultGoodsImg           [UIImage imageNamed:@"ZLDefault_Img"]
+#define ZLDefaultShopImg           [UIImage imageNamed:@"ZLDefault_Shop"]
+#define ZLDefaultBannerImg           [UIImage imageNamed:@"ZLDefault_Banner"]
+#define ZLDefaultAvatorImg           [UIImage imageNamed:@"ZLDefault_Avator"]
+#define ZLDefaultClassImg           [UIImage imageNamed:@"ZLDefault_Green"]
+
+
 #define ColorRGB(_R_, _G_, _B_)       ([UIColor colorWithRed:_R_/255.0f green:_G_/255.0f blue:_B_/255.0f alpha:1])
 
 #define COLOR(r,g,b)                [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:1]

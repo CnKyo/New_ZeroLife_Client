@@ -39,5 +39,21 @@
 }
 
 
+- (void)setMGoodsObj:(ZLPreOrderGoods *)mGoodsObj{
+
+    [self.mGoodsLogo sd_setImageWithURL:[NSURL URLWithString:mGoodsObj.odrg_img] placeholderImage:ZLDefaultGoodsImg];
+    self.mGoodsName.text = mGoodsObj.odrg_pro_name;
+    self.mGoodsPrice.text = [NSString stringWithFormat:@"¥%.2f元    数量：%d",mGoodsObj.odrg_price,mGoodsObj.odrg_number];
+    
+    
+    
+}
+
+- (void)setMPreOrderObj:(ZLPreOrderObj *)mPreOrderObj{
+
+    self.mPrice.text = [NSString stringWithFormat:@"¥%.2f元",mPreOrderObj.payMoney];
+    self.mCoupMoney.text = [NSString stringWithFormat:@"¥%.2f元",mPreOrderObj.deliver_price];
+}
+
 
 @end

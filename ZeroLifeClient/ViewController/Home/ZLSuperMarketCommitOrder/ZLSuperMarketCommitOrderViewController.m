@@ -101,12 +101,30 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     if (section == 0) {
 
-        
         mHeaderView = [ZLCommitOrderHeaderView initWithHeder];
         mHeaderView.delegate = self;
+        
+        NSString *mConnectP = self.mPreOrder.mConnectPepole;
+        NSString *mAddress = self.mPreOrder.mConnectAddress;
+        
+        if (mConnectP.length <= 0) {
+            
+            mConnectP = @"点击选择收货地址";
+
+        }
+        if (mAddress.length <= 0) {
+            mAddress = @"点击选择收货地址";
+        }
+        
+        mHeaderView.mName.text = mConnectP;
+        mHeaderView.mContent.text = mAddress;
+        
+        
         return mHeaderView;
     }else if (section == 1){
         mHeaderSectionView = [ZLCommitOrderHeaderView initWithShopSection];
+        mHeaderSectionView.mShopName.text = self.mPreOrder.shop_name;
+        [mHeaderSectionView.mShopLogo sd_setImageWithURL:[NSURL URLWithString:self.mPreOrder.shop_logo] placeholderImage:ZLDefaultShopImg];
         return mHeaderSectionView;
     }
     else{
@@ -120,7 +138,7 @@
     if (section == 0) {
         return 0;
     }else if (section == 1){
-        return 10;
+        return self.mPreOrder.goods.count;
     }
     else{
         return 1;
@@ -170,7 +188,7 @@
         
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
+        [cell setMGoodsObj:self.mPreOrder.goods[indexPath.row]];
         cell.delegate = self;
         
         return cell;
@@ -181,7 +199,7 @@
         ZLCommitOrderCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
+        [cell setMPreOrderObj:self.mPreOrder];
         return cell;
         
     }
