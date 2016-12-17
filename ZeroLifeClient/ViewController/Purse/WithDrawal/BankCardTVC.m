@@ -101,29 +101,34 @@
         //删除
         [cell.deleteBtn jk_addActionHandler:^(NSInteger tag) {
             
-            SecurityPasswordAlertView *alertView = [[SecurityPasswordAlertView alloc] init];
-            __strong __typeof(SecurityPasswordAlertView *)strongSelf = alertView;
-            alertView.inputPwdCallBack = ^(NSString* pwd) {
-                [strongSelf close];
-                
-                [SVProgressHUD showWithStatus:@"银行卡删除中..."];
-                [[APIClient sharedClient] bankCardDeleteWithTag:self bank_id:item.bank_id call:^(APIObject *info) {
-                    if (info.code == RESP_STATUS_YES) {
-                        if (self.tableArr.count > 1) {
-                            [self.tableArr removeObjectAtIndex:indexPath.row];
-                            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-                        } else {
-                            [self.tableArr removeAllObjects];
-                            [self.tableView reloadData];
-                        }
-                        
-                        
-                        [SVProgressHUD showSuccessWithStatus:info.msg];
-                    } else
-                        [SVProgressHUD showErrorWithStatus:info.msg];
-                }];
-            };
-            [alertView showAlert];
+            ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+            if ([user.wallet.pass isEqualToString:kWalletPayment_Pass]) {
+                SecurityPasswordAlertView *alertView = [[SecurityPasswordAlertView alloc] init];
+                __strong __typeof(SecurityPasswordAlertView *)strongSelf = alertView;
+                alertView.inputPwdCallBack = ^(NSString* pwd) {
+                    [strongSelf close];
+                    
+                    [SVProgressHUD showWithStatus:@"银行卡删除中..."];
+                    [[APIClient sharedClient] bankCardDeleteWithTag:self bank_id:item.bank_id security_password:pwd call:^(APIObject *info) {
+                        if (info.code == RESP_STATUS_YES) {
+                            if (self.tableArr.count > 1) {
+                                [self.tableArr removeObjectAtIndex:indexPath.row];
+                                [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+                            } else {
+                                [self.tableArr removeAllObjects];
+                                [self.tableView reloadData];
+                            }
+                            
+                            
+                            [SVProgressHUD showSuccessWithStatus:info.msg];
+                        } else
+                            [SVProgressHUD showErrorWithStatus:info.msg];
+                    }];
+                };
+                [alertView showAlert];
+            } else
+                [SVProgressHUD showErrorWithStatus:@"请先设置交易安全密码"];
+
         }];
 
         
