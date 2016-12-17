@@ -573,9 +573,82 @@
     ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
     if (user.user_id > 0) {
         NSMutableDictionary* paramDic = [NSMutableDictionary dictionary];
-        [paramDic setInt:6 forKey:@"user_id"];
+        [paramDic setInt:user.user_id forKey:@"user_id"];
         [paramDic setInt:real_id forKey:@"real_id"];
         [self loadAPIWithTag:tag path:@"/user/house/house_delete" parameters:paramDic call:^(APIObject *info) {
+            callback(info);
+        }];
+    } else
+        callback([APIObject infoWithReLoginErrorMessage:@"请重新登陆"]);
+}
+
+#pragma mark----****----用户银行卡接口
+/**
+ *   用户银行卡列表接口
+ *
+ *  @param tag      链接对象
+ *  @param callback 返回列表
+ */
+-(void)bankCardListWithTag:(NSObject *)tag call:(TableArrBlock)callback
+{
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    if (user.user_id > 0) {
+        NSMutableDictionary* paramDic = [NSMutableDictionary dictionary];
+        [paramDic setInt:user.user_id forKey:@"user_id"];
+        [self loadAPIWithTag:self path:@"/user/bankcard/bankcard_list" parameters:paramDic call:^(APIObject *info) {
+            if (info.code == RESP_STATUS_YES) {
+                NSArray *newArr = [BankCardObject mj_objectArrayWithKeyValuesArray:info.data];
+                callback(newArr, info);
+            } else
+                callback(nil, info);
+        }];
+    } else
+        callback(nil, [APIObject infoWithReLoginErrorMessage:@"请重新登陆"]);
+}
+
+/**
+ *  用户银行卡添加接口
+ *
+ *  @param tag              链接对象
+ *  @param bank_real_name   真实姓名
+ *  @param bank_mobile      电话号码
+ *  @param bank_card        银行卡号
+ *  @param id_card          身份证号码
+ *  @param callback         返回信息
+ */
+-(void)bankCardAddWithTag:(NSObject *)tag bank_real_name:(NSString *)bank_real_name bank_mobile:(NSString *)bank_mobile bank_card:(NSString *)bank_card id_card:(NSString *)id_card call:(void (^)(APIObject* info))callback
+{
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    if (user.user_id > 0) {
+        NSMutableDictionary *paramDic = [NSMutableDictionary dictionary];
+        [paramDic setInt:user.user_id forKey:@"user_id"];
+        [paramDic setNeedStr:bank_real_name forKey:@"bank_real_name"];
+        [paramDic setNeedStr:bank_mobile forKey:@"bank_mobile"];
+        [paramDic setNeedStr:bank_card forKey:@"bank_card"];
+        [paramDic setNeedStr:id_card forKey:@"id_card"];
+        [self loadAPIWithTag:tag path:@"/user/bankcard/bankcard_add" parameters:paramDic call:^(APIObject *info) {
+            callback(info);
+        }];
+    } else
+        callback([APIObject infoWithReLoginErrorMessage:@"请重新登陆"]);
+}
+
+
+/**
+ *  用户银行卡删除接口
+ *
+ *  @param tag      链接对象
+ *  @param bank_id  银行卡id
+ *  @param callback 返回信息
+ */
+-(void)bankCardDeleteWithTag:(NSObject *)tag bank_id:(int)bank_id call:(void (^)(APIObject* info))callback
+{
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    if (user.user_id > 0) {
+        NSMutableDictionary* paramDic = [NSMutableDictionary dictionary];
+        [paramDic setInt:user.user_id forKey:@"user_id"];
+        [paramDic setInt:bank_id forKey:@"bank_id"];
+        [self loadAPIWithTag:tag path:@"/user/bankcard/bankcard_delete" parameters:paramDic call:^(APIObject *info) {
             callback(info);
         }];
     } else
@@ -1388,9 +1461,55 @@
 }
 
 
-
 /**
  *  投诉建议-小区物管接口
+ *
+ *  @param tag      链接对象
+ *  @param content  投诉正文
+ *  @param cmut_id  小区id
+ *  @param callback 返回信息
+ */
+-(void)complaintCommunityUpWithTag:(NSObject *)tag content:(NSString *)content cmut_id:(int)cmut_id call:(void (^)(APIObject* info))callback
+{
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    if (user.user_id > 0) {
+        NSMutableDictionary *paramDic = [NSMutableDictionary dictionary];
+        [paramDic setInt:user.user_id forKey:@"user_id"];
+        [paramDic setInt:cmut_id forKey:@"cmut_id"];
+        [paramDic setNeedStr:content forKey:@"content"];
+        [self loadAPIWithTag:tag path:@"/user/complaint/complaint_community" parameters:paramDic call:^(APIObject *info) {
+            callback(info);
+        }];
+    } else
+        callback([APIObject infoWithReLoginErrorMessage:@"请重新登陆"]);
+}
+
+/**
+ *  投诉建议-小区居民接口
+ *
+ *  @param tag      链接对象
+ *  @param content  投诉正文
+ *  @param cmut_id  小区id
+ *  @param callback 返回信息
+ */
+-(void)complaintPeopleUpWithTag:(NSObject *)tag content:(NSString *)content cmut_id:(int)cmut_id call:(void (^)(APIObject* info))callback
+{
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    if (user.user_id > 0) {
+        NSMutableDictionary *paramDic = [NSMutableDictionary dictionary];
+        [paramDic setInt:user.user_id forKey:@"user_id"];
+        [paramDic setInt:cmut_id forKey:@"cmut_id"];
+        [paramDic setNeedStr:content forKey:@"content"];
+        [self loadAPIWithTag:tag path:@"/user/complaint/complaint_people" parameters:paramDic call:^(APIObject *info) {
+            callback(info);
+        }];
+    } else
+        callback([APIObject infoWithReLoginErrorMessage:@"请重新登陆"]);
+}
+
+
+/**
+ *  投诉建议-小区物管接口  【该方法已遗弃】
  *
  *  @param tag      链接对象
  *  @param content  投诉正文
@@ -1417,7 +1536,7 @@
 
 
 /**
- *  投诉建议-小区居民接口
+ *  投诉建议-小区居民接口 【该方法已遗弃】
  *
  *  @param tag      链接对象
  *  @param content  投诉正文

@@ -47,7 +47,7 @@ target 'ZeroLifeClient' do
   pod 'JHUD'
   pod 'RSKImageCropper'
   pod 'WebViewJavascriptBridge'
-
+  pod 'CardIO'
 
 
 

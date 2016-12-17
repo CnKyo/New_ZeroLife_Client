@@ -502,7 +502,8 @@
     
     
     [doneBtn jk_addActionHandler:^(NSInteger tag) {
-        SecurityPasswordAlertView *alertView = [[SecurityPasswordAlertView alloc] initWithParentView:self.view];
+        SecurityPasswordAlertView *alertView = [[SecurityPasswordAlertView alloc] init];
+        //SecurityPasswordAlertView *alertView = [[SecurityPasswordAlertView alloc] initWithParentView:self.view];
         alertView.inputPwdCallBack = ^(NSString* pwd) {
             
         };

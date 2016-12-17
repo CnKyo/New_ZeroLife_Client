@@ -55,6 +55,11 @@
         return self;
 }
 
++(NSString *)compIsNone:(NSString *)str
+{
+    return str.length>0 ? str : @"无";
+}
+
 +(NSString *)houseIsOwner:(BOOL)is_owner
 {
     return is_owner ? @"房主" : @"租客";
