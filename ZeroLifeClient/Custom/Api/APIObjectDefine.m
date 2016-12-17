@@ -306,14 +306,47 @@
 @end
 
 
+#pragma mark----****----用户订单
+@implementation OrderCommentObject
+@end
+
+
+@implementation OrderGoodsObject
+@end
+
+
+@implementation OrderCampaignObject
+@end
+
+
+@implementation OrderPayObject
+@end
+
+
+@implementation OrderExtObject
+@end
+
+@implementation OrderRepairBidObject
+@end
+
+@implementation OrderRepairObject
++ (NSDictionary *)mj_objectClassInArray
+{
+    return @{@"bid_list" : @"OrderRepairBidObject"};
+}
+@end
 
 @implementation OrderObject
-
++ (NSDictionary *)mj_objectClassInArray
+{
+    return @{@"goods_list" : @"OrderGoodsObject",
+             @"cam_list" : @"OrderCampaignObject"};
+}
 @end
 
 
 
-
+#pragma mark----****----用户地址房屋
 @implementation AddressObject
 +(AddressObject *)defaultAddress
 {
@@ -385,7 +418,7 @@
 @end
 
 
-
+#pragma mark----****----小区
 @implementation CommunityObject
 @end
 

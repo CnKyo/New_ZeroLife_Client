@@ -301,11 +301,166 @@
 
 
 #pragma mark -  用户订单对象
-@interface OrderObject : NSObject
-@property (nonatomic,strong) NSString *             iD;         //
-@property (nonatomic,assign) kOrderClassType        type;         //
-@property (nonatomic,assign) int                    status;         //
+
+//订单评价记录对象
+@interface OrderCommentObject : NSObject
+@property(nonatomic,assign) int                     com_id;         //id
+@property(nonatomic,assign) kOrderClassType         odr_type;         //订单类型
+@property(nonatomic,assign) int                     odr_id;         //订单id
+@property(nonatomic,assign) int                     user_id;         //评价用户id
+@property(nonatomic,strong) NSString *              user_nike;         //评价用户名称
+@property(nonatomic,strong) NSString *              user_header;         //评价用户id
+@property(nonatomic,assign) int                     com_tag_id;         //评价的对象id
+@property(nonatomic,assign) float                   com_star;         //评价星级(1-5): 好评数(Star>3),差评数(Star<3),中评数(Star=3)
+@property(nonatomic,strong) NSString *              com_content;         //评论文字
+@property(nonatomic,strong) NSString *              com_imgs;         //评论图片集合，用逗号分割
+@property(nonatomic,strong) NSString *              com_state;         //评论状态
+@property(nonatomic,strong) NSString *              com_add_time;         //评论时间
+@property(nonatomic,assign) BOOL                    com_is_security;         //是否匿名评价(０不匿名)
 @end
+
+//订单商品清单对象
+@interface OrderGoodsObject : NSObject
+@property(nonatomic,assign) int                     odrg_id;         //id
+@property(nonatomic,assign) int                     odr_id;         //订单id
+@property(nonatomic,assign) int                     pro_id;         //商品ID
+@property(nonatomic,assign) int                     cam_gid;         //活动商品ID
+@property(nonatomic,assign) int                     sku_id;         //规格SKU
+@property(nonatomic,assign) float                   sku_cost;         //商品成本
+@property(nonatomic,strong) NSString *              odrg_pro_name;         //商品名
+@property(nonatomic,strong) NSString *              odrg_spec;         //规格描述
+@property(nonatomic,assign) int                     odrg_number;         //数量
+@property(nonatomic,strong) NSString *              odrg_img;         //商品小图片url
+@property(nonatomic,strong) NSString *              odrg_img_repair;         //商品图(报修)
+@property(nonatomic,strong) NSString *              odrg_video_repair;         //商品视频(报修)
+@property(nonatomic,assign) float                   odrg_price;         //价格
+@end
+
+
+//订单参与活动信息对象
+@interface OrderCampaignObject : NSObject
+@property(nonatomic,assign) int                     odr_cid;         //id
+@property(nonatomic,assign) int                     odr_id;         //订单id
+@property(nonatomic,assign) int                     cam_id;         //活动ID
+@property(nonatomic,assign) int                     cam_type;         //活动类型
+@property(nonatomic,strong) NSString *              cam_name;         //活动标题
+@property(nonatomic,assign) float                   cam_satisfy;         //活动条件
+@property(nonatomic,assign) float                   cam_act_satisfy;         //订单活动优惠价格
+@end
+
+
+//支付订单信息对象
+@interface OrderPayObject : NSObject
+@property(nonatomic,assign) int                     pay_id;         //id
+@property(nonatomic,assign) kOrderClassType         odr_type;         //订单类型
+@property(nonatomic,assign) int                     odr_id;         //订单id
+@property(nonatomic,assign) int                     user_id;         //用户id
+@property(nonatomic,strong) NSString *              pay_user_name;         //用户名
+@property(nonatomic,strong) NSString *              odr_code;         //订单编号
+@property(nonatomic,strong) NSString *              pay_code;         //支付订单编号
+@property(nonatomic,assign) float                   pay_amount;         //支付金额
+@property(nonatomic,assign) int                     pay_channel;         //支付方式
+@property(nonatomic,strong) NSString *              pay_time;         //支付时间
+@property(nonatomic,strong) NSString *              pay_ext_code;         //外部编码
+@property(nonatomic,strong) NSString *              pay_currency;         //货币代码
+@property(nonatomic,strong) NSString *              pay_desc;         //描述
+@property(nonatomic,strong) NSString *              pay_memo;         //回调结果
+@property(nonatomic,strong) NSString *              pay_state;         //支付状态
+@property(nonatomic,strong) NSString *              pay_add_time;         //生成时间
+@end
+
+
+//订单扩展信息对象
+@interface OrderExtObject : NSObject
+@property(nonatomic,assign) int                     odr_id;         //订单id
+@property(nonatomic,strong) NSString *              odr_deliver_name;         //收货人
+@property(nonatomic,strong) NSString *              odr_deliver_phone;         //联系电话
+@property(nonatomic,strong) NSString *              odr_deliver_address;         //收货地址
+@property(nonatomic,strong) NSString *              odr_timing;         //定时服务时间
+@property(nonatomic,assign) int                     odr_deliver_type;         //配送方式
+@property(nonatomic,assign) float                   odr_deliver_fee;         //配送费
+@property(nonatomic,assign) int                     cuc_id;         //用户优惠券ID
+@property(nonatomic,assign) float                   ord_coupon_price;         //优惠券优惠金额
+@property(nonatomic,assign) int                     acc_uid;         //服务人员ID
+@property(nonatomic,strong) NSString *              odr_service_person;         //服务人员
+@property(nonatomic,strong) NSString *              odr_service_phone;         //服务电话
+@property(nonatomic,strong) NSString *              odr_pick_name;         //取件联系人
+@property(nonatomic,strong) NSString *              odr_pick_phone;         //取件联系电话
+@property(nonatomic,strong) NSString *              odr_pick_address;         //取件联系地址
+@end
+
+
+//订单基础信息对象
+@interface OrderObject : NSObject
+@property(nonatomic,assign) int                     odr_id;         //订单id
+@property(nonatomic,strong) NSString *              odr_code;         //订单编号
+@property(nonatomic,assign) kOrderClassType         odr_type;         //订单类型
+@property(nonatomic,assign) int                     odr_state;         //订单状态
+@property(nonatomic,assign) int                     cmut_id;         //社区ID
+@property(nonatomic,assign) int                     shop_id;         //店铺ID
+@property(nonatomic,strong) NSString *              odr_shop_name;         //店铺名
+@property(nonatomic,assign) int                     user_id;         //购买者ID
+@property(nonatomic,assign) int                     odr_pay_type;         //支付方式
+@property(nonatomic,strong) NSString *              odr_pay_name;         //支付名
+@property(nonatomic,strong) NSString *              pay_code;         //支付订单编号
+@property(nonatomic,strong) NSString *              odr_pay_time;         //支付时间
+@property(nonatomic,strong) NSString *              odr_add_time;         //生成时间
+@property(nonatomic,strong) NSString *              odr_finished_time;         //完成时间
+@property(nonatomic,assign) float                   odr_cost_price;         //成本价
+@property(nonatomic,assign) float                   odr_amount;         //订单总价
+@property(nonatomic,assign) float                   odr_benefit_price;         //优惠价
+@property(nonatomic,assign) float                   odr_pay_price;         //应支付价格
+@property(nonatomic,strong) OrderExtObject *        odr_ext;         //订单额外信息对象
+@property(nonatomic,strong) NSMutableArray *        goods_list;         //商品清单集合
+@property(nonatomic,strong) NSMutableArray *        cam_list;         //订单拥有优惠集合
+@end
+
+
+
+//订单竞价信息对象
+@interface OrderRepairBidObject : NSObject
+@property(nonatomic,assign) int                     bid_id;         //竞价信息id
+@property(nonatomic,assign) int                     rpr_id;         //报修单ID
+@property(nonatomic,assign) int                     shop_id;         //店铺ID
+@property(nonatomic,strong) NSString *              shop_name;         //店铺名
+@property(nonatomic,strong) NSString *              shop_logo;         //店铺小图
+@property(nonatomic,assign) float                   bid_price;         //竞价价格
+@property(nonatomic,strong) NSString *              bid_state;         //状态
+@property(nonatomic,strong) NSString *              rpr_code;         //报修单号
+@property(nonatomic,strong) NSString *              bid_add_time;         //竞价时间
+@end
+
+
+//订单报修单信息对象
+@interface OrderRepairObject : NSObject
+@property(nonatomic,assign) int                     rpr_id;         //报修单id
+@property(nonatomic,strong) NSString *              rpr_code;         //报修单编号
+@property(nonatomic,assign) int                     cmut_id;         //社区ID
+@property(nonatomic,assign) int                     user_id;         //发布者ID
+@property(nonatomic,strong) NSString *              rpr_user_name;         //发布者名
+@property(nonatomic,assign) int                     odr_state;         //订单状态
+@property(nonatomic,strong) NSString *              odr_add_time;         //生成时间
+@property(nonatomic,strong) NSString *              odr_finished_time;         //完成时间
+@property(nonatomic,assign) float                   odr_visiting_fee;         //上门费
+@property(nonatomic,assign) float                   odr_cost_price;         //成本价
+@property(nonatomic,assign) float                   odr_benefit_price;         //优惠价
+@property(nonatomic,assign) float                   odr_pay_price;         //应支付价格
+@property(nonatomic,assign) float                   odr_amount;         //订单总价
+@property(nonatomic,strong) NSString *              odr_deliver_name;         //收货人
+@property(nonatomic,strong) NSString *              odr_deliver_phone;         //联系电话
+@property(nonatomic,strong) NSString *              odr_deliver_address;         //收货地址
+@property(nonatomic,strong) NSString *              odr_timing;         //定时服务时间
+@property(nonatomic,strong) NSString *              odr_remark;         //备注
+@property(nonatomic,assign) int                     pro_cls_id;         //分类ID
+@property(nonatomic,strong) NSString *              odrg_pro_name;         //商品名
+@property(nonatomic,assign) float                   odrg_price;         //价格
+@property(nonatomic,strong) NSString *              odrg_img_url;         //商品小图片url
+@property(nonatomic,strong) NSString *              odrg_repair_img_url;         //报修图
+@property(nonatomic,strong) NSString *              odrg_repair_video_url;         //报修视频
+@property(nonatomic,strong) NSMutableArray *        bid_list;         //竞价信息集合
+@end
+
+
 
 #pragma mark----****----用户信息
 
