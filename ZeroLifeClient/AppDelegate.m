@@ -23,8 +23,6 @@
 #import <JWLaunchAd/JWLaunchAd.h>
 #import <AMapLocationKit/AMapLocationKit.h>
 #import <AMapFoundationKit/AMapFoundationKit.h>
-#import "MTVersionHelper.h"
-
 @interface AppDelegate ()
 
 @end
@@ -37,9 +35,7 @@
 //    //创建窗口的根控制器
 //    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
 //    self.window.backgroundColor = COLOR_NavBar;
-    ///检查更新app
-//    [MTVersionHelper checkNewVersion];
-
+    
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     [[UINavigationBar appearance] setBarTintColor:M_CO];
     [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
@@ -195,22 +191,5 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
-
-    MLLog(@"%@",sourceApplication);
-
-    MLLog(@"%@",annotation);
-
-    return YES;
-}
-
-- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url{
-
-    NSString *mPara = url.host;
-    MLLog(@"%@",mPara);
-    MLLog(@"%@",url);
-    
-    return YES;
-}
 
 @end

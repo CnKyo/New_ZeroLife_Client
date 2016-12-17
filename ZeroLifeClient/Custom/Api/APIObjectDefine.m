@@ -842,10 +842,10 @@ bool m_bind = NO;
 
 @implementation ZLHomeAnouncementListObj
 
-//+ (NSDictionary *)mj_objectClassInArray{
-//    
-//    return @{@"list":@"ZLHomeAnouncement"};
-//}
++ (NSDictionary *)mj_objectClassInArray{
+    
+    return @{@"list":@"ZLHomeAnouncement"};
+}
 
 @end
 

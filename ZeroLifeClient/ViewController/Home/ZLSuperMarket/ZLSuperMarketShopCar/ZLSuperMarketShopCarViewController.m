@@ -72,10 +72,6 @@
 - (void)reloadTableViewData{
     [super reloadTableViewData];
     
-    NSString*directory=NSHomeDirectory();
-    MLLog(@"directory:%@",directory);
-    
-    
     self.mShopCarArr = [LKDBHelperGoodsObj searchWithWhere:[NSString stringWithFormat:@"%d",self.mShopId]];
 
     [self ZLHideEmptyView];

@@ -10,10 +10,6 @@
 
 @interface ZLUserHeaderTableViewCell : UITableViewCell
 
-///背景图
-@property (weak, nonatomic) IBOutlet UIImageView *mBgkImg;
-
-
 @property (weak, nonatomic) IBOutlet UIView *userInfoView; //用户登录后显示ui
 @property (weak, nonatomic) IBOutlet UIView *userLoginView; //用户登录前显示ui
 
