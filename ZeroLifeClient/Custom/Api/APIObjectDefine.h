@@ -248,11 +248,12 @@
 
 ///钱包对象
 @interface WalletObject : NSObject
+@property (assign,nonatomic) int                    uwal_id;      ///钱包ID
 @property (assign,nonatomic) int                    user_id;           ///用户id
 @property (assign,nonatomic) float                  uwal_balance;       ///余额
-@property (assign,nonatomic) int                    uwal_id;      ///钱包ID
 @property (assign,nonatomic) int                    uwal_score;     ///积分
 @property (strong,nonatomic) NSString *             uwal_state;///钱包状态（normal 正常 locked 锁定）
+@property (strong,nonatomic) NSString *             pass;///是否有支付密码(NOPASS-无/PASS-有)
 @end
 
 
@@ -323,7 +324,7 @@
 @property (assign,nonatomic) int                    user_county; //所属县区
 @property (strong,nonatomic) NSString*              user_qrcode; //用户二维码图片url
 @property (strong,nonatomic) NSString*              user_emaill; //用户邮箱
-@property (assign,nonatomic) int                    user_is_notify; //是否开启推送消息功能（Y(1), N(0)）
+@property (assign,nonatomic) BOOL                   user_is_notify; //是否开启推送消息功能（Y(1), N(0)）
 @property (strong,nonatomic) NSString*              user_add_time; ///
 
 @property (nonatomic,strong) WalletObject*           wallet; //用户钱包信息

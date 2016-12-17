@@ -205,6 +205,11 @@ static NSString* const  kFileUploadPath_Apply       = @"U_APPLY";
 static NSString* const  kFileUploadPath_Orders      = @"U_ORDERS";
 
 
+//是否有支付密码(NOPASS-无/PASS-有)
+static NSString* const  kWalletPayment_NoPass      = @"NOPASS";
+static NSString* const  kWalletPayment_Pass      = @"PASS";
+
+
 typedef enum {
     kUserSexType_man = 1,//
     kUserSexType_woman = 2,//
