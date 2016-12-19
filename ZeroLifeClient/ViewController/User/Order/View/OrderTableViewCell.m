@@ -185,20 +185,53 @@
             self.goodsBaoxiuView.hidden = YES;
             self.goodsPaoPaoView.hidden = YES;
         {
-//            if (item.goods_list.count) {
-//                <#statements#>
-//            }
+            if (item.goods_list.count > 0) {
+                OrderGoodsObject *it = [item.goods_list objectAtIndex:0];
+                [self.goodsListView.imgView1 setImageWithURL:[NSURL URLWithString:it.odrg_img] placeholderImage:ZLDefaultGoodsImg];
+                self.goodsListView.imgView1.hidden = NO;
+            } else
+                self.goodsListView.imgView1.hidden = YES;
+            
+            if (item.goods_list.count > 2) {
+                OrderGoodsObject *it = [item.goods_list objectAtIndex:2];
+                [self.goodsListView.imgView2 setImageWithURL:[NSURL URLWithString:it.odrg_img] placeholderImage:ZLDefaultGoodsImg];
+                self.goodsListView.imgView2.hidden = NO;
+            } else
+                self.goodsListView.imgView2.hidden = YES;
+            
+            if (item.goods_list.count > 2) {
+                OrderGoodsObject *it = [item.goods_list objectAtIndex:2];
+                [self.goodsListView.imgView3 setImageWithURL:[NSURL URLWithString:it.odrg_img] placeholderImage:ZLDefaultGoodsImg];
+                self.goodsListView.imgView3.hidden = NO;
+            } else
+                self.goodsListView.imgView3.hidden = YES;
+            
+            self.goodsListView.countLable.text = [NSString stringWithFormat:@"共%lu件", (unsigned long)item.goods_list.count];
         }
             break;
         case kOrderClassType_baoxiu:
             self.goodsListView.hidden = YES;
             self.goodsBaoxiuView.hidden = NO;
             self.goodsPaoPaoView.hidden = YES;
+        {
+            OrderGoodsObject *it = [OrderGoodsObject new];
+            if (item.goods_list.count > 0)
+                it = [item.goods_list objectAtIndex:0];
+            
+            [self.goodsBaoxiuView reloadUIWithItem:it];
+        }
             break;
         case kOrderClassType_paopao:
             self.goodsListView.hidden = YES;
             self.goodsBaoxiuView.hidden = YES;
             self.goodsPaoPaoView.hidden = NO;
+        {
+            OrderGoodsObject *it = [OrderGoodsObject new];
+            if (item.goods_list.count > 0)
+                it = [item.goods_list objectAtIndex:0];
+            
+            [self.goodsPaoPaoView reloadUIWithItem:it];
+        }
             break;
         default:
             break;
@@ -207,6 +240,10 @@
     self.shopView.shopNameLable.text = [NSString compIsNone:item.odr_shop_name];
     //self.shopView.orderStatusLable.text = [NSString compIsNone:item.odr_shop_name];
     [self.shopView.shopIconImgView setImageWithURL:[NSURL URLWithString:item.odr_shop_img] placeholderImage:IMG(@"order_shop_icon.png")];
+    
+    
+    self.orderMoneyLable.text = [NSString stringWithFormat:@"合计：￥%.2f (含运费￥%.2f)", item.odr_amount, item.odr_amount];
+    self.orderTimeLable.text = item.odr_add_time;
 }
 
 @end

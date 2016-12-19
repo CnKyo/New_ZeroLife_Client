@@ -56,4 +56,11 @@
     return self;
 }
 
+-(void)reloadUIWithItem:(OrderGoodsObject *)item
+{
+    self.nameLable.text = [NSString compIsNone:item.odrg_pro_name];
+    self.msgLable.text = [NSString compIsNone:item.odrg_spec];
+    [self.imgView setImageWithURL:[NSURL URLWithString:item.odrg_img] placeholderImage:ZLDefaultGoodsImg];
+}
+
 @end

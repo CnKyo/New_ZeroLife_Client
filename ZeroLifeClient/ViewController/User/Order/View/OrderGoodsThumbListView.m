@@ -9,10 +9,7 @@
 #import "OrderGoodsThumbListView.h"
 
 @interface OrderGoodsThumbListView ()
-@property(nonatomic,strong) UIImageView *imgView1;
-@property(nonatomic,strong) UIImageView *imgView2;
-@property(nonatomic,strong) UIImageView *imgView3;
-@property(nonatomic,strong) UILabel *countLable;
+
 @end
 
 
@@ -29,9 +26,9 @@
         //UIColor *color = [UIColor grayColor];
         UIView *superView = self;
         
-        self.imgView1 = [superView newUIImageViewWithImg:IMG(@"choose_on.png")];
-        self.imgView2 = [superView newUIImageViewWithImg:IMG(@"choose_on.png")];
-        self.imgView3 = [superView newUIImageViewWithImg:IMG(@"choose_on.png")];
+        self.imgView1 = [superView newUIImageViewWithImg:ZLDefaultGoodsImg];
+        self.imgView2 = [superView newUIImageViewWithImg:ZLDefaultGoodsImg];
+        self.imgView3 = [superView newUIImageViewWithImg:ZLDefaultGoodsImg];
         UIImageView *imgView = [superView newUIImageViewWithImg:IMG(@"jiantou_hui.png")];
         
         
@@ -65,6 +62,7 @@
     }
     return self;
 }
+
 
 
 @end

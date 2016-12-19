@@ -10,6 +10,11 @@
 #import "UIView+AutoSize.h"
 #import "CustomDefine.h"
 
+#import "APIObjectDefine.h"
+#import <AFNetworking/UIImageView+AFNetworking.h>
+
 @interface BaoXiuGoodsView : UIView
+
+-(void)reloadUIWithItem:(OrderGoodsObject *)item;
 
 @end

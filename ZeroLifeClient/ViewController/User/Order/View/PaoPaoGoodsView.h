@@ -10,6 +10,9 @@
 #import "UIView+AutoSize.h"
 #import "CustomDefine.h"
 
-@interface PaoPaoGoodsView : UIView
+#import "APIObjectDefine.h"
+#import <AFNetworking/UIImageView+AFNetworking.h>
 
+@interface PaoPaoGoodsView : UIView
+-(void)reloadUIWithItem:(OrderGoodsObject *)item;
 @end
