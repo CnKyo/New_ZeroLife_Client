@@ -176,4 +176,37 @@
     }
 }
 
+-(void)reloadUIWithItem:(OrderObject *)item
+{
+    switch (item.odr_state) {
+        case kOrderClassType_goods:
+        case kOrderClassType_ganxi:
+            self.goodsListView.hidden = NO;
+            self.goodsBaoxiuView.hidden = YES;
+            self.goodsPaoPaoView.hidden = YES;
+        {
+//            if (item.goods_list.count) {
+//                <#statements#>
+//            }
+        }
+            break;
+        case kOrderClassType_baoxiu:
+            self.goodsListView.hidden = YES;
+            self.goodsBaoxiuView.hidden = NO;
+            self.goodsPaoPaoView.hidden = YES;
+            break;
+        case kOrderClassType_paopao:
+            self.goodsListView.hidden = YES;
+            self.goodsBaoxiuView.hidden = YES;
+            self.goodsPaoPaoView.hidden = NO;
+            break;
+        default:
+            break;
+    }
+    
+    self.shopView.shopNameLable.text = [NSString compIsNone:item.odr_shop_name];
+    //self.shopView.orderStatusLable.text = [NSString compIsNone:item.odr_shop_name];
+    [self.shopView.shopIconImgView setImageWithURL:[NSURL URLWithString:item.odr_shop_img] placeholderImage:IMG(@"order_shop_icon.png")];
+}
+
 @end

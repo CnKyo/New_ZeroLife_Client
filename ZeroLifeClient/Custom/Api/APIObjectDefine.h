@@ -399,6 +399,7 @@
 @property(nonatomic,assign) int                     cmut_id;         //社区ID
 @property(nonatomic,assign) int                     shop_id;         //店铺ID
 @property(nonatomic,strong) NSString *              odr_shop_name;         //店铺名
+@property(nonatomic,strong) NSString *              odr_shop_img;         //店铺logo url
 @property(nonatomic,assign) int                     user_id;         //购买者ID
 @property(nonatomic,assign) int                     odr_pay_type;         //支付方式
 @property(nonatomic,strong) NSString *              odr_pay_name;         //支付名

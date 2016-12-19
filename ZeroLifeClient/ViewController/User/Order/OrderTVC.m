@@ -153,7 +153,7 @@
     
     if (self.tableArr.count > 0) {
         OrderObject *item = [OrderObject new];
-        item.status = kOrderFixStatus_waitShopBidding;
+        item.odr_state = kOrderFixStatus_waitShopBidding;
         OrderDetailVC *vc = [[OrderDetailVC alloc] init];
         vc.classType = _classType;
         vc.item = item;
