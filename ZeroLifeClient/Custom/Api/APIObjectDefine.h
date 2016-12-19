@@ -265,7 +265,7 @@
 #pragma mark -  用户优惠券对象
 @interface CouponObject : NSObject
 @property (nonatomic,assign) int                    cuc_uid;         //用户优惠券ID
-@property (nonatomic,assign) kCouponType            cuc_state;
+@property (nonatomic,strong) NSString *             cuc_state;          //使用状态
 @property (nonatomic,strong) NSString *             cup_name;         //优惠券名称
 @property (nonatomic,strong) NSString *             cup_content;         //描述
 @property (nonatomic,strong) NSString *             cup_author;         //优惠券发放者名称
@@ -273,7 +273,7 @@
 @property (nonatomic,assign) float                  cup_price;         //折扣价格
 @property (nonatomic,assign) float                  cup_min_price;         //最低使用价格
 @property (nonatomic,strong) NSString *             cup_is_shop;         //是否为店铺发放
-@property (nonatomic,strong) NSString *             cuc_overdue;         //是否已过期
+@property (nonatomic,strong) NSString *             cuc_overdue;         //过期时间
 @property (nonatomic,strong) NSString *             cuc_add_time;         //
 //@property (nonatomic,strong) NSDate *             cuc_overdue;         //过期时间
 //@property (nonatomic,strong) NSDate *             cuc_add_time;         //
