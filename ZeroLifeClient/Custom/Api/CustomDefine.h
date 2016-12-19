@@ -213,8 +213,18 @@ static NSString* const  kFileUploadPath_Orders      = @"U_ORDERS";
 
 
 //是否有支付密码(NOPASS-无/PASS-有)
-static NSString* const  kWalletPayment_NoPass      = @"NOPASS";
-static NSString* const  kWalletPayment_Pass      = @"PASS";
+static NSString* const  kWalletPayment_NoPass       = @"NOPASS";
+static NSString* const  kWalletPayment_Pass         = @"PASS";
+
+
+
+// 用户红包、优惠券状态（创建，发放中，暂停发放，过期，未使用，已使用）
+// 1. 用户领取后的优惠券：NOUSE->ISUSED->OVERDUE
+// 2. 用户领取后的红包：CONFIRM->NOUSE->ISUSED
+static NSString* const  kCouponState_NoUse          = @"NOUSE";
+static NSString* const  kCouponState_IsUsed         = @"ISUSED";
+static NSString* const  kCouponState_Overdue        = @"OVERDUE";
+
 
 
 typedef enum {

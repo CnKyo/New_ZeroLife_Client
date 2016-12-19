@@ -193,14 +193,31 @@
         
         UIColor *bordColor = nil;
         NSString *typeStr = item.cup_name;
+        NSString *stateStr = @"";
         
-        bordColor = COLOR(253, 126, 0);
-        cell.view.imgView.image = IMG(@"user_coupon_jushe.png");
-        cell.view.statusLable.textColor = [UIColor whiteColor];
-        cell.view.timeLable.textColor = [UIColor whiteColor];
+        if ([item.cuc_state isEqualToString:kCouponState_NoUse]) {
+            stateStr = @"未使用";
+            bordColor = COLOR(253, 126, 0);
+            cell.view.imgView.image = IMG(@"user_coupon_jushe.png");
+            cell.view.statusLable.textColor = [UIColor whiteColor];
+            cell.view.timeLable.textColor = [UIColor whiteColor];
+            
+            
+        } else if ([item.cuc_state isEqualToString:kCouponState_IsUsed]) {
+            typeStr = @"已使用";
+            bordColor = COLOR(253, 87, 88);
+            cell.view.imgView.image = IMG(@"user_coupon_red.png");
+            cell.view.statusLable.textColor = [UIColor whiteColor];
+            cell.view.timeLable.textColor = [UIColor whiteColor];
+            
+        } else if ([item.cuc_state isEqualToString:kCouponState_Overdue]) {
+            typeStr = @"已过期";
+            bordColor = COLOR(222, 222, 222);
+            cell.view.imgView.image = IMG(@"user_coupon_gray.png");
+            cell.view.statusLable.textColor = COLOR(150, 150, 150);
+            cell.view.timeLable.textColor = COLOR(150, 150, 150);
+        }
 
-
-        
         NSDictionary *attrs = @{NSFontAttributeName : cell.view.typeLable.font};
         CGSize size = [typeStr sizeWithAttributes:attrs];
         [cell.view.typeLable updateConstraints:^(MASConstraintMaker *make) {
@@ -210,15 +227,16 @@
         NSDictionary* style = @{@"body" : @[[UIFont systemFontOfSize:25], bordColor],
                   @"u" : @[[UIFont systemFontOfSize:14], COLOR(253, 156, 16)]};
         
+        NSString *moneyStr = [NSString stringWithFormat:@"%.2f <u>元</u>", item.cup_price];
         cell.view.typeLable.text = typeStr;
         cell.view.layer.borderColor = bordColor.CGColor;
         cell.view.typeLable.layer.borderColor = bordColor.CGColor;
         cell.view.typeLable.textColor = bordColor;
-        cell.view.moneyLable.attributedText = [@"20 <u>元</u>" attributedStringWithStyleBook:style];
+        cell.view.moneyLable.attributedText = [moneyStr attributedStringWithStyleBook:style];
         
         cell.view.nameLable.text = [NSString compIsNone:item.cup_author];
         cell.view.desLable.text = [NSString compIsNone:item.cup_content];
-        cell.view.timeLable.text = item.cuc_overdue;
+        cell.view.timeLable.text = [item.cuc_overdue substringWithRange:NSMakeRange(0, 10)];
 
         return cell;
     }
