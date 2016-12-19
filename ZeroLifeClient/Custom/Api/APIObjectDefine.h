@@ -1319,6 +1319,7 @@
 @end
 
 @class AddressObject;
+@class ZLPreOrderCoupons;
 @interface ZLPreOrderObj : NSObject
 
 @property (assign,nonatomic) float deliver_price_free;
@@ -1351,8 +1352,10 @@
 #pragma mark----****----确认订单扩展字段
 ///配送方式
 @property (assign,nonatomic) ZLShopSendType mSendType;
-
+///收货地址
 @property (strong,nonatomic) AddressObject *mAddress;
+///优惠卷信息
+@property (strong,nonatomic) ZLPreOrderCoupons *mCoupon;
 ///备注
 @property (strong,nonatomic) NSString* mNote;
 ///选择优惠卷优惠金额

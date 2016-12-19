@@ -10,7 +10,16 @@
 #import "APIClient.h"
 
 @interface UserCouponVC : CustomVC
+///进入优惠卷页面类型
+@property (assign,nonatomic) ZLPushCouponVCType mPushType;
+
 @property (nonatomic, copy) void (^chooseCallBack)(CouponObject* item);
+
+
+@property (nonatomic, copy) void (^block)(ZLPreOrderCoupons *mCoupon);
+
+@property (nonatomic, strong) NSArray *mCoupArr;
+
 @end
 
 

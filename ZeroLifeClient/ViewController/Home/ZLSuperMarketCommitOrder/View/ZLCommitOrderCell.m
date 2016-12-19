@@ -72,8 +72,46 @@
     }else{
         [self.mSendType setTitle:@"店铺配送" forState:0];
     }
+    if (mPreOrderObj.mCoupon.cup_content.length>0) {
+        [self.mCoupBtn setTitle:mPreOrderObj.mCoupon.cup_content forState:0];
+        [self.mCoupBtn setTitleColor:[UIColor redColor] forState:0];
+    }else{
+    
+        [self.mCoupBtn setTitle:@"请选择优惠卷" forState:0];
+        [self.mCoupBtn setTitleColor:[UIColor lightGrayColor] forState:0];
+
+    }
+    
+}
+///限制输入长度50个字符
+#define TEXT_MAXLENGTH 50
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+
+    NSString *new = [textView.text stringByReplacingCharactersInRange:range withString:text];
+    NSInteger res;
+    
+    res= TEXT_MAXLENGTH-[new length];
+    
+    if(res >= 0){
+        return YES;
+    }
+    else{
+        NSRange rg = {0,[text length]+res};
+        if (rg.length>0) {
+            NSString *s = [text substringWithRange:rg];
+            [textView setText:[textView.text stringByReplacingCharactersInRange:range withString:s]];
+        }
+        return NO;
+    }
     
 }
 
+- (void)textViewDidEndEditing:(UITextView *)textView{
+    
+    if ([_delegate respondsToSelector:@selector(ZLCommitWithNote:)]) {
+        [_delegate ZLCommitWithNote:textView.text];
+    }
+    
+}
 
 @end

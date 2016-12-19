@@ -344,7 +344,12 @@ typedef enum{
     ZLShopSendTypeWithShop = 2,///2:店铺配送
 }ZLShopSendType;///社区超市订单配送方式
 
-
+typedef enum{
+    ///1:提交订单选择优惠卷页面
+    ZLPushCouponVCTypeWithCommitOrder = 1,
+    ///2:普通优惠卷页面
+    ZLPushCouponVCTypeWithCouponVC = 2,
+}ZLPushCouponVCType;///进入优惠卷vc页面类型
 
 
 #endif /* CustomDefine_h */

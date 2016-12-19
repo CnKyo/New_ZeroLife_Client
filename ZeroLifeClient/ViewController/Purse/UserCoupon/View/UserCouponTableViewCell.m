@@ -170,4 +170,123 @@
     // Configure the view for the selected state
 }
 
+- (void)setItem:(CouponObject *)item{
+    
+    
+    //        UIColor *bordColor = nil;
+    //        NSString *typeStr = @"";
+    //        if (indexPath.row == 0) {
+    //            typeStr = @"满减券";
+    //            bordColor = COLOR(253, 126, 0);
+    //            cell.view.imgView.image = IMG(@"user_coupon_jushe.png");
+    //            cell.view.statusLable.textColor = [UIColor whiteColor];
+    //            cell.view.timeLable.textColor = [UIColor whiteColor];
+    //
+    //
+    //        } else if (indexPath.row == 1) {
+    //            typeStr = @"立减券2";
+    //            bordColor = COLOR(253, 87, 88);
+    //            cell.view.imgView.image = IMG(@"user_coupon_red.png");
+    //            cell.view.statusLable.textColor = [UIColor whiteColor];
+    //            cell.view.timeLable.textColor = [UIColor whiteColor];
+    //
+    //        } else {
+    //            typeStr = @"立减券33";
+    //            bordColor = COLOR(222, 222, 222);
+    //            cell.view.imgView.image = IMG(@"user_coupon_gray.png");
+    //            cell.view.statusLable.textColor = COLOR(150, 150, 150);
+    //            cell.view.timeLable.textColor = COLOR(150, 150, 150);
+    //        }
+
+    
+    UIColor *bordColor = nil;
+    NSString *typeStr = item.cup_name;
+    
+    bordColor = COLOR(253, 126, 0);
+    self.view.imgView.image = IMG(@"user_coupon_jushe.png");
+    self.view.statusLable.textColor = [UIColor whiteColor];
+    self.view.timeLable.textColor = [UIColor whiteColor];
+    
+    
+    
+    NSDictionary *attrs = @{NSFontAttributeName : self.view.typeLable.font};
+    CGSize size = [typeStr sizeWithAttributes:attrs];
+    [self.view.typeLable updateConstraints:^(MASConstraintMaker *make) {
+        make.width.equalTo(size.width + 10);
+    }];
+    
+    NSDictionary* style = @{@"body" : @[[UIFont systemFontOfSize:25], bordColor],
+                            @"u" : @[[UIFont systemFontOfSize:14], COLOR(253, 156, 16)]};
+    
+    self.view.typeLable.text = typeStr;
+    self.view.layer.borderColor = bordColor.CGColor;
+    self.view.typeLable.layer.borderColor = bordColor.CGColor;
+    self.view.typeLable.textColor = bordColor;
+    self.view.moneyLable.attributedText = [@"20 <u>元</u>" attributedStringWithStyleBook:style];
+    
+    self.view.nameLable.text = [NSString compIsNone:item.cup_author];
+    self.view.desLable.text = [NSString compIsNone:item.cup_content];
+    self.view.timeLable.text = item.cuc_overdue;
+
+}
+
+- (void)setMCoup:(ZLPreOrderCoupons *)mCoup{
+
+    //        UIColor *bordColor = nil;
+    //        NSString *typeStr = @"";
+    //        if (indexPath.row == 0) {
+    //            typeStr = @"满减券";
+    //            bordColor = COLOR(253, 126, 0);
+    //            cell.view.imgView.image = IMG(@"user_coupon_jushe.png");
+    //            cell.view.statusLable.textColor = [UIColor whiteColor];
+    //            cell.view.timeLable.textColor = [UIColor whiteColor];
+    //
+    //
+    //        } else if (indexPath.row == 1) {
+    //            typeStr = @"立减券2";
+    //            bordColor = COLOR(253, 87, 88);
+    //            cell.view.imgView.image = IMG(@"user_coupon_red.png");
+    //            cell.view.statusLable.textColor = [UIColor whiteColor];
+    //            cell.view.timeLable.textColor = [UIColor whiteColor];
+    //
+    //        } else {
+    //            typeStr = @"立减券33";
+    //            bordColor = COLOR(222, 222, 222);
+    //            cell.view.imgView.image = IMG(@"user_coupon_gray.png");
+    //            cell.view.statusLable.textColor = COLOR(150, 150, 150);
+    //            cell.view.timeLable.textColor = COLOR(150, 150, 150);
+    //        }
+    
+    
+    UIColor *bordColor = nil;
+    NSString *typeStr = mCoup.cup_name;
+    
+    bordColor = COLOR(253, 126, 0);
+    self.view.imgView.image = IMG(@"user_coupon_jushe.png");
+    self.view.statusLable.textColor = [UIColor whiteColor];
+    self.view.timeLable.textColor = [UIColor whiteColor];
+    
+    
+    
+    NSDictionary *attrs = @{NSFontAttributeName : self.view.typeLable.font};
+    CGSize size = [typeStr sizeWithAttributes:attrs];
+    [self.view.typeLable updateConstraints:^(MASConstraintMaker *make) {
+        make.width.equalTo(size.width + 10);
+    }];
+    
+    NSDictionary* style = @{@"body" : @[[UIFont systemFontOfSize:25], bordColor],
+                            @"u" : @[[UIFont systemFontOfSize:14], COLOR(253, 156, 16)]};
+    
+    self.view.typeLable.text = typeStr;
+    self.view.layer.borderColor = bordColor.CGColor;
+    self.view.typeLable.layer.borderColor = bordColor.CGColor;
+    self.view.typeLable.textColor = bordColor;
+    self.view.moneyLable.attributedText = [@"20 <u>元</u>" attributedStringWithStyleBook:style];
+    
+    self.view.nameLable.text = [NSString compIsNone:mCoup.cup_author];
+    self.view.desLable.text = [NSString compIsNone:mCoup.cup_content];
+    self.view.timeLable.text = mCoup.cuc_overdue;
+
+}
+
 @end

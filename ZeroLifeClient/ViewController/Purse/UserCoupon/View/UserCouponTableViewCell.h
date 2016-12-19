@@ -24,4 +24,11 @@
 
 @interface UserCouponTableViewCell : UITableViewCell
 @property(nonatomic,strong) UserCouponTableView *view;
+
+
+@property(nonatomic,strong) CouponObject *item;
+
+@property(nonatomic,strong) ZLPreOrderCoupons *mCoup;
+
+
 @end

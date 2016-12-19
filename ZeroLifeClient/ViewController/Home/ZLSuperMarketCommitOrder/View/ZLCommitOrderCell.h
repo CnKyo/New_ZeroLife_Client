@@ -18,6 +18,8 @@
 - (void)ZLCommitWithSendTypeBtnSelected;
 ///选择优惠券
 - (void)ZLCommitWithCoupBtnSelected;
+///备注代理方法
+- (void)ZLCommitWithNote:(NSString *)mNote;
 
 @end
 

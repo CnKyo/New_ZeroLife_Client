@@ -24,7 +24,7 @@
     [super loadView];
     UIView *superView = self.view;
     int padding = 10;
-    
+    MLLog(@"%@",self.tableArr);
 //    UIView *topView = ({
 //        UIView *view = [superView newUIViewWithBgColor:[UIColor whiteColor]];
 //        UITextField *field = [view newUITextFieldWithPlaceholder:@"输入兑换码"];
@@ -148,80 +148,40 @@
 */
 
 #pragma mark -- tableviewDelegate
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
+}
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    if (self.mPushType == ZLPushCouponVCTypeWithCommitOrder) {
+        return self.mCoupArr.count;
+    }else {
+        return self.tableArr.count;
+    }
+}
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.tableArr.count > 0)
+
+    
+    if (self.tableArr.count > 0 || self.mCoupArr.count > 0)
         return 100;
     return [super tableView:tableView heightForRowAtIndexPath:indexPath];
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.tableArr.count > 0) {
-        static NSString *CellIdentifier = @"Cell_UserCouponTableViewCell";
-        UserCouponTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if (cell == nil) {
-            cell = [[UserCouponTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        }
-        
-        CouponObject *item = [self.tableArr objectAtIndex:indexPath.row];
-
-//        UIColor *bordColor = nil;
-//        NSString *typeStr = @"";
-//        if (indexPath.row == 0) {
-//            typeStr = @"满减券";
-//            bordColor = COLOR(253, 126, 0);
-//            cell.view.imgView.image = IMG(@"user_coupon_jushe.png");
-//            cell.view.statusLable.textColor = [UIColor whiteColor];
-//            cell.view.timeLable.textColor = [UIColor whiteColor];
-//
-//            
-//        } else if (indexPath.row == 1) {
-//            typeStr = @"立减券2";
-//            bordColor = COLOR(253, 87, 88);
-//            cell.view.imgView.image = IMG(@"user_coupon_red.png");
-//            cell.view.statusLable.textColor = [UIColor whiteColor];
-//            cell.view.timeLable.textColor = [UIColor whiteColor];
-//            
-//        } else {
-//            typeStr = @"立减券33";
-//            bordColor = COLOR(222, 222, 222);
-//            cell.view.imgView.image = IMG(@"user_coupon_gray.png");
-//            cell.view.statusLable.textColor = COLOR(150, 150, 150);
-//            cell.view.timeLable.textColor = COLOR(150, 150, 150);
-//        }
-        
-        UIColor *bordColor = nil;
-        NSString *typeStr = item.cup_name;
-        
-        bordColor = COLOR(253, 126, 0);
-        cell.view.imgView.image = IMG(@"user_coupon_jushe.png");
-        cell.view.statusLable.textColor = [UIColor whiteColor];
-        cell.view.timeLable.textColor = [UIColor whiteColor];
-
-
-        
-        NSDictionary *attrs = @{NSFontAttributeName : cell.view.typeLable.font};
-        CGSize size = [typeStr sizeWithAttributes:attrs];
-        [cell.view.typeLable updateConstraints:^(MASConstraintMaker *make) {
-            make.width.equalTo(size.width + 10);
-        }];
-        
-        NSDictionary* style = @{@"body" : @[[UIFont systemFontOfSize:25], bordColor],
-                  @"u" : @[[UIFont systemFontOfSize:14], COLOR(253, 156, 16)]};
-        
-        cell.view.typeLable.text = typeStr;
-        cell.view.layer.borderColor = bordColor.CGColor;
-        cell.view.typeLable.layer.borderColor = bordColor.CGColor;
-        cell.view.typeLable.textColor = bordColor;
-        cell.view.moneyLable.attributedText = [@"20 <u>元</u>" attributedStringWithStyleBook:style];
-        
-        cell.view.nameLable.text = [NSString compIsNone:item.cup_author];
-        cell.view.desLable.text = [NSString compIsNone:item.cup_content];
-        cell.view.timeLable.text = item.cuc_overdue;
-
-        return cell;
+    static NSString *CellIdentifier = @"Cell_UserCouponTableViewCell";
+    UserCouponTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[UserCouponTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
+    if (self.mPushType == ZLPushCouponVCTypeWithCommitOrder) {
+        [cell setMCoup:[self.mCoupArr objectAtIndex:indexPath.row]];
+    }else{
+        [cell setItem:[self.tableArr objectAtIndex:indexPath.row]];
+    }
+    
+    return cell;
+    
     return [super tableView:tableView cellForRowAtIndexPath:indexPath];
 }
 
@@ -230,27 +190,40 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    if (self.tableArr.count > 0) {
+    if (self.mPushType == ZLPushCouponVCTypeWithCommitOrder) {
         
+        if (self.block) {
+            self.block(self.mCoupArr[indexPath.row]);
+            [self popViewController];
+        }
+        
+    }else{
         if (self.chooseCallBack) {
             CouponObject *item = [self.tableArr objectAtIndex:indexPath.row];
             self.chooseCallBack(item);
             [self performSelector:@selector(popViewController) withObject:nil afterDelay:0.2];
             
         } else {
-//            UserAddressEditVC *vc = [[UserAddressEditVC alloc] init];
-//            [self.navigationController pushViewController:vc animated:YES];
+            //            UserAddressEditVC *vc = [[UserAddressEditVC alloc] init];
+            //            [self.navigationController pushViewController:vc animated:YES];
         }
-        
     }
+    
+    
+    
 }
 
 - (void)reloadTableViewDataSource{
     [super reloadTableViewDataSource];
-    
+
     [[APIClient sharedClient] couponListWithTag:self page:self.page call:^(int totalPage, NSArray *tableArr, APIObject *info) {
+        [self.tableArr removeAllObjects];
+        
         [self reloadWithTableArr:tableArr info:info];
     }];
+
+    
+
     
     //[self performSelector:@selector(donwData) withObject:nil afterDelay:0.5];
 }

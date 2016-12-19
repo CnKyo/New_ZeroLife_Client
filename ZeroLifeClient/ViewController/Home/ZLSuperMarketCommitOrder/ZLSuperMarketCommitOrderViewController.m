@@ -12,6 +12,7 @@
 #import "ZLGoPayViewController.h"
 #import "UserAddressTVC.h"
 #import "mSelectSenTypeViewController.h"
+#import "UserCouponVC.h"
 @interface ZLSuperMarketCommitOrderViewController ()<UITableViewDelegate,UITableViewDataSource,ZLCommitOrderDelegate,ZLCommitDelegate>
 
 @property (strong,nonatomic)UITableView *mTableView;
@@ -264,6 +265,31 @@
 #pragma mark----****----选择优惠券
 ///选择优惠券
 - (void)ZLCommitWithCoupBtnSelected{
-
+    
+    UserCouponVC *vc = [[UserCouponVC alloc] init];
+    vc.mPushType = ZLPushCouponVCTypeWithCommitOrder;
+    vc.mCoupArr = self.mPreOrder.coupons;
+    vc.block = ^(ZLPreOrderCoupons *mCoupon) {
+        ///这里每次block回来就把之前减去的加回来，不然会引起循环调用
+        self.mPreOrder.payMoney+=self.mPreOrder.mCoupon.cup_price;
+        self.mPreOrder.deliver_price-=self.mPreOrder.mCoupon.cup_price;
+        
+        self.mPreOrder.payMoney-=mCoupon.cup_price;
+        self.mPreOrder.deliver_price+=mCoupon.cup_price;
+        
+        self.mPreOrder.mCoupon = mCoupon;
+        
+        [self.mTableView reloadData];
+        
+    };
+    [self.navigationController pushViewController:vc animated:YES];
+    
 }
+#pragma mark----****----备注代理方法
+///备注代理方法
+- (void)ZLCommitWithNote:(NSString *)mNote{
+
+    self.mPreOrder.mNote = mNote;
+}
+
 @end
