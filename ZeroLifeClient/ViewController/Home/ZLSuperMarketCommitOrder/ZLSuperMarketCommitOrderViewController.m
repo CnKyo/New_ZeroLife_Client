@@ -10,6 +10,8 @@
 #import "ZLCommitOrderCell.h"
 #import "ZLCommitOrderHeaderView.h"
 #import "ZLGoPayViewController.h"
+#import "UserAddressTVC.h"
+#import "mSelectSenTypeViewController.h"
 @interface ZLSuperMarketCommitOrderViewController ()<UITableViewDelegate,UITableViewDataSource,ZLCommitOrderDelegate,ZLCommitDelegate>
 
 @property (strong,nonatomic)UITableView *mTableView;
@@ -104,15 +106,15 @@
         mHeaderView = [ZLCommitOrderHeaderView initWithHeder];
         mHeaderView.delegate = self;
         
-        NSString *mConnectP = self.mPreOrder.mConnectPepole;
-        NSString *mAddress = self.mPreOrder.mConnectAddress;
+        NSString *mConnectP = [NSString stringWithFormat:@"%@-%@",self.mPreOrder.mAddress.addr_name,self.mPreOrder.mAddress.addr_phone];
+        NSString *mAddress = [NSString stringWithFormat:@"%@%@%@%@",self.mPreOrder.mAddress.addr_province_val,self.mPreOrder.mAddress.addr_city_val,self.mPreOrder.mAddress.addr_county_val,self.mPreOrder.mAddress.addr_address];
         
-        if (mConnectP.length <= 0) {
+        if (mConnectP.length <= 1 || [mConnectP isEqualToString:@"(null)-(null)"]) {
             
             mConnectP = @"点击选择收货地址";
 
         }
-        if (mAddress.length <= 0) {
+        if (mAddress.length <= 0 || [mAddress isEqualToString:@"(null)(null)(null)(null)"]) {
             mAddress = @"点击选择收货地址";
         }
         
@@ -200,6 +202,7 @@
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         [cell setMPreOrderObj:self.mPreOrder];
+        cell.delegate = self;
         return cell;
         
     }
@@ -222,7 +225,17 @@
  选择收获地址
  */
 - (void)ZLCommitSelectAddress{
-
+    
+    
+    UserAddressTVC *vc = [UserAddressTVC new];
+    vc.isChooseAddress = YES;
+    vc.block = ^(AddressObject *mAddress){
+        MLLog(@"%@",mAddress);
+        self.mPreOrder.mAddress = mAddress;
+        [self.mTableView reloadData];
+    };
+    [self pushViewController:vc];
+    
 }
 #pragma mark----****----去支付
 /**
@@ -237,6 +250,15 @@
 #pragma mark----****----选择配送方式
 ///选择配送方式
 - (void)ZLCommitWithSendTypeBtnSelected{
+    
+    mSelectSenTypeViewController *vc = [[mSelectSenTypeViewController alloc] initWithNibName:@"mSelectSenTypeViewController" bundle:nil];
+    vc.block = ^(ZLShopSendType mSendType){
+    
+        self.mPreOrder.mSendType = mSendType;
+        [self.mTableView reloadData];
+
+    };
+    [self pushViewController:vc];
 
 }
 #pragma mark----****----选择优惠券

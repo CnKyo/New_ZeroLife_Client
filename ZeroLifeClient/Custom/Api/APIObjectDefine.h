@@ -1318,7 +1318,7 @@
 
 @end
 
-
+@class AddressObject;
 @interface ZLPreOrderObj : NSObject
 
 @property (assign,nonatomic) float deliver_price_free;
@@ -1350,11 +1350,9 @@
 @property (strong,nonatomic) NSString* sign;
 #pragma mark----****----确认订单扩展字段
 ///配送方式
-@property (assign,nonatomic) int mSendType;
-///联系人
-@property (strong,nonatomic) NSString* mConnectPepole;
-///联系地址
-@property (strong,nonatomic) NSString* mConnectAddress;
+@property (assign,nonatomic) ZLShopSendType mSendType;
+
+@property (strong,nonatomic) AddressObject *mAddress;
 ///备注
 @property (strong,nonatomic) NSString* mNote;
 ///选择优惠卷优惠金额
@@ -1431,3 +1429,6 @@
 @property (assign,nonatomic) int cam_type;
 
 @end
+
+
+
