@@ -502,37 +502,53 @@
     
     
     [doneBtn jk_addActionHandler:^(NSInteger tag) {
-        SecurityPasswordAlertView *alertView = [[SecurityPasswordAlertView alloc] init];
-        //SecurityPasswordAlertView *alertView = [[SecurityPasswordAlertView alloc] initWithParentView:self.view];
-        alertView.inputPwdCallBack = ^(NSString* pwd) {
-            
-        };
-        [alertView showAlert];
+//        SecurityPasswordAlertView *alertView = [[SecurityPasswordAlertView alloc] init];
+//        //SecurityPasswordAlertView *alertView = [[SecurityPasswordAlertView alloc] initWithParentView:self.view];
+//        alertView.inputPwdCallBack = ^(NSString* pwd) {
+//            
+//        };
+//        [alertView showAlert];
         
        
         
-//        if (pwdField.text.length == 0) {
-//            [SVProgressHUD showErrorWithStatus:@"请输入登录密码"];
-//            return ;
-//        }
-//
-//        if (seView1.pwStr.length == 0) {
-//            [SVProgressHUD showErrorWithStatus:@"请输入交易密码"];
-//            return ;
-//        }
-//        if (seView1.pwStr.length < 6) {
-//            [SVProgressHUD showErrorWithStatus:@"请输入完整的交易密码"];
-//            return ;
-//        }
-//        
-//        if (seView2.pwStr.length == 0) {
-//            [SVProgressHUD showErrorWithStatus:@"请输入确认交易密码"];
-//            return ;
-//        }
-//        if (seView2.pwStr.length < 6) {
-//            [SVProgressHUD showErrorWithStatus:@"请输入完整的确认交易密码"];
-//            return ;
-//        }
+        if (pwdField.text.length == 0) {
+            [SVProgressHUD showErrorWithStatus:@"请输入登录密码"];
+            return ;
+        }
+
+        if (seView1.pwStr.length == 0) {
+            [SVProgressHUD showErrorWithStatus:@"请输入交易密码"];
+            return ;
+        }
+        if (seView1.pwStr.length < 6) {
+            [SVProgressHUD showErrorWithStatus:@"请输入完整的交易密码"];
+            return ;
+        }
+        
+        if (seView2.pwStr.length == 0) {
+            [SVProgressHUD showErrorWithStatus:@"请输入确认交易密码"];
+            return ;
+        }
+        if (seView2.pwStr.length < 6) {
+            [SVProgressHUD showErrorWithStatus:@"请输入完整的确认交易密码"];
+            return ;
+        }
+        
+        if (![seView1.pwStr isEqualToString:seView2.pwStr]) {
+            [SVProgressHUD showErrorWithStatus:@"交易密码请输入一致"];
+            return ;
+        }
+        
+        [SVProgressHUD showWithStatus:@"安全密码设置中..."];
+        [[APIClient sharedClient] userSecurityPasswordSettingWithTag:self acc_pass:pwdField.text security_password:seView1.pwStr call:^(APIObject *info) {
+            if (info.code == RESP_STATUS_YES) {
+                [self performSelector:@selector(popViewController) withObject:nil afterDelay:0.5];
+                
+                [SVProgressHUD showSuccessWithStatus:info.msg];
+            } else
+                [SVProgressHUD showErrorWithStatus:info.msg];
+        }];
+        
     }];
 }
 

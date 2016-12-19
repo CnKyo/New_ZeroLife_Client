@@ -414,6 +414,29 @@
         callback([APIObject infoWithReLoginErrorMessage:@"请重新登陆"]);
 }
 
+/**
+ *  用户交易密码设置接口
+ *
+ *  @param tag      链接对象
+ *  @param acc_pass  登录密码
+ *  @param security_password  6位纯数字交易密码
+ *  @param callback 返回信息
+ */
+-(void)userSecurityPasswordSettingWithTag:(NSObject *)tag acc_pass:(NSString *)acc_pass security_password:(NSString *)security_password call:(void (^)(APIObject* info))callback
+{
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    if (user.user_id > 0) {
+        NSMutableDictionary* paramDic = [NSMutableDictionary dictionary];
+        [paramDic setNeedStr:acc_pass forKey:@"acc_pass"];
+        [paramDic setNeedStr:security_password forKey:@"security_password"];
+        [paramDic setInt:user.user_id forKey:@"user_id"];
+        [self loadAPIWithTag:tag path:@"/user/user_edit" parameters:paramDic call:^(APIObject *info) {
+            callback(info);
+        }];
+    } else
+        callback([APIObject infoWithReLoginErrorMessage:@"请重新登陆"]);
+}
+
 
 #pragma mark----****----用户地址管理
 /**
@@ -639,15 +662,17 @@
  *
  *  @param tag      链接对象
  *  @param bank_id  银行卡id
+ *  @param security_password  6位纯数字交易密码
  *  @param callback 返回信息
  */
--(void)bankCardDeleteWithTag:(NSObject *)tag bank_id:(int)bank_id call:(void (^)(APIObject* info))callback
+-(void)bankCardDeleteWithTag:(NSObject *)tag bank_id:(int)bank_id security_password:(NSString *)security_password call:(void (^)(APIObject* info))callback
 {
     ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
     if (user.user_id > 0) {
         NSMutableDictionary* paramDic = [NSMutableDictionary dictionary];
         [paramDic setInt:user.user_id forKey:@"user_id"];
         [paramDic setInt:bank_id forKey:@"bank_id"];
+        [paramDic setNeedStr:security_password forKey:@"security_password"];
         [self loadAPIWithTag:tag path:@"/user/bankcard/bankcard_delete" parameters:paramDic call:^(APIObject *info) {
             callback(info);
         }];
