@@ -98,7 +98,7 @@
         make.height.equalTo(OnePixNumber);
     }];
     
-    
+    //[NSString stringWithFormat:@"%@  %@", _item.odr_ext.odr_deliver_name, _item.odr_ext.odr_deliver_phone];
     if (_classType==kOrderClassType_goods || _classType==kOrderClassType_ganxi || _classType==kOrderClassType_baoxiu) {
         OrderAddressView *addressView = [[OrderAddressView alloc] initWithNote:nil name:@"王勇  188****2313" address:@"重庆市渝中区石油路万科中心1栋1004 重庆超尔科技有限公司"];
         [superView addSubview:addressView];

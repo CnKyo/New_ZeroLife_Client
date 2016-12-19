@@ -441,6 +441,17 @@
 
 
 @implementation CouponObject
+//- (id)mj_newValueFromOldValue:(id)oldValue property:(MJProperty *)property
+//{
+//    if ([property.name isEqualToString:@"cuc_overdue"]) {
+//        if (oldValue == nil)
+//            return @"";
+//        double aa = [oldValue doubleValue];
+//        return [NSDate dateStrWithTimeInterval:aa];
+//    }
+//    
+//    return oldValue;
+//}
 @end
 
 

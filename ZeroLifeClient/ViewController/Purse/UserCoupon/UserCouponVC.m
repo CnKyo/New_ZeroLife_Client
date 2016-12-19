@@ -25,45 +25,47 @@
     UIView *superView = self.view;
     int padding = 10;
     
-    UIView *topView = ({
-        UIView *view = [superView newUIViewWithBgColor:[UIColor whiteColor]];
-        UITextField *field = [view newUITextFieldWithPlaceholder:@"输入兑换码"];
-        field.borderStyle = UITextBorderStyleRoundedRect;
-        field.backgroundColor = COLOR(245, 245, 245);
-        UIButton *btn11 = [view newUIButton];
-        [btn11 setTitle:@"兑换" forState:UIControlStateNormal];
-        [btn11 setStyleNavColor];
-        
-        [field makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(view.left).offset(padding);
-            make.top.equalTo(view.top).offset(padding*2);
-            make.bottom.equalTo(view.bottom).offset(-padding*2);
-        }];
-        [btn11 makeConstraints:^(MASConstraintMaker *make) {
-            make.top.bottom.equalTo(field);
-            make.right.equalTo(superView.right).offset(-padding);
-            make.left.equalTo(field.right).offset(padding);
-            make.width.equalTo(70);
-        }];
-        
-        [btn11 jk_addActionHandler:^(NSInteger tag) {
-            
-        }];
-    
-        view;
-    });
-    [topView makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(superView);
-        make.top.equalTo(superView).offset(@64);
-        make.height.equalTo(80);
-    }];
+//    UIView *topView = ({
+//        UIView *view = [superView newUIViewWithBgColor:[UIColor whiteColor]];
+//        UITextField *field = [view newUITextFieldWithPlaceholder:@"输入兑换码"];
+//        field.borderStyle = UITextBorderStyleRoundedRect;
+//        field.backgroundColor = COLOR(245, 245, 245);
+//        UIButton *btn11 = [view newUIButton];
+//        [btn11 setTitle:@"兑换" forState:UIControlStateNormal];
+//        [btn11 setStyleNavColor];
+//        
+//        [field makeConstraints:^(MASConstraintMaker *make) {
+//            make.left.equalTo(view.left).offset(padding);
+//            make.top.equalTo(view.top).offset(padding*2);
+//            make.bottom.equalTo(view.bottom).offset(-padding*2);
+//        }];
+//        [btn11 makeConstraints:^(MASConstraintMaker *make) {
+//            make.top.bottom.equalTo(field);
+//            make.right.equalTo(superView.right).offset(-padding);
+//            make.left.equalTo(field.right).offset(padding);
+//            make.width.equalTo(70);
+//        }];
+//        
+//        [btn11 jk_addActionHandler:^(NSInteger tag) {
+//            
+//        }];
+//    
+//        view;
+//    });
+//    [topView makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.right.equalTo(superView);
+//        make.top.equalTo(superView).offset(@64);
+//        make.height.equalTo(80);
+//    }];
     
     [self addTableView];
-    [self setTableViewHaveHeaderFooter];
+    
+    
+   
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView remakeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.equalTo(superView);
-        make.top.equalTo(topView.bottom);
+        make.top.equalTo(superView.top);
     }];
     
 //    UIView *headerView = [UIView jk_loadInstanceFromNibWithName:@"UserCouponTableHeaderView"];
@@ -121,6 +123,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"我的优惠券";
+
+    if (self.tableArr.count == 0)
+         [self setTableViewHaveHeaderFooter];
+    
+    
+
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -155,31 +164,42 @@
             cell = [[UserCouponTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
         
+        CouponObject *item = [self.tableArr objectAtIndex:indexPath.row];
 
+//        UIColor *bordColor = nil;
+//        NSString *typeStr = @"";
+//        if (indexPath.row == 0) {
+//            typeStr = @"满减券";
+//            bordColor = COLOR(253, 126, 0);
+//            cell.view.imgView.image = IMG(@"user_coupon_jushe.png");
+//            cell.view.statusLable.textColor = [UIColor whiteColor];
+//            cell.view.timeLable.textColor = [UIColor whiteColor];
+//
+//            
+//        } else if (indexPath.row == 1) {
+//            typeStr = @"立减券2";
+//            bordColor = COLOR(253, 87, 88);
+//            cell.view.imgView.image = IMG(@"user_coupon_red.png");
+//            cell.view.statusLable.textColor = [UIColor whiteColor];
+//            cell.view.timeLable.textColor = [UIColor whiteColor];
+//            
+//        } else {
+//            typeStr = @"立减券33";
+//            bordColor = COLOR(222, 222, 222);
+//            cell.view.imgView.image = IMG(@"user_coupon_gray.png");
+//            cell.view.statusLable.textColor = COLOR(150, 150, 150);
+//            cell.view.timeLable.textColor = COLOR(150, 150, 150);
+//        }
+        
         UIColor *bordColor = nil;
-        NSString *typeStr = @"";
-        if (indexPath.row == 0) {
-            typeStr = @"满减券";
-            bordColor = COLOR(253, 126, 0);
-            cell.view.imgView.image = IMG(@"user_coupon_jushe.png");
-            cell.view.statusLable.textColor = [UIColor whiteColor];
-            cell.view.timeLable.textColor = [UIColor whiteColor];
+        NSString *typeStr = item.cup_name;
+        
+        bordColor = COLOR(253, 126, 0);
+        cell.view.imgView.image = IMG(@"user_coupon_jushe.png");
+        cell.view.statusLable.textColor = [UIColor whiteColor];
+        cell.view.timeLable.textColor = [UIColor whiteColor];
 
-            
-        } else if (indexPath.row == 1) {
-            typeStr = @"立减券2";
-            bordColor = COLOR(253, 87, 88);
-            cell.view.imgView.image = IMG(@"user_coupon_red.png");
-            cell.view.statusLable.textColor = [UIColor whiteColor];
-            cell.view.timeLable.textColor = [UIColor whiteColor];
-            
-        } else {
-            typeStr = @"立减券33";
-            bordColor = COLOR(222, 222, 222);
-            cell.view.imgView.image = IMG(@"user_coupon_gray.png");
-            cell.view.statusLable.textColor = COLOR(150, 150, 150);
-            cell.view.timeLable.textColor = COLOR(150, 150, 150);
-        }
+
         
         NSDictionary *attrs = @{NSFontAttributeName : cell.view.typeLable.font};
         CGSize size = [typeStr sizeWithAttributes:attrs];
@@ -195,6 +215,10 @@
         cell.view.typeLable.layer.borderColor = bordColor.CGColor;
         cell.view.typeLable.textColor = bordColor;
         cell.view.moneyLable.attributedText = [@"20 <u>元</u>" attributedStringWithStyleBook:style];
+        
+        cell.view.nameLable.text = [NSString compIsNone:item.cup_author];
+        cell.view.desLable.text = [NSString compIsNone:item.cup_content];
+        cell.view.timeLable.text = item.cuc_overdue;
 
         return cell;
     }
@@ -207,8 +231,10 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if (self.tableArr.count > 0) {
+        
         if (self.chooseCallBack) {
-            self.chooseCallBack(nil);
+            CouponObject *item = [self.tableArr objectAtIndex:indexPath.row];
+            self.chooseCallBack(item);
             [self performSelector:@selector(popViewController) withObject:nil afterDelay:0.2];
             
         } else {
@@ -222,7 +248,11 @@
 - (void)reloadTableViewDataSource{
     [super reloadTableViewDataSource];
     
-    [self performSelector:@selector(donwData) withObject:nil afterDelay:0.5];
+    [[APIClient sharedClient] couponListWithTag:self page:self.page call:^(int totalPage, NSArray *tableArr, APIObject *info) {
+        [self reloadWithTableArr:tableArr info:info];
+    }];
+    
+    //[self performSelector:@selector(donwData) withObject:nil afterDelay:0.5];
 }
 
 -(void)donwData

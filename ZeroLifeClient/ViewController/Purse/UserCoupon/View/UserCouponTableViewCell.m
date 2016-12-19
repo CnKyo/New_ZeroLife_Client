@@ -91,17 +91,17 @@
         //            make.width.lessThanOrEqualTo(65);
         //        }];
         //
-                [self.nameLable makeConstraints:^(MASConstraintMaker *make) {
-                    make.left.equalTo(_moneyLable.right).offset(padding/2);
-                    make.right.equalTo(_imgView.left).offset(-padding/2);
-                    make.top.equalTo(superView.top).offset(padding);
-                    make.bottom.equalTo(superView.centerY);
-                }];
-                [self.desLable makeConstraints:^(MASConstraintMaker *make) {
-                    make.left.right.equalTo(_nameLable);
-                    make.top.equalTo(superView.centerY);
-                    make.bottom.equalTo(superView.bottom).offset(-padding);
-                }];
+        [self.nameLable makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(_moneyLable.right).offset(padding/2);
+            make.right.equalTo(_imgView.left).offset(-padding/2);
+            make.top.equalTo(superView.top).offset(padding);
+            make.bottom.equalTo(superView.centerY);
+        }];
+        [self.desLable makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.equalTo(_nameLable);
+            make.top.equalTo(superView.centerY);
+            make.bottom.equalTo(superView.bottom).offset(-padding);
+        }];
         
     }
     return self;

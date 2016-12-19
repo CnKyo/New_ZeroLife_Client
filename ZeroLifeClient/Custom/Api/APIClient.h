@@ -81,6 +81,8 @@ typedef void (^TableShareSdkBlock)(int totalpage, NSArray *tableArr, APIShareSdk
 -(void)bankCardDeleteWithTag:(NSObject *)tag bank_id:(int)bank_id security_password:(NSString *)security_password call:(void (^)(APIObject* info))callback;
 -(void)bankCardAddWithTag:(NSObject *)tag bank_real_name:(NSString *)bank_real_name bank_mobile:(NSString *)bank_mobile bank_card:(NSString *)bank_card id_card:(NSString *)id_card call:(void (^)(APIObject* info))callback;
 
+//优惠券相关接口
+-(void)couponListWithTag:(NSObject *)tag page:(int)page call:(TablePageArrBlock)callback;
 
 //投诉相关接口
 -(void)complaintListWithTag:(NSObject *)tag page:(int)page call:(TablePageArrBlock)callback;

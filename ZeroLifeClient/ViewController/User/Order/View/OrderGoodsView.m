@@ -20,7 +20,7 @@
         UIFont *font = [UIFont systemFontOfSize:13];
         UIView *superView = self;
         
-        self.imgView = [superView newUIImageViewWithImg:IMG(@"choose_on.png")];
+        self.imgView = [superView newUIImageViewWithImg:ZLDefaultGoodsImg];
         
         
         self.nameLable = [superView newUILableWithText:@"康师傅方便面" textColor:[UIColor colorWithWhite:0.3 alpha:1] font:font];
