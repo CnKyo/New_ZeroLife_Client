@@ -681,6 +681,27 @@
 }
 
 
+#pragma mark----****----用户优惠券接口列表接口
+/**
+ *   用户优惠券接口列表接口
+ *
+ *  @param tag      链接对象
+ *  @param callback 返回列表
+ */
+-(void)couponListWithTag:(NSObject *)tag page:(int)page call:(TablePageArrBlock)callback
+{
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    if (user.user_id > 0) {
+        NSMutableDictionary* paramDic = [NSMutableDictionary dictionary];
+        [paramDic setInt:user.user_id forKey:@"user_id"];
+        [self loadAPITableListWithTag:self path:@"/user/coupon/coupon_list" parameters:paramDic pageIndex:page subClass:[CouponObject class] call:^(int totalPage, NSArray *tableArr, APIObject *info) {
+            callback(totalPage, tableArr, info);
+        }];
+    } else
+        callback(0, nil, [APIObject infoWithReLoginErrorMessage:@"请重新登陆"]);
+}
+
+
 #pragma mark----****----社区管理
 /**
  *   社区列表接口

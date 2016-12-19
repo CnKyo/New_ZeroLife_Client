@@ -12,3 +12,12 @@
 @interface UserCouponVC : CustomVC
 @property (nonatomic, copy) void (^chooseCallBack)(CouponObject* item);
 @end
+
+
+//调用示例
+//UserCouponVC *vc = [[UserCouponVC alloc] init];
+//vc.tableArr = arr;
+//vc.chooseCallBack = ^(CouponObject* item) {
+//    
+//};
+//[self.navigationController pushViewController:vc animated:YES];

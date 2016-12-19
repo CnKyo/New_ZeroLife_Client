@@ -242,7 +242,7 @@
     [self.shopView.shopIconImgView setImageWithURL:[NSURL URLWithString:item.odr_shop_img] placeholderImage:IMG(@"order_shop_icon.png")];
     
     
-    self.orderMoneyLable.text = [NSString stringWithFormat:@"合计：￥%.2f (含运费￥%.2f)", item.odr_amount, item.odr_amount];
+    self.orderMoneyLable.text = [NSString stringWithFormat:@"合计：￥%.2f (含运费￥%.2f)", item.odr_amount, item.odr_ext.odr_deliver_fee];
     self.orderTimeLable.text = item.odr_add_time;
 }
 
