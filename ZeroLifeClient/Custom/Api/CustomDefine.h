@@ -339,4 +339,12 @@ typedef enum{
 }ZLShopType;//社区超市首页活动类型
 
 
+typedef enum{
+    ZLShopSendTypeWithSelf = 1,///1:自提
+    ZLShopSendTypeWithShop = 2,///2:店铺配送
+}ZLShopSendType;///社区超市订单配送方式
+
+
+
+
 #endif /* CustomDefine_h */

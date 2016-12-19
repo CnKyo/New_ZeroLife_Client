@@ -12,5 +12,8 @@
 @property(nonatomic,assign) BOOL isShowHouseView; //yes房屋管理，no地址管理
 @property(nonatomic,assign) BOOL isChooseAddress; //yes选择地址界面，no地址管理界面
 @property (nonatomic, copy) void (^chooseCallBack)(AddressObject* item);
-
+/**
+ *  回调方法  返回经纬度，id
+ */
+@property (nonatomic,strong) void(^block)(AddressObject *mAddress);
 @end

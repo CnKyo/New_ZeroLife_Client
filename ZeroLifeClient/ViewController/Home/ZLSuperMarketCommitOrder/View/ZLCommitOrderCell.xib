@@ -109,7 +109,7 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="请输入您的备注" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="9ph-wC-NG7" customClass="IQTextView">
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="9ph-wC-NG7" customClass="IQTextView">
                         <rect key="frame" x="8" y="145" width="304" height="115"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>

@@ -8,6 +8,11 @@
 
 #import "ZLCommitOrderCell.h"
 
+
+@interface ZLCommitOrderCell()<UITextViewDelegate>
+
+@end
+
 @implementation ZLCommitOrderCell
 
 - (void)awakeFromNib {
@@ -15,6 +20,14 @@
     // Initialization code
 }
 
+- (void)layoutSubviews{
+
+    [super layoutSubviews];
+    [self.mNoteTx setPlaceholder:@"请输入您的备注信息!"];
+    [self.mNoteTx setHolderToTop];
+
+    self.mNoteTx.delegate = self;
+}
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 
@@ -53,6 +66,13 @@
 
     self.mPrice.text = [NSString stringWithFormat:@"¥%.2f元",mPreOrderObj.payMoney];
     self.mCoupMoney.text = [NSString stringWithFormat:@"¥%.2f元",mPreOrderObj.deliver_price];
+    
+    if (mPreOrderObj.mSendType == ZLShopSendTypeWithSelf) {
+        [self.mSendType setTitle:@"上门自提" forState:0];
+    }else{
+        [self.mSendType setTitle:@"店铺配送" forState:0];
+    }
+    
 }
 
 

@@ -170,6 +170,8 @@
 		049D490E1DB75CE9005A1038 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 049D490D1DB75CE9005A1038 /* CoreTelephony.framework */; };
 		049D49101DB75CEF005A1038 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 049D490F1DB75CEF005A1038 /* AdSupport.framework */; };
 		049D492C1DB76CC7005A1038 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 049D492B1DB76CC7005A1038 /* QuartzCore.framework */; };
+		04A2FB871E078D2800653860 /* mSelectSenTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A2FB851E078D2800653860 /* mSelectSenTypeViewController.m */; };
+		04A2FB881E078D2800653860 /* mSelectSenTypeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04A2FB861E078D2800653860 /* mSelectSenTypeViewController.xib */; };
 		04A7631A1DDBF5E20061E2B0 /* ZLPPTRealeseOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A763191DDBF5E20061E2B0 /* ZLPPTRealeseOrderViewController.m */; };
 		04A7631E1DDBFA540061E2B0 /* ZLPPTReleaseRewardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A7631C1DDBFA540061E2B0 /* ZLPPTReleaseRewardCell.m */; };
 		04A7631F1DDBFA540061E2B0 /* ZLPPTReleaseRewardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04A7631D1DDBFA540061E2B0 /* ZLPPTReleaseRewardCell.xib */; };
@@ -820,6 +822,9 @@
 		049D490D1DB75CE9005A1038 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		049D490F1DB75CEF005A1038 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		049D492B1DB76CC7005A1038 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		04A2FB841E078D2800653860 /* mSelectSenTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mSelectSenTypeViewController.h; sourceTree = "<group>"; };
+		04A2FB851E078D2800653860 /* mSelectSenTypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mSelectSenTypeViewController.m; sourceTree = "<group>"; };
+		04A2FB861E078D2800653860 /* mSelectSenTypeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mSelectSenTypeViewController.xib; sourceTree = "<group>"; };
 		04A763181DDBF5E20061E2B0 /* ZLPPTRealeseOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPPTRealeseOrderViewController.h; sourceTree = "<group>"; };
 		04A763191DDBF5E20061E2B0 /* ZLPPTRealeseOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPPTRealeseOrderViewController.m; sourceTree = "<group>"; };
 		04A7631B1DDBFA540061E2B0 /* ZLPPTReleaseRewardCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPPTReleaseRewardCell.h; sourceTree = "<group>"; };
@@ -1931,6 +1936,7 @@
 		04866B971DD414E5008DA56B /* ZLSuperMarketCommitOrder */ = {
 			isa = PBXGroup;
 			children = (
+				04A2FB831E078D2800653860 /* ZLSelectedSendType */,
 				04866B9B1DD4153B008DA56B /* View */,
 				04866B981DD41500008DA56B /* ZLSuperMarketCommitOrderViewController.h */,
 				04866B991DD41500008DA56B /* ZLSuperMarketCommitOrderViewController.m */,
@@ -1974,6 +1980,16 @@
 				049A12161DE983080087238D /* ZLSpeHeaderView.m */,
 			);
 			path = ZLSpeView;
+			sourceTree = "<group>";
+		};
+		04A2FB831E078D2800653860 /* ZLSelectedSendType */ = {
+			isa = PBXGroup;
+			children = (
+				04A2FB841E078D2800653860 /* mSelectSenTypeViewController.h */,
+				04A2FB851E078D2800653860 /* mSelectSenTypeViewController.m */,
+				04A2FB861E078D2800653860 /* mSelectSenTypeViewController.xib */,
+			);
+			path = ZLSelectedSendType;
 			sourceTree = "<group>";
 		};
 		04A763161DDBF49F0061E2B0 /* ZLPPTRealeseORder */ = {
@@ -3290,6 +3306,7 @@
 				DFE178E01DD5901E00E06F21 /* cell_soukuan_item.png in Resources */,
 				DFE178C31DD573F500E06F21 /* order_img_status.png in Resources */,
 				04D64D751DC9CCDC004E8859 /* ZLHomeOtherCell.xib in Resources */,
+				04A2FB881E078D2800653860 /* mSelectSenTypeViewController.xib in Resources */,
 				04D3820B1DE6D99A002B1A4B /* 2.png in Resources */,
 				DFE178C21DD573F500E06F21 /* order_img_status 3x.png in Resources */,
 				DFA135511DD6C7A900805BA2 /* gou_yes@2x.png in Resources */,
@@ -3799,6 +3816,7 @@
 				04A8DA071DDAA5D3000CE048 /* ZLPPTMyOrderCell.m in Sources */,
 				04B07EBF1DD9A87A004A7294 /* ZLPPTRewardViewController.m in Sources */,
 				04B862A41DD5786F00BDEA59 /* ZLGoodsDetailCell.m in Sources */,
+				04A2FB871E078D2800653860 /* mSelectSenTypeViewController.m in Sources */,
 				DF55B4701DBAFEAC00F89341 /* ZLNavViewController.m in Sources */,
 				DF828D321DEEA923004C1501 /* BanUnitFloorNumberTextField.m in Sources */,
 				DF08E87A1DD1C072003E4DD9 /* UserAddressTVC.m in Sources */,
