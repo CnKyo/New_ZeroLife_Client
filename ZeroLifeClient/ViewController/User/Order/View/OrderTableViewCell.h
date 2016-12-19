@@ -13,6 +13,8 @@
 #import "BaoXiuGoodsView.h"
 #import "PaoPaoGoodsView.h"
 #import "OrderShopHeaderView.h"
+#import "APIObjectDefine.h"
+#import <AFNetworking/UIImageView+AFNetworking.h>
 
 @interface OrderTableViewCell : UITableViewCell
 @property(nonatomic,strong) OrderShopHeaderView *shopView; //店铺信息view

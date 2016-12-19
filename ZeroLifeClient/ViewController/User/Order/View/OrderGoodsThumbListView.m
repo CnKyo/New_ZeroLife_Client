@@ -32,13 +32,14 @@
         self.imgView1 = [superView newUIImageViewWithImg:IMG(@"choose_on.png")];
         self.imgView2 = [superView newUIImageViewWithImg:IMG(@"choose_on.png")];
         self.imgView3 = [superView newUIImageViewWithImg:IMG(@"choose_on.png")];
-        UIImageView *imgView = [superView newUIImageViewWithImg:IMG(@"choose_on.png")];
+        UIImageView *imgView = [superView newUIImageViewWithImg:IMG(@"jiantou_hui.png")];
         
         
         self.countLable = [superView newUILableWithText:@"共3件" textColor:[UIColor grayColor] font:font textAlignment:NSTextAlignmentRight];
         
         [imgView makeConstraints:^(MASConstraintMaker *make) {
-            make.width.height.equalTo(15);
+            make.width.equalTo(6);
+            make.height.equalTo(11);
             make.centerY.equalTo(superView.centerY);
             make.right.equalTo(superView.right).offset(-padding);
         }];

@@ -366,7 +366,7 @@
     
     
     if (_classType == kOrderClassType_baoxiu) {
-        if (_item.status == kOrderFixStatus_waitShopBidding) {
+        if (_item.odr_state == kOrderFixStatus_waitShopBidding) {
             UIView *chooseView = ({
                 UIView *view = [superView newUIViewWithBgColor:[UIColor whiteColor]];
                 BaoXiuChooseShopView *itemView = [[BaoXiuChooseShopView alloc] init];
@@ -381,7 +381,7 @@
                     NSLog(@"选择");
                     OrderBaoXiuChooseShopVC *vc = [[OrderBaoXiuChooseShopVC alloc] init];
                     vc.chooseCallBack = ^(NSString* shopIdStr) {
-                        self.item.status = kOrderFixStatus_shopInService;
+                        self.item.odr_state = kOrderFixStatus_shopInService;
                         [self.scrollView.mj_header beginRefreshing];
                     };
                     [self.navigationController pushViewController:vc animated:YES];
@@ -395,7 +395,7 @@
             }];
             lastView = chooseView;
             
-        } else if (_item.status == kOrderFixStatus_shopInService) {
+        } else if (_item.odr_state == kOrderFixStatus_shopInService) {
             UIView *chooseView = ({
                 UIView *view = [superView newUIViewWithBgColor:[UIColor whiteColor]];
                 UIView *lineView111 = [view newDefaultLineView];
