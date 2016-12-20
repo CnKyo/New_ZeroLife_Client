@@ -10,6 +10,7 @@
 #import "UserAddressEditTableViewCell.h"
 #import "ZLSelectedCityViewController.h"
 #import "APIObjectDefine.h"
+#import "SelectedAddressVC.h"
 
 @interface UserAddressEditVC ()<UITextFieldDelegate,UserAddressEditTableViewCellDelegate>
 @property(nonatomic,strong) UserAddressEditTableViewCell *customCell;
@@ -165,9 +166,12 @@
     
     //选择地区
     [cell.areaView jk_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
-        [[IQKeyboardManager sharedManager] resignFirstResponder];
-        ZLSelectedCityViewController *vc = [ZLSelectedCityViewController new];
-        vc.mType = 0;
+//        [[IQKeyboardManager sharedManager] resignFirstResponder];
+//        ZLSelectedCityViewController *vc = [ZLSelectedCityViewController new];
+//        vc.mType = 0;
+//        [self pushViewController:vc];
+        
+        SelectedAddressVC *vc = [[SelectedAddressVC alloc] init];
         [self pushViewController:vc];
     }];
 

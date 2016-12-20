@@ -114,6 +114,7 @@
 @property (nonatomic,assign) int                    code;         //非0表示 错误,调试使用
 +(APIObject *)infoWithError:(NSError *)error;
 +(APIObject *)infoWithErrorMessage:(NSString *)errMsg;
++(APIObject *)infoWithSuccessMessage:(NSString *)successMsg;
 +(APIObject *)infoWithReLoginErrorMessage:(NSString *)errMsg;
 @end
 

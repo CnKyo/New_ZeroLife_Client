@@ -281,6 +281,14 @@
     return info;
 }
 
++(APIObject *)infoWithSuccessMessage:(NSString *)successMsg
+{
+    APIObject *info = [[APIObject alloc] init];
+    info.msg       = successMsg;
+    info.code = RESP_STATUS_YES;
+    return info;
+}
+
 -(void)setCode:(int)code
 {
     _code = code;
@@ -603,46 +611,38 @@ static ZLUserInfo *g_user = nil;
 //@implementation ZLUserCommunityObj
 //@end
 @implementation ZLHomeFunvtionAndBanner
-
-
-
 @end
 
 
 @implementation ZLHomeBanner
-
-
-
 @end
+
+
+
 @implementation ZLHomeFunctions
-
-
-
 @end
+
+
 
 @implementation ZLHomeObj
-
-
-
 @end
+
+
 
 @implementation ZLHomeAdvList
-
-
-
 @end
+
+
 
 @implementation ZLHomeCompainNoticeList
-
-
-
 @end
+
 
 @implementation ZLHomeCommunity
-
-
-
 @end
+
+
+
 @implementation ZLAPPInfo
 {
     
@@ -724,82 +724,68 @@ bool m_bind = NO;
     block(info,[ZLAPPInfo ZLCurrentAppInfo]);
 }
 @end
+
+
+
 @implementation ZLAppSet
-
-
-
 @end
+
+
 @implementation ZLAPPMethod
-
-
-
 @end
 
 
 @implementation ZLShopHomePage
-
-
-
 @end
+
+
 @implementation ZLShopHomeClassify
-
-
-
 @end
+
+
 @implementation ZLShopHomeCampaign
-
-
-
 @end
+
+
+
 @implementation ZLShopHomeShopList
-
-
-
 @end
+
+
 @implementation ZLShopHomeShopObj
-
-
-
 @end
 
 
 
 @implementation ZLShopObj
-
-
-
 @end
+
+
 @implementation ZLShopMsg
-
-
-
 @end
+
+
 @implementation ZLShopClassify
-
-
-
 @end
+
+
 @implementation ZLShopCoupon
-
-
-
 @end
+
+
 @implementation ZLShopCampain
-
-
-
 @end
+
 
 @implementation ZLShopLeftTableArr
-
-
-
 @end
+
+
+
 @implementation ZLShopGoodsList
-
-
-
 @end
+
+
 @implementation ZLGoodsWithClass
 + (NSDictionary *)mj_objectClassInArray{
 
@@ -809,35 +795,26 @@ bool m_bind = NO;
 
 @end
 @implementation ZLGoodsSKU
-
-
-
 @end
+
+
 @implementation ZLGoodsWithCamp
-
-
-
 @end
+
+
 @implementation ZLGoodsDetail
-
-
-
 @end
+
+
 @implementation ZLGoodsDetailImg
-
-
-
 @end
+
 
 @implementation ZLGoodsSpeList
-
-
-
 @end
+
+
 @implementation ZLSpeObj
-
-
-
 @end
 
 
@@ -848,15 +825,14 @@ bool m_bind = NO;
 @end
 
 @implementation ZLAddShopCarExObj
-
-
-
 @end
+
+
 @implementation ZLFixClassExtObj : NSObject
-
-
-
 @end
+
+
+
 @implementation ZLFixSubExtObj
 
 
@@ -895,9 +871,6 @@ bool m_bind = NO;
 
 
 @implementation ZLHomeAnouncement
-
-
-
 @end
 
 @implementation LKDBHelperGoodsObj
@@ -915,7 +888,6 @@ bool m_bind = NO;
     
     return @{@"campaigns":@"OrderCampaignObject",@"coupons":@"CouponObject",@"goods":@"OrderGoodsObject"};
 }
-
 
 @end
 //@implementation ZLPreOrderGoods
@@ -935,46 +907,37 @@ bool m_bind = NO;
 //@end
 
 @implementation ZLCreateOrderObj
-
 @end
 
 
 
 
 @implementation ZLPPTHomeClassList
-
 + (NSDictionary *)mj_objectClassInArray{
     
     return @{@"classifyList":@"ZLPPTClassObj"};
 }
-
 @end
 @implementation ZLPPTClassObj
-
 @end
 
-@implementation ZLPPTTopObj
 
+
+@implementation ZLPPTTopObj
 + (NSDictionary *)mj_objectClassInArray{
     
     return @{@"list":@"ZLPPTRKLObj"};
 }
-
 @end
 @implementation ZLPPTRKLObj
-
 @end
-
 
 
 @implementation ZLPPTRewardList
-
 + (NSDictionary *)mj_objectClassInArray{
     
     return @{@"list":@"ZLPPTRewardObj"};
 }
-
 @end
 @implementation ZLPPTRewardObj
-
 @end
