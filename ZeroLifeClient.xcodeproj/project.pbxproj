@@ -272,6 +272,7 @@
 		DF0308A31DCD7AD500E1EAB6 /* UIView+Name.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0308A21DCD7AD500E1EAB6 /* UIView+Name.m */; };
 		DF0308A71DCD7D6600E1EAB6 /* ZLUserHeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0308A51DCD7D6600E1EAB6 /* ZLUserHeaderTableViewCell.m */; };
 		DF0308A81DCD7D6600E1EAB6 /* ZLUserHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF0308A61DCD7D6600E1EAB6 /* ZLUserHeaderTableViewCell.xib */; };
+		DF04C2D41E08D06C00CC2EEC /* SelectedAddressVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF04C2D31E08D06C00CC2EEC /* SelectedAddressVC.m */; };
 		DF08E8441DD16868003E4DD9 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF08E8431DD16868003E4DD9 /* AddressBookUI.framework */; };
 		DF08E84D1DD16A13003E4DD9 /* MobileRechargeMoneyView_kuangChoose@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF08E8451DD16A13003E4DD9 /* MobileRechargeMoneyView_kuangChoose@2x.png */; };
 		DF08E84E1DD16A13003E4DD9 /* MobileRechargeMoneyView_kuangChoose@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF08E8461DD16A13003E4DD9 /* MobileRechargeMoneyView_kuangChoose@3x.png */; };
@@ -981,6 +982,8 @@
 		DF0308A41DCD7D6600E1EAB6 /* ZLUserHeaderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLUserHeaderTableViewCell.h; sourceTree = "<group>"; };
 		DF0308A51DCD7D6600E1EAB6 /* ZLUserHeaderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLUserHeaderTableViewCell.m; sourceTree = "<group>"; };
 		DF0308A61DCD7D6600E1EAB6 /* ZLUserHeaderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLUserHeaderTableViewCell.xib; sourceTree = "<group>"; };
+		DF04C2D21E08D06C00CC2EEC /* SelectedAddressVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectedAddressVC.h; sourceTree = "<group>"; };
+		DF04C2D31E08D06C00CC2EEC /* SelectedAddressVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectedAddressVC.m; sourceTree = "<group>"; };
 		DF08E8431DD16868003E4DD9 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		DF08E8451DD16A13003E4DD9 /* MobileRechargeMoneyView_kuangChoose@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MobileRechargeMoneyView_kuangChoose@2x.png"; sourceTree = "<group>"; };
 		DF08E8461DD16A13003E4DD9 /* MobileRechargeMoneyView_kuangChoose@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MobileRechargeMoneyView_kuangChoose@3x.png"; sourceTree = "<group>"; };
@@ -2380,6 +2383,8 @@
 				DF08E86D1DD1C072003E4DD9 /* UserAddressTVC.m */,
 				DF08E86E1DD1C072003E4DD9 /* UserHouseEditVC.h */,
 				DF08E86F1DD1C072003E4DD9 /* UserHouseEditVC.m */,
+				DF04C2D21E08D06C00CC2EEC /* SelectedAddressVC.h */,
+				DF04C2D31E08D06C00CC2EEC /* SelectedAddressVC.m */,
 			);
 			path = Address;
 			sourceTree = "<group>";
@@ -3821,6 +3826,7 @@
 				DF828D321DEEA923004C1501 /* BanUnitFloorNumberTextField.m in Sources */,
 				DF08E87A1DD1C072003E4DD9 /* UserAddressTVC.m in Sources */,
 				DF993D451DDAF0790061D7CA /* DryCleanOrderChooseTimeVC.m in Sources */,
+				DF04C2D41E08D06C00CC2EEC /* SelectedAddressVC.m in Sources */,
 				0409178A1DCC919200DB2568 /* ZLSuperMarketShopRightCell.m in Sources */,
 				04162E001DCB545200FB4229 /* HeaderView.m in Sources */,
 				DF08E87B1DD1C072003E4DD9 /* UserHouseEditVC.m in Sources */,
