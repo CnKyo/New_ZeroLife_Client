@@ -933,3 +933,7 @@ bool m_bind = NO;
 //
 //
 //@end
+
+@implementation ZLCreateOrderObj
+
+@end

@@ -62,7 +62,7 @@
     
 
     mSendRedBagBtn = [UIButton new];
-    
+    mSendRedBagBtn.hidden = YES;
     [mSendRedBagBtn setTitle:@"红包" forState:0];
     mSendRedBagBtn.backgroundColor = M_CO;
     mSendRedBagBtn.layer.masksToBounds = YES;
@@ -112,7 +112,21 @@
         return;
     }
     
+    ZLGoPayObject *mObj = mPayTypeArr[0];
+    
     MLLog(@"%@",mPayTypeArr);
+    [self showWithStatus:@"正在支付..."];
+    [[APIClient sharedClient] ZLSendToPayOrderObj:self.mOrder andPayType:mObj.mPayType block:^(APIObject *mBaseObj) {
+        
+        if (mBaseObj.code == RESP_STATUS_YES) {
+            
+            [self showSuccessStatus:mBaseObj.msg];
+            
+        }else{
+        
+            [self showErrorStatus:mBaseObj.msg];
+        }
+    }];
     
 }
 #pragma mark----****----发红包
@@ -151,6 +165,7 @@
     mHeadaerView = [ZLPayTypeHeaderView shareView];
     mHeadaerView.mName.text = self.mOrder.odr_shop_name;
     mHeadaerView.mPricce.text = [NSString stringWithFormat:@"¥%.1f元",self.mOrder.odr_pay_price];
+    mHeadaerView.mLogo.image = [UIImage imageNamed:@"cell_soukuan_item"];
     return mHeadaerView;
  
     
