@@ -246,7 +246,8 @@
 @end
 
 
-///钱包对象
+
+#pragma mark -  用户钱包对象
 @interface WalletObject : NSObject
 @property (assign,nonatomic) int                    uwal_id;      ///钱包ID
 @property (assign,nonatomic) int                    user_id;           ///用户id
@@ -264,7 +265,10 @@
 
 #pragma mark -  用户优惠券对象
 @interface CouponObject : NSObject
-@property (nonatomic,assign) int                    cuc_uid;         //用户优惠券ID
+@property (nonatomic,assign) int                    cuc_id;         //用户优惠券ID
+@property (nonatomic,assign) int                    cup_id;         //属于优惠券ID
+@property (nonatomic,assign) int                    cup_mould_id;         //优惠券模板ID
+@property (nonatomic,assign) int                    user_id;         //用户ID
 @property (nonatomic,strong) NSString *             cuc_state;          //使用状态
 @property (nonatomic,strong) NSString *             cup_name;         //优惠券名称
 @property (nonatomic,strong) NSString *             cup_content;         //描述
@@ -272,12 +276,12 @@
 @property (nonatomic,strong) NSString *             cup_logo;         //描述优惠券发放者LOGO（无显示默认LOGO）
 @property (nonatomic,assign) float                  cup_price;         //折扣价格
 @property (nonatomic,assign) float                  cup_min_price;         //最低使用价格
-@property (nonatomic,strong) NSString *             cup_is_shop;         //是否为店铺发放
+@property (nonatomic,assign) BOOL                   cup_is_shop;         //是否为店铺发放
 @property (nonatomic,strong) NSString *             cuc_overdue;         //过期时间
 @property (nonatomic,strong) NSString *             cuc_add_time;         //
-//@property (nonatomic,strong) NSDate *             cuc_overdue;         //过期时间
-//@property (nonatomic,strong) NSDate *             cuc_add_time;         //
 @end
+
+
 
 
 
@@ -353,6 +357,8 @@
 @property(nonatomic,strong) NSString *              odrg_video_repair;         //商品视频(报修)
 @property(nonatomic,assign) float                   odrg_price;         //价格
 @end
+
+
 
 
 //订单参与活动信息对象
@@ -596,14 +602,8 @@
 
 
 @interface ZLHomeObj : NSObject
-
-//平台活动广告
-@property (strong,nonatomic) NSArray* sAdvertList;
-
-//平台公告(List)
-@property (strong,nonatomic) NSArray* eCompanyNoticeList;
-
-
+@property (strong,nonatomic) NSArray* sAdvertList;  //平台活动广告
+@property (strong,nonatomic) NSArray* eCompanyNoticeList;   //平台公告(List)
 @end
 
 
@@ -631,7 +631,7 @@
 @property (assign,nonatomic) int                    not_state;//新闻状态
 @property (strong,nonatomic) NSString*              not_sub;//内容简介
 @property (strong,nonatomic) NSString*              not_add_time;//公告发布时间
-@property (strong,nonatomic) NSString*              not_image;////公告图片
+@property (strong,nonatomic) NSString*              not_image;//公告图片
 @property (strong,nonatomic) NSString*              not_deadline;//失效时间
 @property (strong,nonatomic) NSString*              not_add_person;//发布者
 @property (strong,nonatomic) NSString*              not_type;
@@ -1289,9 +1289,8 @@
 ///类型
 @property (assign,nonatomic) int not_type;
 
-
-
 @end
+
 
 
 @class ZLAddShopCarExObj;
@@ -1321,12 +1320,13 @@
 
 @property (strong,nonatomic) NSArray* mGoodsSKU;
 
-
-
 @end
 
+
+
+
 @class AddressObject;
-@class ZLPreOrderCoupons;
+@class CouponObject;
 @interface ZLPreOrderObj : NSObject
 
 @property (assign,nonatomic) float deliver_price_free;
@@ -1362,7 +1362,7 @@
 ///收货地址
 @property (strong,nonatomic) AddressObject *mAddress;
 ///优惠卷信息
-@property (strong,nonatomic) ZLPreOrderCoupons *mCoupon;
+@property (strong,nonatomic) CouponObject *mCoupon;
 ///备注
 @property (strong,nonatomic) NSString* mNote;
 ///选择优惠卷优惠金额
@@ -1372,73 +1372,73 @@
 @end
 
 
-@interface ZLPreOrderGoods : NSObject
+//@interface ZLPreOrderGoods : NSObject
+//
+//@property (assign,nonatomic) int cam_gid;
+//
+//@property (strong,nonatomic) NSString* odrg_img;
+//
+//@property (assign,nonatomic) int odrg_number;
+//
+//@property (assign,nonatomic) float odrg_price;
+//
+//@property (strong,nonatomic) NSString* odrg_pro_name;
+//
+//@property (strong,nonatomic) NSString* odrg_spec;
+//
+//@property (assign,nonatomic) int pro_id;
+//
+//@property (assign,nonatomic) int sku_cost;
+//
+//@property (assign,nonatomic) int sku_id;
+//
+//@end
 
-@property (assign,nonatomic) int cam_gid;
+//@interface ZLPreOrderCoupons : NSObject
+//
+//@property (strong,nonatomic) NSString* cuc_add_time;
+//
+//@property (assign,nonatomic) int cuc_id;
+//
+//@property (strong,nonatomic) NSString* cuc_overdue;
+//
+//@property (strong,nonatomic) NSString* cuc_state;
+//
+//@property (strong,nonatomic) NSString* cup_author;
+//
+//@property (strong,nonatomic) NSString* cup_content;
+//
+//@property (assign,nonatomic) int cup_id;
+//
+//@property (assign,nonatomic) int cup_is_shop;
+//
+//@property (strong,nonatomic) NSString* cup_logo;
+//
+//@property (assign,nonatomic) float cup_min_price;
+//
+//@property (strong,nonatomic) NSString* cup_name;
+//
+//@property (assign,nonatomic) int cup_mould_id;
+//
+//@property (assign,nonatomic) float cup_price;
+//
+//@property (assign,nonatomic) int user_id;
+//
+//@end
 
-@property (strong,nonatomic) NSString* odrg_img;
-
-@property (assign,nonatomic) int odrg_number;
-
-@property (assign,nonatomic) float odrg_price;
-
-@property (strong,nonatomic) NSString* odrg_pro_name;
-
-@property (strong,nonatomic) NSString* odrg_spec;
-
-@property (assign,nonatomic) int pro_id;
-
-@property (assign,nonatomic) int sku_cost;
-
-@property (assign,nonatomic) int sku_id;
-
-@end
-
-@interface ZLPreOrderCoupons : NSObject
-
-@property (strong,nonatomic) NSString* cuc_add_time;
-
-@property (assign,nonatomic) int cuc_id;
-
-@property (strong,nonatomic) NSString* cuc_overdue;
-
-@property (strong,nonatomic) NSString* cuc_state;
-
-@property (strong,nonatomic) NSString* cup_author;
-
-@property (strong,nonatomic) NSString* cup_content;
-
-@property (assign,nonatomic) int cup_id;
-
-@property (assign,nonatomic) int cup_is_shop;
-
-@property (strong,nonatomic) NSString* cup_logo;
-
-@property (assign,nonatomic) float cup_min_price;
-
-@property (strong,nonatomic) NSString* cup_name;
-
-@property (assign,nonatomic) int cup_mould_id;
-
-@property (assign,nonatomic) float cup_price;
-
-@property (assign,nonatomic) int user_id;
-
-@end
-
-@interface ZLPreOrderCampains : NSObject
-
-@property (assign,nonatomic) int cam_act_satisfy;
-
-@property (assign,nonatomic) int cam_id;
-
-@property (strong,nonatomic) NSString* cam_name;
-
-@property (assign,nonatomic) int cam_satisfy;
-
-@property (assign,nonatomic) int cam_type;
-
-@end
+//@interface ZLPreOrderCampains : NSObject
+//
+//@property (assign,nonatomic) int cam_act_satisfy;
+//
+//@property (assign,nonatomic) int cam_id;
+//
+//@property (strong,nonatomic) NSString* cam_name;
+//
+//@property (assign,nonatomic) int cam_satisfy;
+//
+//@property (assign,nonatomic) int cam_type;
+//
+//@end
 
 #pragma mark----****----生成订单对象
 ///生成订单对象

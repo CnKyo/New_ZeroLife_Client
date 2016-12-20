@@ -52,7 +52,7 @@
 ///设置代理
 @property (strong, nonatomic) id <ZLCommitDelegate>delegate;
 
-@property (strong,nonatomic) ZLPreOrderGoods *mGoodsObj;
+@property (strong,nonatomic) OrderGoodsObject *mGoodsObj;
 
 @property (strong,nonatomic) ZLPreOrderObj *mPreOrderObj;
 

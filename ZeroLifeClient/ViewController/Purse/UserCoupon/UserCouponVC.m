@@ -152,35 +152,76 @@
     return 1;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if (self.mPushType == ZLPushCouponVCTypeWithCommitOrder) {
-        return self.mCoupArr.count;
-    }else {
-        return self.tableArr.count;
-    }
+    return self.tableArr.count;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
-    
-    if (self.tableArr.count > 0 || self.mCoupArr.count > 0)
+    if (self.tableArr.count > 0)
         return 100;
     return [super tableView:tableView heightForRowAtIndexPath:indexPath];
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell_UserCouponTableViewCell";
-    UserCouponTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[UserCouponTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    if (self.tableArr.count > 0) {
+        static NSString *CellIdentifier = @"Cell_UserCouponTableViewCell";
+        UserCouponTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (cell == nil) {
+            cell = [[UserCouponTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
+        
+        CouponObject *item = [self.tableArr objectAtIndex:indexPath.row];
+        
+        UIColor *bordColor = nil;
+        NSString *typeStr = item.cup_name;
+        NSString *stateStr = @"";
+        
+        if ([item.cuc_state isEqualToString:kCouponState_NoUse]) {
+            stateStr = @"未使用";
+            bordColor = COLOR(253, 126, 0);
+            cell.view.imgView.image = IMG(@"user_coupon_jushe.png");
+            cell.view.statusLable.textColor = [UIColor whiteColor];
+            cell.view.timeLable.textColor = [UIColor whiteColor];
+            
+            
+        } else if ([item.cuc_state isEqualToString:kCouponState_IsUsed]) {
+            typeStr = @"已使用";
+            bordColor = COLOR(253, 87, 88);
+            cell.view.imgView.image = IMG(@"user_coupon_red.png");
+            cell.view.statusLable.textColor = [UIColor whiteColor];
+            cell.view.timeLable.textColor = [UIColor whiteColor];
+            
+        } else if ([item.cuc_state isEqualToString:kCouponState_Overdue]) {
+            typeStr = @"已过期";
+            bordColor = COLOR(222, 222, 222);
+            cell.view.imgView.image = IMG(@"user_coupon_gray.png");
+            cell.view.statusLable.textColor = COLOR(150, 150, 150);
+            cell.view.timeLable.textColor = COLOR(150, 150, 150);
+        }
+        
+        NSDictionary *attrs = @{NSFontAttributeName : cell.view.typeLable.font};
+        CGSize size = [typeStr sizeWithAttributes:attrs];
+        [cell.view.typeLable updateConstraints:^(MASConstraintMaker *make) {
+            make.width.equalTo(size.width + 10);
+        }];
+        
+        NSDictionary* style = @{@"body" : @[[UIFont systemFontOfSize:25], bordColor],
+                                @"u" : @[[UIFont systemFontOfSize:14], COLOR(253, 156, 16)]};
+        
+        NSString *moneyStr = [NSString stringWithFormat:@"%.2f <u>元</u>", item.cup_price];
+        cell.view.typeLable.text = typeStr;
+        cell.view.layer.borderColor = bordColor.CGColor;
+        cell.view.typeLable.layer.borderColor = bordColor.CGColor;
+        cell.view.typeLable.textColor = bordColor;
+        cell.view.moneyLable.attributedText = [moneyStr attributedStringWithStyleBook:style];
+        
+        cell.view.nameLable.text = [NSString compIsNone:item.cup_author];
+        cell.view.desLable.text = [NSString compIsNone:item.cup_content];
+        cell.view.timeLable.text = [item.cuc_overdue substringWithRange:NSMakeRange(0, 10)];
+        
+        
+        return cell;
     }
-    if (self.mPushType == ZLPushCouponVCTypeWithCommitOrder) {
-        [cell setMCoup:[self.mCoupArr objectAtIndex:indexPath.row]];
-    }else{
-        [cell setItem:[self.tableArr objectAtIndex:indexPath.row]];
-    }
-    
-    return cell;
     
     return [super tableView:tableView cellForRowAtIndexPath:indexPath];
 }
@@ -190,27 +231,11 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    if (self.mPushType == ZLPushCouponVCTypeWithCommitOrder) {
-        
-        if (self.block) {
-            self.block(self.mCoupArr[indexPath.row]);
-            [self popViewController];
-        }
-        
-    }else{
-        if (self.chooseCallBack) {
-            CouponObject *item = [self.tableArr objectAtIndex:indexPath.row];
-            self.chooseCallBack(item);
-            [self performSelector:@selector(popViewController) withObject:nil afterDelay:0.2];
-            
-        } else {
-            //            UserAddressEditVC *vc = [[UserAddressEditVC alloc] init];
-            //            [self.navigationController pushViewController:vc animated:YES];
-        }
+    if (self.block) {
+        CouponObject *item = [self.tableArr objectAtIndex:indexPath.row];
+        self.block(item);
+        [self performSelector:@selector(popViewController) withObject:nil afterDelay:0.2];
     }
-    
-    
-    
 }
 
 - (void)reloadTableViewDataSource{
