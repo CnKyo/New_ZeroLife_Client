@@ -52,7 +52,7 @@
 }
 
 
-- (void)setMGoodsObj:(ZLPreOrderGoods *)mGoodsObj{
+- (void)setMGoodsObj:(OrderGoodsObject *)mGoodsObj{
 
     [self.mGoodsLogo sd_setImageWithURL:[NSURL URLWithString:mGoodsObj.odrg_img] placeholderImage:ZLDefaultGoodsImg];
     self.mGoodsName.text = mGoodsObj.odrg_pro_name;

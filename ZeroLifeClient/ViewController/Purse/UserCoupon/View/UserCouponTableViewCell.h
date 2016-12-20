@@ -28,7 +28,7 @@
 
 @property(nonatomic,strong) CouponObject *item;
 
-@property(nonatomic,strong) ZLPreOrderCoupons *mCoup;
+@property(nonatomic,strong) CouponObject *mCoup;
 
 
 @end

@@ -267,9 +267,8 @@
 - (void)ZLCommitWithCoupBtnSelected{
     
     UserCouponVC *vc = [[UserCouponVC alloc] init];
-    vc.mPushType = ZLPushCouponVCTypeWithCommitOrder;
-    vc.mCoupArr = self.mPreOrder.coupons;
-    vc.block = ^(ZLPreOrderCoupons *mCoupon) {
+    [vc.tableArr setArray: self.mPreOrder.coupons];
+    vc.block = ^(CouponObject *mCoupon) {
         ///这里每次block回来就把之前减去的加回来，不然会引起循环调用
         self.mPreOrder.payMoney+=self.mPreOrder.mCoupon.cup_price;
         self.mPreOrder.deliver_price-=self.mPreOrder.mCoupon.cup_price;

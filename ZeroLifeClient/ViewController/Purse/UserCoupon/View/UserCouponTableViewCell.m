@@ -230,7 +230,7 @@
 
 }
 
-- (void)setMCoup:(ZLPreOrderCoupons *)mCoup{
+- (void)setMCoup:(CouponObject *)mCoup{
 
     //        UIColor *bordColor = nil;
     //        NSString *typeStr = @"";

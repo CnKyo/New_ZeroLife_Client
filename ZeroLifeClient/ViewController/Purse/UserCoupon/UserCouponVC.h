@@ -11,14 +11,12 @@
 
 @interface UserCouponVC : CustomVC
 ///进入优惠卷页面类型
-@property (assign,nonatomic) ZLPushCouponVCType mPushType;
-
-@property (nonatomic, copy) void (^chooseCallBack)(CouponObject* item);
+//@property (assign,nonatomic) ZLPushCouponVCType mPushType;
 
 
-@property (nonatomic, copy) void (^block)(ZLPreOrderCoupons *mCoupon);
+@property (nonatomic, copy) void (^block)(CouponObject *mCoupon);
 
-@property (nonatomic, strong) NSArray *mCoupArr;
+//@property (nonatomic, strong) NSArray *mCoupArr;
 
 @end
 
