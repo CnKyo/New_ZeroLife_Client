@@ -298,9 +298,16 @@
 @property(nonatomic,strong) NSString *              id_card_back_url;            // 银行卡背面图片url
 @end
 
-#pragma mark----****----收银台测试model
+#pragma mark----****----收银台对象
 @interface ZLGoPayObject : NSObject
-@property(nonatomic, assign) BOOL                   isSelected;
+
+@property(nonatomic,strong) NSString *              mPayName;            ///支付名称
+
+@property(nonatomic,strong) NSString *              mImgName;            ///图片名称
+
+@property(nonatomic, assign) BOOL                   isSelected;///是否选中
+
+@property(nonatomic, assign) ZLPayType  mPayType;///支付方式
 @end
 
 
@@ -1433,5 +1440,20 @@
 
 @end
 
+#pragma mark----****----生成订单对象
+///生成订单对象
+@interface ZLCreateOrderObj : NSObject
+///订单id
+@property (assign,nonatomic) int odr_id;
+///订单编号
+@property (strong,nonatomic) NSString* odr_code;
+///消费商户描述
+@property (strong,nonatomic) NSString* odr_shop_name;
+///订单商品原价格
+@property (assign,nonatomic) float odr_amount;
+///需支付商品金额
+@property (assign,nonatomic) float odr_pay_price;
+
+@end
 
 

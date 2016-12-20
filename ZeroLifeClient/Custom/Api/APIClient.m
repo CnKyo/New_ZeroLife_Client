@@ -1615,7 +1615,7 @@
  @param mGoods 商品json数组
  @param block 返回值
  */
-- (void)ZLCommitOrder:(int)mShopId andGoodsArr:(NSString *)mGoods block:(void (^)(APIObject *mBaseObj,ZLPreOrderObj *mPreOrder))block{
+- (void)ZLCommitPreOrder:(int)mShopId andGoodsArr:(NSString *)mGoods block:(void (^)(APIObject *mBaseObj,ZLPreOrderObj *mPreOrder))block{
 
     ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
     if (user.user_id > 0) {
@@ -1650,6 +1650,137 @@
     
 }
 
+#pragma mark----****----用户生成订单接口
+/**
+ 用户生成订单接口
+ 
+ @param mOrderType 订单类型
+ @param mShopId 店铺id
+ @param mGoodsList 商品json列表
+ @param mSendAddress 配送地址
+ @param mArriveAddress 送达地址
+ @param mServiceTime 服务时间
+ @param mSendType 配送方式
+ @param mSendPrice 配送费
+ @param mCoupId 优惠卷id
+ @param mRemark 备注
+ @param mSign 下单签名
+ @param block 返回值
+ */
+- (void)ZLCommitOrder:(ZLCommitOrderType)mOrderType andShopId:(NSString *)mShopId andGoods:(NSString *)mGoodsList andSendAddress:(NSString *)mSendAddress andArriveAddress:(NSString *)mArriveAddress andServiceTime:(NSString *)mServiceTime andSendType:(ZLShopSendType)mSendType andSendPrice:(NSString *)mSendPrice andCoupId:(NSString *)mCoupId andRemark:(NSString *)mRemark andSign:(NSString *)mSign block:(void (^)(APIObject *mBaseObj,ZLCreateOrderObj *mOrder))block{
+    
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    if (user.user_id > 0) {
+        NSMutableDictionary* para = [NSMutableDictionary dictionary];
+        
+        [para setInt:[ZLUserInfo ZLCurrentUser].user_id forKey:@"user_id"];
+        
+        [para setInt:mOrderType forKey:@"odr_type"];
+        
+        if (mShopId) {
+            [para setObject:mShopId forKey:@"shop_id"];
+        }
+        if (mGoodsList) {
+            [para setObject:mGoodsList forKey:@"goods"];
+        }
+        if (mSendAddress) {
+            [para setObject:mSendAddress forKey:@"addr_id"];
+        }
+        if (mArriveAddress) {
+            [para setObject:mArriveAddress forKey:@"addr_id_pick"];
+        }
+        if (mServiceTime) {
+            [para setObject:mServiceTime forKey:@"odr_timing"];
+        }
+        if (mSendType) {
+            [para setInt:mSendType forKey:@"odr_deliver_type"];
 
+        }else{
+            [para setInt:2 forKey:@"odr_deliver_type"];
+
+        }
+
+        if (mSendPrice) {
+            [para setObject:mSendPrice forKey:@"odr_deliver_fee"];
+        }
+        if (mCoupId) {
+            [para setObject:mCoupId forKey:@"cuc_id"];
+        }
+        if (mRemark) {
+            [para setObject:mRemark forKey:@"odr_remark"];
+        }
+        if (mSign) {
+            [para setObject:mSign forKey:@"sign"];
+        }
+        
+        [self loadAPIWithTag:self path:@"/order/order_create" parameters:para call:^(APIObject *info) {
+            if (info.code == RESP_STATUS_YES) {
+                block(info,[ZLCreateOrderObj mj_objectWithKeyValues:info.data]);
+            }else{
+                block(info,nil);
+            }
+            
+        }];
+        
+    }else{
+        block([APIObject infoWithReLoginErrorMessage:@"请重新登陆"],nil);
+        
+    }
+
+    
+    
+    
+}
+
+#pragma mark----****----发起支付
+/**
+ 发起支付
+ 
+ @param mPayObj 支付订单对象
+ @param mPayType 支付类型
+ @param block 返回值
+ */
+- (void)ZLSendToPayOrderObj:(ZLCreateOrderObj *)mPayObj andPayType:(ZLPayType)mPayType block:(void (^)(APIObject *mBaseObj))block{
+
+    
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    
+    if (user.user_id > 0) {
+        
+        NSMutableDictionary* para = [NSMutableDictionary dictionary];
+        
+        [para setInt:[ZLUserInfo ZLCurrentUser].user_id forKey:@"user_id"];
+        
+        [para setObject:NumberWithFloat(mPayObj.odr_pay_price) forKey:@"pay_amount"];
+        
+        [para setInt:mPayType forKey:@"pay_channel"];
+        
+        [para setInt:mPayObj.odr_id forKey:@"odr_id"];
+        
+        [para setObject:mPayObj.odr_code forKey:@"odr_code"];
+        
+        [self loadAPIWithTag:self path:@"/pay/create_pay" parameters:para call:^(APIObject *info) {
+            
+            if (info.code == RESP_STATUS_YES) {
+                
+                block(info);
+                
+            }else{
+                
+                block(info);
+                
+            }
+            
+        }];
+        
+    }else{
+        block([APIObject infoWithReLoginErrorMessage:@"请重新登陆"]);
+        
+    }
+
+    
+    
+    
+}
 
 @end

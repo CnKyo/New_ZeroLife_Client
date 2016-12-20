@@ -222,8 +222,38 @@ typedef void (^TableShareSdkBlock)(int totalpage, NSArray *tableArr, APIShareSdk
  @param mGoods 商品json数组
  @param block 返回值
  */
-- (void)ZLCommitOrder:(int)mShopId andGoodsArr:(NSString *)mGoods block:(void (^)(APIObject *mBaseObj,ZLPreOrderObj *mPreOrder))block;
+- (void)ZLCommitPreOrder:(int)mShopId andGoodsArr:(NSString *)mGoods block:(void (^)(APIObject *mBaseObj,ZLPreOrderObj *mPreOrder))block;
 
 
+
+#pragma mark----****----用户生成订单接口
+/**
+ 用户生成订单接口
+
+ @param mOrderType 订单类型
+ @param mShopId 店铺id
+ @param mGoodsList 商品json列表
+ @param mSendAddress 配送地址
+ @param mArriveAddress 送达地址
+ @param mServiceTime 服务时间
+ @param mSendType 配送方式
+ @param mSendPrice 配送费
+ @param mCoupId 优惠卷id
+ @param mRemark 备注
+ @param mSign 下单签名
+ @param block 返回值
+ */
+- (void)ZLCommitOrder:(ZLCommitOrderType)mOrderType andShopId:(NSString *)mShopId andGoods:(NSString *)mGoodsList andSendAddress:(NSString *)mSendAddress andArriveAddress:(NSString *)mArriveAddress andServiceTime:(NSString *)mServiceTime andSendType:(ZLShopSendType)mSendType andSendPrice:(NSString *)mSendPrice andCoupId:(NSString *)mCoupId andRemark:(NSString *)mRemark andSign:(NSString *)mSign block:(void (^)(APIObject *mBaseObj,ZLCreateOrderObj *mOrder))block;
+
+
+#pragma mark----****----发起支付
+/**
+ 发起支付
+ 
+ @param mPayObj 支付订单对象
+ @param mPayType 支付类型
+ @param block 返回值
+ */
+- (void)ZLSendToPayOrderObj:(ZLCreateOrderObj *)mPayObj andPayType:(ZLPayType)mPayType block:(void (^)(APIObject *mBaseObj))block;
 
 @end

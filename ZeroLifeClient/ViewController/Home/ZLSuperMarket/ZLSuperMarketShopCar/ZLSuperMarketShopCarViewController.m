@@ -279,7 +279,7 @@
     }
     
     [self showWithStatus:@"正在提交订单..."];
-    [[APIClient sharedClient] ZLCommitOrder:self.mShopId andGoodsArr:[Util arrToJson:mPayArr] block:^( APIObject *mBaseObj,ZLPreOrderObj *mPreOrder) {
+    [[APIClient sharedClient] ZLCommitPreOrder:self.mShopId andGoodsArr:[Util arrToJson:mPayArr] block:^( APIObject *mBaseObj,ZLPreOrderObj *mPreOrder) {
         if (mBaseObj.code == RESP_STATUS_YES) {
             [self dismiss];
             ZLSuperMarketCommitOrderViewController *ZLCommitVC = [ZLSuperMarketCommitOrderViewController new];

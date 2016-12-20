@@ -71,11 +71,15 @@
         make.height.offset(@60);
     }];
     
+    [self UpdataBottomView:self.mPreOrder];
+    
+}
+#pragma mark ----****----更新bottomView
+- (void)UpdataBottomView:(ZLPreOrderObj *)mObj{
+    
+    NSDictionary *mAttStyle = @{@"color": [UIColor redColor],@"font":[UIFont systemFontOfSize:12]};
 
-    
-    
-    
-    
+    mBottomView.mTotelPrice.attributedText = [[NSString stringWithFormat:@"订单金额：<color><font>¥</font></color><color>%.2f</color>元",mObj.payMoney] attributedStringWithStyleBook:mAttStyle];
     
 }
 - (void)didReceiveMemoryWarning {
@@ -244,8 +248,45 @@
  */
 - (void)ZLCommitGopay{
     
-    ZLGoPayViewController *ZLGoPayVC = [ZLGoPayViewController new];
-    [self pushViewController:ZLGoPayVC];
+    if (!self.mPreOrder.mAddress) {
+        [self showErrorStatus:@"您还没有收货地址呐～"];
+        return;
+    }
+    
+    NSMutableArray *mPayArr = [NSMutableArray new];
+    NSMutableDictionary *mPara = [NSMutableDictionary new];
+    
+    for (ZLPreOrderGoods *mGoods in self.mPreOrder.goods) {
+        [mPara setInt:mGoods.pro_id forKey:@"pro_id"];
+        [mPara setInt:mGoods.odrg_number forKey:@"odrg_number"];
+        [mPara setInt:mGoods.cam_gid forKey:@"cam_gid"];
+        [mPara setInt:mGoods.sku_id forKey:@"sku_id"];
+        [mPara setObject:mGoods.odrg_spec forKey:@"odrg_spec"];
+
+        [mPayArr addObject:mPara];
+    }
+
+    [self showWithStatus:@"正在提交..."];
+    [[APIClient sharedClient] ZLCommitOrder:ZLCommitOrderTypeWithSuperMarket andShopId:[NSString stringWithFormat:@"%d",self.mPreOrder.shop_id] andGoods:[Util arrToJson:mPayArr] andSendAddress:[NSString stringWithFormat:@"%d",self.mPreOrder.mAddress.addr_id] andArriveAddress:nil andServiceTime:nil andSendType:self.mPreOrder.mSendType andSendPrice:nil andCoupId:[NSString stringWithFormat:@"%d",self.mPreOrder.mCoupon.cuc_id] andRemark:self.mPreOrder.mNote andSign:self.mPreOrder.sign block:^(APIObject *mBaseObj,ZLCreateOrderObj *mOrder) {
+        
+        if (mBaseObj.code == RESP_STATUS_YES) {
+            
+            [self showSuccessStatus:mBaseObj.msg];
+            ZLGoPayViewController *ZLGoPayVC = [ZLGoPayViewController new];
+            ZLGoPayVC.mOrder = [ZLCreateOrderObj new];
+            ZLGoPayVC.mOrder = mOrder;
+            [self pushViewController:ZLGoPayVC];
+            
+        }else{
+        
+            [self showErrorStatus:mBaseObj.msg];
+        }
+        
+        
+    }];
+    
+    
+
 
 }
 #pragma mark----****----选择配送方式
@@ -280,7 +321,7 @@
         self.mPreOrder.mCoupon = mCoupon;
         
         [self.mTableView reloadData];
-        
+        [self UpdataBottomView:self.mPreOrder];
     };
     [self.navigationController pushViewController:vc animated:YES];
     

@@ -10,4 +10,6 @@
 
 @interface ZLGoPayViewController : CustomVC
 
+@property (strong,nonatomic) ZLCreateOrderObj *mOrder;
+
 @end

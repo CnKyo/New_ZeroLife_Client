@@ -36,6 +36,8 @@
     // Do any additional setup after loading the view.
     self.navigationItem.title = @"收银台";
 
+  
+    
     mPayTypeArr = [NSMutableArray new];
     
     [self addTableView];
@@ -87,16 +89,29 @@
     [self initData];
 }
 - (void)initData{
-    for (int i = 0; i < 3; i++) {
-        ZLGoPayObject *model = [[ZLGoPayObject alloc] init];
-        [self.tableArr addObject:model];
+    NSArray *mTT = @[@"支付宝支付",@"微信支付",@"余额支付"];
+    NSArray *mPP = @[@"user_payTyple_alipay",@"user_payTyple_weixin",@"chongzi"];
+    
+    for (int i = 0; i<mTT.count; i++) {
+        
+        ZLGoPayObject *mObj = [ZLGoPayObject new];
+        mObj.mPayName = mTT[i];
+        mObj.mPayType = i+1;
+        mObj.mImgName = mPP[i];
+        [self.tableArr addObject:mObj];
     }
+    
     [self.tableView reloadData];
 
 }
 #pragma mark----****----确认支付
 - (void)mOKBtn:(UIButton *)sender{
 
+    if (mPayTypeArr.count <= 0) {
+        [self showErrorStatus:@"请选择支付方式！"];
+        return;
+    }
+    
     MLLog(@"%@",mPayTypeArr);
     
 }
@@ -134,6 +149,8 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     
     mHeadaerView = [ZLPayTypeHeaderView shareView];
+    mHeadaerView.mName.text = self.mOrder.odr_shop_name;
+    mHeadaerView.mPricce.text = [NSString stringWithFormat:@"¥%.1f元",self.mOrder.odr_pay_price];
     return mHeadaerView;
  
     
@@ -238,6 +255,7 @@
     if (!model.isSelected) {
         model.isSelected = !model.isSelected;
         self.selectModel = model;
+        self.selectModel.mPayType = [[NSString stringWithFormat:@"%ld",mIndexPath.row+1] intValue];
     }
     
 

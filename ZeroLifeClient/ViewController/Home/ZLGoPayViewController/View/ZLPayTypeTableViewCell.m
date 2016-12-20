@@ -42,6 +42,10 @@
         [self.mSelectedBtn setBackgroundColor:[UIColor colorWithRed:0.67 green:0.67 blue:0.67 alpha:0.25]];
         self.mSelectedImg.image = [UIImage imageNamed:@"ZLShopCar_Selected"];
     }
+    
+    self.mName.text = model.mPayName;
+    
+    self.mLogo.image = [UIImage imageNamed:model.mImgName];
 }
 
 - (IBAction)mBtnClicked:(UIButton *)sender {

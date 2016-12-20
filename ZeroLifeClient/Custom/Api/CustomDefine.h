@@ -362,4 +362,27 @@ typedef enum{
 }ZLPushCouponVCType;///进入优惠卷vc页面类型
 
 
+typedef enum{
+    ///1:社区超市订单
+    ZLCommitOrderTypeWithSuperMarket = 1,
+    ///2:报修订单
+    ZLCommitOrderTypeWithFix = 2,
+    ///3:家政订单
+    ZLCommitOrderTypeWithHousKeeping = 3,
+    ///4:跑跑腿订单
+    ZLCommitOrderTypeWithPPt = 4,
+}ZLCommitOrderType;///提交订单类型
+
+
+typedef enum{
+    ///1:支付宝支付
+    ZLPayTypeWithAlipay = 1,
+    ///2:微信支付
+    ZLPayTypeWithWechat = 2,
+    ///3:余额支付
+    ZLPayTypeWithBalance = 3,
+
+}ZLPayType;///支付通道类型
+
+
 #endif /* CustomDefine_h */
