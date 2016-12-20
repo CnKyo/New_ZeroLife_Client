@@ -871,9 +871,6 @@ bool m_bind = NO;
 
 
 @implementation ZLHomeAnouncement
-
-
-
 @end
 
 @implementation LKDBHelperGoodsObj
@@ -892,7 +889,6 @@ bool m_bind = NO;
     return @{@"campaigns":@"OrderCampaignObject",@"coupons":@"CouponObject",@"goods":@"OrderGoodsObject"};
 }
 
-
 @end
 //@implementation ZLPreOrderGoods
 //
@@ -909,3 +905,8 @@ bool m_bind = NO;
 //
 //
 //@end
+
+@implementation ZLCreateOrderObj
+@end
+
+

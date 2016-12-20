@@ -256,7 +256,7 @@
     NSMutableArray *mPayArr = [NSMutableArray new];
     NSMutableDictionary *mPara = [NSMutableDictionary new];
     
-    for (ZLPreOrderGoods *mGoods in self.mPreOrder.goods) {
+    for (OrderGoodsObject *mGoods in self.mPreOrder.goods) {
         [mPara setInt:mGoods.pro_id forKey:@"pro_id"];
         [mPara setInt:mGoods.odrg_number forKey:@"odrg_number"];
         [mPara setInt:mGoods.cam_gid forKey:@"cam_gid"];

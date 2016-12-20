@@ -24,7 +24,7 @@
 
     [super layoutSubviews];
     [self.mNoteTx setPlaceholder:@"请输入您的备注信息!"];
-    [self.mNoteTx setHolderToTop];
+    //[self.mNoteTx setHolderToTop];
 
     self.mNoteTx.delegate = self;
 }
