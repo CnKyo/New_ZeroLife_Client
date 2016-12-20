@@ -9,5 +9,7 @@
 #import "CustomVC.h"
 
 @interface ZLPPTRewardViewController : CustomVC
+///总酬金
+@property (assign,nonatomic) float mTotleMoney;
 
 @end

@@ -256,4 +256,37 @@ typedef void (^TableShareSdkBlock)(int totalpage, NSArray *tableArr, APIShareSdk
  */
 - (void)ZLSendToPayOrderObj:(ZLCreateOrderObj *)mPayObj andPayType:(ZLPayType)mPayType block:(void (^)(APIObject *mBaseObj))block;
 
+#pragma mark----****----获取跑腿首页分类
+/**
+ 获取跑腿首页分类
+
+ @param block 返回值
+ */
+- (void)ZLGetPPTHome:(void (^)(APIObject *mBaseObj,ZLPPTHomeClassList *mList))block;
+
+
+
+#pragma mark----****----获取跑腿榜
+/**
+ 获取跑腿榜
+
+ @param mPage 行数页数
+ @param mPageSize 每页条数
+ @param mSort 排序类型(1:订单量排名[默认为0]，2：金额量排名,3:评价排名)
+ */
+- (void)ZLGetPPTTopList:(NSString *)mPage andPageSize:(NSString *)mPageSize andSort:(NSString *)mSort block:(void(^)(APIObject *mBaseObj,ZLPPTTopObj *mList))block;
+
+
+#pragma mark----****----获取跑腿酬金列表
+/**
+ 获取跑腿酬金列表
+
+ @param mPage 行数页数
+ @param block 返回值
+ */
+- (void)ZLGetPPTRewardList:(NSString *)mPage block:(void(^)(APIObject *mBaseObj,ZLPPTRewardList *mList))block;
+
+
+
+
 @end

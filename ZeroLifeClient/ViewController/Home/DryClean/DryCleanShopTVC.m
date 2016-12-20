@@ -33,8 +33,6 @@
     
     mShopArr = [NSMutableArray new];
     
-    UIView *superView = self.view;
-
     [self addTableView];
     [self setTableViewHaveHeaderFooter];
     
@@ -196,7 +194,7 @@
     
     if (indexPath.section == 1) {
         ZLSuperMarketShopViewController *vc = [ZLSuperMarketShopViewController new];
-        vc.mType = 2;
+        vc.mType = ZLShopTypeHouseKeeping;
         [self pushViewController:vc];
     }
     

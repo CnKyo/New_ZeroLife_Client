@@ -21,7 +21,7 @@
 + (ZLPPTRewardHeadView *)shareView{
 
     ZLPPTRewardHeadView *view = [[[NSBundle mainBundle] loadNibNamed:@"ZLPPTRewardHeadView" owner:self options:nil]objectAtIndex:0];
-    
+    view.backgroundColor = M_CO;
     return view;
 
 }
