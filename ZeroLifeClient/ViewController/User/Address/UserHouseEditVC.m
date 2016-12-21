@@ -258,7 +258,7 @@
         }
         
         ZLSelectArearViewController *vc = [ZLSelectArearViewController new];
-        vc.block = ^(ZLHomeCommunity *mBlock){
+        vc.block = ^(CommunityObject *mBlock){
             self.item.cmut_id = mBlock.cmut_id;
             self.item.real_cmut_name = mBlock.cmut_name;
             cell.xiaoquField.text = mBlock.cmut_name;
@@ -267,7 +267,7 @@
             [self clearnBanData];
             [self reloadBanData];
         };
-        ZLHomeCommunity *at = [ZLHomeCommunity new];
+        CommunityObject *at = [CommunityObject new];
         at.cmut_province = _item.real_province;
         at.cmut_city = _item.real_city;
         at.cmut_county = _item.real_county;

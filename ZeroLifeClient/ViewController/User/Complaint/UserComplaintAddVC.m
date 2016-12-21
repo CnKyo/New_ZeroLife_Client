@@ -23,8 +23,8 @@
 @property(nonatomic,strong) ZLSeletedAddress *view1ChooseAddress;
 @property(nonatomic,strong) ZLSeletedAddress *view2ChooseAddress;
 
-@property(nonatomic,strong) ZLHomeCommunity *view1ChooseCommunity;
-@property(nonatomic,strong) ZLHomeCommunity *view2ChooseCommunity;
+@property(nonatomic,strong) CommunityObject *view1ChooseCommunity;
+@property(nonatomic,strong) CommunityObject *view2ChooseCommunity;
 
 @property(nonatomic,strong) NSMutableArray *view1ChooseBanArr;
 @end
@@ -132,11 +132,11 @@
         }
         
         ZLSelectArearViewController *vc = [ZLSelectArearViewController new];
-        vc.block = ^(ZLHomeCommunity *mBlock){
+        vc.block = ^(CommunityObject *mBlock){
             self.view1ChooseCommunity = mBlock;
             self.view1.xiaoquField.text = mBlock.cmut_name;
         };
-        ZLHomeCommunity *at = [ZLHomeCommunity new];
+        CommunityObject *at = [CommunityObject new];
         at.cmut_province = _view1ChooseAddress.mProvince;
         at.cmut_city = _view1ChooseAddress.mCity;
         at.cmut_county = _view1ChooseAddress.mArear;
@@ -154,11 +154,11 @@
         }
         
         ZLSelectArearViewController *vc = [ZLSelectArearViewController new];
-        vc.block = ^(ZLHomeCommunity *mBlock){
+        vc.block = ^(CommunityObject *mBlock){
             self.view2ChooseCommunity = mBlock;
             self.view2.xiaoquField.text = mBlock.cmut_name;
         };
-        ZLHomeCommunity *at = [ZLHomeCommunity new];
+        CommunityObject *at = [CommunityObject new];
         at.cmut_province = _view2ChooseAddress.mProvince;
         at.cmut_city = _view2ChooseAddress.mCity;
         at.cmut_county = _view2ChooseAddress.mArear;

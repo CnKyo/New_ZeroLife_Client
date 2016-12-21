@@ -263,6 +263,7 @@
 		04D64D7A1DC9CD35004E8859 /* ZLHomeCoupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D64D791DC9CD35004E8859 /* ZLHomeCoupView.m */; };
 		04D64D7C1DC9CDA4004E8859 /* ZlHomeCoupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D64D7B1DC9CDA4004E8859 /* ZlHomeCoupView.xib */; };
 		92AF8AA63E2B8C882D0429B1 /* libPods-ZeroLifeClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 339DEB89053AF616C6AD0FF3 /* libPods-ZeroLifeClient.a */; };
+		DF00C5221E08FFB800680771 /* SelectedAddressTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF00C5211E08FFB800680771 /* SelectedAddressTableViewCell.m */; };
 		DF0308851DCD65C700E1EAB6 /* SystemSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0308841DCD65C700E1EAB6 /* SystemSettingVC.m */; };
 		DF0308881DCD67ED00E1EAB6 /* UserInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0308871DCD67ED00E1EAB6 /* UserInfoVC.m */; };
 		DF03088D1DCD698900E1EAB6 /* QUPickPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = DF03088A1DCD698900E1EAB6 /* QUPickPhoto.m */; };
@@ -445,6 +446,18 @@
 		DF993D531DDAF54F0061D7CA /* NoticeTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = DF993D521DDAF54F0061D7CA /* NoticeTextView.m */; };
 		DF993D561DDAFFB30061D7CA /* notice@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF993D541DDAFFB30061D7CA /* notice@2x.png */; };
 		DF993D571DDAFFB30061D7CA /* notice@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF993D551DDAFFB30061D7CA /* notice@3x.png */; };
+		DFA0924F1E091B0900A109C9 /* wuguan_on@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFA092431E091B0900A109C9 /* wuguan_on@3x.png */; };
+		DFA092501E091B0900A109C9 /* wuguan_off@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFA092441E091B0900A109C9 /* wuguan_off@3x.png */; };
+		DFA092511E091B0900A109C9 /* wateRedBlank@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFA092451E091B0900A109C9 /* wateRedBlank@3x.png */; };
+		DFA092521E091B0900A109C9 /* wateRedBlank@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFA092461E091B0900A109C9 /* wateRedBlank@2x.png */; };
+		DFA092531E091B0900A109C9 /* juming_on@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFA092471E091B0900A109C9 /* juming_on@3x.png */; };
+		DFA092541E091B0900A109C9 /* juming_off@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFA092481E091B0900A109C9 /* juming_off@3x.png */; };
+		DFA092551E091B0900A109C9 /* gpssearchbutton@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFA092491E091B0900A109C9 /* gpssearchbutton@3x.png */; };
+		DFA092561E091B0900A109C9 /* gpssearchbutton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFA0924A1E091B0900A109C9 /* gpssearchbutton@2x.png */; };
+		DFA092571E091B0900A109C9 /* gpsnormal@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFA0924B1E091B0900A109C9 /* gpsnormal@3x.png */; };
+		DFA092581E091B0900A109C9 /* gpsnormal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFA0924C1E091B0900A109C9 /* gpsnormal@2x.png */; };
+		DFA092591E091B0900A109C9 /* gongsi_on@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFA0924D1E091B0900A109C9 /* gongsi_on@3x.png */; };
+		DFA0925A1E091B0900A109C9 /* gongsi_off@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFA0924E1E091B0900A109C9 /* gongsi_off@3x.png */; };
 		DFA135351DD6AA6C00805BA2 /* coupon_top_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = DFA135321DD6AA6C00805BA2 /* coupon_top_icon.png */; };
 		DFA135361DD6AA6C00805BA2 /* coupon_top_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFA135331DD6AA6C00805BA2 /* coupon_top_icon@2x.png */; };
 		DFA135371DD6AA6C00805BA2 /* coupon_top_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFA135341DD6AA6C00805BA2 /* coupon_top_icon@3x.png */; };
@@ -486,6 +499,7 @@
 		DFBAA9811DF159B9004315F9 /* user_header@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFBAA97F1DF159B9004315F9 /* user_header@2x.png */; };
 		DFBAA9841DF16525004315F9 /* login_close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFBAA9821DF16525004315F9 /* login_close@2x.png */; };
 		DFBAA9851DF16525004315F9 /* login_close@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFBAA9831DF16525004315F9 /* login_close@3x.png */; };
+		DFBF96DF1E0A1921004E8107 /* AddressCommunityChooseTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DFBF96DE1E0A1921004E8107 /* AddressCommunityChooseTVC.m */; };
 		DFE178501DD54F6800E06F21 /* UserYuETableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DFE1784F1DD54F6800E06F21 /* UserYuETableViewCell.m */; };
 		DFE178611DD555C100E06F21 /* cell_address@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFE178511DD555C100E06F21 /* cell_address@2x.png */; };
 		DFE178621DD555C100E06F21 /* cell_address@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFE178521DD555C100E06F21 /* cell_address@3x.png */; };
@@ -966,6 +980,8 @@
 		04D64D7B1DC9CDA4004E8859 /* ZlHomeCoupView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZlHomeCoupView.xib; sourceTree = "<group>"; };
 		26781393B9810BF63F686EF1 /* Pods-ZeroLifeClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZeroLifeClient.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZeroLifeClient/Pods-ZeroLifeClient.release.xcconfig"; sourceTree = "<group>"; };
 		339DEB89053AF616C6AD0FF3 /* libPods-ZeroLifeClient.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZeroLifeClient.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DF00C5201E08FFB800680771 /* SelectedAddressTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectedAddressTableViewCell.h; sourceTree = "<group>"; };
+		DF00C5211E08FFB800680771 /* SelectedAddressTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectedAddressTableViewCell.m; sourceTree = "<group>"; };
 		DF0308831DCD65C700E1EAB6 /* SystemSettingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemSettingVC.h; sourceTree = "<group>"; };
 		DF0308841DCD65C700E1EAB6 /* SystemSettingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SystemSettingVC.m; sourceTree = "<group>"; };
 		DF0308861DCD67ED00E1EAB6 /* UserInfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoVC.h; sourceTree = "<group>"; };
@@ -1233,6 +1249,18 @@
 		DF993D521DDAF54F0061D7CA /* NoticeTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoticeTextView.m; sourceTree = "<group>"; };
 		DF993D541DDAFFB30061D7CA /* notice@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notice@2x.png"; sourceTree = "<group>"; };
 		DF993D551DDAFFB30061D7CA /* notice@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notice@3x.png"; sourceTree = "<group>"; };
+		DFA092431E091B0900A109C9 /* wuguan_on@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wuguan_on@3x.png"; sourceTree = "<group>"; };
+		DFA092441E091B0900A109C9 /* wuguan_off@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wuguan_off@3x.png"; sourceTree = "<group>"; };
+		DFA092451E091B0900A109C9 /* wateRedBlank@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wateRedBlank@3x.png"; sourceTree = "<group>"; };
+		DFA092461E091B0900A109C9 /* wateRedBlank@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wateRedBlank@2x.png"; sourceTree = "<group>"; };
+		DFA092471E091B0900A109C9 /* juming_on@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "juming_on@3x.png"; sourceTree = "<group>"; };
+		DFA092481E091B0900A109C9 /* juming_off@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "juming_off@3x.png"; sourceTree = "<group>"; };
+		DFA092491E091B0900A109C9 /* gpssearchbutton@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gpssearchbutton@3x.png"; sourceTree = "<group>"; };
+		DFA0924A1E091B0900A109C9 /* gpssearchbutton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gpssearchbutton@2x.png"; sourceTree = "<group>"; };
+		DFA0924B1E091B0900A109C9 /* gpsnormal@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gpsnormal@3x.png"; sourceTree = "<group>"; };
+		DFA0924C1E091B0900A109C9 /* gpsnormal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gpsnormal@2x.png"; sourceTree = "<group>"; };
+		DFA0924D1E091B0900A109C9 /* gongsi_on@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gongsi_on@3x.png"; sourceTree = "<group>"; };
+		DFA0924E1E091B0900A109C9 /* gongsi_off@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gongsi_off@3x.png"; sourceTree = "<group>"; };
 		DFA135321DD6AA6C00805BA2 /* coupon_top_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coupon_top_icon.png; sourceTree = "<group>"; };
 		DFA135331DD6AA6C00805BA2 /* coupon_top_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "coupon_top_icon@2x.png"; sourceTree = "<group>"; };
 		DFA135341DD6AA6C00805BA2 /* coupon_top_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "coupon_top_icon@3x.png"; sourceTree = "<group>"; };
@@ -1285,6 +1313,8 @@
 		DFBAA97F1DF159B9004315F9 /* user_header@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_header@2x.png"; sourceTree = "<group>"; };
 		DFBAA9821DF16525004315F9 /* login_close@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_close@2x.png"; sourceTree = "<group>"; };
 		DFBAA9831DF16525004315F9 /* login_close@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_close@3x.png"; sourceTree = "<group>"; };
+		DFBF96DD1E0A1921004E8107 /* AddressCommunityChooseTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressCommunityChooseTVC.h; sourceTree = "<group>"; };
+		DFBF96DE1E0A1921004E8107 /* AddressCommunityChooseTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressCommunityChooseTVC.m; sourceTree = "<group>"; };
 		DFE1784E1DD54F6800E06F21 /* UserYuETableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserYuETableViewCell.h; sourceTree = "<group>"; };
 		DFE1784F1DD54F6800E06F21 /* UserYuETableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserYuETableViewCell.m; sourceTree = "<group>"; };
 		DFE178511DD555C100E06F21 /* cell_address@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cell_address@2x.png"; sourceTree = "<group>"; };
@@ -2385,6 +2415,8 @@
 				DF08E86F1DD1C072003E4DD9 /* UserHouseEditVC.m */,
 				DF04C2D21E08D06C00CC2EEC /* SelectedAddressVC.h */,
 				DF04C2D31E08D06C00CC2EEC /* SelectedAddressVC.m */,
+				DFBF96DD1E0A1921004E8107 /* AddressCommunityChooseTVC.h */,
+				DFBF96DE1E0A1921004E8107 /* AddressCommunityChooseTVC.m */,
 			);
 			path = Address;
 			sourceTree = "<group>";
@@ -2400,6 +2432,8 @@
 				DF08E8761DD1C072003E4DD9 /* UserHouseEditTableViewCell.h */,
 				DF08E8771DD1C072003E4DD9 /* UserHouseEditTableViewCell.m */,
 				DF08E8781DD1C072003E4DD9 /* UserHouseEditTableViewCell.xib */,
+				DF00C5201E08FFB800680771 /* SelectedAddressTableViewCell.h */,
+				DF00C5211E08FFB800680771 /* SelectedAddressTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2921,6 +2955,18 @@
 		DFFAA7521DB744EF001CFBB5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DFA092431E091B0900A109C9 /* wuguan_on@3x.png */,
+				DFA092441E091B0900A109C9 /* wuguan_off@3x.png */,
+				DFA092451E091B0900A109C9 /* wateRedBlank@3x.png */,
+				DFA092461E091B0900A109C9 /* wateRedBlank@2x.png */,
+				DFA092471E091B0900A109C9 /* juming_on@3x.png */,
+				DFA092481E091B0900A109C9 /* juming_off@3x.png */,
+				DFA092491E091B0900A109C9 /* gpssearchbutton@3x.png */,
+				DFA0924A1E091B0900A109C9 /* gpssearchbutton@2x.png */,
+				DFA0924B1E091B0900A109C9 /* gpsnormal@3x.png */,
+				DFA0924C1E091B0900A109C9 /* gpsnormal@2x.png */,
+				DFA0924D1E091B0900A109C9 /* gongsi_on@3x.png */,
+				DFA0924E1E091B0900A109C9 /* gongsi_off@3x.png */,
 				DF300D0E1E02816700AC23CC /* bankcar_del@3x.png */,
 				DF300D0F1E02816700AC23CC /* bankcar_del@2x.png */,
 				DFBAA9821DF16525004315F9 /* login_close@2x.png */,
@@ -3205,6 +3251,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DFFAA7461DB744C5001CFBB5 /* Build configuration list for PBXNativeTarget "ZeroLifeClient" */;
 			buildPhases = (
+				E7CAA876B0CEF14DAC5272DC /* 📦 Check Pods Manifest.lock */,
 				8AC224CEAA60AF0D38E00797 /* [CP] Check Pods Manifest.lock */,
 				1B4D3CEB002661B9593DDC86 /* [CP] Check Pods Manifest.lock */,
 				3AD80649A67A16B6F8D6A7D8 /* [CP] Check Pods Manifest.lock */,
@@ -3274,6 +3321,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DFA135501DD6C7A900805BA2 /* gou_yes.png in Resources */,
+				DFA0924F1E091B0900A109C9 /* wuguan_on@3x.png in Resources */,
 				DF08E8531DD16A13003E4DD9 /* MobileRechargeMoneyView_person@2x.png in Resources */,
 				04721A4B1DE4569100CE8639 /* starFore@2x.png in Resources */,
 				DF630D4C1DD45D790076A92C /* purse_anquanma@3x.png in Resources */,
@@ -3289,6 +3337,7 @@
 				DF630D4B1DD45D790076A92C /* purse_anquanma@2x.png in Resources */,
 				04B862AC1DD5983200BDEA59 /* ZLGoodsDetailBottomView.xib in Resources */,
 				04D07C171DF011FD00A83CD9 /* ZLShopCampainSubView.xib in Resources */,
+				DFA092501E091B0900A109C9 /* wuguan_off@3x.png in Resources */,
 				040917611DCC371D00DB2568 /* ZLSuperMarketShopActivityCell1.xib in Resources */,
 				DF7F1BFC1DCDDD4900D2242B /* ComplaintJumingView.xib in Resources */,
 				DF539F1A1DD5C01F00AF228F /* user_coupon_red.png in Resources */,
@@ -3320,17 +3369,21 @@
 				DFE1786A1DD555C100E06F21 /* order_fix@3x.png in Resources */,
 				04721A071DE3E66C00CE8639 /* qmusic_player_pause_default@2x.png in Resources */,
 				DF08E8521DD16A13003E4DD9 /* MobileRechargeMoneyView_mobile@3x.png in Resources */,
+				DFA092591E091B0900A109C9 /* gongsi_on@3x.png in Resources */,
 				DFA135611DD6EB6C00805BA2 /* WithDrawalVC.xib in Resources */,
 				DF993D411DDAE7640061D7CA /* baoxiuShop_souhou@2x.png in Resources */,
 				04B07EA11DD964E7004A7294 /* ZLRunningManCell.xib in Resources */,
 				DF630D4E1DD45D790076A92C /* purse_erweima@2x.png in Resources */,
+				DFA092581E091B0900A109C9 /* gpsnormal@2x.png in Resources */,
 				DFBAA97D1DF149AD004315F9 /* singIn_n@2x.png in Resources */,
 				DF7F1BF01DCDD5F200D2242B /* juming_on@2x.png in Resources */,
 				DFE178651DD555C100E06F21 /* cell_tousu@2x.png in Resources */,
 				DF300D111E02816700AC23CC /* bankcar_del@2x.png in Resources */,
 				DF0308A01DCD77E100E1EAB6 /* choose_on.png in Resources */,
+				DFA092531E091B0900A109C9 /* juming_on@3x.png in Resources */,
 				04866BA91DD41E71008DA56B /* ZLCommitShopSectionView.xib in Resources */,
 				DFE178641DD555C100E06F21 /* cell_souchang@3x.png in Resources */,
+				DFA092521E091B0900A109C9 /* wateRedBlank@2x.png in Resources */,
 				DFE178AD1DD55A9A00E06F21 /* cell_img_touxiang@2x.png in Resources */,
 				DFE178CB1DD575E700E06F21 /* cell_complaint_gongsi@2x.png in Resources */,
 				04A763301DDC42590061E2B0 /* ZLPPTReleaseShorSendCell.xib in Resources */,
@@ -3364,6 +3417,7 @@
 				04C73BF11DDD7D8D00E5D554 /* ZLHouseKeppingServiceCell.xib in Resources */,
 				0472A9081DE7E03100D861D2 /* ZLHouseKeepingClearnCell.xib in Resources */,
 				DFA1354F1DD6C7A900805BA2 /* gou_no@3x.png in Resources */,
+				DFA092511E091B0900A109C9 /* wateRedBlank@3x.png in Resources */,
 				DFA135701DD6FBE000805BA2 /* bankCard_add@2x.png in Resources */,
 				04D64D6D1DC9CCA5004E8859 /* ZLHomeLocationView.xib in Resources */,
 				DFA135521DD6C7A900805BA2 /* gou_yes@3x.png in Resources */,
@@ -3387,6 +3441,7 @@
 				0409175F1DCC336000DB2568 /* ZLSuperMarketShopCell.xib in Resources */,
 				04721A4E1DE4569100CE8639 /* starGray@2x.png in Resources */,
 				DFE178A31DD55A9A00E06F21 /* cell_img_hourse@2x.png in Resources */,
+				DFA092571E091B0900A109C9 /* gpsnormal@3x.png in Resources */,
 				DF630D171DD442960076A92C /* call_mobile.png in Resources */,
 				DF08E87D1DD1C072003E4DD9 /* UserAddressEditTableViewCell.xib in Resources */,
 				DF98EC631DD2FCA00006EBFE /* order_gouwu_done.png in Resources */,
@@ -3455,6 +3510,7 @@
 				0445AD861DD454CE00788779 /* ZLGoPaySucsessCell.xib in Resources */,
 				0445AD8B1DD457ED00788779 /* ZLGoPayPopRedBagView.xib in Resources */,
 				DFFAA73F1DB744C5001CFBB5 /* Assets.xcassets in Resources */,
+				DFA0925A1E091B0900A109C9 /* gongsi_off@3x.png in Resources */,
 				0464E7071DF26B4E00A3F954 /* StandarsAdd@2x.png in Resources */,
 				04721A021DE3E66C00CE8639 /* album_checkbox_gray@2x.png in Resources */,
 				04A8DA291DDADB6A000CE048 /* ZLPPTRateCell2.xib in Resources */,
@@ -3493,7 +3549,9 @@
 				DFE178931DD558B400E06F21 /* shimingrenzheng_on@2x.png in Resources */,
 				DFE178E21DD5901E00E06F21 /* cell_soukuan_item@3x.png in Resources */,
 				04721A241DE42C7F00CE8639 /* mBundleView.xib in Resources */,
+				DFA092541E091B0900A109C9 /* juming_off@3x.png in Resources */,
 				04866B941DD40FFD008DA56B /* ZLSuperMarketGoodsSpecView.xib in Resources */,
+				DFA092561E091B0900A109C9 /* gpssearchbutton@2x.png in Resources */,
 				DF630D771DD475660076A92C /* anquantishi@2x.png in Resources */,
 				0409177F1DCC67A100DB2568 /* ZLSuperMarketHeaderView.xib in Resources */,
 				04162DF91DCB2C9300FB4229 /* ZLHomeCoupCell.xib in Resources */,
@@ -3519,6 +3577,7 @@
 				047219FD1DE3E66C00CE8639 /* 37x-Checkmark.png in Resources */,
 				DF7F1BEE1DCDD5F200D2242B /* gongsi_on@2x.png in Resources */,
 				DFA135781DD6FE6F00805BA2 /* BankCardAddVC.xib in Resources */,
+				DFA092551E091B0900A109C9 /* gpssearchbutton@3x.png in Resources */,
 				DFA135371DD6AA6C00805BA2 /* coupon_top_icon@3x.png in Resources */,
 				DF08E8801DD1C072003E4DD9 /* UserHouseEditTableViewCell.xib in Resources */,
 				DF993D571DDAFFB30061D7CA /* notice@3x.png in Resources */,
@@ -3723,6 +3782,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZeroLifeClient/Pods-ZeroLifeClient-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		E7CAA876B0CEF14DAC5272DC /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		F1EAC3C068B69D6E51F2E512 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -3871,6 +3945,7 @@
 				04A8DA0D1DDAB1E3000CE048 /* ZLPPTOrderDetailViewController.m in Sources */,
 				041789CB1DDFE40500D55EA7 /* MZTimerLabel.m in Sources */,
 				DF98EC381DD2AE880006EBFE /* OrderGoodsThumbListView.m in Sources */,
+				DFBF96DF1E0A1921004E8107 /* AddressCommunityChooseTVC.m in Sources */,
 				04721A0E1DE3E66C00CE8639 /* MBProgressHUD.m in Sources */,
 				DF7F1BF71DCDDCF500D2242B /* UserComplaintAddVC.m in Sources */,
 				DFF9325F1DD9A8A900BA8C8B /* BianMingVC.m in Sources */,
@@ -3922,6 +3997,7 @@
 				043BFAE61DF68C4E0037A835 /* mCheckMoreActivityView.m in Sources */,
 				047219F21DE3E66C00CE8639 /* HX_AlbumModel.m in Sources */,
 				049A120D1DE95D2A0087238D /* ZLSelectedCityViewController.m in Sources */,
+				DF00C5221E08FFB800680771 /* SelectedAddressTableViewCell.m in Sources */,
 				041657121DD6B218004E7D9A /* ZLRepairsColumsView.m in Sources */,
 				DF7F1BD21DCDC1FB00D2242B /* UserPaoPaoRegisterVC.m in Sources */,
 				04A7631E1DDBFA540061E2B0 /* ZLPPTReleaseRewardCell.m in Sources */,

@@ -10,6 +10,8 @@
 #import "UIViewController+Additions.h"
 #import "ZLLoginViewController.h"
 
+
+
 #pragma mark -
 #pragma mark NSDictionary
 @implementation NSDictionary (QUAdditions)
@@ -384,6 +386,38 @@
     return str;
 }
 
++(AddressObject *)itemWithMapPOI:(AMapPOI *)tagItem
+{
+    AddressObject *item = [AddressObject new];
+    item.addr_province_val = tagItem.province;
+    item.addr_city_val = tagItem.city;
+    item.addr_county_val = tagItem.district;
+    item.addr_address = [NSString stringWithFormat:@"%@%@%@%@",tagItem.province,tagItem.city,tagItem.district,tagItem.address];
+    item.address = tagItem.address;
+    item.cmut_name = tagItem.name;
+    item.addr_lat = tagItem.location.latitude;
+    item.addr_lng = tagItem.location.longitude;
+    
+    return item;
+}
+
++(AddressObject *)itemWithCommunity:(CommunityObject *)tagItem
+{
+    AddressObject *item = [AddressObject new];
+    item.addr_province = tagItem.cmut_province;
+    item.addr_city = tagItem.cmut_city;
+    item.addr_county = tagItem.cmut_county;
+    item.addr_county_val = tagItem.gion_name;
+    item.addr_address = tagItem.cmut_address;
+    item.address = tagItem.cmut_address;
+    item.cmut_id = tagItem.cmut_id;
+    item.cmut_name = tagItem.cmut_name;
+    item.addr_lat = tagItem.cmut_lat;
+    item.addr_lng = tagItem.cmut_lng;
+    
+    return item;
+}
+
 @end
 
 
@@ -638,8 +672,8 @@ static ZLUserInfo *g_user = nil;
 @end
 
 
-@implementation ZLHomeCommunity
-@end
+//@implementation ZLHomeCommunity
+//@end
 
 
 
@@ -791,9 +825,10 @@ bool m_bind = NO;
 
     return @{@"skus":@"ZLGoodsSKU"};
 }
-
-
 @end
+
+
+
 @implementation ZLGoodsSKU
 @end
 
@@ -803,6 +838,10 @@ bool m_bind = NO;
 
 
 @implementation ZLGoodsDetail
++ (NSDictionary *)mj_objectClassInArray{
+    
+    return @{@"images":@"ZLGoodsDetailImg"};
+}
 @end
 
 
@@ -821,8 +860,6 @@ bool m_bind = NO;
 
 
 
-@implementation ExternalPlatformObject
-@end
 
 @implementation ZLAddShopCarExObj
 @end
@@ -834,16 +871,14 @@ bool m_bind = NO;
 
 
 @implementation ZLFixSubExtObj
-
-
-
 @end
+
+
 
 @implementation ZLHomeServicePerson
-
-
-
 @end
+
+
 @implementation ZLHomeMsgObj
 
 + (NSDictionary *)mj_objectClassInArray{
@@ -855,10 +890,9 @@ bool m_bind = NO;
 
 
 @implementation ZLMessageObj
-
-
-
 @end
+
+
 
 @implementation ZLHomeAnouncementListObj
 

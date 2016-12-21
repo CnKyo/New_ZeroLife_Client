@@ -94,8 +94,11 @@ typedef void (^TableShareSdkBlock)(int totalpage, NSArray *tableArr, APIShareSdk
 -(void)complaintPeopleAddWithTag:(NSObject *)tag content:(NSString *)content cmut_id:(int)cmut_id address:(NSString *)address call:(void (^)(APIObject* info))callback __deprecated_msg("Method deprecated. Use `-(void)complaintPeopleUpWithTag:(NSObject *)tag content:(NSString *)content cmut_id:(int)cmut_id call:(void (^)(APIObject* info))callback`");
 #pragma mark -
 
+
 //小区相关接口
 -(void)communityListWithTag:(NSObject *)tag location:(CLLocationCoordinate2D)location search:(NSString *)search province:(int)province city:(int)city county:(int)county call:(TableArrBlock)callback;
+-(void)communityBansetListWithTag:(NSObject *)tag cmut_id:(int)cmut_id call:(TableArrBlock)callback;
+
 
 #pragma mark----****----登录
 ///登录
@@ -115,20 +118,20 @@ typedef void (^TableShareSdkBlock)(int totalpage, NSArray *tableArr, APIShareSdk
 #pragma mark----****----获取首页数据
 ///获取首页数据
 - (void)ZLGetHome:(NSString *)mLat andLng:(NSString *)mLng block:(void(^)(APIObject *mBaseObj,ZLHomeObj *mHome))block;
-#pragma mark----****----获取首页社区地址数据
-/**
- 获取首页社区地址数据
+//#pragma mark----****----获取首页社区地址数据
+///**
+// 获取首页社区地址数据
+//
+// @param mLat       纬度
+// @param mLng       经度
+// @param mSearchTx  搜索内容
+// @param mProvince  省份id
+// @param mCityId    城市id
+// @param mCountryId 区县id
+// @param block      返回值
+// */
+//- (void)ZLGetHomeCommunity:(NSString *)mLat andLng:(NSString *)mLng andSearchText:(NSString *)mSearchTx andProvinceId:(int)mProvince andCityId:(int)mCityId andCountryId:(int)mCountryId block:(void(^)(APIObject *mBaseObj,NSArray *mArr))block __deprecated_msg("Method deprecated. Use `-(void)communityListWithTag:(NSObject *)tag location:(CLLocationCoordinate2D)location search:(NSString *)search province:(int)province city:(int)city county:(int)county call:(TableArrBlock)callback`");
 
- @param mLat       纬度
- @param mLng       经度
- @param mSearchTx  搜索内容
- @param mProvince  省份id
- @param mCityId    城市id
- @param mCountryId 区县id
- @param block      返回值
- */
-- (void)ZLGetHomeCommunity:(NSString *)mLat andLng:(NSString *)mLng andSearchText:(NSString *)mSearchTx andProvinceId:(int)mProvince andCityId:(int)mCityId andCountryId:(int)mCountryId block:(void(^)(APIObject *mBaseObj,NSArray *mArr))block;
--(void)communityBansetListWithTag:(NSObject *)tag cmut_id:(int)cmut_id call:(TableArrBlock)callback;
 
 
 #pragma mark----****----获取社区超市首页
@@ -192,13 +195,7 @@ typedef void (^TableShareSdkBlock)(int totalpage, NSArray *tableArr, APIShareSdk
 
 -(void)fileUploadWithTag:(NSObject *)tag data:(NSData *)data type:(kFileType)type path:(NSString *)path call:(void (^)(NSString *fileUrlStr, APIObject* info))callback;
 
-#pragma mark----*****----获取便民服务
-/**
- 获取便民服务
 
- @param block 返回值
- */
-- (void)ZLGetHomeSercicePeron:(void (^)(APIObject *mBaseObj, NSArray* mArr))block;
 #pragma mark----*****----获取首页消息列表
 /**
  获取首页消息列表

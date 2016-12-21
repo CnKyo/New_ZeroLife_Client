@@ -735,8 +735,8 @@
     if (county > 0)
         [paramDic setObject:StringWithInt(county) forKey:@"cmut_county"];
     
-    [self loadAPIWithTag:self path:@"/user/house/house_list" parameters:paramDic call:^(APIObject *info) {
-        NSArray *newArr = [HouseObject mj_objectArrayWithKeyValuesArray:info.data];
+    [self loadAPIWithTag:self path:@"/community/community_search_list" parameters:paramDic call:^(APIObject *info) {
+        NSArray *newArr = [CommunityObject mj_objectArrayWithKeyValuesArray:info.data];
         callback(newArr, info);
     }];
 }
@@ -942,72 +942,72 @@
     }];
 }
 
-#pragma mark----****----获取首页社区地址数据
-/**
- 获取首页社区地址数据
- 
- @param mLat       纬度
- @param mLng       经度
- @param mSearchTx  搜索内容
- @param mProvince  省份id
- @param mCityId    城市id
- @param mCountryId 区县id
- @param block      返回值
- */
-- (void)ZLGetHomeCommunity:(NSString *)mLat andLng:(NSString *)mLng andSearchText:(NSString *)mSearchTx andProvinceId:(int)mProvince andCityId:(int)mCityId andCountryId:(int)mCountryId block:(void(^)(APIObject *mBaseObj,NSArray *mArr))block{
-
-    NSMutableDictionary *para = [NSMutableDictionary new];
-    
-    
-    if (mLat) {
-        [para setNeedStr:mLat forKey:@"lat"];
-    }
-    if (mLng) {
-        [para setNeedStr:mLng forKey:@"lng"];
-        
-    }
-    if (mSearchTx.length>0 || ![mSearchTx isEqualToString:@""]) {
-        [para setNeedStr:mSearchTx forKey:@"search"];
-    }
-    if (mProvince) {
-        [para setInt:mProvince forKey:@"cmut_province"];
-    }
-    if (mCityId) {
-        [para setInt:mCityId forKey:@"cmut_city"];
-    }
-    if (mCountryId) {
-        [para setInt:mCountryId forKey:@"cmut_county"];
-    }
-    
-    
-    [self loadAPIWithTag:self path:@"/community/community_search_list" parameters:para call:^(APIObject *info) {
-        
-        
-        if (info.code == RESP_STATUS_YES) {
-            
-            NSMutableArray *mTempArr = [NSMutableArray new];
-            
-            id mArrTemp = info.data;
-            
-            if ([mArrTemp isKindOfClass:[NSArray class]]) {
-                for (NSDictionary *dic in mArrTemp) {
-                    
-                    [mTempArr addObject:[ZLHomeCommunity mj_objectWithKeyValues:dic]];
-                    
-                }
-            }
-        
-            
-            block(info,mTempArr);
-         
-        }else{
-            block(info,nil);
-            
-        }
-        
-    }];
-    
-}
+//#pragma mark----****----获取首页社区地址数据
+///**
+// 获取首页社区地址数据
+// 
+// @param mLat       纬度
+// @param mLng       经度
+// @param mSearchTx  搜索内容
+// @param mProvince  省份id
+// @param mCityId    城市id
+// @param mCountryId 区县id
+// @param block      返回值
+// */
+//- (void)ZLGetHomeCommunity:(NSString *)mLat andLng:(NSString *)mLng andSearchText:(NSString *)mSearchTx andProvinceId:(int)mProvince andCityId:(int)mCityId andCountryId:(int)mCountryId block:(void(^)(APIObject *mBaseObj,NSArray *mArr))block{
+//
+//    NSMutableDictionary *para = [NSMutableDictionary new];
+//    
+//    
+//    if (mLat) {
+//        [para setNeedStr:mLat forKey:@"lat"];
+//    }
+//    if (mLng) {
+//        [para setNeedStr:mLng forKey:@"lng"];
+//        
+//    }
+//    if (mSearchTx.length>0 || ![mSearchTx isEqualToString:@""]) {
+//        [para setNeedStr:mSearchTx forKey:@"search"];
+//    }
+//    if (mProvince) {
+//        [para setInt:mProvince forKey:@"cmut_province"];
+//    }
+//    if (mCityId) {
+//        [para setInt:mCityId forKey:@"cmut_city"];
+//    }
+//    if (mCountryId) {
+//        [para setInt:mCountryId forKey:@"cmut_county"];
+//    }
+//    
+//    
+//    [self loadAPIWithTag:self path:@"/community/community_search_list" parameters:para call:^(APIObject *info) {
+//        
+//        
+//        if (info.code == RESP_STATUS_YES) {
+//            
+//            NSMutableArray *mTempArr = [NSMutableArray new];
+//            
+//            id mArrTemp = info.data;
+//            
+//            if ([mArrTemp isKindOfClass:[NSArray class]]) {
+//                for (NSDictionary *dic in mArrTemp) {
+//                    
+//                    [mTempArr addObject:[ZLHomeCommunity mj_objectWithKeyValues:dic]];
+//                    
+//                }
+//            }
+//        
+//            
+//            block(info,mTempArr);
+//         
+//        }else{
+//            block(info,nil);
+//            
+//        }
+//        
+//    }];
+//    
+//}
 #pragma mark----****----获取社区超市首页
 /**
  获取社区超市首页
@@ -1315,34 +1315,11 @@
     }
     
     [self loadAPIWithTag:self path:@"/shop/product_info" parameters:para call:^(APIObject *info) {
-        
-        
         if (info.code == RESP_STATUS_YES) {
-            
             ZLGoodsDetail *mGoodsDetail = [ZLGoodsDetail mj_objectWithKeyValues:info.data];
-            
-            NSMutableArray *mImgArr = [NSMutableArray new];
-            
-            id mImg = [info.data objectForKey:@"images"];
-            
-            if ([mImg isKindOfClass:[NSArray class]]) {
-            
-                for (NSDictionary *dic in mImg) {
-                    [mImgArr addObject:[ZLGoodsDetailImg mj_objectWithKeyValues:dic]];
-                }
-                
-                
-                
-            }
-            
-            mGoodsDetail.images = mImgArr;
-            block(info,mGoodsDetail,mImgArr);
-            
-        }else{
-            block(info,nil,nil);
-            
-        }
-        
+            block(info, mGoodsDetail, mGoodsDetail.images);
+        } else
+            block(info, nil, nil);
     }];
     
 
@@ -1350,7 +1327,7 @@
     
 }
 
-#pragma mark----****----便民服务接口
+#pragma mark----****----获取便民服务接口
 /**
  *   便民服务接口列表接口
  *
@@ -1361,45 +1338,15 @@
 {
     [self loadAPIWithTag:self path:@"/other/external_platform_list" parameters:nil call:^(APIObject *info) {
         if (info.code == RESP_STATUS_YES) {
-            NSArray *newArr = [ExternalPlatformObject mj_objectArrayWithKeyValuesArray:info.data];
+            NSArray *newArr = [ZLHomeServicePerson mj_objectArrayWithKeyValuesArray:info.data];
             callback(newArr, info);
         } else
             callback(nil, info);
     }];
 }
 
-#pragma mark----*****----获取便民服务
-/**
- 获取便民服务
- 
- @param block 返回值
- */
-- (void)ZLGetHomeSercicePeron:(void (^)(APIObject *mBaseObj, NSArray* mArr))block{
 
-    
-    [self loadAPIWithTag:self path:@"/other/external_platform_list" parameters:nil call:^(APIObject *info) {
-        
-        
-        if (info.code == RESP_STATUS_YES) {
-            
-            NSMutableArray *mTempArr = [NSMutableArray new];
-            for (NSDictionary *dic in info.data) {
-                [mTempArr addObject:[ZLHomeServicePerson mj_objectWithKeyValues:dic]];
-            }
-            
-            
-            block(info,mTempArr);
-            
-        }else{
-            block(info,nil);
-            
-        }
-        
-    }];
-    
-    
 
-}
 
 #pragma mark----*****----获取首页消息列表
 /**
@@ -1413,20 +1360,11 @@
     [para setInt:[ZLUserInfo ZLCurrentUser].user_id forKey:@"user_id"];
     
     [self loadAPIWithTag:self path:@"/user/message/message_list" parameters:para call:^(APIObject *info) {
-        
-        
         if (info.code == RESP_STATUS_YES) {
-            
             ZLHomeMsgObj *mHomeMsg = [ZLHomeMsgObj mj_objectWithKeyValues:info.data];
-            
-        
             block(info,mHomeMsg);
-            
-        }else{
+        } else
             block(info,nil);
-            
-        }
-        
     }];
 }
 
@@ -1441,26 +1379,15 @@
     NSMutableDictionary *para = [NSMutableDictionary new];
     [para setInt:[ZLUserInfo ZLCurrentUser].user_id forKey:@"user_id"];
     [para setInt:mPage forKey:@"page"];
-    [para setInt:20 forKey:@"rows"];
+    [para setInt:TABLE_PAGE_ROW forKey:@"rows"];
 
     [self loadAPIWithTag:self path:@"/other/notice/notice_list" parameters:para call:^(APIObject *info) {
-        
-        
         if (info.code == RESP_STATUS_YES) {
-            
             ZLHomeAnouncementListObj *mList = [ZLHomeAnouncementListObj mj_objectWithKeyValues:info.data];
-            
-            
             block(info,mList);
-            
-        }else{
+        } else
             block(info,nil);
-            
-        }
-        
     }];
-    
-    
 }
 
 
@@ -1749,7 +1676,7 @@
         
         NSMutableDictionary* para = [NSMutableDictionary dictionary];
         
-        [para setInt:[ZLUserInfo ZLCurrentUser].user_id forKey:@"user_id"];
+        [para setInt:user.user_id forKey:@"user_id"];
         
         [para setObject:NumberWithFloat(mPayObj.odr_pay_price) forKey:@"pay_amount"];
         

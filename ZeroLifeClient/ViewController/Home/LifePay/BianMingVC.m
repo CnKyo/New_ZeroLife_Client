@@ -31,16 +31,16 @@
 
     [SVProgressHUD showWithStatus:@"加载中..."];
     
-    [[APIClient sharedClient] ZLGetHomeSercicePeron:^(APIObject *mBaseObj, NSArray *mArr) {
-        if (mBaseObj.code == RESP_STATUS_YES) {
-            if (mArr.count > 0) {
+    [[APIClient sharedClient] externalPlatformListWithTag:self call:^(NSArray *tableArr, APIObject *info) {
+        if (info.code == RESP_STATUS_YES) {
+            if (tableArr.count > 0) {
                 [SVProgressHUD showSuccessWithStatus:@"加载成功"];
-                self.arr = [mArr mutableCopy];
+                self.arr = [tableArr mutableCopy];
                 [self initViews];
             } else
                 [SVProgressHUD showErrorWithStatus:@"暂无数据"];
         } else
-            [SVProgressHUD showErrorWithStatus:mBaseObj.msg];
+            [SVProgressHUD showErrorWithStatus:info.msg];
 
     }];
 }

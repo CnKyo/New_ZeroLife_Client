@@ -52,7 +52,7 @@
     //优惠券数据源
     NSMutableArray *mCoupArr;
     
-    ZLHomeCommunity *mCommunityObj;
+    CommunityObject *mCommunityObj;
     
     ///活动广告数据源
     NSMutableArray *mAdvDataSourceArr;
@@ -67,7 +67,7 @@
     self.navigationItem.title = @"首页";
 
     [self appInit];
-    mCommunityObj = [ZLHomeCommunity new];
+    mCommunityObj = [CommunityObject new];
     
     NSNotificationCenter *mNotify = [NSNotificationCenter defaultCenter];
     [mNotify addObserver:self selector:@selector(webAction:) name:@"ZLAdView" object:nil];
@@ -223,11 +223,11 @@
 #pragma mark ----****----社区选择view代理方法
 - (void)ZLHomLocationViewDidSelected{
     ZLSelectArearViewController *ZLAddressVC = [ZLSelectArearViewController new];
-    ZLAddressVC.block = ^(ZLHomeCommunity *mBlock){
+    ZLAddressVC.block = ^(CommunityObject *mBlock){
         mCommunityObj = mBlock;
         [self upDatePage];
     };
-    ZLAddressVC.mCommunityAdd = [ZLHomeCommunity new];
+    ZLAddressVC.mCommunityAdd = [CommunityObject new];
     ZLAddressVC.mCommunityAdd.cmut_lng = mCommunityObj.cmut_lng;
     ZLAddressVC.mCommunityAdd.cmut_lat = mCommunityObj.cmut_lat;
     ZLAddressVC.hidesBottomBarWhenPushed = YES;
@@ -291,7 +291,7 @@
 - (void)reloadTableViewDataSource{
 
     [super reloadTableViewDataSource];
-    if (mCommunityObj.cmut_lat.length <= 0 || mCommunityObj.cmut_lng.length <= 0 || [mCommunityObj.cmut_lng  isEqualToString: @"0.000000"] || [mCommunityObj.cmut_lat  isEqualToString: @"0.000000"]) {
+    if (mCommunityObj.cmut_lat <= 0 || mCommunityObj.cmut_lng <= 0 ) {
         return;
     }
     
@@ -315,7 +315,7 @@
 
     }];
     
-    [[APIClient sharedClient] ZLGetHome:mCommunityObj.cmut_lat andLng:mCommunityObj.cmut_lng block:^(APIObject *mBaseObj, ZLHomeObj *mHome) {
+    [[APIClient sharedClient] ZLGetHome:[NSString stringWithFormat:@"%f", mCommunityObj.cmut_lat] andLng:[NSString stringWithFormat:@"%f", mCommunityObj.cmut_lng] block:^(APIObject *mBaseObj, ZLHomeObj *mHome) {
         [mComDataSourceArr removeAllObjects];
         [mAdvDataSourceArr removeAllObjects];
         if (mBaseObj.code == RESP_STATUS_YES) {
@@ -357,8 +357,8 @@
             
             MLLog(@"location:%f", location.coordinate.latitude);
             
-            mCommunityObj.cmut_lat = [NSString stringWithFormat:@"%f",location.coordinate.latitude];
-            mCommunityObj.cmut_lng = [NSString stringWithFormat:@"%f",location.coordinate.longitude];
+            mCommunityObj.cmut_lat = location.coordinate.latitude;
+            mCommunityObj.cmut_lng = location.coordinate.longitude;
             
             MLLog(@"reGeocode:%@", regeocode);
             mLocationView.mAddress.text = [NSString stringWithFormat:@"%@%@",regeocode.street,regeocode.number];
@@ -548,8 +548,8 @@
     } else if (mIndex == 1) {
         ZLSuperMarketViewController *mSuperMarketVC = [ZLSuperMarketViewController new];
         mSuperMarketVC.mType = ZLShopTypeSuperMarket;
-        mSuperMarketVC.mLat = mCommunityObj.cmut_lat;
-        mSuperMarketVC.mLng = mCommunityObj.cmut_lng;
+        mSuperMarketVC.mLat = [NSString stringWithFormat:@"%f", mCommunityObj.cmut_lat];
+        mSuperMarketVC.mLng = [NSString stringWithFormat:@"%f", mCommunityObj.cmut_lng];
         mSuperMarketVC.hidesBottomBarWhenPushed = YES;
         [self pushViewController:mSuperMarketVC];
         
@@ -557,16 +557,16 @@
         ZLTenementRepairsViewController *ZLFixVC = [ZLTenementRepairsViewController new];
         ZLFixVC.hidesBottomBarWhenPushed = YES;
         ZLFixVC.mType = ZLShopTypeFix;
-        ZLFixVC.mLat = mCommunityObj.cmut_lat;
-        ZLFixVC.mLng = mCommunityObj.cmut_lng;
+        ZLFixVC.mLat = [NSString stringWithFormat:@"%f", mCommunityObj.cmut_lat];
+        ZLFixVC.mLng = [NSString stringWithFormat:@"%f", mCommunityObj.cmut_lng];
         [self pushViewController:ZLFixVC];
     }
     else if (mIndex == 3) {
         DryCleanShopTVC *vc = [[DryCleanShopTVC alloc] init];
         vc.hidesBottomBarWhenPushed = YES;
         vc.mType = ZLShopTypeHouseKeeping;
-        vc.mLat = mCommunityObj.cmut_lat;
-        vc.mLng = mCommunityObj.cmut_lng;
+        vc.mLat = [NSString stringWithFormat:@"%f", mCommunityObj.cmut_lat];
+        vc.mLng = [NSString stringWithFormat:@"%f", mCommunityObj.cmut_lng];
         [self pushViewController:vc];
     }
 	else if (mIndex == 5){

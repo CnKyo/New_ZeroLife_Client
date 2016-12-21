@@ -10,4 +10,8 @@
 
 @interface SelectedAddressVC : CustomVC
 
+@property(nonatomic,strong) AddressObject *item;
+
+@property (nonatomic, copy) void (^chooseCallBack)(AddressObject* item);
+
 @end

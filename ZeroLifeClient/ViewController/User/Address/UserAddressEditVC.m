@@ -48,15 +48,20 @@
                 return ;
             }
             
+            if (_item.cmut_name==nil || _item.cmut_name.length==0) {
+                [SVProgressHUD showErrorWithStatus:@"请选择小区"];
+                return ;
+            }
+            
             if (_item.addr_address.length == 0) {
                 [SVProgressHUD showErrorWithStatus:@"请输入详细地址"];
                 return ;
             }
 
-            if (_item.addr_province==0 || _item.addr_city==0 || _item.addr_county==0) {
-                [SVProgressHUD showErrorWithStatus:@"请选择省市区"];
-                return ;
-            }
+//            if (_item.addr_province==0 || _item.addr_city==0 || _item.addr_county==0) {
+//                [SVProgressHUD showErrorWithStatus:@"请选择省市区"];
+//                return ;
+//            }
 
             
             [SVProgressHUD showWithStatus:@"处理中..."];
@@ -93,16 +98,16 @@
     
     [super viewWillAppear:animated];
     
-    ZLSeletedAddress *mAddressObj = [ZLSeletedAddress ShareClient];
-    if (mAddressObj.mProvinceStr.length > 0) {
-        self.customCell.areaField.text = [mAddressObj getAddress];
-        
-        self.item.addr_province = mAddressObj.mProvince;
-        self.item.addr_city = mAddressObj.mCity;
-        self.item.addr_county = mAddressObj.mArear;
-        
-        [ZLSeletedAddress destory];
-    }
+//    ZLSeletedAddress *mAddressObj = [ZLSeletedAddress ShareClient];
+//    if (mAddressObj.mProvinceStr.length > 0) {
+//        self.customCell.areaField.text = [mAddressObj getAddress];
+//        
+//        self.item.addr_province = mAddressObj.mProvince;
+//        self.item.addr_city = mAddressObj.mCity;
+//        self.item.addr_county = mAddressObj.mArear;
+//        
+//        [ZLSeletedAddress destory];
+//    }
     
 }
 
@@ -159,7 +164,7 @@
     cell.consigneeField.text = _item.addr_name;
     cell.mobileField.text = _item.addr_phone;
     cell.addressField.text = _item.addr_address;
-    cell.areaField.text = [_item getProvinceCityCountyStr];
+    cell.areaField.text = _item.cmut_name;
     
     AddressObject *defultItem = [AddressObject defaultAddress];
     cell.defaultAddressSwitch.on = _item.addr_id==defultItem.addr_id ? YES : NO;
@@ -170,8 +175,27 @@
 //        ZLSelectedCityViewController *vc = [ZLSelectedCityViewController new];
 //        vc.mType = 0;
 //        [self pushViewController:vc];
+        [[IQKeyboardManager sharedManager] resignFirstResponder];
         
         SelectedAddressVC *vc = [[SelectedAddressVC alloc] init];
+        vc.item = _item;
+        vc.chooseCallBack = ^(AddressObject* item) {
+            NSLog(@"%@",item);
+            self.customCell.areaField.text = item.cmut_name;
+            self.customCell.addressField.text = item.addr_address;
+            
+            self.item.addr_province = item.addr_province;
+            self.item.addr_province_val = item.addr_province_val;
+            self.item.addr_city = item.addr_city;
+            self.item.addr_city_val = item.addr_city_val;
+            self.item.addr_county = item.addr_county;
+            self.item.addr_county_val = item.addr_county_val;
+            self.item.addr_address = item.addr_address;
+            self.item.cmut_id = item.cmut_id;
+            self.item.cmut_name = item.cmut_name;
+            self.item.addr_lat = item.addr_lat;
+            self.item.addr_lng = item.addr_lng;
+        };
         [self pushViewController:vc];
     }];
 

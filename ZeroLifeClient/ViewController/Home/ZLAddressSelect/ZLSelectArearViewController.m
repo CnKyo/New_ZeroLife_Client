@@ -54,21 +54,22 @@
 
     
     
-    [[APIClient sharedClient] ZLGetHomeCommunity:mCommunityAdd.cmut_lat andLng:mCommunityAdd.cmut_lng andSearchText:mSearchView.mSearchTx.text andProvinceId:mCommunityAdd.cmut_province andCityId:mCommunityAdd.cmut_city andCountryId:mCommunityAdd.cmut_county block:^(APIObject *mBaseObj, NSArray *mArr) {
+    [[APIClient sharedClient] communityListWithTag:self location:CLLocationCoordinate2DMake(mCommunityAdd.cmut_lat, mCommunityAdd.cmut_lng) search:mSearchView.mSearchTx.text province:mCommunityAdd.cmut_province city:mCommunityAdd.cmut_city county:mCommunityAdd.cmut_county call:^(NSArray *tableArr, APIObject *info) {
+    //[[APIClient sharedClient] ZLGetHomeCommunity:mCommunityAdd.cmut_lat andLng:mCommunityAdd.cmut_lng andSearchText:mSearchView.mSearchTx.text andProvinceId:mCommunityAdd.cmut_province andCityId:mCommunityAdd.cmut_city andCountryId:mCommunityAdd.cmut_county block:^(APIObject *mBaseObj, NSArray *mArr) {
         
         [self ZLHideEmptyView];
         [self.tableArr removeAllObjects];
         [_newCityDic removeAllObjects];
-        if (mBaseObj.code == RESP_STATUS_YES) {
+        if (info.code == RESP_STATUS_YES) {
             
 
-            [self.tableArr addObjectsFromArray:mArr];
+            [self.tableArr addObjectsFromArray:tableArr];
             [self prepareCityListDatasourceWithArray:self.tableArr andToDictionary:_newCityDic];
 
             
         }else{
-            [self ZLShowEmptyView:mBaseObj.msg andImage:nil andHiddenRefreshBtn:NO];
-            [self showErrorStatus:mBaseObj.msg];
+            [self ZLShowEmptyView:info.msg andImage:nil andHiddenRefreshBtn:NO];
+            [self showErrorStatus:info.msg];
         }
         
         if (mType == 0) {
@@ -76,10 +77,6 @@
         }else{
             [mSearchView.mSearchTableView reloadData];
         }
-        
-        
-        
-
     }];
     
 }
@@ -100,7 +97,7 @@
 #pragma mark-排序城市
 - (void)prepareCityListDatasourceWithArray:(NSArray *)array andToDictionary:(NSMutableDictionary *)dic
 {
-    for (ZLHomeCommunity *city in array) {
+    for (CommunityObject *city in array) {
         
         NSString *cityPinyin = [ChineseToPinyin pinyinFromChiniseString:city.cmut_name];
         
@@ -144,7 +141,7 @@
     
     NSArray *cityArray = [_newCityDic objectForKey:[_allKeysArray objectAtIndex:indexPath.section]];
     
-    ZLHomeCommunity *mObj = cityArray[indexPath.row];
+    CommunityObject *mObj = cityArray[indexPath.row];
     
     cell.textLabel.text = mObj.cmut_name;
     
@@ -181,7 +178,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     NSArray *cityArray = [_newCityDic objectForKey:[_allKeysArray objectAtIndex:indexPath.section]];
-    ZLHomeCommunity *mObj = cityArray[indexPath.row];
+    CommunityObject *mObj = cityArray[indexPath.row];
 
     self.block(mObj);
 

@@ -23,8 +23,8 @@
 @property(nonatomic,strong) IQTextView *view2TextView;; //
 @property(nonatomic,strong) IQTextView *view3TextView;; //
 
-@property(nonatomic,strong) ZLHomeCommunity *view1ChooseCommunity; //居民view选择的小区信息
-@property(nonatomic,strong) ZLHomeCommunity *view2ChooseCommunity; //物管view选择的小区信息
+@property(nonatomic,strong) CommunityObject *view1ChooseCommunity; //居民view选择的小区信息
+@property(nonatomic,strong) CommunityObject *view2ChooseCommunity; //物管view选择的小区信息
 @end
 
 
@@ -243,7 +243,6 @@
         }
     }];
     
-    
 }
 
 - (void)viewDidLoad {
@@ -257,7 +256,7 @@
         [[IQKeyboardManager sharedManager] resignFirstResponder];
         
         ZLSelectArearViewController *vc = [ZLSelectArearViewController new];
-        vc.block = ^(ZLHomeCommunity *mBlock){
+        vc.block = ^(CommunityObject *mBlock){
             self.view1ChooseCommunity = mBlock;
             self.view1CmutFild.text = mBlock.cmut_name;
         };
@@ -270,7 +269,7 @@
         [[IQKeyboardManager sharedManager] resignFirstResponder];
         
         ZLSelectArearViewController *vc = [ZLSelectArearViewController new];
-        vc.block = ^(ZLHomeCommunity *mBlock){
+        vc.block = ^(CommunityObject *mBlock){
             self.view2ChooseCommunity = mBlock;
             self.view2CmutFild.text = mBlock.cmut_name;
         };
