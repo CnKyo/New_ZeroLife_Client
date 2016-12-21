@@ -1118,4 +1118,104 @@
 @property (assign,nonatomic) float                  odr_pay_price;  //!< 需支付商品金额
 @end
 
+#pragma mark----*****----跑腿分类
+///跑腿分类列表
+@interface ZLPPTHomeClassList : NSObject
+///酬金总和
+@property (assign,nonatomic) float amount;
+///分类列表
+@property (strong,nonatomic) NSArray* classifyList;
+
+@end
+///跑腿分类对象
+@interface ZLPPTClassObj : NSObject
+///分类名称
+@property (strong,nonatomic) NSString* cls_name;
+///排序
+@property (assign,nonatomic) int cls_sort;
+///店铺ID(0表示通用)
+@property (assign,nonatomic) int shop_id;
+///状态
+@property (strong,nonatomic) NSString* cls_state;
+///分类id
+@property (assign,nonatomic) int cls_id;
+///上级ID
+@property (assign,nonatomic) int cls_parent;
+///级别
+@property (assign,nonatomic) int cls_level;
+///图片
+@property (strong,nonatomic) NSString* cls_image;
+
+@end
+
+
+
+#pragma mark----*****----跑腿榜单
+@interface ZLPPTTopObj : NSObject
+///数据总条数
+@property (assign,nonatomic) int totalRow;
+///数据总分页数
+@property (assign,nonatomic) int totalPage;
+///当前分页页码
+@property (assign,nonatomic) int pageNumber;
+///当前分页标准（每页多少条数据）
+@property (assign,nonatomic) int pageSize;
+///店铺列表数据
+@property (strong,nonatomic) NSArray *list;
+@end
+///跑腿列表
+@interface ZLPPTRKLObj : NSObject
+///评分
+@property (assign,nonatomic) float rkl_score;
+///用户ID
+@property (assign,nonatomic) int user_id;
+///用户性别
+@property (assign,nonatomic) int rkl_user_sex;
+///接单量
+@property (assign,nonatomic) int rkl_order_quantity;
+///跑腿榜ID
+@property (assign,nonatomic) int rkl_id;
+///
+@property (strong,nonatomic) NSString* rkl_portrait;
+///用户名称
+@property (strong,nonatomic) NSString* rkl_user_name;
+///添加时间
+@property (strong,nonatomic) NSString* rkl_add_time;
+///级别
+@property (assign,nonatomic) int rkl_grade;
+///总金额
+@property (assign,nonatomic) float rkl_total_amount;
+
+
+@end
+
+#pragma mark----*****----跑腿酬金
+@interface ZLPPTRewardList : NSObject
+
+///数据总条数
+@property (assign,nonatomic) int totalRow;
+///数据总分页数
+@property (assign,nonatomic) int totalPage;
+///当前分页页码
+@property (assign,nonatomic) int pageNumber;
+///当前分页标准（每页多少条数据）
+@property (assign,nonatomic) int pageSize;
+///店铺列表数据
+@property (strong,nonatomic) NSArray *list;
+
+@end
+///
+@interface ZLPPTRewardObj : NSObject
+///描述
+@property (strong,nonatomic) NSString* des;
+///完成时间
+@property (strong,nonatomic) NSString* odr_finished_time;
+///配送费
+@property (assign,nonatomic) float odr_deliver_fee;
+///订单号
+@property (strong,nonatomic) NSString* odr_code;
+
+
+
+@end
 

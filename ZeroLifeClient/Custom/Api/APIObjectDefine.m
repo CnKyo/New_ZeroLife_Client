@@ -944,3 +944,34 @@ bool m_bind = NO;
 @end
 
 
+
+
+@implementation ZLPPTHomeClassList
++ (NSDictionary *)mj_objectClassInArray{
+    
+    return @{@"classifyList":@"ZLPPTClassObj"};
+}
+@end
+@implementation ZLPPTClassObj
+@end
+
+
+
+@implementation ZLPPTTopObj
++ (NSDictionary *)mj_objectClassInArray{
+    
+    return @{@"list":@"ZLPPTRKLObj"};
+}
+@end
+@implementation ZLPPTRKLObj
+@end
+
+
+@implementation ZLPPTRewardList
++ (NSDictionary *)mj_objectClassInArray{
+    
+    return @{@"list":@"ZLPPTRewardObj"};
+}
+@end
+@implementation ZLPPTRewardObj
+@end

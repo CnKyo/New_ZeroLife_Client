@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "APIObjectDefine.h"
 @interface ZLPPTRewardCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *mTitle;
@@ -15,5 +15,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *mTime;
 
 @property (weak, nonatomic) IBOutlet UILabel *mMoney;
+
+@property (strong,nonatomic) ZLPPTRewardObj *mObj;
+
 
 @end

@@ -24,6 +24,38 @@
     UINib   *nib = [UINib nibWithNibName:@"ZLPPTAnounceMentTableViewCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
 
+    [self setTableViewHaveHeaderFooter];
+
+}
+- (void)reloadTableViewDataSource{
+    [super reloadTableViewDataSource];
+    
+    
+    [[APIClient sharedClient] ZLGetPPTTopList:[NSString stringWithFormat:@"%d",self.page] andPageSize:[NSString stringWithFormat:@"20"] andSort:0 block:^(APIObject *mBaseObj, ZLPPTTopObj *mList) {
+        
+        [self.tableArr removeAllObjects];
+        [self ZLHideEmptyView];
+        if (mBaseObj.code == RESP_STATUS_YES) {
+            [self showSuccessStatus:mBaseObj.msg];
+
+            if (mList.list.count <= 0) {
+                [self ZLShowEmptyView:@"暂无数据" andImage:nil andHiddenRefreshBtn:NO];
+            }else{
+                [self reloadWithTableArr:mList.list info:mBaseObj];
+            }
+            
+        }else{
+            [self ZLShowEmptyView:@"暂无数据" andImage:nil andHiddenRefreshBtn:NO];
+            [self showErrorStatus:mBaseObj.msg];
+        }
+
+        [self doneLoadingTableViewData];
+        [self.tableView reloadData];
+
+    }];
+    
+ 
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -52,7 +84,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     
 
-    return 80;
+    return 0;
  
     
     
@@ -71,7 +103,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return 10;
+    return self.tableArr.count;
     
     
     
@@ -93,17 +125,11 @@
     
     NSString *reuseCellId = nil;
     
-    
-    
     reuseCellId = @"cell";
     
     ZLPPTAnounceMentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
-    
+    [cell setMTopObj:self.tableArr[indexPath.row]];
     return cell;
-    
-    
-    
-    
     
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

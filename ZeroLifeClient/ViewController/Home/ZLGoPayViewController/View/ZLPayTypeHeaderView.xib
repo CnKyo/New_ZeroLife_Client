@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -16,40 +15,36 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aA6-cc-bPc">
-                    <rect key="frame" x="136" y="20" width="50" height="50"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cell_soukuan_item" translatesAutoresizingMaskIntoConstraints="NO" id="aA6-cc-bPc">
+                    <rect key="frame" x="162" y="20" width="50" height="50"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="50" id="8g7-0s-f8K"/>
-                        <constraint firstAttribute="height" constant="50" id="9te-T4-WPX"/>
+                        <constraint firstAttribute="height" constant="50" id="1yf-PA-xIv"/>
+                        <constraint firstAttribute="width" constant="50" id="For-8J-cLZ"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="物管费" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GSH-8d-gCK">
-                    <rect key="frame" x="194" y="35" width="176" height="21"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="21" id="aGu-2c-xV6"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥50" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wQr-rl-hau">
+                    <rect key="frame" x="0.0" y="111" width="375" height="42"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="35"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥50" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wQr-rl-hau">
-                    <rect key="frame" x="0.0" y="114" width="375" height="40"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="物管费" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GSH-8d-gCK">
+                    <rect key="frame" x="16" y="78" width="343" height="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="wQr-rl-hau" firstAttribute="top" secondItem="aA6-cc-bPc" secondAttribute="bottom" constant="44" id="CLj-rF-aVf"/>
-                <constraint firstItem="aA6-cc-bPc" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="LBt-eb-YBG"/>
-                <constraint firstAttribute="trailing" secondItem="GSH-8d-gCK" secondAttribute="trailing" constant="5" id="cDS-B0-RhX"/>
-                <constraint firstItem="GSH-8d-gCK" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" multiplier="0.5" constant="194" id="ek7-gM-tLm"/>
-                <constraint firstItem="GSH-8d-gCK" firstAttribute="leading" secondItem="aA6-cc-bPc" secondAttribute="trailing" constant="8" symbolic="YES" id="hEg-Nv-z7R"/>
-                <constraint firstAttribute="bottom" secondItem="wQr-rl-hau" secondAttribute="bottom" constant="46" id="i4M-16-lmF"/>
-                <constraint firstItem="wQr-rl-hau" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="mXN-Ou-bYh"/>
-                <constraint firstItem="GSH-8d-gCK" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="35" id="r3q-DO-jcL"/>
-                <constraint firstAttribute="trailing" secondItem="wQr-rl-hau" secondAttribute="trailing" id="wbG-Qb-6co"/>
+                <constraint firstItem="wQr-rl-hau" firstAttribute="top" secondItem="GSH-8d-gCK" secondAttribute="bottom" constant="15" id="2sP-YR-GMF"/>
+                <constraint firstItem="aA6-cc-bPc" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="GCe-xL-oKc"/>
+                <constraint firstItem="GSH-8d-gCK" firstAttribute="top" secondItem="aA6-cc-bPc" secondAttribute="bottom" constant="8" id="HZF-6i-8CM"/>
+                <constraint firstItem="wQr-rl-hau" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="MgZ-uq-4rx"/>
+                <constraint firstAttribute="trailing" secondItem="GSH-8d-gCK" secondAttribute="trailing" constant="16" id="PlL-QT-sZG"/>
+                <constraint firstAttribute="trailing" secondItem="wQr-rl-hau" secondAttribute="trailing" id="Uaj-E4-SOz"/>
+                <constraint firstItem="aA6-cc-bPc" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="duh-Cu-3w9"/>
+                <constraint firstItem="GSH-8d-gCK" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="y7T-QC-rrQ"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -58,7 +53,10 @@
                 <outlet property="mName" destination="GSH-8d-gCK" id="5ow-Vh-HBr"/>
                 <outlet property="mPricce" destination="wQr-rl-hau" id="rI6-oC-9Wg"/>
             </connections>
-            <point key="canvasLocation" x="26.5" y="-253"/>
+            <point key="canvasLocation" x="63.5" y="-261"/>
         </view>
     </objects>
+    <resources>
+        <image name="cell_soukuan_item" width="16" height="16"/>
+    </resources>
 </document>

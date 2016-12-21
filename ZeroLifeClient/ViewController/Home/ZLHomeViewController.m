@@ -159,23 +159,23 @@
     UIColor * color = M_CO;
     CGFloat offsetY = scrollView.contentOffset.y;
     
-    MLLog(@"YYYYY是：%f",offsetY);
-    if (offsetY > NAVBAR_CHANGE_POINT) {
-        CGFloat alpha = MIN(1, 1 - ((NAVBAR_CHANGE_POINT + 64 - offsetY) / 64));
-        MLLog(@"Yaaaaaa是：%f",alpha);
-        [self.navigationController.navigationBar lt_setBackgroundColor:[color colorWithAlphaComponent:alpha]];
-        [mLocationView setBackgroundColor:[[UIColor whiteColor] colorWithAlphaComponent:alpha/2]];
-//        mLocationView.mLocation.image = [UIImage imageNamed:@"ZLCommitOrder_Location"];
-//        mLocationView.mDown.image = [UIImage imageNamed:@"ZLHomeLocationDown_Green"];
-//        mLocationView.mAddress.textColor = [UIColor whiteColor];
+    if (scrollView ==  self.mTableView) {
+        MLLog(@"YYYYY是：%f",offsetY);
+        if (offsetY > NAVBAR_CHANGE_POINT) {
+            CGFloat alpha = MIN(1, 1 - ((NAVBAR_CHANGE_POINT + 64 - offsetY) / 64));
+            MLLog(@"Yaaaaaa是：%f",alpha);
+            [self.navigationController.navigationBar lt_setBackgroundColor:[color colorWithAlphaComponent:alpha]];
+            [mLocationView setBackgroundColor:[[UIColor whiteColor] colorWithAlphaComponent:alpha/2]];
+            
+        } else {
+            [self.navigationController.navigationBar lt_setBackgroundColor:[color colorWithAlphaComponent:0]];
+            [mLocationView setBackgroundColor:[[UIColor whiteColor] colorWithAlphaComponent:0.5]];
+        }
         
-    } else {
-        [self.navigationController.navigationBar lt_setBackgroundColor:[color colorWithAlphaComponent:0]];
-        [mLocationView setBackgroundColor:[[UIColor whiteColor] colorWithAlphaComponent:0.5]];
-//        mLocationView.mLocation.image = [UIImage imageNamed:@"ZLHome_Location"];
-//        mLocationView.mDown.image = [UIImage imageNamed:@"ZLHom_Location_Down"];
-//        mLocationView.mAddress.textColor = [UIColor whiteColor];
+        
     }
+    
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated

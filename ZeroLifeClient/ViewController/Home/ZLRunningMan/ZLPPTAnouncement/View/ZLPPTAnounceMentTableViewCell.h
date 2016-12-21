@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "APIObjectDefine.h"
 @interface ZLPPTAnounceMentTableViewCell : UITableViewCell
 
 /**
@@ -39,6 +39,8 @@
  等级
  */
 @property (weak, nonatomic) IBOutlet UILabel *mLevel;
+
+@property (strong,nonatomic) ZLPPTRKLObj *mTopObj;
 
 
 @end

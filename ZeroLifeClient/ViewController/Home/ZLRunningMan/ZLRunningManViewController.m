@@ -25,14 +25,16 @@
     ZLRuuningManHomeHeaderSectionView *mFirstSectionView;
     ZLRuuningManHomeHeaderSectionView *mSecondSectionView;
 
-    
+    ZLPPTHomeClassList *mClassObj;
 
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationItem.title = @"跑跑腿";
-
+  
+    mClassObj = [ZLPPTHomeClassList new];
+    
     [self addTableView];
     
     UINib   *nib = [UINib nibWithNibName:@"ZLRunningManHomeCell" bundle:nil];
@@ -41,24 +43,46 @@
     
     nib = [UINib nibWithNibName:@"ZLRunningManCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell2"];
-    [self initSecondSectionView];
-    [self initData];
+    [self loadClassData];
 }
+- (void)loadClassData{
 
-- (void)initSecondSectionView{
+    [self showWithStatus:@"正在加载..."];
     
+    [[APIClient sharedClient] ZLGetPPTHome:^(APIObject *mBaseObj, ZLPPTHomeClassList *mList) {
+        
+        if (mBaseObj.code == RESP_STATUS_YES) {
+            
+            mClassObj = mList;
+            
+            [self showSuccessStatus:mBaseObj.msg];
+
+            [self initSecondSectionView:mList.classifyList];
+        }else{
+            [self showErrorStatus:mBaseObj.msg];
+        }
+        
+    }];
     
+}
+- (void)initSecondSectionView:(NSArray *)mData{
     
-    NSArray *mImgArr =@[IMG(@"ZLPPT_All"), IMG(@"ZLPPT_DFlower"), IMG(@"ZLPPT_DOut_Buy"), IMG(@"ZLPPT_DBuy"), IMG(@"ZLPPT_DShort"),IMG(@"ZLPPT_DBuy"), IMG(@"ZLPPT_DShort")];
-    
-    
-    
+//    NSMutableArray *mImgArr = [NSMutableArray new];
+    NSMutableArray *mTTArr = [NSMutableArray new];
+
+    for (ZLPPTClassObj *mClass in mData) {
+//        [mImgArr addObject:mClass.cls_image];
+        [mTTArr addObject:mClass.cls_name];
+
+    }
+    NSArray *mImgArr =@[IMG(@"ZLPPT_All"), IMG(@"ZLPPT_DFlower"), IMG(@"ZLPPT_DOut_Buy"), IMG(@"ZLPPT_DBuy"), IMG(@"ZLPPT_DShort"),IMG(@"ZLPPT_DBuy"), IMG(@"ZLPPT_DShort"),IMG(@"ZLPPT_DShort")];
+
     mSecondSectionView = [ZLRuuningManHomeHeaderSectionView initSecondView];
     mSecondSectionView.frame = CGRectMake(0, 0, DEVICE_Width, 130);
     
     HMSegmentedControl *seg = [[HMSegmentedControl alloc] initWithSectionImages:mImgArr
                                                           sectionSelectedImages:mImgArr
-                                                              titlesForSections:@[@"全部", @"代买花", @"代买外卖",@"超市代买",@"短程代办",@"超市代买",@"短程代办"]];
+                                                              titlesForSections:mTTArr];
     seg.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
     seg.selectionIndicatorHeight = 2.0f;
     seg.titleTextAttributes = @{NSFontAttributeName : [UIFont systemFontOfSize:15], NSForegroundColorAttributeName : [UIColor grayColor]};
@@ -71,7 +95,8 @@
         make.height.equalTo(60);
     }];
 
-    
+    [self initData];
+
 }
 - (void)segmentedControlChangedValue:(HMSegmentedControl *)segmentedControl {
     
@@ -230,6 +255,7 @@
         {
 
             ZLPPTRewardViewController *vc = [ZLPPTRewardViewController new];
+            vc.mTotleMoney = mClassObj.amount;
             [self pushViewController:vc];
         }
             break;
