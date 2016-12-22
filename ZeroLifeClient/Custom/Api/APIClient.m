@@ -1838,4 +1838,137 @@
     
 }
 
+#pragma mark----****----获取手机充值预订单
+/**
+ 获取手机充值预订单
+ @param block 返回值
+ */
+- (void)ZLGetPreRechargePhone:(void(^)(APIObject *mBaseObj,ZLCreatePreOrder *mRecharge))block{
+
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    
+    if (user.user_id > 0) {
+        
+        NSMutableDictionary* para = [NSMutableDictionary dictionary];
+        
+        [para setInt:[ZLUserInfo ZLCurrentUser].user_id forKey:@"user_id"];
+        
+        [self loadAPIWithTag:self path:@"/preorder/pre_mobile" parameters:para call:^(APIObject *info) {
+            
+            if (info.code == RESP_STATUS_YES) {
+                
+                block(info,[ZLCreatePreOrder mj_objectWithKeyValues:info.data]);
+                
+            }else{
+                
+                block(info,nil);
+                
+            }
+            
+        }];
+        
+    }else{
+        block([APIObject infoWithReLoginErrorMessage:@"请重新登陆"],nil);
+        
+    }
+    
+    
+}
+
+#pragma mark----****----手机充值订单
+/**
+ 手机充值
+ 
+ @param mRecharge 充值对象
+ @param mPhone 充值电话
+ 
+ @param mOrderType 充值订单类型
+ @param mMoney 充值金额
+ 
+ @param block 返回值
+ */
+- (void)ZLPhoneRecharge:(int)mRecharge andOrderType:(ZLCommitOrderType)mOrderType andPhone:(NSString *)mPhone andMoney:(NSString *)mMoney block:(void(^)(APIObject *mBaseObj))block{
+
+    
+    
+}
+
+#pragma mark----****---- 报修预订单接口
+/**
+ 报修预订单接口
+ 
+ @param mClsId 分类id
+ @param block 返回值
+ */
+- (void)ZLFixPreOrder:(int)mClsId block:(void(^)(APIObject *mBaseObj,ZLCreatePreOrder *mPreOrder))block{
+
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    
+    if (user.user_id > 0) {
+        
+        NSMutableDictionary* para = [NSMutableDictionary dictionary];
+        MLLog(@"%@",[ZLUserInfo ZLCurrentUser]);
+
+        [para setInt:[ZLUserInfo ZLCurrentUser].user_id forKey:@"user_id"];
+        [para setInt:mClsId forKey:@"cls_id"];
+
+        [self loadAPIWithTag:self path:@"/preorder/pre_fix" parameters:para call:^(APIObject *info) {
+            
+            if (info.code == RESP_STATUS_YES) {
+                
+                block(info,[ZLCreatePreOrder mj_objectWithKeyValues:info.data]);
+                
+            }else{
+                
+                block(info,nil);
+                
+            }
+            
+        }];
+        
+    }else{
+        block([APIObject infoWithReLoginErrorMessage:@"请重新登陆"],nil);
+        
+    }
+    
+
+}
+#pragma mark----****---- 申请跑跑腿预订单
+/**
+ 申请跑跑腿预订单
+ 
+ @param block 返回值
+ */
+- (void)ZLApplyPPTPreOrder:(void(^)(APIObject *mBaseObj,ZLCreatePreOrder *mPreOrder))block{
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    
+    if (user.user_id > 0) {
+        
+        NSMutableDictionary* para = [NSMutableDictionary dictionary];
+        
+        [para setInt:[ZLUserInfo ZLCurrentUser].user_id forKey:@"user_id"];
+        
+        MLLog(@"%@",[ZLUserInfo ZLCurrentUser]);
+        [self loadAPIWithTag:self path:@"/preorder/pre_ppao_apply" parameters:para call:^(APIObject *info) {
+            
+            if (info.code == RESP_STATUS_YES) {
+                
+                block(info,[ZLCreatePreOrder mj_objectWithKeyValues:info.data]);
+                
+            }else{
+                
+                block(info,nil);
+                
+            }
+            
+        }];
+        
+    }else{
+        block([APIObject infoWithReLoginErrorMessage:@"请重新登陆"],nil);
+        
+    }
+    
+}
+
+
 @end

@@ -1459,6 +1459,22 @@
     }
     
 }
+#pragma mark---- 字符串替换
+/**
+ 字符串替换
+ 
+ @param mBaseString 原字符串
+ @param mWillRepStr 将要替换的字符串
+ @param mToRepStr 替换为神马字符串
+ @return 返回替换后的字符串
+ */
++ (NSString *)ZLReplaceString:(NSString *)mBaseString andWillFromReplaceStr:(NSString *)mWillRepStr andToReplaceStr:(NSString *)mToRepStr{
+
+
+    return [mBaseString stringByReplacingOccurrencesOfString:mWillRepStr withString:mToRepStr];
+
+}
+
 @end
 
 

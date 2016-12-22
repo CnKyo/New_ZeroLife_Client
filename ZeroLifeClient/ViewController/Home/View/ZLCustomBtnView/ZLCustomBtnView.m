@@ -25,6 +25,7 @@
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(mFrame.size.width/2-22, 15, 44, 44)];
 //        imageView.image = [UIImage imageNamed:mImageStr];
         [imageView sd_setImageWithURL:[NSURL URLWithString:mImageStr] placeholderImage:[UIImage imageNamed:@"ZLDefault_Green"]];
+
         [self addSubview:imageView];
         
         //

@@ -371,6 +371,8 @@ typedef enum{
     ZLCommitOrderTypeWithHousKeeping = 3,
     ///4:跑跑腿订单
     ZLCommitOrderTypeWithPPt = 4,
+    ///手机充值订单
+    ZLCommitOrderTypeWithPhoneRecharge = 5,
 }ZLCommitOrderType;///提交订单类型
 
 

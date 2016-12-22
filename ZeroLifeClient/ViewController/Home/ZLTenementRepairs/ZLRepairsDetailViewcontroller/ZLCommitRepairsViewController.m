@@ -9,6 +9,7 @@
 #import "ZLCommitRepairsViewController.h"
 #import "ZLCommitRepairsCell.h"
 #import "NSObject+PickPhoto.h"
+#import "UserAddressTVC.h"
 
 @interface ZLCommitRepairsViewController ()<UITableViewDelegate,UITableViewDataSource,ZLCommitRepairsCellDelegate,AVCaptureFileOutputRecordingDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
@@ -19,6 +20,8 @@
    NSURL *mVideoUrl;
     UIImage *mVideoImg;
     UIImage *mUpLoadImg;
+    ZLCreatePreOrder *mFixPreOrder;
+    AddressObject *mAddressObj;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -30,12 +33,36 @@
     mVideoUrl = nil;
     
     mUpLoadImg = [UIImage new];
+    mAddressObj = [AddressObject new];
     [self addTableView];
     
     UINib   *nib = [UINib nibWithNibName:@"ZLCommitRepairsCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
 
+    mFixPreOrder = [ZLCreatePreOrder new];
+    [self createPreOrder];
 }
+#pragma mark----****----创建预订单
+- (void)createPreOrder{
+    
+    [self showWithStatus:@"正在验证..."];
+    
+    [[APIClient sharedClient] ZLFixPreOrder:_mClassObj.mClassId block:^(APIObject *mBaseObj, ZLCreatePreOrder *mPreOrder) {
+
+        if (mBaseObj.code == RESP_STATUS_YES) {
+            [self showSuccessStatus:@"验证成功!"];
+            
+            mFixPreOrder = mPreOrder;
+            
+        }else{
+            
+            [self showErrorStatus:mBaseObj.msg];
+            [self performSelector:@selector(popViewController) withObject:nil afterDelay:0.5];
+        }
+    }];
+}
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -67,6 +94,7 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     [cell.mUpLoadVideoBtn setBackgroundImage:[self imageWithMediaURL:mVideoUrl] forState:0];
     
+    [cell setMAddress:mAddressObj];
 
     cell.delegate = self;
     [cell.mUploadImgBtn setBackgroundImage:mUpLoadImg forState:0];
@@ -87,7 +115,17 @@
  选择地址代理方法
  */
 - (void)ZLCommitRepairsCellWithAddressAction{
-    MLLog(@"撒撒撒");
+    MLLog(@"选择地址");
+    
+    UserAddressTVC *vc = [UserAddressTVC new];
+    vc.isChooseAddress = YES;
+    vc.block = ^(AddressObject *mAddress){
+        MLLog(@"%@",mAddress);
+        mAddressObj = mAddress;
+        [self.tableView reloadData];
+    };
+    [self pushViewController:vc];
+
 }
 #pragma mark----****----服务时间
 /**

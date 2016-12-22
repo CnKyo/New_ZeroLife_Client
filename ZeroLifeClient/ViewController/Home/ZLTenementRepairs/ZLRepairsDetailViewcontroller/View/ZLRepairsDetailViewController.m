@@ -32,6 +32,7 @@
 -(void)mcommit{
 
     ZLCommitRepairsViewController *ZLCommitVC = [ZLCommitRepairsViewController new];
+    ZLCommitVC.mClassObj = _mClassObj;
     [self pushViewController:ZLCommitVC];
 }
 

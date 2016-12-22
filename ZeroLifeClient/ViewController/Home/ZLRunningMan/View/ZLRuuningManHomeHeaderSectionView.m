@@ -30,4 +30,14 @@
     return view;
 }
 
+- (IBAction)mApplyAction:(UIButton *)sender {
+    
+    if ([_delegate respondsToSelector:@selector(ZLRuuningManHomeHeaderSectionViewBtnClicked)]) {
+        [_delegate ZLRuuningManHomeHeaderSectionViewBtnClicked];
+    }
+    
+    
+}
+
+
 @end

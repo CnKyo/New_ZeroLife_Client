@@ -80,4 +80,23 @@
     
 }
 
+- (void)setMAddress:(AddressObject *)mAddress{
+    
+    NSString *mConnectP = [NSString stringWithFormat:@"%@-%@",mAddress.addr_name,mAddress.addr_phone];
+    NSString *mDetailAddress = mAddress.addr_address;
+    
+    if (mConnectP.length <= 1 || [mConnectP isEqualToString:@"(null)-(null)"]) {
+        
+        mConnectP = @"点击选择收货地址";
+        
+    }
+    if (mDetailAddress.length <= 0 || [mDetailAddress isEqualToString:@"(null)(null)(null)(null)"]) {
+        mDetailAddress = @"点击选择收货地址";
+    }
+    
+    self.mAddressName.text = mConnectP;
+    self.mAddressContent.text = mDetailAddress;
+
+}
+
 @end

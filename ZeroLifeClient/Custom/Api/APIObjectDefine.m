@@ -975,3 +975,11 @@ bool m_bind = NO;
 @end
 @implementation ZLPPTRewardObj
 @end
+
+
+@implementation ZLCreatePreOrder
++ (NSDictionary *)mj_objectClassInArray{
+    
+    return @{@"coupons":@"CouponObject"};
+}
+@end

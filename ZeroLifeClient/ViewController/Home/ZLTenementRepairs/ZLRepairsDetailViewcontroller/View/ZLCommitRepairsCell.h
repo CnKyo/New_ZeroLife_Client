@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "APIObjectDefine.h"
 /**
  设置代理
  */
@@ -118,5 +118,9 @@
  设置代理
  */
 @property (weak, nonatomic) id<ZLCommitRepairsCellDelegate>delegate;
+
+
+@property (strong,nonatomic) AddressObject *mAddress;
+
 
 @end

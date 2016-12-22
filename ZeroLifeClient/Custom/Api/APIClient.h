@@ -284,6 +284,42 @@ typedef void (^TableShareSdkBlock)(int totalpage, NSArray *tableArr, APIShareSdk
 - (void)ZLGetPPTRewardList:(NSString *)mPage block:(void(^)(APIObject *mBaseObj,ZLPPTRewardList *mList))block;
 
 
+#pragma mark----****----获取手机充值预订单
+/**
+ 获取手机充值预订单
+ @param block 返回值
+ */
+- (void)ZLGetPreRechargePhone:(void(^)(APIObject *mBaseObj,ZLCreatePreOrder *mRecharge))block;
 
+#pragma mark----****----手机充值订单
+/**
+ 手机充值
+
+ @param mRecharge 充值对象
+ @param mPhone 充值电话
+
+ @param mOrderType 充值订单类型
+ @param mMoney 充值金额
+
+ @param block 返回值
+ */
+- (void)ZLPhoneRecharge:(int)mRecharge andOrderType:(ZLCommitOrderType)mOrderType andPhone:(NSString *)mPhone andMoney:(NSString *)mMoney block:(void(^)(APIObject *mBaseObj))block;
+
+#pragma mark----****---- 报修预订单接口
+/**
+ 报修预订单接口
+
+ @param mClsId 分类id
+ @param block 返回值
+ */
+- (void)ZLFixPreOrder:(int)mClsId block:(void(^)(APIObject *mBaseObj,ZLCreatePreOrder *mPreOrder))block;
+
+#pragma mark----****---- 申请跑跑腿预订单
+/**
+ 申请跑跑腿预订单
+
+ @param block 返回值
+ */
+- (void)ZLApplyPPTPreOrder:(void(^)(APIObject *mBaseObj,ZLCreatePreOrder *mPreOrder))block;
 
 @end

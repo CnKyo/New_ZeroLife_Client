@@ -9,5 +9,6 @@
 #import "CustomVC.h"
 
 @interface ZLCommitRepairsViewController : CustomVC
-
+///子类对象
+@property (strong,nonatomic) ZLFixSubExtObj *mClassObj;
 @end

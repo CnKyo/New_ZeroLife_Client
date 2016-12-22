@@ -1219,3 +1219,24 @@
 
 @end
 
+#pragma mark----****----生成预订单对象
+///生成预订单对象
+@interface ZLCreatePreOrder : NSObject
+///订单类型ID
+@property (assign,nonatomic) int odr_type;
+///商品名称
+@property (strong,nonatomic) NSString* odrg_pro_name;
+///商品描述（如：{$}元余额充值-其中{$}需替换成用户充值金额）
+@property (strong,nonatomic) NSString* odrg_spec;
+///申请描述
+@property (strong,nonatomic) NSString* apply_info;
+///申请协议URL
+@property (strong,nonatomic) NSString* apply_url;
+///申请金额
+@property (assign,nonatomic) int apply_money;
+///签名字段（下单接口需要将原数据提交）
+@property (strong,nonatomic) NSString* sign;
+
+@property (strong,nonatomic) NSArray* coupons;
+
+@end

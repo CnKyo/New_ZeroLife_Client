@@ -15,6 +15,7 @@
 #import "ZLPPTRewardViewController.h"
 #import "ZLPPTMyOrderViewController.h"
 #import "ZLPPTRateViewController.h"
+#import "UserPaoPaoRegisterVC.h"
 @interface ZLRunningManViewController ()<UITableViewDelegate,UITableViewDataSource,ZLRunningManHomeCellDelegate,ZLRunningManCellDelegate,ZLRuuningManHomeHeaderSectionViewDelegate>
 
 @end
@@ -284,6 +285,9 @@
 #pragma mark----****----开通按钮的代理方法
 - (void)ZLRuuningManHomeHeaderSectionViewBtnClicked{
 
+    UserPaoPaoRegisterVC*vc = [[UserPaoPaoRegisterVC alloc] initWithNibName:@"UserPaoPaoRegisterVC" bundle:nil];
+    [self pushViewController:vc];
+    
 }
 
 @end

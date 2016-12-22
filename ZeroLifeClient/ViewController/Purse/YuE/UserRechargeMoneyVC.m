@@ -9,12 +9,17 @@
 #import "UserRechargeMoneyVC.h"
 #import "UserPayTypeTableViewCell.h"
 
-@interface UserRechargeMoneyVC ()
+@interface UserRechargeMoneyVC ()<UITextFieldDelegate>
 
 @end
 
 @implementation UserRechargeMoneyVC
-
+{
+    ZLCreatePreOrder *mPreOrder;
+    
+    NSString *mMoney;
+    
+}
 -(void)loadView
 {
     [super loadView];
@@ -27,6 +32,34 @@
         [btn11 setTitle:@"确认" forState:UIControlStateNormal];
         [btn11 setStyleNavColor];
         [btn11 jk_addActionHandler:^(NSInteger tag) {
+        
+            
+            if (mMoney.length <= 0) {
+                [self showErrorStatus:@"请选择您要充值的金额！"];
+                return ;
+            }
+            
+            mPreOrder.odrg_spec = [Util ZLReplaceString:mPreOrder.odrg_spec andWillFromReplaceStr:@"{$}" andToReplaceStr:mMoney];
+            NSMutableArray *mTempArr = [NSMutableArray new];
+            NSMutableDictionary *mTempDic = [NSMutableDictionary new];
+            
+            [mTempDic setObject:@"余额充值" forKey:@"odrg_pro_name"];
+            [mTempDic setObject:mPreOrder.odrg_spec forKey:@"odrg_spec"];
+            [mTempDic setObject:mMoney forKey:@"odrg_price"];
+            [mTempArr addObject:mTempDic];
+            
+            MLLog(@"确认充值按钮");
+#warning 这里订单andSendType有问题跑不通待调试
+            [self showWithStatus:@"正在充值..."];
+            [[APIClient sharedClient] ZLCommitOrder:mPreOrder.odr_type andShopId:nil andGoods:[Util arrToJson:mTempArr] andSendAddress:nil andArriveAddress:nil andServiceTime:nil andSendType:0 andSendPrice:nil andCoupId:nil andRemark:nil andSign:mPreOrder.sign block:^(APIObject *mBaseObj, ZLCreateOrderObj *mOrder) {
+                
+                if (mBaseObj.code == RESP_STATUS_YES) {
+                    [self showSuccessStatus:mBaseObj.msg];
+                }else{
+                    [self showErrorStatus:mBaseObj.msg];
+                }
+            }];
+
             
         }];
         view;
@@ -42,8 +75,28 @@
     for (int i=0; i<2; i++) {
         [self.tableArr addObject:@"111"];
     }
+    
+    mMoney = nil;
+    mPreOrder = [ZLCreatePreOrder new];
+    [self createPreOrder];
 }
-
+#pragma mark----****----创建预订单
+- (void)createPreOrder{
+    
+    [self showWithStatus:@"正在验证..."];
+    [[APIClient sharedClient] ZLGetPreRechargePhone:^(APIObject *mBaseObj, ZLCreatePreOrder *mRecharge) {
+        if (mBaseObj.code == RESP_STATUS_YES) {
+            [self showSuccessStatus:@"验证成功!"];
+            
+            mPreOrder = mRecharge;
+            
+        }else{
+            
+            [self showErrorStatus:mBaseObj.msg];
+            [self performSelector:@selector(popViewController) withObject:nil afterDelay:0.5];
+        }
+    }];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -114,6 +167,7 @@
             UIFont *font = [UIFont systemFontOfSize:14];
             UILabel *textLable = [superView newUILableWithText:@"金额" textColor:[UIColor blackColor] font:font];
             UITextField *field = [superView newUITextFieldWithPlaceholder:@"请输入充值金额"];
+            field.delegate = self;
             field.keyboardType = UIKeyboardTypeNumberPad;
             field.font = font;
             textLable.tag = 12;
@@ -162,6 +216,11 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
 
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField{
+
+    mMoney = textField.text;
 }
 
 @end

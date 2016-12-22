@@ -137,7 +137,12 @@
 @end
 
 @implementation MobileRechargeVC
+{
 
+    NSString *mMoneyStr;
+    
+    ZLCreatePreOrder *mPreOrder;
+}
 -(void)loadView
 {
     [super loadView];
@@ -214,12 +219,49 @@
     });
     
     self.moneyChooseView = [[MobileRechargeMoneyView alloc] initWithTitleArr:@[@"10", @"20", @"30", @"50", @"100", @"200",]];
+    self.moneyChooseView.chooseCallBack = ^(NSString *chooseStr){
+    
+        mMoneyStr = chooseStr;
+    };
     [superView addSubview:_moneyChooseView];
     
     UIButton *btn11 = [superView newUIButton];
     [btn11 setTitle:@"确认充值" forState:UIControlStateNormal];
     [btn11 setStyleNavColor];
     [btn11 jk_addActionHandler:^(NSInteger tag) {
+        
+        if (![Util isMobileNumber:_mobileField.text]) {
+            [self showErrorStatus:@"请选择您要充值的手机号码177！"];
+            [_mobileField becomeFirstResponder];
+            return ;
+        }
+        
+        if (mMoneyStr.length <= 0) {
+            [self showErrorStatus:@"请选择您要充值的金额！"];
+            return ;
+        }
+   
+        mPreOrder.odrg_spec = [Util ZLReplaceString:mPreOrder.odrg_spec andWillFromReplaceStr:@"{$}" andToReplaceStr:mMoneyStr];
+        NSMutableArray *mTempArr = [NSMutableArray new];
+        NSMutableDictionary *mTempDic = [NSMutableDictionary new];
+        
+        [mTempDic setObject:@"手机话费" forKey:@"odrg_pro_name"];
+        [mTempDic setObject:mPreOrder.odrg_spec forKey:@"odrg_spec"];
+        [mTempDic setObject:mMoneyStr forKey:@"odrg_price"];
+        [mTempDic setObject:_mobileField.text forKey:@"mobile"];
+        [mTempArr addObject:mTempDic];
+        
+        MLLog(@"确认充值按钮");
+#warning 这里订单andSendType有问题跑不通待调试
+        [self showWithStatus:@"正在充值..."];
+        [[APIClient sharedClient] ZLCommitOrder:mPreOrder.odr_type andShopId:nil andGoods:[Util arrToJson:mTempArr] andSendAddress:nil andArriveAddress:nil andServiceTime:nil andSendType:0 andSendPrice:nil andCoupId:nil andRemark:nil andSign:mPreOrder.sign block:^(APIObject *mBaseObj, ZLCreateOrderObj *mOrder) {
+            
+            if (mBaseObj.code == RESP_STATUS_YES) {
+                [self showSuccessStatus:mBaseObj.msg];
+            }else{
+                [self showErrorStatus:mBaseObj.msg];
+            }
+        }];
         
     }];
     
@@ -243,11 +285,29 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"手机充值";
-    
+    mMoneyStr = nil;
 //    _addressBookRef = ABAddressBookCreateWithOptions(NULL, NULL);
 //    [ZLPeoplePickerViewController initializeAddressBook];
     
-
+    mPreOrder = [ZLCreatePreOrder new];
+    [self createPreOrder];
+}
+#pragma mark----****----创建预订单
+- (void)createPreOrder{
+ 
+    [self showWithStatus:@"正在验证..."];
+    [[APIClient sharedClient] ZLGetPreRechargePhone:^(APIObject *mBaseObj, ZLCreatePreOrder *mRecharge) {
+        if (mBaseObj.code == RESP_STATUS_YES) {
+            [self showSuccessStatus:@"验证成功!"];
+            
+            mPreOrder = mRecharge;
+            
+        }else{
+        
+            [self showErrorStatus:mBaseObj.msg];
+            [self performSelector:@selector(popViewController) withObject:nil afterDelay:0.5];
+        }
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
