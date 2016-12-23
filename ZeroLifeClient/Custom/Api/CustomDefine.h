@@ -197,7 +197,7 @@ static int const RESP_STATUS_LOGIN                  = 300;             //需要�
 
 static NSString* const  kAFAppDotNetApiBaseURLString    = @"http://192.168.1.114";
 static NSString* const  kAFAppDotNetApiExtraURLString    = @"/api/app/client";
-
+static NSString* const  kAFAppDotNetImgBaseURLString    = @"http://192.168.1.114";
 
 
 static NSString * const MyUserNeedUpdateNotification     = @"MyUserNeedUpdateNotification";
@@ -227,29 +227,74 @@ static NSString* const  kCouponState_Overdue        = @"OVERDUE";
 
 
 
+//	 * 1. 报修订单： 待竞价--[维修单竞价选择]--待支付--已支付--商户确认[并选择员工--员工确认开始服务]--员工确认上门--员工确认维修价格--用户支付差额--员工完成维修--用户确认完成--用户完成评价
+//	 * 2. 跑跑腿订单：待支付--完成支付--[跑跑腿订单接单]--员工开始服务--[如果为购买商品员工确认商品价格--用户支付差额]--员工完成服务--用户确认完成--用户评价
+//	 * 3. 超市订单：待支付--完成支付--商户确认接单[拒绝接单]--商户出货--[商户选择配送--配送中--配送完成]--商户完成配送--用户确认--用户评价
+//	 * 4. 干洗订单：待支付--完成支付--商户确认接单[拒绝接单]--商户确认收货--商户服务中--商户完成服务--用户确认完成--用户评价
+//	 * 5. 提现订单：待支付--完成支付--平台确认[出款疑问]--平台完成出款--订单确认完成--用户确认完成
+//	 * 6. 手机缴费：待支付--完成支付--三方充值提交--充值成功--订单完成--用户确认完成
+//	 * 7. 充值订单：待支付--完成支付--[余额到账]
+//	 * 8. 物业费订单：待支付--完成支付--[缴费成功]
+//	 * 9. 转账订单：待支付--完成支付--[确认到账]
+//	 * 10. 跑跑腿押金：待支付--完成支付--[申请成功]
+static NSString* const  kOrderState_WAITUP              = @"WAITUP";  //订单创建
+static NSString* const  kOrderState_BIDDING             = @"BIDDING";  //竞价中
+static NSString* const  kOrderState_SERPOINT            = @"SERPOINT";  //用户选定服务商
+static NSString* const  kOrderState_WAITPAY             = @"WAITPAY";  //待付款
+static NSString* const  kOrderState_PAYMENTED           = @"PAYMENTED";  //已付款
+static NSString* const  kOrderState_UCANCEL             = @"UCANCEL";  //用户取消订单
+static NSString* const  kOrderState_TIMEOUT             = @"TIMEOUT";  //订单超时（系统取消）
+static NSString* const  kOrderState_SCANCEL             = @"SCANCEL";  //商户取消订单
+static NSString* const  kOrderState_SSELECT             = @"SSELECT";  //商户接单（提现确认、话费充值提交）
+static NSString* const  kOrderState_SSERVICE            = @"SSERVICE";  //服务中（超市出货、干洗报修上门、跑跑到达指定地点）
+static NSString* const  kOrderState_DIFFWAIT            = @"DIFFWAIT";  //用户待支付差价
+static NSString* const  kOrderState_DIFFPAYED           = @"DIFFPAYED";  //用户已付款差价
+static NSString* const  kOrderState_SDONE               = @"SDONE";  //商户完成订单完成
+static NSString* const  kOrderState_UDONE               = @"UDONE";  //用户完成订单完成
+static NSString* const  kOrderState_EVALUATE            = @"EVALUATE";  //订单已评价
+static NSString* const  kOrderState_MAINTAIN            = @"MAINTAIN";  //维权中
+
+
+//购物订单：待支付（WAITPAY）、待发货（ING）、待收货(SDONE)、已完成（UDONE）
+//干洗订单：待支付（WAITPAY）、待取件（ING）、待确认(SDONE)、已完成（UDONE）
+//报修订单：待支付（WAITPAY）、待上门（ING）、待确认(SDONE)、已完成（UDONE）
+//跑跑腿订单：待支付（WAITPAY）、待接单（ING）、待确认(SDONE)、已完成（UDONE）
+static NSString* const  kOrderSegState_WAITPAY          = @"WAITPAY";  //待支付
+static NSString* const  kOrderSegState_ING              = @"ING";  //待发货/待取件/待上门/待接单
+static NSString* const  kOrderSegState_SDONE            = @"SDONE";  //待确认
+static NSString* const  kOrderSegState_UDONE            = @"UDONE";  //已完成
+
 typedef enum {
     kUserSexType_man = 1,//
     kUserSexType_woman = 2,//
     kUserSexType_uknown = 0,//
 } kUserSexType; //用户性别
 
+
 typedef enum {
-    kOrderClassType_goods,//购物订单
-    kOrderClassType_baoxiu,//报修订单
-    kOrderClassType_ganxi,//干洗订单
-    kOrderClassType_paopao,//跑跑订单
+    kOrderClassType_product             = 1,//超市购物订单
+    kOrderClassType_fix                 = 2,//报修订单
+    kOrderClassType_dryclean            = 3,//干洗订单
+    kOrderClassType_paopao              = 4,//跑跑订单
+    kOrderClassType_balance_recharge    = 11,//用户余额充值
+    kOrderClassType_balance_present     = 12,//用户余额提现
+    kOrderClassType_balance_collection  = 13,//用户收款
+    kOrderClassType_balance_transfer    = 14,//用户转账
+    kOrderClassType_paopao_apply        = 21,//申请跑跑腿
+    kOrderClassType_fee_peroperty       = 31,//物管费
+    kOrderClassType_fee_mobile          = 32,//手机缴费
 } kOrderClassType;
 
 
-typedef enum {
-    kOrderFixStatus_waitUserPay,//待用户支付
-    kOrderFixStatus_userHavePay,//用户已支付
-    kOrderFixStatus_waitShopBidding,//待商家竞价
-    kOrderFixStatus_shopHaveReceiving,//商家已接单
-    kOrderFixStatus_shopInService,//商家正在服务中
-    kOrderFixStatus_done,//订单完成
-    kOrderFixStatus_cancel,//订单取消
-} kOrderFixStatus; //报修流程状态
+//typedef enum {
+//    kOrderFixStatus_waitUserPay,//待用户支付
+//    kOrderFixStatus_userHavePay,//用户已支付
+//    kOrderFixStatus_waitShopBidding,//待商家竞价
+//    kOrderFixStatus_shopHaveReceiving,//商家已接单
+//    kOrderFixStatus_shopInService,//商家正在服务中
+//    kOrderFixStatus_done,//订单完成
+//    kOrderFixStatus_cancel,//订单取消
+//} kOrderFixStatus; //报修流程状态
 
 
 typedef enum {
@@ -265,24 +310,20 @@ typedef enum {
     kCouponType_lijian,//立减
 } kCouponType;
 
-typedef enum{
 
-    
+typedef enum{
     ZLWalletNormal,//正常
     ZLWalletLocked,//锁定
-    
 }ZLWalletStatu;
 
+
 typedef enum{
-    
-    
     ZLHomeBannerTypeSystem,//banner类型为平台
     ZLHomeBannerTypeShop,//banner类型为商家
-    
 }ZLHomeBannerType;
+
+
 typedef enum{
-    
-    
     ZLHomeFunctionTypeQuik,//Function类型为缴费
     ZLHomeFunctionTypeSuperMarket,//Function类型为超市
     ZLHomeFunctionTypeRepair,//Function类型为报修
@@ -291,41 +332,37 @@ typedef enum{
     ZLHomeFunctionTypeRunningMan,//Function类型为跑跑腿
     ZLHomeFunctionTypeNote,//Function类型为公告
     ZLHomeFunctionTypeNeighbor,//Function类型为邻里圈
-    
 }ZLHomeFunctionType;
+
+
 typedef enum{
-    
-    
     ZLHomeAdvTypeSystem = 1,//1:原生
     ZLHomeAdvTypeWeb = 0,//0:WAP
-    
 }ZLHomeAdvType;//首页广告跳转类型
 
-typedef enum{
-    
-    
-    ZLHomeNoteTypeSystem = 0,//0：平台
-    ZLHomeNoteTypeCommunity = 1,//1：社区
-    
-}ZLHomeNoteType;//首页公告类型
+
 
 typedef enum{
-    
-    
+    ZLHomeNoteTypeSystem = 0,//0：平台
+    ZLHomeNoteTypeCommunity = 1,//1：社区
+}ZLHomeNoteType;//首页公告类型
+
+
+typedef enum{
     ZLHomeNewsTypeNote = 1,//1:公告
     ZLHomeNewsTypeActivity = 2,//2：活动
     ZLHomeNewsTypeNews = 3,//3：新闻
-    
 }ZLHomeNewsType;//首页新闻类型
 
 
+
 typedef enum{
-    
-    
     ZLShopHomeCampainTypeWap,//0:wap
     ZLShopHomeCampainTypeSys,//1是原生
-    
 }ZLShopHomeCampainType;//社区超市首页活动类型
+
+
+
 typedef enum {
     kFileType_photo = 1,//
     kFileType_video = 2,//
@@ -333,11 +370,8 @@ typedef enum {
 
 
 typedef enum{
-    
-    
     ZLRightGoodsTypeFromCamp = 1,//1:从活动来
     ZLRightGoodsTypeFromClass = 2,//2:从分类来
-    
 }ZLRightGoodsType;//社区超市首页活动类型
 
 
@@ -345,14 +379,15 @@ typedef enum{
     ZLShopTypeSuperMarket = 1,///1:社区超市
     ZLShopTypeFix = 2,///2:物业报修
     ZLShopTypeHouseKeeping = 3,///3:家政干洗
-
 }ZLShopType;//社区超市首页活动类型
 
 
 typedef enum{
     ZLShopSendTypeWithSelf = 1,///1:自提
     ZLShopSendTypeWithShop = 2,///2:店铺配送
+    ZLShopSendTypeWithPaopao = 3,///2:跑跑腿
 }ZLShopSendType;///社区超市订单配送方式
+
 
 typedef enum{
     ///1:提交订单选择优惠卷页面
@@ -362,16 +397,16 @@ typedef enum{
 }ZLPushCouponVCType;///进入优惠卷vc页面类型
 
 
-typedef enum{
-    ///1:社区超市订单
-    ZLCommitOrderTypeWithSuperMarket = 1,
-    ///2:报修订单
-    ZLCommitOrderTypeWithFix = 2,
-    ///3:家政订单
-    ZLCommitOrderTypeWithHousKeeping = 3,
-    ///4:跑跑腿订单
-    ZLCommitOrderTypeWithPPt = 4,
-}ZLCommitOrderType;///提交订单类型
+//typedef enum{
+//    ///1:社区超市订单
+//    ZLCommitOrderTypeWithSuperMarket = 1,
+//    ///2:报修订单
+//    ZLCommitOrderTypeWithFix = 2,
+//    ///3:家政订单
+//    ZLCommitOrderTypeWithHousKeeping = 3,
+//    ///4:跑跑腿订单
+//    ZLCommitOrderTypeWithPPt = 4,
+//}ZLCommitOrderType;///提交订单类型
 
 
 typedef enum{
@@ -381,7 +416,6 @@ typedef enum{
     ZLPayTypeWithWechat = 2,
     ///3:余额支付
     ZLPayTypeWithBalance = 3,
-
 }ZLPayType;///支付通道类型
 
 

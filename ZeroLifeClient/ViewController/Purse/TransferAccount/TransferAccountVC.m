@@ -9,9 +9,10 @@
 #import "TransferAccountVC.h"
 #import <JKCategories/UIButton+JKImagePosition.h>
 #import "TransferAccountHistoryTVC.h"
+#import "ZLGoPayViewController.h"
 
 @interface TransferAccountVC ()
-
+@property(nonatomic,strong) PreApplyObject *item;
 @end
 
 @implementation TransferAccountVC
@@ -28,10 +29,36 @@
     [self.doneBtn setStyleNavColor];
     
     
+    //转帐
     [self.doneBtn jk_addActionHandler:^(NSInteger tag) {
+        if (_accountField.text.length == 0) {
+            [SVProgressHUD showErrorWithStatus:@"请输入转账账户"];
+            return ;
+        }
         
+        if (_moneyField.text.length == 0) {
+            [SVProgressHUD showErrorWithStatus:@"请输入金额"];
+            return ;
+        }
+        
+        [[IQKeyboardManager sharedManager] resignFirstResponder];
+        
+        [SVProgressHUD showWithStatus:@"加载中"];
+        [[APIClient sharedClient] ZLCommitOrder:kOrderClassType_balance_transfer andShopId:nil andGoods:nil andSendAddress:nil andArriveAddress:nil andServiceTime:nil andSendType:0 andSendPrice:nil andCoupId:nil andRemark:nil andSign:_item.sign block:^(APIObject *mBaseObj, ZLCreateOrderObj *mOrder) {
+            if (mBaseObj.code == RESP_STATUS_YES) {
+                ZLGoPayViewController *ZLGoPayVC = [ZLGoPayViewController new];
+                ZLGoPayVC.mOrder = [ZLCreateOrderObj new];
+                ZLGoPayVC.mOrder = mOrder;
+                [self pushViewController:ZLGoPayVC];
+                
+                [self showSuccessStatus:mBaseObj.msg];
+            } else
+                [self showErrorStatus:mBaseObj.msg];
+        }];
     }];
     
+    
+    //协议
     [self.xieyiBtn jk_addActionHandler:^(NSInteger tag) {
         
     }];
@@ -40,6 +67,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"转账";
+
+    [SVProgressHUD showWithStatus:@"加载中"];
+    [[APIClient sharedClient] preOrderTransferWithTag:self call:^(PreApplyObject *item, APIObject *info) {
+        if (info.code==RESP_STATUS_YES && item!=nil) {
+            self.item = item;
+            [self reloadUIWithData];
+            [SVProgressHUD showSuccessWithStatus:@"获取成功"];
+        } else
+            [SVProgressHUD showErrorWithStatus:info.msg];
+    }];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self reloadUIWithData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -47,14 +91,17 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
+-(void)reloadUIWithData
+{
+    float uwal_balance = 0;
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    uwal_balance = user.wallet.uwal_balance;
+    
+    self.yuEMoneyLable.text = [NSString stringWithFormat:@"我的余额：￥%.2f", uwal_balance];
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
 }
-*/
+
+
+
 
 @end

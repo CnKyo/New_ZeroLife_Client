@@ -39,9 +39,17 @@
     self.title = @"充值";
     
     
+    
     for (int i=0; i<2; i++) {
         [self.tableArr addObject:@"111"];
     }
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+
 }
 
 - (void)didReceiveMemoryWarning {

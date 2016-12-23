@@ -91,7 +91,56 @@
     return str;
 }
 
++(NSString *)strDesWithOrderState:(NSString *)state
+{
+    NSString *str = @"";
+    if ([state isEqualToString:kOrderState_UCANCEL]) {
+        str = @"取消订单";
+    }
+    else if ([state isEqualToString:kOrderState_PAYMENTED]) {
+        str = @"去支付";
+    }
+    else if ([state isEqualToString:kOrderState_DIFFPAYED]) {
+        str = @"付差价";
+    }
+    else if ([state isEqualToString:kOrderState_EVALUATE]) {
+        str = @"去评价";
+    }
+    else if ([state isEqualToString:kOrderState_MAINTAIN]) {
+        str = @"去维权";
+    }
+    else if ([state isEqualToString:kOrderState_SERPOINT]) {
+        str = @"选定服务商";
+    }
+
+    return str;
+}
+
+
++ (NSString*)linkUrl:(NSString*)str
+{
+    NSString *newStr = @"";
+    if (str.length > 0) {
+        if ([str hasPrefix:@"http://"] || [str hasPrefix:@"https://"])
+            newStr =  str;
+        else
+            newStr = [NSString stringWithFormat:@"%@%@", kAFAppDotNetImgBaseURLString, str];
+    }
+    return newStr;
+}
+
 @end
+
+
+
+@implementation NSURL (AFObjectDefine)
++ (NSURL*)imageurl:(NSString*)str
+{
+    return [NSURL URLWithString:[NSString linkUrl:str]];
+}
+@end
+
+
 
 @implementation NSObject(QUAdd)
 +(void)arrInsertToDB:(NSArray *)arr
@@ -333,8 +382,6 @@
 @end
 
 
-@implementation OrderExtObject
-@end
 
 @implementation OrderRepairBidObject
 @end
@@ -349,10 +396,34 @@
 @implementation OrderObject
 + (NSDictionary *)mj_objectClassInArray
 {
-    return @{@"goods_list" : @"OrderGoodsObject",
+    return @{@"goods" : @"OrderGoodsObject",
              @"cam_list" : @"OrderCampaignObject"};
 }
 @end
+
+
+
+
+
+@implementation PreApplyObject
+@end
+
+
+@implementation PrePaopaoApplyObject
++ (BOOL)isContainParent
+{
+    return YES;
+}
+@end
+
+@implementation PrePresentApplyObject
++ (BOOL)isContainParent
+{
+    return YES;
+}
+@end
+
+
 
 
 

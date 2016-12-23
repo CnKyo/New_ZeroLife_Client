@@ -702,6 +702,220 @@
 }
 
 
+
+
+#pragma mark----****----用户订单相关接口
+/**
+ *   用户订单列表接口
+ *
+ *  @param tag      链接对象
+ *  @param odr_type 订单类型
+ *  @param odr_status 订单状态
+ *  @param callback 返回列表
+ */
+-(void)orderListWithTag:(NSObject *)tag odr_type:(kOrderClassType)odr_type odr_status:(NSString *)odr_status page:(int)page call:(TablePageArrBlock)callback
+{
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    if (user.user_id > 0) {
+        NSMutableDictionary* paramDic = [NSMutableDictionary dictionary];
+        [paramDic setInt:user.user_id forKey:@"user_id"];
+        [paramDic setInt:odr_type forKey:@"odr_type"];
+        [paramDic setNeedStr:odr_status forKey:@"odr_status"];
+        [self loadAPITableListWithTag:self path:@"/order/order_list" parameters:paramDic pageIndex:page subClass:[OrderObject class] call:^(int totalPage, NSArray *tableArr, APIObject *info) {
+            callback(totalPage, tableArr, info);
+        }];
+    } else
+        callback(0, nil, [APIObject infoWithReLoginErrorMessage:@"请重新登陆"]);
+}
+
+
+
+/**
+ *  订单详情接口
+ *
+ *  @param tag              链接对象
+ *  @param odr_id           订单id
+ *  @param odr_code         订单订单编号
+ *  @param callback         返回信息
+ */
+-(void)orderInfoWithTag:(NSObject *)tag odr_id:(int)odr_id odr_code:(NSString *)odr_code call:(void (^)(OrderObject *item, APIObject* info))callback
+{
+    NSMutableDictionary *paramDic = [NSMutableDictionary dictionary];
+    [paramDic setInt:odr_id forKey:@"odr_id"];
+    [paramDic setNeedStr:odr_code forKey:@"odr_code"];
+    [self loadAPIWithTag:tag path:@"/order/order_info" parameters:paramDic call:^(APIObject *info) {
+        OrderObject *it = [OrderObject mj_objectWithKeyValues:info.data];
+        callback(it, info);
+    }];
+}
+
+
+
+/**
+ *  订单通用操作接口
+ *
+ *  @param tag              链接对象
+ *  @param odr_id           订单id
+ *  @param odr_type         订单类型（列表数据或者详情数据获取）
+ *  @param odr_code         订单订单编号
+ *  @param odr_state_next   操作状态
+ *  @param odr_memo         维权原因(可选)
+ *  @param callback         返回信息
+ */
+-(void)orderOprateWithTag:(NSObject *)tag odr_id:(int)odr_id odr_type:(int)odr_type odr_code:(NSString *)odr_code odr_state_next:(NSString *)odr_state_next odr_memo:(NSString *)odr_memo call:(void (^)(APIObject* info))callback
+{
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    if (user.user_id > 0) {
+        NSMutableDictionary *paramDic = [NSMutableDictionary dictionary];
+        [paramDic setInt:user.user_id forKey:@"user_id"];
+        [paramDic setInt:odr_id forKey:@"odr_id"];
+        [paramDic setInt:odr_type forKey:@"odr_type"];
+        [paramDic setNeedStr:odr_code forKey:@"odr_code"];
+        [paramDic setNeedStr:odr_state_next forKey:@"odr_state_next"];
+        [paramDic setValidStr:odr_memo forKey:@"odr_memo"];
+        [self loadAPIWithTag:tag path:@"/order/order_oprate" parameters:paramDic call:^(APIObject *info) {
+            callback(info);
+        }];
+    } else
+        callback([APIObject infoWithReLoginErrorMessage:@"请重新登陆"]);
+}
+
+
+
+/**
+ *  用户确认竞价接口
+ *
+ *  @param tag              链接对象
+ *  @param rpr_id           报修单ID
+ *  @param bid_id           竞价ID
+ *  @param odr_code         订单订单编号
+ *  @param callback         返回信息
+ */
+-(void)orderOprateBidWithTag:(NSObject *)tag rpr_id:(int)rpr_id bid_id:(int)bid_id odr_code:(NSString *)odr_code call:(void (^)(APIObject* info))callback
+{
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    if (user.user_id > 0) {
+        NSMutableDictionary *paramDic = [NSMutableDictionary dictionary];
+        [paramDic setInt:user.user_id forKey:@"user_id"];
+        [paramDic setInt:rpr_id forKey:@"rpr_id"];
+        [paramDic setInt:bid_id forKey:@"bid_id"];
+        [paramDic setNeedStr:odr_code forKey:@"odr_code"];
+        [self loadAPIWithTag:tag path:@"/order/order_opt_bid" parameters:paramDic call:^(APIObject *info) {
+            callback(info);
+        }];
+    } else
+        callback([APIObject infoWithReLoginErrorMessage:@"请重新登陆"]);
+}
+
+
+
+
+/**
+ *   充值预订单接口
+ *
+ *  @param tag              链接对象
+ *  @param callback         返回信息
+ */
+-(void)preOrderRechargeWithTag:(NSObject *)tag call:(void (^)(PreApplyObject*item, APIObject* info))callback
+{
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    if (user.user_id > 0) {
+        NSMutableDictionary *paramDic = [NSMutableDictionary dictionary];
+        [paramDic setInt:user.user_id forKey:@"user_id"];
+        [self loadAPIWithTag:tag path:@"/preorder/pre_recharge" parameters:paramDic call:^(APIObject *info) {
+            PreApplyObject *it = [PreApplyObject mj_objectWithKeyValues:info.data];
+            callback(it, info);
+        }];
+    } else
+        callback(nil, [APIObject infoWithReLoginErrorMessage:@"请重新登陆"]);
+}
+
+
+/**
+ *   手机充值预订单接口
+ *
+ *  @param tag              链接对象
+ *  @param callback         返回信息
+ */
+-(void)preOrderMobileWithTag:(NSObject *)tag call:(void (^)(PreApplyObject*item, APIObject* info))callback
+{
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    if (user.user_id > 0) {
+        NSMutableDictionary *paramDic = [NSMutableDictionary dictionary];
+        [paramDic setInt:user.user_id forKey:@"user_id"];
+        [self loadAPIWithTag:tag path:@"/preorder/pre_mobile" parameters:paramDic call:^(APIObject *info) {
+            PreApplyObject *it = [PreApplyObject mj_objectWithKeyValues:info.data];
+            callback(it, info);
+        }];
+    } else
+        callback(nil, [APIObject infoWithReLoginErrorMessage:@"请重新登陆"]);
+}
+
+
+/**
+ *   提现预订单接口
+ *
+ *  @param tag              链接对象
+ *  @param callback         返回信息
+ */
+-(void)preOrderPresentWithTag:(NSObject *)tag call:(void (^)(PrePresentApplyObject*item, APIObject* info))callback
+{
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    if (user.user_id > 0) {
+        NSMutableDictionary *paramDic = [NSMutableDictionary dictionary];
+        [paramDic setInt:user.user_id forKey:@"user_id"];
+        [self loadAPIWithTag:tag path:@"/preorder/pre_present" parameters:paramDic call:^(APIObject *info) {
+            PrePresentApplyObject *it = [PrePresentApplyObject mj_objectWithKeyValues:info.data];
+            callback(it, info);
+        }];
+    } else
+        callback(nil, [APIObject infoWithReLoginErrorMessage:@"请重新登陆"]);
+}
+
+
+/**
+ *   转账预订单接口
+ *
+ *  @param tag              链接对象
+ *  @param callback         返回信息
+ */
+-(void)preOrderTransferWithTag:(NSObject *)tag call:(void (^)(PreApplyObject*item, APIObject* info))callback
+{
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    if (user.user_id > 0) {
+        NSMutableDictionary *paramDic = [NSMutableDictionary dictionary];
+        [paramDic setInt:user.user_id forKey:@"user_id"];
+        [self loadAPIWithTag:tag path:@"/preorder/pre_transfer" parameters:paramDic call:^(APIObject *info) {
+            PreApplyObject *it = [PreApplyObject mj_objectWithKeyValues:info.data];
+            callback(it, info);
+        }];
+    } else
+        callback(nil, [APIObject infoWithReLoginErrorMessage:@"请重新登陆"]);
+}
+
+/**
+ *  跑跑腿申请押金预订单接口
+ *
+ *  @param tag              链接对象
+ *  @param callback         返回信息
+ */
+-(void)preOrderPaopaoApplyWithTag:(NSObject *)tag call:(void (^)(PrePaopaoApplyObject*item, APIObject* info))callback
+{
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    if (user.user_id > 0) {
+        NSMutableDictionary *paramDic = [NSMutableDictionary dictionary];
+        [paramDic setInt:user.user_id forKey:@"user_id"];
+        [self loadAPIWithTag:tag path:@"/preorder/pre_ppao_apply" parameters:paramDic call:^(APIObject *info) {
+            PrePaopaoApplyObject *it = [PrePaopaoApplyObject mj_objectWithKeyValues:info.data];
+            callback(it, info);
+        }];
+    } else
+        callback(nil, [APIObject infoWithReLoginErrorMessage:@"请重新登陆"]);
+}
+
+
+
+
 #pragma mark----****----社区管理
 /**
  *   社区列表接口
@@ -1594,7 +1808,7 @@
  @param mSign 下单签名
  @param block 返回值
  */
-- (void)ZLCommitOrder:(ZLCommitOrderType)mOrderType andShopId:(NSString *)mShopId andGoods:(NSString *)mGoodsList andSendAddress:(NSString *)mSendAddress andArriveAddress:(NSString *)mArriveAddress andServiceTime:(NSString *)mServiceTime andSendType:(ZLShopSendType)mSendType andSendPrice:(NSString *)mSendPrice andCoupId:(NSString *)mCoupId andRemark:(NSString *)mRemark andSign:(NSString *)mSign block:(void (^)(APIObject *mBaseObj,ZLCreateOrderObj *mOrder))block{
+- (void)ZLCommitOrder:(kOrderClassType)mOrderType andShopId:(NSString *)mShopId andGoods:(NSString *)mGoodsList andSendAddress:(NSString *)mSendAddress andArriveAddress:(NSString *)mArriveAddress andServiceTime:(NSString *)mServiceTime andSendType:(ZLShopSendType)mSendType andSendPrice:(NSString *)mSendPrice andCoupId:(NSString *)mCoupId andRemark:(NSString *)mRemark andSign:(NSString *)mSign block:(void (^)(APIObject *mBaseObj,ZLCreateOrderObj *mOrder))block{
     
     ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
     if (user.user_id > 0) {
@@ -1619,12 +1833,8 @@
         if (mServiceTime) {
             [para setObject:mServiceTime forKey:@"odr_timing"];
         }
-        if (mSendType) {
+        if (mSendType > 0) {
             [para setInt:mSendType forKey:@"odr_deliver_type"];
-
-        }else{
-            [para setInt:2 forKey:@"odr_deliver_type"];
-
         }
 
         if (mSendPrice) {

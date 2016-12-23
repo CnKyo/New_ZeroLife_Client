@@ -11,7 +11,7 @@
 #import <JKCategories/UIView+JKBlockGesture.h>
 
 @interface WithDrawalVC ()
-
+@property(nonatomic,strong) PrePresentApplyObject *item;
 @end
 
 @implementation WithDrawalVC
@@ -50,19 +50,59 @@
     
     //全部提现
     [self.allOutBtn jk_addActionHandler:^(NSInteger tag) {
-        
+        self.moneyLable.text = [NSString stringWithFormat:@"%.2f", _item.uwal_balance];
     }];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"提现";
+    
+    [SVProgressHUD showWithStatus:@"加载中"];
+    [[APIClient sharedClient] preOrderPresentWithTag:self call:^(PrePresentApplyObject *item, APIObject *info) {
+        if (info.code==RESP_STATUS_YES && item!=nil) {
+            self.item = item;
+            [self reloadUIWithData];
+            [SVProgressHUD showSuccessWithStatus:@"获取成功"];
+        } else
+            [SVProgressHUD showErrorWithStatus:info.msg];
+    }];
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self reloadUIWithData];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)reloadUIWithData
+{
+    float uwal_balance = 0;
+    NSString *str1 = @"选择银行卡";
+    NSString *str2 = @"先绑定银行卡";
+    if (_item != nil) {
+        
+        uwal_balance = _item.uwal_balance;
+
+        if (_item.bank.id_card_val.length > 0)
+            str1 = _item.bank.id_card_val;
+        
+        if (_item.bank.bank_card_val.length > 0)
+            str2 = _item.bank.bank_card_val;
+    } else {
+        ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+        uwal_balance = user.wallet.uwal_balance;
+    }
+    
+    self.totalMoneyLable.text = [NSString stringWithFormat:@"可提现余额：￥%.2f", uwal_balance];
+    self.bankNameLable.text = str1;
+    self.bankNumberLable.text = str2;
 }
 
 /*

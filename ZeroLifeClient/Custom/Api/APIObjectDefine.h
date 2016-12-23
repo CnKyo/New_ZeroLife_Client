@@ -32,9 +32,16 @@
 +(NSString *)compIsNone:(NSString *)str;
 +(NSString *)houseIsOwner:(BOOL)is_owner; //!< 得到房主租客文字
 +(NSString *)strUserSexType:(kUserSexType)type;  //!< 得到性别文字
++(NSString *)strDesWithOrderState:(NSString *)state;
 +(NSString *)urlWithExtra:(NSString *)str;  //!< 组合url地址
-
++ (NSString*)linkUrl:(NSString*)str;
 @end
+
+
+@interface NSURL (AFObjectDefine)
++ (NSURL*)imageurl:(NSString*)str;
+@end
+
 
 
 #pragma mark - NSObject
@@ -360,9 +367,7 @@
 @property(nonatomic,assign) int                     odrg_id;         //!< id
 @property(nonatomic,assign) int                     odr_id;         //!< 订单id
 @property(nonatomic,assign) int                     pro_id;         //!< 商品ID
-@property(nonatomic,assign) int                     cam_gid;         //!< 活动商品ID
 @property(nonatomic,assign) int                     sku_id;         //!< 规格SKU
-@property(nonatomic,assign) float                   sku_cost;         //!< 商品成本
 @property(nonatomic,strong) NSString *              odrg_pro_name;         //!< 商品名
 @property(nonatomic,strong) NSString *              odrg_spec;         //!< 规格描述
 @property(nonatomic,assign) int                     odrg_number;         //!< 数量
@@ -370,6 +375,7 @@
 @property(nonatomic,strong) NSString *              odrg_img_repair;         //!< 商品图(报修)
 @property(nonatomic,strong) NSString *              odrg_video_repair;         //!< 商品视频(报修)
 @property(nonatomic,assign) float                   odrg_price;         //!< 价格
+@property(nonatomic,assign) int                     cam_gid;         //!< 活动商品商品ID（不是活动商品为0）
 @end
 
 
@@ -408,24 +414,6 @@
 @end
 
 
-/// 订单扩展信息对象
-@interface OrderExtObject : NSObject
-@property(nonatomic,assign) int                     odr_id;         //!< 订单id
-@property(nonatomic,strong) NSString *              odr_deliver_name;         //!< 收货人
-@property(nonatomic,strong) NSString *              odr_deliver_phone;         //!< 联系电话
-@property(nonatomic,strong) NSString *              odr_deliver_address;         //!< 收货地址
-@property(nonatomic,strong) NSString *              odr_timing;         //!< 定时服务时间
-@property(nonatomic,assign) int                     odr_deliver_type;         //!< 配送方式
-@property(nonatomic,assign) float                   odr_deliver_fee;         //!< 配送费
-@property(nonatomic,assign) int                     cuc_id;         //!< 用户优惠券ID
-@property(nonatomic,assign) float                   ord_coupon_price;         //!< 优惠券优惠金额
-@property(nonatomic,assign) int                     acc_uid;         //!< 服务人员ID
-@property(nonatomic,strong) NSString *              odr_service_person;         //!< 服务人员
-@property(nonatomic,strong) NSString *              odr_service_phone;         //!< 服务电话
-@property(nonatomic,strong) NSString *              odr_pick_name;         //!< 取件联系人
-@property(nonatomic,strong) NSString *              odr_pick_phone;         //!< 取件联系电话
-@property(nonatomic,strong) NSString *              odr_pick_address;         //!< 取件联系地址
-@end
 
 
 /// 订单基础信息对象
@@ -433,11 +421,13 @@
 @property(nonatomic,assign) int                     odr_id;         //!< 订单id
 @property(nonatomic,strong) NSString *              odr_code;         //!< 订单编号
 @property(nonatomic,assign) kOrderClassType         odr_type;         //!< 订单类型
-@property(nonatomic,assign) int                     odr_state;         //!< 订单状态
+@property(nonatomic,strong) NSString *              odr_state;         //!< 订单状态
+@property(nonatomic,strong) NSString *              odr_state_val;         //!< 当前订单状态描述
+@property(nonatomic,strong) NSMutableArray *        odr_state_next;         //!< 当前订单操作类型数组
 @property(nonatomic,assign) int                     cmut_id;         //!< 社区ID
 @property(nonatomic,assign) int                     shop_id;         //!< 店铺ID
-@property(nonatomic,strong) NSString *              odr_shop_name;         //!< 店铺名
-@property(nonatomic,strong) NSString *              odr_shop_img;         //!< 店铺logo url
+@property(nonatomic,strong) NSString *              shop_name;         //!< 店铺名
+@property(nonatomic,strong) NSString *              shop_logo;         //!< 店铺logo url
 @property(nonatomic,assign) int                     user_id;         //!< 购买者ID
 @property(nonatomic,assign) int                     odr_pay_type;         //!< 支付方式
 @property(nonatomic,strong) NSString *              odr_pay_name;         //!< 支付名
@@ -447,11 +437,28 @@
 @property(nonatomic,strong) NSString *              odr_finished_time;         //!< 完成时间
 @property(nonatomic,assign) float                   odr_cost_price;         //!< 成本价
 @property(nonatomic,assign) float                   odr_amount;         //!< 订单总价
+@property(nonatomic,assign) float                   odr_campagin;         //!< 优惠价格（活动优惠）
+@property(nonatomic,assign) float                   ord_coupon_price;         //!< 优惠券优惠金额
 @property(nonatomic,assign) float                   odr_benefit_price;         //!< 优惠价
 @property(nonatomic,assign) float                   odr_pay_price;         //!< 应支付价格
-@property(nonatomic,strong) OrderExtObject *        odr_ext;         //!< 订单额外信息对象
-@property(nonatomic,strong) NSMutableArray *        goods_list;         //!< 商品清单集合
+@property(nonatomic,strong) NSMutableArray *        goods;         //!< 商品清单集合
 @property(nonatomic,strong) NSMutableArray *        cam_list;         //!< 订单拥有优惠集合
+
+//订单扩展信息对象
+@property(nonatomic,strong) NSString *              odr_remark;         //!< 备注
+@property(nonatomic,strong) NSString *              odr_deliver_name;         //!< 收货人
+@property(nonatomic,strong) NSString *              odr_deliver_phone;         //!< 联系电话
+@property(nonatomic,strong) NSString *              odr_deliver_address;         //!< 收货地址
+@property(nonatomic,strong) NSString *              odr_timing;         //!< 定时服务时间
+@property(nonatomic,assign) ZLShopSendType          odr_deliver_type;         //!< 配送方式
+@property(nonatomic,assign) float                   odr_deliver_fee;         //!< 配送费
+@property(nonatomic,assign) int                     cuc_id;         //!< 用户优惠券ID
+@property(nonatomic,assign) int                     acc_uid;         //!< 服务人员ID
+@property(nonatomic,strong) NSString *              odr_service_person;         //!< 服务人员
+@property(nonatomic,strong) NSString *              odr_service_phone;         //!< 服务电话
+@property(nonatomic,strong) NSString *              odr_pick_name;         //!< 取件联系人
+@property(nonatomic,strong) NSString *              odr_pick_phone;         //!< 取件联系电话
+@property(nonatomic,strong) NSString *              odr_pick_address;         //!< 取件联系地址
 @end
 
 
@@ -497,6 +504,28 @@
 @property(nonatomic,strong) NSString *              odrg_repair_img_url;         //!< 报修图
 @property(nonatomic,strong) NSString *              odrg_repair_video_url;         //!< 报修视频
 @property(nonatomic,strong) NSMutableArray *        bid_list;         //!< 竞价信息集合
+@end
+
+
+/// 申请金额预订单对象
+@interface PreApplyObject : NSObject
+@property(nonatomic,assign) kOrderClassType         odr_type;         //!< 订单类型
+@property(nonatomic,strong) NSString *              odrg_pro_name;         //!< 商品名称
+@property(nonatomic,strong) NSString *              odrg_spec;         //!< 商品描述（如：{$}元余额充值-其中{$}需替换成用户充值金额）
+@property(nonatomic,strong) NSString *              sign;         //!< 签名字段（下单接口需要将原数据提交）
+@end
+
+/// 跑跑腿申请押金预订单对象
+@interface PrePaopaoApplyObject : PreApplyObject
+@property(nonatomic,strong) NSString *              apply_info;         //!< 申请描述
+@property(nonatomic,strong) NSString *              apply_url;         //!< 申请协议URL
+@property(nonatomic,assign) float                   apply_money;         //!< 申请金额
+@end
+
+///  提现预订单接口对象
+@interface PrePresentApplyObject : PreApplyObject
+@property(nonatomic,strong) BankCardObject *        bank;         //!< 用户银行卡信息列表
+@property(nonatomic,assign) float                   uwal_balance;         //!< 用户可提现余额
 @end
 
 

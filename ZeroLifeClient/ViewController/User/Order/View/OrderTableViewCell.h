@@ -13,8 +13,11 @@
 #import "BaoXiuGoodsView.h"
 #import "PaoPaoGoodsView.h"
 #import "OrderShopHeaderView.h"
+#import "OrderActionBtnView.h"
 #import "APIObjectDefine.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
+
+
 
 @interface OrderTableViewCell : UITableViewCell
 @property(nonatomic,strong) OrderShopHeaderView *shopView; //店铺信息view
@@ -25,8 +28,11 @@
 
 @property(nonatomic,strong) UILabel *orderMoneyLable;    //订单金额lable
 @property(nonatomic,strong) UILabel *orderTimeLable;    //订单时间lable
-@property(nonatomic,strong) UIButton *actionBtn1;       //订单按钮1
-@property(nonatomic,strong) UIButton *actionBtn2;   //订单按钮2 在最右边
+@property(nonatomic,strong) OrderButton *actionBtn1;       //订单按钮1 在最右边
+@property(nonatomic,strong) OrderButton *actionBtn2;   //订单按钮2
 
 @property(nonatomic,assign) kOrderClassType orderClassType;
+
+-(void)reloadUIWithItem:(OrderObject *)item;
+
 @end
