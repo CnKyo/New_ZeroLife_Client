@@ -72,6 +72,7 @@
     self.title = @"充值";
     
     
+    
     for (int i=0; i<2; i++) {
         [self.tableArr addObject:@"111"];
     }
@@ -97,6 +98,17 @@
         }
     }];
 }
+<<<<<<< HEAD
+=======
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+
+}
+
+>>>>>>> allran
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

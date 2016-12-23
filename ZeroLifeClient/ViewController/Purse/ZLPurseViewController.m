@@ -67,7 +67,9 @@
 
 
 @interface ZLPurseViewController ()<QUItemBtnViewDelegate>
-
+@property(nonatomic,strong) PlurseValueNameControl *userBalanceView;
+@property(nonatomic,strong) PlurseValueNameControl *userScoreView;
+@property(nonatomic,strong) PlurseValueNameControl *userCouponView;
 @end
 
 @implementation ZLPurseViewController
@@ -101,6 +103,9 @@
         [yuEView loadName:@"我的余额" value:@"---"];
         [jiFenView loadName:@"我的积分" value:@"---"];
         [youHuiView loadName:@"我的优惠券" value:@"-"];
+        self.userBalanceView = yuEView;
+        self.userScoreView = jiFenView;
+        self.userCouponView = youHuiView;
         
         UIColor *textColor = [UIColor colorWithWhite:0.3 alpha:1];
         UIFont *font = [UIFont systemFontOfSize:16];
@@ -256,13 +261,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = YES;
+    
+    [self reloadUIWithData];
 }
 
 
@@ -275,6 +281,16 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+-(void)reloadUIWithData
+{
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    
+    [self.userBalanceView loadName:@"我的余额" value:[NSString stringWithFormat:@"￥%.2f", user.wallet.uwal_balance]];
+    [self.userScoreView loadName:@"我的积分" value:[NSString stringWithFormat:@"%i", user.wallet.uwal_score]];
+    [self.userCouponView loadName:@"我的优惠券" value:@"-"];
 }
 
 - (void)selectItemBtnView:(QUItemBtnView *)view

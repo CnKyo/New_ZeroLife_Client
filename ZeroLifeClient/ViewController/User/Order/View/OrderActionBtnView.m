@@ -9,6 +9,20 @@
 #import "OrderActionBtnView.h"
 #import <JKCategories/UIButton+JKBackgroundColor.h>
 
+
+@implementation OrderButton
+
+-(void)setStateStr:(NSString *)stateStr
+{
+    _stateStr = stateStr;
+    NSString *title = [NSString strDesWithOrderState:stateStr];
+    [self setTitle:title forState:UIControlStateNormal];
+}
+@end
+
+
+
+
 @implementation OrderActionBtnView
 
 - (id)init{
@@ -22,9 +36,9 @@
         UIView *superView = self;
         UIColor *color = [UIColor colorWithWhite:0.3 alpha:1];
         
-        self.actionBtn1 = [superView newUIButton];
-        self.actionBtn2 = [superView newUIButton];
-        self.actionBtn3 = [superView newUIButton];
+        self.actionBtn1 = [OrderButton buttonWithType:UIButtonTypeCustom];
+        self.actionBtn2 = [OrderButton buttonWithType:UIButtonTypeCustom];
+        self.actionBtn3 = [OrderButton buttonWithType:UIButtonTypeCustom];
         self.actionBtn1.titleLabel.font = font;
         self.actionBtn2.titleLabel.font = font;
         self.actionBtn3.titleLabel.font = font;
@@ -37,6 +51,9 @@
         [self.actionBtn1 jk_setBackgroundColor:COLOR_BtnBar forState:UIControlStateNormal];
         [self.actionBtn2 jk_setBackgroundColor:COLOR_BtnBar forState:UIControlStateNormal];
         [self.actionBtn3 jk_setBackgroundColor:COLOR_BtnBar forState:UIControlStateNormal];
+        [superView addSubview:_actionBtn1];
+        [superView addSubview:_actionBtn2];
+        [superView addSubview:_actionBtn3];
         
         [self.actionBtn1 makeConstraints:^(MASConstraintMaker *make) {
             make.right.equalTo(superView.right).offset(-padding);

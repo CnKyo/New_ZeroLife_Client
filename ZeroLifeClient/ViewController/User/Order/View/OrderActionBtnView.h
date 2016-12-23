@@ -9,9 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "UIView+AutoSize.h"
 #import "CustomDefine.h"
+#import "APIObjectDefine.h"
+
+@interface OrderButton : UIButton
+@property(nonatomic,strong) NSString *stateStr;
+@end
 
 @interface OrderActionBtnView : UIView
-@property(nonatomic,strong) UIButton *actionBtn1;
-@property(nonatomic,strong) UIButton *actionBtn2;
-@property(nonatomic,strong) UIButton *actionBtn3;
+@property(nonatomic,strong) OrderButton *actionBtn1;
+@property(nonatomic,strong) OrderButton *actionBtn2;
+@property(nonatomic,strong) OrderButton *actionBtn3;
 @end

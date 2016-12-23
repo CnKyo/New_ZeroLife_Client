@@ -573,6 +573,7 @@
 		DFE178E01DD5901E00E06F21 /* cell_soukuan_item.png in Resources */ = {isa = PBXBuildFile; fileRef = DFE178D71DD5901E00E06F21 /* cell_soukuan_item.png */; };
 		DFE178E11DD5901E00E06F21 /* cell_soukuan_item@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFE178D81DD5901E00E06F21 /* cell_soukuan_item@2x.png */; };
 		DFE178E21DD5901E00E06F21 /* cell_soukuan_item@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFE178D91DD5901E00E06F21 /* cell_soukuan_item@3x.png */; };
+		DFEF59D01E0D0EB2002AD150 /* CustomWebVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DFEF59CF1E0D0EB2002AD150 /* CustomWebVC.m */; };
 		DFF634C11DB873D200B5C917 /* ScrollModelVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF634C01DB873D200B5C917 /* ScrollModelVC.m */; };
 		DFF9322D1DD95C1300BA8C8B /* UserScoreYuEVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF9322C1DD95C1300BA8C8B /* UserScoreYuEVC.m */; };
 		DFF932311DD9641A00BA8C8B /* SecurityPasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF932301DD9641A00BA8C8B /* SecurityPasswordVC.m */; };
@@ -1393,6 +1394,8 @@
 		DFE178D71DD5901E00E06F21 /* cell_soukuan_item.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cell_soukuan_item.png; sourceTree = "<group>"; };
 		DFE178D81DD5901E00E06F21 /* cell_soukuan_item@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cell_soukuan_item@2x.png"; sourceTree = "<group>"; };
 		DFE178D91DD5901E00E06F21 /* cell_soukuan_item@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cell_soukuan_item@3x.png"; sourceTree = "<group>"; };
+		DFEF59CE1E0D0EB2002AD150 /* CustomWebVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomWebVC.h; sourceTree = "<group>"; };
+		DFEF59CF1E0D0EB2002AD150 /* CustomWebVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomWebVC.m; sourceTree = "<group>"; };
 		DFF2BA083AFD4D1DD56A8848 /* Pods-ZeroLifeClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZeroLifeClient.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZeroLifeClient/Pods-ZeroLifeClient.debug.xcconfig"; sourceTree = "<group>"; };
 		DFF634BF1DB873D200B5C917 /* ScrollModelVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollModelVC.h; sourceTree = "<group>"; };
 		DFF634C01DB873D200B5C917 /* ScrollModelVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollModelVC.m; sourceTree = "<group>"; };
@@ -3253,6 +3256,8 @@
 				DFFAA75F1DB744EF001CFBB5 /* CustomScrollVC.m */,
 				DFFAA7601DB744EF001CFBB5 /* CustomVC.h */,
 				DFFAA7611DB744EF001CFBB5 /* CustomVC.m */,
+				DFEF59CE1E0D0EB2002AD150 /* CustomWebVC.h */,
+				DFEF59CF1E0D0EB2002AD150 /* CustomWebVC.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -3964,6 +3969,7 @@
 				DF7F1BF71DCDDCF500D2242B /* UserComplaintAddVC.m in Sources */,
 				DFF9325F1DD9A8A900BA8C8B /* BianMingVC.m in Sources */,
 				04721A171DE4193700CE8639 /* ZLAnounceMentCell.m in Sources */,
+				DFEF59D01E0D0EB2002AD150 /* CustomWebVC.m in Sources */,
 				040D92F91DCAE34E00DBE42E /* ZLHomeMSGCell.m in Sources */,
 				047219FC1DE3E66C00CE8639 /* HX_VideoManager.m in Sources */,
 				DF8DBCE81DD06C8A002E574B /* DryCleanShopTableViewCell.m in Sources */,
