@@ -386,14 +386,22 @@
     return str;
 }
 
+-(NSMutableString *)getProvinceCityCountyAddressStr11
+{
+    NSMutableString *str = [self getProvinceCityCountyStr];
+    if (_address.length > 0)
+        [str appendString:_address];
+    return str;
+}
+
 +(AddressObject *)itemWithMapPOI:(AMapPOI *)tagItem
 {
     AddressObject *item = [AddressObject new];
     item.addr_province_val = tagItem.province;
     item.addr_city_val = tagItem.city;
     item.addr_county_val = tagItem.district;
-    item.addr_address = [NSString stringWithFormat:@"%@%@%@%@",tagItem.province,tagItem.city,tagItem.district,tagItem.address];
     item.address = tagItem.address;
+    item.addr_address = [item getProvinceCityCountyAddressStr11];
     item.cmut_name = tagItem.name;
     item.addr_lat = tagItem.location.latitude;
     item.addr_lng = tagItem.location.longitude;

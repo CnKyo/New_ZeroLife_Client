@@ -470,8 +470,29 @@
     
     NSMutableArray *newArr = [NSMutableArray array];
     for (int i=0; i<response.pois.count; i++) {
-        AMapPOI *item = [response.pois objectAtIndex:i];
-        AddressObject *itemNew = [AddressObject itemWithMapPOI:item];
+        AMapPOI *tagItem = [response.pois objectAtIndex:i];
+        AddressObject *itemNew = [AddressObject itemWithMapPOI:tagItem];
+        
+        if (itemNew.addr_province_val.length > 0) {
+            
+        } else {
+            itemNew.addr_province_val = _currentAddressItem.addr_province_val;
+            itemNew.addr_city_val = _currentAddressItem.addr_city_val;
+            itemNew.addr_county_val = _currentAddressItem.addr_county_val;
+            itemNew.addr_address = [itemNew getProvinceCityCountyAddressStr11];
+        }
+//        itemNew.addr_address = [NSString stringWithFormat:@"%@%@%@%@",tagItem.province,tagItem.city,tagItem.district,tagItem.address];
+//        itemNew.address = tagItem.address;
+//        itemNew.cmut_name = tagItem.name;
+//        itemNew.addr_lat = tagItem.location.latitude;
+//        itemNew.addr_lng = tagItem.location.longitude;
+//        
+//        if (tagItem.province.length > 0) {
+//            itemNew.addr_province_val = tagItem.province;
+//            itemNew.addr_city_val = tagItem.city;
+//            itemNew.addr_county_val = tagItem.district;
+//        }
+        
         [newArr addObject:itemNew];
     }
     [self reloadWithTableArr:newArr info:[APIObject infoWithSuccessMessage:@"返回成功"]];
@@ -521,7 +542,7 @@
         
         if (indexPath.section == 0) {
             cell.nameLable.text = [NSString stringWithFormat:@"当前位置：%@", _currentAddressItem.cmut_name];
-            cell.addressLable.text = _currentAddressItem.addr_address;
+            cell.addressLable.text = _currentAddressItem.address;
             
         } else {
             AddressObject* item = [self.tableArr objectAtIndex:indexPath.row];

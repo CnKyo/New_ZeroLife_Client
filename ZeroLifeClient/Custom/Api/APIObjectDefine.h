@@ -160,7 +160,7 @@
 @property(nonatomic,strong) NSString *              addr_name;          //!<  收货人姓名
 @property(nonatomic,strong) NSString *              addr_phone;             //!<  手机号
 @property(nonatomic,strong) NSString *              addr_address;            //!<  完整详细地址
-@property(nonatomic,strong) NSString *              address;            //!<  详细地址
+@property(nonatomic,strong) NSString *              address;            //!<  详细地址(ios自定义扩展字端)
 @property(nonatomic,assign) int                     addr_province;         //!< 所属省id
 @property(nonatomic,assign) int                     addr_city;         //!< 所属市id
 @property(nonatomic,assign) int                     addr_county;         //!< 所属区县id
@@ -174,9 +174,9 @@
 @property(nonatomic,assign) double                  addr_lat;            //!< 地址维度
 @property(nonatomic,assign) double                  addr_lng;            //!< 地址经度
 
-
 +(AddressObject *)defaultAddress; //!< 默认选择地区
 -(NSMutableString *)getProvinceCityCountyStr; //!< 获取省市区文字
+-(NSMutableString *)getProvinceCityCountyAddressStr11;
 -(NSMutableString *)getProvinceCityCountyAddressStr; //!< 获取完整地址
 
 +(AddressObject *)itemWithCommunity:(CommunityObject *)tagItem; //!< 小区转换成地址对象
