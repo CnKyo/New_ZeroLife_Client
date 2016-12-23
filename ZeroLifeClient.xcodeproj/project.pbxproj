@@ -262,6 +262,7 @@
 		04D64D761DC9CCDC004E8859 /* ZLHomeScrollerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D64D731DC9CCDC004E8859 /* ZLHomeScrollerTableViewCell.m */; };
 		04D64D7A1DC9CD35004E8859 /* ZLHomeCoupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D64D791DC9CD35004E8859 /* ZLHomeCoupView.m */; };
 		04D64D7C1DC9CDA4004E8859 /* ZlHomeCoupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D64D7B1DC9CDA4004E8859 /* ZlHomeCoupView.xib */; };
+		04D7040A1E0CC68C00BDC9F5 /* TXTimeChoose.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D704091E0CC68C00BDC9F5 /* TXTimeChoose.m */; };
 		92AF8AA63E2B8C882D0429B1 /* libPods-ZeroLifeClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 339DEB89053AF616C6AD0FF3 /* libPods-ZeroLifeClient.a */; };
 		DF00C5221E08FFB800680771 /* SelectedAddressTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF00C5211E08FFB800680771 /* SelectedAddressTableViewCell.m */; };
 		DF0308851DCD65C700E1EAB6 /* SystemSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0308841DCD65C700E1EAB6 /* SystemSettingVC.m */; };
@@ -978,6 +979,8 @@
 		04D64D781DC9CD35004E8859 /* ZLHomeCoupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLHomeCoupView.h; sourceTree = "<group>"; };
 		04D64D791DC9CD35004E8859 /* ZLHomeCoupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLHomeCoupView.m; sourceTree = "<group>"; };
 		04D64D7B1DC9CDA4004E8859 /* ZlHomeCoupView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZlHomeCoupView.xib; sourceTree = "<group>"; };
+		04D704081E0CC68C00BDC9F5 /* TXTimeChoose.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TXTimeChoose.h; sourceTree = "<group>"; };
+		04D704091E0CC68C00BDC9F5 /* TXTimeChoose.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TXTimeChoose.m; sourceTree = "<group>"; };
 		26781393B9810BF63F686EF1 /* Pods-ZeroLifeClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZeroLifeClient.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZeroLifeClient/Pods-ZeroLifeClient.release.xcconfig"; sourceTree = "<group>"; };
 		339DEB89053AF616C6AD0FF3 /* libPods-ZeroLifeClient.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZeroLifeClient.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF00C5201E08FFB800680771 /* SelectedAddressTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectedAddressTableViewCell.h; sourceTree = "<group>"; };
@@ -2346,6 +2349,15 @@
 			path = ZLHomeCoupView;
 			sourceTree = "<group>";
 		};
+		04D704071E0CC68C00BDC9F5 /* ZLDatePick */ = {
+			isa = PBXGroup;
+			children = (
+				04D704081E0CC68C00BDC9F5 /* TXTimeChoose.h */,
+				04D704091E0CC68C00BDC9F5 /* TXTimeChoose.m */,
+			);
+			path = ZLDatePick;
+			sourceTree = "<group>";
+		};
 		12B582CBD65385C342FBEFDA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -3158,6 +3170,7 @@
 		DFFAA7531DB744EF001CFBB5 /* OpenSourceLib */ = {
 			isa = PBXGroup;
 			children = (
+				04D704071E0CC68C00BDC9F5 /* ZLDatePick */,
 				044021A81DF94A4300234066 /* ZLImgBtn */,
 				04721A401DE4569100CE8639 /* StarView */,
 				047219BB1DE3E66B00CE8639 /* HXImagePicker */,
@@ -3890,6 +3903,7 @@
 				04866BA61DD41E08008DA56B /* ZLCommitOrderCell.m in Sources */,
 				04B862B01DD59A9D00BDEA59 /* JXLayoutButton.m in Sources */,
 				DF08E87F1DD1C072003E4DD9 /* UserHouseEditTableViewCell.m in Sources */,
+				04D7040A1E0CC68C00BDC9F5 /* TXTimeChoose.m in Sources */,
 				0409175A1DCC313500DB2568 /* ZLSupMarketCell.m in Sources */,
 				045955881DE2FEE000998459 /* ZLOrderReturnCustomLoadImgView.m in Sources */,
 				04A8DA071DDAA5D3000CE048 /* ZLPPTMyOrderCell.m in Sources */,

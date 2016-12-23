@@ -8,6 +8,10 @@
 
 #import "ZLCommitRepairsCell.h"
 
+@interface ZLCommitRepairsCell()<UITextFieldDelegate>
+
+@end
+
 @implementation ZLCommitRepairsCell
 
 - (void)awakeFromNib {
@@ -20,6 +24,8 @@
     [super layoutSubviews];
     self.mCommitBtn.layer.masksToBounds = YES;
     self.mCommitBtn.layer.cornerRadius = 3;
+    
+    self.mNoteTx.delegate = self;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -38,8 +44,8 @@
 
 - (IBAction)mSelectedTime:(UIButton *)sender {
     
-    if ([self.delegate respondsToSelector:@selector(ZLCommitRepairsCellWithTimeAction)]) {
-        [self.delegate ZLCommitRepairsCellWithTimeAction];
+    if ([self.delegate respondsToSelector:@selector(ZLCommitRepairsCellWithTimeAction:)]) {
+        [self.delegate ZLCommitRepairsCellWithTimeAction:sender.titleLabel.text];
 
     }
 
@@ -80,10 +86,33 @@
     
 }
 
-- (void)setMAddress:(AddressObject *)mAddress{
+- (void)setMPreOrder:(ZLCreatePreOrder *)mPreOrder{
+
+    if (mPreOrder.deliver_price <= 0) {
+        mPreOrder.deliver_price = 0;
+    }
     
-    NSString *mConnectP = [NSString stringWithFormat:@"%@-%@",mAddress.addr_name,mAddress.addr_phone];
-    NSString *mDetailAddress = mAddress.addr_address;
+    self.mEnsureMoney.text = [NSString stringWithFormat:@"¥%.2f元",mPreOrder.deliver_price];
+    
+    if (mPreOrder.mUpLoadImg == nil) {
+        mPreOrder.mUpLoadImg = [UIImage imageNamed:@"ZLFix_UploadImg"];
+    }
+    if (mPreOrder.mUpLoadVideoImg == nil) {
+        mPreOrder.mUpLoadVideoImg = [UIImage imageNamed:@"ZLFix_UploadVideo"];
+
+    }
+    
+    [self.mUploadImgBtn setBackgroundImage:mPreOrder.mUpLoadImg forState:0];
+    [self.mUpLoadVideoBtn setBackgroundImage:mPreOrder.mUpLoadVideoImg forState:0];
+    
+    [self.mServiceImg sd_setImageWithURL:[NSURL URLWithString:mPreOrder.goods.img_url] placeholderImage:ZLDefaultGoodsImg];
+    
+    self.mServiceName.text = mPreOrder.goods.pro_name;
+    self.mServiceContent.text = mPreOrder.goods.pro_component;
+    
+    
+    NSString *mConnectP = [NSString stringWithFormat:@"%@-%@",mPreOrder.mAddress.addr_name,mPreOrder.mAddress.addr_phone];
+    NSString *mDetailAddress = mPreOrder.mAddress.addr_address;
     
     if (mConnectP.length <= 1 || [mConnectP isEqualToString:@"(null)-(null)"]) {
         
@@ -96,7 +125,33 @@
     
     self.mAddressName.text = mConnectP;
     self.mAddressContent.text = mDetailAddress;
+    
+    if (mPreOrder.mServiceTime.length <= 0) {
+        mPreOrder.mServiceTime = @"选择服务时间";
+    }
+    [self.mTimeBtn setTitle:mPreOrder.mServiceTime forState:0];
+    
+    NSString *mTT = @"";
+    
+    if (mPreOrder.mCoupon.cup_name.length <= 0) {
+        mTT = @"选择优惠卷";
+    }else{
+        mTT = [NSString stringWithFormat:@"优惠金额：¥%.2f元",mPreOrder.mCoupon.cup_price];
+    }
+    
+    [self.mCoupBtn setTitle:mTT forState:0];
 
 }
+
+
+- (void)textFieldDidEndEditing:(UITextField *)textField{
+
+    if ([_delegate respondsToSelector:@selector(ZLCommitRepairsCellWithRemark:)]) {
+        [_delegate ZLCommitRepairsCellWithRemark:textField.text];
+    }
+
+}
+
+
 
 @end

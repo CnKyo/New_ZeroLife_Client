@@ -354,9 +354,26 @@
             
         } call:^(NSError *error, id responseObject) {
             if (error == nil) {
-                APIObject *info = [APIObject mj_objectWithKeyValues:responseObject];
+                
+                NSDictionary *resbObj = [Util deleteEmpty:responseObject];
+                MLLog(@"----**resbObj**----%@",resbObj);
+                APIObject *info = [APIObject mj_objectWithKeyValues:resbObj];
+                
                 if (info.code == RESP_STATUS_YES) {
-                    NSString *full_path = [info.data objectWithKey:@"name"];
+                    
+                    NSString *full_path = nil;
+                    
+                    if ([path isEqualToString:kFileUploadPath_Orders]) {
+                        
+                        for (NSDictionary *dic in info.data) {
+                            full_path = [dic objectWithKey:@"name"];
+                        }
+                        
+                    }else{
+                        full_path = [info.data objectWithKey:@"name"];
+                    }
+                    
+                    
                     callback(full_path, info);
                 } else
                     callback(nil, info);
@@ -1619,7 +1636,7 @@
         if (mServiceTime) {
             [para setObject:mServiceTime forKey:@"odr_timing"];
         }
-        if (mSendType) {
+        if (mSendType == 0) {
             [para setInt:mSendType forKey:@"odr_deliver_type"];
 
         }else{

@@ -1105,6 +1105,7 @@
 @property (strong,nonatomic) CouponObject *         mCoupon;    //!< 优惠卷信息
 @property (strong,nonatomic) NSString*              mNote;  //!< 备注
 @property (assign,nonatomic) float                  mCoupMoney; //!< 选择优惠卷优惠金额
+
 @end
 
 
@@ -1220,23 +1221,81 @@
 @end
 
 #pragma mark----****----生成预订单对象
+@class AddressObject;
+@class CouponObject;
+@class ZLCommitFixObj;
 ///生成预订单对象
 @interface ZLCreatePreOrder : NSObject
-///订单类型ID
-@property (assign,nonatomic) int odr_type;
-///商品名称
-@property (strong,nonatomic) NSString* odrg_pro_name;
-///商品描述（如：{$}元余额充值-其中{$}需替换成用户充值金额）
-@property (strong,nonatomic) NSString* odrg_spec;
-///申请描述
-@property (strong,nonatomic) NSString* apply_info;
-///申请协议URL
-@property (strong,nonatomic) NSString* apply_url;
-///申请金额
-@property (assign,nonatomic) int apply_money;
-///签名字段（下单接口需要将原数据提交）
-@property (strong,nonatomic) NSString* sign;
 
-@property (strong,nonatomic) NSArray* coupons;
+@property (assign,nonatomic) float                    deliver_price;///上门费
+
+///订单类型ID
+@property (assign,nonatomic) int                    odr_type;
+///商品名称
+@property (strong,nonatomic) NSString*              odrg_pro_name;
+///商品描述（如：{$}元余额充值-其中{$}需替换成用户充值金额）
+@property (strong,nonatomic) NSString*              odrg_spec;
+///申请描述
+@property (strong,nonatomic) NSString*              apply_info;
+///申请协议URL
+@property (strong,nonatomic) NSString*              apply_url;
+///申请金额
+@property (assign,nonatomic) int                    apply_money;
+///签名字段（下单接口需要将原数据提交）
+@property (strong,nonatomic) NSString*              sign;
+
+@property (strong,nonatomic) NSArray*               coupons;
+
+@property (strong,nonatomic) NSString*              mRemark;  //!< 备注
+
+@property (strong,nonatomic) ZLCommitFixObj*        goods;
+
+@property (strong,nonatomic) AddressObject *        mAddress;   //!< 收货地址
+@property (strong,nonatomic) CouponObject *         mCoupon;    //!< 优惠卷信息
+// 报修订单扩展字段
+@property (strong,nonatomic) NSString*              mServiceTime;  //!< 服务时间
+@property (strong,nonatomic) NSString*              mUpLoadImgUrl;  //!< 上传图片uri
+@property (strong,nonatomic) NSString*              mUpLoadVideoUrl;  //!< 上传视频uri
+
+@property (strong,nonatomic) UIImage*               mUpLoadImg;//!< 图片缩略图
+@property (strong,nonatomic) UIImage*               mUpLoadVideoImg;//!< 视频缩略图
 
 @end
+
+
+///提交报修订单对象
+@interface ZLCommitFixObj : NSObject
+
+@property (assign,nonatomic) int                    pro_cost;//!< 成本？
+
+@property (strong,nonatomic) NSString*              pro_stock_plus;  //!< 库存？
+@property (strong,nonatomic) NSString*              pro_component;  //!< 描述
+@property (strong,nonatomic) NSString*              pro_code_bar;  //!< 条码
+@property (assign,nonatomic) int                    img_id;//!< 图片id？
+@property (assign,nonatomic) int                    img_sort;//!< 图片排序
+@property (strong,nonatomic) NSString*              pro_date_create;  //!< 生产日期
+@property (strong,nonatomic) NSString*              pro_state;  //!< 状态
+@property (strong,nonatomic) NSString*              pro_add_time;  //!< 添加时间
+@property (strong,nonatomic) NSString*              pro_date_life;  //!< 保质期
+@property (assign,nonatomic) int                    pro_sales_total;//!< 销量
+@property (strong,nonatomic) NSString*              pro_code;  //!< 商品编号
+@property (assign,nonatomic) int                    bra_id;//!< id？
+
+@property (strong,nonatomic) NSString*              pro_spec;  //!< 规格
+@property (strong,nonatomic) NSString*              pro_remark;  //!< 备注
+@property (assign,nonatomic) int                    pro_price;//!< 价格？
+@property (strong,nonatomic) NSString*              pro_unit;  //!< 单位？
+@property (assign,nonatomic) int                    pro_purchase_num;//!< 购买数量？
+@property (assign,nonatomic) int                    pro_id;//!< 商品id
+
+@property (assign,nonatomic) int                    cls_id1;//!< 分类id1？
+@property (strong,nonatomic) NSString*              pro_weight;  //!< 重量？
+@property (strong,nonatomic) NSString*              img_url;  //!< 图片uri
+@property (assign,nonatomic) int                    cls_id3;//!< 分类id3？
+
+@property (assign,nonatomic) int                    cls_id2;//!< 分类id2？
+@property (strong,nonatomic) NSString*              pro_property;  //!< 属性
+@property (strong,nonatomic) NSString*              pro_name;  //!< 服务名称
+@end
+
+

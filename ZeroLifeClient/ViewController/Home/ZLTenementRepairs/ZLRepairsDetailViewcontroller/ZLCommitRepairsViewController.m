@@ -10,36 +10,36 @@
 #import "ZLCommitRepairsCell.h"
 #import "NSObject+PickPhoto.h"
 #import "UserAddressTVC.h"
+#import "UserCouponVC.h"
+@interface ZLCommitRepairsViewController ()<UITableViewDelegate,UITableViewDataSource,ZLCommitRepairsCellDelegate,AVCaptureFileOutputRecordingDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,TXTimeDelegate>
 
-@interface ZLCommitRepairsViewController ()<UITableViewDelegate,UITableViewDataSource,ZLCommitRepairsCellDelegate,AVCaptureFileOutputRecordingDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+@property (nonatomic,strong)TXTimeChoose *timeV;
+
 
 @end
 
 @implementation ZLCommitRepairsViewController
 {
-   NSURL *mVideoUrl;
-    UIImage *mVideoImg;
-    UIImage *mUpLoadImg;
+    NSURL *mVideoUrl;
+    
+    NSData *mVedioData;
+    
     ZLCreatePreOrder *mFixPreOrder;
-    AddressObject *mAddressObj;
+        
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationItem.title = @"提交订单";
-
-
-    mVideoImg = [UIImage new];
     mVideoUrl = nil;
-    
-    mUpLoadImg = [UIImage new];
-    mAddressObj = [AddressObject new];
+    mVedioData = [NSData new];
+
+    mFixPreOrder = [ZLCreatePreOrder new];
     [self addTableView];
     
     UINib   *nib = [UINib nibWithNibName:@"ZLCommitRepairsCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
 
-    mFixPreOrder = [ZLCreatePreOrder new];
     [self createPreOrder];
 }
 #pragma mark----****----创建预订单
@@ -53,6 +53,7 @@
             [self showSuccessStatus:@"验证成功!"];
             
             mFixPreOrder = mPreOrder;
+            [self.tableView reloadData];
             
         }else{
             
@@ -94,10 +95,10 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     [cell.mUpLoadVideoBtn setBackgroundImage:[self imageWithMediaURL:mVideoUrl] forState:0];
     
-    [cell setMAddress:mAddressObj];
+    [cell setMPreOrder:mFixPreOrder];
 
     cell.delegate = self;
-    [cell.mUploadImgBtn setBackgroundImage:mUpLoadImg forState:0];
+
     return cell;
 }
 
@@ -108,6 +109,16 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+#pragma mark----****----提交备注信息
+/**
+ 提交备注信息
+ 
+ @param mRemark 返回备注
+ */
+- (void)ZLCommitRepairsCellWithRemark:(NSString *)mRemark{
+
+    mFixPreOrder.mRemark = mRemark;
 }
 
 #pragma mark----****----选择地址代理方法
@@ -121,25 +132,72 @@
     vc.isChooseAddress = YES;
     vc.block = ^(AddressObject *mAddress){
         MLLog(@"%@",mAddress);
-        mAddressObj = mAddress;
+        mFixPreOrder.mAddress = mAddress;
         [self.tableView reloadData];
     };
     [self pushViewController:vc];
 
 }
+#pragma mark----****----选择时间
+- (TXTimeChoose *)timeV{
+    if (!_timeV) {
+        
+        self.timeV = [[TXTimeChoose alloc]initWithFrame:self.view.bounds type:UIDatePickerModeDateAndTime];
+        self.timeV.delegate = self;
+    }
+    return _timeV;
+}
+#pragma mark - TXTimeDelegate
+//当时间改变时触发
+- (void)changeTime:(NSDate *)date{
+    
+}
+
+//确定时间
+- (void)determine:(NSDate *)date{
+    
+    MLLog(@"%@",[self.timeV stringFromDate:date]);
+    
+    mFixPreOrder.mServiceTime = [self.timeV stringFromDate:date];
+    [self.tableView reloadData];
+    
+}
+
 #pragma mark----****----服务时间
 /**
  服务时间
  */
-- (void)ZLCommitRepairsCellWithTimeAction{
-MLLog(@"撒撒撒");
+- (void)ZLCommitRepairsCellWithTimeAction:(NSString *)mDate{
+    [self.view addSubview:self.timeV];
+
+    MLLog(@"服务时间");
+    if (mDate != 0 && ![mDate isEqualToString:@"选择服务时间"]) {
+        [self.timeV setNowTime:mDate];
+    }
+    
+
+    
 }
 #pragma mark----****----优惠券
 /**
  优惠券
  */
 - (void)ZLCommitRepairsCellWithCoupAction{
-MLLog(@"撒撒撒");
+    
+    MLLog(@"优惠券");
+    
+    UserCouponVC *vc = [[UserCouponVC alloc] init];
+    [vc.tableArr setArray: mFixPreOrder.coupons];
+    
+    vc.block = ^(CouponObject *mCoupon) {
+        
+        mFixPreOrder.mCoupon = mCoupon;
+        
+        [self.tableView reloadData];
+    };
+    [self.navigationController pushViewController:vc animated:YES];
+
+    
 }
 #pragma mark----****----上传图片
 /**
@@ -149,16 +207,48 @@ MLLog(@"撒撒撒");
 
     [self startChoosePhotoCall:^(UIImage *img) {
         MLLog(@"%@",img);
-        mUpLoadImg = img;
+        mFixPreOrder.mUpLoadImg = img;
+        NSData* data = UIImageJPEGRepresentation(img, 1.0);
+        
+        [self upLoadDataField:data withType:kFileType_photo];
+        
+        
         [self.tableView reloadData];
     }];
 }
+#pragma mark----****----上传图片和视频
+- (void)upLoadDataField:(NSData *)mData withType:(kFileType)mType{
+    
+    [SVProgressHUD showWithStatus:@"文件上传中..."];
+    [[APIClient sharedClient] fileUploadWithTag:self data:mData type:mType path:kFileUploadPath_Orders call:^(NSString *fileUrlStr, APIObject *info) {
+        if (info.code == RESP_STATUS_YES) {
+            
+            
+            NSString *mTT = nil;
+            if (mType == kFileType_photo) {
+                mTT = @"图片处理成功!";
+                mFixPreOrder.mUpLoadImgUrl= fileUrlStr;
+
+            }else{
+                mTT = @"视频处理成功!";
+                mFixPreOrder.mUpLoadVideoUrl= fileUrlStr;
+
+            }
+            
+            [self showSuccessStatus:mTT];
+
+        } else
+            [SVProgressHUD showErrorWithStatus:info.msg];
+    }];
+
+}
+
 #pragma mark----****----上传视频
 /**
  上传视频
  */
 - (void)ZLCommitRepairsCellWithUpLoadVideoAction{
-MLLog(@"撒撒撒");
+    MLLog(@"撒撒撒");
     
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"请选择" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
@@ -211,7 +301,7 @@ MLLog(@"撒撒撒");
         NSURL *videoURL = [info objectForKey:UIImagePickerControllerMediaURL];
         mVideoUrl = videoURL;
         
-        
+        mFixPreOrder.mUpLoadImg = [self imageWithMediaURL:videoURL];
         [self.tableView reloadData];
         
         [self saveVideoWith:videoURL];
@@ -223,12 +313,62 @@ MLLog(@"撒撒撒");
     
 }
 
-#pragma mark----****----提交
+#pragma mark----****----提交报修订单
 /**
  提交
  */
 - (void)ZLCommitRepairsCellWithCommitAction{
-MLLog(@"撒撒撒");
+    MLLog(@"提交报修订单");
+    
+    if (!mFixPreOrder.mAddress) {
+        [self showErrorStatus:@"您还没有收货地址呐～"];
+        return;
+    }
+    
+    if (mFixPreOrder.mServiceTime.length <= 0 || [mFixPreOrder.mServiceTime isEqualToString:@"选择服务时间"]) {
+        [self showErrorStatus:@"您还没有选择服务时间呐～"];
+        return;
+    }
+    
+    
+    NSMutableArray *mPayArr = [NSMutableArray new];
+    NSMutableDictionary *mPara = [NSMutableDictionary new];
+    
+    [mPara setInt:self.mClassObj.mClassId forKey:@"cls_id"];
+    
+    [mPara setObject:mFixPreOrder.goods.pro_name forKey:@"odrg_pro_name"];
+
+    [mPara setObject:mFixPreOrder.goods.pro_spec forKey:@"odrg_spec"];
+    [mPara setInt:0 forKey:@"odrg_price"];
+
+    [mPara setObject:mFixPreOrder.goods.img_url forKey:@"odrg_img"];
+
+    if (mFixPreOrder.mUpLoadImgUrl) {
+        [mPara setObject:mFixPreOrder.mUpLoadImgUrl forKey:@"odrg_img_repair"];
+        
+    }
+    if (mFixPreOrder.mUpLoadVideoUrl) {
+        [mPara setObject:mFixPreOrder.mUpLoadVideoUrl forKey:@"odrg_video_repair"];
+        
+    }
+    
+
+    [mPayArr addObject:mPara];
+
+    [self showWithStatus:@"正在提交..."];
+    [[APIClient sharedClient] ZLCommitOrder:ZLCommitOrderTypeWithFix andShopId:nil andGoods:[Util arrToJson:mPayArr] andSendAddress:[NSString stringWithFormat:@"%d",mFixPreOrder.mAddress.addr_id] andArriveAddress:nil andServiceTime:mFixPreOrder.mServiceTime andSendType:0 andSendPrice:[NSString stringWithFormat:@"%.2f",mFixPreOrder.deliver_price] andCoupId:[NSString stringWithFormat:@"%d",mFixPreOrder.mCoupon.cuc_id] andRemark:mFixPreOrder.mRemark andSign:mFixPreOrder.sign block:^(APIObject *mBaseObj, ZLCreateOrderObj *mOrder) {
+        
+        if (mBaseObj.code == RESP_STATUS_YES) {
+            [self showSuccessStatus:@"提交订单成功！"];
+            [self popViewController_3];
+        }else{
+        
+            [self showErrorStatus:mBaseObj.msg];
+        }
+        
+    }];
+    
+    
 }
 
 - (void) convertVideoQuailtyWithInputURL:(NSURL*)inputURL
@@ -418,13 +558,9 @@ MLLog(@"撒撒撒");
                     
                     [self showSuccessStatus:@"视频处理完成"];
                     
-//                    mVedioData = [NSData dataWithContentsOfURL:exporter.outputURL];
-//                    mSelecte = 2;
-//                    
-//                    mVURL = exporter.outputURL;
-//                    
-//                    [self upLoadVideo];
-//                    
+                    mVedioData = [NSData dataWithContentsOfURL:exporter.outputURL];
+                    [self upLoadDataField:mVedioData withType:kFileType_video];
+                   
                     //视频转码成功,删除原始文件
                     [[NSFileManager defaultManager] removeItemAtURL:url error:nil];
                     break;
@@ -492,6 +628,10 @@ MLLog(@"撒撒撒");
     UIImage *image = [UIImage imageWithCGImage: img];
     return image;
 }
+
+
+
+
 
 
 @end

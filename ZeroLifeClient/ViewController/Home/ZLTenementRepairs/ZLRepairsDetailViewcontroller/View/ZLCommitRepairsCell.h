@@ -23,7 +23,7 @@
 /**
  服务时间
  */
-- (void)ZLCommitRepairsCellWithTimeAction;
+- (void)ZLCommitRepairsCellWithTimeAction:(NSString *)mDate;
 
 /**
  优惠券
@@ -44,6 +44,13 @@
  提交
  */
 - (void)ZLCommitRepairsCellWithCommitAction;
+
+/**
+ 提交备注信息
+
+ @param mRemark 返回备注
+ */
+- (void)ZLCommitRepairsCellWithRemark:(NSString *)mRemark;
 
 @end
 
@@ -120,7 +127,6 @@
 @property (weak, nonatomic) id<ZLCommitRepairsCellDelegate>delegate;
 
 
-@property (strong,nonatomic) AddressObject *mAddress;
-
+@property (strong,nonatomic) ZLCreatePreOrder *mPreOrder;
 
 @end

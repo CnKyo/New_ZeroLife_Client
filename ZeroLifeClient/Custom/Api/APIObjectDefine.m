@@ -988,6 +988,10 @@ bool m_bind = NO;
 @implementation ZLCreatePreOrder
 + (NSDictionary *)mj_objectClassInArray{
     
-    return @{@"coupons":@"CouponObject"};
+    return @{@"coupons":@"CouponObject",@"goods":@"ZLCommitFixObj"};
 }
+@end
+
+
+@implementation ZLCommitFixObj
 @end

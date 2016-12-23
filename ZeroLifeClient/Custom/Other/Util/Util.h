@@ -387,4 +387,9 @@ typedef enum _RelDic
  */
 + (NSString *)ZLReplaceString:(NSString *)mBaseString andWillFromReplaceStr:(NSString *)mWillRepStr andToReplaceStr:(NSString *)mToRepStr;
 
++ (NSDictionary *)deleteEmpty:(NSDictionary *)dic;
+
++ (NSArray *)deleteEmptyArr:(NSArray *)arr;
+
+
 @end
