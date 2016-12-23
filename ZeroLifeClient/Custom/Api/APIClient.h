@@ -315,7 +315,7 @@ typedef void (^TableShareSdkBlock)(int totalpage, NSArray *tableArr, APIShareSdk
 
  @param block 返回值
  */
-- (void)ZLPhoneRecharge:(int)mRecharge andOrderType:(ZLCommitOrderType)mOrderType andPhone:(NSString *)mPhone andMoney:(NSString *)mMoney block:(void(^)(APIObject *mBaseObj))block;
+- (void)ZLPhoneRecharge:(int)mRecharge andOrderType:(kOrderClassType)mOrderType andPhone:(NSString *)mPhone andMoney:(NSString *)mMoney block:(void(^)(APIObject *mBaseObj))block;
 
 #pragma mark----****---- 报修预订单接口
 /**
