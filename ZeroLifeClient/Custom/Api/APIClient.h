@@ -352,9 +352,18 @@ typedef void (^TableShareSdkBlock)(int totalpage, NSArray *tableArr, APIShareSdk
  @param mLng 经度
  @param mPage 分页
  @param mPageSize 每页条数
+ @param mId 分类id
  @param block 返回值
  */
-- (void)ZLGetRunningmanHomeList:(double)mLat andLng:(double)mLng andPage:(int)mPage andPageSize:(int)mPageSize block:(void(^)(APIObject *mBaseObj,ZLRunningmanHomeList *mList))block;
+- (void)ZLGetRunningmanHomeList:(double)mLat andLng:(double)mLng andPage:(int)mPage andPageSize:(int)mPageSize andClsId:(int)mId block:(void(^)(APIObject *mBaseObj,ZLRunningmanHomeList *mList))block;
 
+
+#pragma mark----****----获取发布跑跑腿预订单
+/**
+ 获取发布跑跑腿预订单
+
+ @param block 返回值
+ */
+- (void)ZLGetRunningmanPreOrder:(void(^)(APIObject *mBaseObj,ZLPreOrderObj *mPreOrder))block;
 
 @end

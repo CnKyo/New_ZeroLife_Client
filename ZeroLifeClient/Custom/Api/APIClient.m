@@ -2249,10 +2249,10 @@
  @param mLng 经度
  @param mPage 分页
  @param mPageSize 每页条数
+ @param mId 分类id
  @param block 返回值
  */
-- (void)ZLGetRunningmanHomeList:(double)mLat andLng:(double)mLng andPage:(int)mPage andPageSize:(int)mPageSize block:(void(^)(APIObject *mBaseObj,ZLRunningmanHomeList *mList))block{
-
+- (void)ZLGetRunningmanHomeList:(double)mLat andLng:(double)mLng andPage:(int)mPage andPageSize:(int)mPageSize andClsId:(int)mId block:(void(^)(APIObject *mBaseObj,ZLRunningmanHomeList *mList))block{
     
     NSMutableDictionary* para = [NSMutableDictionary dictionary];
     
@@ -2263,6 +2263,8 @@
     if (mPageSize) {
         [para setInt:mPageSize forKey:@"pageSize"];
     }
+    [para setInt:mId forKey:@"type"];
+
     [para setObject:[NSString stringWithFormat:@"%f",mLat] forKey:@"lat"];
     [para setObject:[NSString stringWithFormat:@"%f",mLng] forKey:@"lng"];
     
@@ -2283,5 +2285,44 @@
     
 }
 
+
+#pragma mark----****----获取发布跑跑腿预订单
+/**
+ 获取发布跑跑腿预订单
+ 
+ @param block 返回值
+ */
+- (void)ZLGetRunningmanPreOrder:(void(^)(APIObject *mBaseObj,ZLPreOrderObj *mPreOrder))block{
+
+    
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    
+    if (user.user_id > 0) {
+        
+        NSMutableDictionary* para = [NSMutableDictionary dictionary];
+        
+        [para setInt:[ZLUserInfo ZLCurrentUser].user_id forKey:@"user_id"];
+        
+        MLLog(@"%@",[ZLUserInfo ZLCurrentUser]);
+        [self loadAPIWithTag:self path:@"/preorder/pre_ppao" parameters:para call:^(APIObject *info) {
+            
+            if (info.code == RESP_STATUS_YES) {
+                
+                block(info,[ZLPreOrderObj mj_objectWithKeyValues:info.data]);
+                
+            }else{
+                
+                block(info,nil);
+                
+            }
+            
+        }];
+        
+    }else{
+        block([APIObject infoWithReLoginErrorMessage:@"请重新登陆"],nil);
+        
+    }
+    
+}
 
 @end

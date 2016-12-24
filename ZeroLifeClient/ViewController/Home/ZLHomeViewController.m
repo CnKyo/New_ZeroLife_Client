@@ -572,7 +572,7 @@
 	else if (mIndex == 5){
         ZLRunningManViewController *ZLFixVC = [ZLRunningManViewController new];
         ZLFixVC.hidesBottomBarWhenPushed = YES;
-        
+        ZLFixVC.mAddress = mCommunityObj;
         [self pushViewController:ZLFixVC];
     }
     else if (mIndex == 4) {

@@ -28,6 +28,8 @@
 
     ZLPPTHomeClassList *mClassObj;
 
+    NSMutableArray *mTempArr;
+    
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -35,7 +37,7 @@
     self.navigationItem.title = @"跑跑腿";
   
     mClassObj = [ZLPPTHomeClassList new];
-    
+    mTempArr = [NSMutableArray new];
     [self addTableView];
     
     UINib   *nib = [UINib nibWithNibName:@"ZLRunningManHomeCell" bundle:nil];
@@ -78,6 +80,12 @@
             [self showSuccessStatus:mBaseObj.msg];
 
             [self initSecondSectionView:mList.classifyList];
+            
+            if (mList.classifyList.count>0) {
+                [self loadTableData:0];
+            }
+            
+            
         }else{
             [self showErrorStatus:mBaseObj.msg];
         }
@@ -87,15 +95,21 @@
 }
 - (void)initSecondSectionView:(NSArray *)mData{
     
-//    NSMutableArray *mImgArr = [NSMutableArray new];
+    NSMutableArray *mImgArr = [NSMutableArray new];
     NSMutableArray *mTTArr = [NSMutableArray new];
 
     for (ZLPPTClassObj *mClass in mData) {
-//        [mImgArr addObject:mClass.cls_image];
+        
+//        NSData *mdata = [NSData dataWithContentsOfURL:[NSURL imageurl:mClass.cls_image]];
+        
+        UIImageView *mImg = [UIImageView new];
+        [mImg sd_setImageWithURL:[NSURL imageurl:mClass.cls_image] placeholderImage:[UIImage imageNamed:@"ZLPPT_DShort"]];
+ 
+        [mImgArr addObject:mImg.image];
         [mTTArr addObject:mClass.cls_name];
 
     }
-    NSArray *mImgArr =@[IMG(@"ZLPPT_All"), IMG(@"ZLPPT_DFlower"), IMG(@"ZLPPT_DOut_Buy"), IMG(@"ZLPPT_DBuy"), IMG(@"ZLPPT_DShort"),IMG(@"ZLPPT_DBuy"), IMG(@"ZLPPT_DShort"),IMG(@"ZLPPT_DShort")];
+//    NSArray *mImgArr =@[IMG(@"ZLPPT_All"), IMG(@"ZLPPT_DFlower"), IMG(@"ZLPPT_DOut_Buy"), IMG(@"ZLPPT_DBuy"), IMG(@"ZLPPT_DShort"),IMG(@"ZLPPT_DBuy"), IMG(@"ZLPPT_DShort"),IMG(@"ZLPPT_DShort")];
 
     mSecondSectionView = [ZLRuuningManHomeHeaderSectionView initSecondView];
     mSecondSectionView.frame = CGRectMake(0, 0, DEVICE_Width, 130);
@@ -119,13 +133,32 @@
 
 }
 - (void)loadTableData:(NSInteger)mIndex{
-
+   ZLPPTClassObj *mClass = mClassObj.classifyList[mIndex];
+    
+    
+    [self showWithStatus:@"正在加载..."];
+    [[APIClient sharedClient] ZLGetRunningmanHomeList:self.mAddress.cmut_lat andLng:self.mAddress.cmut_lng andPage:self.page andPageSize:20 andClsId:mClass.cls_id block:^(APIObject *mBaseObj, ZLRunningmanHomeList *mList) {
+        
+        if (mBaseObj.code == RESP_STATUS_YES) {
+            [self showSuccessStatus:@"加载成功"];
+            [mTempArr addObjectsFromArray:mList.list];
+            [self.tableView reloadData];
+        }else{
+            [self showErrorStatus:mBaseObj.msg];
+        }
+        
+    }];
     
     
 }
 - (void)segmentedControlChangedValue:(HMSegmentedControl *)segmentedControl {
     
     MLLog(@"Selected index %ld (via UIControlEventValueChanged)", (long)segmentedControl.selectedSegmentIndex);
+    
+    NSInteger mIndex = segmentedControl.selectedSegmentIndex;
+    
+    [self loadTableData:mIndex];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -176,7 +209,7 @@
     
         return 1;
     }else{
-        return 5;
+        return mTempArr.count;
 
     }
    

@@ -1143,6 +1143,7 @@
 @property (strong,nonatomic) NSArray*               goods;
 @property (assign,nonatomic) int                    deliver_id;
 @property (strong,nonatomic) NSString*              sign;
+@property (strong,nonatomic) NSArray*               classify;
 
 // 确认订单扩展字段
 @property (assign,nonatomic) ZLShopSendType         mSendType;  //!< 配送方式
@@ -1177,6 +1178,9 @@
 @interface ZLPPTClassObj : NSObject
 ///分类名称
 @property (strong,nonatomic) NSString* cls_name;
+
+@property (strong,nonatomic) NSString* type_name;
+
 ///排序
 @property (assign,nonatomic) int cls_sort;
 ///店铺ID(0表示通用)

@@ -30,6 +30,8 @@
     ZLPPTReleaseBottomView *mBottomView;
     
     int mType;
+    
+    ZLPreOrderObj *mPPTPreOrder;
 
 }
 - (void)viewDidLoad {
@@ -39,10 +41,30 @@
 
     mType = 0;
     
-    [self initView];
-    [self initSecondSectionView];
-
+    mPPTPreOrder = [ZLPreOrderObj new];
     
+    [self initView];
+
+    [self getPreOrder];
+}
+- (void)getPreOrder{
+
+    [self  showWithStatus:@"正在验证..."];
+    [[APIClient sharedClient] ZLGetRunningmanPreOrder:^(APIObject *mBaseObj, ZLPreOrderObj *mPreOrder) {
+        
+        if (mBaseObj.code == RESP_STATUS_YES) {
+            
+            [self showSuccessStatus:@"验证成功!"];
+            
+            mPPTPreOrder = mPreOrder;
+            [self initSecondSectionView];
+
+        }else{
+        
+            [self showErrorStatus:mBaseObj.msg];
+        }
+        
+    }];
 }
 - (void)initView{
 
@@ -69,17 +91,20 @@
 #pragma mark----****----加载sectionview
 - (void)initSecondSectionView{
     
+    NSMutableArray *mTTArr = [NSMutableArray new];
     
+    for (ZLPPTClassObj *mClass in mPPTPreOrder.classify) {
+        [mTTArr addObject:mClass.cls_name];
+        
+    }
     
-    NSArray *mImgArr =@[IMG(@"ZLPPT_All"), IMG(@"ZLPPT_DFlower"), IMG(@"ZLPPT_DOut_Buy"), IMG(@"ZLPPT_DBuy"), IMG(@"ZLPPT_DShort"),IMG(@"ZLPPT_DBuy"), IMG(@"ZLPPT_DShort")];
-    
-    
-    
+    NSArray *mImgArr =@[IMG(@"ZLPPT_All"), IMG(@"ZLPPT_DFlower"), IMG(@"ZLPPT_DOut_Buy"), IMG(@"ZLPPT_DBuy"), IMG(@"ZLPPT_DShort"),IMG(@"ZLPPT_DBuy"), IMG(@"ZLPPT_DShort"),IMG(@"ZLPPT_DBuy")];
+
     mHeaderSectionView = [ZLRuuningManHomeHeaderSectionView initSecondView];
     mHeaderSectionView.frame = CGRectMake(0, 0, DEVICE_Width, 130);
     HMSegmentedControl *seg = [[HMSegmentedControl alloc] initWithSectionImages:mImgArr
                                                           sectionSelectedImages:mImgArr
-                                                              titlesForSections:@[@"全部", @"代买花", @"代买外卖",@"超市代买",@"短程代办",@"超市代买",@"短程代办"]];
+                                                              titlesForSections:mTTArr];
     seg.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
     seg.selectionIndicatorHeight = 2.0f;
     seg.titleTextAttributes = @{NSFontAttributeName : [UIFont systemFontOfSize:15], NSForegroundColorAttributeName : [UIColor grayColor]};
@@ -92,7 +117,7 @@
         make.height.equalTo(60);
     }];
     
-    
+    [self.tableView reloadData];
 
     
     
@@ -102,6 +127,9 @@
     MLLog(@"Selected index %ld (via UIControlEventValueChanged)", (long)segmentedControl.selectedSegmentIndex);
     
     mType = [[NSString stringWithFormat:@"%ld",(long)segmentedControl.selectedSegmentIndex] intValue];
+    ZLPPTClassObj *mClass = mPPTPreOrder.classify[mType];
+    
+    
     [self.tableView reloadData];
 }
 
@@ -375,6 +403,7 @@
 - (void)ZLPPTReleaseShorSendCellWithNoteTx:(NSString *)mNote{
 
 }
+
 
 
 @end
