@@ -1006,7 +1006,7 @@ bool m_bind = NO;
 @implementation ZLPreOrderObj
 + (NSDictionary *)mj_objectClassInArray{
     
-    return @{@"campaigns":@"OrderCampaignObject",@"coupons":@"CouponObject",@"goods":@"OrderGoodsObject"};
+    return @{@"campaigns":@"OrderCampaignObject",@"coupons":@"CouponObject",@"goods":@"OrderGoodsObject",@"classify":@"ZLPPTClassObj"};
 }
 
 @end

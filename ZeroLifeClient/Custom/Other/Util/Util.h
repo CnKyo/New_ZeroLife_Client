@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "CustomDefine.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 
 typedef enum _RelDic
@@ -399,5 +399,14 @@ typedef enum _RelDic
  @return 返回bool值
  */
 + (BOOL)isUrl:(NSString *)mString;
+
+
+/**
+ 判断跑腿类型
+
+ @param mTypeStr 要判断的关键字
+ @return 返回类型
+ */
++ (int)currentReleaseType:(NSString *)mTypeStr;
 
 @end

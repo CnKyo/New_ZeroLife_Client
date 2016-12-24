@@ -1587,6 +1587,31 @@
     return [urlTest evaluateWithObject:url];
 }
 
++ (int)currentReleaseType:(NSString *)mTypeStr{
+    
+    if ([mTypeStr isEqualToString:@"买"]) {
+        return ZLPPTReleaseTypeWithBuyStaff;
+    }else{
+        return ZLPPTReleaseTypeWithSendDo;
+        
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @end
 
 

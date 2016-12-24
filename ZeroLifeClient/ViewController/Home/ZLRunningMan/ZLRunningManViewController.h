@@ -10,4 +10,6 @@
 
 @interface ZLRunningManViewController : CustomVC
 
+@property (strong,nonatomic) CommunityObject *mAddress;
+
 @end

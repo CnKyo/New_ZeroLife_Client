@@ -164,6 +164,11 @@ typedef enum {
 
 
 
+typedef enum {
+    ZLPPTReleaseTypeWithBuyStaff,//买东西
+    ZLPPTReleaseTypeWithSendDo,//送东西办事情
+} ZLPPTReleaseType;//发布跑腿类型
+
 
 //-----------------------
 //自定义的写在下面，通用的写在上面
