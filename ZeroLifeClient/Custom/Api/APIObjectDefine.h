@@ -1328,3 +1328,48 @@
 @end
 
 
+
+#pragma mark----****----跑跑腿首页订单列表
+@interface ZLRunningmanHomeList : NSObject
+@property (assign,nonatomic) int                totalRow;   //!< 数据总条数
+@property (assign,nonatomic) int                totalPage;  //!< 数据总分页数
+@property (assign,nonatomic) int                pageNumber; //!< 当前分页页码
+@property (assign,nonatomic) int                pageSize;   //!< 当前分页标准（每页多少条数据）
+@property (strong,nonatomic) NSArray *          list;   //!< 店铺列表数据
+@end
+#pragma mark----****----跑跑腿首页订单
+@interface ZLRunningmanHomeOrder : NSObject
+
+@property (strong,nonatomic) NSString*              odr_state;  //!< 订单状态
+
+@property (assign,nonatomic) int                    odrg_price;//!< 商品价格
+
+@property (strong,nonatomic) NSString*              distance;  //!< 距离
+
+@property (assign,nonatomic) double                 addr_lng;//!< 经度
+
+@property (assign,nonatomic) double                 addr_lat;//!< 维度
+
+@property (assign,nonatomic) int                    odr_deliver_fee;//!< 配送费
+
+@property (strong,nonatomic) NSString*              odr_code;  //!< 订单编号
+
+@property (strong,nonatomic) NSString*              odrg_spec;  //!< 购买商品描述
+
+@property (strong,nonatomic) NSString*              odrg_pro_name;  //!< 商品名称
+
+@property (strong,nonatomic) NSString*              odr_add_time;  //!< 生成时间
+
+@property (strong,nonatomic) NSString*              addr_address;  //!< 配送地址
+
+@property (strong,nonatomic) NSString*              cmut_name;  //!< 地表
+
+@property (assign,nonatomic) int                    pro_id;  //!< 分类ID
+
+@property (strong,nonatomic) NSString*              odr_timing;  //!< 定时服务时间
+
+@property (assign,nonatomic) int                    odr_id;  //!< 订单ID
+
+
+@end
+

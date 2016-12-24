@@ -45,7 +45,6 @@
     nib = [UINib nibWithNibName:@"ZLRunningManCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell2"];
     [self loadClassData];
-    [self initStaticData];
 }
 
 - (void)initStaticData{
@@ -116,25 +115,17 @@
         make.height.equalTo(60);
     }];
 
-    [self initData];
+    [self initStaticData];
 
+}
+- (void)loadTableData:(NSInteger)mIndex{
+
+    
+    
 }
 - (void)segmentedControlChangedValue:(HMSegmentedControl *)segmentedControl {
     
     MLLog(@"Selected index %ld (via UIControlEventValueChanged)", (long)segmentedControl.selectedSegmentIndex);
-}
-- (void)initData{
-    NSDictionary *mTempDic = [NSMutableDictionary new];
-    self.tableArr = [NSMutableArray new];
-    for (int i = 0; i<11; i++) {
-        if (i == 3) {
-            [mTempDic setValue:@"家政" forKey:@"title"];
-        } else
-            [mTempDic setValue:[NSString stringWithFormat:@"这是第%d",i] forKey:@"title"];
-        [mTempDic setValue:@"icon_homepage_default" forKey:@"image"];
-        [self.tableArr addObject:mTempDic];
-    }
-    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {

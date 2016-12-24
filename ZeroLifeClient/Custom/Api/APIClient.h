@@ -334,4 +334,18 @@ typedef void (^TableShareSdkBlock)(int totalpage, NSArray *tableArr, APIShareSdk
  */
 - (void)ZLApplyPPTPreOrder:(void(^)(APIObject *mBaseObj,ZLCreatePreOrder *mPreOrder))block;
 
+
+#pragma mark----****----  获取跑跑腿首页订单列表
+/**
+ 获取跑跑腿首页订单列表
+
+ @param mLat 纬度
+ @param mLng 经度
+ @param mPage 分页
+ @param mPageSize 每页条数
+ @param block 返回值
+ */
+- (void)ZLGetRunningmanHomeList:(double)mLat andLng:(double)mLng andPage:(int)mPage andPageSize:(int)mPageSize block:(void(^)(APIObject *mBaseObj,ZLRunningmanHomeList *mList))block;
+
+
 @end

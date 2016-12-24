@@ -28,7 +28,7 @@
             [imageView sd_setImageWithURL:[NSURL URLWithString:mImageStr] placeholderImage:[UIImage imageNamed:@"ZLDefault_Green"]];
 
         }else{
-            imageView.image = [UIImage imageNamed:mImageStr];
+            imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@",mImageStr]];
 
         }
         
