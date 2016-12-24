@@ -513,6 +513,7 @@
 @property(nonatomic,strong) NSString *              odrg_pro_name;         //!< 商品名称
 @property(nonatomic,strong) NSString *              odrg_spec;         //!< 商品描述（如：{$}元余额充值-其中{$}需替换成用户充值金额）
 @property(nonatomic,strong) NSString *              sign;         //!< 签名字段（下单接口需要将原数据提交）
+-(NSString *)getCustomSpecWithMoney:(float)money; //!< 获取自定义描述
 @end
 
 /// 跑跑腿申请押金预订单对象

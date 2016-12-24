@@ -9,6 +9,7 @@
 #import "WithDrawalVC.h"
 #import "BankCardTVC.h"
 #import <JKCategories/UIView+JKBlockGesture.h>
+#import "ZLGoPayViewController.h"
 
 @interface WithDrawalVC ()
 @property(nonatomic,strong) PrePresentApplyObject *item;
@@ -46,11 +47,40 @@
     //提交
     [self.doneBtn jk_addActionHandler:^(NSInteger tag) {
         
+        if (_moneyField.text.length == 0) {
+            [SVProgressHUD showErrorWithStatus:@"请输入金额"];
+            return ;
+        }
+        
+        [[IQKeyboardManager sharedManager] resignFirstResponder];
+        
+        NSString *spec = [_item getCustomSpecWithMoney:[_moneyField.text floatValue]];
+        
+        NSMutableArray *mPayArr = [NSMutableArray new];
+        NSMutableDictionary *mPara = [NSMutableDictionary new];
+        [mPara setObject:_item.odrg_pro_name forKey:@"odrg_pro_name"];
+        [mPara setObject:spec forKey:@"odrg_spec"];
+        [mPara setObject:_moneyField.text forKey:@"odrg_price"];
+        [mPara setInt:_item.bank.bank_id forKey:@"bank_id"];
+        [mPayArr addObject:mPara];
+        
+        [SVProgressHUD showWithStatus:@"加载中"];
+        [[APIClient sharedClient] ZLCommitOrder:kOrderClassType_balance_transfer andShopId:nil andGoods:[Util arrToJson:mPayArr] andSendAddress:nil andArriveAddress:nil andServiceTime:nil andSendType:0 andSendPrice:nil andCoupId:nil andRemark:nil andSign:_item.sign block:^(APIObject *mBaseObj, ZLCreateOrderObj *mOrder) {
+            if (mBaseObj.code == RESP_STATUS_YES) {
+                ZLGoPayViewController *ZLGoPayVC = [ZLGoPayViewController new];
+                ZLGoPayVC.mOrder = [ZLCreateOrderObj new];
+                ZLGoPayVC.mOrder = mOrder;
+                [self pushViewController:ZLGoPayVC];
+                
+                [self showSuccessStatus:mBaseObj.msg];
+            } else
+                [self showErrorStatus:mBaseObj.msg];
+        }];
     }];
     
     //全部提现
     [self.allOutBtn jk_addActionHandler:^(NSInteger tag) {
-        self.moneyLable.text = [NSString stringWithFormat:@"%.2f", _item.uwal_balance];
+        self.moneyField.text = [NSString stringWithFormat:@"%.2f", _item.uwal_balance];
     }];
 }
 

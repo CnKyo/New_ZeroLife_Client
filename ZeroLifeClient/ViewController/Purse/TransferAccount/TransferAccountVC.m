@@ -43,8 +43,16 @@
         
         [[IQKeyboardManager sharedManager] resignFirstResponder];
         
+        NSMutableArray *mPayArr = [NSMutableArray new];
+        NSMutableDictionary *mPara = [NSMutableDictionary new];
+        [mPara setObject:_item.odrg_pro_name forKey:@"odrg_pro_name"];
+        [mPara setObject:_item.odrg_spec forKey:@"odrg_spec"];
+        [mPara setObject:_moneyField.text forKey:@"odrg_price"];
+        [mPara setObject:_accountField.text forKey:@"acc_phone"];
+        [mPayArr addObject:mPara];
+        
         [SVProgressHUD showWithStatus:@"加载中"];
-        [[APIClient sharedClient] ZLCommitOrder:kOrderClassType_balance_transfer andShopId:nil andGoods:nil andSendAddress:nil andArriveAddress:nil andServiceTime:nil andSendType:0 andSendPrice:nil andCoupId:nil andRemark:nil andSign:_item.sign block:^(APIObject *mBaseObj, ZLCreateOrderObj *mOrder) {
+        [[APIClient sharedClient] ZLCommitOrder:kOrderClassType_balance_transfer andShopId:nil andGoods:[Util arrToJson:mPayArr] andSendAddress:nil andArriveAddress:nil andServiceTime:nil andSendType:0 andSendPrice:nil andCoupId:nil andRemark:nil andSign:_item.sign block:^(APIObject *mBaseObj, ZLCreateOrderObj *mOrder) {
             if (mBaseObj.code == RESP_STATUS_YES) {
                 ZLGoPayViewController *ZLGoPayVC = [ZLGoPayViewController new];
                 ZLGoPayVC.mOrder = [ZLCreateOrderObj new];

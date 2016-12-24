@@ -13,7 +13,7 @@
 @interface WithDrawalVC : CustomVC
 @property (weak, nonatomic) IBOutlet UILabel *totalMoneyLable; //可提现余额
 @property (weak, nonatomic) IBOutlet UIButton *allOutBtn; //全部提现
-@property (weak, nonatomic) IBOutlet UITextField *moneyLable; //提现金额
+@property (weak, nonatomic) IBOutlet UITextField *moneyField; //提现金额
 
 @property (weak, nonatomic) IBOutlet UIView *bankView;
 @property (weak, nonatomic) IBOutlet UIImageView *bankIconImgView;

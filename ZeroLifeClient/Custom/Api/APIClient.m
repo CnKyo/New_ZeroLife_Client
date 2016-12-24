@@ -1850,43 +1850,35 @@
         if (mServiceTime) {
             [para setObject:mServiceTime forKey:@"odr_timing"];
         }
-        if (mSendType) {
-            if (mSendType == 0) {
-                if (mSendType > 0) {
-                    [para setInt:mSendType forKey:@"odr_deliver_type"];
-                }
-                
-                if (mSendPrice) {
-                    [para setObject:mSendPrice forKey:@"odr_deliver_fee"];
-                }
-                if (mCoupId) {
-                    [para setObject:mCoupId forKey:@"cuc_id"];
-                }
-                if (mRemark) {
-                    [para setObject:mRemark forKey:@"odr_remark"];
-                }
-                if (mSign) {
-                    [para setObject:mSign forKey:@"sign"];
-                }
-                
-                [self loadAPIWithTag:self path:@"/order/order_create" parameters:para call:^(APIObject *info) {
-                    if (info.code == RESP_STATUS_YES) {
-                        block(info,[ZLCreateOrderObj mj_objectWithKeyValues:info.data]);
-                    }else{
-                        block(info,nil);
-                    }
-                    
-                }];
-                
+        
+        if (mSendType > 0) {
+            [para setInt:mSendType forKey:@"odr_deliver_type"];
+        }
+        
+        if (mSendPrice) {
+            [para setObject:mSendPrice forKey:@"odr_deliver_fee"];
+        }
+        if (mCoupId) {
+            [para setObject:mCoupId forKey:@"cuc_id"];
+        }
+        if (mRemark) {
+            [para setObject:mRemark forKey:@"odr_remark"];
+        }
+        if (mSign) {
+            [para setObject:mSign forKey:@"sign"];
+        }
+        
+        [self loadAPIWithTag:self path:@"/order/order_create" parameters:para call:^(APIObject *info) {
+            if (info.code == RESP_STATUS_YES) {
+                block(info,[ZLCreateOrderObj mj_objectWithKeyValues:info.data]);
             }else{
-                block([APIObject infoWithReLoginErrorMessage:@"请重新登陆"],nil);
-                
+                block(info,nil);
             }
             
-            
-            
-            
-        }
+        }];
+        
+    } else {
+        block([APIObject infoWithReLoginErrorMessage:@"请重新登陆"],nil);
     }
 }
 

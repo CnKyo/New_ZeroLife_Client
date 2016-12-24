@@ -406,6 +406,13 @@
 
 
 @implementation PreApplyObject
+
+-(NSString *)getCustomSpecWithMoney:(float)money
+{
+    NSString *moneyStr = [NSString stringWithFormat:@"%.2f", money];
+    NSString *str = [self.odrg_spec stringByReplacingOccurrencesOfString:@"{$}" withString:moneyStr];
+    return str;
+}
 @end
 
 
