@@ -356,7 +356,7 @@
     [mPayArr addObject:mPara];
 
     [self showWithStatus:@"正在提交..."];
-    [[APIClient sharedClient] ZLCommitOrder:ZLCommitOrderTypeWithFix andShopId:nil andGoods:[Util arrToJson:mPayArr] andSendAddress:[NSString stringWithFormat:@"%d",mFixPreOrder.mAddress.addr_id] andArriveAddress:nil andServiceTime:mFixPreOrder.mServiceTime andSendType:0 andSendPrice:[NSString stringWithFormat:@"%.2f",mFixPreOrder.deliver_price] andCoupId:[NSString stringWithFormat:@"%d",mFixPreOrder.mCoupon.cuc_id] andRemark:mFixPreOrder.mRemark andSign:mFixPreOrder.sign block:^(APIObject *mBaseObj, ZLCreateOrderObj *mOrder) {
+    [[APIClient sharedClient] ZLCommitOrder:kOrderClassType_fix andShopId:nil andGoods:[Util arrToJson:mPayArr] andSendAddress:[NSString stringWithFormat:@"%d",mFixPreOrder.mAddress.addr_id] andArriveAddress:nil andServiceTime:mFixPreOrder.mServiceTime andSendType:0 andSendPrice:[NSString stringWithFormat:@"%.2f",mFixPreOrder.deliver_price] andCoupId:[NSString stringWithFormat:@"%d",mFixPreOrder.mCoupon.cuc_id] andRemark:mFixPreOrder.mRemark andSign:mFixPreOrder.sign block:^(APIObject *mBaseObj, ZLCreateOrderObj *mOrder) {
         
         if (mBaseObj.code == RESP_STATUS_YES) {
             [self showSuccessStatus:@"提交订单成功！"];
