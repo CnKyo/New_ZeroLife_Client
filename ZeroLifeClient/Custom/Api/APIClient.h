@@ -84,6 +84,11 @@ typedef void (^TableShareSdkBlock)(int totalpage, NSArray *tableArr, APIShareSdk
 //优惠券相关接口
 -(void)couponListWithTag:(NSObject *)tag page:(int)page call:(TablePageArrBlock)callback;
 
+
+//用户钱包相关接口
+-(void)walletRecordListWithTag:(NSObject *)tag type:(int)type page:(int)page call:(TablePageArrBlock)callback;
+
+
 //投诉相关接口
 -(void)complaintListWithTag:(NSObject *)tag page:(int)page call:(TablePageArrBlock)callback;
 -(void)complaintCompanyAddWithTag:(NSObject *)tag content:(NSString *)content call:(void (^)(APIObject* info))callback;
@@ -93,6 +98,10 @@ typedef void (^TableShareSdkBlock)(int totalpage, NSArray *tableArr, APIShareSdk
 -(void)complaintCommunityAddWithTag:(NSObject *)tag content:(NSString *)content cmut_id:(int)cmut_id user_name:(NSString *)user_name call:(void (^)(APIObject* info))callback __deprecated_msg("Method deprecated. Use `complaintCommunityUpWithTag:(NSObject *)tag content:(NSString *)content cmut_id:(int)cmut_id call:(void (^)(APIObject* info))callback`");
 -(void)complaintPeopleAddWithTag:(NSObject *)tag content:(NSString *)content cmut_id:(int)cmut_id address:(NSString *)address call:(void (^)(APIObject* info))callback __deprecated_msg("Method deprecated. Use `-(void)complaintPeopleUpWithTag:(NSObject *)tag content:(NSString *)content cmut_id:(int)cmut_id call:(void (^)(APIObject* info))callback`");
 #pragma mark -
+
+
+//用户签到相关接口
+-(void)userSignWithTag:(NSObject *)tag call:(void (^)(int score, APIObject* info))callback;
 
 
 //订单相关接口

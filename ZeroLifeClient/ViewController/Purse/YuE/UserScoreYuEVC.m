@@ -148,16 +148,42 @@
             cell.msgLable.text = @"积分商场兑换";
             cell.imgView.image = IMG(@"cell_score_item.png");
         } else {
-            if (indexPath.row == 0) {
-                cell.msgLable.text = @"收款";
-                cell.imgView.image = IMG(@"cell_soukuan_item.png");
-            } else if (indexPath.row == 1) {
-                cell.msgLable.text = @"转帐";
-                cell.imgView.image = IMG(@"cell_soukuan_item.png");
-            } else {
-                cell.msgLable.text = @"转帐";
-                cell.imgView.image = IMG(@"cell_soukuan_item.png");
+            WalletRecordObject *item = [self.tableArr objectAtIndex:indexPath.row];
+            
+            cell.timeLable.text = [NSString compIsNone:item.recw_add_time];
+            switch (item.recw_record_type) {
+                case kWalletRecordType_input:
+                    cell.moneyLable.text = [NSString stringWithFormat:@"+%.2f", item.uwal_operation_money];
+                    break;
+                case kWalletRecordType_output:
+                    cell.moneyLable.text = [NSString stringWithFormat:@"-%.2f", item.uwal_operation_money];
+                    break;
+                default:
+                    break;
             }
+            
+            switch (item.odr_type) {
+                case kOrderClassType_balance_present:
+                    cell.msgLable.text = @"提现";
+                    cell.imgView.image = IMG(@"purse_tixian.png");
+                    break;
+                case kOrderClassType_balance_recharge:
+                    cell.msgLable.text = @"余额充值";
+                    cell.imgView.image = IMG(@"cell_soukuan_item.png");
+                    break;
+                case kOrderClassType_balance_transfer:
+                    cell.msgLable.text = @"转帐";
+                    cell.imgView.image = IMG(@"purse_zhuanzhuang.png");
+                    break;
+                case kOrderClassType_balance_collection:
+                    cell.msgLable.text = @"收款";
+                    cell.imgView.image = IMG(@"cell_soukuan_item.png");
+                    break;
+                default:
+                    break;
+            }
+
+            
         }
         
         return cell;
@@ -180,7 +206,10 @@
 - (void)reloadTableViewDataSource{
     [super reloadTableViewDataSource];
     
-    [self performSelector:@selector(donwData) withObject:nil afterDelay:0.5];
+    [[APIClient sharedClient] walletRecordListWithTag:self type:0 page:self.page call:^(int totalPage, NSArray *tableArr, APIObject *info) {
+        [self reloadWithTableArr:tableArr info:info];
+    }];
+    //[self performSelector:@selector(donwData) withObject:nil afterDelay:0.5];
 }
 
 -(void)donwData

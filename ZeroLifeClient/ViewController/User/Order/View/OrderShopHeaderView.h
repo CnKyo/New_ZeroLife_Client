@@ -9,11 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "UIView+AutoSize.h"
 #import "CustomDefine.h"
+#import "APIObjectDefine.h"
 
 @interface OrderShopHeaderView : UIView
 
 @property(nonatomic,strong) UIImageView *shopIconImgView;
 @property(nonatomic,strong) UILabel *shopNameLable;
 @property(nonatomic,strong) UILabel *orderStatusLable;
+
+-(void)reloadUIWithShopName:(NSString *)name shopLogo:(NSString *)logo orderStatus:(NSString *)state;
 
 @end

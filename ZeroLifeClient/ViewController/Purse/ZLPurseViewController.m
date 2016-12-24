@@ -84,7 +84,7 @@
     
     //PurseHeaderView *headerView = [[PurseHeaderView alloc] init];
     SingInHeaderView *headerView = [[SingInHeaderView alloc] init];
-    headerView.singView.delegate = self;
+    //headerView.singView.delegate = self;
     [headerView loadUIWithDay:15];
     [superView addSubview:headerView];
     [headerView updateConstraints:^(MASConstraintMaker *make) {
@@ -257,6 +257,21 @@
     }];
     
 
+    
+    __weak __typeof__(SingInHeaderView) *weakHeaderViewSelf = headerView;
+    headerView.chooseSingInCallBack = ^() {
+        [self showWithStatus:@"正在签到..."];
+        [[APIClient sharedClient] userSignWithTag:self call:^(int score, APIObject *info) {
+            if (info.code == RESP_STATUS_YES) {
+                weakHeaderViewSelf.singView.score = score;
+                weakHeaderViewSelf.singView.is_singin = ! weakHeaderViewSelf.singView.is_singin;
+                
+                [self showSuccessStatus:@"签到成功!"];
+            }else{
+                [self showErrorStatus:info.msg];
+            }
+        }];
+    };
 }
 
 - (void)viewDidLoad {

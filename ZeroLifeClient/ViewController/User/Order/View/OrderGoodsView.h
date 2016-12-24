@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "UIView+AutoSize.h"
 #import "CustomDefine.h"
+#import "APIObjectDefine.h"
 
 @interface OrderGoodsView : UIView
 @property(nonatomic,strong) UIImageView *imgView;
@@ -16,4 +17,7 @@
 @property(nonatomic,strong) UILabel *priceLable;
 @property(nonatomic,strong) UILabel *sizeLable;
 @property(nonatomic,strong) UILabel *countLable;
+
+-(void)reloadUIWithItem:(OrderGoodsObject *)item;
+
 @end

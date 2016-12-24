@@ -110,7 +110,7 @@
         str = @"去维权";
     }
     else if ([state isEqualToString:kOrderState_SERPOINT]) {
-        str = @"选定服务商";
+        str = @"选服务商";
     }
 
     return str;
@@ -361,6 +361,10 @@
 
 
 @implementation RegionObject
+
+@end
+
+@implementation WalletRecordObject
 
 @end
 

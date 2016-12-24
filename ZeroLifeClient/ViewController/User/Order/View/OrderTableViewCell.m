@@ -122,6 +122,7 @@
         }];
         [self.orderTimeLable makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(superView.left).offset(padding);
+            make.right.equalTo(_actionBtn2.left).offset(-padding);
             make.top.equalTo(lineView.bottom);
             make.height.equalTo(50);
         }];
@@ -132,9 +133,8 @@
             make.width.equalTo(60);
         }];
         [self.actionBtn2 makeConstraints:^(MASConstraintMaker *make) {
-            make.right.equalTo(_actionBtn2.left).offset(-padding);
-            make.top.bottom.width.equalTo(_actionBtn2);
-            make.left.equalTo(_orderTimeLable.right).offset(padding/2);
+            make.right.equalTo(_actionBtn1.left).offset(-padding);
+            make.top.bottom.width.equalTo(_actionBtn1);
         }];
     }
     return self;
@@ -253,7 +253,7 @@
         
         if (item.odr_state_next.count > 1) {
             self.actionBtn2.hidden = NO;
-            NSString *btnStr2 = [item.odr_state_next objectAtIndex:0];
+            NSString *btnStr2 = [item.odr_state_next objectAtIndex:1];
             self.actionBtn2.stateStr = btnStr2;
         } else
             self.actionBtn2.hidden = YES;

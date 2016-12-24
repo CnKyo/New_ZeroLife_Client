@@ -62,4 +62,14 @@
 }
 
 
+-(void)reloadUIWithItem:(OrderGoodsObject *)item
+{
+    self.nameLable.text = [NSString compIsNone:item.odrg_pro_name];
+    self.sizeLable.text = [NSString compIsNone:item.odrg_spec];
+    self.countLable.text = [NSString stringWithFormat:@"x%i", item.odrg_number];
+    self.priceLable.text = [NSString stringWithFormat:@"￥%.2f", item.odrg_price];
+}
+
+
+
 @end

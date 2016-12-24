@@ -52,7 +52,8 @@
     [super viewDidLoad];
     self.title = @"订单详情";
     
-    [self donwData];
+    [self.scrollView.mj_header beginRefreshing];
+    //[self donwData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -67,23 +68,8 @@
     int padding = 10;
     
     OrderHeaderStatusView *statusView = [[OrderHeaderStatusView alloc] init];
-    [statusView loadStatus:@"等待支付" note:@"剩余3小时自动关闭"];
+    [statusView loadStatus:[NSString compIsNone:_item.odr_state_val] note:@"剩余3小时自动关闭"];
     [superView addSubview:statusView];
-    
-//    UIView *statusView = ({
-//        UIView *view = [superView newUIViewWithBgColor:[UIColor whiteColor]];
-//        UIImageView *imgView = [view newUIImageViewWithImg:IMG(@"order_gouwu_daizhifu.png")];
-//        [imgView makeConstraints:^(MASConstraintMaker *make) {
-//            make.width.equalTo(view.width).multipliedBy(0.8);
-//            make.centerX.equalTo(view.centerX);
-//            make.top.equalTo(view.top).offset(padding);
-//            make.height.equalTo(imgView.width).multipliedBy(0.13);
-//        }];
-//        [view makeConstraints:^(MASConstraintMaker *make) {
-//            make.bottom.equalTo(imgView.bottom).offset(padding);
-//        }];
-//        view;
-//    });
     [statusView updateConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.equalTo(superView);
         make.height.equalTo(100);
@@ -100,7 +86,8 @@
     
     //[NSString stringWithFormat:@"%@  %@", _item.odr_ext.odr_deliver_name, _item.odr_ext.odr_deliver_phone];
     if (_classType==kOrderClassType_product || _classType==kOrderClassType_dryclean || _classType==kOrderClassType_fix) {
-        OrderAddressView *addressView = [[OrderAddressView alloc] initWithNote:nil name:@"王勇  188****2313" address:@"重庆市渝中区石油路万科中心1栋1004 重庆超尔科技有限公司"];
+        
+        OrderAddressView *addressView = [[OrderAddressView alloc] initWithNote:nil name:[NSString stringWithFormat:@"%@  %@", _item.odr_deliver_name, _item.odr_deliver_phone] address:[NSString compIsNone:_item.odr_deliver_address]];
         [superView addSubview:addressView];
         [addressView updateConstraints:^(MASConstraintMaker *make) {
             make.left.right.equalTo(superView);
@@ -111,8 +98,8 @@
         lastView = addressView;
         
     } else if (_classType == kOrderClassType_paopao) {
-        OrderAddressView *addressView1 = [[OrderAddressView alloc] initWithNote:@"取货地址" name:@"王勇  188****2313" address:@"重庆市渝中区石油路万科中心1栋1004 重庆超尔科技有限公司"];
-        OrderAddressView *addressView2 = [[OrderAddressView alloc] initWithNote:@"送货地址" name:nil address:@"重庆市渝中区石油路万科中心1栋1004 重庆超尔科技有限公司"];
+        OrderAddressView *addressView1 = [[OrderAddressView alloc] initWithNote:@"取货地址" name:[NSString stringWithFormat:@"%@  %@", _item.odr_deliver_name, _item.odr_deliver_phone] address:[NSString compIsNone:_item.odr_deliver_address]];
+        OrderAddressView *addressView2 = [[OrderAddressView alloc] initWithNote:@"送货地址" name:nil address:[NSString compIsNone:_item.odr_pick_address]];
         [superView addSubview:addressView1];
         [superView addSubview:addressView2];
         [addressView1 updateConstraints:^(MASConstraintMaker *make) {
@@ -128,6 +115,7 @@
 
     
     OrderBeizhuView *beizhuView = [[OrderBeizhuView alloc] init];
+    beizhuView.beizhuLable.text = [NSString compIsNone:_item.odr_remark];
     [superView addSubview:beizhuView];
     [beizhuView updateConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(superView);
@@ -149,8 +137,11 @@
                 make.height.equalTo(40);
             }];
             
+            //加载店铺信息
+            [shopView reloadUIWithShopName:_item.shop_name shopLogo:_item.shop_logo orderStatus:_item.odr_state_val];
+            
             lastView = nil;
-            for (int i=0; i<3; i++) {
+            for (int i=0; i<_item.goods.count; i++) {
                 OrderGoodsView *itemView = [[OrderGoodsView alloc] init];
                 [view addSubview:itemView];
                 [itemView makeConstraints:^(MASConstraintMaker *make) {
@@ -163,6 +154,11 @@
                         make.top.equalTo(lastView.bottom).offset(padding/2);
                     
                 }];
+                
+                //加载商品清单数据
+                OrderGoodsObject *it = [_item.goods objectAtIndex:i];
+                [itemView reloadUIWithItem:it];
+                
                 lastView = itemView;
             }
             
@@ -173,15 +169,19 @@
                 make.height.equalTo(OnePixNumber);
             }];
             
+    
             OrderNoteValueView *peisongView = [[OrderNoteValueView alloc] init];
             OrderNoteValueView *youhuiView = [[OrderNoteValueView alloc] init];
+            OrderNoteValueView *couponView = [[OrderNoteValueView alloc] init];
             OrderNoteValueView *shifuView = [[OrderNoteValueView alloc] init];
             [view addSubview:peisongView];
             [view addSubview:youhuiView];
+            [view addSubview:couponView];
             [view addSubview:shifuView];
-            [peisongView loadNotestr:@"配送费" valueStr:@"￥4.00"];
-            [youhuiView loadNotestr:@"优惠券" valueStr:@"-￥2.00"];
-            [shifuView loadNotestr:@"实付款（含运费）" valueStr:@"￥10.00"];
+            [peisongView loadNotestr:@"配送费" valueStr:[NSString stringWithFormat:@"￥%.2f", _item.odr_deliver_fee]];
+            [youhuiView loadNotestr:@"活动优惠" valueStr:[NSString stringWithFormat:@"-￥%.2f", _item.odr_campagin]];
+            [couponView loadNotestr:@"优惠券" valueStr:[NSString stringWithFormat:@"-￥%.2f", _item.ord_coupon_price]];
+            [shifuView loadNotestr:@"实付款（含运费）" valueStr:[NSString stringWithFormat:@"￥%.2f", _item.odr_pay_price]];
             [peisongView makeConstraints:^(MASConstraintMaker *make) {
                 make.left.equalTo(view.left).offset(padding);
                 make.right.equalTo(view.right).offset(-padding);
@@ -192,9 +192,13 @@
                 make.left.right.height.equalTo(peisongView);
                 make.top.equalTo(peisongView.bottom);
             }];
-            [shifuView makeConstraints:^(MASConstraintMaker *make) {
+            [couponView makeConstraints:^(MASConstraintMaker *make) {
                 make.left.right.height.equalTo(peisongView);
                 make.top.equalTo(youhuiView.bottom);
+            }];
+            [shifuView makeConstraints:^(MASConstraintMaker *make) {
+                make.left.right.height.equalTo(peisongView);
+                make.top.equalTo(couponView.bottom);
             }];
             
             [view makeConstraints:^(MASConstraintMaker *make) {
@@ -267,6 +271,8 @@
                 make.left.right.top.equalTo(view);
                 make.height.equalTo(40);
             }];
+            //加载店铺信息
+            [shopView reloadUIWithShopName:_item.shop_name shopLogo:_item.shop_logo orderStatus:_item.odr_state_val];
             
             BaoXiuGoodsView *itemView = [[BaoXiuGoodsView alloc] init];
             [view addSubview:itemView];
@@ -275,6 +281,9 @@
                 make.height.equalTo(80);
                 make.top.equalTo(shopView.bottom);
             }];
+            //加载商品清单数据
+            OrderGoodsObject *it = _item.goods.count>0 ? [_item.goods objectAtIndex:0] : nil;
+            [itemView reloadUIWithItem:it];
             
             UIView *lineView111 = [view newDefaultLineView];
             [lineView111 makeConstraints:^(MASConstraintMaker *make) {
@@ -291,6 +300,8 @@
                 make.top.equalTo(lineView111.bottom);
                 make.height.equalTo(120);
             }];
+            //加载报修图片数据
+            [ivView reloadUIWithItem:it];
             
             [view makeConstraints:^(MASConstraintMaker *make) {
                 make.bottom.equalTo(ivView.bottom);
@@ -315,8 +326,8 @@
         UIFont *font = [UIFont systemFontOfSize:13];
         UIView *littleLastView = nil;
         UILabel *orderNoteLable = [view newUILableWithText:@"订单信息" textColor:color font:font];
-        UILabel *orderNumLable = [view newUILableWithText:@"订单编号：ssss1231323423423432" textColor:color font:font];
-        UILabel *orderCreateTimeLable = [view newUILableWithText:@"下单时间：2016-10-13" textColor:color font:font];
+        UILabel *orderNumLable = [view newUILableWithText:[NSString stringWithFormat:@"订单编号：%@", _item.odr_code] textColor:color font:font];
+        UILabel *orderCreateTimeLable = [view newUILableWithText:[NSString stringWithFormat:@"下单时间：%@", _item.odr_add_time] textColor:color font:font];
         [orderNoteLable makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(view.left).offset(padding);
             make.right.equalTo(view.right).offset(-padding);
@@ -342,8 +353,10 @@
             littleLastView = orderServerTimeLable;
         }
         
+        
+        
         if (_classType == kOrderClassType_fix) {
-            UILabel *orderSMFLable = [view newUILableWithText:@"上门费：￥20" textColor:color font:font];
+            UILabel *orderSMFLable = [view newUILableWithText:[NSString stringWithFormat:@"上门费：￥%.2f", _item.odr_amount] textColor:color font:font];
             [orderSMFLable makeConstraints:^(MASConstraintMaker *make) {
                 make.left.right.height.equalTo(orderNoteLable);
                 make.top.equalTo(littleLastView.bottom);
@@ -452,14 +465,20 @@
 }
 
 - (void)loadHeaderRefreshing{
-    
-    [self performSelector:@selector(donwData) withObject:nil afterDelay:0.5];
+    [[APIClient sharedClient] orderInfoWithTag:self odr_id:_item.odr_id odr_code:_item.odr_code call:^(OrderObject *item, APIObject *info) {
+        if (info.code == RESP_STATUS_YES && item!=nil) {
+            self.item = item;
+        }
+        [self donwData];
+    }];
+   // [self performSelector:@selector(donwData) withObject:nil afterDelay:0.5];
 }
 
 -(void)donwData
 {
-
+    
     [self.contentView removeAllSubviews];
+    
     
     [self initViews];
     [self.scrollView.mj_header endRefreshing];

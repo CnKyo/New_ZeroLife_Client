@@ -118,16 +118,7 @@
         return self.tableArr.count;
     return [super tableView:tableView numberOfRowsInSection:section];
 }
-//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-//    if (self.tableArr.count > 0)
-//        return 40;
-//    return [super tableView:tableView heightForHeaderInSection:section];
-//}
-//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-//    if (self.tableArr.count > 0)
-//        return seg;
-//    return nil;
-//}
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.tableArr.count > 0)
@@ -159,7 +150,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if (self.tableArr.count > 0) {
-        OrderObject *item = [OrderObject new];
+        OrderObject *item = [self.tableArr objectAtIndex:indexPath.row];
         //item.odr_state = kOrderFixStatus_waitShopBidding;
         OrderDetailVC *vc = [[OrderDetailVC alloc] init];
         vc.classType = _classType;

@@ -9,8 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "UIView+AutoSize.h"
 #import "CustomDefine.h"
+#import "APIObjectDefine.h"
 
 @interface OrderBaoxiuImgVideoView : UIView
 @property(nonatomic,strong) UIButton *imgBtn;
 @property(nonatomic,strong) UIButton *videoBtn;
+
+-(void)reloadUIWithItem:(OrderGoodsObject *)item;
+
 @end

@@ -60,6 +60,7 @@
             make.left.right.equalTo(_highlightLineView);
         }];
         self.is_singin = NO;
+        self.score = 1;
         [self setHighlighted:NO animated:NO];
     }
     return self;
@@ -99,6 +100,13 @@
     }
 }
 
+-(void)setScore:(int)score
+{
+    _score = score;
+    
+    self.highlightCountTextLable.text = [NSString stringWithFormat:@"+%i", score];
+}
+
 @end
 
 
@@ -119,6 +127,7 @@
         UIImageView *bgImgView = [superView newUIImageViewWithImg:IMG(@"qianbao_headerBG.png")];
         
         self.singView = [[SingInView alloc] init];
+        self.singView.delegate = self;
         [superView addSubview:_singView];
         
         [bgImgView makeConstraints:^(MASConstraintMaker *make) {
@@ -180,6 +189,15 @@
     self.noteLable.attributedText = [[NSString stringWithFormat:@"已签到 <u>%i</u> 天", day] attributedStringWithStyleBook:style2];
 }
 
+- (void)selectItemBtnView:(QUItemBtnView *)view
+{
+    SingInView *itemView = (SingInView *)view;
+    if (itemView.is_singin == NO) {
+        if (self.chooseSingInCallBack) {
+            self.chooseSingInCallBack();
+        }
+    }
+}
 
 @end
 

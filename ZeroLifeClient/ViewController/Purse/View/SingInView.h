@@ -29,11 +29,16 @@
 @property(nonatomic,strong) UILabel *highlightCountTextLable;
 @property(nonatomic,strong) UIView *highlightLineView;
 @property(nonatomic,assign) BOOL is_singin; //是否已经签到
+@property(nonatomic,assign) int score; //收获积分
 @end
 
 
-@interface SingInHeaderView : UIView
+@interface SingInHeaderView : UIView <QUItemBtnViewDelegate>
 @property(nonatomic,strong) SingInView *singView;
 @property(nonatomic,strong) UILabel *noteLable;
--(void)loadUIWithDay:(int)day;
+
+@property (nonatomic, copy) void (^chooseSingInCallBack)(); //签到点击检测回调
+
+-(void)loadUIWithDay:(int)day; //加载ui数据
+
 @end

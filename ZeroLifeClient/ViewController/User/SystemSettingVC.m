@@ -90,11 +90,18 @@
         {
             UISwitch *swi = [[UISwitch alloc] initWithFrame:CGRectMake(0, 0, 80, 20)];
             cell.accessoryView = swi;
+            ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+            swi.on = user.user_is_notify;
+            
             [swi jk_handleControlEvents:UIControlEventTouchUpInside withBlock:^(id weakSender) {
-                BOOL newStatus = swi.on;
+                ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+                BOOL newStatus = !user.user_is_notify;
                 [SVProgressHUD showWithStatus:@"修改中..."];
                 [[APIClient sharedClient] userPushSettingWithTag:self isOn:newStatus call:^(APIObject *info) {
                     if (info.code == RESP_STATUS_YES) {
+                        user.user_is_notify = newStatus;
+                        [ZLUserInfo updateUserInfo:user];
+                        
                         [SVProgressHUD showSuccessWithStatus:info.msg];
                     } else {
                         swi.on = !newStatus;

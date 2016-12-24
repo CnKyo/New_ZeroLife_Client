@@ -7,6 +7,7 @@
 //
 
 #import "OrderShopHeaderView.h"
+#import <AFNetworking/UIImageView+AFNetworking.h>
 
 @implementation OrderShopHeaderView
 
@@ -41,6 +42,13 @@
         }];
     }
     return self;
+}
+
+-(void)reloadUIWithShopName:(NSString *)name shopLogo:(NSString *)logo orderStatus:(NSString *)state
+{
+    self.orderStatusLable.text = [NSString compIsNone:state];
+    self.shopNameLable.text = [NSString compIsNone:name];
+    [self.shopIconImgView setImageWithURL:[NSURL imageurl:logo] placeholderImage:IMG(@"order_shop_icon.png")];
 }
 
 @end

@@ -304,6 +304,11 @@ typedef enum {
 } kComplaintType; //用户投诉建议类型 1:公司建议；2：社区物管投诉 3:投诉居民
 
 
+typedef enum {
+    kWalletRecordType_input      = 1,//
+    kWalletRecordType_output    = 2//
+} kWalletRecordType; //!< 记录类型，1:收入、2:支出
+
 
 typedef enum {
     kCouponType_manjian,//满减

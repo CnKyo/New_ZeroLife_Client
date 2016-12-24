@@ -720,6 +720,28 @@
 
 
 
+#pragma mark----****----用户钱包记录接口
+/**
+ *   用户钱包记录列表接口
+ *
+ *  @param tag      链接对象
+ *  @param callback 返回列表
+ */
+-(void)walletRecordListWithTag:(NSObject *)tag type:(int)type page:(int)page call:(TablePageArrBlock)callback
+{
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    if (user.user_id > 0) {
+        NSMutableDictionary* paramDic = [NSMutableDictionary dictionary];
+        [paramDic setInt:user.user_id forKey:@"user_id"];
+        if (type > 0)
+            [paramDic setInt:type forKey:@"type"];
+        
+        [self loadAPITableListWithTag:self path:@"/user/wallet/walletRecord" parameters:paramDic pageIndex:page subClass:[WalletRecordObject class] call:^(int totalPage, NSArray *tableArr, APIObject *info) {
+            callback(totalPage, tableArr, info);
+        }];
+    } else
+        callback(0, nil, [APIObject infoWithReLoginErrorMessage:@"请重新登陆"]);
+}
 
 #pragma mark----****----用户订单相关接口
 /**
@@ -1619,6 +1641,30 @@
         } else
             block(info,nil);
     }];
+}
+
+#pragma mark----****----用户签到相关接口
+/**
+ *  用户签到接口
+ *
+ *  @param tag      链接对象
+ *  @param callback 返回信息
+ */
+-(void)userSignWithTag:(NSObject *)tag call:(void (^)(int score, APIObject* info))callback
+{
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    if (user.user_id > 0) {
+        NSMutableDictionary *paramDic = [NSMutableDictionary dictionary];
+        [paramDic setInt:user.user_id forKey:@"user_id"];
+        [self loadAPIWithTag:tag path:@"/user/wallet/userSign" parameters:paramDic call:^(APIObject *info) {
+            if (info.code == RESP_STATUS_YES && info.data!=nil) {
+                NSString *scoreStr = [info.data objectWithKey:@"score"];
+                callback([scoreStr intValue], info);
+            } else
+                callback(0, info);
+        }];
+    } else
+        callback(0, [APIObject infoWithReLoginErrorMessage:@"请重新登陆"]);
 }
 
 

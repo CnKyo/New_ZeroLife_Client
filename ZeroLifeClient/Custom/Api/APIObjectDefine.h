@@ -337,7 +337,22 @@
 
 
 
-
+/// 用户钱包记录信息对象
+@interface WalletRecordObject : NSObject
+@property(nonatomic,assign) int                     recw_id;         //!< id
+@property(nonatomic,assign) kOrderClassType         odr_type;         //!< 订单类型
+@property(nonatomic,assign) int                     odr_id;         //!< 订单id
+@property(nonatomic,strong) NSString *              odr_code;         //!< 订单编号
+@property(nonatomic,assign) int                     user_id;         //!< 用户id
+@property(nonatomic,assign) float                   operation_money;         //!< 原金额
+@property(nonatomic,strong) NSString *              recw_desc;         //!< 描述
+@property(nonatomic,assign) kWalletRecordType       recw_record_type;         //!< 记录类型，1:收入、2:支出
+@property(nonatomic,strong) NSString *              recw_add_time;         //!< 生成时间
+@property(nonatomic,strong) NSString *              target_name;         //!< 对方帐号
+@property(nonatomic,assign) float                   uwal_balance;         //!< 用户余额
+@property(nonatomic,assign) int                     uwal_id;         //!< 用户消费id
+@property(nonatomic,assign) float                   uwal_operation_money;         //!< 操作金额
+@end
 
 
 

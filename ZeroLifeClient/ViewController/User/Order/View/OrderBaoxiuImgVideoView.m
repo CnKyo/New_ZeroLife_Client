@@ -8,6 +8,7 @@
 
 #import "OrderBaoxiuImgVideoView.h"
 #import "UIButton+CustomLocal.h"
+#import <AFNetworking/UIButton+AFNetworking.h>
 
 @implementation OrderBaoxiuImgVideoView
 
@@ -64,5 +65,12 @@
     }
     return self;
 }
+
+-(void)reloadUIWithItem:(OrderGoodsObject *)item
+{
+    [self.imgBtn setImageForState:UIControlStateNormal withURL:[NSURL imageurl:item.odrg_img_repair]];
+    [self.videoBtn setImageForState:UIControlStateNormal withURL:[NSURL imageurl:item.odrg_video_repair]];
+}
+
 
 @end
