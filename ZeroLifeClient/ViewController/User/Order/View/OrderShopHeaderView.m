@@ -36,7 +36,7 @@
         [self.orderStatusLable makeConstraints:^(MASConstraintMaker *make) {
             make.top.bottom.equalTo(superView);
             make.right.equalTo(superView.right).offset(-padding);
-            make.width.lessThanOrEqualTo(65);
+            make.width.lessThanOrEqualTo(100);
             make.left.equalTo(_shopNameLable.right).offset(padding/2);
         }];
     }

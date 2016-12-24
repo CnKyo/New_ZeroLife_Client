@@ -24,6 +24,8 @@
 #import "ZLLoginViewController.h"
 #import "ZLLoginViewController.h"
 
+#import <AFNetworking/UIImageView+AFNetworking.h>
+
 #import "WebTestVC.h"
 
 #define NAVBAR_CHANGE_POINT 30
@@ -193,6 +195,21 @@
         //cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+        
+        cell.userNameLable.text = [NSString compIsNone:user.user_nick];
+        cell.userMobileLable.text = [NSString compIsNone:user.user_phone];
+        NSMutableString *str = [NSMutableString new];
+        [str appendString:[NSString strUserSexType:user.user_sex]];
+        if (user.community == nil) {
+            [str appendString:@" 未认证"];
+        } else {
+            [str appendString:@" 已认证"];
+            [str appendFormat:@" %@", user.community.cmut_name];
+        }
+        cell.userNoteLable.text = str;
+        [cell.userImgView setImageWithURL:[NSURL URLWithString:user.user_header] placeholderImage:IMG(@"user_header.png")];
+        
+        
         if (user == nil) { //显示登录ui
             cell.userLoginView.hidden = NO;
             cell.userInfoView.hidden = YES;
@@ -376,11 +393,11 @@
     OrderTVC *vc = [[OrderTVC alloc] init];
     
     if (view.tag == 11)
-        vc.classType = kOrderClassType_goods;
+        vc.classType = kOrderClassType_product;
     else if (view.tag == 12)
-        vc.classType = kOrderClassType_baoxiu;
+        vc.classType = kOrderClassType_fix;
     else if (view.tag == 13)
-        vc.classType = kOrderClassType_ganxi;
+        vc.classType = kOrderClassType_dryclean;
     else if (view.tag == 14)
         vc.classType = kOrderClassType_paopao;
     

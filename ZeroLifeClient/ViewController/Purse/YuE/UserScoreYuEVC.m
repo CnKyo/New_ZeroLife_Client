@@ -15,7 +15,7 @@
 #import <JKCategories/UIControl+JKActionBlocks.h>
 
 @interface UserScoreYuEVC ()
-
+@property(nonatomic,strong) UserYuEHeaderView *headerView;
 @end
 
 @implementation UserScoreYuEVC
@@ -32,7 +32,7 @@
     
     UserYuEHeaderView *headerView = [[UserYuEHeaderView alloc] init];
     [superView addSubview:headerView];
-
+    self.headerView = headerView;
     
     
     [noteView makeConstraints:^(MASConstraintMaker *make) {
@@ -95,6 +95,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    
+    if (_isScoreView == YES) {
+        [self.headerView loadUserScore:[NSString stringWithFormat:@"%i", user.wallet.uwal_score]];
+    } else {
+        [self.headerView loadYuEMoney:[NSString stringWithFormat:@"%.2f", user.wallet.uwal_balance]];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

@@ -95,6 +95,18 @@ typedef void (^TableShareSdkBlock)(int totalpage, NSArray *tableArr, APIShareSdk
 #pragma mark -
 
 
+//订单相关接口
+-(void)orderListWithTag:(NSObject *)tag odr_type:(kOrderClassType)odr_type odr_status:(NSString *)odr_status page:(int)page call:(TablePageArrBlock)callback;
+-(void)orderInfoWithTag:(NSObject *)tag odr_id:(int)odr_id odr_code:(NSString *)odr_code call:(void (^)(OrderObject *item, APIObject* info))callback;
+-(void)orderOprateWithTag:(NSObject *)tag odr_id:(int)odr_id odr_type:(int)odr_type odr_code:(NSString *)odr_code odr_state_next:(NSString *)odr_state_next odr_memo:(NSString *)odr_memo call:(void (^)(APIObject* info))callback;
+
+-(void)orderOprateBidWithTag:(NSObject *)tag rpr_id:(int)rpr_id bid_id:(int)bid_id odr_code:(NSString *)odr_code call:(void (^)(APIObject* info))callback;
+-(void)preOrderRechargeWithTag:(NSObject *)tag call:(void (^)(PreApplyObject*item, APIObject* info))callback;
+-(void)preOrderMobileWithTag:(NSObject *)tag call:(void (^)(PreApplyObject*item, APIObject* info))callback;
+-(void)preOrderPresentWithTag:(NSObject *)tag call:(void (^)(PrePresentApplyObject*item, APIObject* info))callback;
+-(void)preOrderPaopaoApplyWithTag:(NSObject *)tag call:(void (^)(PrePaopaoApplyObject*item, APIObject* info))callback;
+-(void)preOrderTransferWithTag:(NSObject *)tag call:(void (^)(PreApplyObject*item, APIObject* info))callback;
+
 //小区相关接口
 -(void)communityListWithTag:(NSObject *)tag location:(CLLocationCoordinate2D)location search:(NSString *)search province:(int)province city:(int)city county:(int)county call:(TableArrBlock)callback;
 -(void)communityBansetListWithTag:(NSObject *)tag cmut_id:(int)cmut_id call:(TableArrBlock)callback;
@@ -240,7 +252,7 @@ typedef void (^TableShareSdkBlock)(int totalpage, NSArray *tableArr, APIShareSdk
  @param mSign 下单签名
  @param block 返回值
  */
-- (void)ZLCommitOrder:(ZLCommitOrderType)mOrderType andShopId:(NSString *)mShopId andGoods:(NSString *)mGoodsList andSendAddress:(NSString *)mSendAddress andArriveAddress:(NSString *)mArriveAddress andServiceTime:(NSString *)mServiceTime andSendType:(ZLShopSendType)mSendType andSendPrice:(NSString *)mSendPrice andCoupId:(NSString *)mCoupId andRemark:(NSString *)mRemark andSign:(NSString *)mSign block:(void (^)(APIObject *mBaseObj,ZLCreateOrderObj *mOrder))block;
+- (void)ZLCommitOrder:(kOrderClassType)mOrderType andShopId:(NSString *)mShopId andGoods:(NSString *)mGoodsList andSendAddress:(NSString *)mSendAddress andArriveAddress:(NSString *)mArriveAddress andServiceTime:(NSString *)mServiceTime andSendType:(ZLShopSendType)mSendType andSendPrice:(NSString *)mSendPrice andCoupId:(NSString *)mCoupId andRemark:(NSString *)mRemark andSign:(NSString *)mSign block:(void (^)(APIObject *mBaseObj,ZLCreateOrderObj *mOrder))block;
 
 
 #pragma mark----****----发起支付
@@ -303,7 +315,7 @@ typedef void (^TableShareSdkBlock)(int totalpage, NSArray *tableArr, APIShareSdk
 
  @param block 返回值
  */
-- (void)ZLPhoneRecharge:(int)mRecharge andOrderType:(ZLCommitOrderType)mOrderType andPhone:(NSString *)mPhone andMoney:(NSString *)mMoney block:(void(^)(APIObject *mBaseObj))block;
+- (void)ZLPhoneRecharge:(int)mRecharge andOrderType:(kOrderClassType)mOrderType andPhone:(NSString *)mPhone andMoney:(NSString *)mMoney block:(void(^)(APIObject *mBaseObj))block;
 
 #pragma mark----****---- 报修预订单接口
 /**

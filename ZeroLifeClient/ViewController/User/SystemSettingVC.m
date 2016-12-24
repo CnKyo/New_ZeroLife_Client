@@ -24,6 +24,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title =  @"设置";
+    
+    [self.navigationController.navigationBar jk_setBackgroundColor:[UIColor clearColor]];
 }
 
 

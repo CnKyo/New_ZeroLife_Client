@@ -242,7 +242,7 @@
     [super reloadTableViewDataSource];
 
     [[APIClient sharedClient] couponListWithTag:self page:self.page call:^(int totalPage, NSArray *tableArr, APIObject *info) {
-        [self.tableArr removeAllObjects];
+        //[self.tableArr removeAllObjects];
         
         [self reloadWithTableArr:tableArr info:info];
     }];

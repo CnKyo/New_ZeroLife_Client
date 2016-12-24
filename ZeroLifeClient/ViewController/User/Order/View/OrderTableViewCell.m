@@ -51,8 +51,8 @@
         self.orderTimeLable.numberOfLines = 0;
         
         
-        self.actionBtn1 = [superView newUIButton];
-        self.actionBtn2 = [superView newUIButton];
+        self.actionBtn1 = [OrderButton buttonWithType:UIButtonTypeCustom];
+        self.actionBtn2 = [OrderButton buttonWithType:UIButtonTypeCustom];
         self.actionBtn1.titleLabel.font = font;
         self.actionBtn2.titleLabel.font = font;
         self.actionBtn1.layer.borderColor = color.CGColor;
@@ -65,7 +65,8 @@
         [self.actionBtn2 setTitle:@"去支付" forState:UIControlStateNormal];
         [self.actionBtn1 setTitleColor:color forState:UIControlStateNormal];
         [self.actionBtn2 setTitleColor:color forState:UIControlStateNormal];
-        
+        [superView addSubview:_actionBtn1];
+        [superView addSubview:_actionBtn2];
         
         [mLineView makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.top.equalTo(superView);
@@ -124,13 +125,13 @@
             make.top.equalTo(lineView.bottom);
             make.height.equalTo(50);
         }];
-        [self.actionBtn2 makeConstraints:^(MASConstraintMaker *make) {
+        [self.actionBtn1 makeConstraints:^(MASConstraintMaker *make) {
             make.right.equalTo(superView.right).offset(-padding);
             make.centerY.equalTo(_orderTimeLable.centerY);
             make.height.equalTo(30);
             make.width.equalTo(60);
         }];
-        [self.actionBtn1 makeConstraints:^(MASConstraintMaker *make) {
+        [self.actionBtn2 makeConstraints:^(MASConstraintMaker *make) {
             make.right.equalTo(_actionBtn2.left).offset(-padding);
             make.top.bottom.width.equalTo(_actionBtn2);
             make.left.equalTo(_orderTimeLable.right).offset(padding/2);
@@ -155,13 +156,13 @@
     _orderClassType = orderClassType;
     
     switch (orderClassType) {
-        case kOrderClassType_goods:
-        case kOrderClassType_ganxi:
+        case kOrderClassType_product:
+        case kOrderClassType_dryclean:
             self.goodsListView.hidden = NO;
             self.goodsBaoxiuView.hidden = YES;
             self.goodsPaoPaoView.hidden = YES;
             break;
-        case kOrderClassType_baoxiu:
+        case kOrderClassType_fix:
             self.goodsListView.hidden = YES;
             self.goodsBaoxiuView.hidden = NO;
             self.goodsPaoPaoView.hidden = YES;
@@ -178,45 +179,45 @@
 
 -(void)reloadUIWithItem:(OrderObject *)item
 {
-    switch (item.odr_state) {
-        case kOrderClassType_goods:
-        case kOrderClassType_ganxi:
+    switch (item.odr_type) {
+        case kOrderClassType_product:
+        case kOrderClassType_dryclean:
             self.goodsListView.hidden = NO;
             self.goodsBaoxiuView.hidden = YES;
             self.goodsPaoPaoView.hidden = YES;
         {
-            if (item.goods_list.count > 0) {
-                OrderGoodsObject *it = [item.goods_list objectAtIndex:0];
-                [self.goodsListView.imgView1 setImageWithURL:[NSURL URLWithString:it.odrg_img] placeholderImage:ZLDefaultGoodsImg];
+            if (item.goods.count > 0) {
+                OrderGoodsObject *it = [item.goods objectAtIndex:0];
+                [self.goodsListView.imgView1 setImageWithURL:[NSURL imageurl:it.odrg_img] placeholderImage:ZLDefaultGoodsImg];
                 self.goodsListView.imgView1.hidden = NO;
             } else
                 self.goodsListView.imgView1.hidden = YES;
             
-            if (item.goods_list.count > 2) {
-                OrderGoodsObject *it = [item.goods_list objectAtIndex:2];
-                [self.goodsListView.imgView2 setImageWithURL:[NSURL URLWithString:it.odrg_img] placeholderImage:ZLDefaultGoodsImg];
+            if (item.goods.count > 2) {
+                OrderGoodsObject *it = [item.goods objectAtIndex:2];
+                [self.goodsListView.imgView2 setImageWithURL:[NSURL imageurl:it.odrg_img] placeholderImage:ZLDefaultGoodsImg];
                 self.goodsListView.imgView2.hidden = NO;
             } else
                 self.goodsListView.imgView2.hidden = YES;
             
-            if (item.goods_list.count > 2) {
-                OrderGoodsObject *it = [item.goods_list objectAtIndex:2];
-                [self.goodsListView.imgView3 setImageWithURL:[NSURL URLWithString:it.odrg_img] placeholderImage:ZLDefaultGoodsImg];
+            if (item.goods.count > 2) {
+                OrderGoodsObject *it = [item.goods objectAtIndex:2];
+                [self.goodsListView.imgView3 setImageWithURL:[NSURL imageurl:it.odrg_img] placeholderImage:ZLDefaultGoodsImg];
                 self.goodsListView.imgView3.hidden = NO;
             } else
                 self.goodsListView.imgView3.hidden = YES;
             
-            self.goodsListView.countLable.text = [NSString stringWithFormat:@"共%lu件", (unsigned long)item.goods_list.count];
+            self.goodsListView.countLable.text = [NSString stringWithFormat:@"共%lu件", (unsigned long)item.goods.count];
         }
             break;
-        case kOrderClassType_baoxiu:
+        case kOrderClassType_fix:
             self.goodsListView.hidden = YES;
             self.goodsBaoxiuView.hidden = NO;
             self.goodsPaoPaoView.hidden = YES;
         {
             OrderGoodsObject *it = [OrderGoodsObject new];
-            if (item.goods_list.count > 0)
-                it = [item.goods_list objectAtIndex:0];
+            if (item.goods.count > 0)
+                it = [item.goods objectAtIndex:0];
             
             [self.goodsBaoxiuView reloadUIWithItem:it];
         }
@@ -227,8 +228,8 @@
             self.goodsPaoPaoView.hidden = NO;
         {
             OrderGoodsObject *it = [OrderGoodsObject new];
-            if (item.goods_list.count > 0)
-                it = [item.goods_list objectAtIndex:0];
+            if (item.goods.count > 0)
+                it = [item.goods objectAtIndex:0];
             
             [self.goodsPaoPaoView reloadUIWithItem:it];
         }
@@ -237,13 +238,30 @@
             break;
     }
     
-    self.shopView.shopNameLable.text = [NSString compIsNone:item.odr_shop_name];
-    //self.shopView.orderStatusLable.text = [NSString compIsNone:item.odr_shop_name];
-    [self.shopView.shopIconImgView setImageWithURL:[NSURL URLWithString:item.odr_shop_img] placeholderImage:IMG(@"order_shop_icon.png")];
+    self.shopView.shopNameLable.text = [NSString compIsNone:item.shop_name];
+    self.shopView.orderStatusLable.text = [NSString compIsNone:item.odr_state_val];
+    [self.shopView.shopIconImgView setImageWithURL:[NSURL imageurl:item.shop_logo] placeholderImage:IMG(@"order_shop_icon.png")];
     
     
-    self.orderMoneyLable.text = [NSString stringWithFormat:@"合计：￥%.2f (含运费￥%.2f)", item.odr_amount, item.odr_ext.odr_deliver_fee];
+    self.orderMoneyLable.text = [NSString stringWithFormat:@"合计：￥%.2f (含运费￥%.2f)", item.odr_amount, item.odr_deliver_fee];
     self.orderTimeLable.text = item.odr_add_time;
+    
+    if (item.odr_state_next.count > 0) {
+        self.actionBtn1.hidden = NO;
+        NSString *btnStr1 = [item.odr_state_next objectAtIndex:0];
+        self.actionBtn1.stateStr = btnStr1;
+        
+        if (item.odr_state_next.count > 1) {
+            self.actionBtn2.hidden = NO;
+            NSString *btnStr2 = [item.odr_state_next objectAtIndex:0];
+            self.actionBtn2.stateStr = btnStr2;
+        } else
+            self.actionBtn2.hidden = YES;
+        
+    } else {
+        self.actionBtn1.hidden = YES;
+        self.actionBtn2.hidden = YES;
+    }
 }
 
 @end

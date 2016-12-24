@@ -9,8 +9,10 @@
 #import "CustomVC.h"
 
 @interface UserPaoPaoRegisterVC : CustomVC
+@property (weak, nonatomic) IBOutlet UILabel *apply_infoLable;
 @property (weak, nonatomic) IBOutlet UILabel *moneyLable; //用户余额
 @property (weak, nonatomic) IBOutlet UIButton *xieyiChooseBtn; //选择协议按钮
+@property (weak, nonatomic) IBOutlet UILabel *xieyiLable;
 @property (weak, nonatomic) IBOutlet UIButton *payBtn; //支付按钮
 
 @end

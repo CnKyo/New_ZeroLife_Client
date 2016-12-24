@@ -12,17 +12,17 @@
 #import "OrderDetailVC.h"
 
 @interface OrderTVC ()
-
+@property(nonatomic,strong) HMSegmentedControl *seg;
 @end
 
 @implementation OrderTVC
-{
-    HMSegmentedControl *seg;
-}
+
 
 -(void)loadView
 {
     [super loadView];
+    
+    UIView *superView = self.view;
     
     [self addTableView];
     [self setTableViewHaveHeaderFooter];
@@ -30,36 +30,47 @@
     
     NSArray *arr = [NSArray array];
     switch (_classType) {
-        case kOrderClassType_goods:
+        case kOrderClassType_product:
             self.title =  @"购物订单";
             arr = @[@"待支付", @"待发货", @"待收货", @"已完成"];
             break;
-        case kOrderClassType_ganxi:
+        case kOrderClassType_dryclean:
             self.title =  @"干洗订单";
-            arr = @[@"待支付", @"待取件", @"待服务", @"已完成"];
+            arr = @[@"待支付", @"待取件", @"待确认", @"已完成"];
             break;
-        case kOrderClassType_baoxiu:
+        case kOrderClassType_fix:
             self.title =  @"报修订单";
-            arr = @[@"待竞价", @"待支付", @"待服务", @"已完成"];
+            arr = @[@"待支付", @"待上门", @"待确认", @"已完成"];
             break;
         case kOrderClassType_paopao:
             self.title =  @"跑跑腿订单";
-            arr = @[@"进行中", @"已完成"];
+            arr = @[@"待支付", @"待接单", @"待确认", @"已完成"];
             break;
         default:
             break;
     }
     
-    UIView *superView = self.view;
-    
-    seg = [[HMSegmentedControl alloc] initWithSectionTitles:arr];
+    HMSegmentedControl *seg = [[HMSegmentedControl alloc] initWithSectionTitles:arr];
+    //seg.frame = CGRectMake(0, 0, DEVICE_Width, 50);
     seg.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
     seg.selectionIndicatorHeight = 2.0f;
     seg.titleTextAttributes = @{NSFontAttributeName : [UIFont systemFontOfSize:15], NSForegroundColorAttributeName : [UIColor blackColor]};
     seg.selectedTitleTextAttributes = @{NSForegroundColorAttributeName : COLOR_NavBar};
     seg.selectionIndicatorColor = COLOR_NavBar;
     [superView addSubview:seg];
+    self.seg = seg;
     [seg addTarget:self action:@selector(segmentedControlChangedValue:) forControlEvents:UIControlEventValueChanged];
+    [seg makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(superView);
+        make.height.equalTo(50);
+        make.top.equalTo(superView.top).offset(64);
+    }];
+    
+    [self.tableView remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.equalTo(superView);
+        make.top.equalTo(seg.bottom).offset(-64);
+    }];
+    
 
 }
 
@@ -104,27 +115,24 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (self.tableArr.count > 0)
-        return 10;
-    else {
-        if (self.tableIsReloading)
-            return 0;
-        else
-            return 10;
-    }
+        return self.tableArr.count;
+    return [super tableView:tableView numberOfRowsInSection:section];
 }
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-
-    return 40;
-}
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-
-    return seg;
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+//    if (self.tableArr.count > 0)
+//        return 40;
+//    return [super tableView:tableView heightForHeaderInSection:section];
+//}
+//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+//    if (self.tableArr.count > 0)
+//        return seg;
+//    return nil;
+//}
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
-    return 210;
-
+    if (self.tableArr.count > 0)
+        return 210;
+    return [super tableView:tableView heightForRowAtIndexPath:indexPath];
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -135,13 +143,12 @@
         if (cell == nil) {
             cell = [[OrderTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
-        cell.orderClassType = _classType;
         
-//        //UserAddressTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[UserAddressTableViewCell reuseIdentifier]];
-//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//        cell.backgroundColor = [UIColor whiteColor];
-//        cell.nameLable.text = @"张三  188****4324  户主";
-//        cell.addressLable.text = @"重庆市渝中区石油路万科中心1栋1004 重庆超尔科技有限公司";
+        OrderObject *item = [self.tableArr objectAtIndex:indexPath.row];
+
+        cell.orderClassType = _classType;
+        [cell reloadUIWithItem:item];
+
         return cell;
     }
     return [super tableView:tableView cellForRowAtIndexPath:indexPath];
@@ -153,7 +160,7 @@
     
     if (self.tableArr.count > 0) {
         OrderObject *item = [OrderObject new];
-        item.odr_state = kOrderFixStatus_waitShopBidding;
+        //item.odr_state = kOrderFixStatus_waitShopBidding;
         OrderDetailVC *vc = [[OrderDetailVC alloc] init];
         vc.classType = _classType;
         vc.item = item;
@@ -161,31 +168,32 @@
     }
 }
 
-//- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-//{
-//    return 100;
-//}
-//
-//- (nullable UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-//{
-//    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, DEVICE_Width, 100)];
-//    UIButton *btn11 = [view newUIButton];
-//    btn11.frame = CGRectMake(10, 50, view.bounds.size.width-20, 50);
-//    [btn11 setTitle:@"确认" forState:UIControlStateNormal];
-//    [btn11 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-//    [btn11 jk_setBackgroundColor:COLOR_NavBar forState:UIControlStateNormal];
-//    btn11.layer.masksToBounds = YES;
-//    btn11.layer.cornerRadius = 5;
-//    [btn11 jk_addActionHandler:^(NSInteger tag) {
-//
-//    }];
-//    return view;
-//}
-
 - (void)reloadTableViewDataSource{
     [super reloadTableViewDataSource];
     
-    [self performSelector:@selector(donwData) withObject:nil afterDelay:0.5];
+    NSString *state = @"";
+    switch (_seg.selectedSegmentIndex) {
+        case 0:
+            state = kOrderSegState_WAITPAY;
+            break;
+        case 1:
+            state = kOrderSegState_ING;
+            break;
+        case 2:
+            state = kOrderSegState_SDONE;
+            break;
+        case 3:
+            state = kOrderSegState_UDONE;
+            break;
+        default:
+            break;
+    }
+    
+    [[APIClient sharedClient] orderListWithTag:self odr_type:_classType odr_status:state page:self.page call:^(int totalPage, NSArray *tableArr, APIObject *info) {
+        [self reloadWithTableArr:tableArr info:info];
+    }];
+    
+    //[self performSelector:@selector(donwData) withObject:nil afterDelay:0.5];
 }
 
 -(void)donwData

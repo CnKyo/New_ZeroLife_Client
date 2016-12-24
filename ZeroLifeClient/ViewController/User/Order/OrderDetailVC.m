@@ -99,7 +99,7 @@
     }];
     
     //[NSString stringWithFormat:@"%@  %@", _item.odr_ext.odr_deliver_name, _item.odr_ext.odr_deliver_phone];
-    if (_classType==kOrderClassType_goods || _classType==kOrderClassType_ganxi || _classType==kOrderClassType_baoxiu) {
+    if (_classType==kOrderClassType_product || _classType==kOrderClassType_dryclean || _classType==kOrderClassType_fix) {
         OrderAddressView *addressView = [[OrderAddressView alloc] initWithNote:nil name:@"王勇  188****2313" address:@"重庆市渝中区石油路万科中心1栋1004 重庆超尔科技有限公司"];
         [superView addSubview:addressView];
         [addressView updateConstraints:^(MASConstraintMaker *make) {
@@ -138,7 +138,7 @@
     lastView = beizhuView;
     
     
-    if (_classType==kOrderClassType_goods || _classType==kOrderClassType_ganxi) {
+    if (_classType==kOrderClassType_product || _classType==kOrderClassType_dryclean) {
         UIView *shopGoodsView = ({
             UIView *view = [superView newUIViewWithBgColor:[UIColor whiteColor]];
             
@@ -257,7 +257,7 @@
         }];
         lastView = shopGoodsView;
         
-    }else if (_classType == kOrderClassType_baoxiu) {
+    }else if (_classType == kOrderClassType_fix) {
         UIView *shopGoodsView = ({
             UIView *view = [superView newUIViewWithBgColor:[UIColor whiteColor]];
             
@@ -333,7 +333,7 @@
         }];
         littleLastView = orderCreateTimeLable;
         
-        if (_classType == kOrderClassType_ganxi || _classType == kOrderClassType_baoxiu) {
+        if (_classType == kOrderClassType_dryclean || _classType == kOrderClassType_fix) {
             UILabel *orderServerTimeLable = [view newUILableWithText:@"服务时间：2016-10-13" textColor:color font:font];
             [orderServerTimeLable makeConstraints:^(MASConstraintMaker *make) {
                 make.left.right.height.equalTo(orderNoteLable);
@@ -342,7 +342,7 @@
             littleLastView = orderServerTimeLable;
         }
         
-        if (_classType == kOrderClassType_baoxiu) {
+        if (_classType == kOrderClassType_fix) {
             UILabel *orderSMFLable = [view newUILableWithText:@"上门费：￥20" textColor:color font:font];
             [orderSMFLable makeConstraints:^(MASConstraintMaker *make) {
                 make.left.right.height.equalTo(orderNoteLable);
@@ -365,8 +365,8 @@
     
     
     
-    if (_classType == kOrderClassType_baoxiu) {
-        if (_item.odr_state == kOrderFixStatus_waitShopBidding) {
+    if (_classType == kOrderClassType_fix) {
+        if ([_item.odr_state isEqualToString:kOrderState_BIDDING]) { //竞价中
             UIView *chooseView = ({
                 UIView *view = [superView newUIViewWithBgColor:[UIColor whiteColor]];
                 BaoXiuChooseShopView *itemView = [[BaoXiuChooseShopView alloc] init];
@@ -381,7 +381,7 @@
                     NSLog(@"选择");
                     OrderBaoXiuChooseShopVC *vc = [[OrderBaoXiuChooseShopVC alloc] init];
                     vc.chooseCallBack = ^(NSString* shopIdStr) {
-                        self.item.odr_state = kOrderFixStatus_shopInService;
+                        self.item.odr_state = kOrderState_SERPOINT;
                         [self.scrollView.mj_header beginRefreshing];
                     };
                     [self.navigationController pushViewController:vc animated:YES];
@@ -395,7 +395,7 @@
             }];
             lastView = chooseView;
             
-        } else if (_item.odr_state == kOrderFixStatus_shopInService) {
+        } else if ([_item.odr_state isEqualToString:kOrderState_SSERVICE]) { //商家服务中
             UIView *chooseView = ({
                 UIView *view = [superView newUIViewWithBgColor:[UIColor whiteColor]];
                 UIView *lineView111 = [view newDefaultLineView];
