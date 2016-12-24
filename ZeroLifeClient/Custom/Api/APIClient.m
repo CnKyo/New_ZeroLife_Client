@@ -1851,41 +1851,43 @@
             [para setObject:mServiceTime forKey:@"odr_timing"];
         }
         if (mSendType) {
-        if (mSendType == 0) {
-        if (mSendType > 0) {
-            [para setInt:mSendType forKey:@"odr_deliver_type"];
-        }
-
-        if (mSendPrice) {
-            [para setObject:mSendPrice forKey:@"odr_deliver_fee"];
-        }
-        if (mCoupId) {
-            [para setObject:mCoupId forKey:@"cuc_id"];
-        }
-        if (mRemark) {
-            [para setObject:mRemark forKey:@"odr_remark"];
-        }
-        if (mSign) {
-            [para setObject:mSign forKey:@"sign"];
-        }
-        
-        [self loadAPIWithTag:self path:@"/order/order_create" parameters:para call:^(APIObject *info) {
-            if (info.code == RESP_STATUS_YES) {
-                block(info,[ZLCreateOrderObj mj_objectWithKeyValues:info.data]);
+            if (mSendType == 0) {
+                if (mSendType > 0) {
+                    [para setInt:mSendType forKey:@"odr_deliver_type"];
+                }
+                
+                if (mSendPrice) {
+                    [para setObject:mSendPrice forKey:@"odr_deliver_fee"];
+                }
+                if (mCoupId) {
+                    [para setObject:mCoupId forKey:@"cuc_id"];
+                }
+                if (mRemark) {
+                    [para setObject:mRemark forKey:@"odr_remark"];
+                }
+                if (mSign) {
+                    [para setObject:mSign forKey:@"sign"];
+                }
+                
+                [self loadAPIWithTag:self path:@"/order/order_create" parameters:para call:^(APIObject *info) {
+                    if (info.code == RESP_STATUS_YES) {
+                        block(info,[ZLCreateOrderObj mj_objectWithKeyValues:info.data]);
+                    }else{
+                        block(info,nil);
+                    }
+                    
+                }];
+                
             }else{
-                block(info,nil);
+                block([APIObject infoWithReLoginErrorMessage:@"请重新登陆"],nil);
+                
             }
             
-        }];
-        
-    }else{
-        block([APIObject infoWithReLoginErrorMessage:@"请重新登陆"],nil);
-        
+            
+            
+            
+        }
     }
-
-    
-    
-    
 }
 
 #pragma mark----****----发起支付
@@ -2116,11 +2118,12 @@
  
  @param block 返回值
  */
-- (void)ZLPhoneRecharge:(int)mRecharge andOrderType:(ZLCommitOrderType)mOrderType andPhone:(NSString *)mPhone andMoney:(NSString *)mMoney block:(void(^)(APIObject *mBaseObj))block{
-
-    
-    
-}
+#warning 这里缺省提交的订单类型枚举值（ZLCommitOrderType）
+//- (void)ZLPhoneRecharge:(int)mRecharge andOrderType:(ZLCommitOrderType)mOrderType andPhone:(NSString *)mPhone andMoney:(NSString *)mMoney block:(void(^)(APIObject *mBaseObj))block{
+//
+//    
+//    
+//}
 
 #pragma mark----****---- 报修预订单接口
 /**
