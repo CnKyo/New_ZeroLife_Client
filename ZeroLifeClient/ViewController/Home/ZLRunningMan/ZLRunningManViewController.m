@@ -45,7 +45,27 @@
     nib = [UINib nibWithNibName:@"ZLRunningManCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell2"];
     [self loadClassData];
+    [self initStaticData];
 }
+
+- (void)initStaticData{
+
+    NSArray *mTT = @[@"跑腿榜",@"我的发布",@"酬金记录",@"我的评价"];
+    NSArray *mII = @[@"ZLPPT_Anouncement",@"ZLPPT_My",@"ZLPPT_Reward",@"ZLPPT_Rate"];
+    
+    for (int i = 0; i<mTT.count; i++) {
+        NSMutableDictionary *dic = [NSMutableDictionary new];
+        
+        [dic setObject:mTT[i] forKey:@"title"];
+        [dic setObject:mII[i] forKey:@"img"];
+        
+        [self.tableArr addObject:dic];
+        [self.tableView reloadData];
+        
+    }
+    
+}
+
 - (void)loadClassData{
 
     [self showWithStatus:@"正在加载..."];

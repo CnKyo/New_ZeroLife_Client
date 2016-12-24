@@ -33,8 +33,12 @@
     
     for (int i = 0; i < mDataSource.count; i++) {
         CGRect frame = CGRectMake(i*screen_width/4, 10, screen_width/4, 80);
-        NSString *title = [mDataSource[i] objectForKey:@"title"];
-        NSString *imageStr = [mDataSource[i] objectForKey:@"image"];
+        
+        NSDictionary *dic = mDataSource[i];
+        
+        NSString *title = [dic objectForKey:@"title"];
+        NSString *imageStr = [dic objectForKey:@"img"];
+        
         ZLCustomBtnView *btnView = [[ZLCustomBtnView alloc] initWithZLCustomBtnViewFrame:frame Title:title ImageStr:imageStr];
         btnView.tag = i;
         [self.contentView addSubview:btnView];

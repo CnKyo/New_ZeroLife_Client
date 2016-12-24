@@ -391,5 +391,13 @@ typedef enum _RelDic
 
 + (NSArray *)deleteEmptyArr:(NSArray *)arr;
 
+#pragma mark----判断是否为url
+/**
+ 判断是否为url
+ 
+ @param mString 要判断的字符串
+ @return 返回bool值
+ */
++ (BOOL)isUrl:(NSString *)mString;
 
 @end
