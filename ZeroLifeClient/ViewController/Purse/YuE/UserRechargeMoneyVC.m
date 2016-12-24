@@ -8,18 +8,23 @@
 
 #import "UserRechargeMoneyVC.h"
 #import "UserPayTypeTableViewCell.h"
+#import "ZLGoPayViewController.h"
+
 
 @interface UserRechargeMoneyVC ()<UITextFieldDelegate>
+@property(nonatomic,strong) PreApplyObject *item;
 
+@property(nonatomic,strong) UITextField *moneyField;
 @end
 
 @implementation UserRechargeMoneyVC
 {
-    ZLCreatePreOrder *mPreOrder;
-    
-    NSString *mMoney;
+
     
 }
+
+
+
 -(void)loadView
 {
     [super loadView];
@@ -33,33 +38,34 @@
         [btn11 setStyleNavColor];
         [btn11 jk_addActionHandler:^(NSInteger tag) {
         
-            
-            if (mMoney.length <= 0) {
-                [self showErrorStatus:@"请选择您要充值的金额！"];
+            if (_moneyField.text.length == 0) {
+                [SVProgressHUD showErrorWithStatus:@"请输入您要充值的金额"];
                 return ;
             }
             
-            mPreOrder.odrg_spec = [Util ZLReplaceString:mPreOrder.odrg_spec andWillFromReplaceStr:@"{$}" andToReplaceStr:mMoney];
-            NSMutableArray *mTempArr = [NSMutableArray new];
-            NSMutableDictionary *mTempDic = [NSMutableDictionary new];
+            [[IQKeyboardManager sharedManager] resignFirstResponder];
             
-            [mTempDic setObject:@"余额充值" forKey:@"odrg_pro_name"];
-            [mTempDic setObject:mPreOrder.odrg_spec forKey:@"odrg_spec"];
-            [mTempDic setObject:mMoney forKey:@"odrg_price"];
-            [mTempArr addObject:mTempDic];
+            NSString *spec = [_item getCustomSpecWithMoney:[_moneyField.text floatValue]];
             
-            MLLog(@"确认充值按钮");
-#warning 这里订单andSendType有问题跑不通待调试
-            [self showWithStatus:@"正在充值..."];
-            [[APIClient sharedClient] ZLCommitOrder:mPreOrder.odr_type andShopId:nil andGoods:[Util arrToJson:mTempArr] andSendAddress:nil andArriveAddress:nil andServiceTime:nil andSendType:0 andSendPrice:nil andCoupId:nil andRemark:nil andSign:mPreOrder.sign block:^(APIObject *mBaseObj, ZLCreateOrderObj *mOrder) {
-                
+            NSMutableArray *mPayArr = [NSMutableArray new];
+            NSMutableDictionary *mPara = [NSMutableDictionary new];
+            [mPara setObject:_item.odrg_pro_name forKey:@"odrg_pro_name"];
+            [mPara setObject:spec forKey:@"odrg_spec"];
+            [mPara setObject:_moneyField.text forKey:@"odrg_price"];
+            [mPayArr addObject:mPara];
+            
+            [SVProgressHUD showWithStatus:@"加载中"];
+            [[APIClient sharedClient] ZLCommitOrder:kOrderClassType_balance_recharge andShopId:nil andGoods:[Util arrToJson:mPayArr] andSendAddress:nil andArriveAddress:nil andServiceTime:nil andSendType:0 andSendPrice:nil andCoupId:nil andRemark:nil andSign:_item.sign block:^(APIObject *mBaseObj, ZLCreateOrderObj *mOrder) {
                 if (mBaseObj.code == RESP_STATUS_YES) {
+                    ZLGoPayViewController *ZLGoPayVC = [ZLGoPayViewController new];
+                    ZLGoPayVC.mOrder = [ZLCreateOrderObj new];
+                    ZLGoPayVC.mOrder = mOrder;
+                    [self pushViewController:ZLGoPayVC];
+                    
                     [self showSuccessStatus:mBaseObj.msg];
-                }else{
+                } else
                     [self showErrorStatus:mBaseObj.msg];
-                }
             }];
-
             
         }];
         view;
@@ -77,23 +83,22 @@
         [self.tableArr addObject:@"111"];
     }
     
-    mMoney = nil;
-    mPreOrder = [ZLCreatePreOrder new];
+
     [self createPreOrder];
 }
 #pragma mark----****----创建预订单
 - (void)createPreOrder{
     
     [self showWithStatus:@"正在验证..."];
-    [[APIClient sharedClient] ZLGetPreRechargePhone:^(APIObject *mBaseObj, ZLCreatePreOrder *mRecharge) {
-        if (mBaseObj.code == RESP_STATUS_YES) {
+    [[APIClient sharedClient] preOrderRechargeWithTag:self call:^(PreApplyObject *item, APIObject *info) {
+        if (info.code == RESP_STATUS_YES) {
             [self showSuccessStatus:@"验证成功!"];
             
-            mPreOrder = mRecharge;
+            self.item = item;
             
         }else{
             
-            [self showErrorStatus:mBaseObj.msg];
+            [self showErrorStatus:info.msg];
             [self performSelector:@selector(popViewController) withObject:nil afterDelay:0.5];
         }
     }];
@@ -192,6 +197,7 @@
                 make.top.bottom.equalTo(superView);
                 make.right.equalTo(superView.right).offset(-padding);
             }];
+            self.moneyField = field;
         }
         return cell;
         
@@ -228,9 +234,5 @@
 
 }
 
-- (void)textFieldDidEndEditing:(UITextField *)textField{
-
-    mMoney = textField.text;
-}
 
 @end

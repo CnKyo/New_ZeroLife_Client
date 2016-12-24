@@ -81,14 +81,16 @@
     self.accountField.text = @"17783708893";
     self.moneyField.text = @"50";
 
-    [SVProgressHUD showWithStatus:@"加载中"];
+    [SVProgressHUD showWithStatus:@"正在验证..."];
     [[APIClient sharedClient] preOrderTransferWithTag:self call:^(PreApplyObject *item, APIObject *info) {
         if (info.code==RESP_STATUS_YES && item!=nil) {
             self.item = item;
             [self reloadUIWithData];
-            [SVProgressHUD showSuccessWithStatus:@"获取成功"];
-        } else
+            [SVProgressHUD showSuccessWithStatus:@"验证成功"];
+        } else {
             [SVProgressHUD showErrorWithStatus:info.msg];
+            [self performSelector:@selector(popViewController) withObject:nil afterDelay:0.5];
+        }
     }];
 }
 

@@ -2061,42 +2061,42 @@
     
 }
 
-#pragma mark----****----获取手机充值预订单
-/**
- 获取手机充值预订单
- @param block 返回值
- */
-- (void)ZLGetPreRechargePhone:(void(^)(APIObject *mBaseObj,ZLCreatePreOrder *mRecharge))block{
-
-    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
-    
-    if (user.user_id > 0) {
-        
-        NSMutableDictionary* para = [NSMutableDictionary dictionary];
-        
-        [para setInt:[ZLUserInfo ZLCurrentUser].user_id forKey:@"user_id"];
-        
-        [self loadAPIWithTag:self path:@"/preorder/pre_mobile" parameters:para call:^(APIObject *info) {
-            
-            if (info.code == RESP_STATUS_YES) {
-                
-                block(info,[ZLCreatePreOrder mj_objectWithKeyValues:info.data]);
-                
-            }else{
-                
-                block(info,nil);
-                
-            }
-            
-        }];
-        
-    }else{
-        block([APIObject infoWithReLoginErrorMessage:@"请重新登陆"],nil);
-        
-    }
-    
-    
-}
+//#pragma mark----****----获取手机充值预订单
+///**
+// 获取手机充值预订单
+// @param block 返回值
+// */
+//- (void)ZLGetPreRechargePhone:(void(^)(APIObject *mBaseObj,ZLCreatePreOrder *mRecharge))block{
+//
+//    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+//    
+//    if (user.user_id > 0) {
+//        
+//        NSMutableDictionary* para = [NSMutableDictionary dictionary];
+//        
+//        [para setInt:[ZLUserInfo ZLCurrentUser].user_id forKey:@"user_id"];
+//        
+//        [self loadAPIWithTag:self path:@"/preorder/pre_mobile" parameters:para call:^(APIObject *info) {
+//            
+//            if (info.code == RESP_STATUS_YES) {
+//                
+//                block(info,[ZLCreatePreOrder mj_objectWithKeyValues:info.data]);
+//                
+//            }else{
+//                
+//                block(info,nil);
+//                
+//            }
+//            
+//        }];
+//        
+//    }else{
+//        block([APIObject infoWithReLoginErrorMessage:@"请重新登陆"],nil);
+//        
+//    }
+//    
+//    
+//}
 
 #pragma mark----****----手机充值订单
 /**
@@ -2157,42 +2157,42 @@
     
 
 }
-#pragma mark----****---- 申请跑跑腿预订单
-/**
- 申请跑跑腿预订单
- 
- @param block 返回值
- */
-- (void)ZLApplyPPTPreOrder:(void(^)(APIObject *mBaseObj,ZLCreatePreOrder *mPreOrder))block{
-    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
-    
-    if (user.user_id > 0) {
-        
-        NSMutableDictionary* para = [NSMutableDictionary dictionary];
-        
-        [para setInt:[ZLUserInfo ZLCurrentUser].user_id forKey:@"user_id"];
-        
-        MLLog(@"%@",[ZLUserInfo ZLCurrentUser]);
-        [self loadAPIWithTag:self path:@"/preorder/pre_ppao_apply" parameters:para call:^(APIObject *info) {
-            
-            if (info.code == RESP_STATUS_YES) {
-                
-                block(info,[ZLCreatePreOrder mj_objectWithKeyValues:info.data]);
-                
-            }else{
-                
-                block(info,nil);
-                
-            }
-            
-        }];
-        
-    }else{
-        block([APIObject infoWithReLoginErrorMessage:@"请重新登陆"],nil);
-        
-    }
-    
-}
+//#pragma mark----****---- 申请跑跑腿预订单
+///**
+// 申请跑跑腿预订单
+// 
+// @param block 返回值
+// */
+//- (void)ZLApplyPPTPreOrder:(void(^)(APIObject *mBaseObj,ZLCreatePreOrder *mPreOrder))block{
+//    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+//    
+//    if (user.user_id > 0) {
+//        
+//        NSMutableDictionary* para = [NSMutableDictionary dictionary];
+//        
+//        [para setInt:[ZLUserInfo ZLCurrentUser].user_id forKey:@"user_id"];
+//        
+//        MLLog(@"%@",[ZLUserInfo ZLCurrentUser]);
+//        [self loadAPIWithTag:self path:@"/preorder/pre_ppao_apply" parameters:para call:^(APIObject *info) {
+//            
+//            if (info.code == RESP_STATUS_YES) {
+//                
+//                block(info,[ZLCreatePreOrder mj_objectWithKeyValues:info.data]);
+//                
+//            }else{
+//                
+//                block(info,nil);
+//                
+//            }
+//            
+//        }];
+//        
+//    }else{
+//        block([APIObject infoWithReLoginErrorMessage:@"请重新登陆"],nil);
+//        
+//    }
+//    
+//}
 
 
 @end

@@ -43,10 +43,12 @@
     //支付
     [self.payBtn jk_addActionHandler:^(NSInteger tag) {
         
+        NSString *spec = [_item getCustomSpecWithMoney:_item.apply_money];
+        
         NSMutableArray *mPayArr = [NSMutableArray new];
         NSMutableDictionary *mPara = [NSMutableDictionary new];
         [mPara setObject:_item.odrg_pro_name forKey:@"odrg_pro_name"];
-        [mPara setObject:_item.odrg_spec forKey:@"odrg_spec"];
+        [mPara setObject:spec forKey:@"odrg_spec"];
         [mPara setObject:[NSString stringWithFormat:@"%f", _item.apply_money] forKey:@"odrg_price"];
         [mPayArr addObject:mPara];
         

@@ -11,6 +11,8 @@
 #import <AddressBook/AddressBook.h>
 #import <JKCategories/NSString+JKNormalRegex.h>
 
+#import "ZLGoPayViewController.h"
+
 @implementation MobileRechargeMoneyView
 
 - (id)initWithTitleArr:(NSArray *)arr
@@ -134,15 +136,19 @@
 @interface MobileRechargeVC () <ABPeoplePickerNavigationControllerDelegate, UINavigationControllerDelegate>
 @property(nonatomic,strong) UITextField *mobileField;
 @property(nonatomic,strong) MobileRechargeMoneyView *moneyChooseView;
+
+@property(nonatomic,strong) PreApplyObject *item;
+
 @end
 
 @implementation MobileRechargeVC
 {
 
     NSString *mMoneyStr;
-    
-    ZLCreatePreOrder *mPreOrder;
 }
+
+
+
 -(void)loadView
 {
     [super loadView];
@@ -240,27 +246,30 @@
             [self showErrorStatus:@"请选择您要充值的金额！"];
             return ;
         }
-   
-        mPreOrder.odrg_spec = [Util ZLReplaceString:mPreOrder.odrg_spec andWillFromReplaceStr:@"{$}" andToReplaceStr:mMoneyStr];
-        NSMutableArray *mTempArr = [NSMutableArray new];
-        NSMutableDictionary *mTempDic = [NSMutableDictionary new];
         
-        [mTempDic setObject:@"手机话费" forKey:@"odrg_pro_name"];
-        [mTempDic setObject:mPreOrder.odrg_spec forKey:@"odrg_spec"];
-        [mTempDic setObject:mMoneyStr forKey:@"odrg_price"];
-        [mTempDic setObject:_mobileField.text forKey:@"mobile"];
-        [mTempArr addObject:mTempDic];
+        [[IQKeyboardManager sharedManager] resignFirstResponder];
         
-        MLLog(@"确认充值按钮");
-#warning 这里订单andSendType有问题跑不通待调试
-        [self showWithStatus:@"正在充值..."];
-        [[APIClient sharedClient] ZLCommitOrder:mPreOrder.odr_type andShopId:nil andGoods:[Util arrToJson:mTempArr] andSendAddress:nil andArriveAddress:nil andServiceTime:nil andSendType:0 andSendPrice:nil andCoupId:nil andRemark:nil andSign:mPreOrder.sign block:^(APIObject *mBaseObj, ZLCreateOrderObj *mOrder) {
-            
+        NSString *spec = [_item getCustomSpecWithMoney:[mMoneyStr floatValue]];
+        
+        NSMutableArray *mPayArr = [NSMutableArray new];
+        NSMutableDictionary *mPara = [NSMutableDictionary new];
+        [mPara setObject:_item.odrg_pro_name forKey:@"odrg_pro_name"];
+        [mPara setObject:spec forKey:@"odrg_spec"];
+        [mPara setObject:mMoneyStr forKey:@"odrg_price"];
+        [mPara setObject:_mobileField.text forKey:@"mobile"];
+        [mPayArr addObject:mPara];
+        
+        [SVProgressHUD showWithStatus:@"加载中"];
+        [[APIClient sharedClient] ZLCommitOrder:kOrderClassType_fee_mobile andShopId:nil andGoods:[Util arrToJson:mPayArr] andSendAddress:nil andArriveAddress:nil andServiceTime:nil andSendType:0 andSendPrice:nil andCoupId:nil andRemark:nil andSign:_item.sign block:^(APIObject *mBaseObj, ZLCreateOrderObj *mOrder) {
             if (mBaseObj.code == RESP_STATUS_YES) {
+                ZLGoPayViewController *ZLGoPayVC = [ZLGoPayViewController new];
+                ZLGoPayVC.mOrder = [ZLCreateOrderObj new];
+                ZLGoPayVC.mOrder = mOrder;
+                [self pushViewController:ZLGoPayVC];
+                
                 [self showSuccessStatus:mBaseObj.msg];
-            }else{
+            } else
                 [self showErrorStatus:mBaseObj.msg];
-            }
         }];
         
     }];
@@ -289,25 +298,18 @@
 //    _addressBookRef = ABAddressBookCreateWithOptions(NULL, NULL);
 //    [ZLPeoplePickerViewController initializeAddressBook];
     
-    mPreOrder = [ZLCreatePreOrder new];
-    [self createPreOrder];
-}
-#pragma mark----****----创建预订单
-- (void)createPreOrder{
- 
-    [self showWithStatus:@"正在验证..."];
-    [[APIClient sharedClient] ZLGetPreRechargePhone:^(APIObject *mBaseObj, ZLCreatePreOrder *mRecharge) {
-        if (mBaseObj.code == RESP_STATUS_YES) {
-            [self showSuccessStatus:@"验证成功!"];
-            
-            mPreOrder = mRecharge;
-            
-        }else{
-        
-            [self showErrorStatus:mBaseObj.msg];
+    
+    [SVProgressHUD showWithStatus:@"正在验证..."];
+    [[APIClient sharedClient] preOrderMobileWithTag:self call:^(PreApplyObject *item, APIObject *info) {
+        if (info.code==RESP_STATUS_YES && item!=nil) {
+            self.item = item;
+            [SVProgressHUD showSuccessWithStatus:@"验证成功"];
+        } else {
+            [SVProgressHUD showErrorWithStatus:info.msg];
             [self performSelector:@selector(popViewController) withObject:nil afterDelay:0.5];
         }
     }];
+    
 }
 
 - (void)didReceiveMemoryWarning {
