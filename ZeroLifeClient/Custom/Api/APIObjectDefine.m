@@ -1073,3 +1073,15 @@ bool m_bind = NO;
 
 @implementation ZLCommitFixObj
 @end
+
+
+
+
+@implementation ZLRunningmanHomeList
++ (NSDictionary *)mj_objectClassInArray{
+    
+    return @{@"list":@"ZLRunningmanHomeOrder"};
+}
+@end
+@implementation ZLRunningmanHomeOrder
+@end

@@ -2195,4 +2195,47 @@
 }
 
 
+#pragma mark----****----  获取跑跑腿首页订单列表
+/**
+ 获取跑跑腿首页订单列表
+ 
+ @param mLat 纬度
+ @param mLng 经度
+ @param mPage 分页
+ @param mPageSize 每页条数
+ @param block 返回值
+ */
+- (void)ZLGetRunningmanHomeList:(double)mLat andLng:(double)mLng andPage:(int)mPage andPageSize:(int)mPageSize block:(void(^)(APIObject *mBaseObj,ZLRunningmanHomeList *mList))block{
+
+    
+    NSMutableDictionary* para = [NSMutableDictionary dictionary];
+    
+    if (mPage) {
+        [para setInt:mPage forKey:@"pageNumber"];
+    }
+    
+    if (mPageSize) {
+        [para setInt:mPageSize forKey:@"pageSize"];
+    }
+    [para setObject:[NSString stringWithFormat:@"%f",mLat] forKey:@"lat"];
+    [para setObject:[NSString stringWithFormat:@"%f",mLng] forKey:@"lng"];
+    
+    
+    [self loadAPIWithTag:self path:@"/paopao/task_list" parameters:para call:^(APIObject *info) {
+        
+        if (info.code == RESP_STATUS_YES) {
+            
+            block(info,[ZLRunningmanHomeList mj_objectWithKeyValues:info.data]);
+            
+        }else{
+            
+            block(info,nil);
+            
+        }
+        
+    }];
+    
+}
+
+
 @end
