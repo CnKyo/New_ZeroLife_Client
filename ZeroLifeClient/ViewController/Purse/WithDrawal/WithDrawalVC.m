@@ -65,7 +65,7 @@
         [mPayArr addObject:mPara];
         
         [SVProgressHUD showWithStatus:@"加载中"];
-        [[APIClient sharedClient] ZLCommitOrder:kOrderClassType_balance_transfer andShopId:nil andGoods:[Util arrToJson:mPayArr] andSendAddress:nil andArriveAddress:nil andServiceTime:nil andSendType:0 andSendPrice:nil andCoupId:nil andRemark:nil andSign:_item.sign block:^(APIObject *mBaseObj, ZLCreateOrderObj *mOrder) {
+        [[APIClient sharedClient] ZLCommitOrder:kOrderClassType_balance_present andShopId:nil andGoods:[Util arrToJson:mPayArr] andSendAddress:nil andArriveAddress:nil andServiceTime:nil andSendType:0 andSendPrice:nil andCoupId:nil andRemark:nil andSign:_item.sign block:^(APIObject *mBaseObj, ZLCreateOrderObj *mOrder) {
             if (mBaseObj.code == RESP_STATUS_YES) {
                 ZLGoPayViewController *ZLGoPayVC = [ZLGoPayViewController new];
                 ZLGoPayVC.mOrder = [ZLCreateOrderObj new];

@@ -43,10 +43,12 @@
         
         [[IQKeyboardManager sharedManager] resignFirstResponder];
         
+        NSString *spec = [_item getCustomSpecWithMoney:[_moneyField.text floatValue]];
+        
         NSMutableArray *mPayArr = [NSMutableArray new];
         NSMutableDictionary *mPara = [NSMutableDictionary new];
         [mPara setObject:_item.odrg_pro_name forKey:@"odrg_pro_name"];
-        [mPara setObject:_item.odrg_spec forKey:@"odrg_spec"];
+        [mPara setObject:spec forKey:@"odrg_spec"];
         [mPara setObject:_moneyField.text forKey:@"odrg_price"];
         [mPara setObject:_accountField.text forKey:@"acc_phone"];
         [mPayArr addObject:mPara];
@@ -75,6 +77,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"转账";
+    
+    self.accountField.text = @"17783708893";
+    self.moneyField.text = @"50";
 
     [SVProgressHUD showWithStatus:@"加载中"];
     [[APIClient sharedClient] preOrderTransferWithTag:self call:^(PreApplyObject *item, APIObject *info) {
