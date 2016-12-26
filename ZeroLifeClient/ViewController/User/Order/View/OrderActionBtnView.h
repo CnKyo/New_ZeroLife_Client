@@ -10,6 +10,7 @@
 #import "UIView+AutoSize.h"
 #import "CustomDefine.h"
 #import "APIObjectDefine.h"
+#import "APIClient.h"
 
 @interface OrderButton : UIButton
 @property(nonatomic,strong) NSString *stateStr;
@@ -19,4 +20,8 @@
 @property(nonatomic,strong) OrderButton *actionBtn1;
 @property(nonatomic,strong) OrderButton *actionBtn2;
 @property(nonatomic,strong) OrderButton *actionBtn3;
+
+-(void)reloadUIWithStateArr:(NSArray *)arr;
+
+
 @end

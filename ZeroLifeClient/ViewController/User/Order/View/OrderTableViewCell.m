@@ -255,12 +255,16 @@
             self.actionBtn2.hidden = NO;
             NSString *btnStr2 = [item.odr_state_next objectAtIndex:1];
             self.actionBtn2.stateStr = btnStr2;
-        } else
+        } else {
             self.actionBtn2.hidden = YES;
+            self.actionBtn2.stateStr = @"";
+        }
         
     } else {
         self.actionBtn1.hidden = YES;
         self.actionBtn2.hidden = YES;
+        self.actionBtn1.stateStr = @"";
+        self.actionBtn2.stateStr = @"";
     }
 }
 
