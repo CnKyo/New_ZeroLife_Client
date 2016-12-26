@@ -32,6 +32,7 @@
 +(NSString *)compIsNone:(NSString *)str;
 +(NSString *)houseIsOwner:(BOOL)is_owner; //!< 得到房主租客文字
 +(NSString *)strUserSexType:(kUserSexType)type;  //!< 得到性别文字
++(NSString *)iconImgStrOrderType:(kOrderClassType)type; //!< 根据订单类型得到图标名称
 +(NSString *)strDesWithOrderState:(NSString *)state;
 +(NSString *)urlWithExtra:(NSString *)str;  //!< 组合url地址
 + (NSString*)linkUrl:(NSString*)str;
@@ -347,6 +348,8 @@
 @property(nonatomic,strong) NSString *              id_card_back_url;            //!<  银行卡背面图片url
 @end
 
+
+
 #pragma mark----****----收银台对象
 @interface ZLGoPayObject : NSObject
 
@@ -379,6 +382,26 @@
 @end
 
 
+
+#pragma mark -  物业费对象
+@interface PropertyFeeObject : NSObject
+@property(nonatomic,assign) int                     pfee_id;         //!< 对应id
+@property(nonatomic,assign) int                     cpn_id;         //!< 物业公司ID
+@property(nonatomic,assign) int                     cmut_id;         //!< 社区ID
+@property(nonatomic,strong) NSString *              pfee_company;          //!<  缴费单位
+@property(nonatomic,assign) int                     pfeel_ban;         //!< 楼栋
+@property(nonatomic,assign) int                     pfee_unit;         //!< 单元
+@property(nonatomic,assign) int                     pfee_floor;         //!< 楼层
+@property(nonatomic,assign) int                     pfee_number;         //!< 户号
+@property(nonatomic,strong) NSString *              pfee_name;         //!< 户主姓名
+@property(nonatomic,assign) int                     pfee_type;         //!< 类型
+@property(nonatomic,assign) float                   pfee_costs;         //!< 费用
+@property(nonatomic,strong) NSString *              pfee_title;            //!< 缴费标题
+@property(nonatomic,strong) NSString *              pfee_desc;            //!<  描述
+@property(nonatomic,strong) NSString *              pfee_state;            //!<  状态
+@property(nonatomic,strong) NSString *              pfee_end_time;            //!< 最后时间
+@property(nonatomic,strong) NSString *              pfee_add_time;            //!< 生成时间
+@end
 
 
 
@@ -413,6 +436,8 @@
 @property(nonatomic,strong) NSString *              odrg_img;         //!< 商品小图片url
 @property(nonatomic,strong) NSString *              odrg_img_repair;         //!< 商品图(报修)
 @property(nonatomic,strong) NSString *              odrg_video_repair;         //!< 商品视频(报修)
+@property(nonatomic,strong) NSString *              odrg_memo;         //!< 备注
+@property(nonatomic,assign) float                   odrg_cost;         //!< 成本价格
 @property(nonatomic,assign) float                   odrg_price;         //!< 价格
 @property(nonatomic,assign) int                     cam_gid;         //!< 活动商品商品ID（不是活动商品为0）
 @end
@@ -480,8 +505,8 @@
 @property(nonatomic,assign) float                   ord_coupon_price;         //!< 优惠券优惠金额
 @property(nonatomic,assign) float                   odr_benefit_price;         //!< 优惠价
 @property(nonatomic,assign) float                   odr_pay_price;         //!< 应支付价格
-@property(nonatomic,strong) NSMutableArray *        goods;         //!< 商品清单集合
-@property(nonatomic,strong) NSMutableArray *        cam_list;         //!< 订单拥有优惠集合
+@property(nonatomic,strong) NSMutableArray *        goods;         //!< 商品清单集合 对应OrderGoodsObject
+@property(nonatomic,strong) NSMutableArray *        cam_list;         //!< 订单拥有优惠集合　对应OrderCampaignObject
 
 //订单扩展信息对象
 @property(nonatomic,strong) NSString *              odr_remark;         //!< 备注

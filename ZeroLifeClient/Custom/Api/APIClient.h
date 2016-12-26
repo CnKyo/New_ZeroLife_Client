@@ -123,6 +123,10 @@ typedef void (^TableShareSdkBlock)(int totalpage, NSArray *tableArr, APIShareSdk
 -(void)preOrderPresentWithTag:(NSObject *)tag call:(void (^)(PrePresentApplyObject*item, APIObject* info))callback;
 -(void)preOrderPaopaoApplyWithTag:(NSObject *)tag call:(void (^)(PrePaopaoApplyObject*item, APIObject* info))callback;
 -(void)preOrderTransferWithTag:(NSObject *)tag call:(void (^)(PreApplyObject*item, APIObject* info))callback;
+-(void)preOrderPropertyWithTag:(NSObject *)tag pfee_id:(int)pfee_id call:(void (^)(PreApplyObject*item, APIObject* info))callback;
+
+-(void)propertyFeeListWithTag:(NSObject *)tag call:(TableArrBlock)callback;
+
 
 //小区相关接口
 -(void)communityListWithTag:(NSObject *)tag location:(CLLocationCoordinate2D)location search:(NSString *)search province:(int)province city:(int)city county:(int)county call:(TableArrBlock)callback;

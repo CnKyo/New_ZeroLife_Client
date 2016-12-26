@@ -179,22 +179,19 @@
                     break;
             }
             
+            cell.imgView.image = [UIImage imageNamed:[NSString iconImgStrOrderType:item.odr_type]];
             switch (item.odr_type) {
                 case kOrderClassType_balance_present:
                     cell.msgLable.text = @"提现";
-                    cell.imgView.image = IMG(@"purse_tixian.png");
                     break;
                 case kOrderClassType_balance_recharge:
                     cell.msgLable.text = @"余额充值";
-                    cell.imgView.image = IMG(@"cell_soukuan_item.png");
                     break;
                 case kOrderClassType_balance_transfer:
                     cell.msgLable.text = @"转帐";
-                    cell.imgView.image = IMG(@"purse_zhuanzhuang.png");
                     break;
                 case kOrderClassType_balance_collection:
                     cell.msgLable.text = @"收款";
-                    cell.imgView.image = IMG(@"cell_soukuan_item.png");
                     break;
                 default:
                     break;

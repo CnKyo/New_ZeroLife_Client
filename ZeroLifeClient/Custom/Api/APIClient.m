@@ -1026,6 +1026,51 @@
 }
 
 
+/**
+ *   物业费预订单接口
+ *
+ *  @param tag              链接对象
+ *  @param pfee_id          物业费id
+ *  @param callback         返回信息
+ */
+-(void)preOrderPropertyWithTag:(NSObject *)tag pfee_id:(int)pfee_id call:(void (^)(PreApplyObject*item, APIObject* info))callback
+{
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    if (user.user_id > 0) {
+        NSMutableDictionary *paramDic = [NSMutableDictionary dictionary];
+        [paramDic setInt:user.user_id forKey:@"user_id"];
+        [paramDic setInt:pfee_id forKey:@"pfee_id"];
+        [self loadAPIWithTag:tag path:@"/preorder/pre_property" parameters:paramDic call:^(APIObject *info) {
+            PreApplyObject *it = [PreApplyObject mj_objectWithKeyValues:info.data];
+            callback(it, info);
+        }];
+    } else
+        callback(nil, [APIObject infoWithReLoginErrorMessage:@"请重新登陆"]);
+}
+
+/**
+ *   用户物业缴费列表接口
+ *
+ *  @param tag      链接对象
+ *  @param callback 返回列表
+ */
+-(void)propertyFeeListWithTag:(NSObject *)tag call:(TableArrBlock)callback
+{
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    if (user.user_id > 0) {
+        NSMutableDictionary* paramDic = [NSMutableDictionary dictionary];
+        [paramDic setInt:user.user_id forKey:@"user_id"];
+        [self loadAPIWithTag:self path:@"/property/search_fee" parameters:paramDic call:^(APIObject *info) {
+            if (info.code == RESP_STATUS_YES) {
+                NSArray *newArr = [PropertyFeeObject mj_objectArrayWithKeyValuesArray:info.data];
+                callback(newArr, info);
+            } else
+                callback(nil, info);
+        }];
+    } else
+        callback(nil, [APIObject infoWithReLoginErrorMessage:@"请重新登陆"]);
+}
+
 
 
 #pragma mark----****----社区管理

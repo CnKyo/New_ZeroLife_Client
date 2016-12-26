@@ -21,6 +21,7 @@
     [super loadView];
     
     [self addTableView];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
 }
 
 - (void)viewDidLoad {
@@ -93,19 +94,19 @@
         
         switch (indexPath.row) {
             case 0:
-                imgView.image = IMG(@"choose_on.png");
+                imgView.image = [UIImage imageNamed:[NSString iconImgStrOrderType:kOrderClassType_fee_peroperty]];
                 textLable.text = @"缴物管费";
                 break;
             case 1:
-                imgView.image = IMG(@"choose_on.png");
+                imgView.image = [UIImage imageNamed:[NSString iconImgStrOrderType:kOrderClassType_fee_sdq]];
                 textLable.text = @"水电煤";
                 break;
             case 2:
-                imgView.image = IMG(@"choose_on.png");
+                imgView.image = [UIImage imageNamed:[NSString iconImgStrOrderType:kOrderClassType_fee_parking]];
                 textLable.text = @"停车费";
                 break;
             case 3:
-                imgView.image = IMG(@"choose_on.png");
+                imgView.image = [UIImage imageNamed:[NSString iconImgStrOrderType:kOrderClassType_fee_mobile]];
                 textLable.text = @"手机充值";
                 break;
             default:

@@ -288,6 +288,8 @@ typedef enum {
     kOrderClassType_paopao_apply        = 21,//申请跑跑腿
     kOrderClassType_fee_peroperty       = 31,//物管费
     kOrderClassType_fee_mobile          = 32,//手机缴费
+    kOrderClassType_fee_sdq             = 33,//水电气缴费
+    kOrderClassType_fee_parking         = 34,//停车缴费
 } kOrderClassType;
 
 
