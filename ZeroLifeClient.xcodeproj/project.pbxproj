@@ -298,7 +298,7 @@
 		DF08E87F1DD1C072003E4DD9 /* UserHouseEditTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF08E8771DD1C072003E4DD9 /* UserHouseEditTableViewCell.m */; };
 		DF08E8801DD1C072003E4DD9 /* UserHouseEditTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF08E8781DD1C072003E4DD9 /* UserHouseEditTableViewCell.xib */; };
 		DF08E8831DD1C093003E4DD9 /* FavoriteTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF08E8821DD1C093003E4DD9 /* FavoriteTVC.m */; };
-		DF08E8861DD1C0B2003E4DD9 /* FavoriteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF08E8851DD1C0B2003E4DD9 /* FavoriteTableViewCell.m */; };
+		DF08E8861DD1C0B2003E4DD9 /* FavoriteShopTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF08E8851DD1C0B2003E4DD9 /* FavoriteShopTableViewCell.m */; };
 		DF08E8881DD1C39B003E4DD9 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF08E8871DD1C39B003E4DD9 /* CoreText.framework */; };
 		DF1278DB1DDA96A60067AEC5 /* UserPaoPaoRegister_top_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1278DA1DDA96A60067AEC5 /* UserPaoPaoRegister_top_bg.png */; };
 		DF29B6741E10BD3E00CBAA3B /* SystemSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF29B66F1E10BD3E00CBAA3B /* SystemSettingVC.m */; };
@@ -1038,8 +1038,8 @@
 		DF08E8781DD1C072003E4DD9 /* UserHouseEditTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserHouseEditTableViewCell.xib; sourceTree = "<group>"; };
 		DF08E8811DD1C093003E4DD9 /* FavoriteTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoriteTVC.h; sourceTree = "<group>"; };
 		DF08E8821DD1C093003E4DD9 /* FavoriteTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoriteTVC.m; sourceTree = "<group>"; };
-		DF08E8841DD1C0B2003E4DD9 /* FavoriteTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoriteTableViewCell.h; sourceTree = "<group>"; };
-		DF08E8851DD1C0B2003E4DD9 /* FavoriteTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoriteTableViewCell.m; sourceTree = "<group>"; };
+		DF08E8841DD1C0B2003E4DD9 /* FavoriteShopTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoriteShopTableViewCell.h; sourceTree = "<group>"; };
+		DF08E8851DD1C0B2003E4DD9 /* FavoriteShopTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoriteShopTableViewCell.m; sourceTree = "<group>"; };
 		DF08E8871DD1C39B003E4DD9 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		DF1278DA1DDA96A60067AEC5 /* UserPaoPaoRegister_top_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UserPaoPaoRegister_top_bg.png; sourceTree = "<group>"; };
 		DF1278DC1DDA9B740067AEC5 /* CustomDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomDefine.h; sourceTree = "<group>"; };
@@ -2414,8 +2414,8 @@
 		DF08E8681DD1C004003E4DD9 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				DF08E8841DD1C0B2003E4DD9 /* FavoriteTableViewCell.h */,
-				DF08E8851DD1C0B2003E4DD9 /* FavoriteTableViewCell.m */,
+				DF08E8841DD1C0B2003E4DD9 /* FavoriteShopTableViewCell.h */,
+				DF08E8851DD1C0B2003E4DD9 /* FavoriteShopTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4123,7 +4123,7 @@
 				04721A211DE42C7F00CE8639 /* otherLoginViewController.m in Sources */,
 				DF630D0E1DD419830076A92C /* BaoXiuWorkerView.m in Sources */,
 				041657311DD6F383004E7D9A /* ZLCommitRepairsViewController.m in Sources */,
-				DF08E8861DD1C0B2003E4DD9 /* FavoriteTableViewCell.m in Sources */,
+				DF08E8861DD1C0B2003E4DD9 /* FavoriteShopTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

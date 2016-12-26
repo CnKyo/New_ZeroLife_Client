@@ -483,9 +483,12 @@
 -(void)loadAPIwithState:(NSString *)stateStr
 {
     if (stateStr.length > 0) {
-        [[APIClient sharedClient] orderOprateWithTag:self odr_id:_item.odr_id odr_type:_item.odr_type odr_code:_item.odr_code odr_state_next:stateStr odr_memo:nil call:^(APIObject *info) {
+        [SVProgressHUD showWithStatus:@"操作中..."];
+        [[APIClient sharedClient] orderOprateWithTag:self odr_id:_item.odr_id odr_type:_item.odr_type odr_code:_item.odr_code odr_state_next:stateStr odr_memo:nil call:^(NSString *odr_state_val, NSMutableArray *odr_state_next, APIObject *info) {
             if (info.code == RESP_STATUS_YES) {
-                [self.scrollView.mj_header beginRefreshing];
+                self.item.odr_state_next = odr_state_next;
+                self.item.odr_state_val = odr_state_val;
+                [self donwData];
                 
                 [SVProgressHUD showSuccessWithStatus:@"操作成功"];
             } else

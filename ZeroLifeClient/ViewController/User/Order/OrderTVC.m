@@ -139,10 +139,39 @@
 
         cell.orderClassType = _classType;
         [cell reloadUIWithItem:item];
+        
+        //添加订单处理事件
+        [cell.actionBtn1 jk_addActionHandler:^(NSInteger tag) {
+            [self loadAPIwithState:cell.actionBtn1.stateStr orderIndex:indexPath.row];
+        }];
+        [cell.actionBtn2 jk_addActionHandler:^(NSInteger tag) {
+            [self loadAPIwithState:cell.actionBtn2.stateStr orderIndex:indexPath.row];
+        }];
 
         return cell;
     }
     return [super tableView:tableView cellForRowAtIndexPath:indexPath];
+}
+
+-(void)loadAPIwithState:(NSString *)stateStr orderIndex:(NSInteger)row
+{
+    OrderObject *item = [self.tableArr objectAtIndex:row];
+    
+    if (stateStr.length > 0) {
+        [SVProgressHUD showWithStatus:@"操作中..."];
+        [[APIClient sharedClient] orderOprateWithTag:self odr_id:item.odr_id odr_type:item.odr_type odr_code:item.odr_code odr_state_next:stateStr odr_memo:nil call:^(NSString *odr_state_val, NSMutableArray *odr_state_next, APIObject *info) {
+            if (info.code == RESP_STATUS_YES) {
+                item.odr_state_next = odr_state_next;
+                item.odr_state_val = odr_state_val;
+                
+                [self.tableArr replaceObjectAtIndex:row withObject:item];
+                [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:row inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
+                
+                [SVProgressHUD showSuccessWithStatus:@"操作成功"];
+            } else
+                [SVProgressHUD showSuccessWithStatus:info.msg];
+        }];
+    }
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

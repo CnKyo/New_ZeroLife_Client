@@ -285,6 +285,25 @@
 
 
 
+#pragma mark -  用户收藏商品对象
+@interface ProductFocusObject : NSObject
+@property (assign,nonatomic) int                    foc_id;   //!< 收藏的ID
+@property (assign,nonatomic) int                    shop_id;   //!< 店铺ID
+@property (strong,nonatomic) NSString*              img_url;   //!< 商品图片
+@property (strong,nonatomic) NSString*              pro_name;   //!< 商品名称
+@property (strong,nonatomic) NSString*              pro_spec;   //!< 商品描述
+@property (strong,nonatomic) NSString*              pro_unit;   //!< 商品单位
+@property (assign,nonatomic) int                    pro_id; //!< 商品id
+@property (assign,nonatomic) int                    cls_id1; //!< 商品分类1
+@property (assign,nonatomic) int                    cls_id2; //!< 商品分类2
+@property (assign,nonatomic) int                    cls_id3; //!< 商品分类3
+@property (assign,nonatomic) float                  sku_price;       //!< 商品价格
+@property (strong,nonatomic) NSString*              pro_date_life; //!< 有效期
+@property (strong,nonatomic) NSString*              shop_name;    //!< 超市名称
+@property (assign,nonatomic) int                    pro_state;    //!< 商品状态
+@property (strong,nonatomic) NSString*              ext_max_time;    //!< 配送时间
+@end
+
 
 
 

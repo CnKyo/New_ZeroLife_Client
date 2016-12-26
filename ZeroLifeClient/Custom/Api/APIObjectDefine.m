@@ -568,7 +568,12 @@
 @implementation ComplaintObject
 @end
 
+
 @implementation WalletObject
+@end
+
+
+@implementation ProductFocusObject
 @end
 
 

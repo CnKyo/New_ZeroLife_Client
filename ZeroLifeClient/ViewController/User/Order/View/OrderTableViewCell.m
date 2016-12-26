@@ -266,6 +266,8 @@
         self.actionBtn1.stateStr = @"";
         self.actionBtn2.stateStr = @"";
     }
+    
 }
+
 
 @end

@@ -81,6 +81,14 @@ typedef void (^TableShareSdkBlock)(int totalpage, NSArray *tableArr, APIShareSdk
 -(void)bankCardDeleteWithTag:(NSObject *)tag bank_id:(int)bank_id security_password:(NSString *)security_password call:(void (^)(APIObject* info))callback;
 -(void)bankCardAddWithTag:(NSObject *)tag bank_real_name:(NSString *)bank_real_name bank_mobile:(NSString *)bank_mobile bank_card:(NSString *)bank_card id_card:(NSString *)id_card call:(void (^)(APIObject* info))callback;
 
+
+//用户收藏商品相关接口
+-(void)productFocusAddWithTag:(NSObject *)tag pro_id:(int)pro_id call:(void (^)(APIObject* info))callback;
+-(void)productFocusDelWithTag:(NSObject *)tag foc_id:(int)foc_id call:(void (^)(APIObject* info))callback;
+-(void)productFocusListWithTag:(NSObject *)tag page:(int)page call:(TablePageArrBlock)callback;
+
+
+
 //优惠券相关接口
 -(void)couponListWithTag:(NSObject *)tag page:(int)page call:(TablePageArrBlock)callback;
 
@@ -107,7 +115,7 @@ typedef void (^TableShareSdkBlock)(int totalpage, NSArray *tableArr, APIShareSdk
 //订单相关接口
 -(void)orderListWithTag:(NSObject *)tag odr_type:(kOrderClassType)odr_type odr_status:(NSString *)odr_status page:(int)page call:(TablePageArrBlock)callback;
 -(void)orderInfoWithTag:(NSObject *)tag odr_id:(int)odr_id odr_code:(NSString *)odr_code call:(void (^)(OrderObject *item, APIObject* info))callback;
--(void)orderOprateWithTag:(NSObject *)tag odr_id:(int)odr_id odr_type:(int)odr_type odr_code:(NSString *)odr_code odr_state_next:(NSString *)odr_state_next odr_memo:(NSString *)odr_memo call:(void (^)(APIObject* info))callback;
+-(void)orderOprateWithTag:(NSObject *)tag odr_id:(int)odr_id odr_type:(int)odr_type odr_code:(NSString *)odr_code odr_state_next:(NSString *)odr_state_next odr_memo:(NSString *)odr_memo call:(void (^)(NSString* odr_state_val, NSMutableArray* odr_state_next, APIObject* info))callback;
 
 -(void)orderOprateBidWithTag:(NSObject *)tag rpr_id:(int)rpr_id bid_id:(int)bid_id odr_code:(NSString *)odr_code call:(void (^)(APIObject* info))callback;
 -(void)preOrderRechargeWithTag:(NSObject *)tag call:(void (^)(PreApplyObject*item, APIObject* info))callback;
