@@ -105,8 +105,30 @@
 
     [self loadAddress];
 
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUserInfoNeedChange:) name:MyUserNeedUpdateNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUserInfoChange:) name:MyUserInfoChangedNotification object:nil];
     
 }
+
+#pragma mark----****----用户需要更新数据
+-(void)handleUserInfoNeedChange:(NSNotification *)note
+{
+//    MemberObject *item = [MemberObject currentUser];
+//    [[APIClient sharedClient] findInfoWithTag:self member_id:item.member_id call:^(MemberObject *item, APIObject *info) {
+//        if (item != nil) {
+//            [MemberObject updateUserInfo:item];
+//            [[NSNotificationCenter defaultCenter] postNotificationName:MyUserInfoChangedNotification object:nil];
+//        }
+//    }];
+}
+
+-(void)handleUserInfoChange:(NSNotification *)note
+{
+//    MemberObject *item = [MemberObject currentUser];
+//    [self.topView loadUIWithData:item];
+}
+
 #pragma mark----****----初始化app
 - (void)appInit{
 

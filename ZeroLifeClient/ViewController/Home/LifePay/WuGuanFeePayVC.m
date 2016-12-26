@@ -8,6 +8,8 @@
 
 #import "WuGuanFeePayVC.h"
 #import "FeePayHistoryVC.h"
+#import "WuGuanFeePayTableViewCell.h"
+#import "ZLGoPayViewController.h"
 
 @interface WuGuanFeePayVC ()
 
@@ -15,108 +17,22 @@
 
 @implementation WuGuanFeePayVC
 
+
 -(void)loadView
 {
     [super loadView];
-    UIView *superView = self.view;
-    int padding = 10;
     
-    UIView *aView = ({
-        UIView *view = [superView newUIView];
-        view.layer.cornerRadius = 5;
-        view.layer.masksToBounds = YES;
-        UIColor *color = [UIColor colorWithWhite:0.3 alpha:1];
-        UIFont *font = [UIFont systemFontOfSize:15];
-        UILabel *titleLable = [view newUILableWithText:@"万科物管公司" textColor:[UIColor whiteColor] font:[UIFont systemFontOfSize:18] textAlignment:NSTextAlignmentCenter];
-        titleLable.backgroundColor = COLOR(122, 176, 1);
-        UIView *bg1View = [view newUIViewWithBgColor:[UIColor whiteColor]];
-        UIView *bg2View = [view newUIViewWithBgColor:[UIColor whiteColor]];
-        UILabel *noteLable = [view newUILableWithText:@"9月待缴费金额(元)" textColor:color font:[UIFont systemFontOfSize:18] textAlignment:NSTextAlignmentCenter];
-        UILabel *moneyLable = [view newUILableWithText:@"￥500.00" textColor:[UIColor redColor] font:[UIFont systemFontOfSize:25] textAlignment:NSTextAlignmentCenter];
-        UIImageView *juImgView = [view newUIImageViewWithImg:IMG(@"wuguan_jiange.png")];
-        UILabel *menhuLable = [view newUILableWithText:@"门户号：大坪石油路万科一栋1004" textColor:color font:font];
-        UILabel *nameLable = [view newUILableWithText:@"户主姓名：杨样样" textColor:color font:font];
-        UILabel *timeLable = [view newUILableWithText:@"截止日期：2016-11-20" textColor:color font:font];
-        UILabel *wenxinLable = [view newUILableWithText:@"温馨提示：请随时注意查看账单，不要逾期缴费！" textColor:color font:[UIFont systemFontOfSize:14]];
-        wenxinLable.adjustsFontSizeToFitWidth = YES;
-        UIButton *btn = [view newUIButton];
-        btn.layer.cornerRadius = 5;
-        btn.layer.masksToBounds = YES;
-        [btn setTitle:@"确认支付" forState:UIControlStateNormal];
-        [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [btn jk_setBackgroundColor:COLOR(253, 158, 6) forState:UIControlStateNormal];
-        
-        [titleLable makeConstraints:^(MASConstraintMaker *make) {
-            make.left.right.top.equalTo(view);
-            make.height.equalTo(50);
-        }];
-        [noteLable makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(view.left).offset(padding);
-            make.right.equalTo(view.right).offset(-padding);
-            make.top.equalTo(titleLable.bottom);
-            make.height.equalTo(40);
-        }];
-        [moneyLable makeConstraints:^(MASConstraintMaker *make) {
-            make.left.right.equalTo(noteLable);
-            make.top.equalTo(noteLable.bottom);
-            make.height.equalTo(60);
-        }];
-        [bg1View makeConstraints:^(MASConstraintMaker *make) {
-            make.left.right.equalTo(view);
-            make.top.equalTo(titleLable.bottom);
-            make.bottom.equalTo(moneyLable.bottom);
-        }];
-        
-        [juImgView makeConstraints:^(MASConstraintMaker *make) {
-            make.left.right.equalTo(view);
-            make.top.equalTo(bg1View.bottom);
-            make.height.equalTo(juImgView.width).multipliedBy(0.0385);
-        }];
-        [menhuLable makeConstraints:^(MASConstraintMaker *make) {
-            make.left.right.equalTo(noteLable);
-            make.top.equalTo(juImgView.bottom).offset(padding);
-            make.height.equalTo(30);
-        }];
-        [nameLable makeConstraints:^(MASConstraintMaker *make) {
-            make.left.right.height.equalTo(menhuLable);
-            make.top.equalTo(menhuLable.bottom);
-        }];
-        [timeLable makeConstraints:^(MASConstraintMaker *make) {
-            make.left.right.height.equalTo(menhuLable);
-            make.top.equalTo(nameLable.bottom);
-        }];
-        [btn makeConstraints:^(MASConstraintMaker *make) {
-            make.left.right.equalTo(menhuLable);
-            make.top.equalTo(timeLable.bottom).offset(padding);
-            make.height.equalTo(50);
-        }];
-        [wenxinLable makeConstraints:^(MASConstraintMaker *make) {
-            make.left.right.equalTo(menhuLable);
-            make.height.equalTo(40);
-            make.top.equalTo(btn.bottom);
-        }];
-        [bg2View makeConstraints:^(MASConstraintMaker *make) {
-            make.left.right.equalTo(view);
-            make.top.equalTo(juImgView.bottom);
-            make.bottom.equalTo(wenxinLable.bottom);
-        }];
-        [view makeConstraints:^(MASConstraintMaker *make) {
-            make.bottom.equalTo(bg2View.bottom);
-        }];
-        view;
-    });
-    [aView updateConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(superView.left).offset(padding);
-        make.right.equalTo(superView.right).offset(-padding);
-        make.top.equalTo(superView.top).offset(@84);
-    }];
+    [self addTableView];
+    [self setTableViewHaveHeaderFooter];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] bk_initWithTitle:@"缴费记录" style:UIBarButtonItemStylePlain handler:^(id  _Nonnull sender) {
-        FeePayHistoryVC *vc = [[FeePayHistoryVC alloc] init];
-        [self.navigationController pushViewController:vc animated:YES];
-    }];
+//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] bk_initWithTitle:@"缴费记录" style:UIBarButtonItemStylePlain handler:^(id  _Nonnull sender) {
+//        FeePayHistoryVC *vc = [[FeePayHistoryVC alloc] init];
+//        [self.navigationController pushViewController:vc animated:YES];
+//    }];
 }
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -137,5 +53,98 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+#pragma mark -- tableviewDelegate
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (self.tableArr.count > 0)
+        return 370;
+    return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+}
+
+-(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (self.tableArr.count > 0) {
+        static NSString *CellIdentifier = @"Cell_WuGuanFeePayTableViewCell";
+        WuGuanFeePayTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (cell == nil) {
+            cell = [[WuGuanFeePayTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+            cell.selectionStyle = UITableViewCellSelectionStyleGray;
+            //cell.backgroundColor = [UIColor redColor];
+        }
+        
+        PropertyFeeObject *item = [self.tableArr objectAtIndex:indexPath.row];
+        
+        cell.pfee_companyLable.text = [NSString compIsNone:item.pfee_company];
+        cell.pfee_titleLable.text = [NSString compIsNone:item.pfee_title];
+        cell.pfee_costsLable.text = [NSString stringWithFormat:@"￥%.2f", item.pfee_costs];
+        cell.pfee_nameLable.text = [NSString stringWithFormat:@"户主姓名：%@", [NSString compIsNone:item.pfee_name] ] ;
+        cell.pfee_menpaiLable.text = [NSString stringWithFormat:@"门户号：%i-%i-%i-%i", item.pfeel_ban, item.pfee_unit, item.pfee_floor, item.pfee_number];
+        cell.pfee_endtimeLable.text = [NSString stringWithFormat:@"截止日期：%@", [NSString compIsNone:item.pfee_end_time] ];
+        
+        [cell.actionBtn jk_addActionHandler:^(NSInteger tag) {
+            [SVProgressHUD showWithStatus:@"正在验证..."];
+            [[APIClient sharedClient] preOrderPropertyWithTag:self pfee_id:item.pfee_id call:^(PreApplyObject *item11, APIObject *info) {
+                if (info.code==RESP_STATUS_YES && item!=nil) {
+
+                    //[SVProgressHUD showSuccessWithStatus:@"验证成功"];
+                    
+                    NSString *spec = [item11 getCustomSpecWithMoney:item.pfee_costs];
+                    
+                    NSMutableArray *mPayArr = [NSMutableArray new];
+                    NSMutableDictionary *mPara = [NSMutableDictionary new];
+                    [mPara setObject:item11.odrg_pro_name forKey:@"odrg_pro_name"];
+                    [mPara setObject:spec forKey:@"odrg_spec"];
+                    [mPara setObject:StringWithDouble(item.pfee_costs) forKey:@"odrg_price"];
+                    [mPara setInt:item.pfee_id forKey:@"pfee_id"];
+                    [mPayArr addObject:mPara];
+                    
+                    [SVProgressHUD showWithStatus:@"生成预订单中..."];
+                    [[APIClient sharedClient] ZLCommitOrder:kOrderClassType_fee_peroperty andShopId:nil andGoods:[Util arrToJson:mPayArr] andSendAddress:nil andArriveAddress:nil andServiceTime:nil andSendType:0 andSendPrice:nil andCoupId:nil andRemark:nil andSign:item11.sign block:^(APIObject *mBaseObj, ZLCreateOrderObj *mOrder) {
+                        if (mBaseObj.code == RESP_STATUS_YES) {
+                            ZLGoPayViewController *ZLGoPayVC = [ZLGoPayViewController new];
+                            ZLGoPayVC.mOrder = [ZLCreateOrderObj new];
+                            ZLGoPayVC.mOrder = mOrder;
+                            [self pushViewController:ZLGoPayVC];
+                            
+                            [self showSuccessStatus:mBaseObj.msg];
+                        } else
+                            [self showErrorStatus:mBaseObj.msg];
+                    }];
+                    
+                } else
+                    [SVProgressHUD showErrorWithStatus:info.msg];
+            }];
+        }];
+        
+        return cell;
+    }
+    return [super tableView:tableView cellForRowAtIndexPath:indexPath];
+}
+
+
+
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+//    if (self.tableArr.count > 0) {
+//        FeePayHistoryDetailVC *vc = [[FeePayHistoryDetailVC alloc] init];
+//        [self.navigationController pushViewController:vc animated:YES];
+//    }
+}
+
+
+
+- (void)reloadTableViewDataSource{
+    [super reloadTableViewDataSource];
+    
+    [[APIClient sharedClient] propertyFeeListWithTag:self call:^(NSArray *tableArr, APIObject *info) {
+        [self reloadWithTableArr:tableArr info:info];
+    }];
+}
+
 
 @end

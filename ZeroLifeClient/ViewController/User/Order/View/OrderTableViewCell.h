@@ -16,7 +16,7 @@
 #import "OrderActionBtnView.h"
 #import "APIObjectDefine.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
-
+#import <JKCategories/UIButton+JKBlock.h>
 
 
 @interface OrderTableViewCell : UITableViewCell
@@ -32,6 +32,7 @@
 @property(nonatomic,strong) OrderButton *actionBtn2;   //订单按钮2
 
 @property(nonatomic,assign) kOrderClassType orderClassType;
+
 
 -(void)reloadUIWithItem:(OrderObject *)item;
 

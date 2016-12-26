@@ -445,24 +445,58 @@
 
     }
     
-    
-    OrderActionBtnView *actionView = [[OrderActionBtnView alloc] init];
-    [superView addSubview:actionView];
-    [actionView updateConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(lastView.bottom).offset(padding);
-        make.left.right.equalTo(superView);
-        make.height.equalTo(60);
-    }];
+    if (_item.odr_state_next.count > 0) {
+        OrderActionBtnView *actionView = [[OrderActionBtnView alloc] init];
+        [superView addSubview:actionView];
+        [actionView updateConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(lastView.bottom).offset(padding);
+            make.left.right.equalTo(superView);
+            make.height.equalTo(60);
+        }];
+        lastView = actionView;
+        
+        [actionView reloadUIWithStateArr:_item.odr_state_next]; //加载按钮显示
+        
+        [actionView.actionBtn1 jk_addActionHandler:^(NSInteger tag) {
+            [self loadAPIwithState:actionView.actionBtn1.stateStr];
+        }];
+        [actionView.actionBtn2 jk_addActionHandler:^(NSInteger tag) {
+            [self loadAPIwithState:actionView.actionBtn2.stateStr];
+        }];
+        [actionView.actionBtn3 jk_addActionHandler:^(NSInteger tag) {
+            [self loadAPIwithState:actionView.actionBtn3.stateStr];
+        }];
+    }
+
     
     [self.contentView updateConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(actionView.bottom);
+        make.bottom.equalTo(lastView.bottom);
     }];
     
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] bk_initWithImage:IMG(@"order_mobile.png") style:UIBarButtonItemStylePlain handler:^(id  _Nonnull sender) {
         
     }];
+    
 }
+
+-(void)loadAPIwithState:(NSString *)stateStr
+{
+    if (stateStr.length > 0) {
+        [SVProgressHUD showWithStatus:@"操作中..."];
+        [[APIClient sharedClient] orderOprateWithTag:self odr_id:_item.odr_id odr_type:_item.odr_type odr_code:_item.odr_code odr_state_next:stateStr odr_memo:nil call:^(NSString *odr_state_val, NSMutableArray *odr_state_next, APIObject *info) {
+            if (info.code == RESP_STATUS_YES) {
+                self.item.odr_state_next = odr_state_next;
+                self.item.odr_state_val = odr_state_val;
+                [self donwData];
+                
+                [SVProgressHUD showSuccessWithStatus:@"操作成功"];
+            } else
+                [SVProgressHUD showSuccessWithStatus:info.msg];
+        }];
+    }
+}
+
 
 - (void)loadHeaderRefreshing{
     [[APIClient sharedClient] orderInfoWithTag:self odr_id:_item.odr_id odr_code:_item.odr_code call:^(OrderObject *item, APIObject *info) {

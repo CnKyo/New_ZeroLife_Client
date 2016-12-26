@@ -67,6 +67,7 @@
 
 
 @interface ZLPurseViewController ()<QUItemBtnViewDelegate>
+@property(nonatomic,strong) SingInHeaderView *headerView;
 @property(nonatomic,strong) PlurseValueNameControl *userBalanceView;
 @property(nonatomic,strong) PlurseValueNameControl *userScoreView;
 @property(nonatomic,strong) PlurseValueNameControl *userCouponView;
@@ -90,6 +91,7 @@
     [headerView updateConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.equalTo(superView);
     }];
+    self.headerView = headerView;
     
     UIView *aView = ({
         UIView *view = [superView newUIViewWithBgColor:[UIColor whiteColor]];
@@ -263,6 +265,8 @@
         [self showWithStatus:@"正在签到..."];
         [[APIClient sharedClient] userSignWithTag:self call:^(int score, APIObject *info) {
             if (info.code == RESP_STATUS_YES) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:MyUserNeedUpdateNotification object:nil];
+                
                 weakHeaderViewSelf.singView.score = score;
                 weakHeaderViewSelf.singView.is_singin = ! weakHeaderViewSelf.singView.is_singin;
                 
@@ -276,6 +280,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUserInfoChange:) name:MyUserInfoChangedNotification object:nil];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -305,13 +311,24 @@
     
     [self.userBalanceView loadName:@"我的余额" value:[NSString stringWithFormat:@"￥%.2f", user.wallet.uwal_balance]];
     [self.userScoreView loadName:@"我的积分" value:[NSString stringWithFormat:@"%i", user.wallet.uwal_score]];
-    [self.userCouponView loadName:@"我的优惠券" value:@"-"];
+    [self.userCouponView loadName:@"我的优惠券" value:[NSString stringWithFormat:@"%i", user.wallet.couponCount]];
+    
+    self.headerView.singView.score = user.wallet.score;
+    self.headerView.singView.is_singin = user.wallet.is_sign;
+    [self.headerView loadUIWithDay:user.wallet.signCount];
 }
 
 - (void)selectItemBtnView:(QUItemBtnView *)view
 {
     SingInView *singView = (SingInView *)view;
     singView.is_singin = !singView.is_singin;
+}
+
+
+//监测到用户数据修改
+-(void)handleUserInfoChange:(NSNotification *)note
+{
+    [self reloadUIWithData];
 }
 
 /*

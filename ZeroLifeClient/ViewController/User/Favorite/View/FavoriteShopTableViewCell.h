@@ -10,11 +10,20 @@
 #import "UIView+AutoSize.h"
 #import "CustomDefine.h"
 
-@interface FavoriteTableViewCell : UITableViewCell
+@interface FavoriteShopTableViewCell : UITableViewCell
 @property(nonatomic,strong) UIImageView *iconImgView;
 @property(nonatomic,strong) UILabel *nameLable;
 @property(nonatomic,strong) UILabel *timeLable;
 @property(nonatomic,strong) UILabel *msgLable;
 @property(nonatomic,strong) UILabel *priceLable;
 @property(nonatomic,strong) UILabel *goodLable;
+@end
+
+
+
+@interface FavoriteGoodsTableViewCell : UITableViewCell
+@property(nonatomic,strong) UIImageView *iconImgView;
+@property(nonatomic,strong) UILabel *nameLable;
+@property(nonatomic,strong) UILabel *msgLable;
+@property(nonatomic,strong) UILabel *priceLable;
 @end

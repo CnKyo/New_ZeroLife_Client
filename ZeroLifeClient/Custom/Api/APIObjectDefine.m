@@ -116,6 +116,56 @@
     return str;
 }
 
++(NSString *)iconImgStrOrderType:(kOrderClassType)type
+{
+    NSString *str = @"";
+    switch (type) {
+        case kOrderClassType_fix:
+            str = @"icon_order_fix.png";
+            break;
+        case kOrderClassType_product:
+            str = @"icon_order_product.png";
+            break;
+        case kOrderClassType_dryclean:
+            str = @"icon_order_dryclean.png";
+            break;
+        case kOrderClassType_paopao:
+            str = @"icon_order_paopao.png";
+            break;
+        case kOrderClassType_paopao_apply:
+            str = @"icon_order_paopao_apply.png";
+            break;
+        case kOrderClassType_fee_mobile:
+            str = @"icon_order_fee_mobile.png";
+            break;
+        case kOrderClassType_fee_peroperty:
+            str = @"icon_order_fee_peroperty.png";
+            break;
+        case kOrderClassType_balance_present:
+            str = @"icon_order_balance_present.png";
+            break;
+        case kOrderClassType_balance_recharge:
+            str = @"icon_order_balance_recharge.png";
+            break;
+        case kOrderClassType_balance_transfer:
+            str = @"icon_order_balance_transfer.png";
+            break;
+        case kOrderClassType_balance_collection:
+            str = @"icon_order_balance_collection.png";
+            break;
+        case kOrderClassType_fee_sdq:
+            str = @"icon_order_fee_sdq.png";
+            break;
+        case kOrderClassType_fee_parking:
+            str = @"icon_order_fee_parking.png";
+            break;
+        default:
+            str = @"icon_order_product.png";
+            break;
+    }
+    return str;
+}
+
 
 + (NSString*)linkUrl:(NSString*)str
 {
@@ -361,11 +411,13 @@
 
 
 @implementation RegionObject
-
 @end
 
 @implementation WalletRecordObject
+@end
 
+
+@implementation PropertyFeeObject
 @end
 
 
@@ -568,7 +620,12 @@
 @implementation ComplaintObject
 @end
 
+
 @implementation WalletObject
+@end
+
+
+@implementation ProductFocusObject
 @end
 
 
@@ -728,9 +785,13 @@ static ZLUserInfo *g_user = nil;
 
 @end
 
-//@implementation ZLWalletObj
-//
-//@end
+
+
+
+@implementation OpeningFunctionObject
+@end
+
+
 
 //@implementation ZLUserCommunityObj
 //@end
@@ -1087,9 +1148,16 @@ bool m_bind = NO;
     return @{@"list":@"ZLRunningmanHomeOrder"};
 }
 @end
+
+
+
 @implementation ZLRunningmanHomeOrder
 @end
 
 
 @implementation ZLCommitPPTPreOrder
+
+
+@implementation PaopaoApplyObject
 @end
+

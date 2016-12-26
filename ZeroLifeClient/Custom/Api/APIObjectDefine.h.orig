@@ -1468,6 +1468,7 @@
 
 @end
 
+<<<<<<< HEAD
 ///发布跑腿预订单对象
 @class AddressObject;
 @interface ZLCommitPPTPreOrder : NSObject
@@ -1497,9 +1498,7 @@
 @property (strong,nonatomic) NSString*              mRemark;  ///备注
 
 
-@end
-
-
+=======
 
 
 /// 申请跑跑腿资料提交对象
@@ -1513,6 +1512,7 @@
 @property (strong,nonatomic) NSString*              mat_document_url; //!< 证件的URL
 @property (strong,nonatomic) NSString*              mat_hand_url; //!< 手持证件URL
 @property (strong,nonatomic) NSString*              mat_back_url; //!< 背面图片URL
+>>>>>>> 647b7a13362fd2113e6161a8e1c7b53034c361c4
 @end
 
 

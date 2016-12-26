@@ -29,8 +29,8 @@
 
 -(void)addCustomTableParamWithPage:(int)page row:(int)row
 {
-    [self setValue:StringWithInt(page) forKey:@"page"]; //起始页
-    [self setValue:StringWithInt(row) forKey:@"size"]; //默认每一次取20条数据
+    [self setValue:StringWithInt(page) forKey:@"pageNumber"]; //起始页
+    [self setValue:StringWithInt(row) forKey:@"pageSize"]; //默认每一次取20条数据
 }
 
 @end
@@ -455,6 +455,30 @@
 }
 
 
+#pragma mark----****----资料提交接口
+/**
+ *  申请跑跑腿资料提交接口
+ *
+ *  @param tag              链接对象
+ *  @param item             提交资料
+ *  @param callback         返回信息
+ */
+-(void)userApplyPaopaoWithTag:(NSObject *)tag item:(PaopaoApplyObject *)item call:(void (^)(APIObject* info))callback
+{
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    if (user.user_id > 0) {
+        NSMutableDictionary *paramDic = [item mj_keyValues];
+        [paramDic setInt:user.user_id forKey:@"user_id"];
+        [self loadAPIWithTag:tag path:@"/paopao/applyPaopao" parameters:paramDic call:^(APIObject *info) {
+            callback(info);
+        }];
+    } else
+        callback([APIObject infoWithReLoginErrorMessage:@"请重新登陆"]);
+}
+
+
+
+
 #pragma mark----****----用户地址管理
 /**
  *   用户收货地址信息列表接口
@@ -698,6 +722,74 @@
 }
 
 
+#pragma mark----****----用户商品关注收藏接口
+
+/**
+ *  商品关注接口接口
+ *
+ *  @param tag              链接对象
+ *  @param pro_id           商品id
+ *  @param callback         返回信息
+ */
+-(void)productFocusAddWithTag:(NSObject *)tag pro_id:(int)pro_id call:(void (^)(APIObject* info))callback
+{
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    if (user.user_id > 0) {
+        NSMutableDictionary *paramDic = [NSMutableDictionary dictionary];
+        [paramDic setInt:user.user_id forKey:@"user_id"];
+        [paramDic setInt:pro_id forKey:@"pro_id"];
+        [self loadAPIWithTag:tag path:@"/shop/product_focus" parameters:paramDic call:^(APIObject *info) {
+            callback(info);
+        }];
+    } else
+        callback([APIObject infoWithReLoginErrorMessage:@"请重新登陆"]);
+}
+
+
+/**
+ *  商品取消关注接口接口
+ *
+ *  @param tag              链接对象
+ *  @param foc_id           收藏ID（注：有多个请用","号隔开;如:1,2,3）
+ *  @param callback         返回信息
+ */
+-(void)productFocusDelWithTag:(NSObject *)tag foc_id:(int)foc_id call:(void (^)(APIObject* info))callback
+{
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    if (user.user_id > 0) {
+        NSMutableDictionary *paramDic = [NSMutableDictionary dictionary];
+        [paramDic setInt:user.user_id forKey:@"user_id"];
+        [paramDic setInt:foc_id forKey:@"foc_id"];
+        [self loadAPIWithTag:tag path:@"/shop/delproduct_focus" parameters:paramDic call:^(APIObject *info) {
+            callback(info);
+        }];
+    } else
+        callback([APIObject infoWithReLoginErrorMessage:@"请重新登陆"]);
+}
+
+
+/**
+ *   用户商品收藏列表接口
+ *
+ *  @param tag      链接对象
+ *  @param callback 返回列表
+ */
+-(void)productFocusListWithTag:(NSObject *)tag page:(int)page call:(TablePageArrBlock)callback
+{
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    if (user.user_id > 0) {
+        NSMutableDictionary* paramDic = [NSMutableDictionary dictionary];
+        [paramDic setInt:user.user_id forKey:@"user_id"];
+        [self loadAPITableListWithTag:self path:@"/user/userEnshrine/findEnshrineList" parameters:paramDic pageIndex:page subClass:[ProductFocusObject class] call:^(int totalPage, NSArray *tableArr, APIObject *info) {
+            callback(totalPage, tableArr, info);
+        }];
+    } else
+        callback(0, nil, [APIObject infoWithReLoginErrorMessage:@"请重新登陆"]);
+}
+
+
+
+
 #pragma mark----****----用户优惠券接口列表接口
 /**
  *   用户优惠券接口列表接口
@@ -801,7 +893,7 @@
  *  @param odr_memo         维权原因(可选)
  *  @param callback         返回信息
  */
--(void)orderOprateWithTag:(NSObject *)tag odr_id:(int)odr_id odr_type:(int)odr_type odr_code:(NSString *)odr_code odr_state_next:(NSString *)odr_state_next odr_memo:(NSString *)odr_memo call:(void (^)(APIObject* info))callback
+-(void)orderOprateWithTag:(NSObject *)tag odr_id:(int)odr_id odr_type:(int)odr_type odr_code:(NSString *)odr_code odr_state_next:(NSString *)odr_state_next odr_memo:(NSString *)odr_memo call:(void (^)(NSString* odr_state_val, NSMutableArray* odr_state_next, APIObject* info))callback
 {
     ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
     if (user.user_id > 0) {
@@ -813,10 +905,15 @@
         [paramDic setNeedStr:odr_state_next forKey:@"odr_state_next"];
         [paramDic setValidStr:odr_memo forKey:@"odr_memo"];
         [self loadAPIWithTag:tag path:@"/order/order_oprate" parameters:paramDic call:^(APIObject *info) {
-            callback(info);
+            if (info.code == RESP_STATUS_YES) {
+                NSString *str = [info.data objectWithKey:@"odr_state_val"]; //操作成功后的状态描述
+                NSMutableArray *arr = [info.data objectWithKey:@"odr_state_next"];  //操作成功后的操作数组
+                callback(str, arr, info);
+            } else
+                callback(nil, nil, info);
         }];
     } else
-        callback([APIObject infoWithReLoginErrorMessage:@"请重新登陆"]);
+        callback(nil, nil, [APIObject infoWithReLoginErrorMessage:@"请重新登陆"]);
 }
 
 
@@ -953,6 +1050,51 @@
 }
 
 
+/**
+ *   物业费预订单接口
+ *
+ *  @param tag              链接对象
+ *  @param pfee_id          物业费id
+ *  @param callback         返回信息
+ */
+-(void)preOrderPropertyWithTag:(NSObject *)tag pfee_id:(int)pfee_id call:(void (^)(PreApplyObject*item, APIObject* info))callback
+{
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    if (user.user_id > 0) {
+        NSMutableDictionary *paramDic = [NSMutableDictionary dictionary];
+        [paramDic setInt:user.user_id forKey:@"user_id"];
+        [paramDic setInt:pfee_id forKey:@"pfee_id"];
+        [self loadAPIWithTag:tag path:@"/preorder/pre_property" parameters:paramDic call:^(APIObject *info) {
+            PreApplyObject *it = [PreApplyObject mj_objectWithKeyValues:info.data];
+            callback(it, info);
+        }];
+    } else
+        callback(nil, [APIObject infoWithReLoginErrorMessage:@"请重新登陆"]);
+}
+
+/**
+ *   用户物业缴费列表接口
+ *
+ *  @param tag      链接对象
+ *  @param callback 返回列表
+ */
+-(void)propertyFeeListWithTag:(NSObject *)tag call:(TableArrBlock)callback
+{
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    if (user.user_id > 0) {
+        NSMutableDictionary* paramDic = [NSMutableDictionary dictionary];
+        [paramDic setInt:user.user_id forKey:@"user_id"];
+        [self loadAPIWithTag:self path:@"/property/search_fee" parameters:paramDic call:^(APIObject *info) {
+            if (info.code == RESP_STATUS_YES) {
+                NSArray *newArr = [PropertyFeeObject mj_objectArrayWithKeyValuesArray:info.data];
+                callback(newArr, info);
+            } else
+                callback(nil, info);
+        }];
+    } else
+        callback(nil, [APIObject infoWithReLoginErrorMessage:@"请重新登陆"]);
+}
+
 
 
 #pragma mark----****----社区管理
@@ -1033,12 +1175,15 @@
             ZLUserInfo *user = [ZLUserInfo mj_objectWithKeyValues:[info.data objectWithKey:@"user"]];
             CommunityObject *community = [CommunityObject mj_objectWithKeyValues:[info.data objectWithKey:@"community"]];
             WalletObject *wallet = [WalletObject mj_objectWithKeyValues:[info.data objectWithKey:@"wallet"]];
+            OpeningFunctionObject *open = [OpeningFunctionObject mj_objectWithKeyValues:[info.data objectWithKey:@"openInfo"]];
             if (user != nil) {
                 if (community != nil)
                     user.community = community;
                 
                 if (wallet != nil)
                     user.wallet = wallet;
+                if (open != nil)
+                    user.openInfo = open;
                 
                 [ZLUserInfo updateUserInfo:user];
             }

@@ -16,8 +16,10 @@
 {
     _stateStr = stateStr;
     NSString *title = [NSString strDesWithOrderState:stateStr];
+
     [self setTitle:title forState:UIControlStateNormal];
 }
+
 @end
 
 
@@ -73,5 +75,42 @@
     return self;
 }
 
+-(void)reloadUIWithStateArr:(NSArray *)arr
+{
+    if (arr.count > 0) {
+        self.actionBtn1.hidden = NO;
+        NSString *btnStr1 = [arr objectAtIndex:0];
+        self.actionBtn1.stateStr = btnStr1;
+        
+        if (arr.count > 1) {
+            self.actionBtn2.hidden = NO;
+            NSString *btnStr2 = [arr objectAtIndex:1];
+            self.actionBtn2.stateStr = btnStr2;
+            
+            if (arr.count > 2) {
+                self.actionBtn3.hidden = NO;
+                NSString *btnStr3 = [arr objectAtIndex:2];
+                self.actionBtn3.stateStr = btnStr3;
+            } else {
+                self.actionBtn3.hidden = YES;
+                self.actionBtn3.stateStr = @"";
+            }
+            
+        } else {
+            self.actionBtn2.hidden = YES;
+            self.actionBtn3.hidden = YES;
+            self.actionBtn2.stateStr = @"";
+            self.actionBtn3.stateStr = @"";
+        }
+        
+    } else {
+        self.actionBtn1.hidden = YES;
+        self.actionBtn2.hidden = YES;
+        self.actionBtn3.hidden = YES;
+        self.actionBtn1.stateStr = @"";
+        self.actionBtn2.stateStr = @"";
+        self.actionBtn3.stateStr = @"";
+    }
+}
 
 @end

@@ -8,7 +8,7 @@
 
 #import "FavoriteTVC.h"
 
-#import "FavoriteTableViewCell.h"
+#import "FavoriteShopTableViewCell.h"
 
 #import <WPAttributedMarkup/WPHotspotLabel.h>
 #import <WPAttributedMarkup/NSString+WPAttributedMarkup.h>
@@ -54,6 +54,34 @@
 
 #pragma mark -- tableviewDelegate
 
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        if (tableView == self.tableView) {
+            ProductFocusObject *item = [self.tableArr objectAtIndex:indexPath.row];
+            
+            [SVProgressHUD showWithStatus:@"删除中..."];
+            [[APIClient sharedClient] productFocusDelWithTag:self foc_id:item.foc_id call:^(APIObject *info) {
+                if (info.code == RESP_STATUS_YES) {
+                    
+                    [self.tableArr removeObjectAtIndex:indexPath.row];
+                    
+                    if (self.tableArr.count > 0) {
+                        [self.tableView beginUpdates];
+                        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+                        [self.tableView endUpdates];
+                    } else
+                        [self.tableView reloadData];
+
+                    [SVProgressHUD showSuccessWithStatus:@"删除成功"];
+                } else
+                    [SVProgressHUD showSuccessWithStatus:info.msg];
+            }];
+            
+
+        }
+    }
+}
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.tableArr.count > 0)
@@ -64,27 +92,28 @@
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.tableArr.count > 0) {
-        static NSString *CellIdentifier = @"Cell_FavoriteTableViewCell";
-        FavoriteTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        static NSString *CellIdentifier = @"Cell_FavoriteGoodsTableViewCell";
+        FavoriteGoodsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
-            cell = [[FavoriteTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+            cell = [[FavoriteGoodsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
             cell.selectionStyle = UITableViewCellSelectionStyleGray;
         }
         
-        NSDictionary* style = @{@"body" : @[[UIFont systemFontOfSize:15], COLOR(253, 160, 0)],
-                                @"u" : @[[UIFont systemFontOfSize:13],
-                                         [UIColor grayColor],
-                                         @{NSStrikethroughStyleAttributeName : @(NSUnderlineStyleSingle|NSUnderlinePatternSolid)}]};
+        ProductFocusObject *item = [self.tableArr objectAtIndex:indexPath.row];
         
-        NSString *str1 = [NSString stringWithFormat:@"%@ <u>%@</u>", @"￥100.00", @"￥55.00"];
-        cell.priceLable.attributedText = [str1 attributedStringWithStyleBook:style];
+//        NSDictionary* style = @{@"body" : @[[UIFont systemFontOfSize:15], COLOR(253, 160, 0)],
+//                                @"u" : @[[UIFont systemFontOfSize:13],
+//                                         [UIColor grayColor],
+//                                         @{NSStrikethroughStyleAttributeName : @(NSUnderlineStyleSingle|NSUnderlinePatternSolid)}]};
+//        
+//        NSString *str1 = [NSString stringWithFormat:@"%@ <u>%@</u>", @"￥100.00", @"￥55.00"];
+//        cell.priceLable.attributedText = [str1 attributedStringWithStyleBook:style];
         
-        cell.backgroundColor = [UIColor whiteColor];
+        cell.priceLable.text = [NSString stringWithFormat:@"￥%.2f", item.sku_price];
         cell.iconImgView.image = IMG(@"choose_on.png");
-        cell.nameLable.text = @"专业维修手机";
-        cell.msgLable.text = @"专业疏通下水道专业疏通下水道专业疏通下水道";
-        cell.goodLable.text = @"好评99%";
-        cell.timeLable.text = @"1小时内上门";
+        cell.nameLable.text = [NSString compIsNone:item.pro_name];
+        cell.msgLable.text = [NSString compIsNone:item.pro_spec];
+
         return cell;
     }
     return [super tableView:tableView cellForRowAtIndexPath:indexPath];
@@ -105,7 +134,11 @@
 - (void)reloadTableViewDataSource{
     [super reloadTableViewDataSource];
     
-    [self performSelector:@selector(donwData) withObject:nil afterDelay:0.5];
+    [[APIClient sharedClient] productFocusListWithTag:self page:self.page call:^(int totalPage, NSArray *tableArr, APIObject *info) {
+        [self reloadWithTableArr:tableArr info:info];
+    }];
+    
+   // [self performSelector:@selector(donwData) withObject:nil afterDelay:0.5];
 }
 
 -(void)donwData
