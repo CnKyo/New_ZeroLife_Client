@@ -61,6 +61,12 @@
 		043347911DF6519700052FBE /* LDXScore.m in Sources */ = {isa = PBXBuildFile; fileRef = 043347901DF6519700052FBE /* LDXScore.m */; };
 		043BFAE61DF68C4E0037A835 /* mCheckMoreActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 043BFAE41DF68C4E0037A835 /* mCheckMoreActivityView.m */; };
 		043BFAE71DF68C4E0037A835 /* mCheckMoreActivityView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043BFAE51DF68C4E0037A835 /* mCheckMoreActivityView.xib */; };
+		043CE3551E10E468009BB463 /* ZLCustomSegView.m in Sources */ = {isa = PBXBuildFile; fileRef = 043CE3541E10E468009BB463 /* ZLCustomSegView.m */; };
+		043CE3571E10E46F009BB463 /* ZLCustomSegSubView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043CE3561E10E46F009BB463 /* ZLCustomSegSubView.xib */; };
+		043CE35A1E10E5C5009BB463 /* ZLCustomSegSubView.m in Sources */ = {isa = PBXBuildFile; fileRef = 043CE3591E10E5C5009BB463 /* ZLCustomSegSubView.m */; };
+		043CE35C1E10E634009BB463 /* ZLCustomSegView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043CE35B1E10E634009BB463 /* ZLCustomSegView.xib */; };
+		043CE3611E10FCF5009BB463 /* LTPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 043CE35F1E10FCF5009BB463 /* LTPickerView.m */; };
+		043CE3621E10FCF5009BB463 /* LTPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043CE3601E10FCF5009BB463 /* LTPickerView.xib */; };
 		044021AB1DF94A5800234066 /* ZLCustomImgButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 044021AA1DF94A5800234066 /* ZLCustomImgButton.m */; };
 		0445AD791DD44AF300788779 /* ZLGoPayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0445AD781DD44AF300788779 /* ZLGoPayViewController.m */; };
 		0445AD7E1DD44CE600788779 /* ZLPayTypeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0445AD7C1DD44CE600788779 /* ZLPayTypeTableViewCell.m */; };
@@ -680,6 +686,15 @@
 		043BFAE31DF68C4E0037A835 /* mCheckMoreActivityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mCheckMoreActivityView.h; sourceTree = "<group>"; };
 		043BFAE41DF68C4E0037A835 /* mCheckMoreActivityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mCheckMoreActivityView.m; sourceTree = "<group>"; };
 		043BFAE51DF68C4E0037A835 /* mCheckMoreActivityView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mCheckMoreActivityView.xib; sourceTree = "<group>"; };
+		043CE3531E10E468009BB463 /* ZLCustomSegView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLCustomSegView.h; sourceTree = "<group>"; };
+		043CE3541E10E468009BB463 /* ZLCustomSegView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLCustomSegView.m; sourceTree = "<group>"; };
+		043CE3561E10E46F009BB463 /* ZLCustomSegSubView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ZLCustomSegSubView.xib; path = ../ZLCustomSegSubView.xib; sourceTree = "<group>"; };
+		043CE3581E10E5C5009BB463 /* ZLCustomSegSubView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZLCustomSegSubView.h; path = ../ZLCustomSegSubView.h; sourceTree = "<group>"; };
+		043CE3591E10E5C5009BB463 /* ZLCustomSegSubView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZLCustomSegSubView.m; path = ../ZLCustomSegSubView.m; sourceTree = "<group>"; };
+		043CE35B1E10E634009BB463 /* ZLCustomSegView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLCustomSegView.xib; sourceTree = "<group>"; };
+		043CE35E1E10FCF5009BB463 /* LTPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTPickerView.h; sourceTree = "<group>"; };
+		043CE35F1E10FCF5009BB463 /* LTPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTPickerView.m; sourceTree = "<group>"; };
+		043CE3601E10FCF5009BB463 /* LTPickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LTPickerView.xib; sourceTree = "<group>"; };
 		044021A91DF94A5700234066 /* ZLCustomImgButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLCustomImgButton.h; sourceTree = "<group>"; };
 		044021AA1DF94A5800234066 /* ZLCustomImgButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLCustomImgButton.m; sourceTree = "<group>"; };
 		0445AD771DD44AF300788779 /* ZLGoPayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLGoPayViewController.h; sourceTree = "<group>"; };
@@ -1682,6 +1697,37 @@
 				043347901DF6519700052FBE /* LDXScore.m */,
 			);
 			path = LDXScore;
+			sourceTree = "<group>";
+		};
+		043CE3511E10E44F009BB463 /* ZLCustomSegmentControl */ = {
+			isa = PBXGroup;
+			children = (
+				043CE3521E10E44F009BB463 /* View */,
+				043CE3531E10E468009BB463 /* ZLCustomSegView.h */,
+				043CE3541E10E468009BB463 /* ZLCustomSegView.m */,
+				043CE35B1E10E634009BB463 /* ZLCustomSegView.xib */,
+			);
+			path = ZLCustomSegmentControl;
+			sourceTree = "<group>";
+		};
+		043CE3521E10E44F009BB463 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				043CE3581E10E5C5009BB463 /* ZLCustomSegSubView.h */,
+				043CE3591E10E5C5009BB463 /* ZLCustomSegSubView.m */,
+				043CE3561E10E46F009BB463 /* ZLCustomSegSubView.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		043CE35D1E10FCF5009BB463 /* LTPickerView */ = {
+			isa = PBXGroup;
+			children = (
+				043CE35E1E10FCF5009BB463 /* LTPickerView.h */,
+				043CE35F1E10FCF5009BB463 /* LTPickerView.m */,
+				043CE3601E10FCF5009BB463 /* LTPickerView.xib */,
+			);
+			path = LTPickerView;
 			sourceTree = "<group>";
 		};
 		044021A81DF94A4300234066 /* ZLImgBtn */ = {
@@ -3173,6 +3219,8 @@
 		DFFAA7531DB744EF001CFBB5 /* OpenSourceLib */ = {
 			isa = PBXGroup;
 			children = (
+				043CE35D1E10FCF5009BB463 /* LTPickerView */,
+				043CE3511E10E44F009BB463 /* ZLCustomSegmentControl */,
 				04D704071E0CC68C00BDC9F5 /* ZLDatePick */,
 				044021A81DF94A4300234066 /* ZLImgBtn */,
 				04721A401DE4569100CE8639 /* StarView */,
@@ -3344,6 +3392,7 @@
 				04721A4B1DE4569100CE8639 /* starFore@2x.png in Resources */,
 				DF630D4C1DD45D790076A92C /* purse_anquanma@3x.png in Resources */,
 				DF98EC601DD2FCA00006EBFE /* order_baoxiu_jinjia.png in Resources */,
+				043CE3621E10FCF5009BB463 /* LTPickerView.xib in Resources */,
 				DFE178DF1DD5901E00E06F21 /* cell_score_item@3x.png in Resources */,
 				04721A011DE3E66C00CE8639 /* album_checkbox_blue@2x.png in Resources */,
 				DF630D781DD475660076A92C /* anquantishi@3x.png in Resources */,
@@ -3615,6 +3664,7 @@
 				DF08E8511DD16A13003E4DD9 /* MobileRechargeMoneyView_mobile@2x.png in Resources */,
 				DFE1787A1DD556D000E06F21 /* cell_about@3x.png in Resources */,
 				04B862B21DD5AEDF00BDEA59 /* ZLGoodsDetailCell2.xib in Resources */,
+				043CE35C1E10E634009BB463 /* ZLCustomSegView.xib in Resources */,
 				04721A091DE3E66C00CE8639 /* qrcode_ar_failed@2x.png in Resources */,
 				DFE178CF1DD575E700E06F21 /* cell_complaint_wuguan@2x.png in Resources */,
 				043BFAE71DF68C4E0037A835 /* mCheckMoreActivityView.xib in Resources */,
@@ -3645,6 +3695,7 @@
 				DFA135721DD6FBE000805BA2 /* bankCard_addBG@2x.png in Resources */,
 				DFBAA97A1DF149AD004315F9 /* singIn_note_icon@3x.png in Resources */,
 				DF98EC691DD2FCA00006EBFE /* order_shop_icon.png in Resources */,
+				043CE3571E10E46F009BB463 /* ZLCustomSegSubView.xib in Resources */,
 				DFE178671DD555C100E06F21 /* itemBar_setting@2x.png in Resources */,
 				DFBAA97B1DF149AD004315F9 /* singIn_note_icon@2x.png in Resources */,
 				DFE1787F1DD556D000E06F21 /* cell_msgSetting@2x.png in Resources */,
@@ -3951,6 +4002,7 @@
 				047219F31DE3E66C00CE8639 /* HX_AlbumViewController.m in Sources */,
 				DF539F041DD5932900AF228F /* UserPayTypeTableViewCell.m in Sources */,
 				049A12141DE982C00087238D /* ZLSpeSmallClassViewCell.m in Sources */,
+				043CE3551E10E468009BB463 /* ZLCustomSegView.m in Sources */,
 				DF3B4F0D1DF560F200583D24 /* WebTestVC.m in Sources */,
 				04B07EA01DD964E7004A7294 /* ZLRunningManCell.m in Sources */,
 				04721A131DE4191900CE8639 /* ZLAnounceMentViewController.m in Sources */,
@@ -3981,8 +4033,10 @@
 				04D64D641DC9C16D004E8859 /* ZLSelectArearViewController.m in Sources */,
 				040917561DCC2C1A00DB2568 /* ZLSuperMarketViewController.m in Sources */,
 				0416572E1DD6EE8D004E7D9A /* ZLRepairDetailSubViewController.m in Sources */,
+				043CE3611E10FCF5009BB463 /* LTPickerView.m in Sources */,
 				DF8DBCDD1DD05D49002E574B /* CustomBtnView.m in Sources */,
 				DF0308A71DCD7D6600E1EAB6 /* ZLUserHeaderTableViewCell.m in Sources */,
+				043CE35A1E10E5C5009BB463 /* ZLCustomSegSubView.m in Sources */,
 				04721A2A1DE4324900CE8639 /* ZLRatingTableViewCell.m in Sources */,
 				0445AD821DD44CFF00788779 /* ZLPayTypeHeaderView.m in Sources */,
 				DFA135451DD6C2A700805BA2 /* TransferAccountVC.m in Sources */,

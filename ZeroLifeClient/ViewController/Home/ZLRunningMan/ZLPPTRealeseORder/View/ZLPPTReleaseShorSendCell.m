@@ -7,6 +7,8 @@
 //
 
 #import "ZLPPTReleaseShorSendCell.h"
+#import "CustomDefine.h"
+#import "LTPickerView.h"
 
 @interface ZLPPTReleaseShorSendCell()<UITextFieldDelegate>
 
@@ -53,11 +55,33 @@
 - (IBAction)mWorkTimeAction:(UIButton *)sender {
     
     
-    if ([self.delegate respondsToSelector:@selector(ZLPPTReleaseShorSendCellWithWorkTimeBtnAction)]) {
-        [self.delegate ZLPPTReleaseShorSendCellWithWorkTimeBtnAction];
-    }
-
+    NSArray *mTT = @[@"30分钟",@"60分钟",@"90分钟",@"2小时",@"3小时",@"4小时",@"5小时",@"8小时",@"12小时"];
     
+    LTPickerView *LtpickerView = [LTPickerView new];
+    LtpickerView.dataSource = mTT;//设置要显示的数据
+    LtpickerView.defaultStr = mTT[0];//默认选择的数据
+    [LtpickerView show];//显示
+    __weak __typeof(self)weakSelf = self;
+    
+    //回调block
+    LtpickerView.block = ^(LTPickerView* obj,NSString* str,int num){
+        //obj:LTPickerView对象
+        //str:选中的字符串
+        //num:选中了第几行
+        MLLog(@"选择了第%d行的%@",num,str);
+        NSArray *mTT2 = @[@"30",@"60",@"90",@"120",@"180",@"240",@"300",@"480",@"720"];
+        
+        [sender setTitle:[NSString stringWithFormat:@"%@内送达",str] forState:0];
+        
+        if ([self.delegate respondsToSelector:@selector(ZLPPTReleaseShorSendCellWithWorkTimeBtnAction:)]) {
+            [self.delegate ZLPPTReleaseShorSendCellWithWorkTimeBtnAction:mTT2[num]];
+        }
+        
+        
+    };
+
+
+ 
 }
 -(void)textFieldDidEndEditing:(UITextField *)textField{
     
@@ -105,6 +129,46 @@
     
 }
 
+
+- (void)setMPreOrder:(ZLCommitPPTPreOrder *)mPreOrder{
+
+    if (mPreOrder.mSendAddress) {
+
+        NSString *mConnectP = [NSString stringWithFormat:@"%@-%@",mPreOrder.mSendAddress.addr_name,mPreOrder.mSendAddress.addr_phone];
+        NSString *mAddress = [NSString stringWithFormat:@"%@",mPreOrder.mSendAddress.addr_address];
+        
+        if (mConnectP.length <= 1 || [mConnectP isEqualToString:@"(null)-(null)"]) {
+            
+            mConnectP = @"点击选择送出地址";
+            
+        }
+        if (mAddress.length <= 0 || [mAddress isEqualToString:@"(null)(null)(null)(null)"]) {
+            mAddress = @"点击选择送出地址";
+        }
+        
+        self.mSendNamePhone.text = mConnectP;
+        self.mSendAddress.text = mAddress;
+
+    }
+    if (mPreOrder.mArriveAddress) {
+        
+        NSString *mConnectP = [NSString stringWithFormat:@"%@-%@",mPreOrder.mArriveAddress.addr_name,mPreOrder.mArriveAddress.addr_phone];
+        NSString *mAddress = [NSString stringWithFormat:@"%@",mPreOrder.mArriveAddress.addr_address];
+        
+        if (mConnectP.length <= 1 || [mConnectP isEqualToString:@"(null)-(null)"]) {
+            
+            mConnectP = @"点击选择送达地址";
+            
+        }
+        if (mAddress.length <= 0 || [mAddress isEqualToString:@"(null)(null)(null)(null)"]) {
+            mAddress = @"点击选择送达地址";
+        }
+        
+        self.mArriveNamePhone.text = mConnectP;
+        self.mArriveAddress.text = mAddress;
+        
+    }
+}
 
 
 

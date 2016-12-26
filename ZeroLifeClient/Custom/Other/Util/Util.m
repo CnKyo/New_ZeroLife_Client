@@ -1598,6 +1598,20 @@
 }
 
 
+#pragma mark---- 字符串过滤
+/**
+ 字符串过滤
+ 
+ @param mCharaString 要过滤
+ @return 返回过滤后的字符串
+ */
++ (NSString *)ZLCharacterString:(NSString *)mCharaString{
+
+    NSCharacterSet *set = [NSCharacterSet characterSetWithCharactersInString:@"\n@／：；（）¥「」＂、[]{}#%-*+=_\\|~＜＞$€^•'@#$%^&*()_+'\""];
+    
+    return [self ZLReplaceString:[mCharaString stringByTrimmingCharactersInSet:set] andWillFromReplaceStr:@"    " andToReplaceStr:@""];
+
+}
 
 
 

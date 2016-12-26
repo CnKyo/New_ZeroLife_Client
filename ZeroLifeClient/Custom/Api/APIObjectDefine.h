@@ -1393,3 +1393,35 @@
 
 @end
 
+///发布跑腿预订单对象
+@class AddressObject;
+@interface ZLCommitPPTPreOrder : NSObject
+
+@property (assign,nonatomic) int                    mClassId;  ///分类ID
+
+@property (strong,nonatomic) NSString*              mClassName;  ///分类名称
+
+@property (strong,nonatomic) NSString*              mClassImg;  ///分类图片
+
+@property (strong,nonatomic) NSString*              mDemand;  ///需求
+
+@property (strong,nonatomic) NSString*              mGoodsName;  ///商品名称
+
+@property (strong,nonatomic) NSString*                    mGoodsPrice;  ///商品价格
+
+@property (strong,nonatomic) NSString*                    mSendPrice;  ///跑腿费
+
+@property (strong,nonatomic) NSString*              mServiceTime;  ///服务时间
+
+@property (strong,nonatomic) AddressObject *        mSendAddress;   ///送出地址
+
+@property (strong,nonatomic) AddressObject *        mArriveAddress;   ///送达地址
+
+@property (strong,nonatomic) NSString*              mPhone;  ///联系电话
+
+@property (strong,nonatomic) NSString*              mRemark;  ///备注
+
+
+@end
+
+

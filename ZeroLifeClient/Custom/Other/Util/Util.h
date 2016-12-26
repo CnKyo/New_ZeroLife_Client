@@ -408,5 +408,13 @@ typedef enum _RelDic
  @return 返回类型
  */
 + (int)currentReleaseType:(NSString *)mTypeStr;
+#pragma mark---- 字符串过滤
+/**
+ 字符串过滤
+
+ @param mCharaString 要过滤
+ @return 返回过滤后的字符串
+ */
++ (NSString *)ZLCharacterString:(NSString *)mCharaString;
 
 @end
