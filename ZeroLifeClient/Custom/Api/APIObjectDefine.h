@@ -1466,3 +1466,19 @@
 
 @end
 
+
+
+/// 申请跑跑腿资料提交对象
+@interface PaopaoApplyObject : NSObject
+@property (assign,nonatomic) int                    user_id;   //!< 用户ID
+@property (strong,nonatomic) NSString*              uopen_name; //!< 用户名称
+@property (strong,nonatomic) NSString*              uopen_phone;  //!< 用户电话号码
+@property (strong,nonatomic) NSString*              uopen_head; //!< 用户头像
+@property (strong,nonatomic) NSString*              mat_document_name; //!< 证件名
+@property (strong,nonatomic) NSString*              mat_document_number; //!< 证件编号
+@property (strong,nonatomic) NSString*              mat_document_url; //!< 证件的URL
+@property (strong,nonatomic) NSString*              mat_hand_url; //!< 手持证件URL
+@property (strong,nonatomic) NSString*              mat_back_url; //!< 背面图片URL
+@end
+
+

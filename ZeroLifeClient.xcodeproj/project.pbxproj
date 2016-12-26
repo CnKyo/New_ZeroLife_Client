@@ -332,6 +332,9 @@
 		DF29B6AD1E110E8B00CBAA3B /* icon_order_fee_parking@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF29B6A91E110E8B00CBAA3B /* icon_order_fee_parking@2x.png */; };
 		DF29B6AE1E110E8B00CBAA3B /* icon_order_fee_parking@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF29B6AA1E110E8B00CBAA3B /* icon_order_fee_parking@3x.png */; };
 		DF29B6B11E1111FB00CBAA3B /* WuGuanFeePayTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF29B6B01E1111FB00CBAA3B /* WuGuanFeePayTableViewCell.m */; };
+		DF29B6B51E1123D700CBAA3B /* UserPaoPaoApplyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF29B6B31E1123D700CBAA3B /* UserPaoPaoApplyVC.m */; };
+		DF29B6BB1E1131C200CBAA3B /* UserPaoPaoApplyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF29B6B91E1131C200CBAA3B /* UserPaoPaoApplyTableViewCell.m */; };
+		DF29B6BC1E1131C200CBAA3B /* UserPaoPaoApplyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF29B6BA1E1131C200CBAA3B /* UserPaoPaoApplyTableViewCell.xib */; };
 		DF300D101E02816700AC23CC /* bankcar_del@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF300D0E1E02816700AC23CC /* bankcar_del@3x.png */; };
 		DF300D111E02816700AC23CC /* bankcar_del@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF300D0F1E02816700AC23CC /* bankcar_del@2x.png */; };
 		DF300D141E02879C00AC23CC /* UserComplaintUpVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF300D131E02879C00AC23CC /* UserComplaintUpVC.m */; };
@@ -1105,6 +1108,11 @@
 		DF29B6AA1E110E8B00CBAA3B /* icon_order_fee_parking@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_order_fee_parking@3x.png"; sourceTree = "<group>"; };
 		DF29B6AF1E1111FB00CBAA3B /* WuGuanFeePayTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WuGuanFeePayTableViewCell.h; sourceTree = "<group>"; };
 		DF29B6B01E1111FB00CBAA3B /* WuGuanFeePayTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WuGuanFeePayTableViewCell.m; sourceTree = "<group>"; };
+		DF29B6B21E1123D700CBAA3B /* UserPaoPaoApplyVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserPaoPaoApplyVC.h; sourceTree = "<group>"; };
+		DF29B6B31E1123D700CBAA3B /* UserPaoPaoApplyVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserPaoPaoApplyVC.m; sourceTree = "<group>"; };
+		DF29B6B81E1131C200CBAA3B /* UserPaoPaoApplyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserPaoPaoApplyTableViewCell.h; sourceTree = "<group>"; };
+		DF29B6B91E1131C200CBAA3B /* UserPaoPaoApplyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserPaoPaoApplyTableViewCell.m; sourceTree = "<group>"; };
+		DF29B6BA1E1131C200CBAA3B /* UserPaoPaoApplyTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserPaoPaoApplyTableViewCell.xib; sourceTree = "<group>"; };
 		DF300D0E1E02816700AC23CC /* bankcar_del@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bankcar_del@3x.png"; sourceTree = "<group>"; };
 		DF300D0F1E02816700AC23CC /* bankcar_del@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bankcar_del@2x.png"; sourceTree = "<group>"; };
 		DF300D121E02879C00AC23CC /* UserComplaintUpVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserComplaintUpVC.h; sourceTree = "<group>"; };
@@ -2523,9 +2531,12 @@
 		DF29B6701E10BD3E00CBAA3B /* Paopao */ = {
 			isa = PBXGroup;
 			children = (
+				DF29B6B71E1131AB00CBAA3B /* View */,
 				DF29B6711E10BD3E00CBAA3B /* UserPaoPaoRegisterVC.h */,
 				DF29B6721E10BD3E00CBAA3B /* UserPaoPaoRegisterVC.m */,
 				DF29B6731E10BD3E00CBAA3B /* UserPaoPaoRegisterVC.xib */,
+				DF29B6B21E1123D700CBAA3B /* UserPaoPaoApplyVC.h */,
+				DF29B6B31E1123D700CBAA3B /* UserPaoPaoApplyVC.m */,
 			);
 			path = Paopao;
 			sourceTree = "<group>";
@@ -2537,6 +2548,16 @@
 				DF29B6791E10BFEB00CBAA3B /* CreatQRCodeAndBarCodeFromLeon.m */,
 			);
 			path = CreatQRCodeAndBarCodeFromLeon;
+			sourceTree = "<group>";
+		};
+		DF29B6B71E1131AB00CBAA3B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DF29B6B81E1131C200CBAA3B /* UserPaoPaoApplyTableViewCell.h */,
+				DF29B6B91E1131C200CBAA3B /* UserPaoPaoApplyTableViewCell.m */,
+				DF29B6BA1E1131C200CBAA3B /* UserPaoPaoApplyTableViewCell.xib */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		DF539F0D1DD598EE00AF228F /* UserCoupon */ = {
@@ -3684,6 +3705,7 @@
 				040D92FA1DCAE34E00DBE42E /* ZLHomeMSGCell.xib in Resources */,
 				DFE178911DD558B400E06F21 /* shimingrenzheng_off@2x.png in Resources */,
 				DFF9323B1DD98DF700BA8C8B /* dian_black@3x.png in Resources */,
+				DF29B6BC1E1131C200CBAA3B /* UserPaoPaoApplyTableViewCell.xib in Resources */,
 				DF630D761DD475660076A92C /* anquantishi.png in Resources */,
 				DF29B6981E11092D00CBAA3B /* icon_order_product@3x.png in Resources */,
 				DF630D381DD44CE60076A92C /* sigin_qianYes.png in Resources */,
@@ -4215,6 +4237,7 @@
 				DF300D141E02879C00AC23CC /* UserComplaintUpVC.m in Sources */,
 				DF7D0A1E1DBA0019005A62A7 /* CookDetailVC.m in Sources */,
 				DF55B46A1DBAFE7700F89341 /* ZLUserViewController.m in Sources */,
+				DF29B6BB1E1131C200CBAA3B /* UserPaoPaoApplyTableViewCell.m in Sources */,
 				04770EFE1DDEEE47008B7505 /* ZLRegistForgetViewController.m in Sources */,
 				DF7D0A241DBA0023005A62A7 /* TagsTableCell.m in Sources */,
 				DFA135811DD7056000805BA2 /* SouKuanVC.m in Sources */,
@@ -4233,6 +4256,7 @@
 				04721A211DE42C7F00CE8639 /* otherLoginViewController.m in Sources */,
 				DF630D0E1DD419830076A92C /* BaoXiuWorkerView.m in Sources */,
 				041657311DD6F383004E7D9A /* ZLCommitRepairsViewController.m in Sources */,
+				DF29B6B51E1123D700CBAA3B /* UserPaoPaoApplyVC.m in Sources */,
 				DF08E8861DD1C0B2003E4DD9 /* FavoriteShopTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

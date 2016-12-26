@@ -542,6 +542,10 @@
         [SVProgressHUD showWithStatus:@"安全密码设置中..."];
         [[APIClient sharedClient] userSecurityPasswordSettingWithTag:self acc_pass:pwdField.text security_password:seView1.pwStr call:^(APIObject *info) {
             if (info.code == RESP_STATUS_YES) {
+                ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+                user.wallet.pass = kWalletPayment_Pass;
+                [ZLUserInfo updateUserInfo:user];
+                
                 [self performSelector:@selector(popViewController) withObject:nil afterDelay:0.5];
                 
                 [SVProgressHUD showSuccessWithStatus:info.msg];

@@ -455,6 +455,30 @@
 }
 
 
+#pragma mark----****----资料提交接口
+/**
+ *  申请跑跑腿资料提交接口
+ *
+ *  @param tag              链接对象
+ *  @param item             提交资料
+ *  @param callback         返回信息
+ */
+-(void)userApplyPaopaoWithTag:(NSObject *)tag item:(PaopaoApplyObject *)item call:(void (^)(APIObject* info))callback
+{
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    if (user.user_id > 0) {
+        NSMutableDictionary *paramDic = [item mj_keyValues];
+        [paramDic setInt:user.user_id forKey:@"user_id"];
+        [self loadAPIWithTag:tag path:@"/paopao/applyPaopao" parameters:paramDic call:^(APIObject *info) {
+            callback(info);
+        }];
+    } else
+        callback([APIObject infoWithReLoginErrorMessage:@"请重新登陆"]);
+}
+
+
+
+
 #pragma mark----****----用户地址管理
 /**
  *   用户收货地址信息列表接口
