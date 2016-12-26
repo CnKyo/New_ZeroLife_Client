@@ -1163,6 +1163,8 @@
 @property (strong,nonatomic) NSString*              odr_shop_name;  //!< 消费商户描述
 @property (assign,nonatomic) float                  odr_amount; //!< 订单商品原价格
 @property (assign,nonatomic) float                  odr_pay_price;  //!< 需支付商品金额
+@property (strong,nonatomic) NSString*              sign;  //!< 消费商户描述
+
 @end
 
 #pragma mark----*****----跑腿分类

@@ -1945,17 +1945,29 @@
         
         NSMutableDictionary* para = [NSMutableDictionary dictionary];
         
+      
+        
         [para setInt:user.user_id forKey:@"user_id"];
         
-        [para setObject:NumberWithFloat(mPayObj.odr_pay_price) forKey:@"pay_amount"];
+        [para setObject:[NSString stringWithFormat:@"%.2f",mPayObj.odr_pay_price] forKey:@"pay_amount"];
         
         [para setInt:mPayType forKey:@"pay_channel"];
         
         [para setInt:mPayObj.odr_id forKey:@"odr_id"];
         
         [para setObject:mPayObj.odr_code forKey:@"odr_code"];
+        [para setObject:mPayObj.sign forKey:@"sign"];
         
-        [self loadAPIWithTag:self path:@"/pay/create_pay" parameters:para call:^(APIObject *info) {
+        NSString *mUri = nil;
+        
+        if (mPayType == ZLPayTypeWithBalance) {
+            mUri = @"/pay/confirm_pay";
+        }else{
+            mUri = @"/pay/create_pay";
+
+        }
+        
+        [self loadAPIWithTag:self path:mUri parameters:para call:^(APIObject *info) {
             
             if (info.code == RESP_STATUS_YES) {
                 

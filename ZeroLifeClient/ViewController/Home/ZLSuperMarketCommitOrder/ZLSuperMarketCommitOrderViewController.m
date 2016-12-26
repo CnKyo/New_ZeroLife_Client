@@ -275,6 +275,7 @@
             ZLGoPayViewController *ZLGoPayVC = [ZLGoPayViewController new];
             ZLGoPayVC.mOrder = [ZLCreateOrderObj new];
             ZLGoPayVC.mOrder = mOrder;
+            ZLGoPayVC.mOrder.sign = self.mPreOrder.sign;
             [self pushViewController:ZLGoPayVC];
             
         }else{

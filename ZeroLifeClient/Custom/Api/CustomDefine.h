@@ -200,7 +200,7 @@ static int const RESP_STATUS_LOGIN                  = 300;             //需要�
 //static NSString* const  kAFAppDotNetApiBaseURLString    = @"http://localhost:8080";
 //static NSString* const  kAFAppDotNetApiExtraURLString    = @"/crkj_zlife/api/app/client";
 
-static NSString* const  kAFAppDotNetApiBaseURLString    = @"http://192.168.1.114";
+static NSString* const  kAFAppDotNetApiBaseURLString    = @"http://192.168.1.120";
 static NSString* const  kAFAppDotNetApiExtraURLString    = @"/api/app/client";
 static NSString* const  kAFAppDotNetImgBaseURLString    = @"http://192.168.1.114/resource";
 

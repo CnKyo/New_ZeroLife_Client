@@ -418,6 +418,8 @@
                 ZLGoPayViewController *ZLGoPayVC = [ZLGoPayViewController new];
                 ZLGoPayVC.mOrder = [ZLCreateOrderObj new];
                 ZLGoPayVC.mOrder = mOrder;
+                ZLGoPayVC.mOrder.sign = mPPTPreOrder.sign;
+
                 [self pushViewController:ZLGoPayVC];
                 
             }else{
@@ -476,6 +478,8 @@
                 ZLGoPayViewController *ZLGoPayVC = [ZLGoPayViewController new];
                 ZLGoPayVC.mOrder = [ZLCreateOrderObj new];
                 ZLGoPayVC.mOrder = mOrder;
+                ZLGoPayVC.mOrder.sign = mPPTPreOrder.sign;
+
                 [self pushViewController:ZLGoPayVC];
                 
             }else{

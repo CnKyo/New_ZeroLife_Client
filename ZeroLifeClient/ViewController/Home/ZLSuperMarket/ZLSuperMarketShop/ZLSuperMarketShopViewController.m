@@ -1293,7 +1293,11 @@ static const CGFloat mTopH = 156;
         [self showErrorStatus:@"请先选择规格！"];
         return;
     }
-    if (ZLAddObj.mExtObj.mGoodsNum<=0) {
+    if (ZLAddObj.mExtObj.mGoodsNum==0) {
+        
+        ZLAddObj.mExtObj.mGoodsNum = 1;
+        
+    }else if (ZLAddObj.mExtObj.mGoodsNum<0){
         [self showErrorStatus:@"请选择数量！"];
         return;
     }
@@ -1354,7 +1358,11 @@ static const CGFloat mTopH = 156;
         [self showErrorStatus:@"请先选择规格！"];
         return;
     }
-    if (ZLAddObj.mExtObj.mGoodsNum<=0) {
+    if (ZLAddObj.mExtObj.mGoodsNum==0) {
+        
+        ZLAddObj.mExtObj.mGoodsNum = 1;
+        
+    }else if (ZLAddObj.mExtObj.mGoodsNum<0){
         [self showErrorStatus:@"请选择数量！"];
         return;
     }

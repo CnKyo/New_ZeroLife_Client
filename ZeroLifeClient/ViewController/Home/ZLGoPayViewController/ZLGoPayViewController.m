@@ -12,6 +12,7 @@
 #import "ZLGoPayPopRedBagView.h"
 #import "ZLGoPaySucsessCell.h"
 #import "CustomDefine.h"
+#import "SecurityPasswordVC.h"
 @interface ZLGoPayViewController ()<UITableViewDelegate,UITableViewDataSource,ZLGoPayCellDelegate,ZLGoPayShareDelegate>
 @property (strong,nonatomic)ZLGoPayPopRedBagView *mPopView;
 @property (nonatomic,strong) ZLGoPayObject *selectModel;
@@ -114,6 +115,26 @@
     
     ZLGoPayObject *mObj = mPayTypeArr[0];
     
+    if (mObj.mPayType == ZLPayTypeWithBalance) {
+        ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+        if ([user.wallet.pass isEqualToString:kWalletPayment_Pass]) {
+            SecurityPasswordAlertView *alertView = [[SecurityPasswordAlertView alloc] init];
+            __strong __typeof(SecurityPasswordAlertView *)strongSelf = alertView;
+            alertView.inputPwdCallBack = ^(NSString* pwd) {
+                [strongSelf close];
+                
+            };
+            [alertView showAlert];
+        } else{
+            [SVProgressHUD showErrorWithStatus:@"请先设置交易安全密码"];
+            [self performSelector:@selector(pushSecurityPasswordVC) withObject:nil afterDelay:0.25];
+            return;
+        }
+        
+    }
+    
+    
+    
     MLLog(@"%@",mPayTypeArr);
     [self showWithStatus:@"正在支付..."];
     [[APIClient sharedClient] ZLSendToPayOrderObj:self.mOrder andPayType:mObj.mPayType block:^(APIObject *mBaseObj) {
@@ -123,11 +144,19 @@
             [self showSuccessStatus:mBaseObj.msg];
             
         }else{
-        
+            
             [self showErrorStatus:mBaseObj.msg];
         }
     }];
+
     
+    
+    
+    
+}
+- (void)pushSecurityPasswordVC{
+    SecurityPasswordVC *vc = [SecurityPasswordVC new];
+    [self pushViewController:vc];
 }
 #pragma mark----****----发红包
 - (void)mRedBag:(UIButton *)sender{
