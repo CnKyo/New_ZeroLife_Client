@@ -265,7 +265,6 @@
 		04D7040A1E0CC68C00BDC9F5 /* TXTimeChoose.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D704091E0CC68C00BDC9F5 /* TXTimeChoose.m */; };
 		92AF8AA63E2B8C882D0429B1 /* libPods-ZeroLifeClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 339DEB89053AF616C6AD0FF3 /* libPods-ZeroLifeClient.a */; };
 		DF00C5221E08FFB800680771 /* SelectedAddressTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF00C5211E08FFB800680771 /* SelectedAddressTableViewCell.m */; };
-		DF0308851DCD65C700E1EAB6 /* SystemSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0308841DCD65C700E1EAB6 /* SystemSettingVC.m */; };
 		DF0308881DCD67ED00E1EAB6 /* UserInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0308871DCD67ED00E1EAB6 /* UserInfoVC.m */; };
 		DF03088D1DCD698900E1EAB6 /* QUPickPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = DF03088A1DCD698900E1EAB6 /* QUPickPhoto.m */; };
 		DF03088E1DCD698900E1EAB6 /* NSObject+PickPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = DF03088C1DCD698900E1EAB6 /* NSObject+PickPhoto.m */; };
@@ -302,6 +301,10 @@
 		DF08E8861DD1C0B2003E4DD9 /* FavoriteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF08E8851DD1C0B2003E4DD9 /* FavoriteTableViewCell.m */; };
 		DF08E8881DD1C39B003E4DD9 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF08E8871DD1C39B003E4DD9 /* CoreText.framework */; };
 		DF1278DB1DDA96A60067AEC5 /* UserPaoPaoRegister_top_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1278DA1DDA96A60067AEC5 /* UserPaoPaoRegister_top_bg.png */; };
+		DF29B6741E10BD3E00CBAA3B /* SystemSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF29B66F1E10BD3E00CBAA3B /* SystemSettingVC.m */; };
+		DF29B6751E10BD3E00CBAA3B /* UserPaoPaoRegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF29B6721E10BD3E00CBAA3B /* UserPaoPaoRegisterVC.m */; };
+		DF29B6761E10BD3E00CBAA3B /* UserPaoPaoRegisterVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF29B6731E10BD3E00CBAA3B /* UserPaoPaoRegisterVC.xib */; };
+		DF29B67A1E10BFEB00CBAA3B /* CreatQRCodeAndBarCodeFromLeon.m in Sources */ = {isa = PBXBuildFile; fileRef = DF29B6791E10BFEB00CBAA3B /* CreatQRCodeAndBarCodeFromLeon.m */; };
 		DF300D101E02816700AC23CC /* bankcar_del@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF300D0E1E02816700AC23CC /* bankcar_del@3x.png */; };
 		DF300D111E02816700AC23CC /* bankcar_del@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF300D0F1E02816700AC23CC /* bankcar_del@2x.png */; };
 		DF300D141E02879C00AC23CC /* UserComplaintUpVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF300D131E02879C00AC23CC /* UserComplaintUpVC.m */; };
@@ -380,8 +383,6 @@
 		DF7D0A1E1DBA0019005A62A7 /* CookDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF7D0A1B1DBA0019005A62A7 /* CookDetailVC.m */; };
 		DF7D0A231DBA0023005A62A7 /* ImageTextTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF7D0A201DBA0023005A62A7 /* ImageTextTableViewCell.m */; };
 		DF7D0A241DBA0023005A62A7 /* TagsTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF7D0A221DBA0023005A62A7 /* TagsTableCell.m */; };
-		DF7F1BD21DCDC1FB00D2242B /* UserPaoPaoRegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF7F1BD01DCDC1FB00D2242B /* UserPaoPaoRegisterVC.m */; };
-		DF7F1BD31DCDC1FB00D2242B /* UserPaoPaoRegisterVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF7F1BD11DCDC1FB00D2242B /* UserPaoPaoRegisterVC.xib */; };
 		DF7F1BE61DCDD0CF00D2242B /* HMSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = DF7F1BE51DCDD0CF00D2242B /* HMSegmentedControl.m */; };
 		DF7F1BED1DCDD5F200D2242B /* gongsi_off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF7F1BE71DCDD5F200D2242B /* gongsi_off@2x.png */; };
 		DF7F1BEE1DCDD5F200D2242B /* gongsi_on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF7F1BE81DCDD5F200D2242B /* gongsi_on@2x.png */; };
@@ -986,8 +987,6 @@
 		339DEB89053AF616C6AD0FF3 /* libPods-ZeroLifeClient.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZeroLifeClient.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF00C5201E08FFB800680771 /* SelectedAddressTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectedAddressTableViewCell.h; sourceTree = "<group>"; };
 		DF00C5211E08FFB800680771 /* SelectedAddressTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectedAddressTableViewCell.m; sourceTree = "<group>"; };
-		DF0308831DCD65C700E1EAB6 /* SystemSettingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemSettingVC.h; sourceTree = "<group>"; };
-		DF0308841DCD65C700E1EAB6 /* SystemSettingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SystemSettingVC.m; sourceTree = "<group>"; };
 		DF0308861DCD67ED00E1EAB6 /* UserInfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoVC.h; sourceTree = "<group>"; };
 		DF0308871DCD67ED00E1EAB6 /* UserInfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoVC.m; sourceTree = "<group>"; };
 		DF0308891DCD698900E1EAB6 /* QUPickPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QUPickPhoto.h; sourceTree = "<group>"; };
@@ -1044,6 +1043,13 @@
 		DF08E8871DD1C39B003E4DD9 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		DF1278DA1DDA96A60067AEC5 /* UserPaoPaoRegister_top_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UserPaoPaoRegister_top_bg.png; sourceTree = "<group>"; };
 		DF1278DC1DDA9B740067AEC5 /* CustomDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomDefine.h; sourceTree = "<group>"; };
+		DF29B66E1E10BD3E00CBAA3B /* SystemSettingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemSettingVC.h; sourceTree = "<group>"; };
+		DF29B66F1E10BD3E00CBAA3B /* SystemSettingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SystemSettingVC.m; sourceTree = "<group>"; };
+		DF29B6711E10BD3E00CBAA3B /* UserPaoPaoRegisterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserPaoPaoRegisterVC.h; sourceTree = "<group>"; };
+		DF29B6721E10BD3E00CBAA3B /* UserPaoPaoRegisterVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserPaoPaoRegisterVC.m; sourceTree = "<group>"; };
+		DF29B6731E10BD3E00CBAA3B /* UserPaoPaoRegisterVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserPaoPaoRegisterVC.xib; sourceTree = "<group>"; };
+		DF29B6781E10BFEB00CBAA3B /* CreatQRCodeAndBarCodeFromLeon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreatQRCodeAndBarCodeFromLeon.h; sourceTree = "<group>"; };
+		DF29B6791E10BFEB00CBAA3B /* CreatQRCodeAndBarCodeFromLeon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreatQRCodeAndBarCodeFromLeon.m; sourceTree = "<group>"; };
 		DF300D0E1E02816700AC23CC /* bankcar_del@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bankcar_del@3x.png"; sourceTree = "<group>"; };
 		DF300D0F1E02816700AC23CC /* bankcar_del@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bankcar_del@2x.png"; sourceTree = "<group>"; };
 		DF300D121E02879C00AC23CC /* UserComplaintUpVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserComplaintUpVC.h; sourceTree = "<group>"; };
@@ -1153,9 +1159,6 @@
 		DF7D0A211DBA0023005A62A7 /* TagsTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagsTableCell.h; sourceTree = "<group>"; };
 		DF7D0A221DBA0023005A62A7 /* TagsTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagsTableCell.m; sourceTree = "<group>"; };
 		DF7D0A251DBA0BA0005A62A7 /* ZeroLifeClient-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZeroLifeClient-Prefix.pch"; sourceTree = "<group>"; };
-		DF7F1BCF1DCDC1FB00D2242B /* UserPaoPaoRegisterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserPaoPaoRegisterVC.h; sourceTree = "<group>"; };
-		DF7F1BD01DCDC1FB00D2242B /* UserPaoPaoRegisterVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserPaoPaoRegisterVC.m; sourceTree = "<group>"; };
-		DF7F1BD11DCDC1FB00D2242B /* UserPaoPaoRegisterVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserPaoPaoRegisterVC.xib; sourceTree = "<group>"; };
 		DF7F1BE41DCDD0CF00D2242B /* HMSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMSegmentedControl.h; sourceTree = "<group>"; };
 		DF7F1BE51DCDD0CF00D2242B /* HMSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMSegmentedControl.m; sourceTree = "<group>"; };
 		DF7F1BE71DCDD5F200D2242B /* gongsi_off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gongsi_off@2x.png"; sourceTree = "<group>"; };
@@ -2453,6 +2456,34 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		DF29B66D1E10BD3E00CBAA3B /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				DF29B66E1E10BD3E00CBAA3B /* SystemSettingVC.h */,
+				DF29B66F1E10BD3E00CBAA3B /* SystemSettingVC.m */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		DF29B6701E10BD3E00CBAA3B /* Paopao */ = {
+			isa = PBXGroup;
+			children = (
+				DF29B6711E10BD3E00CBAA3B /* UserPaoPaoRegisterVC.h */,
+				DF29B6721E10BD3E00CBAA3B /* UserPaoPaoRegisterVC.m */,
+				DF29B6731E10BD3E00CBAA3B /* UserPaoPaoRegisterVC.xib */,
+			);
+			path = Paopao;
+			sourceTree = "<group>";
+		};
+		DF29B6771E10BFEB00CBAA3B /* CreatQRCodeAndBarCodeFromLeon */ = {
+			isa = PBXGroup;
+			children = (
+				DF29B6781E10BFEB00CBAA3B /* CreatQRCodeAndBarCodeFromLeon.h */,
+				DF29B6791E10BFEB00CBAA3B /* CreatQRCodeAndBarCodeFromLeon.m */,
+			);
+			path = CreatQRCodeAndBarCodeFromLeon;
+			sourceTree = "<group>";
+		};
 		DF539F0D1DD598EE00AF228F /* UserCoupon */ = {
 			isa = PBXGroup;
 			children = (
@@ -2936,6 +2967,8 @@
 		DFFAA7501DB744EF001CFBB5 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				DF29B66D1E10BD3E00CBAA3B /* Setting */,
+				DF29B6701E10BD3E00CBAA3B /* Paopao */,
 				DF630D5D1DD462F60076A92C /* IDAuth */,
 				DF98EC311DD2AE2C0006EBFE /* Order */,
 				DF08E8691DD1C072003E4DD9 /* Address */,
@@ -2944,13 +2977,8 @@
 				DFFAA7511DB744EF001CFBB5 /* View */,
 				DF55B4691DBAFE7700F89341 /* ZLUserViewController.h */,
 				DF55B4681DBAFE7700F89341 /* ZLUserViewController.m */,
-				DF0308831DCD65C700E1EAB6 /* SystemSettingVC.h */,
-				DF0308841DCD65C700E1EAB6 /* SystemSettingVC.m */,
 				DF0308861DCD67ED00E1EAB6 /* UserInfoVC.h */,
 				DF0308871DCD67ED00E1EAB6 /* UserInfoVC.m */,
-				DF7F1BCF1DCDC1FB00D2242B /* UserPaoPaoRegisterVC.h */,
-				DF7F1BD01DCDC1FB00D2242B /* UserPaoPaoRegisterVC.m */,
-				DF7F1BD11DCDC1FB00D2242B /* UserPaoPaoRegisterVC.xib */,
 				DF3B4F0B1DF560F200583D24 /* WebTestVC.h */,
 				DF3B4F0C1DF560F200583D24 /* WebTestVC.m */,
 			);
@@ -3173,6 +3201,7 @@
 		DFFAA7531DB744EF001CFBB5 /* OpenSourceLib */ = {
 			isa = PBXGroup;
 			children = (
+				DF29B6771E10BFEB00CBAA3B /* CreatQRCodeAndBarCodeFromLeon */,
 				04D704071E0CC68C00BDC9F5 /* ZLDatePick */,
 				044021A81DF94A4300234066 /* ZLImgBtn */,
 				04721A401DE4569100CE8639 /* StarView */,
@@ -3492,7 +3521,6 @@
 				DFE178DA1DD5901E00E06F21 /* btn_scoreShop.png in Resources */,
 				DF630D191DD442960076A92C /* call_mobile@3x.png in Resources */,
 				DFE178A51DD55A9A00E06F21 /* cell_img_mobile@2x.png in Resources */,
-				DF7F1BD31DCDC1FB00D2242B /* UserPaoPaoRegisterVC.xib in Resources */,
 				DFE178B61DD55E3300E06F21 /* cell_address_add@3x.png in Resources */,
 				DF630D1A1DD442960076A92C /* order_shop_fix.png in Resources */,
 				040917841DCC904B00DB2568 /* ZLSuperMarketShopLeftCellType.xib in Resources */,
@@ -3508,6 +3536,7 @@
 				DF98EC671DD2FCA00006EBFE /* order_paopao_jiedan.png in Resources */,
 				DFE1786B1DD555C100E06F21 /* order_ganxi@2x.png in Resources */,
 				04721A2B1DE4324900CE8639 /* ZLRatingTableViewCell.xib in Resources */,
+				DF29B6761E10BD3E00CBAA3B /* UserPaoPaoRegisterVC.xib in Resources */,
 				DFE1787E1DD556D000E06F21 /* cell_help@3x.png in Resources */,
 				04721A061DE3E66C00CE8639 /* photo_original_def@2x.png in Resources */,
 				DF630D341DD44CE60076A92C /* qianbao_headerBG.png in Resources */,
@@ -3852,7 +3881,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DF0308851DCD65C700E1EAB6 /* SystemSettingVC.m in Sources */,
 				DF98EC411DD2C1DD0006EBFE /* PaoPaoGoodsView.m in Sources */,
 				047219FB1DE3E66C00CE8639 /* HX_VideoContainerVC.m in Sources */,
 				0464E7091DF26B4E00A3F954 /* ThrowLineTool.m in Sources */,
@@ -3930,6 +3958,7 @@
 				DFFAA7641DB744EF001CFBB5 /* CustomScrollVC.m in Sources */,
 				0472A9071DE7E03100D861D2 /* ZLHouseKeepingClearnCell.m in Sources */,
 				DF03088E1DCD698900E1EAB6 /* NSObject+PickPhoto.m in Sources */,
+				DF29B6751E10BD3E00CBAA3B /* UserPaoPaoRegisterVC.m in Sources */,
 				04866B911DD40EB9008DA56B /* ZLSuperMArketSearchGoodsView.m in Sources */,
 				047219F01DE3E66C00CE8639 /* HX_AddPhotoView.m in Sources */,
 				DF08E8831DD1C093003E4DD9 /* FavoriteTVC.m in Sources */,
@@ -3961,6 +3990,7 @@
 				DFA135841DD70C3E00805BA2 /* SouKuanHistoryTVC.m in Sources */,
 				DF630D2B1DD449C10076A92C /* ZLPurseViewController.m in Sources */,
 				047219F41DE3E66C00CE8639 /* HX_AssetContainerVC.m in Sources */,
+				DF29B67A1E10BFEB00CBAA3B /* CreatQRCodeAndBarCodeFromLeon.m in Sources */,
 				04A8DA0D1DDAB1E3000CE048 /* ZLPPTOrderDetailViewController.m in Sources */,
 				041789CB1DDFE40500D55EA7 /* MZTimerLabel.m in Sources */,
 				DF98EC381DD2AE880006EBFE /* OrderGoodsThumbListView.m in Sources */,
@@ -4019,10 +4049,10 @@
 				049A120D1DE95D2A0087238D /* ZLSelectedCityViewController.m in Sources */,
 				DF00C5221E08FFB800680771 /* SelectedAddressTableViewCell.m in Sources */,
 				041657121DD6B218004E7D9A /* ZLRepairsColumsView.m in Sources */,
-				DF7F1BD21DCDC1FB00D2242B /* UserPaoPaoRegisterVC.m in Sources */,
 				04A7631E1DDBFA540061E2B0 /* ZLPPTReleaseRewardCell.m in Sources */,
 				044021AB1DF94A5800234066 /* ZLCustomImgButton.m in Sources */,
 				047219F61DE3E66C00CE8639 /* HX_AssetManager.m in Sources */,
+				DF29B6741E10BD3E00CBAA3B /* SystemSettingVC.m in Sources */,
 				DF630D651DD462F60076A92C /* UserIDAuthTableViewCell.m in Sources */,
 				040D92F41DCAE15300DBE42E /* ZLHomeMessageViewController.m in Sources */,
 				04770EF31DDE99DC008B7505 /* ZLLoginView.m in Sources */,

@@ -728,9 +728,13 @@ static ZLUserInfo *g_user = nil;
 
 @end
 
-//@implementation ZLWalletObj
-//
-//@end
+
+
+
+@implementation OpeningFunctionObject
+@end
+
+
 
 //@implementation ZLUserCommunityObj
 //@end

@@ -68,6 +68,8 @@
                 [SVProgressHUD showWithStatus:@"修改中..."];
                 [[APIClient sharedClient] userInfoEditWithTag:self postItem:_user call:^(APIObject *info) {
                     if (info.code == RESP_STATUS_YES) {
+                        [[NSNotificationCenter defaultCenter] postNotificationName:MyUserNeedUpdateNotification object:nil];
+                        
                         self.isDataEditChaged = NO;
                         
                         [SVProgressHUD showSuccessWithStatus:info.msg];

@@ -11,6 +11,8 @@
 #import "SouKuanHistoryTVC.h"
 #import <JKCategories/UINavigationBar+JKAwesome.h>
 
+#import "CreatQRCodeAndBarCodeFromLeon.h"
+
 @interface SouKuanVC ()
 
 @end
@@ -46,6 +48,23 @@
 
 -(void)initSubViews
 {
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    
+    NSMutableString *str = [NSMutableString new];
+    if (user.user_phone.length > 0)
+        [str appendString:user.user_phone];
+    if (user.user_nick.length > 0)
+        [str appendString:user.user_nick];
+    if (str.length == 0)
+        [str appendString:@"未知"];
+    
+    CGFloat codeWidth = DEVICE_Width;
+    CGFloat codeHeight = codeWidth * 0.7;
+    UIImage *codeImg = IMG(@"userCenterBg.png");
+    if (user.user_qrcode.length > 0)
+        codeImg = [CreatQRCodeAndBarCodeFromLeon generateBarCode:user.user_qrcode size:CGSizeMake(codeWidth, codeHeight) color:[UIColor blackColor] backGroundColor:[UIColor brownColor]];
+
+    
     UIView *superView = self.view;
     int padding = 10;
     UIFont *font = [UIFont systemFontOfSize:15];
@@ -60,8 +79,8 @@
         view.layer.shadowOffset = CGSizeMake(1, 1);
         view.layer.shadowRadius = 2;
         view.layer.shadowOpacity = 0.8;
-        UIImageView *imgView = [view newUIImageViewWithImg:IMG(@"userCenterBg.png")];
-        UILabel *lable = [view newUILableWithText:@"15523424521 张三" textColor:[UIColor grayColor] font:font textAlignment:NSTextAlignmentCenter];
+        UIImageView *imgView = [view newUIImageViewWithImg:codeImg];
+        UILabel *lable = [view newUILableWithText:str textColor:[UIColor grayColor] font:font textAlignment:NSTextAlignmentCenter];
         [imgView makeConstraints:^(MASConstraintMaker *make) {
             make.width.height.equalTo(view.width).multipliedBy(0.7);
             make.centerX.equalTo(view.centerX);
@@ -84,6 +103,7 @@
         make.height.equalTo(aView.width).multipliedBy(1.1);
     }];
 
+    
     UILabel *notelable = [superView newUILableWithText:@"扫一扫，看我有什么" textColor:[UIColor whiteColor] font:font textAlignment:NSTextAlignmentCenter];
     [notelable makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(aView.bottom).offset(padding/2);

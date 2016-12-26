@@ -274,8 +274,13 @@
 @property (assign,nonatomic) int                    user_id;           //!< 用户id
 @property (assign,nonatomic) float                  uwal_balance;       //!< 余额
 @property (assign,nonatomic) int                    uwal_score;     //!< 积分
-@property (strong,nonatomic) NSString *             uwal_state;//!< 钱包状态（normal 正常 locked 锁定）
+@property (strong,nonatomic) NSString *             uwal_state;//!< 钱包状态（NORMAL("NORMAL"), LOCKED("LOCKED")）
 @property (strong,nonatomic) NSString *             pass;//!< 是否有支付密码(NOPASS-无/PASS-有)
+
+@property (assign,nonatomic) int                    score;     //!< 每次签到赠送的积分
+@property (assign,nonatomic) int                    signCount;     //!< 签到天数
+@property (assign,nonatomic) int                    couponCount;     //!< 优惠卷数量统计
+@property (assign,nonatomic) BOOL                   is_sign;     //!< 是否签到(1:已签到；0:未签到)
 @end
 
 
@@ -546,8 +551,10 @@
 
 
 
-#pragma mark----****----用户信息
 
+
+#pragma mark----****----用户信息
+@class OpeningFunctionObject;
 @class WalletObject;
 @class CommunityObject;
 ///
@@ -564,10 +571,12 @@
 @property (strong,nonatomic) NSString*              user_qrcode; //!< 用户二维码图片url
 @property (strong,nonatomic) NSString*              user_emaill; //!< 用户邮箱
 @property (assign,nonatomic) BOOL                   user_is_notify; //!< 是否开启推送消息功能（Y(1), N(0)）
-@property (strong,nonatomic) NSString*              user_add_time; //!< 
+@property (assign,nonatomic) BOOL                   user_is_authent; //!< 是否已经认证（Y(1), N(0)）
+@property (strong,nonatomic) NSString*              user_add_time; //!< 注册时间
 
-@property (nonatomic,strong) WalletObject*           wallet; //!< 用户钱包信息
+@property (nonatomic,strong) WalletObject*          wallet; //!< 用户钱包信息
 @property (nonatomic,strong) CommunityObject*       community; //!< 用户绑定小区信息
+@property (nonatomic,strong) OpeningFunctionObject* openInfo; //!< 开通的信息(跑跑腿)
 
 #pragma mark----****----登录
 
@@ -585,13 +594,33 @@
 @end
 
 
-@interface ZLHomeFunvtionAndBanner : NSObject
 
+/// 用户开通功能信息对象
+@interface OpeningFunctionObject : NSObject
+@property(nonatomic,assign) int                     open_id;         //!< 信息id
+@property(nonatomic,assign) int                     open_type;         //!< 开通类型
+@property(nonatomic,strong) NSString *              open_state;         //!< 状态
+@property(nonatomic,strong) NSString *              open_desc;         //!< 备注
+@property(nonatomic,strong) NSString *              open_time;         //!< 开通时间
+@property(nonatomic,strong) NSString *              close_time;         //!< 关闭时间
+@property(nonatomic,strong) NSString *              open_add_time;         //!< 生成时间
+@property(nonatomic,strong) NSString *              uopen_head;         //!< 头像
+@property(nonatomic,assign) kUserSexType            uopen_sex;         //!< 性别
+@property(nonatomic,strong) NSString *              uopen_name;         //!< 名字
+@property(nonatomic,strong) NSString *              uopen_phone;         //!< 电话
+@property(nonatomic,assign) float                   uopen_deposit;         //!< 保证金
+@property(nonatomic,strong) NSString *              uopen_rank;         //!< 等级
+@end
+
+
+
+
+@interface ZLHomeFunvtionAndBanner : NSObject
 @property (strong,nonatomic) NSArray*              banners;         //!< banner
 @property (strong,nonatomic) NSArray*              functions;       //!< 功能
-
-
 @end
+
+
 
 #pragma mark----****----首页banner
 @interface ZLHomeBanner : NSObject

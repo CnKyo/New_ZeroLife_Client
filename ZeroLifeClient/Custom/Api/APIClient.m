@@ -1033,12 +1033,15 @@
             ZLUserInfo *user = [ZLUserInfo mj_objectWithKeyValues:[info.data objectWithKey:@"user"]];
             CommunityObject *community = [CommunityObject mj_objectWithKeyValues:[info.data objectWithKey:@"community"]];
             WalletObject *wallet = [WalletObject mj_objectWithKeyValues:[info.data objectWithKey:@"wallet"]];
+            OpeningFunctionObject *open = [OpeningFunctionObject mj_objectWithKeyValues:[info.data objectWithKey:@"openInfo"]];
             if (user != nil) {
                 if (community != nil)
                     user.community = community;
                 
                 if (wallet != nil)
                     user.wallet = wallet;
+                if (open != nil)
+                    user.openInfo = open;
                 
                 [ZLUserInfo updateUserInfo:user];
             }

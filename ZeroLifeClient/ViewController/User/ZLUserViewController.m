@@ -62,11 +62,9 @@
     
     //[self.navigationController.navigationBar.subviews[2] setHidden:YES];
     [self.navigationController.navigationBar lt_setBackgroundColor:[UIColor clearColor]];
-    
-    
-    NSString *homeDir = NSHomeDirectory();
-    NSLog(@"%@", homeDir);
 
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUserInfoChange:) name:MyUserInfoChangedNotification object:nil];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -132,7 +130,11 @@
 
 
 
-
+//监测到用户数据修改
+-(void)handleUserInfoChange:(NSNotification *)note
+{
+    [self.tableView reloadData];
+}
 
 
 
@@ -218,12 +220,19 @@
             [cell.userLoginView jk_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
                 [ZLLoginViewController startPresent:self];
             }];
+            
         } else {
             cell.userLoginView.hidden = YES;
             cell.userInfoView.hidden = NO;
             
-            cell.paopaoRegisterView.hidden = NO;
-            cell.paopaoInfoView.hidden = YES;
+            //判断跑跑信息
+            if (user.openInfo == nil) {
+                cell.paopaoRegisterView.hidden = NO;
+                cell.paopaoInfoView.hidden = YES;
+            } else {
+                cell.paopaoRegisterView.hidden = YES;
+                cell.paopaoInfoView.hidden = NO;
+            }
             
             //进入个人信息界面
             [cell.userInfoView jk_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
