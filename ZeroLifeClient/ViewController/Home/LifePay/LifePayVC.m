@@ -9,7 +9,7 @@
 #import "LifePayVC.h"
 #import "MobileRechargeVC.h"
 #import "WuGuanFeePayVC.h"
-
+#import "ZLHydroelectricViewController.h"
 @interface LifePayVC ()
 
 @end
@@ -47,7 +47,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 4;
+    return 3;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -102,10 +102,10 @@
                 textLable.text = @"水电煤";
                 break;
             case 2:
-                imgView.image = [UIImage imageNamed:[NSString iconImgStrOrderType:kOrderClassType_fee_parking]];
-                textLable.text = @"停车费";
-                break;
-            case 3:
+//                imgView.image = [UIImage imageNamed:[NSString iconImgStrOrderType:kOrderClassType_fee_parking]];
+//                textLable.text = @"停车费";
+//                break;
+//            case 3:
                 imgView.image = [UIImage imageNamed:[NSString iconImgStrOrderType:kOrderClassType_fee_mobile]];
                 textLable.text = @"手机充值";
                 break;
@@ -125,8 +125,12 @@
         WuGuanFeePayVC *vc = [[WuGuanFeePayVC alloc] init];
         [self pushViewController:vc];
         
-    } else if (indexPath.row == 3) {
+    } else if (indexPath.row == 2) {
         MobileRechargeVC *vc = [[MobileRechargeVC alloc] init];
+        [self pushViewController:vc];
+    }else{
+    
+        ZLHydroelectricViewController *vc = [[ZLHydroelectricViewController alloc] init];
         [self pushViewController:vc];
     }
 }

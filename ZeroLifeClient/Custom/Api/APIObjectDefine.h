@@ -1578,3 +1578,79 @@
 @end
 
 
+
+
+#pragma mark----聚合基本数据结构
+@interface mJHBaseData : NSObject
+
+@property (nonatomic,assign) int        mState;
+
+@property (nonatomic,assign) BOOL        mSucess;
+
+@property (nonatomic,strong) id         mData;
+
+
+@property (nonatomic,strong) NSString   *mMessage;
+
+
+-(id)initWithObj:(NSDictionary*)obj;
+
+-(void)fetchIt:(NSDictionary*)obj;
+
++(mJHBaseData *)infoWithError:(NSString*)error;
+
+@end
+
+#pragma mark----聚合缴费数据结构
+@class ZLJHProvince;
+@class ZLJHCity;
+@class ZLJHPayType;
+@class ZLJHPayUnint;
+@interface ZLHydroelectricPreOrder : NSObject
+
+@property (nonatomic,assign) ZLJHProvince        *mProvince;///省份
+
+@property (nonatomic,assign) ZLJHCity        *mCity;///城市
+
+@property (nonatomic,assign) ZLJHPayType        *mPaytype;///缴费类型
+
+@property (nonatomic,assign) ZLJHPayUnint        *mPayUnint;///缴费单位
+
+@property (nonatomic,strong) NSString   *mPayAmount;///缴费户号
+
+@property (nonatomic,strong) NSString   *mBalance;///代缴金额
+
+@property (nonatomic,strong) NSString   *mType;///类型
+
+@end
+#pragma mark----聚合省份数据结构
+@interface ZLJHProvince : NSObject
+
+@property (nonatomic,strong) NSString   *provinceId;///省份id
+@property (nonatomic,strong) NSString   *provinceName;///省份名称
+
+
+@end
+#pragma mark----聚合城市数据结构
+@interface ZLJHCity : NSObject
+
+@property (nonatomic,strong) NSString   *cityId;///城市id
+@property (nonatomic,strong) NSString   *cityName;///城市名称
+@property (nonatomic,strong) NSString   *provinceId;///省份id
+@end
+#pragma mark----聚合缴费类型数据结构
+@interface ZLJHPayType : NSObject
+
+@property (nonatomic,strong) NSString   *payProjectId;///类型id
+@property (nonatomic,strong) NSString   *payProjectName;///类型名称
+@property (nonatomic,strong) NSString   *cityId;///城市id
+@property (nonatomic,strong) NSString   *provinceId;///省份id
+@end
+#pragma mark----聚合缴费单位数据结构
+@interface ZLJHPayUnint : NSObject
+@property (nonatomic,strong) NSString   *cityId;///城市id
+@property (nonatomic,strong) NSString   *payProjectId;///类型id
+@property (nonatomic,strong) NSString   *payUnitId;///缴费单位
+@property (nonatomic,strong) NSString   *payUnitName;///缴费单位名称
+@property (nonatomic,strong) NSString   *provinceId;///省份id
+@end

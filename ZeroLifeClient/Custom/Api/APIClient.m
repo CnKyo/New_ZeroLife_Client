@@ -2601,4 +2601,156 @@
     
 }
 
+#pragma mark----****---- 水电煤缴费查询接口
+/**
+ 水电煤缴费查询接口
+ 
+ @param mType 选择类型
+ @param mPara 参数
+ @param block 返回值
+ */
+- (void)ZLFindPublic:(ZLHydroelectricType)mType andPara:(NSDictionary *)mPara block:(void(^)(mJHBaseData *resb,NSArray *mArr))block{
+
+    
+    NSString *posturl = nil;
+    if (mType == ZLHydroelectricTypeWithProvince) {
+        posturl = @"province";
+
+    }else if (mType == ZLHydroelectricTypeWithCity){
+        posturl = @"city";
+
+    }else if (mType == ZLHydroelectricTypeWithPayType){
+        posturl = @"project";
+
+    }else if(mType == ZLHydroelectricTypeWithPayUnint){
+        posturl = @"unit";
+
+    }else{
+        posturl = @"query";
+
+    }
+    
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    
+    if (user.user_id > 0) {
+        [[JHJsonRequst sharedHDNetworking] postUrl:posturl parameters:mPara call:^(mJHBaseData *info) {
+            
+            NSMutableArray *tempArr = [NSMutableArray new];
+            [tempArr removeAllObjects];
+            if (info.mSucess) {
+                
+                if (mType == ZLHydroelectricTypeWithProvince) {
+
+                    for (NSDictionary *dic in info.mData) {
+                        [tempArr addObject:[ZLJHProvince mj_objectWithKeyValues:dic]];
+                    }
+                    
+                }else if (mType == ZLHydroelectricTypeWithCity){
+                    for (NSDictionary *dic in info.mData) {
+                        [tempArr addObject:[ZLJHCity mj_objectWithKeyValues:dic]];
+                    }
+                }else if (mType == ZLHydroelectricTypeWithPayType){
+                    for (NSDictionary *dic in info.mData) {
+                        [tempArr addObject:[ZLJHPayType mj_objectWithKeyValues:dic]];
+                    }
+                }else if(mType == ZLHydroelectricTypeWithPayUnint){
+                    
+                    for (NSDictionary *dic in info.mData) {
+                        [tempArr addObject:[ZLJHPayUnint mj_objectWithKeyValues:dic]];
+                    }
+                }else{
+                    
+                }
+                
+                block ( info ,tempArr);
+                
+            }else{
+                block ( info ,nil);
+            }
+            
+        }];
+
+    }else{
+        block([mJHBaseData infoWithError:@"请重新登陆"],nil);
+        
+    }
+  
+    
+}
+#pragma mark----****---- 水电煤缴费查询接口
+/**
+ 水电煤缴费查询接口
+ 
+ @param mPara 参数
+ @param block 返回值
+ */
+- (void)ZLInquireOrder:(ZLHydroelectricPreOrder *)mPara block:(void(^)(mJHBaseData *resb,NSString *mBalance))block{
+    
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    [para setObject:mPara.mProvince.provinceName forKey:@"provname"];
+    [para setObject:mPara.mCity.cityName forKey:@"cityname"];
+    [para setObject:mPara.mType forKey:@"type"];
+    [para setObject:mPara.mPayUnint.payUnitId forKey:@"code"];
+    [para setObject:mPara.mPayUnint.payUnitName forKey:@"name"];
+    [para setObject:mPara.mPaytype.payProjectId forKey:@"cardid"];
+    
+    [para setObject:mPara.mPayAmount forKey:@"account"];
+    [para setObject:JH_KEY forKey:@"key"];
+
+    
+    [[JHJsonRequst sharedHDNetworking] postUrl:@"mbalance" parameters:para call:^(mJHBaseData *info) {
+        
+        NSMutableArray *tempArr = [NSMutableArray new];
+        [tempArr removeAllObjects];
+        if (info.mSucess) {
+            
+            block ( info,[[[[info.mData objectForKey:@"result"] objectForKey:@"balances"] objectAtIndex:0] objectForKey:@"balance"]);
+
+            
+        }else{
+            block ( info ,nil);
+        }
+        
+    }];
+}
+#pragma mark----****---- 水电煤缴费接口
+/**
+ 水电煤缴费接口
+ 
+ @param mPara 参数
+ @param block 返回值
+ */
+- (void)ZLGoPayHyelectricOrder:(ZLHydroelectricPreOrder *)mPara block:(void(^)(mJHBaseData *resb))block{
+    
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    [para setObject:mPara.mProvince.provinceName forKey:@"provname"];
+    [para setObject:mPara.mCity.cityName forKey:@"cityname"];
+    [para setObject:mPara.mType forKey:@"type"];
+    [para setObject:mPara.mPayUnint.payUnitId forKey:@"code"];
+    [para setObject:mPara.mPayUnint.payUnitName forKey:@"name"];
+    [para setObject:mPara.mPaytype.payProjectId forKey:@"cardid"];
+    
+    [para setObject:mPara.mPayAmount forKey:@"account"];
+    [para setObject:JH_KEY forKey:@"key"];
+    
+    [[JHJsonRequst sharedHDNetworking] postUrl:@"order" parameters:para call:^(mJHBaseData *info) {
+        
+        
+        NSMutableArray *tempArr = [NSMutableArray new];
+        [tempArr removeAllObjects];
+        if (info.mSucess) {
+            
+//            for (NSDictionary *dic in info.mData) {
+//                [tempArr addObject:[[JHPayData alloc]initWithObj:dic]];
+//            }
+            
+            block ( info );
+            
+        }else{
+            block ( info );
+        }
+        
+    }];
+
+}
 @end

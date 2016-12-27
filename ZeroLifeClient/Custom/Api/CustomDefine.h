@@ -32,6 +32,9 @@
 #define  KEY_PASSWORD @"com.company.app.password"
 #define AMAP_KEY @"7970dba38f00e9b34aed65fb0bd29194"
 
+#define  JH_KEY @"29c41f5f6374ad7a7a6bc635b9e06cfa"
+
+#define  JH_API @"http://op.juhe.cn/ofpay/public/province"
 
 #define ZLDefaultGoodsImg           [UIImage imageNamed:@"ZLDefault_Img"]
 #define ZLDefaultShopImg           [UIImage imageNamed:@"ZLDefault_Shop"]
@@ -447,5 +450,14 @@ typedef enum{
     ///3:无支付密码
     ZLBalancePayStatus_NOPASS = 3,
 }ZLBalancePayStatus;///[余额]余额支付创建状态
+
+
+typedef enum {
+    ZLHydroelectricTypeWithProvince,///选择省份
+    ZLHydroelectricTypeWithCity,///选择市区县
+    ZLHydroelectricTypeWithPayType,///选择缴费类型
+    ZLHydroelectricTypeWithPayUnint,///选择缴费单位
+    ZLHydroelectricTypeWithFind,///查询
+} ZLHydroelectricType;///选择的类型
 
 #endif /* CustomDefine_h */

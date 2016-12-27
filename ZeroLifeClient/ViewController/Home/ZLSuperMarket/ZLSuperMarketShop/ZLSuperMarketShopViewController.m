@@ -846,10 +846,48 @@ static const CGFloat mTopH = 156;
         return;
     }
     
+    NSMutableArray *mPayArr = [NSMutableArray new];
+    NSMutableDictionary *mPara = [NSMutableDictionary new];
+    NSString *mContent = @"";
     
-    ZLSuperMarketCommitOrderViewController *ZLCommitVC = [ZLSuperMarketCommitOrderViewController new];
+    for (LKDBHelperGoodsObj *mGoods in mShopCarArrSource) {
+        [mPara setInt:mGoods.mGoodsId forKey:@"pro_id"];
+        [mPara setInt:mGoods.mExtObj.mGoodsNum forKey:@"odrg_number"];
+        [mPara setInt:mGoods.mCampId forKey:@"cam_gid"];
+        
+        for (int i =0;i<mGoods.mGoodsSKU.count;i++) {
+            ZLSpeObj *mSpe = mGoods.mGoodsSKU[i];
+            
+            if (mSpe.mSku.sta_required == 1) {
+                [mPara setInt:mSpe.mSku.sku_id forKey:@"sku_id"];
+            }
+            
+            if (i==mGoods.mGoodsSKU.count-1) {
+                mContent = [mContent stringByAppendingString:[NSString stringWithFormat:@"%@",mSpe.mSpeGoodsName]];
+                
+            }else{
+                mContent = [mContent stringByAppendingString:[NSString stringWithFormat:@"%@,",mSpe.mSpeGoodsName]];
+            }
+        }
+        [mPara setObject:mContent forKey:@"odrg_spec"];
+        
+        [mPayArr addObject:mPara];
+    }
+    
+    [self showWithStatus:@"正在提交订单..."];
+    [[APIClient sharedClient] ZLCommitPreOrder:self.mShopObj.shop_id andGoodsArr:[Util arrToJson:mPayArr] block:^( APIObject *mBaseObj,ZLPreOrderObj *mPreOrder) {
+        if (mBaseObj.code == RESP_STATUS_YES) {
+            [self dismiss];
+            ZLSuperMarketCommitOrderViewController *ZLCommitVC = [ZLSuperMarketCommitOrderViewController new];
+            ZLCommitVC.mPreOrder = [ZLPreOrderObj new];
+            ZLCommitVC.mPreOrder =  mPreOrder;
+            ZLCommitVC.mShopId = self.mShopObj.shop_id;
+            [self pushViewController:ZLCommitVC];
+        }else{
+            [self showErrorStatus:mBaseObj.msg];
+        }
+    }];
 
-    [self pushViewController:ZLCommitVC];
 }
 
 #pragma mark----****----加载搜索view
