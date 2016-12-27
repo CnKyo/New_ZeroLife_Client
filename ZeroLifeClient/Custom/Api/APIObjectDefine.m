@@ -1155,8 +1155,15 @@ bool m_bind = NO;
 @end
 
 
-
+@implementation ZLCommitPPTPreOrder
+@end
 
 @implementation PaopaoApplyObject
 @end
 
+
+@implementation SWxPayInfo
+
+
+
+@end

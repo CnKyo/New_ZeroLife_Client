@@ -2080,12 +2080,12 @@
 #pragma mark----****----发起支付
 /**
  发起支付
- 
+ @param mGoPayType 去支付对象
  @param mPayObj 支付订单对象
  @param mPayType 支付类型
  @param block 返回值
  */
-- (void)ZLSendToPayOrderObj:(ZLCreateOrderObj *)mPayObj andPayType:(ZLPayType)mPayType block:(void (^)(APIObject *mBaseObj))block{
+- (void)ZLSendToPayOrderObjGoPay:(ZLGoPayType)mGoPayType andPayObj:(ZLCreateOrderObj *)mPayObj andPayType:(ZLPayType)mPayType block:(void (^)(APIObject *mBaseObj,ZLCreateOrderObj* mPayOrderObj))block{
 
     
     ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
@@ -2094,32 +2094,50 @@
         
         NSMutableDictionary* para = [NSMutableDictionary dictionary];
         
+        NSString *mUri = nil;
+        
+        if (mGoPayType == ZLGoPayTypeWithConfirmPay) {///去支付
+            mUri = @"/pay/confirm_pay";
+      
+            [para setObject:mPayObj.pass forKey:@"pass"];
+
+        }else{
+            mUri = @"/pay/create_pay";
+           
+            [para setObject:mPayObj.notify forKey:@"notify"];
+        }
+    
         [para setInt:user.user_id forKey:@"user_id"];
         
-        [para setObject:NumberWithFloat(mPayObj.odr_pay_price) forKey:@"pay_amount"];
+        [para setObject:[NSString stringWithFormat:@"%.2f",mPayObj.odr_pay_price] forKey:@"pay_amount"];
         
         [para setInt:mPayType forKey:@"pay_channel"];
         
         [para setInt:mPayObj.odr_id forKey:@"odr_id"];
         
         [para setObject:mPayObj.odr_code forKey:@"odr_code"];
+        [para setObject:mPayObj.sign forKey:@"sign"];
+
+     
         
-        [self loadAPIWithTag:self path:@"/pay/create_pay" parameters:para call:^(APIObject *info) {
+        [self loadAPIWithTag:self path:mUri parameters:para call:^(APIObject *info) {
             
             if (info.code == RESP_STATUS_YES) {
                 
-                block(info);
+                
+                
+                block(info,[ZLCreateOrderObj mj_objectWithKeyValues:info.data]);
                 
             }else{
                 
-                block(info);
+                block(info,nil);
                 
             }
             
         }];
         
     }else{
-        block([APIObject infoWithReLoginErrorMessage:@"请重新登陆"]);
+        block([APIObject infoWithReLoginErrorMessage:@"请重新登陆"],nil);
         
     }
 

@@ -112,14 +112,14 @@
         mHeaderView.delegate = self;
         
         NSString *mConnectP = [NSString stringWithFormat:@"%@-%@",self.mPreOrder.mAddress.addr_name,self.mPreOrder.mAddress.addr_phone];
-        NSString *mAddress = [NSString stringWithFormat:@"%@%@%@%@",self.mPreOrder.mAddress.addr_province_val,self.mPreOrder.mAddress.addr_city_val,self.mPreOrder.mAddress.addr_county_val,self.mPreOrder.mAddress.addr_address];
+        NSString *mAddress = [NSString stringWithFormat:@"%@",self.mPreOrder.mAddress.addr_address];
         
         if (mConnectP.length <= 1 || [mConnectP isEqualToString:@"(null)-(null)"]) {
             
             mConnectP = @"点击选择收货地址";
 
         }
-        if (mAddress.length <= 0 || [mAddress isEqualToString:@"(null)(null)(null)(null)"]) {
+        if (mAddress.length <= 0 || [mAddress isEqualToString:@"(null)"]) {
             mAddress = @"点击选择收货地址";
         }
         
@@ -275,6 +275,8 @@
             ZLGoPayViewController *ZLGoPayVC = [ZLGoPayViewController new];
             ZLGoPayVC.mOrder = [ZLCreateOrderObj new];
             ZLGoPayVC.mOrder = mOrder;
+            ZLGoPayVC.mOrder.sign = self.mPreOrder.sign;
+            ZLGoPayVC.mShopId = self.mShopId;
             [self pushViewController:ZLGoPayVC];
             
         }else{

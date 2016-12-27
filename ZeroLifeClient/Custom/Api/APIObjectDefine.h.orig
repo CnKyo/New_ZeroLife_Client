@@ -1237,21 +1237,6 @@
 @property (assign,nonatomic) float                  odr_amount; //!< 订单商品原价格
 @property (assign,nonatomic) float                  odr_pay_price;  //!< 需支付商品金额
 @property (strong,nonatomic) NSString*              sign;  //!< 消费商户描述
-@property (strong,nonatomic) NSString*              pass;  //!< 消费商户描述
-@property (strong,nonatomic) NSString*              notify;  //!< 消费商户描述
-
-
-
-@property (strong,nonatomic) NSString*              sn;  ///[支付宝]支付订单号
-@property (strong,nonatomic) NSString*              packages;  ///[支付宝]签名数据(支付宝支付)
-@property (assign,nonatomic) int                    pay_channel;  ///[支付宝]支付方式(支付方式 1支付宝；2：微信；3：余额 )
-@property (assign,nonatomic) int                    prepay_id;  ///[微信]商品ID(微信支付)
-@property (strong,nonatomic) NSString*              out_trade_no;  ///[微信]支付订单编号(微信支付)
-@property (strong,nonatomic) NSString*              nonce_str;  ///[微信]随机字符串(微信支付)
-@property (strong,nonatomic) NSString*              result_msg;  ///[微信]时间戳(微信支付)
-@property (strong,nonatomic) NSString*              timeStamp;  ///[余额]余额支付创建状态（SUCCESS/FAIL/NOPASS）
-@property (strong,nonatomic) NSString*              result_code;  ///[余额]余额支付创建失败原因（当result_code为NOPASS时，表示无支付密码）
-
 
 @end
 
@@ -1483,6 +1468,7 @@
 
 @end
 
+<<<<<<< HEAD
 ///发布跑腿预订单对象
 @class AddressObject;
 @interface ZLCommitPPTPreOrder : NSObject
@@ -1512,9 +1498,7 @@
 @property (strong,nonatomic) NSString*              mRemark;  ///备注
 
 
-@end
-
-
+=======
 
 
 /// 申请跑跑腿资料提交对象
@@ -1528,44 +1512,7 @@
 @property (strong,nonatomic) NSString*              mat_document_url; //!< 证件的URL
 @property (strong,nonatomic) NSString*              mat_hand_url; //!< 手持证件URL
 @property (strong,nonatomic) NSString*              mat_back_url; //!< 背面图片URL
-@end
-
-
-@interface SWxPayInfo : NSObject
-/**
- *  支付方式
- */
-@property (nonatomic,strong) NSString*  mPayType;
-/**
- *  随机字符串
- */
-@property (nonatomic,strong) NSString*  noncestr;
-/**
- *  商户号
- */
-@property (nonatomic,strong) NSString*  partnerid;
-
-/**
- *  商户订单号
- */
-@property (nonatomic,strong) NSString*  out_trade_no;
-/**
- *  预支付交易会话ID
- */
-@property (nonatomic,strong) NSString*  prepayid;
-/**
- *  签名
- */
-@property (nonatomic,strong) NSString*  sign;
-/**
- *  时间戳
- */
-@property (nonatomic,assign) int        mtimeStamp;
-
-@property (nonatomic,strong) NSString*  appid;
-
-@property (nonatomic,strong) NSString*  package;
-
+>>>>>>> 647b7a13362fd2113e6161a8e1c7b53034c361c4
 @end
 
 

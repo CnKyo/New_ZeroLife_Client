@@ -285,6 +285,7 @@
             ZLSuperMarketCommitOrderViewController *ZLCommitVC = [ZLSuperMarketCommitOrderViewController new];
             ZLCommitVC.mPreOrder = [ZLPreOrderObj new];
             ZLCommitVC.mPreOrder =  mPreOrder;
+            ZLCommitVC.mShopId = self.mShopId;
             [self pushViewController:ZLCommitVC];
         }else{
             [self showErrorStatus:mBaseObj.msg];

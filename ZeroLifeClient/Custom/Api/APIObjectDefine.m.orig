@@ -10,6 +10,8 @@
 #import "UIViewController+Additions.h"
 #import "ZLLoginViewController.h"
 
+
+
 #pragma mark -
 #pragma mark NSDictionary
 @implementation NSDictionary (QUAdditions)
@@ -55,6 +57,11 @@
         return self;
 }
 
++(NSString *)compIsNone:(NSString *)str
+{
+    return str.length>0 ? str : @"无";
+}
+
 +(NSString *)houseIsOwner:(BOOL)is_owner
 {
     return is_owner ? @"房主" : @"租客";
@@ -84,7 +91,106 @@
     return str;
 }
 
++(NSString *)strDesWithOrderState:(NSString *)state
+{
+    NSString *str = @"";
+    if ([state isEqualToString:kOrderState_UCANCEL]) {
+        str = @"取消订单";
+    }
+    else if ([state isEqualToString:kOrderState_PAYMENTED]) {
+        str = @"去支付";
+    }
+    else if ([state isEqualToString:kOrderState_DIFFPAYED]) {
+        str = @"付差价";
+    }
+    else if ([state isEqualToString:kOrderState_EVALUATE]) {
+        str = @"去评价";
+    }
+    else if ([state isEqualToString:kOrderState_MAINTAIN]) {
+        str = @"去维权";
+    }
+    else if ([state isEqualToString:kOrderState_SERPOINT]) {
+        str = @"选服务商";
+    }
+
+    return str;
+}
+
++(NSString *)iconImgStrOrderType:(kOrderClassType)type
+{
+    NSString *str = @"";
+    switch (type) {
+        case kOrderClassType_fix:
+            str = @"icon_order_fix.png";
+            break;
+        case kOrderClassType_product:
+            str = @"icon_order_product.png";
+            break;
+        case kOrderClassType_dryclean:
+            str = @"icon_order_dryclean.png";
+            break;
+        case kOrderClassType_paopao:
+            str = @"icon_order_paopao.png";
+            break;
+        case kOrderClassType_paopao_apply:
+            str = @"icon_order_paopao_apply.png";
+            break;
+        case kOrderClassType_fee_mobile:
+            str = @"icon_order_fee_mobile.png";
+            break;
+        case kOrderClassType_fee_peroperty:
+            str = @"icon_order_fee_peroperty.png";
+            break;
+        case kOrderClassType_balance_present:
+            str = @"icon_order_balance_present.png";
+            break;
+        case kOrderClassType_balance_recharge:
+            str = @"icon_order_balance_recharge.png";
+            break;
+        case kOrderClassType_balance_transfer:
+            str = @"icon_order_balance_transfer.png";
+            break;
+        case kOrderClassType_balance_collection:
+            str = @"icon_order_balance_collection.png";
+            break;
+        case kOrderClassType_fee_sdq:
+            str = @"icon_order_fee_sdq.png";
+            break;
+        case kOrderClassType_fee_parking:
+            str = @"icon_order_fee_parking.png";
+            break;
+        default:
+            str = @"icon_order_product.png";
+            break;
+    }
+    return str;
+}
+
+
++ (NSString*)linkUrl:(NSString*)str
+{
+    NSString *newStr = @"";
+    if (str.length > 0) {
+        if ([str hasPrefix:@"http://"] || [str hasPrefix:@"https://"])
+            newStr =  str;
+        else
+            newStr = [NSString stringWithFormat:@"%@%@", kAFAppDotNetImgBaseURLString, str];
+    }
+    return newStr;
+}
+
 @end
+
+
+
+@implementation NSURL (AFObjectDefine)
++ (NSURL*)imageurl:(NSString*)str
+{
+    return [NSURL URLWithString:[NSString linkUrl:str]];
+}
+@end
+
+
 
 @implementation NSObject(QUAdd)
 +(void)arrInsertToDB:(NSArray *)arr
@@ -276,6 +382,14 @@
     return info;
 }
 
++(APIObject *)infoWithSuccessMessage:(NSString *)successMsg
+{
+    APIObject *info = [[APIObject alloc] init];
+    info.msg       = successMsg;
+    info.code = RESP_STATUS_YES;
+    return info;
+}
+
 -(void)setCode:(int)code
 {
     _code = code;
@@ -297,18 +411,86 @@
 
 
 @implementation RegionObject
+@end
 
+@implementation WalletRecordObject
 @end
 
 
+@implementation PropertyFeeObject
+@end
+
+
+#pragma mark----****----用户订单
+@implementation OrderCommentObject
+@end
+
+
+@implementation OrderGoodsObject
+@end
+
+
+@implementation OrderCampaignObject
+@end
+
+
+@implementation OrderPayObject
+@end
+
+
+
+@implementation OrderRepairBidObject
+@end
+
+@implementation OrderRepairObject
++ (NSDictionary *)mj_objectClassInArray
+{
+    return @{@"bid_list" : @"OrderRepairBidObject"};
+}
+@end
 
 @implementation OrderObject
-
++ (NSDictionary *)mj_objectClassInArray
+{
+    return @{@"goods" : @"OrderGoodsObject",
+             @"cam_list" : @"OrderCampaignObject"};
+}
 @end
 
 
 
 
+
+@implementation PreApplyObject
+
+-(NSString *)getCustomSpecWithMoney:(float)money
+{
+    NSString *moneyStr = [NSString stringWithFormat:@"%.2f", money];
+    NSString *str = [self.odrg_spec stringByReplacingOccurrencesOfString:@"{$}" withString:moneyStr];
+    return str;
+}
+@end
+
+
+@implementation PrePaopaoApplyObject
++ (BOOL)isContainParent
+{
+    return YES;
+}
+@end
+
+@implementation PrePresentApplyObject
++ (BOOL)isContainParent
+{
+    return YES;
+}
+@end
+
+
+
+
+
+#pragma mark----****----用户地址房屋
 @implementation AddressObject
 +(AddressObject *)defaultAddress
 {
@@ -336,6 +518,46 @@
     if (_addr_address.length > 0)
         [str appendString:_addr_address];
     return str;
+}
+
+-(NSMutableString *)getProvinceCityCountyAddressStr11
+{
+    NSMutableString *str = [self getProvinceCityCountyStr];
+    if (_address.length > 0)
+        [str appendString:_address];
+    return str;
+}
+
++(AddressObject *)itemWithMapPOI:(AMapPOI *)tagItem
+{
+    AddressObject *item = [AddressObject new];
+    item.addr_province_val = tagItem.province;
+    item.addr_city_val = tagItem.city;
+    item.addr_county_val = tagItem.district;
+    item.address = tagItem.address;
+    item.addr_address = [item getProvinceCityCountyAddressStr11];
+    item.cmut_name = tagItem.name;
+    item.addr_lat = tagItem.location.latitude;
+    item.addr_lng = tagItem.location.longitude;
+    
+    return item;
+}
+
++(AddressObject *)itemWithCommunity:(CommunityObject *)tagItem
+{
+    AddressObject *item = [AddressObject new];
+    item.addr_province = tagItem.cmut_province;
+    item.addr_city = tagItem.cmut_city;
+    item.addr_county = tagItem.cmut_county;
+    item.addr_county_val = tagItem.gion_name;
+    item.addr_address = tagItem.cmut_address;
+    item.address = tagItem.cmut_address;
+    item.cmut_id = tagItem.cmut_id;
+    item.cmut_name = tagItem.cmut_name;
+    item.addr_lat = tagItem.cmut_lat;
+    item.addr_lng = tagItem.cmut_lng;
+    
+    return item;
 }
 
 @end
@@ -380,7 +602,7 @@
 @end
 
 
-
+#pragma mark----****----小区
 @implementation CommunityObject
 @end
 
@@ -395,11 +617,30 @@
 
 
 
+@implementation ComplaintObject
+@end
+
+
 @implementation WalletObject
 @end
 
 
+@implementation ProductFocusObject
+@end
+
+
 @implementation CouponObject
+//- (id)mj_newValueFromOldValue:(id)oldValue property:(MJProperty *)property
+//{
+//    if ([property.name isEqualToString:@"cuc_overdue"]) {
+//        if (oldValue == nil)
+//            return @"";
+//        double aa = [oldValue doubleValue];
+//        return [NSDate dateStrWithTimeInterval:aa];
+//    }
+//    
+//    return oldValue;
+//}
 @end
 
 
@@ -544,54 +785,49 @@ static ZLUserInfo *g_user = nil;
 
 @end
 
-//@implementation ZLWalletObj
-//
-//@end
+
+
+
+@implementation OpeningFunctionObject
+@end
+
+
 
 //@implementation ZLUserCommunityObj
 //@end
 @implementation ZLHomeFunvtionAndBanner
-
-
-
 @end
 
 
 @implementation ZLHomeBanner
-
-
-
 @end
+
+
+
 @implementation ZLHomeFunctions
-
-
-
 @end
+
+
 
 @implementation ZLHomeObj
-
-
-
 @end
+
+
 
 @implementation ZLHomeAdvList
-
-
-
 @end
+
+
 
 @implementation ZLHomeCompainNoticeList
-
-
-
 @end
 
-@implementation ZLHomeCommunity
+
+//@implementation ZLHomeCommunity
+//@end
 
 
 
-@end
-<<<<<<< HEAD
 @implementation ZLAPPInfo
 {
     
@@ -673,128 +909,259 @@ bool m_bind = NO;
     block(info,[ZLAPPInfo ZLCurrentAppInfo]);
 }
 @end
+
+
+
 @implementation ZLAppSet
-
-
-
 @end
+
+
 @implementation ZLAPPMethod
-
-
-
 @end
 
 
 @implementation ZLShopHomePage
-
-
-
 @end
+
+
 @implementation ZLShopHomeClassify
-
-
-
 @end
+
+
 @implementation ZLShopHomeCampaign
-
-
-
 @end
+
+
+
 @implementation ZLShopHomeShopList
-
-
-
 @end
+
+
 @implementation ZLShopHomeShopObj
-
-
-
 @end
 
 
 
 @implementation ZLShopObj
-
-
-
 @end
+
+
 @implementation ZLShopMsg
-
-
-
 @end
+
+
 @implementation ZLShopClassify
-
-
-
 @end
+
+
 @implementation ZLShopCoupon
-
-
-
 @end
+
+
 @implementation ZLShopCampain
-
-
-
 @end
+
 
 @implementation ZLShopLeftTableArr
-
-
-
 @end
+
+
+
 @implementation ZLShopGoodsList
-
-
-
 @end
+
+
 @implementation ZLGoodsWithClass
 + (NSDictionary *)mj_objectClassInArray{
 
     return @{@"skus":@"ZLGoodsSKU"};
 }
-
-
 @end
+
+
+
 @implementation ZLGoodsSKU
-
-
-
 @end
+
+
 @implementation ZLGoodsWithCamp
-
-
-
 @end
+
+
 @implementation ZLGoodsDetail
-
-
-
++ (NSDictionary *)mj_objectClassInArray{
+    
+    return @{@"images":@"ZLGoodsDetailImg"};
+}
 @end
+
+
 @implementation ZLGoodsDetailImg
-
-
-
 @end
+
 
 @implementation ZLGoodsSpeList
+@end
 
 
+@implementation ZLSpeObj
+@end
+
+
+
+
+
+
+@implementation ZLAddShopCarExObj
+@end
+
+
+@implementation ZLFixClassExtObj : NSObject
+@end
+
+
+
+@implementation ZLFixSubExtObj
+@end
+
+
+
+@implementation ZLHomeServicePerson
+@end
+
+
+@implementation ZLHomeMsgObj
+
++ (NSDictionary *)mj_objectClassInArray{
+    
+    return @{@"msgList":@"ZLMessageObj"};
+}
 
 @end
-@implementation ZLSpeObj
+
+
+@implementation ZLMessageObj
+@end
 
 
 
+@implementation ZLHomeAnouncementListObj
+
++ (NSDictionary *)mj_objectClassInArray{
+    
+    return @{@"list":@"ZLHomeAnouncement"};
+}
+
+@end
+
+
+@implementation ZLHomeAnouncement
+@end
+
+@implementation LKDBHelperGoodsObj
+
++ (NSString *)getPrimaryKey{
+
+    return @"mSKUID";
+}
+
+@end
+
+
+@implementation ZLPreOrderObj
++ (NSDictionary *)mj_objectClassInArray{
+    
+    return @{@"campaigns":@"OrderCampaignObject",@"coupons":@"CouponObject",@"goods":@"OrderGoodsObject",@"classify":@"ZLPPTClassObj"};
+}
+
+@end
+//@implementation ZLPreOrderGoods
+//
+//
+//
+//@end
+//@implementation ZLPreOrderCoupons
+//
+//
+//
+//@end
+//@implementation ZLPreOrderCampains
+//
+//
+//
+//@end
+
+@implementation ZLCreateOrderObj
+@end
+
+
+
+
+@implementation ZLPPTHomeClassList
++ (NSDictionary *)mj_objectClassInArray{
+    
+    return @{@"classifyList":@"ZLPPTClassObj"};
+}
+@end
+@implementation ZLPPTClassObj
+@end
+
+
+
+@implementation ZLPPTTopObj
++ (NSDictionary *)mj_objectClassInArray{
+    
+    return @{@"list":@"ZLPPTRKLObj"};
+}
+@end
+@implementation ZLPPTRKLObj
+@end
+
+
+@implementation ZLPPTRewardList
++ (NSDictionary *)mj_objectClassInArray{
+    
+    return @{@"list":@"ZLPPTRewardObj"};
+}
+@end
+@implementation ZLPPTRewardObj
+@end
+
+
+@implementation ZLCreatePreOrder
++ (NSDictionary *)mj_objectClassInArray{
+    
+    return @{@"coupons":@"CouponObject",@"goods":@"ZLCommitFixObj"};
+}
+@end
+
+
+@implementation ZLCommitFixObj
+@end
+
+
+
+
+@implementation ZLRunningmanHomeList
++ (NSDictionary *)mj_objectClassInArray{
+    
+    return @{@"list":@"ZLRunningmanHomeOrder"};
+}
+@end
+
+
+
+@implementation ZLRunningmanHomeOrder
+@end
+
+
+<<<<<<< HEAD
+@implementation ZLCommitPPTPreOrder
 @end
 =======
 
 
-
-
-
-@implementation ExternalPlatformObject
+@implementation PaopaoApplyObject
 @end
 
->>>>>>> a930975d62b042910dda038a313db52896eb3362
+>>>>>>> 647b7a13362fd2113e6161a8e1c7b53034c361c4

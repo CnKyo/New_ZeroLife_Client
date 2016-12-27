@@ -12,4 +12,7 @@
 ///购物车数据源
 @property (strong,nonatomic)ZLPreOrderObj *mPreOrder;
 
+///店铺ID
+@property (assign,nonatomic)int mShopId;
+
 @end

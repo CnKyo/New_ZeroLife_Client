@@ -12,4 +12,7 @@
 
 @property (strong,nonatomic) ZLCreateOrderObj *mOrder;
 
+///店铺ID
+@property (assign,nonatomic)int mShopId;
+
 @end

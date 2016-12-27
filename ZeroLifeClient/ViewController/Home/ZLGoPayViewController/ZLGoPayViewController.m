@@ -12,6 +12,7 @@
 #import "ZLGoPayPopRedBagView.h"
 #import "ZLGoPaySucsessCell.h"
 #import "CustomDefine.h"
+#import "SecurityPasswordVC.h"
 @interface ZLGoPayViewController ()<UITableViewDelegate,UITableViewDataSource,ZLGoPayCellDelegate,ZLGoPayShareDelegate>
 @property (strong,nonatomic)ZLGoPayPopRedBagView *mPopView;
 @property (nonatomic,strong) ZLGoPayObject *selectModel;
@@ -114,20 +115,76 @@
     
     ZLGoPayObject *mObj = mPayTypeArr[0];
     
+    [self createOrder:mObj];
+    
+    
+}
+- (void)createOrder:(ZLGoPayObject *)mOrder{
+    [self showWithStatus:@"正在支付..."];
+    [[APIClient sharedClient] ZLSendToPayOrderObjGoPay:ZLPayTypeWithCreatePay andPayObj:self.mOrder andPayType:mOrder.mPayType block:^(APIObject *mBaseObj,ZLCreateOrderObj* mPayOrderObj) {
+        
+        if (mBaseObj.code == RESP_STATUS_YES) {
+            self.mOrder.sign = [mBaseObj.data objectForKey:@"sign"];
+
+            [self showSuccessStatus:mBaseObj.msg];
+            if (mOrder.mPayType == ZLPayTypeWithBalance) {
+                
+                ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+                
+                if ([user.wallet.pass isEqualToString:kWalletPayment_Pass]) {
+                    SecurityPasswordAlertView *alertView = [[SecurityPasswordAlertView alloc] init];
+                    __strong __typeof(SecurityPasswordAlertView *)strongSelf = alertView;
+                    alertView.inputPwdCallBack = ^(NSString* pwd) {
+                        [strongSelf close];
+                        self.mOrder.pass = pwd;
+                        [self commitOrder:mOrder];
+                        
+                    };
+                    [alertView showAlert];
+                } else{
+                    [SVProgressHUD showErrorWithStatus:@"请先设置交易安全密码"];
+                    [self performSelector:@selector(pushSecurityPasswordVC) withObject:nil afterDelay:0.25];
+                    return;
+                }
+                
+            }else{
+                [self commitOrder:mOrder];
+            }
+
+        }else{
+            
+            [self showErrorStatus:mBaseObj.msg];
+        }
+    }];
+
+}
+- (void)commitOrder:(ZLGoPayObject *)mOrder{
+
     MLLog(@"%@",mPayTypeArr);
     [self showWithStatus:@"正在支付..."];
-    [[APIClient sharedClient] ZLSendToPayOrderObj:self.mOrder andPayType:mObj.mPayType block:^(APIObject *mBaseObj) {
+    [[APIClient sharedClient] ZLSendToPayOrderObjGoPay:ZLGoPayTypeWithConfirmPay andPayObj:self.mOrder andPayType:mOrder.mPayType block:^(APIObject *mBaseObj,ZLCreateOrderObj* mPayOrderObj) {
         
         if (mBaseObj.code == RESP_STATUS_YES) {
             
             [self showSuccessStatus:mBaseObj.msg];
-            
+            [LKDBHelperGoodsObj deleteWithWhere:[NSString stringWithFormat:@"%d",self.mShopId]];
+            [self performSelector:@selector(mPopAction) withObject:nil afterDelay:0.25];
         }else{
-        
+            
             [self showErrorStatus:mBaseObj.msg];
         }
     }];
-    
+
+}
+- (void)mPopAction{
+    [self popViewController_3];
+
+}
+
+
+- (void)pushSecurityPasswordVC{
+    SecurityPasswordVC *vc = [SecurityPasswordVC new];
+    [self pushViewController:vc];
 }
 #pragma mark----****----发红包
 - (void)mRedBag:(UIButton *)sender{

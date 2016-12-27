@@ -60,6 +60,8 @@
                     ZLGoPayViewController *ZLGoPayVC = [ZLGoPayViewController new];
                     ZLGoPayVC.mOrder = [ZLCreateOrderObj new];
                     ZLGoPayVC.mOrder = mOrder;
+                    ZLGoPayVC.mOrder.sign = _item.sign;
+
                     [self pushViewController:ZLGoPayVC];
                     
                     [self showSuccessStatus:mBaseObj.msg];

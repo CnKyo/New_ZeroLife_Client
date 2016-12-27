@@ -21,8 +21,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    
+
+    self.navigationItem.title = @"我的评价";
+
     [self addTableView];
     
     UINib   *nib = [UINib nibWithNibName:@"ZLPPTRateCell" bundle:nil];

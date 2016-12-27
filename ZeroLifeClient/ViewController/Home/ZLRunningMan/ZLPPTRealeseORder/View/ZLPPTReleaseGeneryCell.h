@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "APIObjectDefine.h"
 
 /**
  设置代理
@@ -15,7 +16,7 @@
 
 @optional
 ///办理时间代理方法
-- (void)ZLPPTReleaseGeneryCellWithWorkTimeBtnClicked;
+- (void)ZLPPTReleaseGeneryCellWithWorkTimeBtnClicked:(NSString *)mTime;
 ///送达地址代理方法
 - (void)ZLPPTReleaseGeneryCellWithArriveTimeBtnClicked;
 
@@ -69,6 +70,7 @@
 ///设置代理
 @property (strong, nonatomic) id<ZLPPTReleaseGeneryCellDelegate>delegate;
 
+@property (strong,nonatomic) ZLCommitPPTPreOrder *mPreOrder;
 
 @end
 

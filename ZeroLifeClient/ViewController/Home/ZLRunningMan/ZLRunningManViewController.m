@@ -16,15 +16,19 @@
 #import "ZLPPTMyOrderViewController.h"
 #import "ZLPPTRateViewController.h"
 #import "UserPaoPaoRegisterVC.h"
-@interface ZLRunningManViewController ()<UITableViewDelegate,UITableViewDataSource,ZLRunningManHomeCellDelegate,ZLRunningManCellDelegate,ZLRuuningManHomeHeaderSectionViewDelegate>
+#import "ZLCustomSegView.h"
+
+@interface ZLRunningManViewController ()<UITableViewDelegate,UITableViewDataSource,ZLRunningManHomeCellDelegate,ZLRunningManCellDelegate,ZLRuuningManHomeHeaderSectionViewDelegate,ZLCustomSegViewDelegate>
 
 @end
 
 @implementation ZLRunningManViewController
 {
 
+    ZLCustomSegView *mSecondSectionView;
+
     ZLRuuningManHomeHeaderSectionView *mFirstSectionView;
-    ZLRuuningManHomeHeaderSectionView *mSecondSectionView;
+//    ZLRuuningManHomeHeaderSectionView *mSecondSectionView;
 
     ZLPPTHomeClassList *mClassObj;
 
@@ -95,39 +99,38 @@
 }
 - (void)initSecondSectionView:(NSArray *)mData{
     
-    NSMutableArray *mImgArr = [NSMutableArray new];
     NSMutableArray *mTTArr = [NSMutableArray new];
-
+    NSMutableArray *mImgArr = [NSMutableArray new];
+    
     for (ZLPPTClassObj *mClass in mData) {
-        
-//        NSData *mdata = [NSData dataWithContentsOfURL:[NSURL imageurl:mClass.cls_image]];
-        
-        UIImageView *mImg = [UIImageView new];
-        [mImg sd_setImageWithURL:[NSURL imageurl:mClass.cls_image] placeholderImage:[UIImage imageNamed:@"ZLPPT_DShort"]];
- 
-        [mImgArr addObject:mImg.image];
         [mTTArr addObject:mClass.cls_name];
-
+        [mImgArr addObject:mClass.cls_image];
+        
     }
+    
+    mSecondSectionView = [ZLCustomSegView initViewType:ZLCustomSegViewTypeTextAndImage andTextArr:mTTArr andImgArr:mImgArr];
+    mSecondSectionView.delegate = self;
+    mSecondSectionView.frame = CGRectMake(0, 0, DEVICE_Width, 80);
+    
 //    NSArray *mImgArr =@[IMG(@"ZLPPT_All"), IMG(@"ZLPPT_DFlower"), IMG(@"ZLPPT_DOut_Buy"), IMG(@"ZLPPT_DBuy"), IMG(@"ZLPPT_DShort"),IMG(@"ZLPPT_DBuy"), IMG(@"ZLPPT_DShort"),IMG(@"ZLPPT_DShort")];
 
-    mSecondSectionView = [ZLRuuningManHomeHeaderSectionView initSecondView];
-    mSecondSectionView.frame = CGRectMake(0, 0, DEVICE_Width, 130);
-    
-    HMSegmentedControl *seg = [[HMSegmentedControl alloc] initWithSectionImages:mImgArr
-                                                          sectionSelectedImages:mImgArr
-                                                              titlesForSections:mTTArr];
-    seg.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
-    seg.selectionIndicatorHeight = 2.0f;
-    seg.titleTextAttributes = @{NSFontAttributeName : [UIFont systemFontOfSize:15], NSForegroundColorAttributeName : [UIColor grayColor]};
-    seg.selectedTitleTextAttributes = @{NSForegroundColorAttributeName : COLOR_NavBar};
-    seg.selectionIndicatorColor = COLOR_NavBar;
-    [mSecondSectionView.mSectionView addSubview:seg];
-    [seg addTarget:self action:@selector(segmentedControlChangedValue:) forControlEvents:UIControlEventValueChanged];
-    [seg makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.top.equalTo(mSecondSectionView.mSectionView);
-        make.height.equalTo(60);
-    }];
+//    mSecondSectionView = [ZLRuuningManHomeHeaderSectionView initSecondView];
+//    mSecondSectionView.frame = CGRectMake(0, 0, DEVICE_Width, 130);
+//    
+//    HMSegmentedControl *seg = [[HMSegmentedControl alloc] initWithSectionImages:mImgArr
+//                                                          sectionSelectedImages:mImgArr
+//                                                              titlesForSections:mTTArr];
+//    seg.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
+//    seg.selectionIndicatorHeight = 2.0f;
+//    seg.titleTextAttributes = @{NSFontAttributeName : [UIFont systemFontOfSize:15], NSForegroundColorAttributeName : [UIColor grayColor]};
+//    seg.selectedTitleTextAttributes = @{NSForegroundColorAttributeName : COLOR_NavBar};
+//    seg.selectionIndicatorColor = COLOR_NavBar;
+//    [mSecondSectionView.mSectionView addSubview:seg];
+//    [seg addTarget:self action:@selector(segmentedControlChangedValue:) forControlEvents:UIControlEventValueChanged];
+//    [seg makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.right.top.equalTo(mSecondSectionView.mSectionView);
+//        make.height.equalTo(60);
+//    }];
 
     [self initStaticData];
 
@@ -151,15 +154,15 @@
     
     
 }
-- (void)segmentedControlChangedValue:(HMSegmentedControl *)segmentedControl {
-    
-    MLLog(@"Selected index %ld (via UIControlEventValueChanged)", (long)segmentedControl.selectedSegmentIndex);
-    
-    NSInteger mIndex = segmentedControl.selectedSegmentIndex;
-    
-    [self loadTableData:mIndex];
-    
-}
+//- (void)segmentedControlChangedValue:(HMSegmentedControl *)segmentedControl {
+//    
+//    MLLog(@"Selected index %ld (via UIControlEventValueChanged)", (long)segmentedControl.selectedSegmentIndex);
+//    
+//    NSInteger mIndex = segmentedControl.selectedSegmentIndex;
+//    
+//    [self loadTableData:mIndex];
+//    
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -188,7 +191,7 @@
     if (section == 0) {
         return 40;
     }else{
-        return 90;
+        return 80;
     }
     
 }
@@ -334,4 +337,15 @@
     
 }
 
+#pragma mark----****----选择了哪一个代理方法
+/**
+ 选择了哪一个
+ 
+ @param mIndex 返回索引
+ */
+- (void)ZLCustomSegViewDidBtnSelectedWithIndex:(NSInteger)mIndex{
+    MLLog(@"%ld",(long)mIndex);
+    [self loadTableData:mIndex];
+
+}
 @end
