@@ -16,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="412"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="411.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="411"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fKn-VH-GeY" userLabel="View1">
@@ -219,7 +219,7 @@
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Oib-p5-Zx9" secondAttribute="height" multiplier="1:1" id="aaa-NC-mEu"/>
                                         </constraints>
-                                        <state key="normal" title="Button1"/>
+                                        <state key="normal" backgroundImage="ZLFix_UploadImg"/>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="手持身份证正面" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MBo-E2-x9C">
                                         <rect key="frame" x="0.0" y="93.5" width="93.5" height="37"/>
@@ -248,7 +248,7 @@
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Mft-cr-E8r" secondAttribute="height" multiplier="1:1" id="jRG-TK-XBi"/>
                                         </constraints>
-                                        <state key="normal" title="Button3"/>
+                                        <state key="normal" backgroundImage="ZLFix_UploadImg"/>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="身份证反面" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wd0-qf-Ha6">
                                         <rect key="frame" x="0.0" y="93.5" width="93.5" height="37"/>
@@ -276,7 +276,7 @@
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="q8m-ee-wtc" secondAttribute="height" multiplier="1:1" id="H7n-aC-sX6"/>
                                         </constraints>
-                                        <state key="normal" title="Button2"/>
+                                        <state key="normal" backgroundImage="ZLFix_UploadImg"/>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="身份证正面" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NC6-le-1UD">
                                         <rect key="frame" x="0.0" y="93" width="93" height="37.5"/>
@@ -361,6 +361,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="ZLFix_UploadImg" width="110" height="110"/>
         <image name="shimingrenzheng_on.png" width="18" height="18"/>
     </resources>
 </document>

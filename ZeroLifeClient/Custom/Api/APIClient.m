@@ -365,14 +365,8 @@
                     
                     NSString *full_path = nil;
                     
-                    if ([path isEqualToString:kFileUploadPath_Orders]) {
-                        
-                        for (NSDictionary *dic in info.data) {
-                            full_path = [dic objectWithKey:@"name"];
-                        }
-                        
-                    }else{
-                        full_path = [info.data objectWithKey:@"name"];
+                    for (NSDictionary *dic in info.data) {
+                        full_path = [dic objectWithKey:@"name"];
                     }
                     
                     
