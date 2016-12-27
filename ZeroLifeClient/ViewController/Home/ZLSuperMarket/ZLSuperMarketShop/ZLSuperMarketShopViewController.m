@@ -161,6 +161,7 @@ static const CGFloat mTopH = 156;
 }
 - (void)loadData{
     [self showWithStatus:@"正在加载..."];
+    
     [[APIClient sharedClient] ZLGetShopMsgWithShopType:1 andShopId:self.mShopObj.shop_id block:^(APIObject *mBaseObj, ZLShopObj *mShop,ZLShopLeftTableArr *mLeftTabArr) {
         
         [mLeftDataArr removeAllObjects];
@@ -697,10 +698,20 @@ static const CGFloat mTopH = 156;
  */
 - (void)ZLSuperMarketCoupBtnSelected{
 
-    ZLWebViewViewController *mWebvc = [ZLWebViewViewController new];
-    mWebvc.mUrl = mShopObj.mShopCoupon.cup_url;
     
-    [self pushViewController:mWebvc];
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    if (user.user_id < 0) {
+        [APIObject infoWithReLoginErrorMessage:@"登录之后才能领取哦～"];
+    }else{
+        ZLWebViewViewController *mWebvc = [ZLWebViewViewController new];
+        mWebvc.mUrl = [NSString stringWithFormat:@"%@/shop/coupon_wap?shop_id=%d&user_id=%d",[[APIClient sharedClient] currentUrl],self.mShopObj.shop_id,[ZLUserInfo ZLCurrentUser].user_id];
+        
+        [self pushViewController:mWebvc];
+    }
+
+    
+    
+    
     
 }
 #pragma mark----****----查看评价按钮
@@ -1408,16 +1419,24 @@ static const CGFloat mTopH = 156;
     [mShopCarArr addObject:ZLAddObj];
     
     [self hiddenSpeView];
-    [self.mAddSkuArray removeAllObjects];
     
     NSMutableArray *mPayArr = [NSMutableArray new];
     NSMutableDictionary *mPara = [NSMutableDictionary new];
     NSString *mContent = @"";
-    
+
+    for (ZLSpeObj *mSP in self.mAddSkuArray) {
+        if (mSP.mSku.sta_required == 1) {
+            [mPara setInt:mSP.mSku.sku_id forKey:@"sku_id"];
+        }
+
+    }
+    [self.mAddSkuArray removeAllObjects];
+
+
     for (LKDBHelperGoodsObj *mGoods in mShopCarArr) {
         [mPara setInt:mGoods.mGoodsId forKey:@"pro_id"];
-        [mPara setInt:mGoods.mExtObj.mGoodsNum forKey:@"num"];
-        [mPara setInt:mGoods.mCampId forKey:@"cam_id"];
+        [mPara setInt:mGoods.mExtObj.mGoodsNum forKey:@"odrg_number"];
+        [mPara setInt:mGoods.mCampId forKey:@"cam_gid"];
         
         for (int i =0;i<mGoods.mGoodsSKU.count;i++) {
             ZLSpeObj *mSpe = mGoods.mGoodsSKU[i];
@@ -1433,7 +1452,7 @@ static const CGFloat mTopH = 156;
                 mContent = [mContent stringByAppendingString:[NSString stringWithFormat:@"%@,",mSpe.mSpeGoodsName]];
             }
         }
-        [mPara setObject:mContent forKey:@"standard_val_note"];
+        [mPara setObject:mSKUname forKey:@"odrg_spec"];
         
         [mPayArr addObject:mPara];
     }
@@ -1770,6 +1789,8 @@ static const CGFloat mTopH = 156;
         
         mCampSubView.mTitle.text = @"无";
         mCampSubView.mContent.text = @"暂无活动";
+        mCampSubView.mContent.textColor = [UIColor whiteColor];
+        mCampSubView.backgroundColor = [UIColor clearColor];
         [mMoreCampView.mCampainView addSubview:mCampSubView];
     }
 

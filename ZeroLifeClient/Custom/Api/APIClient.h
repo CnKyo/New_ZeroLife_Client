@@ -32,6 +32,8 @@ typedef void (^TableShareSdkBlock)(int totalpage, NSArray *tableArr, APIShareSdk
 + (instancetype)sharedClient;
 
 
+- (NSString *)currentUrl;
+
 /**
  *  清除所有的所属组链接
  *
@@ -410,5 +412,15 @@ typedef void (^TableShareSdkBlock)(int totalpage, NSArray *tableArr, APIShareSdk
  @param block 返回值
  */
 - (void)ZLGoPayHyelectricOrder:(ZLHydroelectricPreOrder *)mPara block:(void(^)(mJHBaseData *resb))block;
+
+#pragma mark----****----获取店铺优惠卷
+/**
+ 获取店铺优惠卷
+
+ @param mShopId 店铺id
+ @param block 返回值
+ */
+- (void)ZLGetShopCoup:(int)mShopId block:(void(^)(APIObject *resb,NSString *mUrl))block;
+
 
 @end

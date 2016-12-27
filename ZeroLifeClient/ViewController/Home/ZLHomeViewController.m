@@ -563,7 +563,30 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if (tableView == self.mTableView) {
-        [self showCoupView];
+//        [self showCoupView];
+        
+        if (indexPath.section == 1) {
+            if (mComDataSourceArr.count <=0 && mAdvDataSourceArr.count <= 0) {
+                
+            }else if (mComDataSourceArr && mAdvDataSourceArr.count <= 0){
+                
+                ZLHomeCompainNoticeList *mCampain = mComDataSourceArr[indexPath.row];
+                ZLWebViewViewController *vc = [ZLWebViewViewController new];
+//                vc.mUrl = mCampain.adv_click_url;
+                vc.hidesBottomBarWhenPushed = YES;
+
+                [self pushViewController:vc];
+            }else{
+                ZLHomeAdvList *mAdv = mAdvDataSourceArr[indexPath.row];
+                ZLWebViewViewController *vc = [ZLWebViewViewController new];
+                vc.mUrl = mAdv.adv_click_url;
+                vc.hidesBottomBarWhenPushed = YES;
+
+                [self pushViewController:vc];
+            }
+
+        }
+        
     }else{
         [self hiddenCoupView];
     }

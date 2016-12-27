@@ -59,7 +59,10 @@
     });
     return _sharedClient;
 }
+- (NSString *)currentUrl{
 
+    return [NSString stringWithFormat:@"%@%@",kAFAppDotNetApiBaseURLString,kAFAppDotNetApiExtraURLString];
+}
 - (instancetype)initWithBaseURL:(NSURL *)url {
     self = [super initWithBaseURL:url];
     if (self) {
@@ -2753,4 +2756,47 @@
     }];
 
 }
+
+#pragma mark----****----获取店铺优惠卷
+/**
+ 获取店铺优惠卷
+ 
+ @param mShopId 店铺id
+ @param block 返回值
+ */
+- (void)ZLGetShopCoup:(int)mShopId block:(void(^)(APIObject *resb,NSString *mUrl))block{
+
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    
+    if (user.user_id > 0) {
+        
+        NSMutableDictionary* para = [NSMutableDictionary dictionary];
+        
+        [para setInt:[ZLUserInfo ZLCurrentUser].user_id forKey:@"user_id"];
+        [para setInt:mShopId forKey:@"shop_id"];
+
+        MLLog(@"%@",[ZLUserInfo ZLCurrentUser]);
+        [self loadAPIWithTag:self path:@"/shop/coupon_wap" parameters:para call:^(APIObject *info) {
+            
+            if (info.code == RESP_STATUS_YES) {
+                
+                block(info,nil);
+                
+            }else{
+                
+                block(info,nil);
+                
+            }
+            
+        }];
+        
+    }else{
+        block([APIObject infoWithReLoginErrorMessage:@"请重新登陆"],nil);
+        
+    }
+}
+
+
 @end
+
+

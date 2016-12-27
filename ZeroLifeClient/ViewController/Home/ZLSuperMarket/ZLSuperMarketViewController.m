@@ -13,6 +13,7 @@
 #import "ZLSuperMarketSearchView.h"
 #import "ZLSuperMarketSearchViewController.h"
 #import "ZLSuperMarketShopViewController.h"
+#import "ZLWebViewViewController.h"
 @interface ZLSuperMarketViewController ()<UITableViewDelegate,UITableViewDataSource,ZLSupermarketBannerCellDelegate>
 
 @end
@@ -32,6 +33,7 @@
     
 
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -255,6 +257,12 @@
     }else if (indexPath.section == 1){
     
         ZLShopHomeCampaign *mCampain = mCampainArr[indexPath.row];
+        
+        ZLWebViewViewController *vc = [ZLWebViewViewController new];
+        vc.mUrl = mCampain.adv_click_url;
+
+        [self pushViewController:vc];
+
         
     }else{
         ZLSuperMarketShopViewController *ZLSuperMarketShopVC = [ZLSuperMarketShopViewController new];

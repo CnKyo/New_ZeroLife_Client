@@ -60,6 +60,7 @@
 
     
     [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0]];
+    [activityView stopAnimating];
 }
 
 - (void)initNaviBar{
