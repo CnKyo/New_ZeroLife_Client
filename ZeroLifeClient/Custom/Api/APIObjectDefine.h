@@ -629,7 +629,7 @@
 
 #pragma mark----****----登录
 
-- (BOOL)isNeedLogin;    //!< 需要登录
++ (BOOL)isNeedLogin;    //!< 需要登录
 - (BOOL)ZLUserIsValid;  //!< 用户信息实效
 
 

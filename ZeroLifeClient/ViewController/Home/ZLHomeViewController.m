@@ -114,13 +114,9 @@
 #pragma mark----****----用户需要更新数据
 -(void)handleUserInfoNeedChange:(NSNotification *)note
 {
-//    MemberObject *item = [MemberObject currentUser];
-//    [[APIClient sharedClient] findInfoWithTag:self member_id:item.member_id call:^(MemberObject *item, APIObject *info) {
-//        if (item != nil) {
-//            [MemberObject updateUserInfo:item];
-//            [[NSNotificationCenter defaultCenter] postNotificationName:MyUserInfoChangedNotification object:nil];
-//        }
-//    }];
+    [[APIClient sharedClient] userInfoWithTag:self call:^(ZLUserInfo *user, APIObject *info) {
+        
+    }];
 }
 
 -(void)handleUserInfoChange:(NSNotification *)note

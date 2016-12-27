@@ -384,7 +384,102 @@
 }
 
 
+#pragma mark----****----用户登录注册管理
+- (void)ZLLoginWithPhone:(NSString *)mPhone andPwd:(NSString *)mPwd block:(void(^)(APIObject *mBaseObj,ZLUserInfo *mUser))block{
+    
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    [para setObject:mPhone forKey:@"acc_phone"];
+    [para setObject:mPwd forKey:@"acc_pass"];
+    [para setObject:@"ios" forKey:@"sys_t"];
+    [para setObject:[Util getAppVersion] forKey:@"app_v"];
+    [para setObject:[Util getAPPBuildNum] forKey:@"sys_v"];
+    
+    [self loadAPIWithTag:self path:@"/user/user_login" parameters:para call:^(APIObject *info) {
+        if (info.code == RESP_STATUS_YES) {
+            ZLUserInfo *user = [ZLUserInfo mj_objectWithKeyValues:[info.data objectWithKey:@"user"]];
+            CommunityObject *community = [CommunityObject mj_objectWithKeyValues:[info.data objectWithKey:@"community"]];
+            WalletObject *wallet = [WalletObject mj_objectWithKeyValues:[info.data objectWithKey:@"wallet"]];
+            OpeningFunctionObject *open = [OpeningFunctionObject mj_objectWithKeyValues:[info.data objectWithKey:@"openInfo"]];
+            if (user != nil) {
+                if (community != nil)
+                    user.community = community;
+                
+                if (wallet != nil)
+                    user.wallet = wallet;
+                if (open != nil)
+                    user.openInfo = open;
+                
+                [ZLUserInfo updateUserInfo:user];
+            }
+            block(info, user);
+        } else
+            block(info, nil);
+    }];
+}
+
+
+#pragma mark----****----注册
+- (void)ZLRegistPhone:(NSString *)mPhone andPwd:(NSString *)mPwd andCode:(NSString *)mCode block:(void(^)(APIObject *mBaseObj))block{
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    [para setObject:mPhone forKey:@"acc_phone"];
+    [para setObject:mPwd forKey:@"acc_pass"];
+    [para setObject:mCode forKey:@"v_code"];
+    
+    [self loadAPIWithTag:self path:@"/user/user_register" parameters:para call:^(APIObject *info) {
+        block(info);
+    }];
+}
+#pragma mark----****----获取验证码
+- (void)ZLGetVerigyCode:(NSString *)mCode andType:(int)mtype block:(void(^)(APIObject *mBaseObj))block{
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    [para setObject:mCode forKey:@"mobile"];
+    [para setObject:NumberWithInt(mtype) forKey:@"type"];
+    
+    
+    [self loadAPIWithTag:self path:@"/common/get_sms_code" parameters:para call:^(APIObject *info) {
+        block(info);
+    }];
+}
+
+
 #pragma mark----****----用户资料
+/**
+ *  获取用户资料接口
+ *
+ *  @param tag      链接对象
+ *  @param callback 返回信息
+ */
+- (void)userInfoWithTag:(NSObject *)tag call:(void(^)(ZLUserInfo *user, APIObject *info))callback
+{
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    if (user.user_id > 0) {
+        NSMutableDictionary* paramDic = [NSMutableDictionary dictionary];
+        [paramDic setInt:user.user_id forKey:@"user_id"];
+        [self loadAPIWithTag:self path:@"/user/user_login" parameters:paramDic call:^(APIObject *info) {
+            if (info.code == RESP_STATUS_YES) {
+                ZLUserInfo *user = [ZLUserInfo mj_objectWithKeyValues:[info.data objectWithKey:@"user"]];
+                CommunityObject *community = [CommunityObject mj_objectWithKeyValues:[info.data objectWithKey:@"community"]];
+                WalletObject *wallet = [WalletObject mj_objectWithKeyValues:[info.data objectWithKey:@"wallet"]];
+                OpeningFunctionObject *open = [OpeningFunctionObject mj_objectWithKeyValues:[info.data objectWithKey:@"openInfo"]];
+                if (user != nil) {
+                    if (community != nil)
+                        user.community = community;
+                    
+                    if (wallet != nil)
+                        user.wallet = wallet;
+                    if (open != nil)
+                        user.openInfo = open;
+                    
+                    [ZLUserInfo updateUserInfo:user];
+                }
+                callback(user, info);
+            } else
+                callback(nil, info);
+        }];
+    } else
+        callback(nil, [APIObject infoWithReLoginErrorMessage:@"请重新登陆"]);
+}
+
 /**
  *  用户资料编辑接口
  *
@@ -1160,62 +1255,7 @@
 
 
 
-#pragma mark----****----用户登录注册管理
-- (void)ZLLoginWithPhone:(NSString *)mPhone andPwd:(NSString *)mPwd block:(void(^)(APIObject *mBaseObj,ZLUserInfo *mUser))block{
-    
-    NSMutableDictionary *para = [NSMutableDictionary new];
-    [para setObject:mPhone forKey:@"acc_phone"];
-    [para setObject:mPwd forKey:@"acc_pass"];
-    [para setObject:@"ios" forKey:@"sys_t"];
-    [para setObject:[Util getAppVersion] forKey:@"app_v"];
-    [para setObject:[Util getAPPBuildNum] forKey:@"sys_v"];
-    
-    [self loadAPIWithTag:self path:@"/user/user_login" parameters:para call:^(APIObject *info) {
-        if (info.code == RESP_STATUS_YES) {
-            ZLUserInfo *user = [ZLUserInfo mj_objectWithKeyValues:[info.data objectWithKey:@"user"]];
-            CommunityObject *community = [CommunityObject mj_objectWithKeyValues:[info.data objectWithKey:@"community"]];
-            WalletObject *wallet = [WalletObject mj_objectWithKeyValues:[info.data objectWithKey:@"wallet"]];
-            OpeningFunctionObject *open = [OpeningFunctionObject mj_objectWithKeyValues:[info.data objectWithKey:@"openInfo"]];
-            if (user != nil) {
-                if (community != nil)
-                    user.community = community;
-                
-                if (wallet != nil)
-                    user.wallet = wallet;
-                if (open != nil)
-                    user.openInfo = open;
-                
-                [ZLUserInfo updateUserInfo:user];
-            }
-            block(info, user);
-        } else
-            block(info, nil);
-    }];
-}
 
-   
-#pragma mark----****----注册
-- (void)ZLRegistPhone:(NSString *)mPhone andPwd:(NSString *)mPwd andCode:(NSString *)mCode block:(void(^)(APIObject *mBaseObj))block{
-    NSMutableDictionary *para = [NSMutableDictionary new];
-    [para setObject:mPhone forKey:@"acc_phone"];
-    [para setObject:mPwd forKey:@"acc_pass"];
-    [para setObject:mCode forKey:@"v_code"];
-    
-    [self loadAPIWithTag:self path:@"/user/user_register" parameters:para call:^(APIObject *info) {
-        block(info);
-    }];
-}
-#pragma mark----****----获取验证码
-- (void)ZLGetVerigyCode:(NSString *)mCode andType:(int)mtype block:(void(^)(APIObject *mBaseObj))block{
-    NSMutableDictionary *para = [NSMutableDictionary new];
-    [para setObject:mCode forKey:@"mobile"];
-    [para setObject:NumberWithInt(mtype) forKey:@"type"];
-    
-
-    [self loadAPIWithTag:self path:@"/common/get_sms_code" parameters:para call:^(APIObject *info) {
-        block(info);
-    }];
-}
 
 
 #pragma mark----****----app初始化加载数据
