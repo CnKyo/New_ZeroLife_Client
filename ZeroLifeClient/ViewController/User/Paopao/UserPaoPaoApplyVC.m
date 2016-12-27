@@ -63,21 +63,21 @@
         [btn11 jk_addActionHandler:^(NSInteger tag) {
             [[IQKeyboardManager sharedManager] resignFirstResponder];
             
-            if (_customCell.nameField.text > 0)
+            if (_customCell.nameField.text.length > 0)
                 self.submmitItem.uopen_name = _customCell.nameField.text;
             if (_submmitItem.uopen_name==nil || _submmitItem.uopen_name.length == 0) {
                 [SVProgressHUD showErrorWithStatus:@"请输入昵称"];
                 return ;
             }
             
-            if (_customCell.idcardField.text > 0)
+            if (_customCell.idcardField.text.length > 0)
                 self.submmitItem.mat_document_number = _customCell.idcardField.text;
             if (_submmitItem.mat_document_number==nil || _submmitItem.mat_document_number.length == 0) {
                 [SVProgressHUD showErrorWithStatus:@"请输入身份证号"];
                 return ;
             }
             
-            if (_customCell.mobileField.text > 0)
+            if (_customCell.mobileField.text.length > 0)
                 self.submmitItem.uopen_phone = _customCell.mobileField.text;
             if (_submmitItem.uopen_phone==nil || _submmitItem.uopen_phone.length == 0) {
                 [SVProgressHUD showErrorWithStatus:@"请输入手机号"];
@@ -127,6 +127,10 @@
         self.submmitItem.user_id = user.user_id;
         self.submmitItem.uopen_head = user.user_header;
     }
+    
+    self.submmitItem.uopen_name = @"老瞿";
+    self.submmitItem.uopen_phone = @"13637959618";
+    self.submmitItem.mat_document_number = @"500102198709303715";
 }
 
 
