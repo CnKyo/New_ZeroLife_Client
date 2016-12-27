@@ -1237,6 +1237,21 @@
 @property (assign,nonatomic) float                  odr_amount; //!< 订单商品原价格
 @property (assign,nonatomic) float                  odr_pay_price;  //!< 需支付商品金额
 @property (strong,nonatomic) NSString*              sign;  //!< 消费商户描述
+@property (strong,nonatomic) NSString*              pass;  //!< 消费商户描述
+@property (strong,nonatomic) NSString*              notify;  //!< 消费商户描述
+
+
+
+@property (strong,nonatomic) NSString*              sn;  ///[支付宝]支付订单号
+@property (strong,nonatomic) NSString*              packages;  ///[支付宝]签名数据(支付宝支付)
+@property (assign,nonatomic) int                    pay_channel;  ///[支付宝]支付方式(支付方式 1支付宝；2：微信；3：余额 )
+@property (assign,nonatomic) int                    prepay_id;  ///[微信]商品ID(微信支付)
+@property (strong,nonatomic) NSString*              out_trade_no;  ///[微信]支付订单编号(微信支付)
+@property (strong,nonatomic) NSString*              nonce_str;  ///[微信]随机字符串(微信支付)
+@property (strong,nonatomic) NSString*              result_msg;  ///[微信]时间戳(微信支付)
+@property (strong,nonatomic) NSString*              timeStamp;  ///[余额]余额支付创建状态（SUCCESS/FAIL/NOPASS）
+@property (strong,nonatomic) NSString*              result_code;  ///[余额]余额支付创建失败原因（当result_code为NOPASS时，表示无支付密码）
+
 
 @end
 

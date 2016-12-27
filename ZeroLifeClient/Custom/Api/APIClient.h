@@ -284,12 +284,12 @@ typedef void (^TableShareSdkBlock)(int totalpage, NSArray *tableArr, APIShareSdk
 #pragma mark----****----发起支付
 /**
  发起支付
- 
+ @param mGoPayType 去支付对象
  @param mPayObj 支付订单对象
  @param mPayType 支付类型
  @param block 返回值
  */
-- (void)ZLSendToPayOrderObj:(ZLCreateOrderObj *)mPayObj andPayType:(ZLPayType)mPayType block:(void (^)(APIObject *mBaseObj))block;
+- (void)ZLSendToPayOrderObjGoPay:(ZLGoPayType)mGoPayType andPayObj:(ZLCreateOrderObj *)mPayObj andPayType:(ZLPayType)mPayType block:(void (^)(APIObject *mBaseObj,ZLCreateOrderObj* mPayOrderObj))block;
 
 #pragma mark----****----获取跑腿首页分类
 /**

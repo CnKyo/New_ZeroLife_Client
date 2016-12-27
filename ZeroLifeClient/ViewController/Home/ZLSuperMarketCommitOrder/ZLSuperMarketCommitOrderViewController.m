@@ -276,6 +276,7 @@
             ZLGoPayVC.mOrder = [ZLCreateOrderObj new];
             ZLGoPayVC.mOrder = mOrder;
             ZLGoPayVC.mOrder.sign = self.mPreOrder.sign;
+            ZLGoPayVC.mShopId = self.mShopId;
             [self pushViewController:ZLGoPayVC];
             
         }else{

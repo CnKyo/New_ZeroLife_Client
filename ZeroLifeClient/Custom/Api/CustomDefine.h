@@ -421,6 +421,14 @@ typedef enum{
 //}ZLCommitOrderType;///提交订单类型
 
 
+
+typedef enum{
+    ///1:去支付
+    ZLGoPayTypeWithConfirmPay = 1,
+    ///2:发起支付
+    ZLPayTypeWithCreatePay = 2,
+}ZLGoPayType;///发起支付和创建
+
 typedef enum{
     ///1:支付宝支付
     ZLPayTypeWithAlipay = 1,
@@ -430,5 +438,14 @@ typedef enum{
     ZLPayTypeWithBalance = 3,
 }ZLPayType;///支付通道类型
 
+
+typedef enum{
+    ///1:成功
+    ZLBalancePayStatus_SUCCESS = 1,
+    ///2:失败
+    ZLBalancePayStatus_FAIL = 2,
+    ///3:无支付密码
+    ZLBalancePayStatus_NOPASS = 3,
+}ZLBalancePayStatus;///[余额]余额支付创建状态
 
 #endif /* CustomDefine_h */
