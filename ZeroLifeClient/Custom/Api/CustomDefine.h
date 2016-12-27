@@ -196,7 +196,6 @@ static int const RESP_STATUS_LOGIN                  = 300;             //需要�
 #define RETCODE_SUCCESS  200
 
 
-
 //static NSString* const  kAFAppDotNetApiBaseURLString    = @"http://localhost:8080";
 //static NSString* const  kAFAppDotNetApiExtraURLString    = @"/crkj_zlife/api/app/client";
 
@@ -209,6 +208,7 @@ static NSString * const MyUserNeedUpdateNotification     = @"MyUserNeedUpdateNot
 static NSString * const MyUserInfoChangedNotification   = @"MyUserInfoChangedNotification";
 
 static NSString * const MyUserAddressNeedUpdateNotification   = @"MyUserAddressNeedUpdateNotification"; //地址信息需要更新
+static NSString * const MyOrderPaySuccessNotification   = @"MyOrderPaySuccessNotification";
 
 //功能参数（用户头像-U_PHOTO，用户认证文件-U_AUT，用户跑跑腿申请资料-U_APPLY，用户订单处理-U_ORDERS）
 static NSString* const  kFileUploadPath_Photo       = @"U_PHOTO";

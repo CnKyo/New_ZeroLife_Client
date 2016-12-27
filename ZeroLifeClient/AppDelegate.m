@@ -12,18 +12,20 @@
 #import "MTA.h"
 #import "MTAConfig.h"
 #import "CustomDefine.h"
+#import "APIObjectDefine.h"
 #import <SVProgressHUD/SVProgressHUD.h>
 #import <HcdGuideView.h>
 #import <ShareSDK/ShareSDK.h>
 #import <ShareSDKConnector/ShareSDKConnector.h>
 #import <TencentOpenAPI/TencentOAuth.h>
 #import <TencentOpenAPI/QQApiInterface.h>
+#import <AlipaySDK/AlipaySDK.h>
 #import <WXApi.h>
 #import <WeiboSDK.h>
 #import <JWLaunchAd/JWLaunchAd.h>
 #import <AMapLocationKit/AMapLocationKit.h>
 #import <AMapFoundationKit/AMapFoundationKit.h>
-@interface AppDelegate ()
+@interface AppDelegate ()<UIAlertViewDelegate,WXApiDelegate>
 
 @end
 
@@ -190,6 +192,176 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+#pragma mark----****----支付回调
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    // url:wx206e0a3244b4e469://pay/?returnKey=&ret=0 withsouce url:com.tencent.xin
+    
+    
+    
+    MLLog(@"url:%@ withsouce url:%@",url,sourceApplication);
+    if ([url.host isEqualToString:@"safepay"]) {
+        
+        [[AlipaySDK defaultService] processOrderWithPaymentResult:url
+                                                  standbyCallback:^(NSDictionary *resultDic) {
+                                                      
+                                                      MLLog(@"xxx:%@",resultDic);
+                                                      
+                                                      APIObject* retobj = nil;
+                                                      
+                                                      if (resultDic)
+                                                      {
+                                                          
+                                                          if ( [[resultDic objectForKey:@"resultStatus"] intValue] == 9000 )
+                                                          {
+                                                              [[NSNotificationCenter defaultCenter] postNotificationName:MyOrderPaySuccessNotification object:nil];
+                                                              
+                                                              APIObject* retobj = [[APIObject alloc]init];
+                                                              retobj.msg = @"支付成功";
+                                                              retobj.code = 200;
+                                                              [SVProgressHUD showSuccessWithStatus:retobj.msg];
+                                                              
+                                                              if( [ZLUserInfo ZLCurrentUser].mPayBlock )
+                                                              {
+                                                                  [ZLUserInfo ZLCurrentUser].mPayBlock(retobj);
+                                                              }
+                                                              else
+                                                              {
+                                                                  MLLog(@"may be err no block to back");
+                                                              }
+                                                          }
+                                                          else
+                                                          {
+                                                              [SVProgressHUD showErrorWithStatus:[resultDic objectForKey:@"memo" ]];
+                                                              retobj.msg = [resultDic objectForKey:@"memo" ];
+                                                              
+                                                          }
+                                                      }
+                                                      else
+                                                      {
+                                                          retobj.msg = @"支付成功";
+                                                          retobj.code = 200;
+                                                          [SVProgressHUD showErrorWithStatus:retobj.msg];
+                                                      }
+                                                  }];
+        
+        
+        return YES;
+    }
+    else if( [sourceApplication isEqualToString:@"com.tencent.xin"] )
+    {
+        return  [WXApi handleOpenURL:url delegate:self];
+    }
+    return NO;
+}
 
+-(void) onResp:(BaseResp*)resp
+{
+    if( [resp isKindOfClass: [PayResp class]] )
+    {
+        NSString *strMsg    =   [NSString stringWithFormat:@"errcode:%d errmsg:%@ payinfo:%@", resp.errCode,resp.errStr,((PayResp*)resp).returnKey];
+        MLLog(@"payresp:%@",strMsg);
+        
+        APIObject* retobj = APIObject.new;
+        if( resp.errCode == -1 )
+        {//
+            retobj.code = 500;
+            retobj.msg = @"支付出现异常";
+        }
+        else if( resp.errCode == -2 )
+        {
+            retobj.code = 500;
+            retobj.msg = @"用户取消了支付";
+        }
+        else
+        {
+            [[NSNotificationCenter defaultCenter] postNotificationName:MyOrderPaySuccessNotification object:nil];
+            
+            retobj.code = 200;
+            retobj.msg = @"支付成功";
+        }
+        
+        if( [ZLUserInfo ZLCurrentUser].mPayBlock )
+        {
+            [ZLUserInfo ZLCurrentUser].mPayBlock(retobj);
+        }
+        else
+        {
+            MLLog(@"may be err no block to back");
+        }
+    }
+    else
+    {
+        MLLog(@"may be err what class one onResp");
+    }
+}
+
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString*, id> *)options
+{
+    if ([[options objectForKey:@"UIApplicationOpenURLOptionsSourceApplicationKey"] isEqualToString:@"com.alipay.iphoneclient"]) {
+        
+        [[AlipaySDK defaultService] processOrderWithPaymentResult:url
+                                                  standbyCallback:^(NSDictionary *resultDic) {
+                                                      
+                                                      MLLog(@"xxx:%@",resultDic);
+                                                      
+                                                      APIObject* retobj = nil;
+                                                      
+                                                      
+                                                      if (resultDic)
+                                                      {
+                                                          if ( [[resultDic objectForKey:@"resultStatus"] intValue] == 9000 )
+                                                          {
+                                                              
+                                                              [[NSNotificationCenter defaultCenter] postNotificationName:MyOrderPaySuccessNotification object:nil];
+                                                              APIObject* retobj = [[APIObject alloc]init];
+                                                              retobj.code = 200;
+                                                              retobj.msg = @"支付成功";
+                                                              [SVProgressHUD showSuccessWithStatus:retobj.msg];
+                                                              
+                                                              if( [ZLUserInfo ZLCurrentUser].mPayBlock )
+                                                              {
+                                                                  [ZLUserInfo ZLCurrentUser].mPayBlock(retobj);
+                                                              }
+                                                              else
+                                                              {
+                                                                  MLLog(@"may be err no block to back");
+                                                              }
+                                                          }
+                                                          else
+                                                          {
+                                                              [SVProgressHUD showErrorWithStatus:[resultDic objectForKey:@"memo" ]];
+                                                              retobj.msg = [resultDic objectForKey:@"memo" ];
+
+                                                              [SVProgressHUD showErrorWithStatus:retobj.msg];
+                                                          }
+                                                      }
+                                                      else
+                                                      {
+                                                          retobj.code = 500;
+                                                          retobj.msg = @"支付出现异常";
+
+                                                          [SVProgressHUD showErrorWithStatus:retobj.msg];
+                                                      }
+                                                  }];
+        
+        
+        return YES;
+    }
+    else if([[options objectForKey:@"UIApplicationOpenURLOptionsSourceApplicationKey"] isEqualToString:@"com.tencent.xin"]){
+        
+        return  [WXApi handleOpenURL:url delegate:self];
+    }
+    
+    return YES;
+}
+
+
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    MLLog(@"hhhhhhurl:%@",url);
+    return  [WXApi handleOpenURL:url delegate:self];
+}
 
 @end

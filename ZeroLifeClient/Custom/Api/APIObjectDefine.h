@@ -622,6 +622,11 @@
 @property (nonatomic,strong) CommunityObject*       community; //!< 用户绑定小区信息
 @property (nonatomic,strong) OpeningFunctionObject* openInfo; //!< 开通的信息(跑跑腿)
 
+/**
+ *  支付需要跳出到APP,这里记录回调
+ */
+@property (nonatomic,strong)    void(^mPayBlock)(APIObject* resb);
+
 #pragma mark----****----登录
 
 - (BOOL)isNeedLogin;    //!< 需要登录
@@ -1539,7 +1544,7 @@
 /**
  *  随机字符串
  */
-@property (nonatomic,strong) NSString*  noncestr;
+@property (nonatomic,strong) NSString*  nonce_str;
 /**
  *  商户号
  */
@@ -1552,7 +1557,7 @@
 /**
  *  预支付交易会话ID
  */
-@property (nonatomic,strong) NSString*  prepayid;
+@property (nonatomic,strong) NSString*  prepay_id;
 /**
  *  签名
  */
@@ -1560,11 +1565,15 @@
 /**
  *  时间戳
  */
-@property (nonatomic,assign) int        mtimeStamp;
+@property (nonatomic,assign) int        timeStamp;
 
 @property (nonatomic,strong) NSString*  appid;
 
-@property (nonatomic,strong) NSString*  package;
+@property (nonatomic,strong) NSString*  packages;
+
+@property (nonatomic,assign) int        pay_channel;
+
+@property (nonatomic,strong) NSString*  sn;
 
 @end
 

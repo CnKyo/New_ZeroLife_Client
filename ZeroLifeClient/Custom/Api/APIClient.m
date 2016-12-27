@@ -8,7 +8,9 @@
 
 #import "APIClient.h"
 #import "CustomDefine.h"
-
+#import <WXApiObject.h>
+#import <WXApi.h>
+#import <AlipaySDK/AlipaySDK.h>
 #pragma mark -
 #pragma mark NSMutableDictionary
 @implementation NSMutableDictionary (APIClient_MyAdditions)
@@ -2120,10 +2122,36 @@
             
             if (info.code == RESP_STATUS_YES) {
                 
-                
-                
-                block(info,[ZLCreateOrderObj mj_objectWithKeyValues:info.data]);
-                
+                if (mPayType == ZLPayTypeWithWechat) {
+                    SWxPayInfo* wxpayinfo = [SWxPayInfo mj_objectWithKeyValues:info.data];
+                    [ZLUserInfo ZLCurrentUser].mPayBlock = ^(APIObject *resb){
+                        if (resb.code == RESP_STATUS_YES) {
+                            block(resb,nil);//再回调获取
+
+                        }else{
+                            block(resb,nil);//再回调获取
+
+                        }
+                    };
+                    [self gotoWXPayWithSRV:wxpayinfo];
+                }else if (mPayType == ZLPayTypeWithAlipay){
+                    SWxPayInfo* aliPay = [SWxPayInfo mj_objectWithKeyValues:info.data];
+                    [ZLUserInfo ZLCurrentUser].mPayBlock = ^(APIObject *resb){
+                        if (resb.code == RESP_STATUS_YES) {
+                            block(resb,nil);//再回调获取
+                            
+                        }else{
+                            block(resb,nil);//再回调获取
+                            
+                        }
+                    };
+
+                    [self gotoAliPay:aliPay];
+                }else{
+                    block(info,[ZLCreateOrderObj mj_objectWithKeyValues:info.data]);
+
+                }
+
             }else{
                 
                 block(info,nil);
@@ -2141,6 +2169,53 @@
     
     
 }
+#pragma mark----****----微信支付
+- (void)gotoWXPayWithSRV:(SWxPayInfo*)payinfo{
+    PayReq *payobj = [[PayReq alloc] init];
+    payobj.partnerId = @"1336953201";
+    payobj.prepayId = payinfo.prepay_id;
+    payobj.nonceStr = payinfo.nonce_str;
+    payobj.timeStamp = payinfo.timeStamp;
+    payobj.package = @"Sign=WXPay";
+    payobj.sign = payinfo.sign;
+    [WXApi sendReq:payobj];
+}
+#pragma mark----****----支付宝支付
+- (void)gotoAliPay:(SWxPayInfo *)payinfo{
+    [[AlipaySDK defaultService] payOrder:payinfo.packages fromScheme:@"zerolife" callback:^(NSDictionary *resultDic) {
+        MLLog(@"xxx:%@",resultDic);
+        APIObject *retobj = [[APIObject alloc]init];
+        if (resultDic) {
+            if ( [[resultDic objectForKey:@"resultStatus"] intValue] == 9000 )
+            {
+                
+                retobj.msg = @"支付成功";
+                retobj.code = 200;
+            }
+            else
+            {
+                [SVProgressHUD showErrorWithStatus:[resultDic objectForKey:@"memo" ]];
+
+                retobj.msg = [resultDic objectForKey:@"memo" ];
+                retobj.code = 500;
+            }
+        }else{
+
+            retobj.msg = @"支付出现异常";
+            retobj.code = 500;
+            
+
+        }
+        if ( [ZLUserInfo ZLCurrentUser].mPayBlock ) {
+            [ZLUserInfo ZLCurrentUser].mPayBlock( retobj );
+        }else{
+
+            retobj.msg = @"支付回调异常";
+            retobj.code = 500;
+        }
+    }];
+}
+
 
 #pragma mark----****----获取跑腿首页分类
 /**
