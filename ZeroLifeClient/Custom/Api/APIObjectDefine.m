@@ -1161,3 +1161,9 @@ bool m_bind = NO;
 @implementation PaopaoApplyObject
 @end
 
+
+@implementation SWxPayInfo
+
+
+
+@end

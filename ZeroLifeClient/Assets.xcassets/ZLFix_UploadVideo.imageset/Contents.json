@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "ZLFix_UploadVideo.png",
+      "filename" : "ZLFix_UploadImg.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "ZLFix_UploadVideo-1.png",
+      "filename" : "ZLFix_UploadImg-1.png",
       "scale" : "2x"
     },
     {

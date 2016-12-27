@@ -1531,3 +1531,41 @@
 @end
 
 
+@interface SWxPayInfo : NSObject
+/**
+ *  支付方式
+ */
+@property (nonatomic,strong) NSString*  mPayType;
+/**
+ *  随机字符串
+ */
+@property (nonatomic,strong) NSString*  noncestr;
+/**
+ *  商户号
+ */
+@property (nonatomic,strong) NSString*  partnerid;
+
+/**
+ *  商户订单号
+ */
+@property (nonatomic,strong) NSString*  out_trade_no;
+/**
+ *  预支付交易会话ID
+ */
+@property (nonatomic,strong) NSString*  prepayid;
+/**
+ *  签名
+ */
+@property (nonatomic,strong) NSString*  sign;
+/**
+ *  时间戳
+ */
+@property (nonatomic,assign) int        mtimeStamp;
+
+@property (nonatomic,strong) NSString*  appid;
+
+@property (nonatomic,strong) NSString*  package;
+
+@end
+
+
