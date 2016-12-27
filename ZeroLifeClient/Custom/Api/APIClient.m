@@ -469,6 +469,10 @@
     if (user.user_id > 0) {
         NSMutableDictionary *paramDic = [item mj_keyValues];
         [paramDic setInt:user.user_id forKey:@"user_id"];
+        
+        if (item.mat_document_name==nil || item.mat_document_name.length==0)
+            [paramDic setObject:@"IDCard" forKey:@"mat_document_name"];
+        
         [self loadAPIWithTag:tag path:@"/paopao/applyPaopao" parameters:paramDic call:^(APIObject *info) {
             callback(info);
         }];
