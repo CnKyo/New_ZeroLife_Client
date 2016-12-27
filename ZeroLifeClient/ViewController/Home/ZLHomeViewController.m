@@ -11,6 +11,7 @@
 #import "MTA.h"
 #import "MTAConfig.h"
 #import "ScrollModelVC.h"
+#import "CurentLocation.h"
 #import "ZLHomeLocationView.h"
 #import "ZLHomeScrollerTableViewCell.h"
 #import "ZLHomeOtherCell.h"
@@ -34,7 +35,7 @@
 #import <AMapLocationKit/AMapLocationKit.h>
 #import <UINavigationBar+Awesome.h>
 #define NAVBAR_CHANGE_POINT 30
-@interface ZLHomeViewController ()<UITableViewDelegate,UITableViewDataSource,ZLHomeScrollerTableCellDelegate,ZLHomeLocationViewDelegate,ZLCoupViewDelegate,AMapLocationManagerDelegate>
+@interface ZLHomeViewController ()<UITableViewDelegate,UITableViewDataSource,ZLHomeScrollerTableCellDelegate,ZLHomeLocationViewDelegate,ZLCoupViewDelegate,AMapLocationManagerDelegate,MMApBlockCoordinate>
 @property (weak, nonatomic) IBOutlet UITableView *mTableView;
 
 @end
@@ -284,9 +285,11 @@
     
 }
 - (void)TableViewHaveHeader{
+    
+    
     __weak typeof(self) weakSelf = self;
     MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        [weakSelf loadHeaderRefreshing];
+        [weakSelf reloadTableViewDataSource];
     }];
     self.mTableView.mj_header = header;
     
@@ -295,6 +298,8 @@
     [header setTitle:@"" forState:MJRefreshStateRefreshing];
 
 }
+
+
 -(void)endHeaderRereshing
 {
     if (self.mTableView.mj_footer != nil) {
@@ -313,7 +318,10 @@
 - (void)reloadTableViewDataSource{
 
     [super reloadTableViewDataSource];
+
     if (mCommunityObj.cmut_lat <= 0 || mCommunityObj.cmut_lng <= 0 ) {
+        [self loadAddress];
+
         return;
     }
     
@@ -357,6 +365,10 @@
 }
 #pragma mark----****----加载地址
 - (void)loadAddress{
+    
+    [CurentLocation sharedManager].delegate = self;
+    [[CurentLocation sharedManager] getUSerLocation];
+    
     mLocation = [[AMapLocationManager alloc] init];
     mLocation.delegate = self;
     [mLocation setDesiredAccuracy:kCLLocationAccuracyHundredMeters];
@@ -390,6 +402,11 @@
         }
     }];
 
+}
+#pragma mark----maplitdelegate
+- (void)MMapreturnLatAndLng:(NSDictionary *)mCoordinate{
+    
+    MLLog(@"定位成功之后返回的东东：%@",mCoordinate);
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

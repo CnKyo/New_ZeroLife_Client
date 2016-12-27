@@ -177,6 +177,9 @@
 
 }
 - (void)mPopAction{
+    
+    [LKDBHelperGoodsObj deleteWithWhere:[NSString stringWithFormat:@"%d",self.mShopId]];
+
     [self popViewController_3];
 
 }

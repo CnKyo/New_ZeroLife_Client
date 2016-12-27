@@ -9,7 +9,7 @@
 #import "AFNetworking.h"
 #import "APIObjectDefine.h"
 #import <MapKit/MapKit.h>
-
+#import "JHJsonRequst.h"
 typedef void (^TableArrBlock)(NSArray *tableArr, APIObject* info);
 typedef void (^TablePageArrBlock)(int totalPage, NSArray *tableArr, APIObject* info);
 
@@ -382,5 +382,32 @@ typedef void (^TableShareSdkBlock)(int totalpage, NSArray *tableArr, APIShareSdk
  @param block 返回值
  */
 - (void)ZLGetRunningmanPreOrder:(void(^)(APIObject *mBaseObj,ZLPreOrderObj *mPreOrder))block;
+
+#pragma mark----****---- 水电煤缴费查询接口
+/**
+ 水电煤缴费查询接口
+
+ @param mType 选择类型
+ @param mPara 参数
+ @param block 返回值
+ */
+- (void)ZLFindPublic:(ZLHydroelectricType)mType andPara:(NSDictionary *)mPara block:(void(^)(mJHBaseData *resb,NSArray *mArr))block;
+
+#pragma mark----****---- 水电煤缴费查询接口
+/**
+ 水电煤缴费查询接口
+
+ @param mPara 参数
+ @param block 返回值
+ */
+- (void)ZLInquireOrder:(ZLHydroelectricPreOrder *)mPara block:(void(^)(mJHBaseData *resb,NSString *mBalance))block;
+#pragma mark----****---- 水电煤缴费接口
+/**
+ 水电煤缴费接口
+ 
+ @param mPara 参数
+ @param block 返回值
+ */
+- (void)ZLGoPayHyelectricOrder:(ZLHydroelectricPreOrder *)mPara block:(void(^)(mJHBaseData *resb))block;
 
 @end

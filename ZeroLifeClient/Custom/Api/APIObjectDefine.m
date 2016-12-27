@@ -1167,3 +1167,54 @@ bool m_bind = NO;
 
 
 @end
+
+
+
+#pragma mark----聚合基本数据
+
+@implementation mJHBaseData
+
+- (id)initWithObj:(NSDictionary *)obj{
+    self = [super init];
+    if( self && obj != nil )
+    {
+        self.mData = [obj objectForKey:@"result"];
+        [self fetchIt:obj];
+    }
+    return self;
+    
+}
+- (void)fetchIt:(NSDictionary *)obj{
+    
+    _mState = [[obj objectForKey:@"error_code"] intValue];
+    self.mMessage = [obj objectForKey:@"reason"];
+    self.mData = [obj objectForKey:@"result"];
+    
+    
+    if (self.mState == 0) {
+        self.mSucess = YES;
+    }else{
+        self.mSucess = NO;
+    }
+    
+}
++ (mJHBaseData *)infoWithError:(NSString *)error{
+    mJHBaseData *retobj = mJHBaseData.new;
+    retobj.mState = 400301;
+    retobj.mData = nil;
+    retobj.mMessage = @"数据查询错误!";
+    return retobj;
+}
+
+@end
+
+@implementation ZLHydroelectricPreOrder
+@end
+@implementation ZLJHProvince
+@end
+@implementation ZLJHCity
+@end
+@implementation ZLJHPayType
+@end
+@implementation ZLJHPayUnint
+@end
