@@ -124,19 +124,22 @@
     [[APIClient sharedClient] ZLSendToPayOrderObjGoPay:ZLPayTypeWithCreatePay andPayObj:self.mOrder andPayType:mOrder.mPayType block:^(APIObject *mBaseObj,ZLCreateOrderObj* mPayOrderObj) {
         
         if (mBaseObj.code == RESP_STATUS_YES) {
-            self.mOrder.sign = [mBaseObj.data objectForKey:@"sign"];
 
             [self showSuccessStatus:mBaseObj.msg];
+            
             if (mOrder.mPayType == ZLPayTypeWithBalance) {
-                
+            
                 ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
                 
-                if ([user.wallet.pass isEqualToString:kWalletPayment_Pass]) {
+                if ([[mBaseObj.data objectForKey:@"result_code"] isEqualToString:@"SUCCESS"]) {
+                    self.mOrder.sign = [mBaseObj.data objectForKey:@"sign"];
+
                     SecurityPasswordAlertView *alertView = [[SecurityPasswordAlertView alloc] init];
                     __strong __typeof(SecurityPasswordAlertView *)strongSelf = alertView;
                     alertView.inputPwdCallBack = ^(NSString* pwd) {
                         [strongSelf close];
                         self.mOrder.pass = pwd;
+                      
                         [self commitOrder:mOrder];
                         
                     };

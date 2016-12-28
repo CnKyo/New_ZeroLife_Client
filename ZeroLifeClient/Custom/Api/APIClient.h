@@ -36,6 +36,15 @@ typedef void (^TableShareSdkBlock)(int totalpage, NSArray *tableArr, APIShareSdk
 
 + (instancetype)sharedClient;
 
+#pragma mark----  获取跑跑腿订单操作状态
+/**
+ 获取跑跑腿订单操作状态
+ 
+ @param mStatus 状态
+ @return 返回操作类型
+ */
++ (NSString *)ZLCurrentOperatorPPTOrderStatus:(ZLOperatorPPTOrderStatus)mStatus;
+
 - (void)getUrl:(NSString *)URLString parameters:(id)parameters call:(void (^)( APIObject* info))callback;
 
 - (NSString *)currentUrl;
@@ -459,6 +468,18 @@ typedef void (^TableShareSdkBlock)(int totalpage, NSArray *tableArr, APIShareSdk
  @param block 返回值
  */
 - (void)ZLGetShopCoup:(int)mShopId block:(void(^)(APIObject *resb,NSString *mUrl))block;
+
+
+#pragma mark----****---- 跑腿操作接口
+/**
+ 跑腿操作接口
+
+ @param mOrderId 订单id
+ @param mOrderCode 订单编号
+ @param mStatus 操作状态
+ @param block 返回值
+ */
+- (void)ZLOperatorPPTOrder:(int)mOrderId andOrderCode:(NSString *)mOrderCode andOperatorStatus:(ZLOperatorPPTOrderStatus)mStatus block:(void(^)(APIObject *resb))block;
 
 
 @end

@@ -40,5 +40,18 @@
 }
 
 
+- (void)setMOrder:(ZLRunningmanHomeOrder *)mOrder{
+
+    [self.mImg sd_setImageWithURL:[NSURL imageurl:nil] placeholderImage:ZLDefaultAvatorImg];
+    
+    self.mName.text = mOrder.odrg_pro_name;
+    self.mTime.text = [NSString stringWithFormat:@"%@分钟内完成",mOrder.odr_timing];
+    self.mMoney.text = [NSString stringWithFormat:@"酬劳：¥%d",mOrder.odr_deliver_fee];
+    self.mDistance.text = [NSString stringWithFormat:@"距离%@m",mOrder.distance];
+    self.mSendAddress.text = [NSString stringWithFormat:@"需求内容：%@",mOrder.odrg_spec];
+    self.mArriveAddress.text = mOrder.odr_deliver_address;
+    
+}
+
 
 @end

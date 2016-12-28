@@ -64,6 +64,31 @@
     return [NSString stringWithFormat:@"%@%@",kAFAppDotNetApiBaseURLString,kAFAppDotNetApiExtraURLString];
 }
 
+#pragma mark----  获取跑跑腿订单操作状态
+/**
+ 获取跑跑腿订单操作状态
+ 
+ @param mStatus 状态
+ @return 返回操作类型
+ */
++ (NSString *)ZLCurrentOperatorPPTOrderStatus:(ZLOperatorPPTOrderStatus)mStatus{
+    
+    
+    if (mStatus == ZLOperatorPPTOrderStatusWithAccept) {
+        return @"SSELECT";
+    }else if (mStatus == ZLOperatorPPTOrderStatusWithServicing){
+        return @"SSERVICE";
+        
+    }else if (mStatus == ZLOperatorPPTOrderStatusWithCancel){
+        return @"SCANCEL";
+        
+    }else{
+        return @"SDONE";
+        
+    }
+    
+}
+
 - (void)getUrl:(NSString *)URLString parameters:(id)parameters call:(void (^)( APIObject* info))callback{
 
     MLLog(@"请求地址：%@-------请求参数：%@",URLString,parameters);
@@ -593,7 +618,7 @@
         [paramDic setNeedStr:acc_pass forKey:@"acc_pass"];
         [paramDic setNeedStr:security_password forKey:@"security_password"];
         [paramDic setInt:user.user_id forKey:@"user_id"];
-        [self loadAPIWithTag:tag path:@"/user/user_edit" parameters:paramDic call:^(APIObject *info) {
+        [self loadAPIWithTag:tag path:@"/user/user_security_password" parameters:paramDic call:^(APIObject *info) {
             callback(info);
         }];
     } else
@@ -660,12 +685,9 @@
         if (item.mat_document_name==nil || item.mat_document_name.length==0)
             [paramDic setObject:@"IDCard" forKey:@"mat_document_name"];
         
-        ZLUserInfo *mUser = [ZLUserInfo ZLCurrentUser];
+        [paramDic removeObjectForKey:@"mat_hand_url"];
+        [paramDic setObject:item.mat_hand_url forKey:@"uopen_head"];
         
-        if (item.uopen_head.length<=0 || mUser.user_header.length<=0) {
-            [paramDic setObject:mUser.user_header forKey:@"uopen_head"];
-
-        }
         
         [self loadAPIWithTag:tag path:@"/ppao/ppao_apply" parameters:paramDic call:^(APIObject *info) {
             callback(info);
@@ -2310,23 +2332,24 @@
             mUri = @"/pay/confirm_pay";
       
             [para setObject:mPayObj.pass forKey:@"pass"];
+            [para setObject:mPayObj.sign forKey:@"sign"];
 
         }else{
             mUri = @"/pay/create_pay";
            
             [para setObject:mPayObj.notify forKey:@"notify"];
+            [para setInt:mPayType forKey:@"pay_channel"];
+
         }
     
         [para setInt:user.user_id forKey:@"user_id"];
         
         [para setObject:[NSString stringWithFormat:@"%.2f",mPayObj.odr_pay_price] forKey:@"pay_amount"];
         
-        [para setInt:mPayType forKey:@"pay_channel"];
         
         [para setInt:mPayObj.odr_id forKey:@"odr_id"];
         
         [para setObject:mPayObj.odr_code forKey:@"odr_code"];
-        [para setObject:mPayObj.sign forKey:@"sign"];
 
      
         
@@ -3026,7 +3049,51 @@
     }
 }
 
+#pragma mark----****---- 跑腿操作接口
+/**
+ 跑腿操作接口
+ 
+ @param mOrderId 订单id
+ @param mOrderCode 订单编号
+ @param mStatus 操作状态
+ @param block 返回值
+ */
+- (void)ZLOperatorPPTOrder:(int)mOrderId andOrderCode:(NSString *)mOrderCode andOperatorStatus:(ZLOperatorPPTOrderStatus)mStatus block:(void(^)(APIObject *resb))block{
 
+    
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    
+    if (user.user_id > 0) {
+        
+        NSMutableDictionary* para = [NSMutableDictionary dictionary];
+        
+        [para setInt:[ZLUserInfo ZLCurrentUser].user_id forKey:@"user_id"];
+        [para setInt:mOrderId forKey:@"odr_id"];
+        [para setObject:mOrderCode forKey:@"odr_code"];
+        [para setObject:[APIClient ZLCurrentOperatorPPTOrderStatus:mStatus] forKey:@"odr_state_next"];
+        
+        
+        MLLog(@"%@",[ZLUserInfo ZLCurrentUser]);
+        [self loadAPIWithTag:self path:@"/ppao/order_oprate" parameters:para call:^(APIObject *info) {
+            
+            if (info.code == RESP_STATUS_YES) {
+                
+                block(info);
+                
+            }else{
+                
+                block(info);
+                
+            }
+            
+        }];
+        
+    }else{
+        block([APIObject infoWithReLoginErrorMessage:@"请重新登陆"]);
+        
+    }
+    
+}
 @end
 
 

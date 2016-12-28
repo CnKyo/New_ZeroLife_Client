@@ -168,5 +168,10 @@
         
     }
     
+    if (mPreOrder.mPhone) {
+        self.mConnectTx.text = mPreOrder.mPhone;
+    }
+    
+    
 }
 @end

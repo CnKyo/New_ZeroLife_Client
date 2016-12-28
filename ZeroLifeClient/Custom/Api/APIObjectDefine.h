@@ -1491,6 +1491,8 @@
 
 @property (strong,nonatomic) NSString*              addr_address;  //!< 配送地址
 
+@property (strong,nonatomic) NSString*              odr_deliver_address;  //!< 配送地址
+
 @property (strong,nonatomic) NSString*              cmut_name;  //!< 地表
 
 @property (assign,nonatomic) int                    pro_id;  //!< 分类ID
@@ -1505,6 +1507,8 @@
 ///发布跑腿预订单对象
 @class AddressObject;
 @interface ZLCommitPPTPreOrder : NSObject
+
+@property (assign,nonatomic) NSInteger                    mIndex;  ///索引
 
 @property (assign,nonatomic) int                    mClassId;  ///分类ID
 
@@ -1529,6 +1533,8 @@
 @property (strong,nonatomic) NSString*              mPhone;  ///联系电话
 
 @property (strong,nonatomic) NSString*              mRemark;  ///备注
+
+@property (strong,nonatomic) NSString*              mTypeName;  ///分类名称 
 
 
 @end

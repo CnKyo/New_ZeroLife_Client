@@ -168,8 +168,8 @@ typedef enum {
 
 
 typedef enum {
-    ZLPPTReleaseTypeWithBuyStaff,//买东西
-    ZLPPTReleaseTypeWithSendDo,//送东西办事情
+    ZLPPTReleaseTypeWithBuyStaff = 0,//买东西
+    ZLPPTReleaseTypeWithSendDo = 1,//送东西办事情
 } ZLPPTReleaseType;//发布跑腿类型
 
 
@@ -460,5 +460,13 @@ typedef enum {
     ZLHydroelectricTypeWithPayUnint,///选择缴费单位
     ZLHydroelectricTypeWithFind,///查询
 } ZLHydroelectricType;///选择的类型
+
+
+typedef enum {
+    ZLOperatorPPTOrderStatusWithAccept = 1,///接单
+    ZLOperatorPPTOrderStatusWithServicing = 2,///服务中
+    ZLOperatorPPTOrderStatusWithCancel = 3,///取消
+    ZLOperatorPPTOrderStatusWithFinish = 4,///完成
+} ZLOperatorPPTOrderStatus;///跑腿订单通用操作
 
 #endif /* CustomDefine_h */

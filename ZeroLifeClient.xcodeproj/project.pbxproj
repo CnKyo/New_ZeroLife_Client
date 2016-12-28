@@ -41,6 +41,7 @@
 		040D92FA1DCAE34E00DBE42E /* ZLHomeMSGCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 040D92F81DCAE34E00DBE42E /* ZLHomeMSGCell.xib */; };
 		040D92FD1DCAE82000DBE42E /* ZLHomeMessageDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 040D92FC1DCAE82000DBE42E /* ZLHomeMessageDetailViewController.m */; };
 		040D92FF1DCAE84300DBE42E /* ZLHomeMsgDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 040D92FE1DCAE84300DBE42E /* ZLHomeMsgDetailCell.xib */; };
+		040E0C051E13DD7D001D4444 /* ZLRunningManCellDo.xib in Resources */ = {isa = PBXBuildFile; fileRef = 040E0C041E13DD7D001D4444 /* ZLRunningManCellDo.xib */; };
 		04162DF81DCB2C9300FB4229 /* ZLHomeCoupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04162DF61DCB2C9300FB4229 /* ZLHomeCoupCell.m */; };
 		04162DF91DCB2C9300FB4229 /* ZLHomeCoupCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04162DF71DCB2C9300FB4229 /* ZLHomeCoupCell.xib */; };
 		04162DFF1DCB545200FB4229 /* ChineseToPinyin.m in Sources */ = {isa = PBXBuildFile; fileRef = 04162DFC1DCB545200FB4229 /* ChineseToPinyin.m */; };
@@ -692,6 +693,7 @@
 		040D92FB1DCAE82000DBE42E /* ZLHomeMessageDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLHomeMessageDetailViewController.h; sourceTree = "<group>"; };
 		040D92FC1DCAE82000DBE42E /* ZLHomeMessageDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLHomeMessageDetailViewController.m; sourceTree = "<group>"; };
 		040D92FE1DCAE84300DBE42E /* ZLHomeMsgDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLHomeMsgDetailCell.xib; sourceTree = "<group>"; };
+		040E0C041E13DD7D001D4444 /* ZLRunningManCellDo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLRunningManCellDo.xib; sourceTree = "<group>"; };
 		04162DF51DCB2C9300FB4229 /* ZLHomeCoupCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLHomeCoupCell.h; sourceTree = "<group>"; };
 		04162DF61DCB2C9300FB4229 /* ZLHomeCoupCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLHomeCoupCell.m; sourceTree = "<group>"; };
 		04162DF71DCB2C9300FB4229 /* ZLHomeCoupCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLHomeCoupCell.xib; sourceTree = "<group>"; };
@@ -2308,6 +2310,7 @@
 				04B07E9D1DD964E7004A7294 /* ZLRunningManCell.h */,
 				04B07E9E1DD964E7004A7294 /* ZLRunningManCell.m */,
 				04B07E9F1DD964E7004A7294 /* ZLRunningManCell.xib */,
+				040E0C041E13DD7D001D4444 /* ZLRunningManCellDo.xib */,
 				04B07E981DD96023004A7294 /* ZLRuuningManHomeHeaderSectionView.h */,
 				04B07E991DD96023004A7294 /* ZLRuuningManHomeHeaderSectionView.m */,
 				04B07E9B1DD9602E004A7294 /* ZLRuuningManHomeHeaderSectionView.xib */,
@@ -3856,6 +3859,7 @@
 				DF29B69C1E11092D00CBAA3B /* icon_order_paopao_apply@3x.png in Resources */,
 				DFE1788E1DD558B400E06F21 /* cell_address_edit@3x.png in Resources */,
 				DFE1787C1DD556D000E06F21 /* cell_cleanImgs@3x.png in Resources */,
+				040E0C051E13DD7D001D4444 /* ZLRunningManCellDo.xib in Resources */,
 				DF29B6AE1E110E8B00CBAA3B /* icon_order_fee_parking@3x.png in Resources */,
 				DF29B6A61E11092D00CBAA3B /* icon_order_balance_transfer@3x.png in Resources */,
 				DFE1788B1DD558B400E06F21 /* cell_address_del@2x.png in Resources */,

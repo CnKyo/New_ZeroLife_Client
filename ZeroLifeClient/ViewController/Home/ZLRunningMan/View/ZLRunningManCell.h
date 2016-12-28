@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
-
+#import "APIObjectDefine.h"
+#import "CustomDefine.h"
 /**
  设置代理
  */
@@ -76,5 +76,8 @@
  设置代理
  */
 @property (strong,nonatomic) id<ZLRunningManCellDelegate>delegate;
+
+@property (strong,nonatomic) ZLRunningmanHomeOrder *mOrder;
+
 
 @end

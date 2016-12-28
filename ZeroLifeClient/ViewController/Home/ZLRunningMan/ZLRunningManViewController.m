@@ -34,6 +34,9 @@
 
     NSMutableArray *mTempArr;
     
+    NSInteger mIndex;
+    
+    int mType;
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -43,19 +46,31 @@
 }
 - (void)updateUserInfo{
 
-    [[APIClient sharedClient] ZLUpdateUserInfo:^(APIObject *info) {
-        if (info.code == RESP_STATUS_YES) {
-            [self dismiss];
-        }else{
-            [self showErrorStatus:info.msg];
-        }
+//    [[APIClient sharedClient] ZLUpdateUserInfo:^(APIObject *info) {
+//        if (info.code == RESP_STATUS_YES) {
+//            [self dismiss];
+//        }else{
+//            [self showErrorStatus:info.msg];
+//        }
+//    }];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUserInfoNeedChange:) name:MyUserNeedUpdateNotification object:nil];
+
+    
+}
+#pragma mark----****----用户需要更新数据
+-(void)handleUserInfoNeedChange:(NSNotification *)note
+{
+    [[APIClient sharedClient] userInfoWithTag:self call:^(ZLUserInfo *user, APIObject *info) {
+        
     }];
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationItem.title = @"跑跑腿";
-  
+    mIndex = 0;
     mClassObj = [ZLPPTHomeClassList new];
     mTempArr = [NSMutableArray new];
     [self addTableView];
@@ -66,6 +81,11 @@
     
     nib = [UINib nibWithNibName:@"ZLRunningManCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell2"];
+    
+    
+    nib = [UINib nibWithNibName:@"ZLRunningManCellDo" bundle:nil];
+    [self.tableView registerNib:nib forCellReuseIdentifier:@"cell3"];
+    
     [self loadClassData];
 }
 
@@ -153,11 +173,11 @@
 }
 - (void)loadTableData:(NSInteger)mIndex{
    ZLPPTClassObj *mClass = mClassObj.classifyList[mIndex];
-    
+    mType = [Util currentReleaseType:mClass.type_name];
     
     [self showWithStatus:@"正在加载..."];
     [[APIClient sharedClient] ZLGetRunningmanHomeList:self.mAddress.cmut_lat andLng:self.mAddress.cmut_lng andPage:self.page andPageSize:20 andClsId:mClass.cls_id block:^(APIObject *mBaseObj, ZLRunningmanHomeList *mList) {
-        
+        [mTempArr removeAllObjects];
         if (mBaseObj.code == RESP_STATUS_YES) {
             [self showSuccessStatus:@"加载成功"];
             [mTempArr addObjectsFromArray:mList.list];
@@ -293,13 +313,18 @@
         return cell;
     }else{
         
-        
-        reuseCellId = @"cell2";
+//        if (mType == ZLPPTReleaseTypeWithBuyStaff) {
+//            reuseCellId = @"cell2";
+//
+//        }else{
+            reuseCellId = @"cell3";
+
+//        }
         
         ZLRunningManCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
         cell.delegate = self;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
+        [cell setMOrder:mTempArr[indexPath.row]];
         return cell;
     }
     
@@ -412,6 +437,42 @@
  @param mIndexPath 索引
  */
 - (void)ZLRunningManCellDelegateWithBtnClick:(NSIndexPath *)mIndexPath{
+    
+    ZLRunningmanHomeOrder *mOrder = mTempArr[mIndexPath.row];
+    if ([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"NOTOPEN"]) {
+        UserPaoPaoRegisterVC*vc = [[UserPaoPaoRegisterVC alloc] initWithNibName:@"UserPaoPaoRegisterVC" bundle:nil];
+        [self pushViewController:vc];
+    }else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"PAYMENTED"]){
+        UserPaoPaoApplyVC *vc = [UserPaoPaoApplyVC new];
+        [self pushViewController:vc];
+        
+    }
+    else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"UNCHECK"]){
+        [self showErrorStatus:@"待审核中..."];
+    } else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"REFUSE"]){
+        [self showErrorStatus:@"审核失败！"];
+    } else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"LOGOFF"]){
+        [self showErrorStatus:@"已注销！"];
+    } else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"LOCKED"]){
+        [self showErrorStatus:@"已禁用！"];
+    }else{
+
+        [self showWithStatus:@"正在操作中..."];
+        [[APIClient sharedClient] ZLOperatorPPTOrder:mOrder.odr_id andOrderCode:mOrder.odr_code andOperatorStatus:ZLOperatorPPTOrderStatusWithAccept block:^(APIObject *resb) {
+            if (resb.code == RESP_STATUS_YES) {
+                [self showSuccessStatus:resb.msg];
+                [self loadTableData:mIndex];
+
+            }else{
+            
+                [self showErrorStatus:resb.msg];
+            }
+        }];
+    
+    }
+
+    
+    
 
 }
 #pragma mark----****----开通按钮的代理方法
@@ -450,6 +511,7 @@
  @param mIndex 返回索引
  */
 - (void)ZLCustomSegViewDidBtnSelectedWithIndex:(NSInteger)mIndex{
+    mIndex = mIndex;
     MLLog(@"%ld",(long)mIndex);
     [self loadTableData:mIndex];
 

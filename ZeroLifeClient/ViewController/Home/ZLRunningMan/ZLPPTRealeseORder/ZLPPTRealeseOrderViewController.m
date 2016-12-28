@@ -319,6 +319,8 @@
     vc.block = ^(AddressObject *mAddress){
         MLLog(@"%@",mAddress);
         mCommitPreOrder.mArriveAddress = mAddress;
+        mCommitPreOrder.mPhone = mAddress.addr_phone;
+
         [self.tableView reloadData];
     };
     [self pushViewController:vc];
@@ -405,6 +407,15 @@
         [mPara setObject:mCommitPreOrder.mClassImg forKey:@"odrg_img"];
         [mPara setObject:@"" forKey:@"odrg_img_repair"];
         [mPara setObject:@"" forKey:@"odrg_video_repair"];
+        
+        if (mCommitPreOrder.mIndex<=0) {
+            mCommitPreOrder.mIndex = 0;
+            ZLPPTClassObj *mClass = mPPTPreOrder.classify[mCommitPreOrder.mIndex];
+            mCommitPreOrder.mTypeName = mClass.type_name;
+
+        }
+        
+        [mPara setObject:mCommitPreOrder.mTypeName forKey:@"odrg_memo"];
 
    
         [mPayArr addObject:mPara];
@@ -466,6 +477,15 @@
         [mPara setObject:mCommitPreOrder.mClassImg forKey:@"odrg_img"];
         [mPara setObject:@"" forKey:@"odrg_img_repair"];
         [mPara setObject:@"" forKey:@"odrg_video_repair"];
+
+        if (mCommitPreOrder.mIndex<=0) {
+            mCommitPreOrder.mIndex = 0;
+            ZLPPTClassObj *mClass = mPPTPreOrder.classify[mCommitPreOrder.mIndex];
+            mCommitPreOrder.mTypeName = mClass.type_name;
+            
+        }
+        
+        [mPara setObject:mCommitPreOrder.mTypeName forKey:@"odrg_memo"];
 
         [mPayArr addObject:mPara];
         
@@ -564,9 +584,11 @@
 - (void)ZLCustomSegViewDidBtnSelectedWithIndex:(NSInteger)mIndex{
     MLLog(@"%ld",(long)mIndex);
     ZLPPTClassObj *mClass = mPPTPreOrder.classify[mIndex];
+    mCommitPreOrder.mIndex = mIndex;
     mCommitPreOrder.mClassId = mClass.cls_id;
     mCommitPreOrder.mClassName = mClass.cls_name;
     mCommitPreOrder.mClassImg = mClass.cls_image;
+    mCommitPreOrder.mTypeName = mClass.type_name;
     mType = [Util currentReleaseType:mClass.type_name];
     [self.tableView reloadData];
 }

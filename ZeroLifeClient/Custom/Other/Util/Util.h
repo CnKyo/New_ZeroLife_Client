@@ -427,4 +427,6 @@ typedef enum _RelDic
  */
 + (BOOL)ZLRangOfString:(NSString *)mString;
 
+
+
 @end
