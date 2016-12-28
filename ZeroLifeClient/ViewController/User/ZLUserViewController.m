@@ -383,8 +383,8 @@
             [self.navigationController pushViewController:vc animated:YES];
             
         } else if (indexPath.row == 3) {
-            UserPaoPaoApplyVC *vc = [[UserPaoPaoApplyVC alloc] init];
-            //WebTestVC *vc = [[WebTestVC alloc] init];
+            //UserPaoPaoApplyVC *vc = [[UserPaoPaoApplyVC alloc] init];
+            WebTestVC *vc = [[WebTestVC alloc] init];
             vc.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:vc animated:YES];
         }
