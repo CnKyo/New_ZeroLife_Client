@@ -161,9 +161,26 @@
             cell.selectionStyle = UITableViewCellSelectionStyleGray;
         }
 
-        if (_isScoreView == YES) {
+        if (_isScoreView == YES) { //如果是积分界面
             cell.msgLable.text = @"积分商场兑换";
             cell.imgView.image = IMG(@"cell_score_item.png");
+            
+            UserScoreRecordObject *item = [self.tableArr objectAtIndex:indexPath.row];
+            
+            cell.timeLable.text = [NSString compIsNone:item.recs_add_time];
+            cell.msgLable.text = [NSString compIsNone:item.recs_desc];
+            switch (item.recs_record_type) {
+                case kWalletRecordType_input:
+                    cell.moneyLable.text = [NSString stringWithFormat:@"+%i", item.uwal_operation_score];
+                    break;
+                case kWalletRecordType_output:
+                    cell.moneyLable.text = [NSString stringWithFormat:@"-%i", item.uwal_operation_score];
+                    break;
+                default:
+                    break;
+            }
+            
+            
         } else {
             WalletRecordObject *item = [self.tableArr objectAtIndex:indexPath.row];
             
@@ -220,9 +237,16 @@
 - (void)reloadTableViewDataSource{
     [super reloadTableViewDataSource];
     
-    [[APIClient sharedClient] walletRecordListWithTag:self type:0 page:self.page call:^(int totalPage, NSArray *tableArr, APIObject *info) {
-        [self reloadWithTableArr:tableArr info:info];
-    }];
+    if (_isScoreView == YES) {
+        [[APIClient sharedClient] userScoreRecordListWithTag:self page:self.page call:^(int totalPage, NSArray *tableArr, APIObject *info) {
+            [self reloadWithTableArr:tableArr info:info];
+        }];
+    } else {
+        [[APIClient sharedClient] walletRecordListWithTag:self type:0 page:self.page call:^(int totalPage, NSArray *tableArr, APIObject *info) {
+            [self reloadWithTableArr:tableArr info:info];
+        }];
+    }
+
     //[self performSelector:@selector(donwData) withObject:nil afterDelay:0.5];
 }
 
