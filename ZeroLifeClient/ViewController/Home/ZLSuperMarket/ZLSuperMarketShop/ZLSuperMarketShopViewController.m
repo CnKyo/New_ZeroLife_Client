@@ -595,26 +595,38 @@ static const CGFloat mTopH = 156;
     if (tableView == _mSpeTableView) {
         
     }else if (tableView == mRightTableView) {
-        ZLGoodsDetailViewController *mShopVC = [ZLGoodsDetailViewController new];
+        [self showWithStatus:@"正在加载..."];
 
         switch (mRightTabType) {
             case ZLRightGoodsTypeFromCamp:
             {
-                mShopVC.mGoodsObj = mRightDataArr[indexPath.row];
+                
+                ZLGoodsWithCamp *mCGoodsObj = mRightDataArr[indexPath.row];
+                
+                ZLWebViewViewController *mWebvc = [ZLWebViewViewController new];
+                mWebvc.mUrl = [NSString stringWithFormat:@"%@/wap/good/goodsdetails?pro_id=%d&sku_id=%d&shop_id=%d&user_id=%d",[[APIClient sharedClient] currentUrl],mCGoodsObj.pro_id,mCGoodsObj.sku_id,self.mShopObj.shop_id,[ZLUserInfo ZLCurrentUser].user_id];
+                mWebvc.mCamGoodsObj = mCGoodsObj;
+                [self pushViewController:mWebvc];
+
                 
             }
                 break;
             case ZLRightGoodsTypeFromClass:
             {
-                mShopVC.mGoods = mRightDataArr[indexPath.row];
                 
+                ZLGoodsWithClass *mCGoodsObj = mRightDataArr[indexPath.row];
+                
+                ZLWebViewViewController *mWebvc = [ZLWebViewViewController new];
+                mWebvc.mUrl = [NSString stringWithFormat:@"%@/wap/good/goodsdetails?pro_id=%d&sku_id=%d&shop_id=%d&user_id=%d",[[APIClient sharedClient] currentUrl],mCGoodsObj.pro_id,mCGoodsObj.sku_id,self.mShopObj.shop_id,[ZLUserInfo ZLCurrentUser].user_id];
+                mWebvc.mClsGoodsObj = mCGoodsObj;
+
+                [self pushViewController:mWebvc];
             }
                 break;
                 
             default:
                 break;
         }
-        [self pushViewController:mShopVC];
 
         
     }else{

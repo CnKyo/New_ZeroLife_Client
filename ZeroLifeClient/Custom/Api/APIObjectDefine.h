@@ -35,6 +35,7 @@
 +(NSString *)iconImgStrOrderType:(kOrderClassType)type; //!< 根据订单类型得到图标名称
 +(NSString *)strDesWithOrderState:(NSString *)state;
 +(NSString *)urlWithExtra:(NSString *)str;  //!< 组合url地址
++ (NSString *)urlWithServiceUrl:(NSString *)mUrl;
 + (NSString*)linkUrl:(NSString*)str;
 @end
 
@@ -1360,9 +1361,13 @@
 ///订单号
 @property (strong,nonatomic) NSString* odr_code;
 
+@end
 
+#pragma mark----*****----跑腿评价
+@interface ZLPPTRateList : NSObject
 
 @end
+
 
 #pragma mark----****----生成预订单对象
 @class AddressObject;
@@ -1654,3 +1659,7 @@
 @property (nonatomic,strong) NSString   *payUnitName;///缴费单位名称
 @property (nonatomic,strong) NSString   *provinceId;///省份id
 @end
+
+
+
+

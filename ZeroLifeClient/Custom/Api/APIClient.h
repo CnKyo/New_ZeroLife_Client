@@ -29,8 +29,14 @@ typedef void (^TableShareSdkBlock)(int totalpage, NSArray *tableArr, APIShareSdk
 @interface APIClient : AFHTTPSessionManager
 @property(nonatomic, strong) NSMutableDictionary *conDic;//存网络链接，便于取消
 
+/**
+ *  可接受的响应内容类型
+ */
+@property (nonatomic, copy) NSSet <NSString *> *acceptableContentTypes;
+
 + (instancetype)sharedClient;
 
+- (void)getUrl:(NSString *)URLString parameters:(id)parameters call:(void (^)( APIObject* info))callback;
 
 - (NSString *)currentUrl;
 
@@ -64,7 +70,13 @@ typedef void (^TableShareSdkBlock)(int totalpage, NSArray *tableArr, APIShareSdk
 -(void)userInfoEditWithTag:(NSObject *)tag postItem:(ZLUserInfo *)it call:(void (^)(APIObject* info))callback;
 -(void)userPushSettingWithTag:(NSObject *)tag isOn:(BOOL)ison call:(void (^)(APIObject* info))callback;
 -(void)userSecurityPasswordSettingWithTag:(NSObject *)tag acc_pass:(NSString *)acc_pass security_password:(NSString *)security_password call:(void (^)(APIObject* info))callback;
+#pragma mark----****---- 更新用户信息
+/**
+ 更新用户信息
 
+ @param block 返回值
+ */
+- (void)ZLUpdateUserInfo:(void (^)(APIObject* info))block;
 
 //用户审核资料提交相关接口
 -(void)userApplyPaopaoWithTag:(NSObject *)tag item:(PaopaoApplyObject *)item call:(void (^)(APIObject* info))callback;
@@ -226,10 +238,11 @@ typedef void (^TableShareSdkBlock)(int totalpage, NSArray *tableArr, APIShareSdk
  获取商品详情
 
  @param mGoodsId 商品id
- @param mCamId   活动id
+ @param mShopId   活动id
+ @param mSkuId   规格id
  @param block    返回值
  */
-- (void)ZLGetGoodsDetail:(NSString *)mGoodsId andCamId:(NSString *)mCamId block:(void(^)(APIObject *mBaseObj,ZLGoodsDetail *mGoodsDetailObj,NSArray *mGoodsDetailImgArr))block;
+- (void)ZLGetGoodsDetail:(NSString *)mGoodsId andShopId:(NSString *)mShopId andSkuId:(NSString *)mSkuId block:(void(^)(APIObject *mBaseObj,NSString *mUrl))block;
 
 
 -(void)externalPlatformListWithTag:(NSObject *)tag call:(TableArrBlock)callback;
@@ -324,6 +337,15 @@ typedef void (^TableShareSdkBlock)(int totalpage, NSArray *tableArr, APIShareSdk
  */
 - (void)ZLGetPPTRewardList:(NSString *)mPage block:(void(^)(APIObject *mBaseObj,ZLPPTRewardList *mList))block;
 
+#pragma mark----****----获取跑跑腿评价
+/**
+ 获取跑跑腿评价
+
+ @param mPage 行数页数
+ @param mPageSize 每页条数
+ @param block 返回值
+ */
+- (void)ZLGetPPTRateList:(int)mPage andPageSize:(int)mPageSize block:(void(^)(APIObject *mBaseObj))block;
 
 //#pragma mark----****----获取手机充值预订单
 ///**
@@ -385,6 +407,17 @@ typedef void (^TableShareSdkBlock)(int totalpage, NSArray *tableArr, APIShareSdk
  @param block 返回值
  */
 - (void)ZLGetRunningmanPreOrder:(void(^)(APIObject *mBaseObj,ZLPreOrderObj *mPreOrder))block;
+
+#pragma mark----****---- 获取我的跑跑腿订单
+/**
+ 获取我的跑跑腿订单
+
+ @param mPage 分页
+ @param mPageSize 每页数量
+ @param block 返回值
+ */
+- (void)ZLGetMyPPTOrder:(int)mPage andPageSize:(int)mPageSize block:(void(^)(APIObject *mBaseObj,NSArray *mArr))block;
+
 
 #pragma mark----****---- 水电煤缴费查询接口
 /**

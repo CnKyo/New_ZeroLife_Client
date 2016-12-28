@@ -63,6 +63,50 @@
 
     return [NSString stringWithFormat:@"%@%@",kAFAppDotNetApiBaseURLString,kAFAppDotNetApiExtraURLString];
 }
+
+- (void)getUrl:(NSString *)URLString parameters:(id)parameters call:(void (^)( APIObject* info))callback{
+
+    MLLog(@"请求地址：%@-------请求参数：%@",URLString,parameters);
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+    NSMutableSet *contentTypes = [[NSMutableSet alloc] initWithSet:manager.responseSerializer.acceptableContentTypes];
+    [contentTypes addObject:@"text/html"];
+    [contentTypes addObject:@"text/plain"];
+    
+    manager.responseSerializer.acceptableContentTypes = self.acceptableContentTypes;
+    manager.requestSerializer.timeoutInterval = 10;
+    
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    
+    [manager GET:[NSString stringWithFormat:@"%@/%@",[self currentUrl],URLString] parameters:parameters progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        MLLog(@"data:%@",responseObject);
+        
+        NSDictionary *resbObj = [Util deleteEmpty:responseObject];
+        
+        MLLog(@"去掉字典里的null值之后的数据：%@",resbObj);
+        
+        APIObject   *retob = [APIObject mj_objectWithKeyValues:resbObj];
+        
+        callback(  retob );
+        
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        MLLog(@"error:%@",error.description);
+        callback( [APIObject infoWithError:error] );
+        
+        
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    }];
+
+}
+
+
 - (instancetype)initWithBaseURL:(NSURL *)url {
     self = [super initWithBaseURL:url];
     if (self) {
@@ -272,7 +316,17 @@
 //    if ([parameters isKindOfClass:[NSDictionary class]])
 //        [paramDic addEntriesFromDictionary:parameters];
     NSLog(@"URLString:%@ 参数parameters:%@", URLString, parameters);
-    NSString *url = [NSString urlWithExtra:URLString];
+    
+    NSString *url = nil;
+    
+    if ([Util ZLRangOfString:URLString]) {
+        url = [NSString urlWithServiceUrl:URLString];
+
+    }else{
+    
+        url = [NSString urlWithExtra:URLString];
+    }
+    
     [self urlGroupKey:NSStringFromClass([tag class]) path:url parameters:parameters call:^(NSError *error, id responseObject) {
         APIObject *info = nil;
         if (error == nil) {
@@ -288,8 +342,6 @@
         callback(info);
     }];
 }
-
-
 -(void)loadAPITableListWithTag:(NSObject *)tag path:(NSString *)URLString parameters:(NSDictionary *)parameters pageIndex:(int)page subClass:(Class)aClass call:(TablePageArrBlock)callback
 {
     NSMutableDictionary *dic = [NSMutableDictionary quDicWithPage:page pageRow:TABLE_PAGE_ROW];
@@ -548,6 +600,47 @@
         callback([APIObject infoWithReLoginErrorMessage:@"请重新登陆"]);
 }
 
+#pragma mark----****---- 更新用户信息
+/**
+ 更新用户信息
+ 
+ @param block 返回值
+ */
+- (void)ZLUpdateUserInfo:(void (^)(APIObject* info))block{
+
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    if (user.user_id > 0) {
+        NSMutableDictionary* para = [NSMutableDictionary dictionary];
+        [para setInt:[ZLUserInfo ZLCurrentUser].user_id forKey:@"user_id"];
+        
+        [self loadAPIWithTag:self path:@"/user/userInfo_index" parameters:para call:^(APIObject *info) {
+            if (info.code == RESP_STATUS_YES) {
+                ZLUserInfo *user = [ZLUserInfo mj_objectWithKeyValues:[info.data objectWithKey:@"user"]];
+                CommunityObject *community = [CommunityObject mj_objectWithKeyValues:[info.data objectWithKey:@"community"]];
+                WalletObject *wallet = [WalletObject mj_objectWithKeyValues:[info.data objectWithKey:@"wallet"]];
+                OpeningFunctionObject *open = [OpeningFunctionObject mj_objectWithKeyValues:[info.data objectWithKey:@"openInfo"]];
+                if (user != nil) {
+                    if (community != nil)
+                        user.community = community;
+                    
+                    if (wallet != nil)
+                        user.wallet = wallet;
+                    if (open != nil)
+                        user.openInfo = open;
+                    
+                    [ZLUserInfo updateUserInfo:user];
+                }
+                block(info);
+            } else
+                block(info);
+            
+        }];
+
+    }else{
+        block([APIObject infoWithReLoginErrorMessage:@"请重新登陆"]);
+    }
+}
+
 
 #pragma mark----****----资料提交接口
 /**
@@ -567,7 +660,14 @@
         if (item.mat_document_name==nil || item.mat_document_name.length==0)
             [paramDic setObject:@"IDCard" forKey:@"mat_document_name"];
         
-        [self loadAPIWithTag:tag path:@"/paopao/applyPaopao" parameters:paramDic call:^(APIObject *info) {
+        ZLUserInfo *mUser = [ZLUserInfo ZLCurrentUser];
+        
+        if (item.uopen_head.length<=0 || mUser.user_header.length<=0) {
+            [paramDic setObject:mUser.user_header forKey:@"uopen_head"];
+
+        }
+        
+        [self loadAPIWithTag:tag path:@"/ppao/ppao_apply" parameters:paramDic call:^(APIObject *info) {
             callback(info);
         }];
     } else
@@ -1738,30 +1838,46 @@
  获取商品详情
  
  @param mGoodsId 商品id
- @param mCamId   活动id
+ @param mShopId   活动id
+ @param mSkuId   规格id
  @param block    返回值
  */
-- (void)ZLGetGoodsDetail:(NSString *)mGoodsId andCamId:(NSString *)mCamId block:(void(^)(APIObject *mBaseObj,ZLGoodsDetail *mGoodsDetailObj,NSArray *mGoodsDetailImgArr))block{
+- (void)ZLGetGoodsDetail:(NSString *)mGoodsId andShopId:(NSString *)mShopId andSkuId:(NSString *)mSkuId block:(void(^)(APIObject *mBaseObj,NSString *mUrl))block{
 
     
     NSMutableDictionary *para = [NSMutableDictionary new];
     
-    
-    if (mCamId) {
-        [para setNeedStr:mCamId forKey:@"cam_gid"];
-        
-    }
     if(mGoodsId){
         [para setNeedStr:mGoodsId forKey:@"pro_id"];
     }
+    if (mSkuId) {
+        [para setNeedStr:mSkuId forKey:@"sku_id"];
+
+    }
+    if (mShopId) {
+        [para setNeedStr:mShopId forKey:@"shop_id"];
+        
+    }
+
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
     
-    [self loadAPIWithTag:self path:@"/shop/product_info" parameters:para call:^(APIObject *info) {
-        if (info.code == RESP_STATUS_YES) {
-            ZLGoodsDetail *mGoodsDetail = [ZLGoodsDetail mj_objectWithKeyValues:info.data];
-            block(info, mGoodsDetail, mGoodsDetail.images);
-        } else
-            block(info, nil, nil);
-    }];
+    if (user.user_id > 0) {
+        [para setInt:[ZLUserInfo ZLCurrentUser].user_id forKey:@"user_id"];
+        
+        [self getUrl:@"/wap/good/goodsdetails" parameters:para call:^(APIObject *info) {
+            if (info.code == RESP_STATUS_YES) {
+                block(info, nil);
+            } else
+                block(info, nil);
+        }];
+        
+    
+
+    }else{
+    
+        block([APIObject infoWithReLoginErrorMessage:@"您还未登录呐～"],nil);
+    }
+    
     
 
     
@@ -2277,7 +2393,7 @@
         [para setInt:[ZLUserInfo ZLCurrentUser].user_id forKey:@"user_id"];
         
         
-        [self loadAPIWithTag:self path:@"/paopao/findPaopaoType" parameters:para call:^(APIObject *info) {
+        [self loadAPIWithTag:self path:@"/ppao/ppao_load" parameters:para call:^(APIObject *info) {
             
             if (info.code == RESP_STATUS_YES) {
                 
@@ -2325,7 +2441,7 @@
         
     }
     
-    [self loadAPIWithTag:self path:@"/paopao/paopaoTopList" parameters:para call:^(APIObject *info) {
+    [self loadAPIWithTag:self path:@"/ppao/ppao_sort" parameters:para call:^(APIObject *info) {
         
         if (info.code == RESP_STATUS_YES) {
             
@@ -2365,7 +2481,7 @@
         [para setInt:20 forKey:@"pageSize"];
 
         
-        [self loadAPIWithTag:self path:@"/paopao/paopaoRevenueRecord" parameters:para call:^(APIObject *info) {
+        [self loadAPIWithTag:self path:@"/ppao/ppao_revenue" parameters:para call:^(APIObject *info) {
             
             if (info.code == RESP_STATUS_YES) {
                 
@@ -2383,6 +2499,18 @@
         block([APIObject infoWithReLoginErrorMessage:@"请重新登陆"],nil);
         
     }
+    
+}
+#pragma mark----****----获取跑跑腿评价
+/**
+ 获取跑跑腿评价
+ 
+ @param mPage 行数页数
+ @param mPageSize 每页条数
+ @param block 返回值
+ */
+- (void)ZLGetPPTRateList:(int)mPage andPageSize:(int)mPageSize block:(void(^)(APIObject *mBaseObj))block{
+
     
 }
 
@@ -2542,13 +2670,13 @@
     if (mPageSize) {
         [para setInt:mPageSize forKey:@"pageSize"];
     }
-    [para setInt:mId forKey:@"type"];
+    [para setInt:mId forKey:@"cls_id"];
 
     [para setObject:[NSString stringWithFormat:@"%f",mLat] forKey:@"lat"];
     [para setObject:[NSString stringWithFormat:@"%f",mLng] forKey:@"lng"];
     
     
-    [self loadAPIWithTag:self path:@"/paopao/task_list" parameters:para call:^(APIObject *info) {
+    [self loadAPIWithTag:self path:@"/ppao/order_task" parameters:para call:^(APIObject *info) {
         
         if (info.code == RESP_STATUS_YES) {
             
@@ -2600,6 +2728,53 @@
     }else{
         block([APIObject infoWithReLoginErrorMessage:@"请重新登陆"],nil);
         
+    }
+    
+}
+
+#pragma mark----****---- 获取我的跑跑腿订单
+/**
+ 获取我的跑跑腿订单
+ 
+ @param mPage 分页
+ @param mPageSize 每页数量
+ @param block 返回值
+ */
+- (void)ZLGetMyPPTOrder:(int)mPage andPageSize:(int)mPageSize block:(void(^)(APIObject *mBaseObj,NSArray *mArr))block{
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    
+    if (user.user_id > 0) {
+        
+        NSMutableDictionary* para = [NSMutableDictionary dictionary];
+        
+        [para setInt:[ZLUserInfo ZLCurrentUser].user_id forKey:@"user_id"];
+        
+        if (mPage) {
+            [para setInt:mPage forKey:@"pageNumber"];
+        }
+        if (mPageSize) {
+            [para setInt:mPageSize forKey:@"pageSize"];
+        }
+        
+        MLLog(@"%@",[ZLUserInfo ZLCurrentUser]);
+        [self loadAPIWithTag:self path:@"/ppao/ppao_order_list" parameters:para call:^(APIObject *info) {
+            
+            if (info.code == RESP_STATUS_YES) {
+                
+                block(info,nil);
+                
+            }else{
+                
+                block(info,nil);
+                
+            }
+            
+        }];
+
+        
+    }else{
+        block([APIObject infoWithReLoginErrorMessage:@"请重新登陆"],nil);
+
     }
     
 }

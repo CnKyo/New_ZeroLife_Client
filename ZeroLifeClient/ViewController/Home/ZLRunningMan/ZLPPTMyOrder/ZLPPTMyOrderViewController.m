@@ -29,10 +29,34 @@
     UINib   *nib = [UINib nibWithNibName:@"ZLPPTMyOrderCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
 
+    [self setTableViewHaveHeader];
 
     
 }
 
+- (void)reloadTableViewDataSource{
+    [super reloadTableViewDataSource];
+
+    [[APIClient sharedClient] ZLGetMyPPTOrder:self.page andPageSize:10 block:^(APIObject *mBaseObj, NSArray *mArr) {
+        
+        [self.tableArr removeAllObjects];
+        [self ZLHideEmptyView];
+        
+        if (mBaseObj.code == RESP_STATUS_YES) {
+            [self showSuccessStatus:mBaseObj.msg];
+            
+            
+        }else{
+//            [self ZLShowEmptyView:@"暂无数据" andImage:nil andHiddenRefreshBtn:NO];
+            [self showErrorStatus:mBaseObj.msg];
+        }
+        
+        [self doneLoadingTableViewData];
+        [self.tableView reloadData];
+    }];
+    
+
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -87,7 +111,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return 5;
+    return self.tableArr.count;
     
 }
 

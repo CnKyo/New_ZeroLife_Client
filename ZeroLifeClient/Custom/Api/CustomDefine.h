@@ -204,6 +204,7 @@ static int const RESP_STATUS_LOGIN                  = 300;             //需要�
 
 static NSString* const  kAFAppDotNetApiBaseURLString    = @"http://192.168.1.114";
 static NSString* const  kAFAppDotNetApiExtraURLString    = @"/api/app/client";
+static NSString* const  kAFAppDotNetApiServiceURLString    = @"/api/app/service";
 static NSString* const  kAFAppDotNetImgBaseURLString    = @"http://192.168.1.114/resource";
 
 

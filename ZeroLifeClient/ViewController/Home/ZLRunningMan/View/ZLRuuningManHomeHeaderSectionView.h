@@ -36,7 +36,9 @@
 
 @property (weak, nonatomic) IBOutlet UIView *mSectionView;
 
+@property (weak, nonatomic) IBOutlet UILabel *mContent;
 
+@property (weak, nonatomic) IBOutlet UILabel *mDetail;
 
 /**
  初始化方法

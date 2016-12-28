@@ -1,4 +1,4 @@
-//
+ //
 //  ZLRunningManViewController.m
 //  ZeroLifeClient
 //
@@ -17,7 +17,7 @@
 #import "ZLPPTRateViewController.h"
 #import "UserPaoPaoRegisterVC.h"
 #import "ZLCustomSegView.h"
-
+#import "UserPaoPaoApplyVC.h"
 @interface ZLRunningManViewController ()<UITableViewDelegate,UITableViewDataSource,ZLRunningManHomeCellDelegate,ZLRunningManCellDelegate,ZLRuuningManHomeHeaderSectionViewDelegate,ZLCustomSegViewDelegate>
 
 @end
@@ -34,6 +34,22 @@
 
     NSMutableArray *mTempArr;
     
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+
+    [super viewWillAppear:animated];
+    [self updateUserInfo];
+}
+- (void)updateUserInfo{
+
+    [[APIClient sharedClient] ZLUpdateUserInfo:^(APIObject *info) {
+        if (info.code == RESP_STATUS_YES) {
+            [self dismiss];
+        }else{
+            [self showErrorStatus:info.msg];
+        }
+    }];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -55,7 +71,7 @@
 
 - (void)initStaticData{
 
-    NSArray *mTT = @[@"跑腿榜",@"我的发布",@"酬金记录",@"我的评价"];
+    NSArray *mTT = @[@"跑腿榜",@"我的跑单",@"酬金记录",@"我的评价"];
     NSArray *mII = @[@"ZLPPT_Anouncement",@"ZLPPT_My",@"ZLPPT_Reward",@"ZLPPT_Rate"];
     
     for (int i = 0; i<mTT.count; i++) {
@@ -189,7 +205,16 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if (section == 0) {
-        return 40;
+        
+        if ([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"NOTOPEN"]) {
+            return 40;
+        }else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"PAYMENTED"]){
+            return 40;
+        }
+        else{
+            return 0;
+        }
+
     }else{
         return 80;
     }
@@ -201,7 +226,20 @@
         mFirstSectionView = [ZLRuuningManHomeHeaderSectionView initView];
         mFirstSectionView.delegate = self;
         
-        return mFirstSectionView;
+        if ([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"NOTOPEN"]) {
+            mFirstSectionView.mContent.text = @"申请开通跑跑腿才能接单赚取酬金";
+            mFirstSectionView.mDetail.text = @"去开通";
+            return mFirstSectionView;
+        }else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"PAYMENTED"]){
+            mFirstSectionView.mContent.text = @"您还未提交申请跑腿资料哦～";
+            mFirstSectionView.mDetail.text = @"去提交";
+            return mFirstSectionView;
+        }
+        else{
+            return nil;
+        }
+        
+
     }else{
         return mSecondSectionView;
     }
@@ -301,17 +339,64 @@
             break;
         case 2:
         {
+            
+            if ([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"NOTOPEN"]) {
+                
+                [self showErrorStatus:@"您还未成为跑腿者，赶紧去申请吧～"];
+                [self performSelector:@selector(ZLRuuningManHomeHeaderSectionViewBtnClicked) withObject:nil afterDelay:0.25];
+                return;
+                
+            }else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"PAYMENTED"]){
+                UserPaoPaoApplyVC *vc = [UserPaoPaoApplyVC new];
+                [self pushViewController:vc];
+                
+            }
+            else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"UNCHECK"]){
+                [self showErrorStatus:@"待审核中..."];
+            } else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"REFUSE"]){
+                [self showErrorStatus:@"审核失败！"];
+            } else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"LOGOFF"]){
+                [self showErrorStatus:@"已注销！"];
+            } else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"LOCKED"]){
+                [self showErrorStatus:@"已禁用！"];
+            }else{
+                ZLPPTRewardViewController *vc = [ZLPPTRewardViewController new];
+                vc.mTotleMoney = mClassObj.amount;
+                [self pushViewController:vc];
+            }
 
-            ZLPPTRewardViewController *vc = [ZLPPTRewardViewController new];
-            vc.mTotleMoney = mClassObj.amount;
-            [self pushViewController:vc];
+            
         }
             break;
         case 3:
         {
             
-            ZLPPTRateViewController *vc = [ZLPPTRateViewController new];
-            [self pushViewController:vc];
+            
+            if ([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"NOTOPEN"]) {
+               
+                [self showErrorStatus:@"您还未成为跑腿者，赶紧去申请吧～"];
+                [self performSelector:@selector(ZLRuuningManHomeHeaderSectionViewBtnClicked) withObject:nil afterDelay:0.25];
+                return;
+
+            }else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"PAYMENTED"]){
+                UserPaoPaoApplyVC *vc = [UserPaoPaoApplyVC new];
+                [self pushViewController:vc];
+                
+            }
+            else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"UNCHECK"]){
+                [self showErrorStatus:@"待审核中..."];
+            } else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"REFUSE"]){
+                [self showErrorStatus:@"审核失败！"];
+            } else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"LOGOFF"]){
+                [self showErrorStatus:@"已注销！"];
+            } else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"LOCKED"]){
+                [self showErrorStatus:@"已禁用！"];
+            }else{
+                ZLPPTRateViewController *vc = [ZLPPTRateViewController new];
+                [self pushViewController:vc];
+            }
+
+
         }
             break;
             
@@ -332,8 +417,29 @@
 #pragma mark----****----开通按钮的代理方法
 - (void)ZLRuuningManHomeHeaderSectionViewBtnClicked{
 
-    UserPaoPaoRegisterVC*vc = [[UserPaoPaoRegisterVC alloc] initWithNibName:@"UserPaoPaoRegisterVC" bundle:nil];
-    [self pushViewController:vc];
+    
+    if ([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"NOTOPEN"]) {
+        UserPaoPaoRegisterVC*vc = [[UserPaoPaoRegisterVC alloc] initWithNibName:@"UserPaoPaoRegisterVC" bundle:nil];
+        [self pushViewController:vc];
+    }else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"PAYMENTED"]){
+        UserPaoPaoApplyVC *vc = [UserPaoPaoApplyVC new];
+        [self pushViewController:vc];
+
+    }
+    else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"UNCHECK"]){
+        [self showErrorStatus:@"待审核中..."];
+    } else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"REFUSE"]){
+        [self showErrorStatus:@"审核失败！"];
+    } else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"LOGOFF"]){
+        [self showErrorStatus:@"已注销！"];
+    } else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"LOCKED"]){
+        [self showErrorStatus:@"已禁用！"];
+    }else{
+        [self showErrorStatus:@"已成为跑腿者！"];
+    }
+
+    
+
     
 }
 

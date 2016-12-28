@@ -37,6 +37,15 @@
     
     mSegmentView = [WKSegmentControl initWithSegmentControlFrame:CGRectMake(0, 165, DEVICE_Width, 40) andTitleWithBtn:mTT andBackgroudColor:[UIColor whiteColor] andBtnSelectedColor:[UIColor colorWithRed:0.91 green:0.53 blue:0.16 alpha:1.00] andBtnTitleColor:M_TextColor1 andUndeLineColor:[UIColor colorWithRed:0.91 green:0.53 blue:0.16 alpha:1.00] andBtnTitleFont:[UIFont systemFontOfSize:15] andInterval:20 delegate:self andIsHiddenLine:YES andType:2];
 
+    
+    [self setTableViewHaveHeaderFooter];
+    
+}
+- (void)reloadTableViewDataSource{
+    [super reloadTableViewDataSource];
+    
+
+
 }
 
 - (void)didReceiveMemoryWarning {

@@ -71,7 +71,10 @@
 {
     return [NSString stringWithFormat:@"%@%@", kAFAppDotNetApiExtraURLString, str];
 }
++ (NSString *)urlWithServiceUrl:(NSString *)mUrl{
+    return [NSString stringWithFormat:@"%@%@", kAFAppDotNetApiServiceURLString, mUrl];
 
+}
 +(NSString *)strUserSexType:(kUserSexType)type
 {
     NSString *str = @"";

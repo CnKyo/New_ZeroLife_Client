@@ -95,20 +95,7 @@
     }
     
     
-    [[APIClient sharedClient] ZLGetGoodsDetail:mGoodsId andCamId:mCamId block:^(APIObject *mBaseObj, ZLGoodsDetail *mGoodsDetailObj, NSArray *mGoodsDetailImgArr) {
-        [mImageArr removeAllObjects];
-        if (mBaseObj.code == RESP_STATUS_YES) {
-            [self dismiss];
-            mGoodsDetail = mGoodsDetailObj;
-            [mImageArr addObjectsFromArray:mGoodsDetailImgArr];
-            [self loadWebViewWithURL:mGoodsDetailObj.pro_spec];
-        }else{
-        
-            [self showErrorStatus:mBaseObj.msg];
-            [self ZLShowEmptyView:mBaseObj.msg andImage:nil andHiddenRefreshBtn:YES];
-        }
-        [self.mTableView reloadData];
-    }];
+
     
 }
 /**

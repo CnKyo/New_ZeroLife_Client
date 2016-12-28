@@ -1613,7 +1613,46 @@
 
 }
 
+#pragma mark---- 字符串判断
+/**
+ 判断是否包含字符串
+ 
+ @param mString 要判断的字符串
+ @return 返回yes or no
+ */
++ (BOOL)ZLRangOfString:(NSString *)mString{
 
+    
+    if ([mString isEqualToString:@"/ppao/ppao_load"]) {
+        return YES;
+
+    }else if ([mString isEqualToString:@"/ppao/ppao_order_list"]){
+        return YES;
+
+    }else if ([mString isEqualToString:@"/ppao/ppao_evaluate"]){
+        return YES;
+
+    }else if ([mString isEqualToString:@"/ppao/ppao_revenue"]){
+        return YES;
+
+    }else if ([mString isEqualToString:@"/ppao/order_task"]){
+        return YES;
+
+    }else if ([mString isEqualToString:@"/ppao/ppao_sort"]){
+        return YES;
+
+    }else if ([mString isEqualToString:@"/ppao/ppao_apply"]){
+        return YES;
+
+    }else if ([mString isEqualToString:@"/ppao/order_oprate"]){
+        return YES;
+        
+    }else
+    {
+        return NO;
+    }
+    
+}
 
 
 

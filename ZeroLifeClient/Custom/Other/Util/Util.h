@@ -417,4 +417,14 @@ typedef enum _RelDic
  */
 + (NSString *)ZLCharacterString:(NSString *)mCharaString;
 
+
+#pragma mark---- 字符串判断
+/**
+ 判断是否包含字符串
+
+ @param mString 要判断的字符串
+ @return 返回yes or no
+ */
++ (BOOL)ZLRangOfString:(NSString *)mString;
+
 @end

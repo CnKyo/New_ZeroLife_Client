@@ -8,11 +8,16 @@
 
 //#import "CustomVC.h"
 #import <UIKit/UIKit.h>
-
+#import "CustomDefine.h"
+#import "APIObjectDefine.h"
 
 //@interface ZLWebViewViewController : CustomVC
 @interface ZLWebViewViewController : UIViewController
 
 @property (nonatomic, copy) NSString *mUrl;
+
+@property (nonatomic, strong) ZLGoodsWithCamp *mCamGoodsObj;
+
+@property (nonatomic, strong) ZLGoodsWithClass *mClsGoodsObj;
 
 @end
