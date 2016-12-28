@@ -71,7 +71,7 @@
         OrderRepairBidObject *item = [self.tableArr objectAtIndex:indexPath.row];
         
         cell.nameLable.text = [NSString compIsNone:item.shop_name];
-        cell.priceLable.text = [NSString stringWithFormat:@"％.2f", item.bid_price];
+        cell.priceLable.text = [NSString stringWithFormat:@"%.2f", item.bid_price];
         
         [cell.imgView setImageWithURL:[NSURL imageurl:item.shop_logo] placeholderImage:ZLDefaultShopImg];
 
