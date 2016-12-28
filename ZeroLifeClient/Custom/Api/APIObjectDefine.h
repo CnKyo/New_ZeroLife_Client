@@ -503,6 +503,7 @@
 @property(nonatomic,strong) NSString *              odr_state;         //!< 订单状态
 @property(nonatomic,strong) NSString *              odr_state_val;         //!< 当前订单状态描述
 @property(nonatomic,strong) NSMutableArray *        odr_state_next;         //!< 当前订单操作类型数组
+@property(nonatomic,assign) int                     odr_service_num;         //!< 报修竞价状态下的竞价商户数
 @property(nonatomic,assign) int                     cmut_id;         //!< 社区ID
 @property(nonatomic,assign) int                     shop_id;         //!< 店铺ID
 @property(nonatomic,strong) NSString *              shop_name;         //!< 店铺名

@@ -46,28 +46,18 @@
 */
 
 #pragma mark -- tableviewDelegate
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    if (self.tableArr.count > 0)
-        return self.tableArr.count;
+#pragma mark -- tableviewDelegate
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
 }
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (self.tableArr.count > 0)
-        return 1;
-    else {
-        if (self.tableIsReloading)
-            return 0;
-        else
-            return 1;
-    }
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.tableArr.count;
 }
-
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.tableArr.count > 0)
         return 100;
-    return 50;
+    return [super tableView:tableView heightForRowAtIndexPath:indexPath];
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -78,6 +68,14 @@
         if (cell == nil) {
             cell = [[BaoXiuChooseShopTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
+        OrderRepairBidObject *item = [self.tableArr objectAtIndex:indexPath.row];
+        
+        cell.nameLable.text = [NSString compIsNone:item.shop_name];
+        cell.priceLable.text = [NSString stringWithFormat:@"%.2f", item.bid_price];
+        
+        [cell.imgView setImageWithURL:[NSURL imageurl:item.shop_logo] placeholderImage:ZLDefaultShopImg];
+
+        
         [cell.chooseBtn jk_addActionHandler:^(NSInteger tag) {
             if (self.chooseCallBack)
                 self.chooseCallBack(@"111");
@@ -92,56 +90,23 @@
         //        cell.addressLable.text = @"重庆市渝中区石油路万科中心1栋1004 重庆超尔科技有限公司";
         return cell;
     }
+    
     return [super tableView:tableView cellForRowAtIndexPath:indexPath];
 }
 
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 0;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
-    return 10;
-}
-
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-//    if (self.tableArr.count > 0) {
-//        OrderGoodsDetailVC *vc = [[OrderGoodsDetailVC alloc] init];
-//        vc.classType = _classType;
-//        [self.navigationController pushViewController:vc animated:YES];
-//    }
 }
-
-//- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-//{
-//    return 100;
-//}
-//
-//- (nullable UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-//{
-//    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, DEVICE_Width, 100)];
-//    UIButton *btn11 = [view newUIButton];
-//    btn11.frame = CGRectMake(10, 50, view.bounds.size.width-20, 50);
-//    [btn11 setTitle:@"确认" forState:UIControlStateNormal];
-//    [btn11 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-//    [btn11 jk_setBackgroundColor:COLOR_NavBar forState:UIControlStateNormal];
-//    btn11.layer.masksToBounds = YES;
-//    btn11.layer.cornerRadius = 5;
-//    [btn11 jk_addActionHandler:^(NSInteger tag) {
-//
-//    }];
-//    return view;
-//}
 
 - (void)reloadTableViewDataSource{
     [super reloadTableViewDataSource];
     
-    [self performSelector:@selector(donwData) withObject:nil afterDelay:0.5];
+    [[APIClient sharedClient] orderBidListWithTag:self odr_id:_odr_id odr_code:_odr_code call:^(NSArray *tableArr, APIObject *info) {
+        [self reloadWithTableArr:tableArr info:info];
+    }];
+    //[self performSelector:@selector(donwData) withObject:nil afterDelay:0.5];
 }
 
 -(void)donwData

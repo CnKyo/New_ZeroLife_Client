@@ -168,6 +168,7 @@
     [[APIClient sharedClient] ZLSendToPayOrderObjGoPay:ZLGoPayTypeWithConfirmPay andPayObj:self.mOrder andPayType:mOrder.mPayType block:^(APIObject *mBaseObj,ZLCreateOrderObj* mPayOrderObj) {
         
         if (mBaseObj.code == RESP_STATUS_YES) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:MyUserNeedUpdateNotification object:nil];
             
             [self showSuccessStatus:mBaseObj.msg];
             [LKDBHelperGoodsObj deleteWithWhere:[NSString stringWithFormat:@"%d",self.mShopId]];
@@ -181,7 +182,9 @@
 }
 - (void)mPopAction{
     
-    [LKDBHelperGoodsObj deleteWithWhere:[NSString stringWithFormat:@"%d",self.mShopId]];
+    if (_mShopId > 0) {
+        [LKDBHelperGoodsObj deleteWithWhere:[NSString stringWithFormat:@"%d",self.mShopId]];
+    }
 
     [self popViewController_3];
 
