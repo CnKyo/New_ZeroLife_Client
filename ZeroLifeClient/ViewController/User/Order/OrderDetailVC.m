@@ -390,6 +390,9 @@
                     make.left.equalTo(view.left).offset(padding*2);
                     make.right.equalTo(view.right).offset(-padding*2);
                 }];
+                
+                itemView.noteLable.text = [NSString stringWithFormat:@"已有%i家服务商参与 点击选择服务商", _item.odr_service_num];
+                
                 [itemView jk_handleControlEvents:UIControlEventTouchUpInside withBlock:^(id weakSender) {
                     NSLog(@"选择");
                     OrderBaoXiuChooseShopVC *vc = [[OrderBaoXiuChooseShopVC alloc] init];

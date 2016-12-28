@@ -1096,7 +1096,25 @@
         callback(nil, [APIObject infoWithReLoginErrorMessage:@"请重新登陆"]);
 }
 
-
+/**
+ *   商户竞价列表接口接口
+ *
+ *  @param tag      链接对象
+ *  @param callback 返回列表
+ */
+-(void)orderBidListWithTag:(NSObject *)tag odr_id:(int)odr_id odr_code:(NSString *)odr_code call:(TableArrBlock)callback
+{
+    NSMutableDictionary* paramDic = [NSMutableDictionary dictionary];
+    [paramDic setInt:odr_id forKey:@"odr_id"];
+    [paramDic setNeedStr:odr_code forKey:@"odr_code"];
+    [self loadAPIWithTag:self path:@"/order/order_bid_list" parameters:paramDic call:^(APIObject *info) {
+        if (info.code == RESP_STATUS_YES) {
+            NSArray *newArr = [OrderRepairBidObject mj_objectArrayWithKeyValuesArray:info.data];
+            callback(newArr, info);
+        } else
+            callback(nil, info);
+    }];
+}
 
 
 /**
