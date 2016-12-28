@@ -930,6 +930,29 @@
         callback(0, nil, [APIObject infoWithReLoginErrorMessage:@"请重新登陆"]);
 }
 
+
+/**
+ *   用户积分兑换记录列表接口
+ *
+ *  @param tag      链接对象
+ *  @param callback 返回列表
+ */
+-(void)userScoreRecordListWithTag:(NSObject *)tag page:(int)page call:(TablePageArrBlock)callback
+{
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    if (user.user_id > 0) {
+        NSMutableDictionary* paramDic = [NSMutableDictionary dictionary];
+        [paramDic setInt:user.user_id forKey:@"user_id"];
+        [self loadAPITableListWithTag:self path:@"/user/score/userScoreRecordList" parameters:paramDic pageIndex:page subClass:[UserScoreRecordObject class] call:^(int totalPage, NSArray *tableArr, APIObject *info) {
+            callback(totalPage, tableArr, info);
+        }];
+    } else
+        callback(0, nil, [APIObject infoWithReLoginErrorMessage:@"请重新登陆"]);
+}
+
+
+
+
 #pragma mark----****----用户订单相关接口
 /**
  *   用户订单列表接口
@@ -1036,6 +1059,34 @@
         }];
     } else
         callback([APIObject infoWithReLoginErrorMessage:@"请重新登陆"]);
+}
+
+
+/**
+ *  订单获取差价支付信息
+ *
+ *  @param tag              链接对象
+ *  @param odr_id           订单id
+ *  @param odr_code         订单订单编号
+ *  @param callback         返回信息
+ */
+-(void)orderOprateDiffPriceWithTag:(NSObject *)tag odr_id:(int)odr_id odr_code:(NSString *)odr_code call:(void (^)(ZLCreateOrderObj* item, APIObject* info))callback
+{
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    if (user.user_id > 0) {
+        NSMutableDictionary *paramDic = [NSMutableDictionary dictionary];
+        [paramDic setInt:user.user_id forKey:@"user_id"];
+        [paramDic setInt:odr_id forKey:@"odr_id"];
+        [paramDic setNeedStr:odr_code forKey:@"odr_code"];
+        [self loadAPIWithTag:tag path:@"/order/order_oprate" parameters:paramDic call:^(APIObject *info) {
+            if (info.code == RESP_STATUS_YES) {
+                ZLCreateOrderObj *it = [ZLCreateOrderObj mj_objectWithKeyValues:info.data];
+                callback(it, info);
+            } else
+                callback(nil, info);
+        }];
+    } else
+        callback(nil, [APIObject infoWithReLoginErrorMessage:@"请重新登陆"]);
 }
 
 

@@ -629,6 +629,10 @@
 @end
 
 
+@implementation UserScoreRecordObject
+@end
+
+
 @implementation CouponObject
 //- (id)mj_newValueFromOldValue:(id)oldValue property:(MJProperty *)property
 //{
