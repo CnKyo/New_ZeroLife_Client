@@ -81,11 +81,9 @@
 //    self.tableView.tableHeaderView = headerView;
     
     UIView *headerView = ({
-        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, DEVICE_Width, 60)];
+        UIView *view = [[UIView alloc] init];
         view.backgroundColor = [UIColor clearColor];
         UIImageView *imgView = [view newUIImageViewWithImg:IMG(@"coupon_top_icon.png")];
-//        imgView.frame = CGRectMake(0, 20, 30, 21);
-//        imgView.center = CGPointMake(<#CGFloat x#>, <#CGFloat y#>)
         UILabel *lable = [view newUILableWithText:@"我的优惠券" textColor:[UIColor darkGrayColor] font:[UIFont systemFontOfSize:13] textAlignment:NSTextAlignmentCenter];
         UIView *lineView1 = [view newDefaultLineView];
         UIView *lineView2 = [view newDefaultLineView];
@@ -113,6 +111,10 @@
             make.centerY.equalTo(lable.centerY);
             make.right.equalTo(view.right).offset(-padding*3);
         }];
+        [view makeConstraints:^(MASConstraintMaker *make) {
+            make.width.equalTo(DEVICE_Width);
+            make.height.equalTo(60);
+        }];
         view;
     });
     self.tableView.tableHeaderView = headerView;
@@ -125,11 +127,7 @@
     self.title = @"我的优惠券";
 
     if (self.tableArr.count == 0)
-         [self setTableViewHaveHeaderFooter];
-    
-    
-
-    
+         [self setTableViewHaveHeader];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -199,10 +197,20 @@
             cell.view.timeLable.textColor = COLOR(150, 150, 150);
         }
         
+        CGFloat moneyBaseWidth = 50;
         NSDictionary *attrs = @{NSFontAttributeName : cell.view.typeLable.font};
         CGSize size = [typeStr sizeWithAttributes:attrs];
+        size.width += 10;
+        NSLog(@"width: %.2f", size.width);
         [cell.view.typeLable updateConstraints:^(MASConstraintMaker *make) {
-            make.width.equalTo(size.width + 10);
+            make.width.equalTo(size.width);
+        }];
+        [cell.view.moneyLable updateConstraints:^(MASConstraintMaker *make) {
+            if (size.width < moneyBaseWidth) {
+                make.width.equalTo(moneyBaseWidth);
+            } else {
+                make.width.equalTo(size.width);
+            }
         }];
         
         NSDictionary* style = @{@"body" : @[[UIFont systemFontOfSize:25], bordColor],
@@ -241,24 +249,10 @@
 - (void)reloadTableViewDataSource{
     [super reloadTableViewDataSource];
 
-    [[APIClient sharedClient] couponListWithTag:self page:self.page call:^(int totalPage, NSArray *tableArr, APIObject *info) {
-        //[self.tableArr removeAllObjects];
-        
+    [[APIClient sharedClient] couponListWithTag:self call:^(NSArray *tableArr, APIObject *info) {
         [self reloadWithTableArr:tableArr info:info];
     }];
-
-    
-
-    
-    //[self performSelector:@selector(donwData) withObject:nil afterDelay:0.5];
 }
 
--(void)donwData
-{
-    for (int i=0; i<10; i++) {
-        [self.tableArr addObject:@"111"];
-    }
-    [self doneLoadingTableViewData];
-}
 
 @end

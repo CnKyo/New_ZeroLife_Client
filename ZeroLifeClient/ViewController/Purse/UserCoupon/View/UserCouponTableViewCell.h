@@ -11,7 +11,7 @@
 #import "CustomDefine.h"
 #import "APIObjectDefine.h"
 
-@interface UserCouponTableView : UIView
+@interface UserCouponView : UIView
 @property(nonatomic,strong) UIImageView *imgView;
 @property(nonatomic,strong) UILabel *typeLable; //优惠方式
 @property(nonatomic,strong) UILabel *moneyLable; //优惠金额
@@ -23,12 +23,7 @@
 
 
 @interface UserCouponTableViewCell : UITableViewCell
-@property(nonatomic,strong) UserCouponTableView *view;
-
-
-@property(nonatomic,strong) CouponObject *item;
-
-@property(nonatomic,strong) CouponObject *mCoup;
+@property(nonatomic,strong) UserCouponView *view;
 
 
 @end

@@ -96,12 +96,41 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUserInfoChange:) name:MyUserInfoChangedNotification object:nil];
+
+    [self reloadUIWithData];
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
+#pragma mark -- 监测到用户数据修改
+-(void)handleUserInfoChange:(NSNotification *)note
+{
+    [self reloadUIWithData];
+}
+
+//重新刷新UI显示
+-(void)reloadUIWithData
+{
     ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
     
     UIView *superView = self.view;
@@ -126,21 +155,6 @@
         [self.headerView loadYuEMoney:[NSString stringWithFormat:@"%.2f", user.wallet.uwal_balance]];
     }
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 #pragma mark -- tableviewDelegate
 
@@ -225,11 +239,6 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-//    if (self.tableArr.count > 0) {
-//        FeePayHistoryDetailVC *vc = [[FeePayHistoryDetailVC alloc] init];
-//        [self.navigationController pushViewController:vc animated:YES];
-//    }
 }
 
 
@@ -246,16 +255,6 @@
             [self reloadWithTableArr:tableArr info:info];
         }];
     }
-
-    //[self performSelector:@selector(donwData) withObject:nil afterDelay:0.5];
-}
-
--(void)donwData
-{
-    for (int i=0; i<10; i++) {
-        [self.tableArr addObject:@"111"];
-    }
-    [self doneLoadingTableViewData];
 }
 
 

@@ -98,7 +98,7 @@ typedef void (^TableShareSdkBlock)(int totalpage, NSArray *tableArr, APIShareSdk
 
 
 //优惠券相关接口
--(void)couponListWithTag:(NSObject *)tag page:(int)page call:(TablePageArrBlock)callback;
+-(void)couponListWithTag:(NSObject *)tag call:(TableArrBlock)callback;
 
 
 //用户钱包相关接口

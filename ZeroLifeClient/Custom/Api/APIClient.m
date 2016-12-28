@@ -458,7 +458,7 @@
     if (user.user_id > 0) {
         NSMutableDictionary* paramDic = [NSMutableDictionary dictionary];
         [paramDic setInt:user.user_id forKey:@"user_id"];
-        [self loadAPIWithTag:self path:@"/user/user_login" parameters:paramDic call:^(APIObject *info) {
+        [self loadAPIWithTag:self path:@"/user/userInfo_index" parameters:paramDic call:^(APIObject *info) {
             if (info.code == RESP_STATUS_YES) {
                 ZLUserInfo *user = [ZLUserInfo mj_objectWithKeyValues:[info.data objectWithKey:@"user"]];
                 CommunityObject *community = [CommunityObject mj_objectWithKeyValues:[info.data objectWithKey:@"community"]];
@@ -895,17 +895,21 @@
  *  @param tag      链接对象
  *  @param callback 返回列表
  */
--(void)couponListWithTag:(NSObject *)tag page:(int)page call:(TablePageArrBlock)callback
+-(void)couponListWithTag:(NSObject *)tag call:(TableArrBlock)callback
 {
     ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
     if (user.user_id > 0) {
         NSMutableDictionary* paramDic = [NSMutableDictionary dictionary];
         [paramDic setInt:user.user_id forKey:@"user_id"];
-        [self loadAPITableListWithTag:self path:@"/user/coupon/coupon_list" parameters:paramDic pageIndex:page subClass:[CouponObject class] call:^(int totalPage, NSArray *tableArr, APIObject *info) {
-            callback(totalPage, tableArr, info);
+        [self loadAPIWithTag:self path:@"/user/coupon/coupon_list" parameters:paramDic call:^(APIObject *info) {
+            if (info.code == RESP_STATUS_YES) {
+                NSArray *newArr = [CouponObject mj_objectArrayWithKeyValuesArray:info.data];
+                callback(newArr, info);
+            } else
+                callback(nil, info);
         }];
     } else
-        callback(0, nil, [APIObject infoWithReLoginErrorMessage:@"请重新登陆"]);
+        callback(nil, [APIObject infoWithReLoginErrorMessage:@"请重新登陆"]);
 }
 
 
