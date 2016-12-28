@@ -23,12 +23,7 @@
 {
     [super loadView];
     
-   
-    
     UIView *superView = self.view;
-    
-
-    
     
     CAGradientLayer *gradientLayer = [CAGradientLayer layer];  // 设置渐变效果
     gradientLayer.bounds = superView.bounds;

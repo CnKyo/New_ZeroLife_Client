@@ -307,6 +307,20 @@
 @end
 
 
+#pragma mark -  用户积分记录对象
+@interface UserScoreRecordObject : NSObject
+@property (assign,nonatomic) int                    recs_id;   //!< 对应id
+@property (assign,nonatomic) kWalletRecordType      recs_record_type;   //!< 记录类型 1:收入、2:支出
+@property (strong,nonatomic) NSString*              recs_desc;   //!< 描述
+@property (strong,nonatomic) NSString*              recs_add_time;   //!< 生成时间
+@property (assign,nonatomic) int                    user_id;   //!< 用户ID
+@property (assign,nonatomic) int                    uwal_id;   //!< 钱包ID
+@property (assign,nonatomic) int                    uwal_score;   //!< 之前积分
+@property (assign,nonatomic) int                    uwal_operation_score;   //!< 操作积分
+@property (assign,nonatomic) int                    operation_score;   //!< 剩余积分
+@property (strong,nonatomic) NSString*              odr_code;   //!< 订单编号
+@end
+
 
 
 
@@ -632,14 +646,9 @@
 
 + (BOOL)isNeedLogin;    //!< 需要登录
 - (BOOL)ZLUserIsValid;  //!< 用户信息实效
-
-
 +(void)updateUserInfo:(ZLUserInfo *)user;   //!< 更新用户数据
-
 + (void)logOut; //!< 退出登录
-
 + (ZLUserInfo *)ZLCurrentUser;  //!< 返回当前用户信息
-// + (void)ZLDealSession:(APIObject *)info andPwd:(NSString *)mPwd andOpenId:(NSString *)mOpenId block:(void(^)(APIObject* resb, ZLUserInfo *user))block;
 
 @end
 

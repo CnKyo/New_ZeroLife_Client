@@ -10,7 +10,7 @@
 
 
 
-@implementation UserCouponTableView
+@implementation UserCouponView
 
 - (id)init{
     
@@ -65,32 +65,18 @@
         
         [self.moneyLable makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(superView.left).offset(padding/2);
-            make.width.equalTo(superView.height);
             make.top.equalTo(superView.centerY).offset(-padding);
             make.bottom.equalTo(superView.bottom).offset(-padding);
+            make.width.equalTo(50);
         }];
         
         [self.typeLable makeConstraints:^(MASConstraintMaker *make) {
             make.bottom.equalTo(_moneyLable.top);
-            //make.left.lessThanOrEqualTo(_moneyLable.left);
-            //make.right.lessThanOrEqualTo(_moneyLable.right);
             make.centerX.equalTo(_moneyLable.centerX);
             make.height.equalTo(20);
-            make.width.lessThanOrEqualTo(_moneyLable.width);
         }];
-        //
-        //
-        //        [self.imgView makeConstraints:^(MASConstraintMaker *make) {
-        //            make.width.height.equalTo(22);
-        //            make.centerY.equalTo(superView.centerY);
-        //            make.left.equalTo(superView.left).offset(padding);
-        //        }];
-        //        [self.moneyLable makeConstraints:^(MASConstraintMaker *make) {
-        //            make.right.equalTo(superView.right).offset(-padding);
-        //            make.top.bottom.equalTo(superView);
-        //            make.width.lessThanOrEqualTo(65);
-        //        }];
-        //
+
+        
         [self.nameLable makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(_moneyLable.right).offset(padding/2);
             make.right.equalTo(_imgView.left).offset(-padding/2);
@@ -108,10 +94,6 @@
 }
 
 
--(void)loadDataWithItem:(CouponObject *)item
-{
-    
-}
 
 
 @end
@@ -138,7 +120,7 @@
 //        UIColor *color = [UIColor grayColor];
         UIView *superView = self.contentView;
         
-        self.view = [[UserCouponTableView alloc] init];
+        self.view = [[UserCouponView alloc] init];
         [superView addSubview:_view];
         
         [self.view makeConstraints:^(MASConstraintMaker *make) {
@@ -153,10 +135,7 @@
 }
 
 
--(void)loadDataWithItem:(CouponObject *)item
-{
-    
-}
+
 
 
 - (void)awakeFromNib {
@@ -168,125 +147,6 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
-}
-
-- (void)setItem:(CouponObject *)item{
-    
-    
-    //        UIColor *bordColor = nil;
-    //        NSString *typeStr = @"";
-    //        if (indexPath.row == 0) {
-    //            typeStr = @"满减券";
-    //            bordColor = COLOR(253, 126, 0);
-    //            cell.view.imgView.image = IMG(@"user_coupon_jushe.png");
-    //            cell.view.statusLable.textColor = [UIColor whiteColor];
-    //            cell.view.timeLable.textColor = [UIColor whiteColor];
-    //
-    //
-    //        } else if (indexPath.row == 1) {
-    //            typeStr = @"立减券2";
-    //            bordColor = COLOR(253, 87, 88);
-    //            cell.view.imgView.image = IMG(@"user_coupon_red.png");
-    //            cell.view.statusLable.textColor = [UIColor whiteColor];
-    //            cell.view.timeLable.textColor = [UIColor whiteColor];
-    //
-    //        } else {
-    //            typeStr = @"立减券33";
-    //            bordColor = COLOR(222, 222, 222);
-    //            cell.view.imgView.image = IMG(@"user_coupon_gray.png");
-    //            cell.view.statusLable.textColor = COLOR(150, 150, 150);
-    //            cell.view.timeLable.textColor = COLOR(150, 150, 150);
-    //        }
-
-    
-    UIColor *bordColor = nil;
-    NSString *typeStr = item.cup_name;
-    
-    bordColor = COLOR(253, 126, 0);
-    self.view.imgView.image = IMG(@"user_coupon_jushe.png");
-    self.view.statusLable.textColor = [UIColor whiteColor];
-    self.view.timeLable.textColor = [UIColor whiteColor];
-    
-    
-    
-    NSDictionary *attrs = @{NSFontAttributeName : self.view.typeLable.font};
-    CGSize size = [typeStr sizeWithAttributes:attrs];
-    [self.view.typeLable updateConstraints:^(MASConstraintMaker *make) {
-        make.width.equalTo(size.width + 10);
-    }];
-    
-    NSDictionary* style = @{@"body" : @[[UIFont systemFontOfSize:25], bordColor],
-                            @"u" : @[[UIFont systemFontOfSize:14], COLOR(253, 156, 16)]};
-    
-    self.view.typeLable.text = typeStr;
-    self.view.layer.borderColor = bordColor.CGColor;
-    self.view.typeLable.layer.borderColor = bordColor.CGColor;
-    self.view.typeLable.textColor = bordColor;
-    self.view.moneyLable.attributedText = [@"20 <u>元</u>" attributedStringWithStyleBook:style];
-    
-    self.view.nameLable.text = [NSString compIsNone:item.cup_author];
-    self.view.desLable.text = [NSString compIsNone:item.cup_content];
-    self.view.timeLable.text = item.cuc_overdue;
-
-}
-
-- (void)setMCoup:(CouponObject *)mCoup{
-
-    //        UIColor *bordColor = nil;
-    //        NSString *typeStr = @"";
-    //        if (indexPath.row == 0) {
-    //            typeStr = @"满减券";
-    //            bordColor = COLOR(253, 126, 0);
-    //            cell.view.imgView.image = IMG(@"user_coupon_jushe.png");
-    //            cell.view.statusLable.textColor = [UIColor whiteColor];
-    //            cell.view.timeLable.textColor = [UIColor whiteColor];
-    //
-    //
-    //        } else if (indexPath.row == 1) {
-    //            typeStr = @"立减券2";
-    //            bordColor = COLOR(253, 87, 88);
-    //            cell.view.imgView.image = IMG(@"user_coupon_red.png");
-    //            cell.view.statusLable.textColor = [UIColor whiteColor];
-    //            cell.view.timeLable.textColor = [UIColor whiteColor];
-    //
-    //        } else {
-    //            typeStr = @"立减券33";
-    //            bordColor = COLOR(222, 222, 222);
-    //            cell.view.imgView.image = IMG(@"user_coupon_gray.png");
-    //            cell.view.statusLable.textColor = COLOR(150, 150, 150);
-    //            cell.view.timeLable.textColor = COLOR(150, 150, 150);
-    //        }
-    
-    
-    UIColor *bordColor = nil;
-    NSString *typeStr = mCoup.cup_name;
-    
-    bordColor = COLOR(253, 126, 0);
-    self.view.imgView.image = IMG(@"user_coupon_jushe.png");
-    self.view.statusLable.textColor = [UIColor whiteColor];
-    self.view.timeLable.textColor = [UIColor whiteColor];
-    
-    
-    
-    NSDictionary *attrs = @{NSFontAttributeName : self.view.typeLable.font};
-    CGSize size = [typeStr sizeWithAttributes:attrs];
-    [self.view.typeLable updateConstraints:^(MASConstraintMaker *make) {
-        make.width.equalTo(size.width + 10);
-    }];
-    
-    NSDictionary* style = @{@"body" : @[[UIFont systemFontOfSize:25], bordColor],
-                            @"u" : @[[UIFont systemFontOfSize:14], COLOR(253, 156, 16)]};
-    
-    self.view.typeLable.text = typeStr;
-    self.view.layer.borderColor = bordColor.CGColor;
-    self.view.typeLable.layer.borderColor = bordColor.CGColor;
-    self.view.typeLable.textColor = bordColor;
-    self.view.moneyLable.attributedText = [@"20 <u>元</u>" attributedStringWithStyleBook:style];
-    
-    self.view.nameLable.text = [NSString compIsNone:mCoup.cup_author];
-    self.view.desLable.text = [NSString compIsNone:mCoup.cup_content];
-    self.view.timeLable.text = mCoup.cuc_overdue;
-
 }
 
 @end

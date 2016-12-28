@@ -130,17 +130,6 @@
 
 
 
-
-//监测到用户数据修改
--(void)handleUserInfoChange:(NSNotification *)note
-{
-    [self.tableView reloadData];
-}
-
-
-
-
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -156,6 +145,11 @@
 }
 */
 
+#pragma mark -- 监测到用户数据修改
+-(void)handleUserInfoChange:(NSNotification *)note
+{
+    [self.tableView reloadData];
+}
 
 #pragma mark -- tableviewDelegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

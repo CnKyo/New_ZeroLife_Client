@@ -96,12 +96,41 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUserInfoChange:) name:MyUserInfoChangedNotification object:nil];
+
+    [self reloadUIWithData];
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
+#pragma mark -- 监测到用户数据修改
+-(void)handleUserInfoChange:(NSNotification *)note
+{
+    [self reloadUIWithData];
+}
+
+//重新刷新UI显示
+-(void)reloadUIWithData
+{
     ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
     
     UIView *superView = self.view;
@@ -127,21 +156,6 @@
     }
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 #pragma mark -- tableviewDelegate
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -161,9 +175,26 @@
             cell.selectionStyle = UITableViewCellSelectionStyleGray;
         }
 
-        if (_isScoreView == YES) {
+        if (_isScoreView == YES) { //如果是积分界面
             cell.msgLable.text = @"积分商场兑换";
             cell.imgView.image = IMG(@"cell_score_item.png");
+            
+            UserScoreRecordObject *item = [self.tableArr objectAtIndex:indexPath.row];
+            
+            cell.timeLable.text = [NSString compIsNone:item.recs_add_time];
+            cell.msgLable.text = [NSString compIsNone:item.recs_desc];
+            switch (item.recs_record_type) {
+                case kWalletRecordType_input:
+                    cell.moneyLable.text = [NSString stringWithFormat:@"+%i", item.uwal_operation_score];
+                    break;
+                case kWalletRecordType_output:
+                    cell.moneyLable.text = [NSString stringWithFormat:@"-%i", item.uwal_operation_score];
+                    break;
+                default:
+                    break;
+            }
+            
+            
         } else {
             WalletRecordObject *item = [self.tableArr objectAtIndex:indexPath.row];
             
@@ -208,11 +239,6 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-//    if (self.tableArr.count > 0) {
-//        FeePayHistoryDetailVC *vc = [[FeePayHistoryDetailVC alloc] init];
-//        [self.navigationController pushViewController:vc animated:YES];
-//    }
 }
 
 
@@ -220,18 +246,15 @@
 - (void)reloadTableViewDataSource{
     [super reloadTableViewDataSource];
     
-    [[APIClient sharedClient] walletRecordListWithTag:self type:0 page:self.page call:^(int totalPage, NSArray *tableArr, APIObject *info) {
-        [self reloadWithTableArr:tableArr info:info];
-    }];
-    //[self performSelector:@selector(donwData) withObject:nil afterDelay:0.5];
-}
-
--(void)donwData
-{
-    for (int i=0; i<10; i++) {
-        [self.tableArr addObject:@"111"];
+    if (_isScoreView == YES) {
+        [[APIClient sharedClient] userScoreRecordListWithTag:self page:self.page call:^(int totalPage, NSArray *tableArr, APIObject *info) {
+            [self reloadWithTableArr:tableArr info:info];
+        }];
+    } else {
+        [[APIClient sharedClient] walletRecordListWithTag:self type:0 page:self.page call:^(int totalPage, NSArray *tableArr, APIObject *info) {
+            [self reloadWithTableArr:tableArr info:info];
+        }];
     }
-    [self doneLoadingTableViewData];
 }
 
 
