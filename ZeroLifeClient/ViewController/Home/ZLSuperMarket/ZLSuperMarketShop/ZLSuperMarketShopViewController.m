@@ -1327,6 +1327,11 @@ static const CGFloat mTopH = 156;
         ZLSpeObj *mSpeO = self.mAddSkuArray[i];
         
         if (mSpeO.mSku.sta_required == 1) {
+            
+            if (mGoodObj.mNum<=0) {
+                mGoodObj.mNum = 1;
+            }
+            
             ZLAddObj.mSKUID = mSpeO.mSku.sku_id;
             ZLAddObj.mExtObj.mTotlePrice = mGoodObj.mNum*mSpeO.mSku.sku_price;
 

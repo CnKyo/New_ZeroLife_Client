@@ -228,6 +228,9 @@
 
             break;
         default:
+            
+            [self popViewController_3];
+            
             break;
     }
 
