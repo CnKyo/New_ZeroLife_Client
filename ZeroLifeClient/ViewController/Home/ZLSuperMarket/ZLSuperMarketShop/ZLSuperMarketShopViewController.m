@@ -516,16 +516,16 @@ static const CGFloat mTopH = 156;
         
     }else if(tableView == mRightTableView){
         
-        if (self.mType == ZLShopTypeHouseKeeping) {
-            reuseCellId = @"mHouseKeepCell";
-            
-            ZLHouseKeppingServiceCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
-            cell.delegate = self;
-            cell.mIndexPath = indexPath;
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            
-            return cell;
-        }else{
+//        if (self.mType == ZLShopTypeHouseKeeping) {
+//            reuseCellId = @"mHouseKeepCell";
+//            
+//            ZLHouseKeppingServiceCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
+//            cell.delegate = self;
+//            cell.mIndexPath = indexPath;
+//            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//            
+//            return cell;
+//        }else{
   
             switch (mRightTabType) {
                 case ZLRightGoodsTypeFromCamp:
@@ -561,7 +561,7 @@ static const CGFloat mTopH = 156;
             }
             
             
-        }
+//        }
         
         
     }else{
