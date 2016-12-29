@@ -188,16 +188,17 @@
     
     switch (_mOrderType) {
         case kOrderClassType_fix:
-
+            [self popViewController_3];
             break;
         case kOrderClassType_product:
-
+            [self popViewController_3];
             break;
         case kOrderClassType_dryclean:
+            [self popViewController_3];
 
             break;
         case kOrderClassType_paopao:
-
+            [self popViewController_2];
             break;
         case kOrderClassType_paopao_apply:
             [self popViewController_2];

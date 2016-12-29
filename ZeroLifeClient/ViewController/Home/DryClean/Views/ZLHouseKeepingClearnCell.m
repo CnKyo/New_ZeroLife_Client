@@ -138,9 +138,9 @@
         [self addSubview:scrollView];
         
         
-        NoticeTextView *noticeView = [[NoticeTextView alloc] init];
-        noticeView.frame = CGRectMake(0, scrollView.mbottom, DEVICE_Width, 40);
-        [self addSubview:noticeView];
+//        NoticeTextView *noticeView = [[NoticeTextView alloc] init];
+//        noticeView.frame = CGRectMake(0, scrollView.mbottom, DEVICE_Width, 40);
+//        [self addSubview:noticeView];
 
     }
     return self;

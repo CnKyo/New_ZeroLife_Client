@@ -11,7 +11,7 @@
 @interface ZLSuperMarketShopViewController : CustomVC
 
 /**
- 页面类型：1是超市2是家政
+ 页面类型：1是超市2是报修3是家政
  */
 @property (assign,nonatomic) ZLShopType mType;
 @property (strong,nonatomic) ZLShopHomeShopObj *mShopObj;

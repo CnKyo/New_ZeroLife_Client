@@ -162,7 +162,7 @@ static const CGFloat mTopH = 156;
 - (void)loadData{
     [self showWithStatus:@"正在加载..."];
     
-    [[APIClient sharedClient] ZLGetShopMsgWithShopType:1 andShopId:self.mShopObj.shop_id block:^(APIObject *mBaseObj, ZLShopObj *mShop,ZLShopLeftTableArr *mLeftTabArr) {
+    [[APIClient sharedClient] ZLGetShopMsgWithShopType:self.mType andShopId:self.mShopObj.shop_id block:^(APIObject *mBaseObj, ZLShopObj *mShop,ZLShopLeftTableArr *mLeftTabArr) {
         
         [mLeftDataArr removeAllObjects];
         

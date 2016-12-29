@@ -140,9 +140,9 @@
     if (indexPath.section == 0) {
         
         if (self.tableArr.count<=4) {
-            return 220-90;
+            return 180-90;
         }else{
-            return 220;
+            return 180;
         }
         
         
@@ -175,6 +175,9 @@
         
         
         cell.backgroundColor = [UIColor whiteColor];
+        
+        [cell setMShopObj:mShopArr[indexPath.row]];
+        
 
         return cell;
         
@@ -195,6 +198,8 @@
     if (indexPath.section == 1) {
         ZLSuperMarketShopViewController *vc = [ZLSuperMarketShopViewController new];
         vc.mType = ZLShopTypeHouseKeeping;
+        vc.mShopObj = mShopArr[indexPath.row];
+
         [self pushViewController:vc];
     }
     

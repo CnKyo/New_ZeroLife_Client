@@ -266,6 +266,8 @@
         
     }else{
         ZLSuperMarketShopViewController *ZLSuperMarketShopVC = [ZLSuperMarketShopViewController new];
+        ZLSuperMarketShopVC.mType = ZLShopTypeSuperMarket;
+
         ZLSuperMarketShopVC.mShopObj = self.tableArr[indexPath.row];
         [self pushViewController:ZLSuperMarketShopVC];
     }
