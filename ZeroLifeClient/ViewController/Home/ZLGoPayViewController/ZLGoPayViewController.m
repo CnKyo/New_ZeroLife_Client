@@ -171,7 +171,11 @@
             [[NSNotificationCenter defaultCenter] postNotificationName:MyUserNeedUpdateNotification object:nil];
             
             [self showSuccessStatus:mBaseObj.msg];
-            [LKDBHelperGoodsObj deleteWithWhere:[NSString stringWithFormat:@"%d",self.mShopId]];
+            
+            if (_mShopId > 0) {
+                [LKDBHelperGoodsObj deleteWithWhere:[NSString stringWithFormat:@"%d",self.mShopId]];
+            }
+            
             [self performSelector:@selector(mPopAction) withObject:nil afterDelay:0.25];
         }else{
             
@@ -182,11 +186,49 @@
 }
 - (void)mPopAction{
     
-    if (_mShopId > 0) {
-        [LKDBHelperGoodsObj deleteWithWhere:[NSString stringWithFormat:@"%d",self.mShopId]];
-    }
+    switch (_mOrderType) {
+        case kOrderClassType_fix:
 
-    [self popViewController_3];
+            break;
+        case kOrderClassType_product:
+
+            break;
+        case kOrderClassType_dryclean:
+
+            break;
+        case kOrderClassType_paopao:
+
+            break;
+        case kOrderClassType_paopao_apply:
+            [self popViewController_2];
+            break;
+        case kOrderClassType_fee_mobile:
+            [self popViewController];
+            break;
+        case kOrderClassType_fee_peroperty:
+            [self popViewController];
+            break;
+        case kOrderClassType_balance_present:
+            [self popViewController];
+            break;
+        case kOrderClassType_balance_recharge:
+            [self popViewController_2];
+            break;
+        case kOrderClassType_balance_transfer:
+            [self popViewController];
+            break;
+        case kOrderClassType_balance_collection:
+
+            break;
+        case kOrderClassType_fee_sdq:
+
+            break;
+        case kOrderClassType_fee_parking:
+
+            break;
+        default:
+            break;
+    }
 
 }
 
