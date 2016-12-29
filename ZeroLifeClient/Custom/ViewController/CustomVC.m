@@ -478,7 +478,7 @@
         return;
     }else{
         if (mBackTitle.length > 0 ) {
-            mR.size.width = 40;
+            mR.size.width = 80;
             mRightBtn.frame = mR;
             [mRightBtn setTitle:mBackTitle forState:UIControlStateNormal];
         }else if (mImage != nil){

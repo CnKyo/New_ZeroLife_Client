@@ -196,7 +196,7 @@ static const CGFloat mTopH = 156;
 }
 - (void)upDatePage:(ZLShopObj *)mShop{
     
-    [mHeaderView.mShopLogo sd_setImageWithURL:[NSURL URLWithString:mShop.mShopMsg.shop_logo] placeholderImage:[UIImage imageNamed:@"ZLDefault_Shop"]];
+    [mHeaderView.mShopLogo sd_setImageWithURL:[NSURL URLWithString:[Util currentSourceImgUrl:mShop.mShopMsg.shop_logo]] placeholderImage:[UIImage imageNamed:@"ZLDefault_Shop"]];
     self.navigationItem.title = mShop.mShopMsg.shop_name;
     
     mHeaderView.mContent.text = [NSString stringWithFormat:@"满%.0f元起送 %@",mShop.mShopMsg.ext_min_price,mShop.mShopMsg.ext_max_time];
@@ -1088,7 +1088,7 @@ static const CGFloat mTopH = 156;
         num = 1;
     }
     
-    [mSpeView.mGoodsImg sd_setImageWithURL:[NSURL URLWithString:mGoodsImg] placeholderImage:[UIImage imageNamed:@"ZLDefault_Img"]];
+    [mSpeView.mGoodsImg sd_setImageWithURL:[NSURL URLWithString:[Util currentSourceImgUrl:mGoodsImg]] placeholderImage:[UIImage imageNamed:@"ZLDefault_Img"]];
     mSpeView.mGoodsName.text = mName;
     mSpeView.mGoodsPrice.text = [NSString stringWithFormat:@"价格：%.2f元",mPrice];
     mSpeView.mGoodsRep.text = [NSString stringWithFormat:@"库存：%d",mcount];

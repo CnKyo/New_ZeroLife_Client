@@ -534,10 +534,10 @@
                 
                 ZLHomeCompainNoticeList *mCampain = mComDataSourceArr[indexPath.row];
                 
-                [cell.mImage sd_setImageWithURL:[NSURL URLWithString:mCampain.not_image] placeholderImage:[UIImage imageNamed:@"ZLDefault_Activity"]];
+                [cell.mImage sd_setImageWithURL:[NSURL URLWithString:[Util currentSourceImgUrl:mCampain.not_image]] placeholderImage:[UIImage imageNamed:@"ZLDefault_Activity"]];
             }else{
                 ZLHomeAdvList *mAdv = mAdvDataSourceArr[indexPath.row];
-                [cell.mImage sd_setImageWithURL:[NSURL URLWithString:mAdv.adv_image] placeholderImage:[UIImage imageNamed:@"ZLDefault_Activity"]];
+                [cell.mImage sd_setImageWithURL:[NSURL URLWithString:[Util currentSourceImgUrl:mAdv.adv_image]] placeholderImage:[UIImage imageNamed:@"ZLDefault_Activity"]];
             }
             
             return cell;

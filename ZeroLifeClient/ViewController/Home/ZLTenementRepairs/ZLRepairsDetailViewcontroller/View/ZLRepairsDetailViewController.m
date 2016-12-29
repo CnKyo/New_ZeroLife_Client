@@ -9,7 +9,8 @@
 #import "ZLRepairsDetailViewController.h"
 #import "ZLRepairDetailSubViewController.h"
 #import "ZLCommitRepairsViewController.h"
-@interface ZLRepairsDetailViewController ()<UIScrollViewDelegate>
+
+@interface ZLRepairsDetailViewController ()<UIScrollViewDelegate,UIWebViewDelegate>
 
 @end
 
@@ -18,14 +19,18 @@
 
     UISegmentedControl *mSegmentControl;
     UIScrollView *mScrollerView;
+    
+    UIWebView *mWebView;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
     self.navigationItem.title = @"报修详情";
-    [self  initView];
     
+    
+//    [self  initView];
+    [self initWebView];
    
 }
 
@@ -35,7 +40,40 @@
     ZLCommitVC.mClassObj = _mClassObj;
     [self pushViewController:ZLCommitVC];
 }
+- (void)initWebView{
 
+    mWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, DEVICE_Width, DEVICE_Height-50)];
+    mWebView.delegate = self;
+    [self.view addSubview:mWebView];
+    UIButton *mCommit = [UIButton new];
+    mCommit.frame = CGRectMake(0, DEVICE_Height-50, DEVICE_Width, 50);
+    mCommit.backgroundColor = M_CO;
+    [mCommit setTitle:@"立即提交订单" forState:0];
+    [mCommit setTitleColor:[UIColor whiteColor] forState:0];
+    [mCommit addTarget:self action:@selector(mcommit) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:mCommit];
+    
+    //activityView
+    UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    activityView.center = self.view.center;
+    [activityView startAnimating];
+    [self.view addSubview:activityView];
+    //清除UIWebView的缓存
+    [[NSURLCache sharedURLCache] removeAllCachedResponses];
+    
+    NSString * url = self.mUrl;
+    
+    if(!url.length) url = @"m.baidu.com";
+    
+    if (![url hasPrefix:@"http://"]) {
+        url = [NSString stringWithFormat:@"http://%@",url];
+    }
+    
+    
+    [mWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0]];
+    [activityView stopAnimating];
+
+}
 - (void)initView{
 
     mScrollerView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, DEVICE_Width, DEVICE_Height-50)];
@@ -118,5 +156,32 @@
     // Pass the selected object to the new view controller.
 }
 */
+#pragma mark - UIWebViewDelegate
+- (void)webViewDidStartLoad:(UIWebView *)webView{
+    [SVProgressHUD showWithStatus:@"加载中..."];
+    
+}
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
+    
+    
+    NSLog(@"url: %@", request.URL.absoluteURL.description);
+    
+    if (mWebView.canGoBack) {
+        
+    }
+    return YES;
+}
+
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView{
+    self.title = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
+    [SVProgressHUD dismiss];
+    
+}
+
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
+    [SVProgressHUD showErrorWithStatus:error.description];
+    
+}
 
 @end

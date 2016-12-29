@@ -47,6 +47,14 @@
         
         self.backgroundColor = [UIColor colorWithRed:0.97 green:0.97 blue:0.97 alpha:1.00];
         if (mBannerDataSource.count > 0) {
+            
+            NSMutableArray *mImgUrl = [NSMutableArray new];
+            
+            
+            for (ZLHomeBanner *mBanner in mBannerDataSource) {
+                [mImgUrl addObject:[Util currentSourceImgUrl:mBanner.bnr_image]];
+            }
+            
             mScrollerView = [[RKImageBrowser alloc] initWithFrame:CGRectMake(0, 0, screen_width, 150)];
             mScrollerView.backgroundColor = [UIColor whiteColor];
             [mScrollerView setBrowserWithImagesArray:mBannerDataSource];
@@ -95,7 +103,7 @@
                     ZLShopHomeClassify *ZLClassify = mDataSource[i];
                     NSString *title = ZLClassify.cls_name;
                     NSString *imageStr = ZLClassify.cls_image;
-                    ZLCustomBtnView *btnView = [[ZLCustomBtnView alloc] initWithZLCustomBtnViewFrame:frame Title:title ImageStr:imageStr];
+                    ZLCustomBtnView *btnView = [[ZLCustomBtnView alloc] initWithZLCustomBtnViewFrame:frame Title:title ImageStr:[Util currentSourceImgUrl:imageStr]];
                     btnView.tag = i;
                     [mBgkView1 addSubview:btnView];
                     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(OnTapBtnView:)];
@@ -109,7 +117,7 @@
                     ZLShopHomeClassify *ZLClassify = mDataSource[i];
                     NSString *title = ZLClassify.cls_name;
                     NSString *imageStr = ZLClassify.cls_image;
-                    ZLCustomBtnView *btnView = [[ZLCustomBtnView alloc] initWithZLCustomBtnViewFrame:frame Title:title ImageStr:imageStr];
+                    ZLCustomBtnView *btnView = [[ZLCustomBtnView alloc] initWithZLCustomBtnViewFrame:frame Title:title ImageStr:[Util currentSourceImgUrl:imageStr]];
                     btnView.tag = i;
                     [mBgkView1 addSubview:btnView];
                     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(OnTapBtnView:)];
@@ -122,7 +130,7 @@
                     ZLShopHomeClassify *ZLClassify = mDataSource[i];
                     NSString *title = ZLClassify.cls_name;
                     NSString *imageStr = ZLClassify.cls_image;
-                    ZLCustomBtnView *btnView = [[ZLCustomBtnView alloc] initWithZLCustomBtnViewFrame:frame Title:title ImageStr:imageStr];
+                    ZLCustomBtnView *btnView = [[ZLCustomBtnView alloc] initWithZLCustomBtnViewFrame:frame Title:title ImageStr:[Util currentSourceImgUrl:imageStr]];
                     btnView.tag = i;
                     [mBgkView2 addSubview:btnView];
                     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(OnTapBtnView:)];
@@ -136,7 +144,7 @@
                     ZLShopHomeClassify *ZLClassify = mDataSource[i];
                     NSString *title = ZLClassify.cls_name;
                     NSString *imageStr = ZLClassify.cls_image;
-                    ZLCustomBtnView *btnView = [[ZLCustomBtnView alloc] initWithZLCustomBtnViewFrame:frame Title:title ImageStr:imageStr];
+                    ZLCustomBtnView *btnView = [[ZLCustomBtnView alloc] initWithZLCustomBtnViewFrame:frame Title:title ImageStr:[Util currentSourceImgUrl:imageStr]];
                     btnView.tag = i;
                     [mBgkView2 addSubview:btnView];
                     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(OnTapBtnView:)];

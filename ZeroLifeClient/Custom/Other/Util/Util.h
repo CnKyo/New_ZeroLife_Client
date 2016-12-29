@@ -426,7 +426,13 @@ typedef enum _RelDic
  @return 返回yes or no
  */
 + (BOOL)ZLRangOfString:(NSString *)mString;
-
-
+#pragma mark----  返回当前图片url
+/**
+ 返回当前图片url
+ 
+ @param mUrl 图片的url
+ @return 返回图片的URL
+ */
++ (NSString *)currentSourceImgUrl:(NSString *)mUrl;
 
 @end

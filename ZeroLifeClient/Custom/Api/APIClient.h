@@ -47,7 +47,20 @@ typedef void (^TableShareSdkBlock)(int totalpage, NSArray *tableArr, APIShareSdk
 
 - (void)getUrl:(NSString *)URLString parameters:(id)parameters call:(void (^)( APIObject* info))callback;
 
+/**
+ 返回当前apiurl
+
+ @return 返回url
+ */
 - (NSString *)currentUrl;
+
+/**
+ 返回当前图片url
+
+ @param mUrl 图片的url
+ @return 返回图片的URL
+ */
+- (NSString *)currentImgUrl:(NSString *)mUrl;
 
 /**
  *  清除所有的所属组链接

@@ -14,4 +14,6 @@
 ///父类对象
 @property (strong,nonatomic) ZLFixClassExtObj *mParentObj;
 
+@property (nonatomic, copy) NSString *mUrl;
+
 @end

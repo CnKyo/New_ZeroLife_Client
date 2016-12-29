@@ -105,7 +105,7 @@
     [self.mUploadImgBtn setBackgroundImage:mPreOrder.mUpLoadImg forState:0];
     [self.mUpLoadVideoBtn setBackgroundImage:mPreOrder.mUpLoadVideoImg forState:0];
     
-    [self.mServiceImg sd_setImageWithURL:[NSURL URLWithString:mPreOrder.goods.img_url] placeholderImage:ZLDefaultGoodsImg];
+    [self.mServiceImg sd_setImageWithURL:[NSURL URLWithString:[Util currentSourceImgUrl:mPreOrder.goods.img_url]] placeholderImage:ZLDefaultGoodsImg];
     
     self.mServiceName.text = mPreOrder.goods.pro_name;
     self.mServiceContent.text = mPreOrder.goods.pro_component;

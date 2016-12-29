@@ -54,7 +54,7 @@
 
 - (void)setMGoodsObj:(OrderGoodsObject *)mGoodsObj{
 
-    [self.mGoodsLogo sd_setImageWithURL:[NSURL URLWithString:mGoodsObj.odrg_img] placeholderImage:ZLDefaultGoodsImg];
+    [self.mGoodsLogo sd_setImageWithURL:[NSURL URLWithString:[Util currentSourceImgUrl:mGoodsObj.odrg_img]] placeholderImage:ZLDefaultGoodsImg];
     self.mGoodsName.text = mGoodsObj.odrg_pro_name;
     self.mGoodsPrice.text = [NSString stringWithFormat:@"¥%.2f元    数量：%d",mGoodsObj.odrg_price,mGoodsObj.odrg_number];
     

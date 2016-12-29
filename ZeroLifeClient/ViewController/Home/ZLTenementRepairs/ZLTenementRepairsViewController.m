@@ -28,6 +28,7 @@
     
     self.navigationItem.title = @"物业报修";
     
+    [self addRightBtn:YES andTitel:@"竞价说明" andImage:nil];
 
     
     [self initView];
@@ -213,8 +214,13 @@
     ZLRepairsDetailViewController *ZLRepDetailVC = [ZLRepairsDetailViewController new];
     ZLRepDetailVC.mParentObj = mP;
     ZLRepDetailVC.mClassObj = mC;
+    
+    ZLRepDetailVC.mUrl = [NSString stringWithFormat:@"%@/wap/good/repairDetails?cls_id=%d&shop_id=0",[[APIClient sharedClient] currentUrl],mC.mClassId];
+
     [self pushViewController:ZLRepDetailVC];
 }
-
-
+#pragma mark----****----右边的按钮
+- (void)mRightAction:(UIButton *)sender{
+    
+}
 @end

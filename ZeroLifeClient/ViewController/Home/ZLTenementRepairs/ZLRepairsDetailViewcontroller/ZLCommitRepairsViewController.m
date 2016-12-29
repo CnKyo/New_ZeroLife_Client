@@ -301,7 +301,7 @@
         NSURL *videoURL = [info objectForKey:UIImagePickerControllerMediaURL];
         mVideoUrl = videoURL;
         
-        mFixPreOrder.mUpLoadImg = [self imageWithMediaURL:videoURL];
+        mFixPreOrder.mUpLoadVideoImg = [self imageWithMediaURL:videoURL];
         [self.tableView reloadData];
         
         [self saveVideoWith:videoURL];

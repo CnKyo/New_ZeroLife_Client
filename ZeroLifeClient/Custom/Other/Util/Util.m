@@ -1655,7 +1655,17 @@
 }
 
 
+#pragma mark----  返回当前图片url
+/**
+ 返回当前图片url
+ 
+ @param mUrl 图片的url
+ @return 返回图片的URL
+ */
++ (NSString *)currentSourceImgUrl:(NSString *)mUrl{
 
+    return [NSString stringWithFormat:@"%@%@%@",kAFAppDotNetImgBaseURLString,kAFAppDotNetApiExtraURLString,mUrl];
+}
 
 
 

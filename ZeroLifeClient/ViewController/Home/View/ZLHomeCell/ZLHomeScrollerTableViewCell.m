@@ -10,7 +10,7 @@
 #import "CustomDefine.h"
 #import "APIObjectDefine.h"
 #import "RKImageBrowser.h"
-
+#import "APIClient.h"
 @interface ZLHomeScrollerTableViewCell ()<UIScrollViewDelegate>
 {
     //第一页
@@ -43,7 +43,7 @@
             
             
             for (ZLHomeBanner *mBanner in mBannerDataSource) {
-                [mImgUrl addObject:mBanner.bnr_image];
+                [mImgUrl addObject:[Util currentSourceImgUrl:mBanner.bnr_image]];
             }
         
             mScrollerView = [[RKImageBrowser alloc] initWithFrame:CGRectMake(0, 0, screen_width, 250)];
@@ -95,7 +95,7 @@
                     
                     NSString *title = mFunc.fct_name;
                     NSString *imageStr = mFunc.fct_logo;
-                    ZLCustomBtnView *btnView = [[ZLCustomBtnView alloc] initWithZLCustomBtnViewFrame:frame Title:title ImageStr:imageStr];
+                    ZLCustomBtnView *btnView = [[ZLCustomBtnView alloc] initWithZLCustomBtnViewFrame:frame Title:title ImageStr:[Util currentSourceImgUrl:imageStr]];
                     btnView.tag = i;
                     [mBgkView1 addSubview:btnView];
                     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(OnTapBtnView:)];
@@ -109,7 +109,7 @@
                     
                     NSString *title = mFunc.fct_name;
                     NSString *imageStr = mFunc.fct_logo;
-                    ZLCustomBtnView *btnView = [[ZLCustomBtnView alloc] initWithZLCustomBtnViewFrame:frame Title:title ImageStr:imageStr];
+                    ZLCustomBtnView *btnView = [[ZLCustomBtnView alloc] initWithZLCustomBtnViewFrame:frame Title:title ImageStr:[Util currentSourceImgUrl:imageStr]];
                     btnView.tag = i;
                     [mBgkView1 addSubview:btnView];
                     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(OnTapBtnView:)];
@@ -122,7 +122,7 @@
                     
                     NSString *title = mFunc.fct_name;
                     NSString *imageStr = mFunc.fct_logo;
-                    ZLCustomBtnView *btnView = [[ZLCustomBtnView alloc] initWithZLCustomBtnViewFrame:frame Title:title ImageStr:imageStr];
+                    ZLCustomBtnView *btnView = [[ZLCustomBtnView alloc] initWithZLCustomBtnViewFrame:frame Title:title ImageStr:[Util currentSourceImgUrl:imageStr]];
                     btnView.tag = i;
                     [mBgkView2 addSubview:btnView];
                     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(OnTapBtnView:)];
@@ -136,7 +136,7 @@
                     
                     NSString *title = mFunc.fct_name;
                     NSString *imageStr = mFunc.fct_logo;
-                    ZLCustomBtnView *btnView = [[ZLCustomBtnView alloc] initWithZLCustomBtnViewFrame:frame Title:title ImageStr:imageStr];
+                    ZLCustomBtnView *btnView = [[ZLCustomBtnView alloc] initWithZLCustomBtnViewFrame:frame Title:title ImageStr:[Util currentSourceImgUrl:imageStr]];
                     btnView.tag = i;
                     [mBgkView2 addSubview:btnView];
                     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(OnTapBtnView:)];

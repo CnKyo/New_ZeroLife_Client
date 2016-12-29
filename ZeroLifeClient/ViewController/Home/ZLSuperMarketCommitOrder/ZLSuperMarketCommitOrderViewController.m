@@ -131,7 +131,7 @@
     }else if (section == 1){
         mHeaderSectionView = [ZLCommitOrderHeaderView initWithShopSection];
         mHeaderSectionView.mShopName.text = self.mPreOrder.shop_name;
-        [mHeaderSectionView.mShopLogo sd_setImageWithURL:[NSURL URLWithString:self.mPreOrder.shop_logo] placeholderImage:ZLDefaultShopImg];
+        [mHeaderSectionView.mShopLogo sd_setImageWithURL:[NSURL URLWithString:[Util currentSourceImgUrl:self.mPreOrder.shop_logo]] placeholderImage:ZLDefaultShopImg];
         return mHeaderSectionView;
     }
     else{

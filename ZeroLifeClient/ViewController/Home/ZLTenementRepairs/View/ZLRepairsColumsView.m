@@ -109,7 +109,7 @@
             
             UIImageView *mLogo = [UIImageView new];
             mLogo.frame = CGRectMake(0, 10, 35, 35);
-            [mLogo sd_setImageWithURL:[NSURL URLWithString:mClass.mClassImg] placeholderImage:[UIImage imageNamed:@"ZLDefault_Green"]];
+            [mLogo sd_setImageWithURL:[NSURL URLWithString:[Util currentSourceImgUrl:mClass.mClassImg]] placeholderImage:[UIImage imageNamed:@"ZLDefault_Green"]];
 
             [mBtnView addSubview:mLogo];
             

@@ -71,7 +71,7 @@
             mSubView.mTitle.hidden = YES;
             mSubView.mImg.hidden = YES;
 
-            [mSubView.mSubImg sd_setImageWithURL:[NSURL URLWithString:mImgArr[i]] placeholderImage:ZLDefaultClassImg];
+            [mSubView.mSubImg sd_setImageWithURL:[NSURL URLWithString:[Util currentSourceImgUrl:mImgArr[i]]] placeholderImage:ZLDefaultClassImg];
             mSubView.tag = i;
             mSubView.mBtn.tag = i;
             [mSubView.mBtn addTarget:view action:@selector(mBtnAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -96,7 +96,7 @@
             mSubView.mSubImg.hidden = YES;
 
             mSubView.mTitle.text = mTextArr[i];
-            [mSubView.mImg sd_setImageWithURL:[NSURL URLWithString:mImgArr[i]] placeholderImage:ZLDefaultClassImg];
+            [mSubView.mImg sd_setImageWithURL:[NSURL URLWithString:[Util currentSourceImgUrl:mImgArr[i]]] placeholderImage:ZLDefaultClassImg];
             mSubView.tag = i;
             mSubView.mBtn.tag = i;
             [mSubView.mBtn addTarget:view action:@selector(mBtnAction:) forControlEvents:UIControlEventTouchUpInside];
