@@ -279,7 +279,7 @@ typedef void (^TableShareSdkBlock)(int totalpage, NSArray *tableArr, APIShareSdk
  @param mPage 页码默认值: 1
  @param block 返回值
  */
-- (void)ZLGetHomeAnouncement:(int)mPage block:(void (^)(APIObject *mBaseObj, ZLHomeAnouncementListObj* mNouncementList))block;
+- (void)ZLGetHomeAnouncement:(int)mPage block:(TablePageArrBlock)block;
 #pragma mark----*****----提交预订单
 /**
  提交预订单

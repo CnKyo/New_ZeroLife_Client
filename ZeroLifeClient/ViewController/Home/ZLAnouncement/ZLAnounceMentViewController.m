@@ -8,6 +8,7 @@
 
 #import "ZLAnounceMentViewController.h"
 #import "ZLAnounceMentCell.h"
+#import "ZLWebViewViewController.h"
 
 @interface ZLAnounceMentViewController ()
 
@@ -25,8 +26,16 @@
     UINib   *nib = [UINib nibWithNibName:@"ZLAnounceMentCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
 
-}
+    [self setTableViewHaveHeaderFooter];
 
+}
+- (void)reloadTableViewDataSource{
+    [super reloadTableViewDataSource];
+
+    [[APIClient sharedClient] ZLGetHomeAnouncement:self.page block:^(int totalPage, NSArray *tableArr, APIObject *info) {
+        [self reloadWithTableArr:tableArr info:info];
+    }];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -53,7 +62,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 4;
+    return self.tableArr.count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -78,7 +87,7 @@
     ZLAnounceMentCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
 //    cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
-    
+    [cell setMAnouncement:self.tableArr[indexPath.row]];
     return cell;
     
     
@@ -89,6 +98,22 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     MLLog(@"点击了第%ld个",(long)indexPath.row);
+    
+    ZLHomeAnouncement *mNote = self.tableArr[indexPath.row];
+    
+    ZLUserInfo *mUser = [ZLUserInfo ZLCurrentUser];
+    if (mUser.user_id<=0) {
+        
+        [APIObject infoWithReLoginErrorMessage:@"请登录再试~"];
+
+    }else{
+        
+        ZLWebViewViewController *vc = [ZLWebViewViewController new];
+        vc.mUrl = [NSString stringWithFormat:@"%@/wap/wcmutNotice/findNotice?user_id=%d&not_id=%d",[[APIClient sharedClient] currentUrl],mUser.user_id,mNote.not_id];
+        
+        [self pushViewController:vc];
+    }
+    
     
 }
 

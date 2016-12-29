@@ -1099,6 +1099,7 @@
         [paramDic setInt:user.user_id forKey:@"user_id"];
         [paramDic setInt:odr_type forKey:@"odr_type"];
         [paramDic setNeedStr:odr_status forKey:@"odr_status"];
+        
         [self loadAPITableListWithTag:self path:@"/order/order_list" parameters:paramDic pageIndex:page subClass:[OrderObject class] call:^(int totalPage, NSArray *tableArr, APIObject *info) {
             callback(totalPage, tableArr, info);
         }];
@@ -2026,20 +2027,30 @@
  @param mPage 页码默认值: 1
  @param block 返回值
  */
-- (void)ZLGetHomeAnouncement:(int)mPage block:(void (^)(APIObject *mBaseObj, ZLHomeAnouncementListObj* mNouncementList))block{
+- (void)ZLGetHomeAnouncement:(int)mPage block:(TablePageArrBlock)block{
 
     NSMutableDictionary *para = [NSMutableDictionary new];
-    [para setInt:[ZLUserInfo ZLCurrentUser].user_id forKey:@"user_id"];
-    [para setInt:mPage forKey:@"page"];
-    [para setInt:TABLE_PAGE_ROW forKey:@"rows"];
-
-    [self loadAPIWithTag:self path:@"/other/notice/notice_list" parameters:para call:^(APIObject *info) {
-        if (info.code == RESP_STATUS_YES) {
+    
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    if (user.user_id > 0) {
+        [para setInt:[ZLUserInfo ZLCurrentUser].user_id forKey:@"user_id"];
+        [para setInt:mPage forKey:@"page"];
+        [para setInt:TABLE_PAGE_ROW forKey:@"rows"];
+        
+        [self loadAPITableListWithTag:self path:@"/other/notice/notice_list" parameters:para pageIndex:mPage subClass:[ZLHomeAnouncementListObj class] call:^(int totalPage, NSArray *tableArr, APIObject *info) {
+            
             ZLHomeAnouncementListObj *mList = [ZLHomeAnouncementListObj mj_objectWithKeyValues:info.data];
-            block(info,mList);
-        } else
-            block(info,nil);
-    }];
+
+            block(totalPage, mList.list, info);
+            
+        }];
+    }else{
+        block(0, nil, [APIObject infoWithReLoginErrorMessage:@"请重新登陆"]);
+
+    }
+    
+
+
 }
 
 #pragma mark----****----用户签到相关接口

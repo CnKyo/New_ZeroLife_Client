@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "APIObjectDefine.h"
 @interface ZLAnounceMentCell : UITableViewCell
 
 /**
@@ -45,5 +45,7 @@
  */
 @property (weak, nonatomic) IBOutlet UILabel *mContent;
 
+
+@property (strong,nonatomic) ZLHomeAnouncement *mAnouncement;
 
 @end

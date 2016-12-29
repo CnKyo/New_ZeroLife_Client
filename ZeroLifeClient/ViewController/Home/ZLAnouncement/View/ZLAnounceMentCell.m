@@ -32,4 +32,17 @@
     // Configure the view for the selected state
 }
 
+- (void)setMAnouncement:(ZLHomeAnouncement *)mAnouncement{
+
+    self.mTime.text = mAnouncement.not_add_time;
+    self.mTitle.text = mAnouncement.not_title;
+    self.mSubTitle.text = mAnouncement.not_add_person;
+
+    [self.mImg sd_setImageWithURL:[NSURL imageurl:mAnouncement.not_image] placeholderImage:ZLDefaultBannerImg];
+    self.mContent.text = mAnouncement.not_sub;
+    self.mDate.text = mAnouncement.not_deadline;
+    
+    
+}
+
 @end
