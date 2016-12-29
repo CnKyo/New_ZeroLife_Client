@@ -179,6 +179,7 @@
 
 -(void)reloadUIWithItem:(OrderObject *)item
 {
+    //设置商品信息
     switch (item.odr_type) {
         case kOrderClassType_product:
         case kOrderClassType_dryclean:
@@ -193,8 +194,8 @@
             } else
                 self.goodsListView.imgView1.hidden = YES;
             
-            if (item.goods.count > 2) {
-                OrderGoodsObject *it = [item.goods objectAtIndex:2];
+            if (item.goods.count > 1) {
+                OrderGoodsObject *it = [item.goods objectAtIndex:1];
                 [self.goodsListView.imgView2 setImageWithURL:[NSURL imageurl:it.odrg_img] placeholderImage:ZLDefaultGoodsImg];
                 self.goodsListView.imgView2.hidden = NO;
             } else
@@ -208,6 +209,7 @@
                 self.goodsListView.imgView3.hidden = YES;
             
             self.goodsListView.countLable.text = [NSString stringWithFormat:@"共%lu件", (unsigned long)item.goods.count];
+            self.orderMoneyLable.text = [NSString stringWithFormat:@"合计：￥%.2f (含运费￥%.2f)", item.odr_amount, item.odr_deliver_fee];
         }
             break;
         case kOrderClassType_fix:
@@ -220,6 +222,8 @@
                 it = [item.goods objectAtIndex:0];
             
             [self.goodsBaoxiuView reloadUIWithItem:it];
+            
+            self.orderMoneyLable.text = [NSString stringWithFormat:@"合计：￥%.2f", item.odr_amount];
         }
             break;
         case kOrderClassType_paopao:
@@ -232,40 +236,41 @@
                 it = [item.goods objectAtIndex:0];
             
             [self.goodsPaoPaoView reloadUIWithItem:it];
+            
+            self.orderMoneyLable.text = [NSString stringWithFormat:@"合计：￥%.2f", item.odr_amount];
         }
             break;
         default:
             break;
     }
     
+    //设置店铺信息
     self.shopView.shopNameLable.text = [NSString compIsNone:item.shop_name];
     self.shopView.orderStatusLable.text = [NSString compIsNone:item.odr_state_val];
     [self.shopView.shopIconImgView setImageWithURL:[NSURL imageurl:item.shop_logo] placeholderImage:IMG(@"order_shop_icon.png")];
     
-    
-    self.orderMoneyLable.text = [NSString stringWithFormat:@"合计：￥%.2f (含运费￥%.2f)", item.odr_amount, item.odr_deliver_fee];
     self.orderTimeLable.text = item.odr_add_time;
     
+    
+    //设置按钮显示信息
     if (item.odr_state_next.count > 0) {
         self.actionBtn1.hidden = NO;
-        NSString *btnStr1 = [item.odr_state_next objectAtIndex:0];
-        self.actionBtn1.stateStr = btnStr1;
-        
-        if (item.odr_state_next.count > 1) {
-            self.actionBtn2.hidden = NO;
-            NSString *btnStr2 = [item.odr_state_next objectAtIndex:1];
-            self.actionBtn2.stateStr = btnStr2;
-        } else {
-            self.actionBtn2.hidden = YES;
-            self.actionBtn2.stateStr = @"";
-        }
-        
+        NSString *stateStr = [item.odr_state_next objectAtIndex:0];
+        self.actionBtn1.stateStr = stateStr;
     } else {
         self.actionBtn1.hidden = YES;
-        self.actionBtn2.hidden = YES;
         self.actionBtn1.stateStr = @"";
+    }
+    
+    if (item.odr_state_next.count > 1) {
+        self.actionBtn2.hidden = NO;
+        NSString *stateStr = [item.odr_state_next objectAtIndex:1];
+        self.actionBtn2.stateStr = stateStr;
+    } else {
+        self.actionBtn2.hidden = YES;
         self.actionBtn2.stateStr = @"";
     }
+
     
 }
 

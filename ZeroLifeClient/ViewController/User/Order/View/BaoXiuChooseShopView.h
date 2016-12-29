@@ -9,7 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "UIView+AutoSize.h"
 #import "CustomDefine.h"
+#import "APIObjectDefine.h"
 
 @interface BaoXiuChooseShopView : UIControl
 @property(nonatomic,strong) UILabel *noteLable;
+
+-(void)reloadWithCount:(int)count chooseItem:(OrderRepairBidObject *)item;
+
 @end

@@ -1170,18 +1170,18 @@
  *  用户确认竞价接口
  *
  *  @param tag              链接对象
- *  @param rpr_id           报修单ID
+ *  @param odr_id           报修单ID
  *  @param bid_id           竞价ID
  *  @param odr_code         订单订单编号
  *  @param callback         返回信息
  */
--(void)orderOprateBidWithTag:(NSObject *)tag rpr_id:(int)rpr_id bid_id:(int)bid_id odr_code:(NSString *)odr_code call:(void (^)(APIObject* info))callback
+-(void)orderOprateBidWithTag:(NSObject *)tag odr_id:(int)odr_id odr_code:(NSString *)odr_code bid_id:(int)bid_id call:(void (^)(APIObject* info))callback
 {
     ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
     if (user.user_id > 0) {
         NSMutableDictionary *paramDic = [NSMutableDictionary dictionary];
         [paramDic setInt:user.user_id forKey:@"user_id"];
-        [paramDic setInt:rpr_id forKey:@"rpr_id"];
+        [paramDic setInt:odr_id forKey:@"odr_id"];
         [paramDic setInt:bid_id forKey:@"bid_id"];
         [paramDic setNeedStr:odr_code forKey:@"odr_code"];
         [self loadAPIWithTag:tag path:@"/order/order_opt_bid" parameters:paramDic call:^(APIObject *info) {
