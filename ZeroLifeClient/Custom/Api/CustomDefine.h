@@ -255,6 +255,7 @@ static NSString* const  kOrderState_UCANCEL             = @"UCANCEL";  //用户�
 static NSString* const  kOrderState_TIMEOUT             = @"TIMEOUT";  //订单超时（系统取消）
 static NSString* const  kOrderState_SCANCEL             = @"SCANCEL";  //商户取消订单
 static NSString* const  kOrderState_SSELECT             = @"SSELECT";  //商户接单（提现确认、话费充值提交）
+static NSString* const  kOrderState_SREFUSE             = @"SREFUSE";  //商户拒单
 static NSString* const  kOrderState_SSERVICE            = @"SSERVICE";  //服务中（超市出货、干洗报修上门、跑跑到达指定地点）
 static NSString* const  kOrderState_DIFFWAIT            = @"DIFFWAIT";  //用户待支付差价
 static NSString* const  kOrderState_DIFFPAYED           = @"DIFFPAYED";  //用户已付款差价

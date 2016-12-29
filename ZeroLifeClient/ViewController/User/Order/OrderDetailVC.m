@@ -27,6 +27,7 @@
 @interface OrderDetailVC ()
 //@property(nonatomic,strong) OrderAddressView *addressView;
 //@property(nonatomic,strong) OrderBeizhuView *beizhuView;
+@property(nonatomic,strong) OrderRepairBidObject* bidItem; //选择的竞价服务商对象
 @end
 
 @implementation OrderDetailVC
@@ -67,6 +68,7 @@
     UIView *lastView = nil;
     int padding = 10;
     
+    //订单状态信息相关
     OrderHeaderStatusView *statusView = [[OrderHeaderStatusView alloc] init];
     [statusView loadStatus:[NSString compIsNone:_item.odr_state_val] note:@"剩余3小时自动关闭"];
     [superView addSubview:statusView];
@@ -84,7 +86,7 @@
         make.height.equalTo(OnePixNumber);
     }];
     
-    //[NSString stringWithFormat:@"%@  %@", _item.odr_ext.odr_deliver_name, _item.odr_ext.odr_deliver_phone];
+    //收货地址信息相关
     if (_classType==kOrderClassType_product || _classType==kOrderClassType_dryclean || _classType==kOrderClassType_fix) {
         
         OrderAddressView *addressView = [[OrderAddressView alloc] initWithNote:nil name:[NSString stringWithFormat:@"%@  %@", _item.odr_deliver_name, _item.odr_deliver_phone] address:[NSString compIsNone:_item.odr_deliver_address]];
@@ -114,6 +116,7 @@
     }
 
     
+    //备注信息相关
     OrderBeizhuView *beizhuView = [[OrderBeizhuView alloc] init];
     beizhuView.beizhuLable.text = [NSString compIsNone:_item.odr_remark];
     [superView addSubview:beizhuView];
@@ -126,7 +129,9 @@
     lastView = beizhuView;
     
     
-    if (_classType==kOrderClassType_product || _classType==kOrderClassType_dryclean) {
+    //商铺及商品信息相关
+    if (_classType==kOrderClassType_product || _classType==kOrderClassType_dryclean)
+    {
         UIView *shopGoodsView = ({
             UIView *view = [superView newUIViewWithBgColor:[UIColor whiteColor]];
             
@@ -140,7 +145,7 @@
             //加载店铺信息
             [shopView reloadUIWithShopName:_item.shop_name shopLogo:_item.shop_logo orderStatus:_item.odr_state_val];
             
-            lastView = nil;
+            UIView *lastItemView = nil;
             for (int i=0; i<_item.goods.count; i++) {
                 OrderGoodsView *itemView = [[OrderGoodsView alloc] init];
                 [view addSubview:itemView];
@@ -148,27 +153,25 @@
                     make.left.right.equalTo(view);
                     make.height.equalTo(80);
                     //make.height.equalTo(itemView.width).multipliedBy(0.35);
-                    if (lastView == nil)
+                    if (lastItemView == nil)
                         make.top.equalTo(shopView.bottom);
                     else
-                        make.top.equalTo(lastView.bottom).offset(padding/2);
-                    
+                        make.top.equalTo(lastItemView.bottom).offset(padding/2);
                 }];
                 
                 //加载商品清单数据
                 OrderGoodsObject *it = [_item.goods objectAtIndex:i];
                 [itemView reloadUIWithItem:it];
                 
-                lastView = itemView;
+                lastItemView = itemView;
             }
             
             UIView *lineView111 = [view newDefaultLineView];
             [lineView111 makeConstraints:^(MASConstraintMaker *make) {
                 make.left.right.equalTo(view);
-                make.top.equalTo(lastView.bottom).offset(padding);
+                make.top.equalTo(lastItemView.bottom).offset(padding);
                 make.height.equalTo(OnePixNumber);
             }];
-            
     
             OrderNoteValueView *peisongView = [[OrderNoteValueView alloc] init];
             OrderNoteValueView *youhuiView = [[OrderNoteValueView alloc] init];
@@ -213,7 +216,9 @@
         }];
         lastView = shopGoodsView;
 
-    } else if (_classType == kOrderClassType_paopao) {
+    }
+    else if (_classType == kOrderClassType_paopao)
+    {
         UIView *shopGoodsView = ({
             UIView *view = [superView newUIViewWithBgColor:[UIColor whiteColor]];
             
@@ -224,6 +229,9 @@
                 make.height.equalTo(40);
             }];
             
+            //加载店铺信息
+            [shopView reloadUIWithShopName:_item.shop_name shopLogo:_item.shop_logo orderStatus:_item.odr_state_val];
+            
             PaoPaoGoodsView *itemView = [[PaoPaoGoodsView alloc] init];
             [view addSubview:itemView];
             [itemView makeConstraints:^(MASConstraintMaker *make) {
@@ -231,6 +239,10 @@
                 make.height.equalTo(80);
                 make.top.equalTo(shopView.bottom);
             }];
+            
+            //加载商品清单数据
+            OrderGoodsObject *it = _item.goods.count>0 ? [_item.goods objectAtIndex:0] : nil;
+            [itemView reloadUIWithItem:it];
             
             UIView *lineView111 = [view newDefaultLineView];
             [lineView111 makeConstraints:^(MASConstraintMaker *make) {
@@ -261,7 +273,9 @@
         }];
         lastView = shopGoodsView;
         
-    }else if (_classType == kOrderClassType_fix) {
+    }
+    else if (_classType == kOrderClassType_fix)
+    {
         UIView *shopGoodsView = ({
             UIView *view = [superView newUIViewWithBgColor:[UIColor whiteColor]];
             
@@ -319,7 +333,7 @@
     
     
     
-    
+    //订单信息相关
     UIView *orderView = ({
         UIView *view = [superView newUIViewWithBgColor:[UIColor whiteColor]];
         UIColor *color = [UIColor grayColor];
@@ -344,16 +358,16 @@
         }];
         littleLastView = orderCreateTimeLable;
         
+        
         if (_classType == kOrderClassType_dryclean || _classType == kOrderClassType_fix) {
-            UILabel *orderServerTimeLable = [view newUILableWithText:@"服务时间：2016-10-13" textColor:color font:font];
+            UILabel *orderServerTimeLable = [view newUILableWithText:[NSString stringWithFormat:@"服务时间：%@", _item.odr_timing] textColor:color font:font];
             [orderServerTimeLable makeConstraints:^(MASConstraintMaker *make) {
                 make.left.right.height.equalTo(orderNoteLable);
                 make.top.equalTo(orderCreateTimeLable.bottom);
             }];
             littleLastView = orderServerTimeLable;
         }
-        
-        
+
         
         if (_classType == kOrderClassType_fix) {
             UILabel *orderSMFLable = [view newUILableWithText:[NSString stringWithFormat:@"上门费：￥%.2f", _item.odr_amount] textColor:color font:font];
@@ -377,7 +391,7 @@
     lastView = orderView;
     
     
-    
+    //报修服务商相关
     if (_classType == kOrderClassType_fix) {
         if ([_item.odr_state isEqualToString:kOrderState_BIDDING]) { //竞价中
             UIView *chooseView = ({
@@ -391,14 +405,16 @@
                     make.right.equalTo(view.right).offset(-padding*2);
                 }];
                 
-                itemView.noteLable.text = [NSString stringWithFormat:@"已有%i家服务商参与 点击选择服务商", _item.odr_service_num];
+                [itemView reloadWithCount:_item.odr_service_num chooseItem:_bidItem];
                 
+                //选择服务商
                 [itemView jk_handleControlEvents:UIControlEventTouchUpInside withBlock:^(id weakSender) {
-                    NSLog(@"选择");
                     OrderBaoXiuChooseShopVC *vc = [[OrderBaoXiuChooseShopVC alloc] init];
-                    vc.chooseCallBack = ^(NSString* shopIdStr) {
-                        self.item.odr_state = kOrderState_SERPOINT;
-                        [self.scrollView.mj_header beginRefreshing];
+                    vc.odr_id = _item.odr_id;
+                    vc.odr_code = _item.odr_code;
+                    vc.chooseCallBack = ^(OrderRepairBidObject* item){
+                        self.bidItem = item;
+                        [itemView reloadWithCount:_item.odr_service_num chooseItem:_bidItem];
                     };
                     [self.navigationController pushViewController:vc animated:YES];
                 }];
@@ -486,17 +502,38 @@
 -(void)loadAPIwithState:(NSString *)stateStr
 {
     if (stateStr.length > 0) {
-        [SVProgressHUD showWithStatus:@"操作中..."];
-        [[APIClient sharedClient] orderOprateWithTag:self odr_id:_item.odr_id odr_type:_item.odr_type odr_code:_item.odr_code odr_state_next:stateStr odr_memo:nil call:^(NSString *odr_state_val, NSMutableArray *odr_state_next, APIObject *info) {
-            if (info.code == RESP_STATUS_YES) {
-                self.item.odr_state_next = odr_state_next;
-                self.item.odr_state_val = odr_state_val;
-                [self donwData];
-                
-                [SVProgressHUD showSuccessWithStatus:@"操作成功"];
+        if ([stateStr isEqualToString:kOrderState_SERPOINT]) //选择竞价服务商
+        {
+            if (_bidItem != nil) {
+                [SVProgressHUD showWithStatus:@"操作中..."];
+                [[APIClient sharedClient] orderOprateBidWithTag:self odr_id:_item.odr_id odr_code:_item.odr_code bid_id:_bidItem.bid_id call:^(APIObject *info) {
+                    if (info.code == RESP_STATUS_YES) {
+//                        self.item.odr_state_next = odr_state_next;
+//                        self.item.odr_state_val = odr_state_val;
+//                        [self donwData];
+                        
+                        [SVProgressHUD showSuccessWithStatus:@"操作成功"];
+                    } else
+                        [SVProgressHUD showErrorWithStatus:info.msg];
+                }];
             } else
-                [SVProgressHUD showSuccessWithStatus:info.msg];
-        }];
+                [SVProgressHUD showErrorWithStatus:@"请选择服务商"];
+        }
+        else    //取消、确认、维权
+        {
+            [SVProgressHUD showWithStatus:@"操作中..."];
+            [[APIClient sharedClient] orderOprateWithTag:self odr_id:_item.odr_id odr_type:_item.odr_type odr_code:_item.odr_code odr_state_next:stateStr odr_memo:nil call:^(NSString *odr_state_val, NSMutableArray *odr_state_next, APIObject *info) {
+                if (info.code == RESP_STATUS_YES) {
+                    self.item.odr_state_next = odr_state_next;
+                    self.item.odr_state_val = odr_state_val;
+                    [self donwData];
+                    
+                    [SVProgressHUD showSuccessWithStatus:@"操作成功"];
+                } else
+                    [SVProgressHUD showErrorWithStatus:info.msg];
+            }];
+        }
+
     }
 }
 
