@@ -78,7 +78,7 @@
         
         [cell.chooseBtn jk_addActionHandler:^(NSInteger tag) {
             if (self.chooseCallBack)
-                self.chooseCallBack(@"111");
+                self.chooseCallBack(item);
             
             [self performSelector:@selector(popViewController) withObject:nil afterDelay:0.2];
         }];

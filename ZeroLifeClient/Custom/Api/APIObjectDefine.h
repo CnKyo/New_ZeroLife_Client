@@ -443,7 +443,7 @@
 @interface OrderGoodsObject : NSObject
 @property(nonatomic,assign) int                     odrg_id;         //!< id
 @property(nonatomic,assign) int                     odr_id;         //!< 订单id
-@property(nonatomic,assign) int                     pro_id;         //!< 商品ID
+@property(nonatomic,assign) int                     pro_id;         //!< 商品ID(跑跑腿为分类ID；报修竞价之前为分类ID，竞价之后为商铺对应商品ID)
 @property(nonatomic,assign) int                     sku_id;         //!< 规格SKU
 @property(nonatomic,strong) NSString *              odrg_pro_name;         //!< 商品名
 @property(nonatomic,strong) NSString *              odrg_spec;         //!< 规格描述
@@ -451,7 +451,7 @@
 @property(nonatomic,strong) NSString *              odrg_img;         //!< 商品小图片url
 @property(nonatomic,strong) NSString *              odrg_img_repair;         //!< 商品图(报修)
 @property(nonatomic,strong) NSString *              odrg_video_repair;         //!< 商品视频(报修)
-@property(nonatomic,strong) NSString *              odrg_memo;         //!< 备注
+@property(nonatomic,strong) NSString *              odrg_memo;         //!< 商品备注；提现银行卡、转账用户账号、物业费ID、话费号码、跑跑腿分类描述（买、办、送）、报修订单分类ID
 @property(nonatomic,assign) float                   odrg_cost;         //!< 成本价格
 @property(nonatomic,assign) float                   odrg_price;         //!< 价格
 @property(nonatomic,assign) int                     cam_gid;         //!< 活动商品商品ID（不是活动商品为0）

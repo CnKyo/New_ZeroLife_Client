@@ -46,4 +46,14 @@
     return self;
 }
 
+-(void)reloadWithCount:(int)count chooseItem:(OrderRepairBidObject *)item
+{
+    if (item != nil) {
+        self.noteLable.text = [NSString stringWithFormat:@"已选择 %@", item.shop_name];
+    } else {
+        self.noteLable.text = [NSString stringWithFormat:@"已有%i家服务商参与 点击选择服务商", count];
+    }
+    
+}
+
 @end

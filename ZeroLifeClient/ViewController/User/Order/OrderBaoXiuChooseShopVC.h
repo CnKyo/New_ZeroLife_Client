@@ -13,5 +13,5 @@
 @property(nonatomic,assign) int odr_id; //订单id
 @property(nonatomic,strong) NSString* odr_code; //订单编号
 
-@property (nonatomic, copy) void (^chooseCallBack)(NSString* shopIdStr);
+@property (nonatomic, copy) void (^chooseCallBack)(OrderRepairBidObject* item);
 @end
