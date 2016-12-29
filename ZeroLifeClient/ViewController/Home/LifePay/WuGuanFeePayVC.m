@@ -106,6 +106,7 @@
                             ZLGoPayViewController *ZLGoPayVC = [ZLGoPayViewController new];
                             ZLGoPayVC.mOrder = [ZLCreateOrderObj new];
                             ZLGoPayVC.mOrder = mOrder;
+                            ZLGoPayVC.mOrderType = kOrderClassType_fee_peroperty;
                             [self pushViewController:ZLGoPayVC];
                             
                             [self showSuccessStatus:mBaseObj.msg];

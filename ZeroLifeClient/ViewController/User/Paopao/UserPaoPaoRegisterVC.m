@@ -60,6 +60,7 @@
                 ZLGoPayVC.mOrder = [ZLCreateOrderObj new];
                 ZLGoPayVC.mOrder = mOrder;
                 ZLGoPayVC.mOrder.sign = _item.sign;
+                ZLGoPayVC.mOrderType = kOrderClassType_paopao_apply;
 
                 [self pushViewController:ZLGoPayVC];
                 
