@@ -10,4 +10,6 @@
 
 @interface ZLPPTOrderDetailViewController : CustomVC
 
+@property (strong,nonatomic) ZLRunningmanHomeOrder *mOrder;
+
 @end

@@ -2834,16 +2834,18 @@
  
  @param mPage 分页
  @param mPageSize 每页数量
+ @param mStatus 状态
  @param block 返回值
  */
-- (void)ZLGetMyPPTOrder:(int)mPage andPageSize:(int)mPageSize block:(void(^)(APIObject *mBaseObj,NSArray *mArr))block{
+- (void)ZLGetMyPPTOrder:(int)mPage andPageSize:(int)mPageSize andStatus:(NSString *)mStatus block:(void(^)(APIObject *mBaseObj,NSArray *mArr))block{
     ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
     
     if (user.user_id > 0) {
         
         NSMutableDictionary* para = [NSMutableDictionary dictionary];
         
-        [para setInt:[ZLUserInfo ZLCurrentUser].user_id forKey:@"user_id"];
+//        [para setInt:[ZLUserInfo ZLCurrentUser].user_id forKey:@"user_id"];
+        [para setObject:NumberWithInt([ZLUserInfo ZLCurrentUser].user_id) forKey:@"user_id"];
         
         if (mPage) {
             [para setInt:mPage forKey:@"pageNumber"];
@@ -2852,12 +2854,23 @@
             [para setInt:mPageSize forKey:@"pageSize"];
         }
         
+        [para setObject:mStatus forKey:@"odr_status"];
         MLLog(@"%@",[ZLUserInfo ZLCurrentUser]);
+        
         [self loadAPIWithTag:self path:@"/ppao/ppao_order_list" parameters:para call:^(APIObject *info) {
             
             if (info.code == RESP_STATUS_YES) {
                 
-                block(info,nil);
+                NSMutableArray *mTempArr = [NSMutableArray new];
+                
+                for (NSDictionary *dic in [info.data objectForKey:@"list"]) {
+                    
+                    [mTempArr addObject:[OrderObject mj_objectWithKeyValues:dic]];
+
+                }
+                
+                
+                block(info,mTempArr);
                 
             }else{
                 
@@ -3093,6 +3106,50 @@
         
         MLLog(@"%@",[ZLUserInfo ZLCurrentUser]);
         [self loadAPIWithTag:self path:@"/ppao/order_oprate" parameters:para call:^(APIObject *info) {
+            
+            if (info.code == RESP_STATUS_YES) {
+                
+                block(info);
+                
+            }else{
+                
+                block(info);
+                
+            }
+            
+        }];
+        
+    }else{
+        block([APIObject infoWithReLoginErrorMessage:@"请重新登陆"]);
+        
+    }
+    
+}
+
+#pragma mark----****---- 发布者操作接口
+/**
+ 发布者操作接口
+ 
+ @param mOrderId 订单id
+ @param mOrderCode 订单编号
+ @param mStatus 操作状态
+ @param block 返回值
+ */
+- (void)ZLReleaseOperatorPPTOrder:(int)mOrderId andOrderCode:(NSString *)mOrderCode andOperatorStatus:(ZLOperatorPPTOrderStatus)mStatus block:(void(^)(APIObject *resb))block{
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    
+    if (user.user_id > 0) {
+        
+        NSMutableDictionary* para = [NSMutableDictionary dictionary];
+        
+        [para setInt:[ZLUserInfo ZLCurrentUser].user_id forKey:@"user_id"];
+        [para setInt:mOrderId forKey:@"odr_id"];
+        [para setObject:mOrderCode forKey:@"odr_code"];
+        [para setObject:[APIClient ZLCurrentOperatorPPTOrderStatus:mStatus] forKey:@"odr_state_next"];
+        
+        
+        MLLog(@"%@",[ZLUserInfo ZLCurrentUser]);
+        [self loadAPIWithTag:self path:@"/order/order_oprate" parameters:para call:^(APIObject *info) {
             
             if (info.code == RESP_STATUS_YES) {
                 

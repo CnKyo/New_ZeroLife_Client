@@ -51,6 +51,15 @@
     self.mSendAddress.text = [NSString stringWithFormat:@"需求内容：%@",mOrder.odrg_spec];
     self.mArriveAddress.text = mOrder.odr_deliver_address;
     
+    if ([ZLUserInfo ZLCurrentUser].user_id == mOrder.user_id) {
+        [self.mBtn setTitle:@"取消订单" forState:0];
+        self.mBtn.hidden = YES;
+    }else{
+        [self.mBtn setTitle:@"立即接单" forState:0];
+    }
+    
+    
+    
 }
 
 

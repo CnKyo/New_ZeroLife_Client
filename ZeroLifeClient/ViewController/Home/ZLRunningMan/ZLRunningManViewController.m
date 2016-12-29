@@ -16,9 +16,15 @@
 #import "ZLPPTMyOrderViewController.h"
 #import "ZLPPTRateViewController.h"
 #import "UserPaoPaoRegisterVC.h"
-#import "ZLCustomSegView.h"
 #import "UserPaoPaoApplyVC.h"
+
+#import "ZLCustomSegView.h"
+#import "ZLPPTOrderDetailViewController.h"
+#import "ZLPPTRealeseOrderViewController.h"
 @interface ZLRunningManViewController ()<UITableViewDelegate,UITableViewDataSource,ZLRunningManHomeCellDelegate,ZLRunningManCellDelegate,ZLRuuningManHomeHeaderSectionViewDelegate,ZLCustomSegViewDelegate>
+
+@property (assign,nonatomic)     NSInteger mIndex;
+
 
 @end
 
@@ -34,7 +40,6 @@
 
     NSMutableArray *mTempArr;
     
-    NSInteger mIndex;
     
     int mType;
 }
@@ -43,6 +48,8 @@
 
     [super viewWillAppear:animated];
     [self updateUserInfo];
+    [self loadTableData:_mIndex];
+
 }
 - (void)updateUserInfo{
 
@@ -70,9 +77,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationItem.title = @"跑跑腿";
-    mIndex = 0;
+    _mIndex = 0;
     mClassObj = [ZLPPTHomeClassList new];
     mTempArr = [NSMutableArray new];
+    
+    [self addRightBtn:YES andTitel:@"发布" andImage:nil];
+    
     [self addTableView];
     
     UINib   *nib = [UINib nibWithNibName:@"ZLRunningManHomeCell" bundle:nil];
@@ -172,6 +182,11 @@
 
 }
 - (void)loadTableData:(NSInteger)mIndex{
+    
+    if (mIndex<=0) {
+        mIndex = 0;
+    }
+    
    ZLPPTClassObj *mClass = mClassObj.classifyList[mIndex];
     mType = [Util currentReleaseType:mClass.type_name];
     
@@ -336,8 +351,19 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
+    if (indexPath.section == 1) {
+        ZLPPTOrderDetailViewController *vc = [ZLPPTOrderDetailViewController new];
+        vc.mOrder = mTempArr[indexPath.row];
+        [self pushViewController:vc];
+    }
     
+}
+
+#pragma mark----****----去发布
+- (void)mRightAction:(UIButton *)sender{
     
+    ZLPPTRealeseOrderViewController *vc = [ZLPPTRealeseOrderViewController new];
+    [self pushViewController:vc];
 }
 #pragma mark----****----顶部按钮点击代理方法
 
@@ -458,17 +484,40 @@
     }else{
 
         [self showWithStatus:@"正在操作中..."];
-        [[APIClient sharedClient] ZLOperatorPPTOrder:mOrder.odr_id andOrderCode:mOrder.odr_code andOperatorStatus:ZLOperatorPPTOrderStatusWithAccept block:^(APIObject *resb) {
-            if (resb.code == RESP_STATUS_YES) {
-                [self showSuccessStatus:resb.msg];
-                [self loadTableData:mIndex];
 
-            }else{
+        ZLOperatorPPTOrderStatus mOrderStatus;;
+        
+        if (mOrder.user_id == [ZLUserInfo ZLCurrentUser].user_id) {
+            mOrderStatus = ZLOperatorPPTOrderStatusWithCancel;
+            [[APIClient sharedClient] ZLReleaseOperatorPPTOrder:mOrder.odr_id andOrderCode:mOrder.odr_code andOperatorStatus:mOrderStatus block:^(APIObject *resb) {
+                if (resb.code == RESP_STATUS_YES) {
+                    [self showSuccessStatus:resb.msg];
+                    [self loadTableData:_mIndex];
+                    
+                }else{
+                    
+                    [self showErrorStatus:resb.msg];
+                }
+            }];
+
             
-                [self showErrorStatus:resb.msg];
-            }
-        }];
-    
+
+        }else{
+            mOrderStatus = ZLOperatorPPTOrderStatusWithAccept;
+            [[APIClient sharedClient] ZLOperatorPPTOrder:mOrder.odr_id andOrderCode:mOrder.odr_code andOperatorStatus:mOrderStatus block:^(APIObject *resb) {
+                if (resb.code == RESP_STATUS_YES) {
+                    [self showSuccessStatus:resb.msg];
+                    [self loadTableData:_mIndex];
+                    
+                }else{
+                    
+                    [self showErrorStatus:resb.msg];
+                }
+            }];
+
+        }
+        
+ 
     }
 
     
@@ -511,7 +560,7 @@
  @param mIndex 返回索引
  */
 - (void)ZLCustomSegViewDidBtnSelectedWithIndex:(NSInteger)mIndex{
-    mIndex = mIndex;
+    _mIndex = mIndex;
     MLLog(@"%ld",(long)mIndex);
     [self loadTableData:mIndex];
 

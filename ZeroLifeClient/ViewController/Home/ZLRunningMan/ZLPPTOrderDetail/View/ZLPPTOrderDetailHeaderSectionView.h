@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CustomDefine.h"
 
 @protocol ZLPPTOrderDetailHeaderSectionViewDelegate <NSObject>
 

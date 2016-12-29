@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "CustomDefine.h"
+#import "APIObjectDefine.h"
+#import "APIClient.h"
 @class ZLPPTOrderDetailCell;
 
 @protocol ZLPPTOrderDetailCellBtnWithClicked <NSObject>
@@ -55,8 +57,12 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *mRightBtn;
 
+@property (weak, nonatomic) IBOutlet UILabel *mRemark;
 @property (assign,nonatomic) NSIndexPath *mIndexPath;
 
 @property (strong,nonatomic) id<ZLPPTOrderDetailCellBtnWithClicked>delegate;
+
+@property (strong,nonatomic) OrderObject *mOrderDetail;
+
 
 @end

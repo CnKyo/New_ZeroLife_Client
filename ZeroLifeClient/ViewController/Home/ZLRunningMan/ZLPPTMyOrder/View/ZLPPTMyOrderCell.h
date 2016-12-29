@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "APIObjectDefine.h"
 
 /**
  设置代理
@@ -18,10 +18,17 @@
 
 /**
  按钮的代理方法
+ 
+ @param mIndexPath 返回索引
+ */
+- (void)ZLPPTMyOrderCellLeftBtnWithClicked:(NSIndexPath *)mIndexPath;
+
+/**
+ 按钮的代理方法
 
  @param mIndexPath 返回索引
  */
-- (void)ZLPPTMyOrderCellBtnWithClicked:(NSIndexPath *)mIndexPath;
+- (void)ZLPPTMyOrderCellRightBtnWithClicked:(NSIndexPath *)mIndexPath;
 
 @end
 
@@ -62,10 +69,15 @@
  */
 @property (weak, nonatomic) IBOutlet UILabel *mTime;
 
+
 /**
- 按钮
+ 左边的按钮
  */
-@property (weak, nonatomic) IBOutlet UIButton *mBtn;
+@property (weak, nonatomic) IBOutlet UIButton *mLeftBtn;
+/**
+ 右边的按钮
+ */
+@property (weak, nonatomic) IBOutlet UIButton *mRightBtn;
 
 /**
  索引
@@ -76,5 +88,7 @@
  设置代理
  */
 @property (strong, nonatomic) id<ZLPPTMyOrderCellDelegate>delegate;
+
+@property (strong,nonatomic) OrderObject *mOrder;
 
 @end

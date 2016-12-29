@@ -115,7 +115,11 @@
     else if ([state isEqualToString:kOrderState_SERPOINT]) {
         str = @"选服务商";
     }
-
+    else if ([state isEqualToString:kOrderState_SCANCEL]){
+        str = @"取消订单";
+    }else if ([state isEqualToString:kOrderState_SSERVICE]){
+        str = @"开始服务";
+    }
     return str;
 }
 

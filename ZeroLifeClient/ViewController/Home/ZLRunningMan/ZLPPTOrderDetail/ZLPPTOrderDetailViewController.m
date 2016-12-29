@@ -9,7 +9,8 @@
 #import "ZLPPTOrderDetailViewController.h"
 #import "ZLPPTOrderDetailCell.h"
 #import "ZLPPTOrderDetailHeaderSectionView.h"
-
+#import "UserPaoPaoRegisterVC.h"
+#import "UserPaoPaoApplyVC.h"
 @interface ZLPPTOrderDetailViewController ()<UITableViewDelegate,UITableViewDataSource,ZLPPTOrderDetailCellBtnWithClicked,ZLPPTOrderDetailHeaderSectionViewDelegate>
 
 @end
@@ -21,12 +22,15 @@
     
     ZLPPTOrderDetailHeaderSectionView *mSecondHeaderView;
 
+    OrderObject *mOrderDetail;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationItem.title = @"跑单详情";
 
+    mOrderDetail =  OrderObject.new;
+    
     [self addTableView];
     
     UINib   *nib = [UINib nibWithNibName:@"ZLPPTOrderDetailCell" bundle:nil];
@@ -34,7 +38,30 @@
     
     nib = [UINib nibWithNibName:@"ZLPPTOrderDetailCell2" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell2"];
+    
+    
+    [self setTableViewHaveHeader];
 
+}
+
+- (void)reloadTableViewDataSource{
+
+    [super reloadTableViewDataSource];
+    
+    [[APIClient sharedClient] orderInfoWithTag:self odr_id:self.mOrder.odr_id odr_code:self.mOrder.odr_code call:^(OrderObject *item, APIObject *info) {
+        [self ZLHideEmptyView];
+        if (info.code == RESP_STATUS_YES) {
+            [self showSuccessStatus:info.msg];
+            mOrderDetail = item;
+        }else{
+        
+            [self showErrorStatus:info.msg];
+            [self ZLShowEmptyView:info.msg andImage:nil andHiddenRefreshBtn:NO];
+        }
+        
+        [self doneLoadingTableViewData];
+        [self.tableView reloadData];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -78,6 +105,9 @@
     }else{
         mSecondHeaderView = [ZLPPTOrderDetailHeaderSectionView initSecondView];
         mSecondHeaderView.delegate = self;
+        
+        mSecondHeaderView.mRunnerName.text = [NSString stringWithFormat:@"%@-%@",mOrderDetail.odr_deliver_name,mOrderDetail.odr_deliver_phone];
+        
         return mSecondHeaderView;
     }
     
@@ -134,7 +164,7 @@
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.delegate = self;
-        
+        [cell setMOrderDetail:mOrderDetail];
         return cell;
     }
     
@@ -154,11 +184,47 @@
 
 - (void)ZLPPTOrderDetailCell:(ZLPPTOrderDetailCell *)mCell andWithRightBtn:(NSIndexPath *)mIndexPath{
 
-    
+    if ([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"NOTOPEN"]) {
+        UserPaoPaoRegisterVC*vc = [[UserPaoPaoRegisterVC alloc] initWithNibName:@"UserPaoPaoRegisterVC" bundle:nil];
+        [self pushViewController:vc];
+    }else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"PAYMENTED"]){
+        UserPaoPaoApplyVC *vc = [UserPaoPaoApplyVC new];
+        [self pushViewController:vc];
+        
+    }
+    else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"UNCHECK"]){
+        [self showErrorStatus:@"待审核中..."];
+    } else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"REFUSE"]){
+        [self showErrorStatus:@"审核失败！"];
+    } else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"LOGOFF"]){
+        [self showErrorStatus:@"已注销！"];
+    } else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"LOCKED"]){
+        [self showErrorStatus:@"已禁用！"];
+    }else{
+        
+        [self showWithStatus:@"正在操作中..."];
+        [[APIClient sharedClient] ZLOperatorPPTOrder:mOrderDetail.odr_id andOrderCode:mOrderDetail.odr_code andOperatorStatus:ZLOperatorPPTOrderStatusWithAccept block:^(APIObject *resb) {
+            if (resb.code == RESP_STATUS_YES) {
+                [self showSuccessStatus:resb.msg];
+                [self popViewController];
+            }else{
+                
+                [self showErrorStatus:resb.msg];
+            }
+        }];
+        
+    }
+
 }
 
 - (void)ZLPPTOrderDetailHeaderSectionViewWithRunnerPhoneAction{
-
+    
+    if (mOrderDetail.odr_deliver_phone.length<=0) {
+        [self showErrorStatus:@"暂无电话哦～"];
+        return;
+    }
+    
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"telprompt://%@",mOrderDetail.odr_deliver_phone]]];
 }
 
 @end

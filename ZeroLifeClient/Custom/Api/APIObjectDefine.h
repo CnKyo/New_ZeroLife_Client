@@ -1502,6 +1502,7 @@
 
 @property (assign,nonatomic) int                    odr_id;  //!< 订单ID
 
+@property (assign,nonatomic) int                    user_id;  //!< 用户ID
 
 @end
 

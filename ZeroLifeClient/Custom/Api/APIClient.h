@@ -429,9 +429,10 @@ typedef void (^TableShareSdkBlock)(int totalpage, NSArray *tableArr, APIShareSdk
 
  @param mPage 分页
  @param mPageSize 每页数量
+ @param mStatus 状态
  @param block 返回值
  */
-- (void)ZLGetMyPPTOrder:(int)mPage andPageSize:(int)mPageSize block:(void(^)(APIObject *mBaseObj,NSArray *mArr))block;
+- (void)ZLGetMyPPTOrder:(int)mPage andPageSize:(int)mPageSize andStatus:(NSString *)mStatus block:(void(^)(APIObject *mBaseObj,NSArray *mArr))block;
 
 
 #pragma mark----****---- 水电煤缴费查询接口
@@ -471,9 +472,9 @@ typedef void (^TableShareSdkBlock)(int totalpage, NSArray *tableArr, APIShareSdk
 - (void)ZLGetShopCoup:(int)mShopId block:(void(^)(APIObject *resb,NSString *mUrl))block;
 
 
-#pragma mark----****---- 跑腿操作接口
+#pragma mark----****---- 跑腿者操作接口
 /**
- 跑腿操作接口
+ 跑腿者操作接口
 
  @param mOrderId 订单id
  @param mOrderCode 订单编号
@@ -481,6 +482,15 @@ typedef void (^TableShareSdkBlock)(int totalpage, NSArray *tableArr, APIShareSdk
  @param block 返回值
  */
 - (void)ZLOperatorPPTOrder:(int)mOrderId andOrderCode:(NSString *)mOrderCode andOperatorStatus:(ZLOperatorPPTOrderStatus)mStatus block:(void(^)(APIObject *resb))block;
-
+#pragma mark----****---- 发布者操作接口
+/**
+ 发布者操作接口
+ 
+ @param mOrderId 订单id
+ @param mOrderCode 订单编号
+ @param mStatus 操作状态
+ @param block 返回值
+ */
+- (void)ZLReleaseOperatorPPTOrder:(int)mOrderId andOrderCode:(NSString *)mOrderCode andOperatorStatus:(ZLOperatorPPTOrderStatus)mStatus block:(void(^)(APIObject *resb))block;
 
 @end

@@ -469,4 +469,13 @@ typedef enum {
     ZLOperatorPPTOrderStatusWithFinish = 4,///完成
 } ZLOperatorPPTOrderStatus;///跑腿订单通用操作
 
+
+typedef enum {
+    
+    ZLOrdreStatusWithSymb,///待处理
+    ZLOrdreStatusWithFinish,///已完成
+    ZLOrdreStatusWithCancel,///已取消
+    
+}ZLOrdreStatus;///订单状态
+
 #endif /* CustomDefine_h */
