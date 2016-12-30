@@ -220,8 +220,9 @@
             cell.userLoginView.hidden = YES;
             cell.userInfoView.hidden = NO;
             
+
             //判断跑跑信息
-            if (user.openInfo == nil) {
+            if ([user.openInfo.open_state isEqualToString:kOpenState_NOTOPEN] || [user.openInfo.open_state isEqualToString:kOpenState_PAYMENTED]) {
                 cell.paopaoRegisterView.hidden = NO;
                 cell.paopaoInfoView.hidden = YES;
             } else {
@@ -238,9 +239,13 @@
             
             //进入跑跑腿注册界面
             [cell.paopaoRegisterView jk_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
-                UserPaoPaoRegisterVC *vc = [[UserPaoPaoRegisterVC alloc] initWithNibName:@"UserPaoPaoRegisterVC" bundle:nil];
-                vc.hidesBottomBarWhenPushed = YES;
-                [self.navigationController pushViewController:vc animated:YES];
+                if ([user.openInfo.open_state isEqualToString:kOpenState_NOTOPEN]) {
+                    UserPaoPaoRegisterVC*vc = [[UserPaoPaoRegisterVC alloc] initWithNibName:@"UserPaoPaoRegisterVC" bundle:nil];
+                    [self.navigationController pushViewController:vc animated:YES];
+                } else if([user.openInfo.open_state isEqualToString:kOpenState_PAYMENTED]) {
+                    UserPaoPaoApplyVC *vc = [UserPaoPaoApplyVC new];
+                    [self.navigationController pushViewController:vc animated:YES];
+                }
             }];
         }
 

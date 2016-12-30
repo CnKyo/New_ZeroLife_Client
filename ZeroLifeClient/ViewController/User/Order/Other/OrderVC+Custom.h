@@ -21,6 +21,7 @@
 
 @interface  UIViewController (OrderVC_Custom)
 
+//处理订单逻辑
 -(void)loadAPIwithState:(NSString *)stateStr orderItem:(OrderObject *)item isShopOrderBool:(BOOL)isShopOrderBool call:( void(^)(OrderObject *itemNew))callback;
 
 @end

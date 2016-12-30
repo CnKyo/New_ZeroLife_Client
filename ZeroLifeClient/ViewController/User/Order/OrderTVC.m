@@ -179,10 +179,11 @@
     
     if (self.tableArr.count > 0) {
         OrderObject *item = [self.tableArr objectAtIndex:indexPath.row];
-        //item.odr_state = kOrderFixStatus_waitShopBidding;
+
         OrderDetailVC *vc = [[OrderDetailVC alloc] init];
         vc.classType = _classType;
         vc.item = item;
+        vc.isShopOrderBool = _isShopOrderBool;
         [self.navigationController pushViewController:vc animated:YES];
     }
 }

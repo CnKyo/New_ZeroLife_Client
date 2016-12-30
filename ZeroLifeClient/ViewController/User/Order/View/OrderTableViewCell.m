@@ -245,7 +245,7 @@
                 it = [item.goods objectAtIndex:0];
             
             self.shopView.shopNameLable.text = [NSString compIsNone:it.odrg_pro_name];
-            [self.goodsPaoPaoView reloadUIWithName:it.odrg_spec msg:item.odr_remark money:it.odrg_price imgUrl:it.odrg_img];
+            [self.goodsPaoPaoView reloadUIWithName:it.odrg_spec msg:item.odr_remark money:item.odr_deliver_fee imgUrl:it.odrg_img];
             
             self.orderMoneyLable.text = [NSString stringWithFormat:@"合计：￥%.2f", item.odr_amount];
         }

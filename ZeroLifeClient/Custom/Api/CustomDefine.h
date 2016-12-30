@@ -201,6 +201,7 @@ static int const RESP_STATUS_LOGIN                  = 300;             //需要�
 
 //static NSString* const  kAFAppDotNetApiBaseURLString    = @"http://localhost:8080";
 //static NSString* const  kAFAppDotNetApiExtraURLString    = @"/crkj_zlife/api/app/client";
+//static NSString* const  kAFAppDotNetApiServiceURLString    = @"/crkj_zlife/api/app/service";
 
 static NSString* const  kAFAppDotNetApiBaseURLString    = @"http://192.168.1.114";
 static NSString* const  kAFAppDotNetApiExtraURLString    = @"/api/app/client";
@@ -276,6 +277,15 @@ static NSString* const  kOrderSegState_SDONE            = @"SDONE";  //待确认
 static NSString* const  kOrderSegState_UDONE            = @"UDONE";  //已完成
 static NSString* const  kOrderSegState_DONE             = @"DONE";  //已完成
 static NSString* const  kOrderSegState_CANCEL           = @"CANCEL";  //已取消
+
+
+static NSString* const  kOpenState_NOTOPEN              = @"NOTOPEN";  //未开通跑跑腿
+static NSString* const  kOpenState_PAYMENTED            = @"PAYMENTED";  //未提交资料-已支付押金
+static NSString* const  kOpenState_UNCHECK              = @"UNCHECK";  //待审核
+static NSString* const  kOpenState_CHECKED              = @"CHECKED";  //审核通过
+static NSString* const  kOpenState_REFUSE               = @"REFUSE";  //审核失败
+static NSString* const  kOpenState_LOGOFF               = @"LOGOFF";  //注销
+static NSString* const  kOpenState_LOCKED               = @"LOCKED";  //禁用
 
 
 typedef enum {

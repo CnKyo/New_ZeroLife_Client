@@ -124,11 +124,43 @@
     else if ([state isEqualToString:kOrderState_SCANCEL]){
         str = @"取消订单";
     }
+    else if ([state isEqualToString:kOrderState_SDONE]) {
+        str = @"完成订单";
+    }
     else if ([state isEqualToString:kOrderState_SSERVICE]){
         str = @"开始服务";
     }
     else if ([state isEqualToString:kOrderState_DIFFWAIT]){
         str = @"提交差价";
+    }
+    return str;
+}
+
+
+///开通的状态显示文字
++(NSString *)strDesWithOpenState:(NSString *)state
+{
+    NSString *str = @"";
+    if ([state isEqualToString:kOpenState_NOTOPEN]) {
+        str = @"未开通跑跑腿";
+    }
+    else if ([state isEqualToString:kOpenState_PAYMENTED]){
+        str = @"未提交资料-已支付押金";
+    }
+    else if ([state isEqualToString:kOpenState_UNCHECK]){
+        str = @"待审核";
+    }
+    else if ([state isEqualToString:kOpenState_CHECKED]){
+        str = @"审核通过";
+    }
+    else if ([state isEqualToString:kOpenState_REFUSE]){
+        str = @"审核失败";
+    }
+    else if ([state isEqualToString:kOpenState_LOGOFF]){
+        str = @"注销";
+    }
+    else if ([state isEqualToString:kOpenState_LOCKED]){
+        str = @"禁用";
     }
     return str;
 }

@@ -177,7 +177,7 @@
             }
             
             if (self.paySuccessCallBack) {
-                self.paySuccessCallBack();
+                self.paySuccessCallBack(self);
             } else {
                 [self performSelector:@selector(mPopAction) withObject:nil afterDelay:0.25];
             }

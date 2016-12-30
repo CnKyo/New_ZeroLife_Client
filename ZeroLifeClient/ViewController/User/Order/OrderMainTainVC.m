@@ -16,6 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"维权申请";
     self.textVIew.placeholder = @"请输入退款原因";
     self.doneBtn.layer.masksToBounds = YES;
     self.doneBtn.layer.cornerRadius = 5;
