@@ -21,7 +21,7 @@
 
  @param mRateNum 返回评分数
  */
-- (void)ZLRatingTableViewCellWithRateNum:(int)mRateNum;
+- (void)ZLRatingTableViewCellWithRateNum:(double)mRateNum;
 
 /**
  评价内容

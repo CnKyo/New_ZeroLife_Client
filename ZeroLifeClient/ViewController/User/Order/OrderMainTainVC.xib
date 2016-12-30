@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OrderMainTainVC">
+            <connections>
+                <outlet property="doneBtn" destination="cRX-Vc-rV8" id="IkO-FA-uaS"/>
+                <outlet property="textVIew" destination="zjy-qT-dbh" id="z5a-wZ-amT"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WOx-eB-Sk2">
+                    <rect key="frame" x="10" y="80" width="355" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="mWj-uC-BVf"/>
+                    </constraints>
+                    <attributedString key="attributedText">
+                        <fragment content="退款原因">
+                            <attributes>
+                                <font key="NSFont" size="15" name=".PingFangSC-Regular"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="*">
+                            <attributes>
+                                <color key="NSColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="15" name=".AppleSystemUIFont"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                            </attributes>
+                        </fragment>
+                    </attributedString>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="zjy-qT-dbh" customClass="IQTextView">
+                    <rect key="frame" x="10" y="110" width="355" height="200"/>
+                    <color key="backgroundColor" red="0.94095736742019653" green="0.94509977102279663" blue="0.94911319017410278" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="200" id="KeW-sa-cGl"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cRX-Vc-rV8">
+                    <rect key="frame" x="10" y="360" width="355" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="jqK-Xq-nzd"/>
+                    </constraints>
+                    <state key="normal" title="申请维权">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="WOx-eB-Sk2" secondAttribute="trailing" constant="10" id="Arq-ff-pXt"/>
+                <constraint firstAttribute="trailing" secondItem="zjy-qT-dbh" secondAttribute="trailing" constant="10" id="GdK-zT-XHt"/>
+                <constraint firstItem="cRX-Vc-rV8" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="fsE-67-e0G"/>
+                <constraint firstItem="zjy-qT-dbh" firstAttribute="top" secondItem="WOx-eB-Sk2" secondAttribute="bottom" constant="10" id="fus-lb-bEH"/>
+                <constraint firstItem="WOx-eB-Sk2" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="80" id="ni5-HX-86d"/>
+                <constraint firstItem="zjy-qT-dbh" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="nuM-3a-dUY"/>
+                <constraint firstAttribute="trailing" secondItem="cRX-Vc-rV8" secondAttribute="trailing" constant="10" id="oKO-JV-r2V"/>
+                <constraint firstItem="WOx-eB-Sk2" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="v3e-tp-q9x"/>
+                <constraint firstItem="cRX-Vc-rV8" firstAttribute="top" secondItem="zjy-qT-dbh" secondAttribute="bottom" constant="50" id="xow-wA-Rrr"/>
+            </constraints>
+            <point key="canvasLocation" x="32.5" y="130.5"/>
+        </view>
+    </objects>
+</document>

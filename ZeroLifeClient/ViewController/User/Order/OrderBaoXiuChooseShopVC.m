@@ -77,10 +77,11 @@
 
         
         [cell.chooseBtn jk_addActionHandler:^(NSInteger tag) {
-            if (self.chooseCallBack)
+            if (self.chooseCallBack) {
                 self.chooseCallBack(item);
-            
-            [self performSelector:@selector(popViewController) withObject:nil afterDelay:0.2];
+                [self popViewController];
+            }
+            //[self performSelector:@selector(popViewController) withObject:nil afterDelay:0.2];
         }];
         
         //        //UserAddressTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[UserAddressTableViewCell reuseIdentifier]];

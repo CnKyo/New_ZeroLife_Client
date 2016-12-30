@@ -64,13 +64,21 @@
     return self;
 }
 
--(void)reloadUIWithItem:(OrderGoodsObject *)item
+-(void)reloadUIWithName:(NSString *)name msg:(NSString *)msg money:(float)money imgUrl:(NSString *)imgUrl
 {
-    self.nameLable.text = [NSString compIsNone:item.odrg_pro_name];
-    self.msgLable.text = [NSString compIsNone:item.odrg_spec];
-    self.priceLable.text = [NSString stringWithFormat:@"酬金\n\n￥%.2f", item.odrg_price];
-    [self.imgView setImageWithURL:[NSURL URLWithString:item.odrg_img] placeholderImage:ZLDefaultGoodsImg];
+    self.nameLable.text = [NSString compIsNone:name];
+    self.msgLable.text = [NSString compIsNone:msg];
+    self.priceLable.text = [NSString stringWithFormat:@"酬金\n\n￥%.2f", money];
+    [self.imgView setImageWithURL:[NSURL imageurl:imgUrl] placeholderImage:ZLDefaultGoodsImg];
 }
+
+//-(void)reloadUIWithItem:(OrderGoodsObject *)item
+//{
+//    self.nameLable.text = [NSString compIsNone:item.odrg_pro_name];
+//    self.msgLable.text = [NSString compIsNone:item.odrg_spec];
+//    self.priceLable.text = [NSString stringWithFormat:@"酬金\n\n￥%.2f", item.odrg_price];
+//    [self.imgView setImageWithURL:[NSURL URLWithString:item.odrg_img] placeholderImage:ZLDefaultGoodsImg];
+//}
 
 
 @end

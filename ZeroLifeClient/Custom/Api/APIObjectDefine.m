@@ -94,17 +94,21 @@
     return str;
 }
 
+///用户端订单操作显示文字
 +(NSString *)strDesWithOrderState:(NSString *)state
 {
     NSString *str = @"";
     if ([state isEqualToString:kOrderState_UCANCEL]) {
         str = @"取消订单";
     }
+    if ([state isEqualToString:kOrderState_UDONE]) {
+        str = @"确认完成";
+    }
     else if ([state isEqualToString:kOrderState_PAYMENTED]) {
         str = @"去支付";
     }
     else if ([state isEqualToString:kOrderState_DIFFPAYED]) {
-        str = @"付差价";
+        str = @"支付差价";
     }
     else if ([state isEqualToString:kOrderState_EVALUATE]) {
         str = @"去评价";
@@ -115,13 +119,21 @@
     else if ([state isEqualToString:kOrderState_SERPOINT]) {
         str = @"选服务商";
     }
+    
+    //商家端状态
     else if ([state isEqualToString:kOrderState_SCANCEL]){
         str = @"取消订单";
-    }else if ([state isEqualToString:kOrderState_SSERVICE]){
+    }
+    else if ([state isEqualToString:kOrderState_SSERVICE]){
         str = @"开始服务";
+    }
+    else if ([state isEqualToString:kOrderState_DIFFWAIT]){
+        str = @"提交差价";
     }
     return str;
 }
+
+
 
 +(NSString *)iconImgStrOrderType:(kOrderClassType)type
 {

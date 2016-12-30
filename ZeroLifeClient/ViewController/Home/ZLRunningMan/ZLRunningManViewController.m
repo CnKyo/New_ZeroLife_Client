@@ -21,6 +21,9 @@
 #import "ZLCustomSegView.h"
 #import "ZLPPTOrderDetailViewController.h"
 #import "ZLPPTRealeseOrderViewController.h"
+
+#import "OrderTVC.h"
+
 @interface ZLRunningManViewController ()<UITableViewDelegate,UITableViewDataSource,ZLRunningManHomeCellDelegate,ZLRunningManCellDelegate,ZLRuuningManHomeHeaderSectionViewDelegate,ZLCustomSegViewDelegate>
 
 @property (assign,nonatomic)     NSInteger mIndex;
@@ -384,8 +387,12 @@
             break;
         case 1:
         {
-            ZLPPTMyOrderViewController *vc = [ZLPPTMyOrderViewController new];
-            [self pushViewController:vc];
+            OrderTVC *vc = [[OrderTVC alloc] init];
+            vc.classType = kOrderClassType_paopao;
+            vc.isShopOrderBool = YES;
+            [self.navigationController pushViewController:vc animated:YES];
+//            ZLPPTMyOrderViewController *vc = [ZLPPTMyOrderViewController new];
+//            [self pushViewController:vc];
         }
             break;
         case 2:

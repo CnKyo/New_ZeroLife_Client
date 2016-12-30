@@ -18,4 +18,7 @@
 ///创建支付订单类型，通过此类型判断成功后跳转返回界面
 @property (assign,nonatomic) kOrderClassType mOrderType;
 
+///支付成功返回方法
+@property (nonatomic, copy) void (^paySuccessCallBack)();
+
 @end

@@ -268,11 +268,15 @@ static NSString* const  kOrderState_MAINTAIN            = @"MAINTAIN";  //维权
 //购物订单：待支付（WAITPAY）、待发货（ING）、待收货(SDONE)、已完成（UDONE）
 //干洗订单：待支付（WAITPAY）、待取件（ING）、待确认(SDONE)、已完成（UDONE）
 //报修订单：待支付（WAITPAY）、待上门（ING）、待确认(SDONE)、已完成（UDONE）
-//跑跑腿订单：待支付（WAITPAY）、待接单（ING）、待确认(SDONE)、已完成（UDONE）
+//跑跑腿-用户订单：待支付（WAITPAY）、待接单（ING）、待确认(SDONE)、已完成（UDONE）
+//跑跑腿-跑腿者订单：待处理（ING）、已完成（DONE）、已取消(CANCEL)
 static NSString* const  kOrderSegState_WAITPAY          = @"WAITPAY";  //待支付
 static NSString* const  kOrderSegState_ING              = @"ING";  //待发货/待取件/待上门/待接单
 static NSString* const  kOrderSegState_SDONE            = @"SDONE";  //待确认
 static NSString* const  kOrderSegState_UDONE            = @"UDONE";  //已完成
+static NSString* const  kOrderSegState_DONE             = @"DONE";  //已完成
+static NSString* const  kOrderSegState_CANCEL           = @"CANCEL";  //已取消
+
 
 typedef enum {
     kUserSexType_man = 1,//

@@ -179,6 +179,15 @@
 
 -(void)reloadUIWithItem:(OrderObject *)item
 {
+    
+    //设置店铺信息
+    self.shopView.shopNameLable.text = [NSString compIsNone:item.shop_name];
+    self.shopView.orderStatusLable.text = [NSString compIsNone:item.odr_state_val];
+    [self.shopView.shopIconImgView setImageWithURL:[NSURL imageurl:item.shop_logo] placeholderImage:IMG(@"order_shop_icon.png")];
+    
+    self.orderTimeLable.text = item.odr_add_time;
+    
+    
     //设置商品信息
     switch (item.odr_type) {
         case kOrderClassType_product:
@@ -235,7 +244,8 @@
             if (item.goods.count > 0)
                 it = [item.goods objectAtIndex:0];
             
-            [self.goodsPaoPaoView reloadUIWithItem:it];
+            self.shopView.shopNameLable.text = [NSString compIsNone:it.odrg_pro_name];
+            [self.goodsPaoPaoView reloadUIWithName:it.odrg_spec msg:item.odr_remark money:it.odrg_price imgUrl:it.odrg_img];
             
             self.orderMoneyLable.text = [NSString stringWithFormat:@"合计：￥%.2f", item.odr_amount];
         }
@@ -243,13 +253,7 @@
         default:
             break;
     }
-    
-    //设置店铺信息
-    self.shopView.shopNameLable.text = [NSString compIsNone:item.shop_name];
-    self.shopView.orderStatusLable.text = [NSString compIsNone:item.odr_state_val];
-    [self.shopView.shopIconImgView setImageWithURL:[NSURL imageurl:item.shop_logo] placeholderImage:IMG(@"order_shop_icon.png")];
-    
-    self.orderTimeLable.text = item.odr_add_time;
+
     
     
     //设置按钮显示信息

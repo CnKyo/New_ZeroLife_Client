@@ -10,6 +10,7 @@
 #import "OrderTableViewCell.h"
 #import "HMSegmentedControl.h"
 #import "OrderDetailVC.h"
+#import "OrderVC+Custom.h"
 
 @interface OrderTVC ()
 @property(nonatomic,strong) HMSegmentedControl *seg;
@@ -31,24 +32,30 @@
     NSArray *arr = [NSArray array];
     switch (_classType) {
         case kOrderClassType_product:
-            self.title =  @"购物订单";
+            self.navigationItem.title =  @"购物订单";
             arr = @[@"待支付", @"待发货", @"待收货", @"已完成"];
             break;
         case kOrderClassType_dryclean:
-            self.title =  @"干洗订单";
+            self.navigationItem.title =  @"干洗订单";
             arr = @[@"待支付", @"待取件", @"待确认", @"已完成"];
             break;
         case kOrderClassType_fix:
-            self.title =  @"报修订单";
+            self.navigationItem.title =  @"报修订单";
             arr = @[@"待支付", @"待上门", @"待确认", @"已完成"];
             break;
         case kOrderClassType_paopao:
-            self.title =  @"跑跑腿订单";
-            arr = @[@"待支付", @"待接单", @"待确认", @"已完成"];
+        {
+            self.navigationItem.title =  @"跑跑腿订单";
+            if (_isShopOrderBool)
+                arr = @[@"待处理", @"已完成", @"已取消"];
+            else
+                arr = @[@"待支付", @"待接单", @"待确认", @"已完成"];
+        }
             break;
         default:
             break;
     }
+    
     
     HMSegmentedControl *seg = [[HMSegmentedControl alloc] initWithSectionTitles:arr];
     //seg.frame = CGRectMake(0, 0, DEVICE_Width, 50);
@@ -157,21 +164,13 @@
 {
     OrderObject *item = [self.tableArr objectAtIndex:row];
     
-    if (stateStr.length > 0) {
-        [SVProgressHUD showWithStatus:@"操作中..."];
-        [[APIClient sharedClient] orderOprateWithTag:self odr_id:item.odr_id odr_type:item.odr_type odr_code:item.odr_code odr_state_next:stateStr odr_memo:nil call:^(NSString *odr_state_val, NSMutableArray *odr_state_next, APIObject *info) {
-            if (info.code == RESP_STATUS_YES) {
-                item.odr_state_next = odr_state_next;
-                item.odr_state_val = odr_state_val;
-                
-                [self.tableArr replaceObjectAtIndex:row withObject:item];
-                [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:row inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
-                
-                [SVProgressHUD showSuccessWithStatus:@"操作成功"];
-            } else
-                [SVProgressHUD showSuccessWithStatus:info.msg];
-        }];
-    }
+    
+    [self loadAPIwithState:stateStr orderItem:item isShopOrderBool:_isShopOrderBool call:^(OrderObject *itemNew) {
+
+        [self.tableArr replaceObjectAtIndex:row withObject:itemNew];
+        [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:row inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }];
+
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -192,26 +191,54 @@
     [super reloadTableViewDataSource];
     
     NSString *state = @"";
-    switch (_seg.selectedSegmentIndex) {
-        case 0:
-            state = kOrderSegState_WAITPAY;
-            break;
-        case 1:
-            state = kOrderSegState_ING;
-            break;
-        case 2:
-            state = kOrderSegState_SDONE;
-            break;
-        case 3:
-            state = kOrderSegState_UDONE;
-            break;
-        default:
-            break;
-    }
     
-    [[APIClient sharedClient] orderListWithTag:self odr_type:_classType odr_status:state page:self.page call:^(int totalPage, NSArray *tableArr, APIObject *info) {
-        [self reloadWithTableArr:tableArr info:info];
-    }];
+    if (_isShopOrderBool)
+    {
+        if (_classType == kOrderClassType_paopao) {
+            switch (_seg.selectedSegmentIndex) {
+                case 0:
+                    state = kOrderSegState_ING;
+                    break;
+                case 1:
+                    state = kOrderSegState_DONE;
+                    break;
+                case 2:
+                    state = kOrderSegState_CANCEL;
+                    break;
+                default:
+                    break;
+            }
+            
+            [[APIClient sharedClient] orderPaopaoManListWithTag:self odr_status:state page:self.page call:^(int totalPage, NSArray *tableArr, APIObject *info) {
+                [self reloadWithTableArr:tableArr info:info];
+            }];
+        }
+
+    }
+    else //用户订单
+    {
+        switch (_seg.selectedSegmentIndex) {
+            case 0:
+                state = kOrderSegState_WAITPAY;
+                break;
+            case 1:
+                state = kOrderSegState_ING;
+                break;
+            case 2:
+                state = kOrderSegState_SDONE;
+                break;
+            case 3:
+                state = kOrderSegState_UDONE;
+                break;
+            default:
+                break;
+        }
+        
+        [[APIClient sharedClient] orderListWithTag:self odr_type:_classType odr_status:state page:self.page call:^(int totalPage, NSArray *tableArr, APIObject *info) {
+            [self reloadWithTableArr:tableArr info:info];
+        }];
+    }
+
     
     //[self performSelector:@selector(donwData) withObject:nil afterDelay:0.5];
 }
