@@ -8,6 +8,13 @@
 
 #import "OrderBaoXiuChooseShopVC.h"
 #import "BaoXiuChooseShopTableViewCell.h"
+#import "BaoXiuChooseShopNewTableViewCell.h"
+
+
+#import <WPAttributedMarkup/WPHotspotLabel.h>
+#import <WPAttributedMarkup/NSString+WPAttributedMarkup.h>
+#import <WPAttributedMarkup/WPAttributedStyleAction.h>
+#import <CoreText/CoreText.h>
 
 @interface OrderBaoXiuChooseShopVC ()
 
@@ -56,22 +63,28 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.tableArr.count > 0)
-        return 100;
+        return 90;
     return [super tableView:tableView heightForRowAtIndexPath:indexPath];
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.tableArr.count > 0) {
-        static NSString *CellIdentifier = @"Cell_BaoXiuChooseShopTableViewCell";
-        BaoXiuChooseShopTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        static NSString *CellIdentifier = @"Cell_BaoXiuChooseShopNewTableViewCell";
+        BaoXiuChooseShopNewTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
-            cell = [[BaoXiuChooseShopTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+            cell = [[BaoXiuChooseShopNewTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
         OrderRepairBidObject *item = [self.tableArr objectAtIndex:indexPath.row];
         
         cell.nameLable.text = [NSString compIsNone:item.shop_name];
-        cell.priceLable.text = [NSString stringWithFormat:@"%.2f", item.bid_price];
+        cell.salesMonthLable.text = [NSString stringWithFormat:@"%i人选择", item.ext_sales_month];
+        cell.ratingBarView.starNumber = [item.ext_score integerValue];
+        
+        NSDictionary* style2 = @{@"body" : @[[UIFont systemFontOfSize:14], [UIColor grayColor]],
+                                 @"u": @[[UIFont systemFontOfSize:15], COLOR_NavBar] };
+        cell.priceLable.attributedText = [[NSString stringWithFormat:@"报价：<u>￥%.2f</u>", item.bid_price] attributedStringWithStyleBook:style2];
+
         
         [cell.imgView setImageWithURL:[NSURL imageurl:item.shop_logo] placeholderImage:ZLDefaultShopImg];
 

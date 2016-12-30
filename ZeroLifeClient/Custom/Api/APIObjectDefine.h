@@ -559,6 +559,9 @@
 @property(nonatomic,strong) NSString *              bid_state;         //!< 状态
 @property(nonatomic,strong) NSString *              rpr_code;         //!< 报修单号
 @property(nonatomic,strong) NSString *              bid_add_time;         //!< 竞价时间
+@property(nonatomic,assign) int                     ext_sales_month;         //!< 店铺月接单量
+@property(nonatomic,strong) NSString *              ext_score;         //!< 店铺评分
+@property(nonatomic,strong) NSString *              ext_max_time;         //!< 时间描述（如：2小时上门）
 @end
 
 

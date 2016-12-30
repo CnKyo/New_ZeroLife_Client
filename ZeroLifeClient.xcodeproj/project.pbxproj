@@ -317,6 +317,7 @@
 		DF19C8BF1E15F8E7004560D7 /* ZLRatingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF19C8BD1E15F8E7004560D7 /* ZLRatingTableViewCell.m */; };
 		DF19C8C01E15F8E7004560D7 /* ZLRatingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF19C8BE1E15F8E7004560D7 /* ZLRatingTableViewCell.xib */; };
 		DF19C8C21E1643AB004560D7 /* ercode_default.png in Resources */ = {isa = PBXBuildFile; fileRef = DF19C8C11E1643AB004560D7 /* ercode_default.png */; };
+		DF19C8C51E1653F6004560D7 /* BaoXiuChooseShopNewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF19C8C41E1653F6004560D7 /* BaoXiuChooseShopNewTableViewCell.m */; };
 		DF29B6741E10BD3E00CBAA3B /* SystemSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF29B66F1E10BD3E00CBAA3B /* SystemSettingVC.m */; };
 		DF29B6751E10BD3E00CBAA3B /* UserPaoPaoRegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF29B6721E10BD3E00CBAA3B /* UserPaoPaoRegisterVC.m */; };
 		DF29B6761E10BD3E00CBAA3B /* UserPaoPaoRegisterVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF29B6731E10BD3E00CBAA3B /* UserPaoPaoRegisterVC.xib */; };
@@ -1116,6 +1117,8 @@
 		DF19C8BD1E15F8E7004560D7 /* ZLRatingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZLRatingTableViewCell.m; path = ZeroLifeClient/ViewController/Rating/ZLRatingTableViewCell.m; sourceTree = SOURCE_ROOT; };
 		DF19C8BE1E15F8E7004560D7 /* ZLRatingTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ZLRatingTableViewCell.xib; path = ZeroLifeClient/ViewController/Rating/ZLRatingTableViewCell.xib; sourceTree = SOURCE_ROOT; };
 		DF19C8C11E1643AB004560D7 /* ercode_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ercode_default.png; sourceTree = "<group>"; };
+		DF19C8C31E1653F6004560D7 /* BaoXiuChooseShopNewTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaoXiuChooseShopNewTableViewCell.h; sourceTree = "<group>"; };
+		DF19C8C41E1653F6004560D7 /* BaoXiuChooseShopNewTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaoXiuChooseShopNewTableViewCell.m; sourceTree = "<group>"; };
 		DF29B66E1E10BD3E00CBAA3B /* SystemSettingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemSettingVC.h; sourceTree = "<group>"; };
 		DF29B66F1E10BD3E00CBAA3B /* SystemSettingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SystemSettingVC.m; sourceTree = "<group>"; };
 		DF29B6711E10BD3E00CBAA3B /* UserPaoPaoRegisterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserPaoPaoRegisterVC.h; sourceTree = "<group>"; };
@@ -2915,6 +2918,8 @@
 				DF630D0D1DD419830076A92C /* BaoXiuWorkerView.m */,
 				DFE178BC1DD5714B00E06F21 /* OrderHeaderStatusView.h */,
 				DFE178BD1DD5714B00E06F21 /* OrderHeaderStatusView.m */,
+				DF19C8C31E1653F6004560D7 /* BaoXiuChooseShopNewTableViewCell.h */,
+				DF19C8C41E1653F6004560D7 /* BaoXiuChooseShopNewTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4297,6 +4302,7 @@
 				04B07EB61DD99159004A7294 /* ZLPPTRewardCell.m in Sources */,
 				04D64D681DC9CC7B004E8859 /* ZLCustomBtnView.m in Sources */,
 				04A8DA221DDADB41000CE048 /* ZLPPTRateViewController.m in Sources */,
+				DF19C8C51E1653F6004560D7 /* BaoXiuChooseShopNewTableViewCell.m in Sources */,
 				04770F011DDEF523008B7505 /* ZLGoPaySucsessCell.m in Sources */,
 				DF19C8BF1E15F8E7004560D7 /* ZLRatingTableViewCell.m in Sources */,
 				DF630CF01DD401F40076A92C /* BaoXiuChooseShopView.m in Sources */,
