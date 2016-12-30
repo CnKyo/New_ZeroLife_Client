@@ -176,7 +176,12 @@
                 [LKDBHelperGoodsObj deleteWithWhere:[NSString stringWithFormat:@"%d",self.mShopId]];
             }
             
-            [self performSelector:@selector(mPopAction) withObject:nil afterDelay:0.25];
+            if (self.paySuccessCallBack) {
+                self.paySuccessCallBack();
+            } else {
+                [self performSelector:@selector(mPopAction) withObject:nil afterDelay:0.25];
+            }
+            
         }else{
             
             [self showErrorStatus:mBaseObj.msg];
@@ -228,9 +233,7 @@
 
             break;
         default:
-            
-            [self popViewController_3];
-            
+            [self popViewController];
             break;
     }
 

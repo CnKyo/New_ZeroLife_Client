@@ -14,5 +14,7 @@
 #import <AFNetworking/UIImageView+AFNetworking.h>
 
 @interface PaoPaoGoodsView : UIView
--(void)reloadUIWithItem:(OrderGoodsObject *)item;
+
+-(void)reloadUIWithName:(NSString *)name msg:(NSString *)msg money:(float)money imgUrl:(NSString *)imgUrl;
+
 @end

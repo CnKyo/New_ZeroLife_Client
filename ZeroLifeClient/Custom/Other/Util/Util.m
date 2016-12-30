@@ -1647,8 +1647,10 @@
     }else if ([mString isEqualToString:@"/ppao/order_oprate"]){
         return YES;
         
-    }else
-    {
+    }else if ([mString isEqualToString:@"/ppao/order_diff"]){
+        return YES;
+        
+    }else {
         return NO;
     }
     

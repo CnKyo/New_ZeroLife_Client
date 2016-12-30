@@ -162,7 +162,7 @@
     
     
     if ([self.delegate respondsToSelector:@selector(ZLRatingTableViewCellWithRateNum:)]) {
-        [self.delegate ZLRatingTableViewCellWithRateNum:[[NSString stringWithFormat:@"%f",score] intValue]];
+        [self.delegate ZLRatingTableViewCellWithRateNum:[[NSString stringWithFormat:@"%f",score] doubleValue]];
     }
     
     

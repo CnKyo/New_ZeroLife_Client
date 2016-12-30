@@ -24,10 +24,12 @@
 #import "OrderBaoXiuChooseShopVC.h"
 #import <JKCategories/UIControl+JKActionBlocks.h>
 
+#import "OrderVC+Custom.h"
+
 @interface OrderDetailVC ()
 //@property(nonatomic,strong) OrderAddressView *addressView;
 //@property(nonatomic,strong) OrderBeizhuView *beizhuView;
-@property(nonatomic,strong) OrderRepairBidObject* bidItem; //选择的竞价服务商对象
+//@property(nonatomic,strong) OrderRepairBidObject* bidItem; //选择的竞价服务商对象
 @end
 
 @implementation OrderDetailVC
@@ -229,8 +231,7 @@
                 make.height.equalTo(40);
             }];
             
-            //加载店铺信息
-            [shopView reloadUIWithShopName:_item.shop_name shopLogo:_item.shop_logo orderStatus:_item.odr_state_val];
+
             
             PaoPaoGoodsView *itemView = [[PaoPaoGoodsView alloc] init];
             [view addSubview:itemView];
@@ -240,9 +241,14 @@
                 make.top.equalTo(shopView.bottom);
             }];
             
-            //加载商品清单数据
+            
             OrderGoodsObject *it = _item.goods.count>0 ? [_item.goods objectAtIndex:0] : nil;
-            [itemView reloadUIWithItem:it];
+            
+            //加载店铺信息
+            [shopView reloadUIWithShopName:_item.shop_name shopLogo:_item.shop_logo orderStatus:_item.odr_state_val];
+            shopView.shopNameLable.text = [NSString compIsNone:it.odrg_pro_name];
+            
+            [itemView reloadUIWithName:it.odrg_spec msg:_item.odr_remark money:it.odrg_price imgUrl:it.odrg_img]; ///加载商品清单数据
             
             UIView *lineView111 = [view newDefaultLineView];
             [lineView111 makeConstraints:^(MASConstraintMaker *make) {
@@ -405,7 +411,8 @@
                     make.right.equalTo(view.right).offset(-padding*2);
                 }];
                 
-                [itemView reloadWithCount:_item.odr_service_num chooseItem:_bidItem];
+                OrderRepairBidObject *bidItem_Old = [self bk_associatedValueForKey:USER_FIX_CHOOSE_BID_Key];
+                [itemView reloadWithCount:_item.odr_service_num chooseItem:bidItem_Old];
                 
                 //选择服务商
                 [itemView jk_handleControlEvents:UIControlEventTouchUpInside withBlock:^(id weakSender) {
@@ -413,8 +420,9 @@
                     vc.odr_id = _item.odr_id;
                     vc.odr_code = _item.odr_code;
                     vc.chooseCallBack = ^(OrderRepairBidObject* item){
-                        self.bidItem = item;
-                        [itemView reloadWithCount:_item.odr_service_num chooseItem:_bidItem];
+                        [self bk_associateValue:item withKey:USER_FIX_CHOOSE_BID_Key];
+                        
+                        [itemView reloadWithCount:_item.odr_service_num chooseItem:item];
                     };
                     [self.navigationController pushViewController:vc animated:YES];
                 }];
@@ -501,40 +509,45 @@
 
 -(void)loadAPIwithState:(NSString *)stateStr
 {
-    if (stateStr.length > 0) {
-        if ([stateStr isEqualToString:kOrderState_SERPOINT]) //选择竞价服务商
-        {
-            if (_bidItem != nil) {
-                [SVProgressHUD showWithStatus:@"操作中..."];
-                [[APIClient sharedClient] orderOprateBidWithTag:self odr_id:_item.odr_id odr_code:_item.odr_code bid_id:_bidItem.bid_id call:^(APIObject *info) {
-                    if (info.code == RESP_STATUS_YES) {
-//                        self.item.odr_state_next = odr_state_next;
-//                        self.item.odr_state_val = odr_state_val;
-//                        [self donwData];
-                        
-                        [SVProgressHUD showSuccessWithStatus:@"操作成功"];
-                    } else
-                        [SVProgressHUD showErrorWithStatus:info.msg];
-                }];
-            } else
-                [SVProgressHUD showErrorWithStatus:@"请选择服务商"];
-        }
-        else    //取消、确认、维权
-        {
-            [SVProgressHUD showWithStatus:@"操作中..."];
-            [[APIClient sharedClient] orderOprateWithTag:self odr_id:_item.odr_id odr_type:_item.odr_type odr_code:_item.odr_code odr_state_next:stateStr odr_memo:nil call:^(NSString *odr_state_val, NSMutableArray *odr_state_next, APIObject *info) {
-                if (info.code == RESP_STATUS_YES) {
-                    self.item.odr_state_next = odr_state_next;
-                    self.item.odr_state_val = odr_state_val;
-                    [self donwData];
-                    
-                    [SVProgressHUD showSuccessWithStatus:@"操作成功"];
-                } else
-                    [SVProgressHUD showErrorWithStatus:info.msg];
-            }];
-        }
-
-    }
+    [self loadAPIwithState:stateStr orderItem:_item isShopOrderBool:_isShopOrderBool call:^(OrderObject *itemNew) {
+        self.item = itemNew;
+        [self donwData];
+    }];
+    
+//    if (stateStr.length > 0) {
+//        if ([stateStr isEqualToString:kOrderState_SERPOINT]) //选择竞价服务商
+//        {
+//            if (_bidItem != nil) {
+//                [SVProgressHUD showWithStatus:@"操作中..."];
+//                [[APIClient sharedClient] orderOprateBidWithTag:self odr_id:_item.odr_id odr_code:_item.odr_code bid_id:_bidItem.bid_id call:^(APIObject *info) {
+//                    if (info.code == RESP_STATUS_YES) {
+////                        self.item.odr_state_next = odr_state_next;
+////                        self.item.odr_state_val = odr_state_val;
+////                        [self donwData];
+//                        
+//                        [SVProgressHUD showSuccessWithStatus:@"操作成功"];
+//                    } else
+//                        [SVProgressHUD showErrorWithStatus:info.msg];
+//                }];
+//            } else
+//                [SVProgressHUD showErrorWithStatus:@"请选择服务商"];
+//        }
+//        else    //取消、确认、维权
+//        {
+//            [SVProgressHUD showWithStatus:@"操作中..."];
+//            [[APIClient sharedClient] orderOprateWithTag:self odr_id:_item.odr_id odr_type:_item.odr_type odr_code:_item.odr_code odr_state_next:stateStr odr_memo:nil call:^(NSString *odr_state_val, NSMutableArray *odr_state_next, APIObject *info) {
+//                if (info.code == RESP_STATUS_YES) {
+//                    self.item.odr_state_next = odr_state_next;
+//                    self.item.odr_state_val = odr_state_val;
+//                    [self donwData];
+//                    
+//                    [SVProgressHUD showSuccessWithStatus:@"操作成功"];
+//                } else
+//                    [SVProgressHUD showErrorWithStatus:info.msg];
+//            }];
+//        }
+//
+//    }
 }
 
 

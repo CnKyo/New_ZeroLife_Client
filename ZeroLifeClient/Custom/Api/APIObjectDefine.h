@@ -539,6 +539,8 @@
 @property(nonatomic,strong) NSString *              odr_pick_name;         //!< 取件联系人
 @property(nonatomic,strong) NSString *              odr_pick_phone;         //!< 取件联系电话
 @property(nonatomic,strong) NSString *              odr_pick_address;         //!< 取件联系地址
+
+@property(nonatomic,strong) NSString *              notify;         //!< aaa
 @end
 
 
@@ -1253,8 +1255,8 @@
 @property (assign,nonatomic) float                  odr_amount; //!< 订单商品原价格
 @property (assign,nonatomic) float                  odr_pay_price;  //!< 需支付商品金额
 @property (strong,nonatomic) NSString*              sign;  //!< 消费商户描述
-@property (strong,nonatomic) NSString*              pass;  //!< 消费商户描述
-@property (strong,nonatomic) NSString*              notify;  //!< 消费商户描述
+@property (strong,nonatomic) NSString*              pass;  //!< 支付密码
+@property (strong,nonatomic) NSString*              notify;  //!< 支付创建接口参数
 
 
 
