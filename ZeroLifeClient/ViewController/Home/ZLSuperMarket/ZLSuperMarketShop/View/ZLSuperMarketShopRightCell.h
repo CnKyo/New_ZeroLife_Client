@@ -62,12 +62,12 @@
 /**
  商品价格
  */
-@property (weak, nonatomic) IBOutlet WPHotspotLabel *mGoodsPrice;
+@property (weak, nonatomic) IBOutlet UILabel *mGoodsPrice;
 
 /**
  商品库存
  */
-@property (weak, nonatomic) IBOutlet WPHotspotLabel *mGoodsCount;
+@property (weak, nonatomic) IBOutlet UILabel *mGoodsCount;
 
 /**
  减按钮

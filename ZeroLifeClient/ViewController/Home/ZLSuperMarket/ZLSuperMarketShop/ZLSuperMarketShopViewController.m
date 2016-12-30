@@ -716,7 +716,7 @@ static const CGFloat mTopH = 156;
         [APIObject infoWithReLoginErrorMessage:@"登录之后才能领取哦～"];
     }else{
         ZLWebViewViewController *mWebvc = [ZLWebViewViewController new];
-        mWebvc.mUrl = [NSString stringWithFormat:@"%@/shop/coupon_wap?shop_id=%d&user_id=%d",[[APIClient sharedClient] currentUrl],self.mShopObj.shop_id,[ZLUserInfo ZLCurrentUser].user_id];
+        mWebvc.mUrl = [NSString stringWithFormat:@"%@/wap/wshop/coupon_wap?shop_id=%d&user_id=%d",[[APIClient sharedClient] currentUrl],self.mShopObj.shop_id,[ZLUserInfo ZLCurrentUser].user_id];
         
         [self pushViewController:mWebvc];
     }

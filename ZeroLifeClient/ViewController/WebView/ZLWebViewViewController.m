@@ -65,22 +65,21 @@
 
 - (void)initNaviBar{
     
+
     UIView * backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 100, 44)];
-    
-    UIButton * backItem = [[UIButton alloc]initWithFrame:CGRectMake(0, 15, 13, 20)];
-    [backItem setImage:[UIImage imageNamed:@"ZLBackBtn_Image"] forState:UIControlStateNormal];
-//    [backItem setImageEdgeInsets:UIEdgeInsetsMake(0, -15, 0, 0)];
-//    [backItem setTitle:@"返回" forState:UIControlStateNormal];
-//    [backItem setTitleEdgeInsets:UIEdgeInsetsMake(0, -15, 0, 0)];
+    UIButton * backItem = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 56, 44)];
+    [backItem setImage:[UIImage imageNamed:@"ZLCustom_Back_Icon"] forState:UIControlStateNormal];
+    backItem.tintColor = [UIColor whiteColor];
+    [backItem setImageEdgeInsets:UIEdgeInsetsMake(0, -15, 0, 0)];
+    [backItem setTitle:@"返回" forState:UIControlStateNormal];
+    [backItem setTitleEdgeInsets:UIEdgeInsetsMake(0, -15, 0, 0)];
     [backItem setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [backItem addTarget:self action:@selector(clickedBackItem:) forControlEvents:UIControlEventTouchUpInside];
     self.backItem = backItem;
     [backView addSubview:backItem];
     
-    UIButton * closeItem = [[UIButton alloc]initWithFrame:CGRectMake(52, 15, 20, 20)];
-    [closeItem setImage:[UIImage imageNamed:@"ZLClose_X"] forState:UIControlStateNormal];
-
-//    [closeItem setTitle:@"关闭" forState:UIControlStateNormal];
+    UIButton * closeItem = [[UIButton alloc]initWithFrame:CGRectMake(44+12, 0, 44, 44)];
+    [closeItem setTitle:@"关闭" forState:UIControlStateNormal];
     [closeItem setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [closeItem addTarget:self action:@selector(clickedCloseItem:) forControlEvents:UIControlEventTouchUpInside];
     closeItem.hidden = YES;

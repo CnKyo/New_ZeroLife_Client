@@ -369,7 +369,11 @@
         [mTableView reloadData];
 
     }else{
+        
+        [mGoods saveToDB];
+
         [self.tableArr replaceObjectAtIndex:mIndexPath.row withObject:mGoods];
+
         [mTableView beginUpdates];
         [mTableView reloadRowsAtIndexPaths:@[mIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
         [mTableView endUpdates];
@@ -408,6 +412,7 @@
     
     
     mGoods.mExtObj.mGoodsNum+=1;
+    [mGoods saveToDB];
 
     [self.tableArr replaceObjectAtIndex:mIndexPath.row withObject:mGoods];
     
@@ -415,6 +420,9 @@
     [mTableView reloadRowsAtIndexPaths:@[mIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
     [mTableView endUpdates];
 
+    
+    
+    
     [self updateBottomView];
 }
 
