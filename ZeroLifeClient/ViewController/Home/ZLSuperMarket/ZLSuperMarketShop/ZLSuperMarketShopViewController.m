@@ -624,6 +624,8 @@ static const CGFloat mTopH = 156;
                 ZLWebViewViewController *mWebvc = [ZLWebViewViewController new];
                 mWebvc.mUrl = [NSString stringWithFormat:@"%@/wap/good/goodsdetails?pro_id=%d&sku_id=%d&shop_id=%d&user_id=%d",[[APIClient sharedClient] currentUrl],mCGoodsObj.pro_id,mCGoodsObj.sku_id,self.mShopObj.shop_id,[ZLUserInfo ZLCurrentUser].user_id];
                 mWebvc.mCamGoodsObj = mCGoodsObj;
+                mWebvc.mShopId = self.mShopObj.shop_id;
+                mWebvc.mType = _mType;
                 [self pushViewController:mWebvc];
 
                 
@@ -637,7 +639,8 @@ static const CGFloat mTopH = 156;
                 ZLWebViewViewController *mWebvc = [ZLWebViewViewController new];
                 mWebvc.mUrl = [NSString stringWithFormat:@"%@/wap/good/goodsdetails?pro_id=%d&sku_id=%d&shop_id=%d&user_id=%d",[[APIClient sharedClient] currentUrl],mCGoodsObj.pro_id,mCGoodsObj.sku_id,self.mShopObj.shop_id,[ZLUserInfo ZLCurrentUser].user_id];
                 mWebvc.mClsGoodsObj = mCGoodsObj;
-
+                mWebvc.mShopId = self.mShopObj.shop_id;
+                mWebvc.mType = _mType;
                 [self pushViewController:mWebvc];
             }
                 break;
