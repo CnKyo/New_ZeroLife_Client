@@ -33,6 +33,7 @@
 #import "mCheckMoreActivityView.h"
 #import <LKDBHelper.h>
 #import "ZLSuperMarketCommitOrderViewController.h"
+#import "UIImage+ImageEffects.h"
 
 
 static const CGFloat mTopH = 156;
@@ -198,7 +199,22 @@ static const CGFloat mTopH = 156;
 }
 - (void)upDatePage:(ZLShopObj *)mShop{
     
-    [mHeaderView.mShopLogo sd_setImageWithURL:[NSURL URLWithString:[Util currentSourceImgUrl:mShop.mShopMsg.shop_logo]] placeholderImage:[UIImage imageNamed:@"ZLDefault_Shop"]];
+    NSString *mHeadUrl = [Util currentSourceImgUrl:mShop.mShopMsg.shop_logo];
+    UIImage *mHead = nil;
+    mHead = [UIImage imageNamed:@"ZLDefault_Shop"];
+    
+    UIImage *mLastImg = [mHead applyLightEffect];
+    mHeaderView.mBgkImg.image = mLastImg;
+    [mHeaderView.mShopLogo sd_setImageWithURL:[NSURL URLWithString:mHeadUrl] placeholderImage:[UIImage imageNamed:@"ZLDefault_Shop"]];
+    
+    [mHeaderView.mShopLogo sd_setImageWithURL:[NSURL URLWithString:mHeadUrl] placeholderImage:[UIImage imageNamed:@"ZLDefault_Shop"] options:SDWebImageRetryFailed completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        if (image != nil) {
+            UIImage *mLastImg11 = [image applyLightEffect];
+            mHeaderView.mBgkImg.image = mLastImg11;
+        }
+    }];
+    
+    
     self.navigationItem.title = mShop.mShopMsg.shop_name;
     
     mHeaderView.mContent.text = [NSString stringWithFormat:@"满%.0f元起送 %@",mShop.mShopMsg.ext_min_price,mShop.mShopMsg.ext_max_time];

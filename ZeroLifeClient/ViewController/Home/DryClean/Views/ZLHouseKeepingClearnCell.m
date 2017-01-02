@@ -81,7 +81,7 @@
                 ZLShopHomeClassify *ZLClassify = mDataSource[i];
                 NSString *title = ZLClassify.cls_name;
                 NSString *imageStr = ZLClassify.cls_image;
-                ZLCustomBtnView *btnView = [[ZLCustomBtnView alloc] initWithZLCustomBtnViewFrame:frame Title:title ImageStr:imageStr];
+                ZLCustomBtnView *btnView = [[ZLCustomBtnView alloc] initWithZLCustomBtnViewFrame:frame Title:title ImageStr:[Util currentSourceImgUrl:imageStr]];
                 btnView.tag = i;
                 [mBgkView1 addSubview:btnView];
                 UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(OnTapBtnView:)];
@@ -94,7 +94,7 @@
                 ZLShopHomeClassify *ZLClassify = mDataSource[i];
                 NSString *title = ZLClassify.cls_name;
                 NSString *imageStr = ZLClassify.cls_image;
-                ZLCustomBtnView *btnView = [[ZLCustomBtnView alloc] initWithZLCustomBtnViewFrame:frame Title:title ImageStr:imageStr];
+                ZLCustomBtnView *btnView = [[ZLCustomBtnView alloc] initWithZLCustomBtnViewFrame:frame Title:title ImageStr:[Util currentSourceImgUrl:imageStr]];
                 btnView.tag = i;
                 [mBgkView1 addSubview:btnView];
                 UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(OnTapBtnView:)];
@@ -106,7 +106,7 @@
                 ZLShopHomeClassify *ZLClassify = mDataSource[i];
                 NSString *title = ZLClassify.cls_name;
                 NSString *imageStr = ZLClassify.cls_image;
-                ZLCustomBtnView *btnView = [[ZLCustomBtnView alloc] initWithZLCustomBtnViewFrame:frame Title:title ImageStr:imageStr];
+                ZLCustomBtnView *btnView = [[ZLCustomBtnView alloc] initWithZLCustomBtnViewFrame:frame Title:title ImageStr:[Util currentSourceImgUrl:imageStr]];
                 btnView.tag = i;
                 [mBgkView2 addSubview:btnView];
                 UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(OnTapBtnView:)];
@@ -119,7 +119,7 @@
                 ZLShopHomeClassify *ZLClassify = mDataSource[i];
                 NSString *title = ZLClassify.cls_name;
                 NSString *imageStr = ZLClassify.cls_image;
-                ZLCustomBtnView *btnView = [[ZLCustomBtnView alloc] initWithZLCustomBtnViewFrame:frame Title:title ImageStr:imageStr];
+                ZLCustomBtnView *btnView = [[ZLCustomBtnView alloc] initWithZLCustomBtnViewFrame:frame Title:title ImageStr:[Util currentSourceImgUrl:imageStr]];
                 btnView.tag = i;
                 [mBgkView2 addSubview:btnView];
                 UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(OnTapBtnView:)];

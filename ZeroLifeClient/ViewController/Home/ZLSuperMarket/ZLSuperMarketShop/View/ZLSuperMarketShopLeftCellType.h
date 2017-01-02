@@ -28,4 +28,7 @@
 @property (strong,nonatomic) ZLShopClassify *mClassify;
 @property (strong,nonatomic) ZLShopCampain *mCampain;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *mImgW;
+
+
 @end

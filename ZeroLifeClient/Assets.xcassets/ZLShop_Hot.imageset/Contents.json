@@ -2,11 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "优惠卷管理.png",
+      "filename" : "ZLShop_Hot.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "ZLShop_Hot-1.png",
       "scale" : "2x"
     },
     {

@@ -33,7 +33,25 @@
     [super reloadTableViewDataSource];
 
     [[APIClient sharedClient] ZLGetHomeAnouncement:self.page block:^(int totalPage, NSArray *tableArr, APIObject *info) {
-        [self reloadWithTableArr:tableArr info:info];
+//        [self reloadWithTableArr:tableArr info:info];
+        [self.tableArr removeAllObjects];
+        [self ZLHideEmptyView];
+        if (info.code == RESP_STATUS_YES) {
+            [self showSuccessStatus:info.msg];
+            [self.tableArr addObjectsFromArray:tableArr];
+            
+            if (tableArr.count<=0) {
+                [self ZLShowEmptyView:@"暂无数据！" andImage:nil andHiddenRefreshBtn:NO];
+
+            }
+            
+        }else{
+        
+            [self showErrorStatus:info.msg];
+            [self ZLShowEmptyView:info.msg andImage:nil andHiddenRefreshBtn:NO];
+        }
+        [self doneLoadingTableViewData];
+        [self.tableView reloadData];
     }];
 }
 - (void)didReceiveMemoryWarning {
