@@ -17,6 +17,7 @@
 {
 
     WKSegmentControl *mSegmentView;
+    OrderCommentExtraObject *mExtra;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -24,18 +25,23 @@
 
     self.navigationItem.title = @"我的评价";
 
+    mExtra = OrderCommentExtraObject.new;
+    
     [self addTableView];
     
     UINib   *nib = [UINib nibWithNibName:@"ZLPPTRateCell" bundle:nil];
-    [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
+    [self.tableView registerNib:nib forCellReuseIdentifier:@"mNoImgCell"];
+    
+    nib = [UINib nibWithNibName:@"ZLPPTRateCell3" bundle:nil];
+    [self.tableView registerNib:nib forCellReuseIdentifier:@"mHavaImgCell"];
     
     nib = [UINib nibWithNibName:@"ZLPPTRateCell2" bundle:nil];
-    [self.tableView registerNib:nib forCellReuseIdentifier:@"cell2"];
+    [self.tableView registerNib:nib forCellReuseIdentifier:@"mHeadCell"];
 
     
-    NSArray *mTT = @[@"全部",@"好评",@"中评",@"差评"];
-    
-    mSegmentView = [WKSegmentControl initWithSegmentControlFrame:CGRectMake(0, 165, DEVICE_Width, 40) andTitleWithBtn:mTT andBackgroudColor:[UIColor whiteColor] andBtnSelectedColor:[UIColor colorWithRed:0.91 green:0.53 blue:0.16 alpha:1.00] andBtnTitleColor:M_TextColor1 andUndeLineColor:[UIColor colorWithRed:0.91 green:0.53 blue:0.16 alpha:1.00] andBtnTitleFont:[UIFont systemFontOfSize:15] andInterval:20 delegate:self andIsHiddenLine:YES andType:2];
+//    NSArray *mTT = @[@"全部",@"好评",@"中评",@"差评"];
+//    
+//    mSegmentView = [WKSegmentControl initWithSegmentControlFrame:CGRectMake(0, 165, DEVICE_Width, 40) andTitleWithBtn:mTT andBackgroudColor:[UIColor whiteColor] andBtnSelectedColor:[UIColor colorWithRed:0.91 green:0.53 blue:0.16 alpha:1.00] andBtnTitleColor:M_TextColor1 andUndeLineColor:[UIColor colorWithRed:0.91 green:0.53 blue:0.16 alpha:1.00] andBtnTitleFont:[UIFont systemFontOfSize:15] andInterval:20 delegate:self andIsHiddenLine:YES andType:2];
 
     
     [self setTableViewHaveHeaderFooter];
@@ -44,6 +50,26 @@
 - (void)reloadTableViewDataSource{
     [super reloadTableViewDataSource];
     
+    [self showWithStatus:@"正在加载中..."];
+
+    [[APIClient sharedClient] ZLGetRateList:self.page andType:self.mType andId:_mId andPageSize:20 block:^(APIObject *mBaseObj, NSArray *mList, OrderCommentExtraObject *mExt) {
+        
+        [self ZLHideEmptyView];
+        
+        if (mBaseObj.code == RESP_STATUS_YES) {
+            [self showSuccessStatus:mBaseObj.msg];
+            
+            mExtra = mExt;
+            
+            [self reloadWithTableArr:mList info:mBaseObj];
+            
+        }else{
+            [self showErrorStatus:mBaseObj.msg];
+            [self ZLShowEmptyView:mBaseObj.msg andImage:nil andHiddenRefreshBtn:NO];
+            
+        }
+        [self.tableView reloadData];
+    }];
 
 
 }
@@ -68,30 +94,30 @@
     return 2;
     
 }
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    
-    if (section == 0) {
-        return 0.1;
-    }else{
-        return 40;
-    }
-    
-    
-    
-}
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    
-    if (section == 0) {
-        
-        return nil;
-    }else{
-        return mSegmentView;
-
-    }
-    
-    
-    
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+//    
+//    if (section == 0) {
+//        return 0.1;
+//    }else{
+//        return 40;
+//    }
+//    
+//    
+//    
+//}
+//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+//    
+//    if (section == 0) {
+//        
+//        return nil;
+//    }else{
+//        return mSegmentView;
+//
+//    }
+//    
+//    
+//    
+//}
 - (void)mGoReleaseAction:(UIButton *)sender{
     
 }
@@ -100,13 +126,9 @@
     if (section == 0) {
         return 1;
     }else{
-        return 10;
+    
+       return self.tableArr.count;
     }
-    
-    
-    
-    
-    
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -115,7 +137,14 @@
     if (indexPath.section == 0) {
         return 120;
     }else{
-        return 120;
+        
+        OrderCommentObject *mExt = self.tableArr[indexPath.row];
+
+        if (mExt.com_imgs.length<=0 || [Util wk_StringToArr:mExt.com_imgs].count<=0) {
+            return 120;
+        }else{
+            return 180;
+        }
     }
     
     
@@ -132,22 +161,33 @@
     NSString *reuseCellId = nil;
     
     if (indexPath.section == 0) {
-        reuseCellId = @"cell2";
+        reuseCellId = @"mHeadCell";
         
         ZLPPTRateCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
         
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
+        cell.mOne = mExtra.evaluate;
+        cell.mTwo = mExtra.favourable;
+        cell.mThree = mExtra.negative;
+        [cell setMExt:mExtra];
         return cell;
     }else{
-        reuseCellId = @"cell";
         
+        OrderCommentObject *mExt = self.tableArr[indexPath.row];
+        
+        if (mExt.com_imgs.length<=0 || [Util wk_StringToArr:mExt.com_imgs].count<=0) {
+            reuseCellId = @"mNoImgCell";
+        }else{
+            reuseCellId = @"mHavaImgCell";
+        }
+
         ZLPPTRateCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
         
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
+        [cell setMRate:mExt];
         return cell;
     }
     

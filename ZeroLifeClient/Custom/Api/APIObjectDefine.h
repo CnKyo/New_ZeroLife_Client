@@ -438,6 +438,15 @@
 @property(nonatomic,strong) NSString *              com_add_time;         //!< 评论时间
 @property(nonatomic,assign) BOOL                    com_is_security;         //!< 是否匿名评价(０不匿名)
 @end
+///评价扩展对象
+@interface OrderCommentExtraObject : NSObject
+
+@property(nonatomic,assign) int                     favourable;         //!< 总好评数
+@property(nonatomic,assign) int                     negative;         //!< 总差评数
+@property(nonatomic,assign) int                     totalScore;         //!< 总评分
+@property(nonatomic,assign) int                     evaluate;         //!<总评价数
+
+@end
 
 /// 订单商品清单对象
 @interface OrderGoodsObject : NSObject

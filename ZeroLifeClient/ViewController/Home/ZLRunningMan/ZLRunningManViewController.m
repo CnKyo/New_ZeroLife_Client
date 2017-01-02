@@ -451,6 +451,8 @@
                 [self showErrorStatus:@"已禁用！"];
             }else{
                 ZLPPTRateViewController *vc = [ZLPPTRateViewController new];
+                vc.mId = [ZLUserInfo ZLCurrentUser].user_id;
+                vc.mType = ZLRateVCTypeWithPPT;
                 [self pushViewController:vc];
             }
 

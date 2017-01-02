@@ -7,7 +7,13 @@
 //
 
 #import "CustomVC.h"
+#import "CustomDefine.h"
 
 @interface ZLPPTRateViewController : CustomVC
+///评价类型
+@property (nonatomic,assign) ZLRateVCType mType;
+///查看的id
+@property (nonatomic,assign) int mId;
+
 
 @end

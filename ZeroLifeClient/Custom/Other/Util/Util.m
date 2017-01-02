@@ -1668,13 +1668,23 @@
 
     return [NSString stringWithFormat:@"%@%@%@",kAFAppDotNetImgBaseURLString,kAFAppDotNetApiExtraURLString,mUrl];
 }
-
-
-
-
-
-
-
+#pragma mark----字符串拼接成数组
+/**
+ 字符串拼接成数组
+ 
+ @param string 要转换的字符串
+ @return 返回数组
+ */
++ (NSArray *)wk_StringToArr:(NSString *)string{
+    
+    if (string.length<=0 || [string isEqualToString:@""]) {
+        return nil;
+    }else{
+        return [string componentsSeparatedByString:@","];
+    }
+    
+    
+}
 
 @end
 

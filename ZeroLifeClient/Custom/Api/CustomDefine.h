@@ -483,4 +483,11 @@ typedef enum {
     
 }ZLOrdreStatus;///订单状态
 
+typedef enum {
+    
+    ZLRateVCTypeWithShop,///评价界面类型-店铺
+    ZLRateVCTypeWithPPT,///评价界面类型-跑跑腿
+    
+}ZLRateVCType;///评价界面类型
+
 #endif /* CustomDefine_h */

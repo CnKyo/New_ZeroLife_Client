@@ -24,6 +24,8 @@
 #import "ZLSpeHeaderView.h"
 
 #import "ZLShopCampainSubView.h"
+#import "ZLPPTRateViewController.h"
+
 
 #import "StandardsView.h"
 #import "ZLSkuCell.h"
@@ -146,7 +148,7 @@ static const CGFloat mTopH = 156;
 #pragma mark----****----加载headerview
 - (void)initHeaderView{
     mHeaderView = [ZLSuperMarketHeaderView shareView];
-    mHeaderView.mRateBtn.hidden = YES;
+    mHeaderView.mRateBtn.hidden = NO;
     mHeaderView.delegaate = self;
     [self.view addSubview:mHeaderView];
     
@@ -731,7 +733,10 @@ static const CGFloat mTopH = 156;
  查看评价按钮
  */
 - (void)ZLSuperMarketRateBtnSelected{
-
+    ZLPPTRateViewController *vc = [ZLPPTRateViewController new];
+    vc.mId = self.mShopObj.shop_id;
+    vc.mType = ZLRateVCTypeWithShop;
+    [self pushViewController:vc];
 }
 #pragma mark----****----查看更多活动按钮
 /**

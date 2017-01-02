@@ -2785,15 +2785,59 @@ return [NSString stringWithFormat:@"%@%@%@",kAFAppDotNetImgBaseURLString,kAFAppD
     }
     
 }
-#pragma mark----****----获取跑跑腿评价
+#pragma mark----****----获取评价
 /**
- 获取跑跑腿评价
+ 获取评价
  
  @param mPage 行数页数
+ @param mType 请求类型
+ @param mId id
  @param mPageSize 每页条数
  @param block 返回值
  */
-- (void)ZLGetPPTRateList:(int)mPage andPageSize:(int)mPageSize block:(void(^)(APIObject *mBaseObj))block{
+- (void)ZLGetRateList:(int)mPage andType:(ZLRateVCType)mType andId:(int)mId andPageSize:(int)mPageSize block:(void(^)(APIObject *mBaseObj,NSArray *mList,OrderCommentExtraObject *mExt))block{
+
+    
+    NSString *mUrl = nil;
+    NSMutableDictionary* para = [NSMutableDictionary dictionary];
+
+    if (mType == ZLRateVCTypeWithShop) {///店铺评价
+        
+        mUrl = @"/shop/shop_evaluate";
+        [para setInt:mId forKey:@"shop_id"];
+
+    }else{///跑跑腿评价
+        mUrl = @"/ppao/ppao_evaluate";
+        [para setInt:mId forKey:@"user_id"];
+
+    }
+    if (mPage) {
+        [para setObject:NumberWithInt(mPage) forKey:@"pageNumber"];
+        
+    }
+    [para setInt:20 forKey:@"pageSize"];
+    
+    
+    [self loadAPIWithTag:self path:mUrl parameters:para call:^(APIObject *info) {
+        
+        if (info.code == RESP_STATUS_YES) {
+            
+            NSMutableArray *mTempArr = [NSMutableArray new];
+            
+            for (NSDictionary *dic in [[info.data objectForKey:@"pages"] objectForKey:@"list"]) {
+                [mTempArr addObject:[OrderCommentObject mj_objectWithKeyValues:dic]];
+            }
+            
+            block(info,mTempArr,[OrderCommentExtraObject mj_objectWithKeyValues:[info.data objectForKey:@"count"]]);
+            
+        }else{
+            
+            block(info,nil,nil);
+            
+        }
+        
+    }];
+    
 
     
 }

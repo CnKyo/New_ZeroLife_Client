@@ -15,4 +15,7 @@
 ///评论成功返回方法
 @property (nonatomic, copy) void (^evaluateSuccessCallBack)(NSString *odr_state_val, NSMutableArray *odr_state_next);
 
+
+
+
 @end

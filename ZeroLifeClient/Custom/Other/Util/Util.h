@@ -434,5 +434,13 @@ typedef enum _RelDic
  @return 返回图片的URL
  */
 + (NSString *)currentSourceImgUrl:(NSString *)mUrl;
+#pragma mark----字符串拼接成数组
+/**
+ 字符串拼接成数组
+
+ @param string 要转换的字符串
+ @return 返回数组
+ */
++ (NSArray *)wk_StringToArr:(NSString *)string;
 
 @end

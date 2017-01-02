@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "APIObjectDefine.h"
 #import "IQTextView.h"
-
+#import "CustomDefine.h"
 ///设置代理
 @protocol ZLCommitDelegate <NSObject>
 
@@ -38,7 +38,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *mCoupMoney;
 ///配送方式和服务时间
 @property (weak, nonatomic) IBOutlet UILabel *mSendTypeOrWorkTime;
-
+///优惠金额
+@property (weak, nonatomic) IBOutlet WPHotspotLabel *mDiscountAmount;
 
 
 

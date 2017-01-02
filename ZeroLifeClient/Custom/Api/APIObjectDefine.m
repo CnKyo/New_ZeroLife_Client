@@ -443,7 +443,8 @@
 #pragma mark----****----用户订单
 @implementation OrderCommentObject
 @end
-
+@implementation OrderCommentExtraObject
+@end
 
 @implementation OrderGoodsObject
 @end

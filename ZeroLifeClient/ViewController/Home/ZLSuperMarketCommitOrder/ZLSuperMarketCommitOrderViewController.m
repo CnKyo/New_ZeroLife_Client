@@ -79,7 +79,7 @@
     
     NSDictionary *mAttStyle = @{@"color": [UIColor redColor],@"font":[UIFont systemFontOfSize:12]};
 
-    mBottomView.mTotelPrice.attributedText = [[NSString stringWithFormat:@"订单金额：<color><font>¥</font></color><color>%.2f</color>元",mObj.payMoney] attributedStringWithStyleBook:mAttStyle];
+    mBottomView.mTotelPrice.attributedText = [[NSString stringWithFormat:@"订单金额：<color><font>¥</font></color><color>%.2f</color>元 <font><color>已优惠：%.2f元</font></color>",mObj.payMoney,mObj.campaignMoney] attributedStringWithStyleBook:mAttStyle];
     
 }
 - (void)didReceiveMemoryWarning {
@@ -314,10 +314,10 @@
     vc.block = ^(CouponObject *mCoupon) {
         ///这里每次block回来就把之前减去的加回来，不然会引起循环调用
         self.mPreOrder.payMoney+=self.mPreOrder.mCoupon.cup_price;
-        self.mPreOrder.deliver_price-=self.mPreOrder.mCoupon.cup_price;
+        self.mPreOrder.campaignMoney-=self.mPreOrder.mCoupon.cup_price;
         
         self.mPreOrder.payMoney-=mCoupon.cup_price;
-        self.mPreOrder.deliver_price+=mCoupon.cup_price;
+        self.mPreOrder.campaignMoney+=mCoupon.cup_price;
         
         self.mPreOrder.mCoupon = mCoupon;
         

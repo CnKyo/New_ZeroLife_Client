@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "APIObjectDefine.h"
+
 
 @interface ZLPPTRateCell : UITableViewCell
 
@@ -42,6 +44,14 @@
  */
 @property (assign,nonatomic) CGFloat mBadRate;
 
+@property (weak, nonatomic) IBOutlet UILabel *mTotlerate;
+
+
+
+
+@property (weak, nonatomic) IBOutlet UIView *mImgView;
+
+
 #pragma mark----****----cell第一种样式
 
 /**
@@ -64,5 +74,18 @@
  */
 @property (weak, nonatomic) IBOutlet UILabel *mContent;
 
+@property (weak, nonatomic) IBOutlet UIView *mStarView;
+
+///整体评价
+@property (strong,nonatomic) OrderCommentExtraObject *mExt;
+///评价对象
+@property (strong,nonatomic) OrderCommentObject *mRate;
+
+
+@property (assign,nonatomic) int mOne;
+
+@property (assign,nonatomic) int mTwo;
+
+@property (assign,nonatomic) int mThree;
 
 @end
