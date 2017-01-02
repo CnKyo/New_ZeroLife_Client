@@ -126,7 +126,7 @@
     [super viewDidLoad];
     self.title = @"我的优惠券";
 
-    if (self.tableArr.count == 0)
+    if (self.tableArr.count == 0 && self.block==nil)
          [self setTableViewHaveHeader];
 }
 

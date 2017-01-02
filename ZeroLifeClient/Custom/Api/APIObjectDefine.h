@@ -541,8 +541,8 @@
 @property(nonatomic,strong) NSString *              odr_pick_phone;         //!< 取件联系电话
 @property(nonatomic,strong) NSString *              odr_pick_address;         //!< 取件联系地址
 
-@property(nonatomic,strong) NSString *              notify;         //!< aaa
-@property(nonatomic,strong) NSString *              cls_type;         //!< 分类类型（买、办、送）
+@property(nonatomic,strong) NSString *              notify;         //!< 支付创建接口参数（原样返回）
+@property(nonatomic,strong) NSString *              cls_type;         //!< 分类类型（买、办、送）对应kPaopaoCLSType_BUY等
 
 @end
 
@@ -640,6 +640,7 @@
 @property (strong,nonatomic) NSString*              user_emaill; //!< 用户邮箱
 @property (assign,nonatomic) BOOL                   user_is_notify; //!< 是否开启推送消息功能（Y(1), N(0)）
 @property (assign,nonatomic) BOOL                   user_is_authent; //!< 是否已经认证（Y(1), N(0)）
+@property (assign,nonatomic) BOOL                   user_is_bind; //!< 是否绑定（银行卡）1:认证；0：未认证
 @property (strong,nonatomic) NSString*              user_add_time; //!< 注册时间
 
 @property (nonatomic,strong) WalletObject*          wallet; //!< 用户钱包信息
@@ -677,7 +678,9 @@
 @property(nonatomic,strong) NSString *              uopen_name;         //!< 名字
 @property(nonatomic,strong) NSString *              uopen_phone;         //!< 电话
 @property(nonatomic,assign) float                   uopen_deposit;         //!< 保证金
-@property(nonatomic,strong) NSString *              uopen_rank;         //!< 等级
+@property(nonatomic,assign) int                     uopen_rank;         //!< 等级
+@property(nonatomic,assign) int                     max_experience;         //!< 最大经验值
+@property(nonatomic,assign) int                     uopen_empiric_val;         //!< 经验值
 @end
 
 
