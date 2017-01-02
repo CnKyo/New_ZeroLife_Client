@@ -87,6 +87,7 @@
         make.top.equalTo(statusView.bottom);
         make.height.equalTo(OnePixNumber);
     }];
+    lastView = lineView1;
     
     //收货地址信息相关
     if (_classType==kOrderClassType_product || _classType==kOrderClassType_dryclean || _classType==kOrderClassType_fix) {
@@ -95,24 +96,25 @@
         [superView addSubview:addressView];
         [addressView updateConstraints:^(MASConstraintMaker *make) {
             make.left.right.equalTo(superView);
-            make.top.equalTo(lineView1.bottom);
-            //make.height.equalTo(80);
-            //make.height.equalTo(_addressView.width).multipliedBy(0.3);
+            make.top.equalTo(lastView.bottom);
         }];
         lastView = addressView;
         
     } else if (_classType == kOrderClassType_paopao) {
-        OrderAddressView *addressView1 = [[OrderAddressView alloc] initWithNote:@"取货地址" name:[NSString stringWithFormat:@"%@  %@", _item.odr_deliver_name, _item.odr_deliver_phone] address:[NSString compIsNone:_item.odr_deliver_address]];
-        OrderAddressView *addressView2 = [[OrderAddressView alloc] initWithNote:@"送货地址" name:nil address:[NSString compIsNone:_item.odr_pick_address]];
-        [superView addSubview:addressView1];
+        if ([_item.cls_type isEqualToString:kPaopaoCLSType_SEND]) {
+            OrderAddressView *addressView1 = [[OrderAddressView alloc] initWithNote:@"取货地址" name:[NSString stringWithFormat:@"%@  %@", _item.odr_pick_name, _item.odr_pick_phone] address:[NSString compIsNone:_item.odr_pick_address]];
+            [superView addSubview:addressView1];
+            [addressView1 updateConstraints:^(MASConstraintMaker *make) {
+                make.left.right.equalTo(superView);
+                make.top.equalTo(lastView.bottom);
+            }];
+            lastView = addressView1;
+        }
+        OrderAddressView *addressView2 = [[OrderAddressView alloc] initWithNote:@"送达地址" name:[NSString stringWithFormat:@"%@  %@", _item.odr_deliver_name, _item.odr_deliver_phone] address:[NSString compIsNone:_item.odr_deliver_address]];
         [superView addSubview:addressView2];
-        [addressView1 updateConstraints:^(MASConstraintMaker *make) {
-            make.left.right.equalTo(superView);
-            make.top.equalTo(lineView1.bottom);
-        }];
         [addressView2 updateConstraints:^(MASConstraintMaker *make) {
             make.left.right.equalTo(superView);
-            make.top.equalTo(addressView1.bottom);
+            make.top.equalTo(lastView.bottom);
         }];
         lastView = addressView2;
     }

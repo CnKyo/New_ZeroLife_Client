@@ -65,6 +65,7 @@
     [self.navigationController.navigationBar lt_setBackgroundColor:[UIColor clearColor]];
 
 
+    [[NSNotificationCenter defaultCenter] postNotificationName:MyUserNeedUpdateNotification object:nil]; //更新一下用户数据
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUserInfoChange:) name:MyUserInfoChangedNotification object:nil];
 }
 
@@ -193,33 +194,26 @@
         
         ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
         
-        cell.userNameLable.text = [NSString compIsNone:user.user_nick];
-        cell.userMobileLable.text = [NSString compIsNone:user.user_phone];
-        NSMutableString *str = [NSMutableString new];
-        [str appendString:[NSString strUserSexType:user.user_sex]];
-        if (user.community == nil) {
-            [str appendString:@" 未认证"];
-        } else {
-            [str appendString:@" 已认证"];
-            [str appendFormat:@" %@", user.community.cmut_name];
-        }
-        cell.userNoteLable.text = str;
-        [cell.userImgView setImageWithURL:[NSURL URLWithString:user.user_header] placeholderImage:IMG(@"user_header.png")];
-        
-        
         if (user == nil) { //显示登录ui
             cell.userLoginView.hidden = NO;
             cell.userInfoView.hidden = YES;
-            
-            //进入登录界面
-            [cell.userLoginView jk_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
-                [ZLLoginViewController startPresent:self];
-            }];
-            
         } else {
             cell.userLoginView.hidden = YES;
             cell.userInfoView.hidden = NO;
             
+            //设置用户信息
+            cell.userNameLable.text = [NSString compIsNone:user.user_nick];
+            cell.userMobileLable.text = [NSString compIsNone:user.user_phone];
+            NSMutableString *str = [NSMutableString new];
+            [str appendString:[NSString strUserSexType:user.user_sex]];
+            if (user.user_is_authent == NO)
+                [str appendString:@" 未认证"];
+            else {
+                [str appendString:@" 已认证"];
+                [str appendFormat:@" %@", user.community.cmut_name];
+            }
+            cell.userNoteLable.text = str;
+            [cell.userImgView setImageWithURL:[NSURL URLWithString:user.user_header] placeholderImage:IMG(@"user_header.png")];
 
             //判断跑跑信息
             if ([user.openInfo.open_state isEqualToString:kOpenState_NOTOPEN] || [user.openInfo.open_state isEqualToString:kOpenState_PAYMENTED]) {
@@ -228,32 +222,45 @@
             } else {
                 cell.paopaoRegisterView.hidden = YES;
                 cell.paopaoInfoView.hidden = NO;
+                
+                //设置跑跑者信息
+                float progress = 0;
+                if (user.openInfo.max_experience > 0)
+                    progress = (float)user.openInfo.uopen_empiric_val / user.openInfo.max_experience;
+                cell.paopaoProgressView.progress = progress;
+                cell.paopaoLevelLable.text = [NSString stringWithFormat:@"LV%i", user.openInfo.uopen_rank];
             }
-            
-            //进入个人信息界面
-            [cell.userInfoView jk_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
-                UserInfoVC *vc = [[UserInfoVC alloc] init];
-                vc.hidesBottomBarWhenPushed = YES;
-                [self.navigationController pushViewController:vc animated:YES];
-            }];
-            
-            //进入跑跑腿注册界面
-            [cell.paopaoRegisterView jk_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
-                if ([user.openInfo.open_state isEqualToString:kOpenState_NOTOPEN]) {
-                    UserPaoPaoRegisterVC*vc = [[UserPaoPaoRegisterVC alloc] initWithNibName:@"UserPaoPaoRegisterVC" bundle:nil];
-                    [self.navigationController pushViewController:vc animated:YES];
-                } else if([user.openInfo.open_state isEqualToString:kOpenState_PAYMENTED]) {
-                    UserPaoPaoApplyVC *vc = [UserPaoPaoApplyVC new];
-                    [self.navigationController pushViewController:vc animated:YES];
-                }
-            }];
         }
+        
+        //进入个人信息界面
+        [cell.userInfoView jk_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
+            UserInfoVC *vc = [[UserInfoVC alloc] init];
+            vc.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:vc animated:YES];
+        }];
+        
+        //进入跑跑腿注册界面
+        [cell.paopaoRegisterView jk_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
+            if ([user.openInfo.open_state isEqualToString:kOpenState_NOTOPEN]) {
+                UserPaoPaoRegisterVC*vc = [[UserPaoPaoRegisterVC alloc] initWithNibName:@"UserPaoPaoRegisterVC" bundle:nil];
+                [self.navigationController pushViewController:vc animated:YES];
+            } else if([user.openInfo.open_state isEqualToString:kOpenState_PAYMENTED]) {
+                UserPaoPaoApplyVC *vc = [UserPaoPaoApplyVC new];
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+        }];
+        
+        //进入登录界面
+        [cell.userLoginView jk_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
+            [ZLLoginViewController startPresent:self];
+        }];
 
 
         
         return cell;
         
     } else if (indexPath.section == 1) {
+        
         static NSString *CellIdentifier = @"ZLUserViewControllerTableViewCell222";
         UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {

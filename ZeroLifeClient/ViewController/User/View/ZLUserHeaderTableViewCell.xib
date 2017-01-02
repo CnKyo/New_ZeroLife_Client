@@ -16,13 +16,13 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="298"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="297"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="297.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="userCenterBg.png" translatesAutoresizingMaskIntoConstraints="NO" id="pzN-6o-fvF">
                         <rect key="frame" x="0.0" y="-64" width="320" height="361.5"/>
                     </imageView>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AcI-wT-Zr6" userLabel="View1">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AcI-wT-Zr6" userLabel="View1用户信息">
                         <rect key="frame" x="8" y="8" width="304" height="281.5"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user_header.png" translatesAutoresizingMaskIntoConstraints="NO" id="qDO-cz-IUg">
@@ -59,7 +59,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1dZ-pi-IwC" userLabel="View11">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1dZ-pi-IwC" userLabel="View11跑跑腿注册">
                                 <rect key="frame" x="77" y="188" width="150" height="35"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="申请跑跑腿" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DCL-Ri-3B2">
@@ -76,14 +76,11 @@
                                     <constraint firstAttribute="width" constant="150" id="mMO-ux-3Lg"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5PL-3w-SJt" userLabel="View12">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5PL-3w-SJt" userLabel="View12跑跑腿信息">
                                 <rect key="frame" x="27" y="188" width="250" height="35"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="跑跑腿等级" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8dK-he-IVm">
-                                        <rect key="frame" x="10" y="0.0" width="90" height="35"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="90" id="FQH-VC-o4j"/>
-                                        </constraints>
+                                        <rect key="frame" x="10" y="0.0" width="71.5" height="35"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -98,10 +95,12 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="aIN-Qx-RpY">
-                                        <rect key="frame" x="105" y="12.5" width="90" height="10"/>
+                                        <rect key="frame" x="86.5" y="15" width="108.5" height="5"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="10" id="jqT-sj-uT7"/>
+                                            <constraint firstAttribute="height" constant="5" id="jqT-sj-uT7"/>
                                         </constraints>
+                                        <color key="progressTintColor" red="0.78417223691940308" green="0.9720187783241272" blue="0.37506446242332458" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="trackTintColor" red="0.50444871187210083" green="0.71616166830062866" blue="0.039379887282848358" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </progressView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="0.20008389261744966" colorSpace="calibratedWhite"/>
@@ -140,7 +139,7 @@
                             <constraint firstItem="5PL-3w-SJt" firstAttribute="top" secondItem="RU0-J3-pRL" secondAttribute="bottom" constant="10" id="uUV-LX-Qri"/>
                         </constraints>
                     </view>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aob-A1-ddU" userLabel="View2">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aob-A1-ddU" userLabel="View2登陆">
                         <rect key="frame" x="110" y="84" width="100" height="130"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user_header.png" translatesAutoresizingMaskIntoConstraints="NO" id="Q4m-RL-PHs">

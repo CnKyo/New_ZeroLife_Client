@@ -21,6 +21,9 @@
     self.paopaoInfoView.layer.cornerRadius = 15;
     
     self.paopaoRegisterView.hidden = YES;
+    
+    self.paopaoProgressView.layer.masksToBounds = YES;
+    self.paopaoProgressView.layer.cornerRadius = 2.5;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
