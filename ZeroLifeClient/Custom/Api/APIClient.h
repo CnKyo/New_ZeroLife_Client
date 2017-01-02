@@ -178,6 +178,7 @@ typedef void (^TableShareSdkBlock)(int totalpage, NSArray *tableArr, APIShareSdk
 -(void)propertyFeeListWithTag:(NSObject *)tag call:(TableArrBlock)callback;
 
 -(void)orderPaopaoManListWithTag:(NSObject *)tag odr_status:(NSString *)odr_status page:(int)page call:(TablePageArrBlock)callback;
+-(void)orderPaopaoManInfoWithTag:(NSObject *)tag odr_id:(int)odr_id odr_code:(NSString *)odr_code call:(void (^)(OrderObject *item, APIObject* info))callback;
 -(void)orderPaopaoManOprateWithTag:(NSObject *)tag odr_id:(int)odr_id odr_code:(NSString *)odr_code odr_state_next:(NSString *)odr_state_next call:(void (^)(NSString* odr_state_val, NSMutableArray* odr_state_next, APIObject* info))callback;
 -(void)orderPaopaoManOprateDiffWithTag:(NSObject *)tag odr_id:(int)odr_id odr_code:(NSString *)odr_code diff_price:(float)diff_price call:(void (^)(float odr_amount, float odr_pay_price, NSString* odr_state_val, NSMutableArray* odr_state_next, APIObject* info))callback;
 

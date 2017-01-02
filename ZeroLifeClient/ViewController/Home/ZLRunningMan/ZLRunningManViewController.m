@@ -51,7 +51,7 @@
 
     [super viewWillAppear:animated];
     [self updateUserInfo];
-    [self loadTableData:_mIndex];
+    //[self loadTableData:_mIndex];
 
 }
 - (void)updateUserInfo{
@@ -192,6 +192,9 @@
     
    ZLPPTClassObj *mClass = mClassObj.classifyList[mIndex];
     mType = [Util currentReleaseType:mClass.type_name];
+    
+//    self.mAddress.cmut_lat = 29.857057;
+//    self.mAddress.cmut_lng = 106.31326;
     
     [self showWithStatus:@"正在加载..."];
     [[APIClient sharedClient] ZLGetRunningmanHomeList:self.mAddress.cmut_lat andLng:self.mAddress.cmut_lng andPage:self.page andPageSize:20 andClsId:mClass.cls_id block:^(APIObject *mBaseObj, ZLRunningmanHomeList *mList) {
@@ -474,21 +477,21 @@
 - (void)ZLRunningManCellDelegateWithBtnClick:(NSIndexPath *)mIndexPath{
     
     ZLRunningmanHomeOrder *mOrder = mTempArr[mIndexPath.row];
-    if ([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"NOTOPEN"]) {
+    if ([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:kOpenState_NOTOPEN]) {
         UserPaoPaoRegisterVC*vc = [[UserPaoPaoRegisterVC alloc] initWithNibName:@"UserPaoPaoRegisterVC" bundle:nil];
         [self pushViewController:vc];
-    }else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"PAYMENTED"]){
+    }else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:kOpenState_PAYMENTED]){
         UserPaoPaoApplyVC *vc = [UserPaoPaoApplyVC new];
         [self pushViewController:vc];
         
     }
-    else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"UNCHECK"]){
+    else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:kOpenState_UNCHECK]){
         [self showErrorStatus:@"待审核中..."];
-    } else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"REFUSE"]){
+    } else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:kOpenState_REFUSE]){
         [self showErrorStatus:@"审核失败！"];
-    } else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"LOGOFF"]){
+    } else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:kOpenState_LOGOFF]){
         [self showErrorStatus:@"已注销！"];
-    } else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"LOCKED"]){
+    } else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:kOpenState_LOCKED]){
         [self showErrorStatus:@"已禁用！"];
     }else{
 

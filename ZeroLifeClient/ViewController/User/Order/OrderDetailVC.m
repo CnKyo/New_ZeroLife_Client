@@ -248,7 +248,7 @@
             [shopView reloadUIWithShopName:_item.shop_name shopLogo:_item.shop_logo orderStatus:_item.odr_state_val];
             shopView.shopNameLable.text = [NSString compIsNone:it.odrg_pro_name];
             
-            [itemView reloadUIWithName:it.odrg_spec msg:_item.odr_remark money:it.odrg_price imgUrl:it.odrg_img]; ///加载商品清单数据
+            [itemView reloadUIWithName:it.odrg_spec msg:_item.odr_remark money:_item.odr_deliver_fee imgUrl:it.odrg_img]; ///加载商品清单数据
             
             UIView *lineView111 = [view newDefaultLineView];
             [lineView111 makeConstraints:^(MASConstraintMaker *make) {
@@ -552,12 +552,24 @@
 
 
 - (void)loadHeaderRefreshing{
-    [[APIClient sharedClient] orderInfoWithTag:self odr_id:_item.odr_id odr_code:_item.odr_code call:^(OrderObject *item, APIObject *info) {
-        if (info.code == RESP_STATUS_YES && item!=nil) {
-            self.item = item;
+    if (_isShopOrderBool == YES) {
+        if (_classType == kOrderClassType_paopao) {
+            [[APIClient sharedClient] orderPaopaoManInfoWithTag:self odr_id:_item.odr_id odr_code:_item.odr_code call:^(OrderObject *item, APIObject *info) {
+                if (info.code == RESP_STATUS_YES && item!=nil) {
+                    self.item = item;
+                }
+                [self donwData];
+            }];
         }
-        [self donwData];
-    }];
+    } else {
+        [[APIClient sharedClient] orderInfoWithTag:self odr_id:_item.odr_id odr_code:_item.odr_code call:^(OrderObject *item, APIObject *info) {
+            if (info.code == RESP_STATUS_YES && item!=nil) {
+                self.item = item;
+            }
+            [self donwData];
+        }];
+    }
+
    // [self performSelector:@selector(donwData) withObject:nil afterDelay:0.5];
 }
 

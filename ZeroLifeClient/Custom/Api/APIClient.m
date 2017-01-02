@@ -1503,6 +1503,31 @@ return [NSString stringWithFormat:@"%@%@%@",kAFAppDotNetImgBaseURLString,kAFAppD
 
 
 /**
+ *  跑跑者订单详情接口
+ *
+ *  @param tag              链接对象
+ *  @param odr_id           订单id
+ *  @param odr_code         订单订单编号
+ *  @param callback         返回信息
+ */
+-(void)orderPaopaoManInfoWithTag:(NSObject *)tag odr_id:(int)odr_id odr_code:(NSString *)odr_code call:(void (^)(OrderObject *item, APIObject* info))callback
+{
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    if (user.user_id > 0) {
+        NSMutableDictionary *paramDic = [NSMutableDictionary dictionary];
+        [paramDic setInt:user.user_id forKey:@"user_id"];
+        [paramDic setInt:odr_id forKey:@"odr_id"];
+        [paramDic setNeedStr:odr_code forKey:@"odr_code"];
+        [self loadAPIWithTag:tag path:@"/ppao/ppao_order_info" parameters:paramDic call:^(APIObject *info) {
+            OrderObject *it = [OrderObject mj_objectWithKeyValues:info.data];
+            callback(it, info);
+        }];
+    } else
+        callback(nil, [APIObject infoWithReLoginErrorMessage:@"请重新登陆"]);
+}
+
+
+/**
  *  跑腿者订单通用操作接口
  *
  *  @param tag              链接对象

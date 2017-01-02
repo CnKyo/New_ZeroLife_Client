@@ -67,13 +67,14 @@
         [SVProgressHUD showWithStatus:@"加载中"];
         [[APIClient sharedClient] ZLCommitOrder:kOrderClassType_balance_present andShopId:nil andGoods:[Util arrToJson:mPayArr] andSendAddress:nil andArriveAddress:nil andServiceTime:nil andSendType:0 andSendPrice:nil andCoupId:nil andRemark:nil andSign:_item.sign block:^(APIObject *mBaseObj, ZLCreateOrderObj *mOrder) {
             if (mBaseObj.code == RESP_STATUS_YES) {
-                ZLGoPayViewController *ZLGoPayVC = [ZLGoPayViewController new];
-                ZLGoPayVC.mOrder = [ZLCreateOrderObj new];
-                ZLGoPayVC.mOrder = mOrder;
-                ZLGoPayVC.mOrder.sign = _item.sign;
-                ZLGoPayVC.mOrderType = kOrderClassType_balance_present;
-
-                [self pushViewController:ZLGoPayVC];
+                ZLGoPayViewController *vc = [ZLGoPayViewController new];
+                vc.mOrder = mOrder;
+                vc.mOrder.sign = _item.sign;
+                vc.paySuccessCallBack = ^(ZLGoPayViewController *payVC){
+                    [payVC performSelector:@selector(popViewController_2) withObject:nil afterDelay:0.2];
+                };
+                [self pushViewController:vc];
+                
                 
                 [self showSuccessStatus:mBaseObj.msg];
             } else

@@ -19,6 +19,6 @@
 @property (assign,nonatomic) kOrderClassType mOrderType;
 
 ///支付成功返回方法
-@property (nonatomic, copy) void (^paySuccessCallBack)();
+@property (nonatomic, copy) void (^paySuccessCallBack)(ZLGoPayViewController *payVC);
 
 @end

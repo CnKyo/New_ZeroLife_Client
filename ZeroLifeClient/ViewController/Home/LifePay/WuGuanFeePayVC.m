@@ -103,11 +103,15 @@
                     [SVProgressHUD showWithStatus:@"生成预订单中..."];
                     [[APIClient sharedClient] ZLCommitOrder:kOrderClassType_fee_peroperty andShopId:nil andGoods:[Util arrToJson:mPayArr] andSendAddress:nil andArriveAddress:nil andServiceTime:nil andSendType:0 andSendPrice:nil andCoupId:nil andRemark:nil andSign:item11.sign block:^(APIObject *mBaseObj, ZLCreateOrderObj *mOrder) {
                         if (mBaseObj.code == RESP_STATUS_YES) {
-                            ZLGoPayViewController *ZLGoPayVC = [ZLGoPayViewController new];
-                            ZLGoPayVC.mOrder = [ZLCreateOrderObj new];
-                            ZLGoPayVC.mOrder = mOrder;
-                            ZLGoPayVC.mOrderType = kOrderClassType_fee_peroperty;
-                            [self pushViewController:ZLGoPayVC];
+                            ZLGoPayViewController *vc = [ZLGoPayViewController new];
+                            vc.mOrder = mOrder;
+                            vc.paySuccessCallBack = ^(ZLGoPayViewController *payVC){
+                                [payVC performSelector:@selector(popViewController) withObject:nil afterDelay:0.2];
+                                
+                                [self.tableArr removeObjectAtIndex:indexPath.row];
+                                [self.tableView reloadData];
+                            };
+                            [self pushViewController:vc];
                             
                             [self showSuccessStatus:mBaseObj.msg];
                         } else

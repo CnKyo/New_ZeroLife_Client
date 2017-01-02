@@ -33,7 +33,8 @@
 +(NSString *)houseIsOwner:(BOOL)is_owner; //!< 得到房主租客文字
 +(NSString *)strUserSexType:(kUserSexType)type;  //!< 得到性别文字
 +(NSString *)iconImgStrOrderType:(kOrderClassType)type; //!< 根据订单类型得到图标名称
-+(NSString *)strDesWithOrderState:(NSString *)state;
++(NSString *)strDesWithOrderState:(NSString *)state; //!< 根据订单类型得到订单操作名称
++(NSString *)strDesWithOpenState:(NSString *)state; //!< 根据开通状态类型得到名称
 +(NSString *)urlWithExtra:(NSString *)str;  //!< 组合url地址
 + (NSString *)urlWithServiceUrl:(NSString *)mUrl;
 + (NSString*)linkUrl:(NSString*)str;
@@ -550,6 +551,8 @@
 @property(nonatomic,strong) NSString *              odr_pick_address;         //!< 取件联系地址
 
 @property(nonatomic,strong) NSString *              notify;         //!< aaa
+@property(nonatomic,strong) NSString *              cls_type;         //!< 分类类型（买、办、送）
+
 @end
 
 
@@ -565,6 +568,9 @@
 @property(nonatomic,strong) NSString *              bid_state;         //!< 状态
 @property(nonatomic,strong) NSString *              rpr_code;         //!< 报修单号
 @property(nonatomic,strong) NSString *              bid_add_time;         //!< 竞价时间
+@property(nonatomic,assign) int                     ext_sales_month;         //!< 店铺月接单量
+@property(nonatomic,strong) NSString *              ext_score;         //!< 店铺评分
+@property(nonatomic,strong) NSString *              ext_max_time;         //!< 时间描述（如：2小时上门）
 @end
 
 
