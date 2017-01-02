@@ -288,6 +288,14 @@ static NSString* const  kOpenState_LOGOFF               = @"LOGOFF";  //注销
 static NSString* const  kOpenState_LOCKED               = @"LOCKED";  //禁用
 
 
+
+//跑跑发布类型 分类类型（买、办、送）
+static NSString* const  kPaopaoCLSType_BUY              = @"买";  //
+static NSString* const  kPaopaoCLSType_DO               = @"办";  //
+static NSString* const  kPaopaoCLSType_SEND             = @"送";  //
+
+
+
 typedef enum {
     kUserSexType_man = 1,//
     kUserSexType_woman = 2,//

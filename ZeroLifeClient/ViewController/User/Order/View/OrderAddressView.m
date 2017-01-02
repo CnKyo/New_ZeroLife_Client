@@ -53,7 +53,7 @@
             lastView = _noteLable;
         }
         
-        if (nameStr.length > 0) {
+        if (nameStr.length > 2) {
             self.nameLable = [superView newUILableWithText:nameStr textColor:[UIColor blackColor] font:font];
             self.nameLable.numberOfLines = 0;
             [self.nameLable makeConstraints:^(MASConstraintMaker *make) {
