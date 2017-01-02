@@ -277,6 +277,9 @@
             ZLGoPayVC.mOrder = mOrder;
             ZLGoPayVC.mOrder.sign = self.mPreOrder.sign;
             ZLGoPayVC.mShopId = self.mShopId;
+            ZLGoPayVC.paySuccessCallBack = ^(ZLGoPayViewController *payVC){
+                [payVC performSelector:@selector(popViewController_3) withObject:nil afterDelay:0.2];
+            };
             [self pushViewController:ZLGoPayVC];
             
         }else{

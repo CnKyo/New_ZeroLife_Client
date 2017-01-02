@@ -62,7 +62,7 @@
 /**
  商品价格
  */
-@property (weak, nonatomic) IBOutlet UILabel *mGoodsPrice;
+@property (weak, nonatomic) IBOutlet WPHotspotLabel *mGoodsPrice;
 
 /**
  商品库存

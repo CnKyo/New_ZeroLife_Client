@@ -8,6 +8,8 @@
 
 #import "ZLWebViewViewController.h"
 #import "CustomDefine.h"
+#import "WebViewJavascriptBridge.h"
+
 @interface ZLWebViewViewController ()<UIWebViewDelegate>
 @property (nonatomic, weak) UIWebView * webView;
 
@@ -16,10 +18,16 @@
 
 @property (nonatomic, weak) UIActivityIndicatorView * activityView;
 
+@property WebViewJavascriptBridge* bridge;
 
 @end
 
 @implementation ZLWebViewViewController
+
+- (void)viewWillAppear:(BOOL)animated {
+    if (_bridge) { return; }
+    
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -39,6 +47,26 @@
     [self.view addSubview:webView];
     self.webView = webView;
     
+    [WebViewJavascriptBridge enableLogging];
+    
+    _bridge = [WebViewJavascriptBridge bridgeForWebView:webView];
+    [_bridge setWebViewDelegate:self];
+    
+    [_bridge registerHandler:@"goShopViewController" handler:^(id data, WVJBResponseCallback responseCallback) {
+        NSLog(@"testObjcCallback called: %@", data);
+        responseCallback(@"Response from 22222");
+    }];
+    
+    [_bridge registerHandler:@"goGoodsViewController" handler:^(id data, WVJBResponseCallback responseCallback) {
+        NSLog(@"testObjcCallback called: %@", data);
+        responseCallback(@"Response from 11111");
+    }];
+    
+    [_bridge registerHandler:@"addShoppingCart" handler:^(id data, WVJBResponseCallback responseCallback) {
+        NSLog(@"testObjcCallback called: %@", data);
+        responseCallback(@"Response from 333333");
+    }];
+
     
     //activityView
     UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
@@ -62,7 +90,14 @@
     [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0]];
     [activityView stopAnimating];
 }
-
+//oc调用js方法
+-(void)ocTojs
+{
+    id data = @{ @"greetingFromObjC": @"Hi there, JS!" };
+    [_bridge callHandler:@"testJavascriptHandler" data:data responseCallback:^(id response) {
+        NSLog(@"testJavascriptHandler responded: %@", response);
+    }];
+}
 - (void)initNaviBar{
     
 
