@@ -233,8 +233,6 @@
                 make.height.equalTo(40);
             }];
             
-
-            
             PaoPaoGoodsView *itemView = [[PaoPaoGoodsView alloc] init];
             [view addSubview:itemView];
             [itemView makeConstraints:^(MASConstraintMaker *make) {
@@ -242,7 +240,6 @@
                 make.height.equalTo(80);
                 make.top.equalTo(shopView.bottom);
             }];
-            
             
             OrderGoodsObject *it = _item.goods.count>0 ? [_item.goods objectAtIndex:0] : nil;
             
@@ -258,6 +255,20 @@
                 make.top.equalTo(itemView.bottom).offset(padding);
                 make.height.equalTo(OnePixNumber);
             }];
+            UIView *lastItemView = lineView111;
+            
+            if ([_item.cls_type isEqualToString:kPaopaoCLSType_BUY]) {
+                OrderNoteValueView *peisongView = [[OrderNoteValueView alloc] init];
+                [view addSubview:peisongView];
+                [peisongView loadNotestr:@"商品价格" valueStr:[NSString stringWithFormat:@"￥%.2f", it.odrg_price]];
+                [peisongView makeConstraints:^(MASConstraintMaker *make) {
+                    make.left.equalTo(view.left).offset(padding);
+                    make.right.equalTo(view.right).offset(-padding);
+                    make.top.equalTo(lastItemView.bottom);
+                    make.height.equalTo(40);
+                }];
+                lastItemView = peisongView;
+            }
             
             OrderNoteValueView *peisongView = [[OrderNoteValueView alloc] init];
             [view addSubview:peisongView];
@@ -265,7 +276,7 @@
             [peisongView makeConstraints:^(MASConstraintMaker *make) {
                 make.left.equalTo(view.left).offset(padding);
                 make.right.equalTo(view.right).offset(-padding);
-                make.top.equalTo(lineView111.bottom);
+                make.top.equalTo(lastItemView.bottom);
                 make.height.equalTo(40);
             }];
             
@@ -515,41 +526,6 @@
         self.item = itemNew;
         [self donwData];
     }];
-    
-//    if (stateStr.length > 0) {
-//        if ([stateStr isEqualToString:kOrderState_SERPOINT]) //选择竞价服务商
-//        {
-//            if (_bidItem != nil) {
-//                [SVProgressHUD showWithStatus:@"操作中..."];
-//                [[APIClient sharedClient] orderOprateBidWithTag:self odr_id:_item.odr_id odr_code:_item.odr_code bid_id:_bidItem.bid_id call:^(APIObject *info) {
-//                    if (info.code == RESP_STATUS_YES) {
-////                        self.item.odr_state_next = odr_state_next;
-////                        self.item.odr_state_val = odr_state_val;
-////                        [self donwData];
-//                        
-//                        [SVProgressHUD showSuccessWithStatus:@"操作成功"];
-//                    } else
-//                        [SVProgressHUD showErrorWithStatus:info.msg];
-//                }];
-//            } else
-//                [SVProgressHUD showErrorWithStatus:@"请选择服务商"];
-//        }
-//        else    //取消、确认、维权
-//        {
-//            [SVProgressHUD showWithStatus:@"操作中..."];
-//            [[APIClient sharedClient] orderOprateWithTag:self odr_id:_item.odr_id odr_type:_item.odr_type odr_code:_item.odr_code odr_state_next:stateStr odr_memo:nil call:^(NSString *odr_state_val, NSMutableArray *odr_state_next, APIObject *info) {
-//                if (info.code == RESP_STATUS_YES) {
-//                    self.item.odr_state_next = odr_state_next;
-//                    self.item.odr_state_val = odr_state_val;
-//                    [self donwData];
-//                    
-//                    [SVProgressHUD showSuccessWithStatus:@"操作成功"];
-//                } else
-//                    [SVProgressHUD showErrorWithStatus:info.msg];
-//            }];
-//        }
-//
-//    }
 }
 
 

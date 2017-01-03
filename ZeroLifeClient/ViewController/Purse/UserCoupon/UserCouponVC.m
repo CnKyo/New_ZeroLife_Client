@@ -81,7 +81,7 @@
 //    self.tableView.tableHeaderView = headerView;
     
     UIView *headerView = ({
-        UIView *view = [[UIView alloc] init];
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, DEVICE_Width, 60)];
         view.backgroundColor = [UIColor clearColor];
         UIImageView *imgView = [view newUIImageViewWithImg:IMG(@"coupon_top_icon.png")];
         UILabel *lable = [view newUILableWithText:@"我的优惠券" textColor:[UIColor darkGrayColor] font:[UIFont systemFontOfSize:13] textAlignment:NSTextAlignmentCenter];
