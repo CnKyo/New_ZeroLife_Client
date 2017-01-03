@@ -9,6 +9,7 @@
 #import "ZLAnounceMentViewController.h"
 #import "ZLAnounceMentCell.h"
 #import "ZLWebViewViewController.h"
+#import "ZLWebVc.h"
 
 @interface ZLAnounceMentViewController ()
 
@@ -126,7 +127,7 @@
 
     }else{
         
-        ZLWebViewViewController *vc = [ZLWebViewViewController new];
+        ZLWebVc *vc = [ZLWebVc new];
         vc.mUrl = [NSString stringWithFormat:@"%@/wap/wcmutNotice/findNotice?user_id=%d&not_id=%d",[[APIClient sharedClient] currentUrl],mUser.user_id,mNote.not_id];
         
         [self pushViewController:vc];

@@ -14,6 +14,8 @@
 #import "ZLSuperMarketSearchViewController.h"
 #import "ZLSuperMarketShopViewController.h"
 #import "ZLWebViewViewController.h"
+#import "ZLWebVc.h"
+
 @interface ZLSuperMarketViewController ()<UITableViewDelegate,UITableViewDataSource,ZLSupermarketBannerCellDelegate>
 
 @end
@@ -259,7 +261,7 @@
     
         ZLShopHomeCampaign *mCampain = mCampainArr[indexPath.row];
         
-        ZLWebViewViewController *vc = [ZLWebViewViewController new];
+        ZLWebVc *vc = [ZLWebVc new];
         vc.mUrl = mCampain.adv_click_url;
 
         [self pushViewController:vc];

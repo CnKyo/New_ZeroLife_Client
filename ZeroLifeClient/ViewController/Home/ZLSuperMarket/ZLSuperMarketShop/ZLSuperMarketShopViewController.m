@@ -25,6 +25,7 @@
 
 #import "ZLShopCampainSubView.h"
 #import "ZLPPTRateViewController.h"
+#import "ZLWebVc.h"
 
 
 #import "StandardsView.h"
@@ -736,10 +737,10 @@ static const CGFloat mTopH = 156;
     if (user.user_id < 0) {
         [APIObject infoWithReLoginErrorMessage:@"登录之后才能领取哦～"];
     }else{
-        ZLWebViewViewController *mWebvc = [ZLWebViewViewController new];
-        mWebvc.mUrl = [NSString stringWithFormat:@"%@/wap/wshop/coupon_wap?shop_id=%d&user_id=%d",[[APIClient sharedClient] currentUrl],self.mShopObj.shop_id,[ZLUserInfo ZLCurrentUser].user_id];
+        ZLWebVc *vc = [ZLWebVc new];
+        vc.mUrl = [NSString stringWithFormat:@"%@/wap/wshop/coupon_wap?shop_id=%d&user_id=%d",[[APIClient sharedClient] currentUrl],self.mShopObj.shop_id,[ZLUserInfo ZLCurrentUser].user_id];
         
-        [self pushViewController:mWebvc];
+        [self pushViewController:vc];
     }
 
     

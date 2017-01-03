@@ -79,6 +79,7 @@
     [self.view addSubview:webView];
     self.webView = webView;
     
+    
     [WebViewJavascriptBridge enableLogging];
     
     _bridge = [WebViewJavascriptBridge bridgeForWebView:webView];

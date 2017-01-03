@@ -34,6 +34,8 @@
 #import <JWLaunchAd/JWLaunchAd.h>
 #import <AMapLocationKit/AMapLocationKit.h>
 #import <UINavigationBar+Awesome.h>
+#import "ZLWebVc.h"
+
 #define NAVBAR_CHANGE_POINT 30
 @interface ZLHomeViewController ()<UITableViewDelegate,UITableViewDataSource,ZLHomeScrollerTableCellDelegate,ZLHomeLocationViewDelegate,ZLCoupViewDelegate,AMapLocationManagerDelegate,MMApBlockCoordinate>
 @property (weak, nonatomic) IBOutlet UITableView *mTableView;
@@ -139,7 +141,7 @@
 }
 - (void)webAction:(NSNotification *)sender{
     MLLog(@"得到的通知对象:%@",sender);
-    ZLWebViewViewController *vc = [ZLWebViewViewController new];
+    ZLWebVc *vc = [ZLWebVc new];
     vc.mUrl = sender.userInfo[@"url"];
     vc.hidesBottomBarWhenPushed = YES;
     [self pushViewController:vc];
@@ -571,14 +573,14 @@
             }else if (mComDataSourceArr && mAdvDataSourceArr.count <= 0){
                 
                 ZLHomeCompainNoticeList *mCampain = mComDataSourceArr[indexPath.row];
-                ZLWebViewViewController *vc = [ZLWebViewViewController new];
+                ZLWebVc *vc = [ZLWebVc new];
 //                vc.mUrl = mCampain.adv_click_url;
                 vc.hidesBottomBarWhenPushed = YES;
 
                 [self pushViewController:vc];
             }else{
                 ZLHomeAdvList *mAdv = mAdvDataSourceArr[indexPath.row];
-                ZLWebViewViewController *vc = [ZLWebViewViewController new];
+                ZLWebVc *vc = [ZLWebVc new];
                 vc.mUrl = mAdv.adv_click_url;
                 vc.hidesBottomBarWhenPushed = YES;
 

@@ -73,6 +73,7 @@
 		042B52B81E123F9700B093BE /* utilityView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042B52B61E123F9700B093BE /* utilityView.xib */; };
 		042B52BB1E123FF100B093BE /* emptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042B52B91E123FF100B093BE /* emptyView.xib */; };
 		042B52BC1E123FF100B093BE /* inquireView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042B52BA1E123FF100B093BE /* inquireView.xib */; };
+		042EDB8E1E1B53EE00EBEF5B /* ZLWebVc.m in Sources */ = {isa = PBXBuildFile; fileRef = 042EDB8D1E1B53EE00EBEF5B /* ZLWebVc.m */; };
 		043347911DF6519700052FBE /* LDXScore.m in Sources */ = {isa = PBXBuildFile; fileRef = 043347901DF6519700052FBE /* LDXScore.m */; };
 		043BFAE61DF68C4E0037A835 /* mCheckMoreActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 043BFAE41DF68C4E0037A835 /* mCheckMoreActivityView.m */; };
 		043BFAE71DF68C4E0037A835 /* mCheckMoreActivityView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043BFAE51DF68C4E0037A835 /* mCheckMoreActivityView.xib */; };
@@ -751,6 +752,8 @@
 		042B52B61E123F9700B093BE /* utilityView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = utilityView.xib; sourceTree = "<group>"; };
 		042B52B91E123FF100B093BE /* emptyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = emptyView.xib; sourceTree = "<group>"; };
 		042B52BA1E123FF100B093BE /* inquireView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = inquireView.xib; sourceTree = "<group>"; };
+		042EDB8C1E1B53EE00EBEF5B /* ZLWebVc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLWebVc.h; sourceTree = "<group>"; };
+		042EDB8D1E1B53EE00EBEF5B /* ZLWebVc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLWebVc.m; sourceTree = "<group>"; };
 		0433478F1DF6519700052FBE /* LDXScore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDXScore.h; sourceTree = "<group>"; };
 		043347901DF6519700052FBE /* LDXScore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDXScore.m; sourceTree = "<group>"; };
 		043BFAE31DF68C4E0037A835 /* mCheckMoreActivityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mCheckMoreActivityView.h; sourceTree = "<group>"; };
@@ -1817,6 +1820,8 @@
 			children = (
 				041789D31DE01D9700D55EA7 /* ZLWebViewViewController.h */,
 				041789D41DE01D9700D55EA7 /* ZLWebViewViewController.m */,
+				042EDB8C1E1B53EE00EBEF5B /* ZLWebVc.h */,
+				042EDB8D1E1B53EE00EBEF5B /* ZLWebVc.m */,
 			);
 			path = WebView;
 			sourceTree = "<group>";
@@ -4366,6 +4371,7 @@
 				049A120D1DE95D2A0087238D /* ZLSelectedCityViewController.m in Sources */,
 				DF00C5221E08FFB800680771 /* SelectedAddressTableViewCell.m in Sources */,
 				041657121DD6B218004E7D9A /* ZLRepairsColumsView.m in Sources */,
+				042EDB8E1E1B53EE00EBEF5B /* ZLWebVc.m in Sources */,
 				04A7631E1DDBFA540061E2B0 /* ZLPPTReleaseRewardCell.m in Sources */,
 				044021AB1DF94A5800234066 /* ZLCustomImgButton.m in Sources */,
 				047219F61DE3E66C00CE8639 /* HX_AssetManager.m in Sources */,
