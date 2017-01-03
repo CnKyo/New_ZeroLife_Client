@@ -1179,6 +1179,9 @@
 @property (assign,nonatomic) int                    msg_id; //!< 消息ID
 @property (strong,nonatomic) NSString*              msg_sub;    //!< 消息简介
 @property (strong,nonatomic) NSString*              msg_auth;   //!< 消息来源
+@property (strong,nonatomic) NSString*              sg_auth;   //!< 消息来源
+@property (strong,nonatomic) NSString*              is_read;   //!< 是否已读（暂定）
+
 @end
 
 

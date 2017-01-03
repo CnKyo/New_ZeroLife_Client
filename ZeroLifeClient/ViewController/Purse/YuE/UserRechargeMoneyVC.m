@@ -58,6 +58,7 @@
             [[APIClient sharedClient] ZLCommitOrder:kOrderClassType_balance_recharge andShopId:nil andGoods:[Util arrToJson:mPayArr] andSendAddress:nil andArriveAddress:nil andServiceTime:nil andSendType:0 andSendPrice:nil andCoupId:nil andRemark:nil andSign:_item.sign block:^(APIObject *mBaseObj, ZLCreateOrderObj *mOrder) {
                 if (mBaseObj.code == RESP_STATUS_YES) {
                     ZLGoPayViewController *vc = [ZLGoPayViewController new];
+                    vc.mOrderType = kOrderClassType_balance_recharge;
                     vc.mOrder = mOrder;
                     vc.mOrder.sign = _item.sign;
                     vc.paySuccessCallBack = ^(ZLGoPayViewController *payVC){
