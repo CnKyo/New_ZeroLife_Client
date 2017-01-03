@@ -72,7 +72,7 @@
     
     //订单状态信息相关
     OrderHeaderStatusView *statusView = [[OrderHeaderStatusView alloc] init];
-    [statusView loadStatus:[NSString compIsNone:_item.odr_state_val] note:@"剩余3小时自动关闭"];
+    [statusView loadStatus:[NSString compIsNone:_item.odr_state_val] note:nil];
     [superView addSubview:statusView];
     [statusView updateConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.equalTo(superView);
@@ -147,7 +147,7 @@
             }];
             
             //加载店铺信息
-            [shopView reloadUIWithShopName:_item.shop_name shopLogo:_item.shop_logo orderStatus:_item.odr_state_val];
+            [shopView reloadUIWithShopName:_item.shop_name shopLogo:_item.shop_logo orderStatus:nil];
             
             UIView *lastItemView = nil;
             for (int i=0; i<_item.goods.count; i++) {
@@ -244,7 +244,7 @@
             OrderGoodsObject *it = _item.goods.count>0 ? [_item.goods objectAtIndex:0] : nil;
             
             //加载店铺信息
-            [shopView reloadUIWithShopName:_item.shop_name shopLogo:_item.shop_logo orderStatus:_item.odr_state_val];
+            [shopView reloadUIWithShopName:_item.shop_name shopLogo:_item.shop_logo orderStatus:nil];
             shopView.shopNameLable.text = [NSString compIsNone:it.odrg_pro_name];
             
             [itemView reloadUIWithName:it.odrg_spec msg:_item.odr_remark money:_item.odr_deliver_fee imgUrl:it.odrg_img]; ///加载商品清单数据
@@ -305,7 +305,7 @@
                 make.height.equalTo(40);
             }];
             //加载店铺信息
-            [shopView reloadUIWithShopName:_item.shop_name shopLogo:_item.shop_logo orderStatus:_item.odr_state_val];
+            [shopView reloadUIWithShopName:_item.shop_name shopLogo:_item.shop_logo orderStatus:nil];
             
             BaoXiuGoodsView *itemView = [[BaoXiuGoodsView alloc] init];
             [view addSubview:itemView];

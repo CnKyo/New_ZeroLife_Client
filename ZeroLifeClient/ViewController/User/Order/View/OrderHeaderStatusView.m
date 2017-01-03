@@ -48,7 +48,7 @@
 -(void)loadStatus:(NSString *)statusStr note:(NSString *)noteStr
 {
     NSDictionary* style2 = @{@"body" :
-                                 @[[UIFont systemFontOfSize:15], [UIColor whiteColor]],
+                                 @[[UIFont systemFontOfSize:18], [UIColor whiteColor]],
                              @"u": @[[UIFont systemFontOfSize:13]]};
     
     NSMutableString *str = [NSMutableString new];
@@ -63,5 +63,7 @@
     self.msgLable.attributedText = [str attributedStringWithStyleBook:style2];
 
 }
+
+
 
 @end
