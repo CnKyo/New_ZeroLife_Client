@@ -39,7 +39,8 @@
     [self.bankView jk_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
         BankCardTVC *vc = [[BankCardTVC alloc] init];
         vc.chooseCallBack = ^(BankCardObject* item) {
-            
+            self.item.bank = item;
+            [self reloadUIWithData];
         };
         [self.navigationController pushViewController:vc animated:YES];
     }];

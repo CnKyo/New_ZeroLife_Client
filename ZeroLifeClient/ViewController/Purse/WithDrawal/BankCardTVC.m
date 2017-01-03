@@ -143,7 +143,8 @@
     
     if (self.tableArr.count > 0) {
         if (self.chooseCallBack) {
-            self.chooseCallBack(nil);
+            BankCardObject *item = [self.tableArr objectAtIndex:indexPath.row];
+            self.chooseCallBack(item);
             [self performSelector:@selector(popViewController) withObject:nil afterDelay:0.2];
             
         } else {
