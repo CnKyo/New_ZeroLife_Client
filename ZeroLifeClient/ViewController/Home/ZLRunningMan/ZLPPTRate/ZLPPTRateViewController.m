@@ -143,7 +143,7 @@
         if (mExt.com_imgs.length<=0 || [Util wk_StringToArr:mExt.com_imgs].count<=0) {
             return 120;
         }else{
-            return 180;
+            return 185;
         }
     }
     

@@ -12,7 +12,7 @@
 #import "ZLRepairsCustomView.h"
 #import "ZLRepairsDetailViewController.h"
 
-
+#import "ZLWebVc.h"
 @interface ZLTenementRepairsViewController ()<UITableViewDelegate,UITableViewDataSource,ZLRepairsColumsViewDelegate>
 
 @end
@@ -222,5 +222,10 @@
 #pragma mark----****----右边的按钮
 - (void)mRightAction:(UIButton *)sender{
     
+    ZLWebVc *vc = [ZLWebVc new];
+    vc.mUrl = [NSString stringWithFormat:@"%@/wap/wshop/ppaoBidding",[[APIClient sharedClient] currentUrl]];
+    
+    [self pushViewController:vc];
+
 }
 @end
