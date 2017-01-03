@@ -1673,7 +1673,7 @@
  */
 + (NSString *)currentSourceImgUrl:(NSString *)mUrl{
 
-    return [NSString stringWithFormat:@"%@%@/%@",kAFAppDotNetImgBaseURLString,kAFAppDotNetApiExtraURLString,mUrl];
+    return [NSString stringWithFormat:@"%@/%@",kAFAppDotNetImgBaseURLString,mUrl];
 }
 #pragma mark----字符串拼接成数组
 /**

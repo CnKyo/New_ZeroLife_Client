@@ -16,7 +16,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="meP-fe-2WE">
-                    <rect key="frame" x="0.0" y="78" width="375" height="1"/>
+                    <rect key="frame" x="0.0" y="1" width="375" height="1"/>
                     <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="0.30241331335616439" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="uFq-mc-Fmt"/>
@@ -25,12 +25,13 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="meP-fe-2WE" secondAttribute="bottom" constant="1" id="caS-7I-vXO"/>
+                <constraint firstItem="meP-fe-2WE" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="1" id="aoJ-0c-Gfx"/>
                 <constraint firstItem="meP-fe-2WE" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="pnd-V2-mOg"/>
                 <constraint firstAttribute="trailing" secondItem="meP-fe-2WE" secondAttribute="trailing" id="svz-Gi-Bm5"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="32" y="59"/>
         </view>
     </objects>
 </document>

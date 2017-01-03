@@ -294,6 +294,10 @@ static NSString* const  kPaopaoCLSType_DO               = @"办";  //
 static NSString* const  kPaopaoCLSType_SEND             = @"送";  //
 
 
+//消息读取状态
+static NSString* const  kMessageReadState_UNREAD        = @"UNREAD";  //未读
+static NSString* const  kMessageReadState_READ          = @"READ";  //已读
+
 
 typedef enum {
     kUserSexType_man = 1,//

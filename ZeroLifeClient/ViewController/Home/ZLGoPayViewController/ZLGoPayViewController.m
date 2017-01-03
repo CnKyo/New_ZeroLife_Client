@@ -93,7 +93,12 @@
     NSArray *mTT = @[@"支付宝支付",@"微信支付",@"余额支付"];
     NSArray *mPP = @[@"user_payTyple_alipay",@"user_payTyple_weixin",@"chongzi"];
     
-    for (int i = 0; i<mTT.count; i++) {
+    NSInteger j = mTT.count;
+    if (_mOrderType == kOrderClassType_balance_recharge) {
+        j -= 1;
+    }
+    
+    for (int i = 0; i<j; i++) {
         
         ZLGoPayObject *mObj = [ZLGoPayObject new];
         mObj.mPayName = mTT[i];

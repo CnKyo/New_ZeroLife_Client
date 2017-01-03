@@ -31,6 +31,9 @@
 - (void)setMMessage:(ZLMessageObj *)mMessage{
 
     self.mPoint.hidden = mMessage.mIsRead?YES:NO;
+    
+    self.mPoint.hidden = [mMessage.is_read isEqualToString:kMessageReadState_UNREAD] ? YES : NO;
+    
     self.mTiem.text = mMessage.msg_title;
     self.mContent.text = mMessage.msg_content;
     

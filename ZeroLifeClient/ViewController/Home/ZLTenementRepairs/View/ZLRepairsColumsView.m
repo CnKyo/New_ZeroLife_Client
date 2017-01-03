@@ -108,13 +108,13 @@
             
             
             UIImageView *mLogo = [UIImageView new];
-            mLogo.frame = CGRectMake(0, 10, 35, 35);
+            mLogo.frame = CGRectMake(5, 15, 30, 30);
             [mLogo sd_setImageWithURL:[NSURL URLWithString:[Util currentSourceImgUrl:mClass.mClassImg]] placeholderImage:[UIImage imageNamed:@"ZLDefault_Green"]];
 
             [mBtnView addSubview:mLogo];
             
             UILabel *mName = [UILabel new];
-            mName.frame = CGRectMake(mLogo.mright+5, 22, mBtnView.mwidth-mLogo.mwidth-4, 16);
+            mName.frame = CGRectMake(mLogo.mright+5, 20, mBtnView.mwidth-mLogo.mwidth-4, 16);
             mName.font = [UIFont systemFontOfSize:13];
             mName.text = mClass.mClassName;
             [mBtnView addSubview:mName];
