@@ -46,7 +46,7 @@
 
 -(void)reloadUIWithShopName:(NSString *)name shopLogo:(NSString *)logo orderStatus:(NSString *)state
 {
-    self.orderStatusLable.text = [NSString compIsNone:state];
+    self.orderStatusLable.text = state;
     self.shopNameLable.text = [NSString compIsNone:name];
     [self.shopIconImgView setImageWithURL:[NSURL imageurl:logo] placeholderImage:IMG(@"order_shop_icon.png")];
 }
