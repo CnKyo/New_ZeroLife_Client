@@ -2426,12 +2426,12 @@ return [NSString stringWithFormat:@"%@%@%@",kAFAppDotNetImgBaseURLString,kAFAppD
 #pragma mark----*****----提交预订单
 /**
  提交预订单
- 
+ @param mType 预订单类型
  @param mShopId 店铺id
  @param mGoods 商品json数组
  @param block 返回值
  */
-- (void)ZLCommitPreOrder:(int)mShopId andGoodsArr:(NSString *)mGoods block:(void (^)(APIObject *mBaseObj,ZLPreOrderObj *mPreOrder))block{
+- (void)ZLCommitPreOrderWithType:(ZLShopType)mType andShopId:(int)mShopId andGoodsArr:(NSString *)mGoods block:(void (^)(APIObject *mBaseObj,ZLPreOrderObj *mPreOrder))block{
 
     ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
     if (user.user_id > 0) {
@@ -2445,7 +2445,14 @@ return [NSString stringWithFormat:@"%@%@%@",kAFAppDotNetImgBaseURLString,kAFAppD
         
         [para setObject:mGoods forKey:@"goods"];
         
-        [self loadAPIWithTag:self path:@"/preorder/pre_products" parameters:para call:^(APIObject *info) {
+        NSString *mUrl = nil;
+        if (mType == ZLShopTypeSuperMarket) {
+            mUrl = @"/preorder/pre_products";
+        }else{
+            mUrl = @"/preorder/pre_dryclean";
+        }
+        
+        [self loadAPIWithTag:self path:mUrl parameters:para call:^(APIObject *info) {
             if (info.code == RESP_STATUS_YES) {
                 block(info,[ZLPreOrderObj mj_objectWithKeyValues:info.data]);
             }else{

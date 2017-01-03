@@ -33,6 +33,7 @@
 #import "mCheckMoreActivityView.h"
 #import <LKDBHelper.h>
 #import "ZLSuperMarketCommitOrderViewController.h"
+#import "UIImage+ImageEffects.h"
 
 
 static const CGFloat mTopH = 156;
@@ -198,7 +199,22 @@ static const CGFloat mTopH = 156;
 }
 - (void)upDatePage:(ZLShopObj *)mShop{
     
-    [mHeaderView.mShopLogo sd_setImageWithURL:[NSURL URLWithString:[Util currentSourceImgUrl:mShop.mShopMsg.shop_logo]] placeholderImage:[UIImage imageNamed:@"ZLDefault_Shop"]];
+    NSString *mHeadUrl = [Util currentSourceImgUrl:mShop.mShopMsg.shop_logo];
+    UIImage *mHead = nil;
+    mHead = [UIImage imageNamed:@"ZLDefault_Shop"];
+    
+    UIImage *mLastImg = [mHead applyLightEffect];
+    mHeaderView.mBgkImg.image = mLastImg;
+    [mHeaderView.mShopLogo sd_setImageWithURL:[NSURL URLWithString:mHeadUrl] placeholderImage:[UIImage imageNamed:@"ZLDefault_Shop"]];
+    
+    [mHeaderView.mShopLogo sd_setImageWithURL:[NSURL URLWithString:mHeadUrl] placeholderImage:[UIImage imageNamed:@"ZLDefault_Shop"] options:SDWebImageRetryFailed completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        if (image != nil) {
+            UIImage *mLastImg11 = [image applyLightEffect];
+            mHeaderView.mBgkImg.image = mLastImg11;
+        }
+    }];
+    
+    
     self.navigationItem.title = mShop.mShopMsg.shop_name;
     
     mHeaderView.mContent.text = [NSString stringWithFormat:@"满%.0f元起送 %@",mShop.mShopMsg.ext_min_price,mShop.mShopMsg.ext_max_time];
@@ -608,6 +624,8 @@ static const CGFloat mTopH = 156;
                 ZLWebViewViewController *mWebvc = [ZLWebViewViewController new];
                 mWebvc.mUrl = [NSString stringWithFormat:@"%@/wap/good/goodsdetails?pro_id=%d&sku_id=%d&shop_id=%d&user_id=%d",[[APIClient sharedClient] currentUrl],mCGoodsObj.pro_id,mCGoodsObj.sku_id,self.mShopObj.shop_id,[ZLUserInfo ZLCurrentUser].user_id];
                 mWebvc.mCamGoodsObj = mCGoodsObj;
+                mWebvc.mShopId = self.mShopObj.shop_id;
+                mWebvc.mType = _mType;
                 [self pushViewController:mWebvc];
 
                 
@@ -621,7 +639,8 @@ static const CGFloat mTopH = 156;
                 ZLWebViewViewController *mWebvc = [ZLWebViewViewController new];
                 mWebvc.mUrl = [NSString stringWithFormat:@"%@/wap/good/goodsdetails?pro_id=%d&sku_id=%d&shop_id=%d&user_id=%d",[[APIClient sharedClient] currentUrl],mCGoodsObj.pro_id,mCGoodsObj.sku_id,self.mShopObj.shop_id,[ZLUserInfo ZLCurrentUser].user_id];
                 mWebvc.mClsGoodsObj = mCGoodsObj;
-
+                mWebvc.mShopId = self.mShopObj.shop_id;
+                mWebvc.mType = _mType;
                 [self pushViewController:mWebvc];
             }
                 break;
@@ -903,7 +922,7 @@ static const CGFloat mTopH = 156;
     }
     
     [self showWithStatus:@"正在提交订单..."];
-    [[APIClient sharedClient] ZLCommitPreOrder:self.mShopObj.shop_id andGoodsArr:[Util arrToJson:mPayArr] block:^( APIObject *mBaseObj,ZLPreOrderObj *mPreOrder) {
+    [[APIClient sharedClient] ZLCommitPreOrderWithType:_mType andShopId:self.mShopObj.shop_id andGoodsArr:[Util arrToJson:mPayArr] block:^( APIObject *mBaseObj,ZLPreOrderObj *mPreOrder) {
         if (mBaseObj.code == RESP_STATUS_YES) {
             [self dismiss];
             ZLSuperMarketCommitOrderViewController *ZLCommitVC = [ZLSuperMarketCommitOrderViewController new];
@@ -1479,7 +1498,7 @@ static const CGFloat mTopH = 156;
         [mPayArr addObject:mPara];
     }
     [self showWithStatus:@"正在提交订单..."];
-    [[APIClient sharedClient] ZLCommitPreOrder:self.mShopObj.shop_id andGoodsArr:[Util arrToJson:mPayArr] block:^(APIObject *mBaseObj,ZLPreOrderObj *mPreOrder) {
+    [[APIClient sharedClient] ZLCommitPreOrderWithType:_mType andShopId:self.mShopObj.shop_id andGoodsArr:[Util arrToJson:mPayArr] block:^(APIObject *mBaseObj,ZLPreOrderObj *mPreOrder) {
         if (mBaseObj.code == RESP_STATUS_YES) {
             [self dismiss];
             ZLSuperMarketCommitOrderViewController *ZLCommitVC = [ZLSuperMarketCommitOrderViewController new];

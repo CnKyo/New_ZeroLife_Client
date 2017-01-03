@@ -77,6 +77,7 @@
 		043BFAE61DF68C4E0037A835 /* mCheckMoreActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 043BFAE41DF68C4E0037A835 /* mCheckMoreActivityView.m */; };
 		043BFAE71DF68C4E0037A835 /* mCheckMoreActivityView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043BFAE51DF68C4E0037A835 /* mCheckMoreActivityView.xib */; };
 		043F69741E19E3D700B33EA0 /* CustomProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 043F69731E19E3D700B33EA0 /* CustomProgress.m */; };
+		043F69781E1A29C300B33EA0 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 043F69771E1A29C300B33EA0 /* UIImage+ImageEffects.m */; };
 		044021AB1DF94A5800234066 /* ZLCustomImgButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 044021AA1DF94A5800234066 /* ZLCustomImgButton.m */; };
 		0445AD791DD44AF300788779 /* ZLGoPayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0445AD781DD44AF300788779 /* ZLGoPayViewController.m */; };
 		0445AD7E1DD44CE600788779 /* ZLPayTypeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0445AD7C1DD44CE600788779 /* ZLPayTypeTableViewCell.m */; };
@@ -757,6 +758,8 @@
 		043BFAE51DF68C4E0037A835 /* mCheckMoreActivityView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mCheckMoreActivityView.xib; sourceTree = "<group>"; };
 		043F69721E19E3D700B33EA0 /* CustomProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomProgress.h; sourceTree = "<group>"; };
 		043F69731E19E3D700B33EA0 /* CustomProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomProgress.m; sourceTree = "<group>"; };
+		043F69761E1A29C300B33EA0 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
+		043F69771E1A29C300B33EA0 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
 		044021A91DF94A5700234066 /* ZLCustomImgButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLCustomImgButton.h; sourceTree = "<group>"; };
 		044021AA1DF94A5800234066 /* ZLCustomImgButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLCustomImgButton.m; sourceTree = "<group>"; };
 		0445AD771DD44AF300788779 /* ZLGoPayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLGoPayViewController.h; sourceTree = "<group>"; };
@@ -1877,6 +1880,15 @@
 				043F69731E19E3D700B33EA0 /* CustomProgress.m */,
 			);
 			path = CustomProgress;
+			sourceTree = "<group>";
+		};
+		043F69751E1A29C300B33EA0 /* ImageEffects */ = {
+			isa = PBXGroup;
+			children = (
+				043F69761E1A29C300B33EA0 /* UIImage+ImageEffects.h */,
+				043F69771E1A29C300B33EA0 /* UIImage+ImageEffects.m */,
+			);
+			path = ImageEffects;
 			sourceTree = "<group>";
 		};
 		044021A81DF94A4300234066 /* ZLImgBtn */ = {
@@ -3453,6 +3465,7 @@
 		DFFAA7531DB744EF001CFBB5 /* OpenSourceLib */ = {
 			isa = PBXGroup;
 			children = (
+				043F69751E1A29C300B33EA0 /* ImageEffects */,
 				043F69711E19E3D700B33EA0 /* CustomProgress */,
 				042B52A81E12298200B093BE /* ZLCurrentLocation */,
 				040592F31E113DFA0041F3A7 /* LTPickerView */,
@@ -4346,6 +4359,7 @@
 				04D64D7A1DC9CD35004E8859 /* ZLHomeCoupView.m in Sources */,
 				DF630CF61DD408240076A92C /* BaoXiuChooseShopTableViewCell.m in Sources */,
 				04C6A3811DCB08AF002C4D4A /* RSAEncryptor.m in Sources */,
+				043F69781E1A29C300B33EA0 /* UIImage+ImageEffects.m in Sources */,
 				043BFAE61DF68C4E0037A835 /* mCheckMoreActivityView.m in Sources */,
 				047219F21DE3E66C00CE8639 /* HX_AlbumModel.m in Sources */,
 				047D7C311E125994005F9081 /* ZLPayHydroelectricViewController.m in Sources */,

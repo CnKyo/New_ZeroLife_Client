@@ -452,7 +452,9 @@
                 ZLGoPayVC.mOrder = [ZLCreateOrderObj new];
                 ZLGoPayVC.mOrder = mOrder;
                 ZLGoPayVC.mOrder.sign = mPPTPreOrder.sign;
-
+                ZLGoPayVC.paySuccessCallBack = ^(ZLGoPayViewController *payVC){
+                    [payVC performSelector:@selector(popViewController_2) withObject:nil afterDelay:0.2];
+                };
                 [self pushViewController:ZLGoPayVC];
                 
             }else{
@@ -521,7 +523,9 @@
                 ZLGoPayVC.mOrder = [ZLCreateOrderObj new];
                 ZLGoPayVC.mOrder = mOrder;
                 ZLGoPayVC.mOrder.sign = mPPTPreOrder.sign;
-
+                ZLGoPayVC.paySuccessCallBack = ^(ZLGoPayViewController *payVC){
+                    [payVC performSelector:@selector(popViewController_2) withObject:nil afterDelay:0.2];
+                };
                 [self pushViewController:ZLGoPayVC];
                 
             }else{

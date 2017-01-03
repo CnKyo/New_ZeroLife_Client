@@ -20,4 +20,9 @@
 
 @property (nonatomic, strong) ZLGoodsWithClass *mClsGoodsObj;
 
+@property (nonatomic, assign) int mShopId;
+
+@property (nonatomic, assign) ZLShopType mType;
+
+
 @end
