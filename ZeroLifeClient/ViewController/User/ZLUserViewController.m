@@ -213,7 +213,7 @@
                 [str appendFormat:@" %@", user.community.cmut_name];
             }
             cell.userNoteLable.text = str;
-            [cell.userImgView setImageWithURL:[NSURL URLWithString:user.user_header] placeholderImage:IMG(@"user_header.png")];
+            [cell.userImgView setImageWithURL:[NSURL imageurl:user.user_header] placeholderImage:IMG(@"user_header.png")];
 
             //判断跑跑信息
             if ([user.openInfo.open_state isEqualToString:kOpenState_NOTOPEN] || [user.openInfo.open_state isEqualToString:kOpenState_PAYMENTED]) {

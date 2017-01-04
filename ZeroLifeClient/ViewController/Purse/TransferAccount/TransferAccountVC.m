@@ -81,8 +81,8 @@
     [super viewDidLoad];
     self.title = @"转账";
     
-    self.accountField.text = @"17783708893";
-    self.moneyField.text = @"50";
+//    self.accountField.text = @"17783708893";
+//    self.moneyField.text = @"50";
 
     [SVProgressHUD showWithStatus:@"正在验证..."];
     [[APIClient sharedClient] preOrderTransferWithTag:self call:^(PreApplyObject *item, APIObject *info) {
