@@ -515,7 +515,11 @@
     
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] bk_initWithImage:IMG(@"order_mobile.png") style:UIBarButtonItemStylePlain handler:^(id  _Nonnull sender) {
-        
+        if (_item.shop_phone.length > 1) {
+            NSString *str = [NSString stringWithFormat:@"tel://%@", _item.shop_phone];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+        } else
+            [SVProgressHUD showErrorWithStatus:@"暂无联系电话"];
     }];
     
 }
