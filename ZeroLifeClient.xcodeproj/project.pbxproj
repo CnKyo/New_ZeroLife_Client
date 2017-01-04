@@ -265,11 +265,7 @@
 		04D07C151DF011F400A83CD9 /* ZLShopCampainSubView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D07C141DF011F400A83CD9 /* ZLShopCampainSubView.m */; };
 		04D07C171DF011FD00A83CD9 /* ZLShopCampainSubView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D07C161DF011FD00A83CD9 /* ZLShopCampainSubView.xib */; };
 		04D382011DE6B713002B1A4B /* ZLTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D382001DE6B713002B1A4B /* ZLTestViewController.m */; };
-		04D382031DE6BA35002B1A4B /* bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 04D382021DE6BA35002B1A4B /* bg.jpg */; };
 		04D382061DE6BEF3002B1A4B /* ZLTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D382051DE6BEF3002B1A4B /* ZLTabBarController.m */; };
-		04D3820A1DE6D99A002B1A4B /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D382071DE6D99A002B1A4B /* 1.png */; };
-		04D3820B1DE6D99A002B1A4B /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D382081DE6D99A002B1A4B /* 2.png */; };
-		04D3820C1DE6D99A002B1A4B /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D382091DE6D99A002B1A4B /* 3.png */; };
 		04D64D641DC9C16D004E8859 /* ZLSelectArearViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D64D631DC9C16D004E8859 /* ZLSelectArearViewController.m */; };
 		04D64D681DC9CC7B004E8859 /* ZLCustomBtnView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D64D671DC9CC7B004E8859 /* ZLCustomBtnView.m */; };
 		04D64D6C1DC9CCA5004E8859 /* ZLHomeLocationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D64D6A1DC9CCA5004E8859 /* ZLHomeLocationView.m */; };
@@ -381,7 +377,6 @@
 		DF630CF31DD407AE0076A92C /* OrderBaoXiuChooseShopVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF630CF21DD407AE0076A92C /* OrderBaoXiuChooseShopVC.m */; };
 		DF630CF61DD408240076A92C /* BaoXiuChooseShopTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF630CF51DD408240076A92C /* BaoXiuChooseShopTableViewCell.m */; };
 		DF630D061DD40AFA0076A92C /* RatingBar.m in Sources */ = {isa = PBXBuildFile; fileRef = DF630CFF1DD40AFA0076A92C /* RatingBar.m */; };
-		DF630D081DD413F00076A92C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF630D071DD413F00076A92C /* Images.xcassets */; };
 		DF630D0B1DD418360076A92C /* BaoXiuShopNoteView.m in Sources */ = {isa = PBXBuildFile; fileRef = DF630D0A1DD418360076A92C /* BaoXiuShopNoteView.m */; };
 		DF630D0E1DD419830076A92C /* BaoXiuWorkerView.m in Sources */ = {isa = PBXBuildFile; fileRef = DF630D0D1DD419830076A92C /* BaoXiuWorkerView.m */; };
 		DF630D111DD440940076A92C /* order_mobile@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF630D0F1DD440940076A92C /* order_mobile@2x.png */; };
@@ -1041,12 +1036,8 @@
 		04D07C161DF011FD00A83CD9 /* ZLShopCampainSubView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLShopCampainSubView.xib; sourceTree = "<group>"; };
 		04D381FF1DE6B713002B1A4B /* ZLTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLTestViewController.h; sourceTree = "<group>"; };
 		04D382001DE6B713002B1A4B /* ZLTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLTestViewController.m; sourceTree = "<group>"; };
-		04D382021DE6BA35002B1A4B /* bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg.jpg; sourceTree = "<group>"; };
 		04D382041DE6BEF3002B1A4B /* ZLTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLTabBarController.h; sourceTree = "<group>"; };
 		04D382051DE6BEF3002B1A4B /* ZLTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLTabBarController.m; sourceTree = "<group>"; };
-		04D382071DE6D99A002B1A4B /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
-		04D382081DE6D99A002B1A4B /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
-		04D382091DE6D99A002B1A4B /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
 		04D64D621DC9C16D004E8859 /* ZLSelectArearViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLSelectArearViewController.h; sourceTree = "<group>"; };
 		04D64D631DC9C16D004E8859 /* ZLSelectArearViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLSelectArearViewController.m; sourceTree = "<group>"; };
 		04D64D661DC9CC7B004E8859 /* ZLCustomBtnView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLCustomBtnView.h; sourceTree = "<group>"; };
@@ -1211,7 +1202,6 @@
 		DF630CF51DD408240076A92C /* BaoXiuChooseShopTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaoXiuChooseShopTableViewCell.m; sourceTree = "<group>"; };
 		DF630CFE1DD40AFA0076A92C /* RatingBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RatingBar.h; sourceTree = "<group>"; };
 		DF630CFF1DD40AFA0076A92C /* RatingBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RatingBar.m; sourceTree = "<group>"; };
-		DF630D071DD413F00076A92C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		DF630D091DD418360076A92C /* BaoXiuShopNoteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaoXiuShopNoteView.h; sourceTree = "<group>"; };
 		DF630D0A1DD418360076A92C /* BaoXiuShopNoteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaoXiuShopNoteView.m; sourceTree = "<group>"; };
 		DF630D0C1DD419830076A92C /* BaoXiuWorkerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaoXiuWorkerView.h; sourceTree = "<group>"; };
@@ -2742,7 +2732,6 @@
 		DF630CF71DD40AFA0076A92C /* RatingBar */ = {
 			isa = PBXGroup;
 			children = (
-				DF630D071DD413F00076A92C /* Images.xcassets */,
 				DF630CFE1DD40AFA0076A92C /* RatingBar.h */,
 				DF630CFF1DD40AFA0076A92C /* RatingBar.m */,
 			);
@@ -3072,10 +3061,6 @@
 				DFFAA7361DB744C5001CFBB5 /* AppDelegate.m */,
 				DFFAA7381DB744C5001CFBB5 /* ViewController.h */,
 				DFFAA7391DB744C5001CFBB5 /* ViewController.m */,
-				04D382021DE6BA35002B1A4B /* bg.jpg */,
-				04D382071DE6D99A002B1A4B /* 1.png */,
-				04D382081DE6D99A002B1A4B /* 2.png */,
-				04D382091DE6D99A002B1A4B /* 3.png */,
 				DFFAA73B1DB744C5001CFBB5 /* Main.storyboard */,
 				DFFAA73E1DB744C5001CFBB5 /* Assets.xcassets */,
 				DFFAA7401DB744C5001CFBB5 /* LaunchScreen.storyboard */,
@@ -3654,7 +3639,6 @@
 				04721A011DE3E66C00CE8639 /* album_checkbox_blue@2x.png in Resources */,
 				DF630D781DD475660076A92C /* anquantishi@3x.png in Resources */,
 				DF7F1BEF1DCDD5F200D2242B /* juming_off@2x.png in Resources */,
-				04D3820A1DE6D99A002B1A4B /* 1.png in Resources */,
 				DFE178681DD555C100E06F21 /* itemBar_setting@3x.png in Resources */,
 				DF630D7C1DD475660076A92C /* jiantou_chengshe.png in Resources */,
 				DF29B6A01E11092D00CBAA3B /* icon_order_fee_mobile@3x.png in Resources */,
@@ -3693,7 +3677,6 @@
 				DF29B6991E11092D00CBAA3B /* icon_order_paopao@2x.png in Resources */,
 				042B52B81E123F9700B093BE /* utilityView.xib in Resources */,
 				04A2FB881E078D2800653860 /* mSelectSenTypeViewController.xib in Resources */,
-				04D3820B1DE6D99A002B1A4B /* 2.png in Resources */,
 				DF29B6931E11092D00CBAA3B /* icon_order_balance_recharge@2x.png in Resources */,
 				DFE178C21DD573F500E06F21 /* order_img_status 3x.png in Resources */,
 				DFA135511DD6C7A900805BA2 /* gou_yes@2x.png in Resources */,
@@ -3868,7 +3851,6 @@
 				DFA1357C1DD7028600805BA2 /* add_bankCard_auto@3x.png in Resources */,
 				04721A031DE3E66C00CE8639 /* back_single@2x.png in Resources */,
 				DF630D371DD44CE60076A92C /* sigin_qian@3x.png in Resources */,
-				04D3820C1DE6D99A002B1A4B /* 3.png in Resources */,
 				DF630D791DD475660076A92C /* chongzi.png in Resources */,
 				DF630D7A1DD475660076A92C /* chongzi@2x.png in Resources */,
 				DF630D511DD45D790076A92C /* purse_tixian@2x.png in Resources */,
@@ -3903,7 +3885,6 @@
 				0409177F1DCC67A100DB2568 /* ZLSuperMarketHeaderView.xib in Resources */,
 				DF29B6AD1E110E8B00CBAA3B /* icon_order_fee_parking@2x.png in Resources */,
 				04162DF91DCB2C9300FB4229 /* ZLHomeCoupCell.xib in Resources */,
-				04D382031DE6BA35002B1A4B /* bg.jpg in Resources */,
 				04866B8C1DD40E53008DA56B /* ZLSuperMarketShopCarCell.xib in Resources */,
 				DFE178691DD555C100E06F21 /* order_fix@2x.png in Resources */,
 				047109CA1DE294BF00CFA292 /* ZLORderReturnCell.xib in Resources */,
@@ -3992,7 +3973,6 @@
 				DF29B6961E11092D00CBAA3B /* icon_order_dryclean@3x.png in Resources */,
 				DFA1354E1DD6C7A900805BA2 /* gou_no@2x.png in Resources */,
 				DF630D551DD45D790076A92C /* purse_zhuanzhuang@3x.png in Resources */,
-				DF630D081DD413F00076A92C /* Images.xcassets in Resources */,
 				DFE178B21DD55B6000E06F21 /* userCenterBg.png in Resources */,
 				DF300D101E02816700AC23CC /* bankcar_del@3x.png in Resources */,
 				DF8DBCB91DD01A90002E574B /* ComplaintWuguanView.xib in Resources */,

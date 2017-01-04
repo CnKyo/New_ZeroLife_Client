@@ -66,6 +66,9 @@
  */
 @property (weak, nonatomic) IBOutlet UILabel *mAddressContent;
 
+@property (weak, nonatomic) IBOutlet UILabel *mDisplayAddress;
+
+
 /**
  选择地址按钮
  */

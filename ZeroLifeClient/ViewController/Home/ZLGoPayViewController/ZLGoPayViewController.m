@@ -91,7 +91,7 @@
 }
 - (void)initData{
     NSArray *mTT = @[@"支付宝支付",@"微信支付",@"余额支付"];
-    NSArray *mPP = @[@"user_payTyple_alipay",@"user_payTyple_weixin",@"chongzi"];
+    NSArray *mPP = @[@"ZLPayType_Alipay",@"ZLPayType_Wechat",@"ZLPayType_Balance"];
     
     NSInteger j = mTT.count;
     if (_mOrderType == kOrderClassType_balance_recharge) {
@@ -285,7 +285,7 @@
     mHeadaerView = [ZLPayTypeHeaderView shareView];
     mHeadaerView.mName.text = self.mOrder.odr_shop_name;
     mHeadaerView.mPricce.text = [NSString stringWithFormat:@"¥%.1f元",self.mOrder.odr_pay_price];
-    mHeadaerView.mLogo.image = [UIImage imageNamed:@"cell_soukuan_item"];
+    mHeadaerView.mLogo.image = [UIImage imageNamed:@"ZLPayType_Head"];
     return mHeadaerView;
  
     

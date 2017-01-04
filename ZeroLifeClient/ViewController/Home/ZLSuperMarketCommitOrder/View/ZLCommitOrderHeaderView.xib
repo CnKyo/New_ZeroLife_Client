@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -13,12 +16,14 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ZLCommitOrder_Location" translatesAutoresizingMaskIntoConstraints="NO" id="tUa-qT-pTi">
+                    <rect key="frame" x="16" y="48.5" width="22" height="23"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="22" id="58U-sk-4zF"/>
                         <constraint firstAttribute="height" constant="23" id="LnJ-DS-lDf"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="kdU-2a-By0">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="kdU-2a-By0">
+                    <rect key="frame" x="48" y="19.5" width="311" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="jrl-12-hS1"/>
                     </constraints>
@@ -26,7 +31,8 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="重庆市苏打水大赛大赛大赛大赛大赛大赛大赛" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ar7-0v-Isz">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ar7-0v-Isz">
+                    <rect key="frame" x="48" y="53.5" width="300" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="ZXD-nJ-8kf"/>
                     </constraints>
@@ -34,18 +40,27 @@
                     <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="点击选择收货地址" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oj3-dj-D0G">
+                    <rect key="frame" x="48" y="51" width="298" height="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="jiantou_hui.png" translatesAutoresizingMaskIntoConstraints="NO" id="t9N-hy-8MC">
+                    <rect key="frame" x="356" y="53.5" width="7" height="13"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="13" id="H9E-JM-477"/>
                         <constraint firstAttribute="width" constant="7" id="PwR-nD-SXn"/>
                     </constraints>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ZLCommitOrder_BottomLine" translatesAutoresizingMaskIntoConstraints="NO" id="QED-ra-NlJ">
+                    <rect key="frame" x="0.0" y="114.5" width="375" height="5"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="5" id="Wkj-25-jH4"/>
                     </constraints>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sEm-eY-mCz">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
                     <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <state key="normal">
                         <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -57,6 +72,8 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="t9N-hy-8MC" firstAttribute="leading" secondItem="oj3-dj-D0G" secondAttribute="trailing" constant="10" id="0Gr-tP-zwe"/>
+                <constraint firstItem="oj3-dj-D0G" firstAttribute="leading" secondItem="tUa-qT-pTi" secondAttribute="trailing" constant="10" id="8q8-Et-5Jp"/>
                 <constraint firstItem="t9N-hy-8MC" firstAttribute="leading" secondItem="Ar7-0v-Isz" secondAttribute="trailing" constant="8" id="A7r-aI-hB5"/>
                 <constraint firstAttribute="bottom" secondItem="sEm-eY-mCz" secondAttribute="bottom" id="Agh-GW-3pB"/>
                 <constraint firstItem="QED-ra-NlJ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="D0e-z6-kdj"/>
@@ -74,12 +91,14 @@
                 <constraint firstItem="QED-ra-NlJ" firstAttribute="top" secondItem="Ar7-0v-Isz" secondAttribute="bottom" constant="21" id="jrE-yZ-Gm6"/>
                 <constraint firstItem="sEm-eY-mCz" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="kMh-Ii-3e2"/>
                 <constraint firstItem="tUa-qT-pTi" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="oZL-C3-2I6"/>
+                <constraint firstItem="oj3-dj-D0G" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="yfj-4H-olf"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <nil key="simulatedTopBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="mContent" destination="Ar7-0v-Isz" id="2Nb-Hu-uTj"/>
+                <outlet property="mDisplayAddress" destination="oj3-dj-D0G" id="DYX-6w-WPS"/>
                 <outlet property="mName" destination="kdU-2a-By0" id="Dim-HQ-X6C"/>
                 <outlet property="mSelecteBtn" destination="sEm-eY-mCz" id="hcM-lX-dfI"/>
             </connections>

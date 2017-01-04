@@ -84,7 +84,7 @@
     mClassObj = [ZLPPTHomeClassList new];
     mTempArr = [NSMutableArray new];
     
-    [self addRightBtn:YES andTitel:@"发布" andImage:nil];
+    [self addRightBtn:YES andTitel:@"发布跑单" andImage:nil];
     
     [self addTableView];
     

@@ -98,6 +98,12 @@
 @property (weak, nonatomic) IBOutlet UITextField *mNoteTx;
 
 
+@property (weak, nonatomic) IBOutlet UILabel *mSendDisplay;
+
+@property (weak, nonatomic) IBOutlet UILabel *mArriveDisplay;
+
+
+
 #pragma mark----****----短程配送cell样式2
 
 /**

@@ -186,9 +186,28 @@
 }
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
 
+    
+    NSDictionary* style = @{@"color" :[UIColor redColor],
+                            @"font":[UIFont systemFontOfSize:13]};
+
     mBottomView = [ZLPPTReleaseBottomView shareView];
     mBottomView.frame = CGRectMake(0, DEVICE_Height-100, DEVICE_Width, 50);
     mBottomView.delegate = self;
+    
+    int goodsp = [mCommitPreOrder.mGoodsPrice intValue];
+    int sendp = [mCommitPreOrder.mSendPrice intValue];
+    
+    NSString *mSpe = nil;
+    if (mType == 0) {
+        
+        mSpe = [NSString stringWithFormat:@"¥%d元",goodsp+sendp];
+        
+    }else{
+        mSpe = [NSString stringWithFormat:@"¥%d元",sendp];
+
+    }
+    mBottomView.mTotlePrice.attributedText = [[NSString stringWithFormat:@"合计支付：<font><color>%@</color></font>",mSpe] attributedStringWithStyleBook:style];
+
     return mBottomView;
 }
 
