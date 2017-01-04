@@ -1020,8 +1020,8 @@ bool m_bind = NO;
 
 @implementation ZLShopLeftTableArr
 @end
-
-
+@implementation ZLShopLeftObj
+@end
 
 @implementation ZLShopGoodsList
 @end

@@ -21,30 +21,34 @@
     // Configure the view for the selected state
 }
 
-- (void)setMClassify:(ZLShopClassify *)mClassify{
 
-    self.mContent.text = mClassify.cls_name;
-    if (mClassify.cls_image.length<=0 || [mClassify.cls_image isEqualToString:@""]) {
-        self.mImgW.constant = 0;
-        self.mLogo.hidden = YES;
+- (void)setMObj:(ZLShopLeftObj *)mObj{
+    self.mContent.text = mObj.mName;
+    if (mObj.mType == ZLShopLeftTypeCamp) {
+        self.mLogo.image = [UIImage imageNamed:@"ZLShop_Hot"];
+
+    }else{
+        if (mObj.mImg.length<=0 || [mObj.mImg isEqualToString:@""]) {
+            self.mImgW.constant = 0;
+            self.mLogo.hidden = YES;
+        }
+        else{
+            self.mImgW.constant = 30;
+            self.mLogo.hidden = NO;
+            [self.mLogo sd_setImageWithURL:[NSURL URLWithString:[Util currentSourceImgUrl:mObj.mImg]] placeholderImage:[UIImage imageNamed:@"ZLShop_Hot"]];
+        }
+
     }
-    else{
-        self.mImgW.constant = 30;
-        self.mLogo.hidden = NO;
-        [self.mLogo sd_setImageWithURL:[NSURL URLWithString:[Util currentSourceImgUrl:mClassify.cls_image]] placeholderImage:[UIImage imageNamed:@"ZLShop_Hot"]];
+    
+    if (mObj.imISelected) {
+        self.backgroundColor = [UIColor colorWithRed:0.94 green:0.94 blue:0.94 alpha:0.75];
+        self.mBgkImg.backgroundColor = M_CO;
+    }else{
+        self.backgroundColor = [UIColor whiteColor];
+        self.mBgkImg.backgroundColor = [UIColor whiteColor];
     }
     
-
-    self.mBgkImg.hidden = !mClassify.isSelected;
-    
-}
-
-- (void)setMCampain:(ZLShopCampain *)mCampain{
-    
-    self.mContent.text = mCampain.cam_name;
-    self.mLogo.image = [UIImage imageNamed:@"ZLShop_Hot"];
-
-    self.mBgkImg.hidden = mCampain.isSelected;
+   
 }
 
 @end

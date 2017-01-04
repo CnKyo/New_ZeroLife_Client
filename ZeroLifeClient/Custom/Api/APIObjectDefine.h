@@ -964,8 +964,19 @@
 @property (strong,nonatomic) NSMutableArray*               mCampainArr;    //!< 活动
 @property (strong,nonatomic) NSMutableArray*               mClassArr;  //!< 分类
 @end
+#pragma mark----****----///店铺左边的数据对象
+///店铺左边的数据对象
+@interface ZLShopLeftObj : NSObject
+@property (assign,nonatomic) BOOL                   imISelected; ///是否选中
+@property (assign,nonatomic) int                    mId; ///id
+@property (strong,nonatomic) NSString*              mName;  ///名称
+@property (strong,nonatomic) NSString*              mImg;  ///名称
+
+@property (assign,nonatomic) int                    mIsCamp; ///是否有活动
+@property (assign,nonatomic) ZLShopLeftType         mType; ///显示类型
 
 
+@end
 
 #pragma mark----****----店铺商品对象
 /// 店铺商品列表

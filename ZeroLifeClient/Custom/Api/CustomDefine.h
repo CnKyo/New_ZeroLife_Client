@@ -511,4 +511,11 @@ typedef enum {
     
 }ZLRateVCType;///评价界面类型
 
+typedef enum {
+    
+    ZLShopLeftTypeCamp = 1,///店铺左边类型活动
+    ZLShopLeftTypeClass = 2,///店铺左边类型分类
+    
+}ZLShopLeftType;///店铺左边类型
+
 #endif /* CustomDefine_h */

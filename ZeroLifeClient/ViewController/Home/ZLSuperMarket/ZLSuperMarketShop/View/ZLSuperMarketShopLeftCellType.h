@@ -27,9 +27,10 @@
  */
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *mContentLeftContraint;
 
-@property (strong,nonatomic) ZLShopClassify *mClassify;
-@property (strong,nonatomic) ZLShopCampain *mCampain;
+@property (strong,nonatomic) ZLShopLeftObj *mObj;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *mImgW;
+
+
 
 @end

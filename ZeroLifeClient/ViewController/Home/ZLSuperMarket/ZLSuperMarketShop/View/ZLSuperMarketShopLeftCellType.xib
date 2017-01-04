@@ -16,11 +16,15 @@
             <rect key="frame" x="0.0" y="0.0" width="184" height="50"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="184" height="50"/>
+                <rect key="frame" x="0.0" y="0.0" width="184" height="49"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="0A662AF9-F6F8-4C24-A943-4DCE94FB9C8B" translatesAutoresizingMaskIntoConstraints="NO" id="HeQ-dk-oVB">
-                        <rect key="frame" x="0.0" y="0.0" width="184" height="50"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="A7E36552-5F9C-425F-85D2-083F1FB6E697" translatesAutoresizingMaskIntoConstraints="NO" id="HeQ-dk-oVB">
+                        <rect key="frame" x="0.0" y="0.0" width="4" height="50"/>
+                        <color key="backgroundColor" red="0.58661788699999995" green="0.77890688180000001" blue="0.1565182209" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="4" id="QxY-yf-K3Z"/>
+                        </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Srb-iz-4xb">
                         <rect key="frame" x="10" y="10" width="30" height="30"/>
@@ -41,7 +45,6 @@
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottomMargin" secondItem="HeQ-dk-oVB" secondAttribute="bottom" constant="-9" id="16F-zb-Le8"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="HeQ-dk-oVB" secondAttribute="trailing" constant="-8" id="2PO-tu-cCZ"/>
                     <constraint firstItem="HeQ-dk-oVB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-8" id="3Rw-nw-bkU"/>
                     <constraint firstItem="Srb-iz-4xb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="2" id="CUS-cS-zlY"/>
                     <constraint firstItem="Srb-iz-4xb" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="CdU-RS-b1A"/>
@@ -62,7 +65,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="0A662AF9-F6F8-4C24-A943-4DCE94FB9C8B" width="86" height="54">
+        <image name="A7E36552-5F9C-425F-85D2-083F1FB6E697" width="86" height="54">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
