@@ -420,7 +420,7 @@
 -(UIView*)topView{
     UIWindow *window = [[UIApplication sharedApplication] keyWindow];
     
-    NSLog(@"window.subviews = %d",window.subviews.count);
+    NSLog(@"window.subviews = %lu",(unsigned long)window.subviews.count);
     return  window.subviews[0];
 }
 

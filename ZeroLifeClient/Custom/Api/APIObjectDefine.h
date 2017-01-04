@@ -927,6 +927,9 @@
 
 #pragma mark----****----社区超市店铺分类对象
 @interface ZLShopClassify : NSObject
+
+@property (assign,nonatomic) BOOL                   isSelected; ///是否选中
+
 @property (assign,nonatomic) int                    cls_id; //!< 分类ID
 @property (strong,nonatomic) NSString*              cls_name;   //!< 分类名称
 @property (strong,nonatomic) NSString*              cls_image;  //!< 分类图标（视前端情况显示分类图片，如超市店铺列表页面的分类有图标，在店铺详情页面中的商品分类无图片）
@@ -943,6 +946,9 @@
 
 #pragma mark----****----社区超市店铺活动对象
 @interface ZLShopCampain : NSObject
+
+@property (assign,nonatomic) BOOL                   isSelected; ///是否选中
+
 @property (assign,nonatomic) int                    cam_id; //!< 活动ID
 @property (strong,nonatomic) NSString*              cam_name;   //!< 活动名称
 @property (assign,nonatomic) int                    cam_is_goods;   //!< 是否为商品活动（0-否，1-是）
@@ -956,11 +962,22 @@
 //// 店铺左边数据源
 @interface ZLShopLeftTableArr : NSObject
 @property (assign,nonatomic) int                    mLeftType;  //!< 左边的类型
-@property (strong,nonatomic) NSArray*               mCampainArr;    //!< 活动
-@property (strong,nonatomic) NSArray*               mClassArr;  //!< 分类
+@property (strong,nonatomic) NSMutableArray*               mCampainArr;    //!< 活动
+@property (strong,nonatomic) NSMutableArray*               mClassArr;  //!< 分类
 @end
+#pragma mark----****----///店铺左边的数据对象
+///店铺左边的数据对象
+@interface ZLShopLeftObj : NSObject
+@property (assign,nonatomic) BOOL                   imISelected; ///是否选中
+@property (assign,nonatomic) int                    mId; ///id
+@property (strong,nonatomic) NSString*              mName;  ///名称
+@property (strong,nonatomic) NSString*              mImg;  ///名称
+
+@property (assign,nonatomic) int                    mIsCamp; ///是否有活动
+@property (assign,nonatomic) ZLShopLeftType         mType; ///显示类型
 
 
+@end
 
 #pragma mark----****----店铺商品对象
 /// 店铺商品列表

@@ -29,6 +29,9 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *mOrderStatusImg;
 
+@property (weak, nonatomic) IBOutlet UILabel *mHStatus;
+
+
 #pragma mark----****----第二种cell样式
 
 @property (weak, nonatomic) IBOutlet UILabel *mOrderType;

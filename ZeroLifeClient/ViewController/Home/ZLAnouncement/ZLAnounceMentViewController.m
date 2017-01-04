@@ -38,11 +38,14 @@
         [self.tableArr removeAllObjects];
         [self ZLHideEmptyView];
         if (info.code == RESP_STATUS_YES) {
-            [self showSuccessStatus:info.msg];
             [self.tableArr addObjectsFromArray:tableArr];
             
             if (tableArr.count<=0) {
                 [self ZLShowEmptyView:@"暂无数据！" andImage:nil andHiddenRefreshBtn:NO];
+                [self showSuccessStatus:@"暂无数据！"];
+
+            }else{
+                [self showSuccessStatus:info.msg];
 
             }
             

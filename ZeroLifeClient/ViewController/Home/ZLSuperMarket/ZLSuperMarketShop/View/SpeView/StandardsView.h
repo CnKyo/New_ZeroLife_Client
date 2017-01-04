@@ -151,7 +151,7 @@ typedef enum _StandsViewAnimationType
  * 按比例改变view的大小
  * @param backView  要改变的view
  * @param duration  动画时间
- * @param valuex  x缩小的比例
+ * @param valueX  x缩小的比例
  * @param valueY  y缩小的比例
  */
 -(void)setBackViewAnimationScale:(UIView *)backView andDuration:(NSTimeInterval)duration toValueX:(CGFloat)valueX andValueY:(CGFloat)valueY;

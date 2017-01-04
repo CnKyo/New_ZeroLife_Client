@@ -34,7 +34,7 @@
 /**
  *  实例方法
  *
- *  @return
+ *  @return view
  */
 + (CurentLocation *)sharedManager;
 
