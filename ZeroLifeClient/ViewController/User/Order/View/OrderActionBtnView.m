@@ -98,7 +98,7 @@
     
     if (arr.count > 2) {
         self.actionBtn3.hidden = NO;
-        NSString *stateStr = [arr objectAtIndex:1];
+        NSString *stateStr = [arr objectAtIndex:2];
         self.actionBtn3.stateStr = stateStr;
     } else {
         self.actionBtn3.hidden = YES;
