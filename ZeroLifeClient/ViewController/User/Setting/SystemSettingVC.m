@@ -8,6 +8,9 @@
 
 #import "SystemSettingVC.h"
 #import <SDImageCache.h>
+#import "CustomWebVC.h"
+
+
 @interface SystemSettingVC ()
 
 @end
@@ -25,7 +28,7 @@
     [super viewDidLoad];
     self.title =  @"设置";
     
-    [self.navigationController.navigationBar jk_setBackgroundColor:[UIColor clearColor]];
+    //[self.navigationController.navigationBar jk_setBackgroundColor:[UIColor clearColor]];
 }
 
 
@@ -50,7 +53,7 @@
 #pragma mark -- tableviewDelegate
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 4;
+    return 3;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -150,7 +153,15 @@
         
         [[SDImageCache sharedImageCache] clearMemory];//可有可无
         
+        [SVProgressHUD showSuccessWithStatus:@"清除成功!"];
         
+        
+    }
+    else if (indexPath.row == 2) {
+        CustomWebVC *vc = [[CustomWebVC alloc] init];
+        vc.title = @"关于我们";
+        vc.linkUrl = [NSString stringWithFormat:@"%@%@/wap/other/about", kAFAppDotNetApiBaseURLString, kAFAppDotNetApiExtraURLString];
+        [self.navigationController pushViewController:vc animated:YES];
     }
     
     

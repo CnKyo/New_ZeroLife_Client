@@ -183,7 +183,7 @@
     //设置店铺信息
     self.shopView.shopNameLable.text = [NSString compIsNone:item.shop_name];
     self.shopView.orderStatusLable.text = [NSString compIsNone:item.odr_state_val];
-    [self.shopView.shopIconImgView setImageWithURL:[NSURL imageurl:item.shop_logo] placeholderImage:IMG(@"order_shop_icon.png")];
+    [self.shopView.shopIconImgView sd_setImageWithURL:[NSURL imageurl:item.shop_logo] placeholderImage:IMG(@"order_shop_icon.png")];
     
     self.orderTimeLable.text = item.odr_add_time;
     
@@ -198,21 +198,21 @@
         {
             if (item.goods.count > 0) {
                 OrderGoodsObject *it = [item.goods objectAtIndex:0];
-                [self.goodsListView.imgView1 setImageWithURL:[NSURL imageurl:it.odrg_img] placeholderImage:ZLDefaultGoodsImg];
+                [self.goodsListView.imgView1 sd_setImageWithURL:[NSURL imageurl:it.odrg_img] placeholderImage:ZLDefaultGoodsImg];
                 self.goodsListView.imgView1.hidden = NO;
             } else
                 self.goodsListView.imgView1.hidden = YES;
             
             if (item.goods.count > 1) {
                 OrderGoodsObject *it = [item.goods objectAtIndex:1];
-                [self.goodsListView.imgView2 setImageWithURL:[NSURL imageurl:it.odrg_img] placeholderImage:ZLDefaultGoodsImg];
+                [self.goodsListView.imgView2 sd_setImageWithURL:[NSURL imageurl:it.odrg_img] placeholderImage:ZLDefaultGoodsImg];
                 self.goodsListView.imgView2.hidden = NO;
             } else
                 self.goodsListView.imgView2.hidden = YES;
             
             if (item.goods.count > 2) {
                 OrderGoodsObject *it = [item.goods objectAtIndex:2];
-                [self.goodsListView.imgView3 setImageWithURL:[NSURL imageurl:it.odrg_img] placeholderImage:ZLDefaultGoodsImg];
+                [self.goodsListView.imgView3 sd_setImageWithURL:[NSURL imageurl:it.odrg_img] placeholderImage:ZLDefaultGoodsImg];
                 self.goodsListView.imgView3.hidden = NO;
             } else
                 self.goodsListView.imgView3.hidden = YES;

@@ -69,7 +69,7 @@
     self.sizeLable.text = [NSString compIsNone:item.odrg_spec];
     self.countLable.text = [NSString stringWithFormat:@"x%i", item.odrg_number];
     self.priceLable.text = [NSString stringWithFormat:@"￥%.2f", item.odrg_price];
-    [self.imgView setImageWithURL:[NSURL imageurl:item.odrg_img] placeholderImage:ZLDefaultGoodsImg];
+    [self.imgView sd_setImageWithURL:[NSURL imageurl:item.odrg_img] placeholderImage:ZLDefaultGoodsImg];
 }
 
 

@@ -518,6 +518,7 @@
 @property(nonatomic,assign) int                     shop_id;         //!< 店铺ID
 @property(nonatomic,strong) NSString *              shop_name;         //!< 店铺名
 @property(nonatomic,strong) NSString *              shop_logo;         //!< 店铺logo url
+@property(nonatomic,strong) NSString *              shop_phone;         //!< 店铺联系电话
 @property(nonatomic,assign) int                     user_id;         //!< 购买者ID
 @property(nonatomic,assign) int                     odr_pay_type;         //!< 支付方式
 @property(nonatomic,strong) NSString *              odr_pay_name;         //!< 支付名
@@ -1719,4 +1720,14 @@
 
 
 
+
+
+
+#pragma mark-----****----店铺商品收藏web处理对象
+/// 店铺商品收藏web处理对象
+@interface ProductFocusWebBridgeObject : NSObject
+@property (assign,nonatomic) int                    user_id; //!< 用户id
+@property (assign,nonatomic) int                    pro_id;    //!< 商品id
+@property (assign,nonatomic) BOOL                   is_focus;    //!< 是否收藏 0未收藏 1已收藏
+@end
 

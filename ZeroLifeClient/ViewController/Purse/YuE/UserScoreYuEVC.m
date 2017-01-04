@@ -13,6 +13,7 @@
 #import "UserIDAuthVC.h"
 #import "UserRechargeMoneyVC.h"
 #import <JKCategories/UIControl+JKActionBlocks.h>
+#import "UserHouseEditVC.h"
 
 @interface UserScoreYuEVC ()
 @property(nonatomic,strong) UserNotIDAuthNoteView *noteView;
@@ -73,14 +74,16 @@
     
     
     [noteView jk_handleControlEvents:UIControlEventTouchUpInside withBlock:^(id weakSender) {
-        UserIDAuthVC *vc = [[UserIDAuthVC alloc] init];
+        UserHouseEditVC *vc = [[UserHouseEditVC alloc] init];
+        vc.title = @"实名认证";
         [self.navigationController pushViewController:vc animated:YES];
     }];
     [headerView.chongZiBtn jk_addActionHandler:^(NSInteger tag) {
         if (_isScoreView == NO) {
             UserRechargeMoneyVC *vc = [[UserRechargeMoneyVC alloc] init];
             [self.navigationController pushViewController:vc animated:YES];
-        }
+        } else
+            [SVProgressHUD showInfoWithStatus:@"建设中..."];
     }];
     
     if (_isScoreView == YES) {
@@ -211,23 +214,52 @@
             }
             
             cell.imgView.image = [UIImage imageNamed:[NSString iconImgStrOrderType:item.odr_type]];
+
+            NSString *str = @"";
             switch (item.odr_type) {
+                case kOrderClassType_fix:
+                    str = @"报修";
+                    break;
+                case kOrderClassType_product:
+                    str = @"购物";
+                    break;
+                case kOrderClassType_dryclean:
+                    str = @"干洗";
+                    break;
+                case kOrderClassType_paopao:
+                    str = @"跑跑腿";
+                    break;
+                case kOrderClassType_paopao_apply:
+                    str = @"跑跑腿申请";
+                    break;
+                case kOrderClassType_fee_mobile:
+                    str = @"手机充值";
+                    break;
+                case kOrderClassType_fee_peroperty:
+                    str = @"物管费";
+                    break;
                 case kOrderClassType_balance_present:
-                    cell.msgLable.text = @"提现";
+                    str = @"余额提现";
                     break;
                 case kOrderClassType_balance_recharge:
-                    cell.msgLable.text = @"余额充值";
+                    str = @"余额充值";
                     break;
                 case kOrderClassType_balance_transfer:
-                    cell.msgLable.text = @"转帐";
+                    str = @"转账";
                     break;
                 case kOrderClassType_balance_collection:
-                    cell.msgLable.text = @"收款";
+                    str = @"收款";
+                    break;
+                case kOrderClassType_fee_sdq:
+                    str = @"水电气缴费";
+                    break;
+                case kOrderClassType_fee_parking:
+                    str = @"停车缴费";
                     break;
                 default:
                     break;
             }
-
+            cell.msgLable.text = str;
             
         }
         

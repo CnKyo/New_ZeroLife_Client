@@ -176,10 +176,12 @@
                 field.hidden = YES;
             {
                 UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+                imgView.layer.cornerRadius = 15;
+                imgView.layer.masksToBounds = YES;
                 if (_userLocalImg != nil)
                     imgView.image = _userLocalImg;
                 else
-                    [imgView setImageWithURL:[NSURL URLWithString:_user.user_header] placeholderImage:IMG(@"cell_img_touxiang_defult.png")];
+                    [imgView sd_setImageWithURL:[NSURL imageurl:_user.user_header] placeholderImage:IMG(@"cell_img_touxiang_defult.png")];
                 cell.accessoryView = imgView;
             }
                 break;

@@ -22,23 +22,25 @@
 {
     [super loadView];
     
+    self.xieyiLable.userInteractionEnabled = YES;
+    
     [self.payBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.payBtn jk_setBackgroundColor:COLOR_NavBar forState:UIControlStateNormal];
     self.payBtn.layer.masksToBounds = YES;
     self.payBtn.layer.cornerRadius = 5;
 }
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"申请跑跑腿";
     
     //链接跑跑协议
     [self.xieyiLable jk_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
-        if (_item.apply_url.length > 0) {
-            CustomWebVC *vc = [[CustomWebVC alloc] init];
-            vc.linkUrl = _item.apply_url;
-            vc.title = @"跑跑腿协议";
-            [self.navigationController pushViewController:vc animated:YES];
-        }
+        CustomWebVC *vc = [[CustomWebVC alloc] init];
+        vc.linkUrl = [NSString stringWithFormat:@"%@%@/wap/agreement/ppaoAgreement", kAFAppDotNetApiBaseURLString, kAFAppDotNetApiExtraURLString];
+        vc.title = @"跑跑腿协议";
+        [self.navigationController pushViewController:vc animated:YES];
     }];
     
     //支付

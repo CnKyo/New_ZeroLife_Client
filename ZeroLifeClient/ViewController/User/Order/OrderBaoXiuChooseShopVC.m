@@ -86,7 +86,7 @@
         cell.priceLable.attributedText = [[NSString stringWithFormat:@"报价：<u>￥%.2f</u>", item.bid_price] attributedStringWithStyleBook:style2];
 
         
-        [cell.imgView setImageWithURL:[NSURL imageurl:item.shop_logo] placeholderImage:ZLDefaultShopImg];
+        [cell.imgView sd_setImageWithURL:[NSURL imageurl:item.shop_logo] placeholderImage:ZLDefaultShopImg];
 
         
         [cell.chooseBtn jk_addActionHandler:^(NSInteger tag) {

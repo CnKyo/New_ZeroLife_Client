@@ -66,6 +66,7 @@
         UILabel *noteLable = [view newUILableWithText:@"小区名称:" textColor:color font:font];
         UITextField *cmutField = [view newUITextFieldWithPlaceholder:@"请选择小区"];
         cmutField.font = font;
+        cmutField.enabled = NO;
         UIView *lineView = [view newDefaultLineView];
         IQTextView *textView = [[IQTextView alloc] init];
         textView.placeholder = @"请输入投诉原因";
@@ -101,6 +102,7 @@
         UILabel *noteLable = [view newUILableWithText:@"小区名称:" textColor:color font:font];
         UITextField *cmutField = [view newUITextFieldWithPlaceholder:@"请选择小区"];
         cmutField.font = font;
+        cmutField.enabled = NO;
         UIView *lineView = [view newDefaultLineView];
         IQTextView *textView = [[IQTextView alloc] init];
         textView.placeholder = @"请输入投诉原因";
@@ -137,7 +139,7 @@
         textView.placeholder = @"请输入投诉原因";
         textView.font = font;
         [view addSubview:textView];
-        self.view1TextView = textView;
+        self.view3TextView = textView;
         [textView makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.top.bottom.equalTo(view);
         }];
