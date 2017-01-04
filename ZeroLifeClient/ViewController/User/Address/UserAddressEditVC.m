@@ -48,6 +48,11 @@
                 return ;
             }
             
+            if (![Util isMobileNumber:_item.addr_phone]) {
+                [SVProgressHUD showErrorWithStatus:@"您输入的手机号码有误！请重新输入！"];
+                return;
+            }
+            
             if (_item.cmut_name==nil || _item.cmut_name.length==0) {
                 [SVProgressHUD showErrorWithStatus:@"请选择小区"];
                 return ;

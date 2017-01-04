@@ -650,7 +650,7 @@
 - (void)ZLHomeBannerDidSelectedWithIndex:(NSInteger)mIndex{
     MLLog(@"点击了第:%ld个",(long)mIndex);
     
-    ZLHomeBanner *mBaner = mBannerArr[mIndex];
+    //ZLHomeBanner *mBaner = mBannerArr[mIndex];
     
     
     

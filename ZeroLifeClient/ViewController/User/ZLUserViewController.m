@@ -379,9 +379,6 @@
         
     } else if (indexPath.section == 2) {
         if (indexPath.row == 0) {
-//            UserIDAuthVC *vc = [[UserIDAuthVC alloc] init];
-//            [self.navigationController pushViewController:vc animated:YES];
-            
             FavoriteTVC *vc = [[FavoriteTVC alloc] init];
             vc.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:vc animated:YES];

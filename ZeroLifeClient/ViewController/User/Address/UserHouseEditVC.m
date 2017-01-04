@@ -58,6 +58,11 @@
                 return ;
             }
             
+            if (![Util isMobileNumber:_item.real_phone]) {
+                [SVProgressHUD showErrorWithStatus:@"您输入的手机号码有误！请重新输入！"];
+                return;
+            }
+            
             if (_item.real_province==0 || _item.real_city==0 || _item.real_county==0) {
                 [SVProgressHUD showErrorWithStatus:@"请选择省市区"];
                 return ;
@@ -86,16 +91,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    if (_item == nil) {
-        self.title =  @"添加房屋";
-        self.item = [HouseObject new];
-        self.item.user_id = [ZLUserInfo ZLCurrentUser].user_id;
-        self.item.real_sex = kUserSexType_man;
-    } else {
-        self.title =  @"编辑房屋";
+    
+    if (self.title==nil || self.title.length == 0) {
+        if (_item == nil) {
+            self.title =  @"添加房屋";
+            self.item = [HouseObject new];
+            self.item.user_id = [ZLUserInfo ZLCurrentUser].user_id;
+            self.item.real_sex = kUserSexType_man;
+        } else {
+            self.title =  @"编辑房屋";
+        }
     }
-    
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated{

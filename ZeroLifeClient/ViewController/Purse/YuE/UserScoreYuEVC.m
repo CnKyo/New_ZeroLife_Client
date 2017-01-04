@@ -13,6 +13,7 @@
 #import "UserIDAuthVC.h"
 #import "UserRechargeMoneyVC.h"
 #import <JKCategories/UIControl+JKActionBlocks.h>
+#import "UserHouseEditVC.h"
 
 @interface UserScoreYuEVC ()
 @property(nonatomic,strong) UserNotIDAuthNoteView *noteView;
@@ -73,7 +74,8 @@
     
     
     [noteView jk_handleControlEvents:UIControlEventTouchUpInside withBlock:^(id weakSender) {
-        UserIDAuthVC *vc = [[UserIDAuthVC alloc] init];
+        UserHouseEditVC *vc = [[UserHouseEditVC alloc] init];
+        vc.title = @"实名认证";
         [self.navigationController pushViewController:vc animated:YES];
     }];
     [headerView.chongZiBtn jk_addActionHandler:^(NSInteger tag) {
