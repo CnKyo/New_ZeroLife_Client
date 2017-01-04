@@ -205,7 +205,7 @@ static int const RESP_STATUS_LOGIN                  = 300;             //需要�
 static NSString* const  kAFAppDotNetApiBaseURLString    = @"http://192.168.1.114";
 static NSString* const  kAFAppDotNetApiExtraURLString    = @"/api/app/client";
 static NSString* const  kAFAppDotNetApiServiceURLString    = @"/api/app/service";
-static NSString* const  kAFAppDotNetImgBaseURLString    = @"http://192.168.1.114/resource/";
+static NSString* const  kAFAppDotNetImgBaseURLString    = @"http://192.168.1.114/resource";
 
 
 static NSString * const MyUserNeedUpdateNotification     = @"MyUserNeedUpdateNotification";
@@ -366,14 +366,14 @@ typedef enum{
 
 
 typedef enum{
-    ZLHomeFunctionTypeQuik,//Function类型为缴费
-    ZLHomeFunctionTypeSuperMarket,//Function类型为超市
-    ZLHomeFunctionTypeRepair,//Function类型为报修
-    ZLHomeFunctionTypeHouseKeeping,//Function类型为家政
-    ZLHomeFunctionTypeConvenience,//Function类型为便民服务
-    ZLHomeFunctionTypeRunningMan,//Function类型为跑跑腿
-    ZLHomeFunctionTypeNote,//Function类型为公告
-    ZLHomeFunctionTypeNeighbor,//Function类型为邻里圈
+    ZLHomeFunctionTypeQuik = 1,//Function类型为缴费
+    ZLHomeFunctionTypeSuperMarket = 2,//Function类型为超市
+    ZLHomeFunctionTypeRepair = 3,//Function类型为报修
+    ZLHomeFunctionTypeHouseKeeping = 4,//Function类型为家政
+    ZLHomeFunctionTypeConvenience = 5,//Function类型为便民服务
+    ZLHomeFunctionTypeRunningMan = 6,//Function类型为跑跑腿
+    ZLHomeFunctionTypeNote = 7,//Function类型为公告
+    ZLHomeFunctionTypeNeighbor = 8,//Function类型为邻里圈
 }ZLHomeFunctionType;
 
 

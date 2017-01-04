@@ -34,12 +34,17 @@
         [self.mLogo sd_setImageWithURL:[NSURL URLWithString:[Util currentSourceImgUrl:mClassify.cls_image]] placeholderImage:[UIImage imageNamed:@"ZLShop_Hot"]];
     }
     
+
+    self.mBgkImg.hidden = !mClassify.isSelected;
+    
 }
 
 - (void)setMCampain:(ZLShopCampain *)mCampain{
+    
     self.mContent.text = mCampain.cam_name;
     self.mLogo.image = [UIImage imageNamed:@"ZLShop_Hot"];
 
+    self.mBgkImg.hidden = mCampain.isSelected;
 }
 
 @end

@@ -10,6 +10,8 @@
 #import "APIObjectDefine.h"
 @interface ZLSuperMarketShopLeftCellType : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UIImageView *mBgkImg;
+
 /**
  图标
  */
@@ -29,6 +31,5 @@
 @property (strong,nonatomic) ZLShopCampain *mCampain;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *mImgW;
-
 
 @end

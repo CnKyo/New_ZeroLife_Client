@@ -57,7 +57,7 @@
             
             mScrollerView = [[RKImageBrowser alloc] initWithFrame:CGRectMake(0, 0, screen_width, 150)];
             mScrollerView.backgroundColor = [UIColor whiteColor];
-            [mScrollerView setBrowserWithImagesArray:mBannerDataSource];
+            [mScrollerView setBrowserWithImagesArray:mImgUrl];
             __weak __typeof(self)weakSelf = self;
             
             mScrollerView.didselectRowBlock = ^(NSInteger clickRow) {

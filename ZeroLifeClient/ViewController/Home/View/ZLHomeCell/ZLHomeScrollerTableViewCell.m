@@ -60,6 +60,12 @@
             [self.contentView addSubview:mScrollerView];
         }
         
+        UIImageView *mShadow = [UIImageView new];
+        mShadow.frame = CGRectMake(0, 160, DEVICE_Width, 60);
+        mShadow.image = [UIImage imageNamed:@"ZLHomeBanner_shadow"];
+        [self.contentView addSubview:mShadow];
+        
+        
         if (mDataSource.count > 0) {
             int mPage;
             if (mDataSource.count>8) {

@@ -306,7 +306,7 @@
         
         return 100;
     }else{
-        return 160;
+        return 127;
         
     }
     

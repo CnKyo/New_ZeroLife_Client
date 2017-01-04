@@ -22,6 +22,7 @@
 
 @implementation ZLGoodsDetailCell
 
+
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code

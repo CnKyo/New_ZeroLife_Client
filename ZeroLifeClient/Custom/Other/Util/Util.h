@@ -52,7 +52,7 @@ typedef enum _RelDic
 /**
  *  时间戳转时间字符串
  *
- *  @param second 时间戳
+ *  @param time 时间戳
  *
  *  @return 返回date
  */
@@ -140,7 +140,7 @@ typedef enum _RelDic
 /**
  *  检验银行卡号
  *
- *  @param cardNo <#cardNo description#>
+ *  @param bankCard <#cardNo description#>
  *
  *  @return <#return value description#>
  */

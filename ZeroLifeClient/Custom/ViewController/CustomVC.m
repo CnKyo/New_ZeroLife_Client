@@ -37,11 +37,28 @@
     [super loadView];
     
 }
+- (UIStatusBarStyle)preferredStatusBarStyle
 
+{
+    
+    return UIStatusBarStyleLightContent;
+    
+    //UIStatusBarStyleDefault = 0 黑色文字，浅色背景时使用
+    
+    //UIStatusBarStyleLightContent = 1 白色文字，深色背景时使用
+    
+}
+- (BOOL)prefersStatusBarHidden
+
+{
+    
+    return NO; //返回NO表示要显示，返回YES将hiden
+    
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    
+    [self setNeedsStatusBarAppearanceUpdate];
     
     self.view.backgroundColor = COLOR(247, 247, 247);
     navBarHairlineImageView = [self findHairlineImageViewUnder:self.navigationController.navigationBar];

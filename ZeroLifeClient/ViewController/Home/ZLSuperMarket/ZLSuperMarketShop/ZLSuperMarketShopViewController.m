@@ -347,6 +347,8 @@ static const CGFloat mTopH = 156;
     [mLeftTableView registerNib:nib forCellReuseIdentifier:@"mLeftCell"];
 
     
+    
+    
     mRightTableView = [UITableView new];
     mRightTableView.delegate = self;
     mRightTableView.dataSource = self;
@@ -512,7 +514,11 @@ static const CGFloat mTopH = 156;
         
         ZLSuperMarketShopLeftCellType *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
         
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        cell.selectedBackgroundView = [[UIView alloc] initWithFrame:cell.frame];
+        
+        cell.selectedBackgroundView.backgroundColor = [UIColor colorWithRed:0.84 green:0.84 blue:0.84 alpha:1.00];
         
         if (indexPath.section == 0) {
             if (mLeftDataSource.mLeftType == 1) {
@@ -657,23 +663,88 @@ static const CGFloat mTopH = 156;
         ZLShopCampain *mCampObj = [ZLShopCampain new];
 
         if (indexPath.section == 0) {
+            
             if (mLeftDataSource.mLeftType == 1) {
                 
                 mCampObj = mLeftDataSource.mCampainArr[indexPath.row];
-                
                 [self upDateRightTableView:mShopObj.mShopMsg.shop_id andCampId:[NSString stringWithFormat:@"%d",mCampObj.cam_id] andClassId:nil andPage:1 andType:ZLRightGoodsTypeFromCamp];
                 
+                for (ZLShopCampain *mC in mLeftDataSource.mCampainArr) {
+                    if (mC.cam_id == mCampObj.cam_id) {
+                        mCampObj.isSelected = YES;
+                    }else{
+                        mCampObj.isSelected = NO;
+                    }
+                }
+                
+                [mLeftDataSource.mCampainArr replaceObjectAtIndex:indexPath.row withObject:mCampObj];
+                
+                
+                [tableView beginUpdates];
+                [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+                [tableView endUpdates];
+                
+                
+                
             }else if(mLeftDataSource.mLeftType == 2 ){
+                
                 mClassObj = mLeftDataSource.mClassArr[indexPath.row];
                 [self upDateRightTableView:mShopObj.mShopMsg.shop_id andCampId:nil andClassId:[NSString stringWithFormat:@"%d",mClassObj.cls_id] andPage:1 andType:ZLRightGoodsTypeFromClass];
+                
+                for (ZLShopClassify *mC in mLeftDataSource.mClassArr) {
+                    if (mC.cls_id == mClassObj.cls_id) {
+                        mClassObj.isSelected = YES;
+                    }else{
+                        mClassObj.isSelected = NO;
+                    }
+                }
+                
+                [mLeftDataSource.mClassArr replaceObjectAtIndex:indexPath.row withObject:mClassObj];
+                
+                
+                [tableView beginUpdates];
+                [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+                [tableView endUpdates];
+                
+                
             }else{
                 mCampObj = mLeftDataSource.mCampainArr[indexPath.row];
                 [self upDateRightTableView:mShopObj.mShopMsg.shop_id andCampId:[NSString stringWithFormat:@"%d",mCampObj.cam_id] andClassId:nil andPage:1 andType:ZLRightGoodsTypeFromCamp];
+                
+                for (ZLShopCampain *mC in mLeftDataSource.mCampainArr) {
+                    if (mC.cam_id == mCampObj.cam_id) {
+                        mCampObj.isSelected = YES;
+                    }else{
+                        mCampObj.isSelected = NO;
+                    }
+                }
+                
+                [mLeftDataSource.mCampainArr replaceObjectAtIndex:indexPath.row withObject:mCampObj];
+                
+                
+                [tableView beginUpdates];
+                [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+                [tableView endUpdates];
 
             }
         }else{
                 mClassObj = mLeftDataSource.mClassArr[indexPath.row];
             [self upDateRightTableView:mShopObj.mShopMsg.shop_id andCampId:nil andClassId:[NSString stringWithFormat:@"%d",mClassObj.cls_id] andPage:1 andType:ZLRightGoodsTypeFromClass];
+
+            for (ZLShopClassify *mC in mLeftDataSource.mClassArr) {
+                if (mC.cls_id == mClassObj.cls_id) {
+                    mClassObj.isSelected = YES;
+                }else{
+                    mClassObj.isSelected = NO;
+                }
+            }
+            
+            [mLeftDataSource.mClassArr replaceObjectAtIndex:indexPath.row withObject:mClassObj];
+            
+            
+            [tableView beginUpdates];
+            [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [tableView endUpdates];
 
         }
 

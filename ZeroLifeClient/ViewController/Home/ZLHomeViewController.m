@@ -599,51 +599,93 @@
 - (void)ZLHomeScrollerTableViewCellDidSelectedWithIndex:(NSInteger)mIndex{
 
     MLLog(@"点击了第:%ld个",(long)mIndex);
-    if (mIndex == 0) {
-        LifePayVC *vc = [[LifePayVC alloc] init];
-        vc.hidesBottomBarWhenPushed = YES;
-        [self pushViewController:vc];
-        
-    } else if (mIndex == 1) {
-        ZLSuperMarketViewController *mSuperMarketVC = [ZLSuperMarketViewController new];
-        mSuperMarketVC.mType = ZLShopTypeSuperMarket;
-        mSuperMarketVC.mLat = [NSString stringWithFormat:@"%f", mCommunityObj.cmut_lat];
-        mSuperMarketVC.mLng = [NSString stringWithFormat:@"%f", mCommunityObj.cmut_lng];
-        mSuperMarketVC.hidesBottomBarWhenPushed = YES;
-        [self pushViewController:mSuperMarketVC];
-        
-    }else if (mIndex == 2){
-        ZLTenementRepairsViewController *ZLFixVC = [ZLTenementRepairsViewController new];
-        ZLFixVC.hidesBottomBarWhenPushed = YES;
-        ZLFixVC.mType = ZLShopTypeFix;
-        ZLFixVC.mLat = [NSString stringWithFormat:@"%f", mCommunityObj.cmut_lat];
-        ZLFixVC.mLng = [NSString stringWithFormat:@"%f", mCommunityObj.cmut_lng];
-        [self pushViewController:ZLFixVC];
+    
+    ZLHomeFunctions *mFunc =  mFunctionArr[mIndex];
+    
+    switch (mFunc.fct_type) {
+        case ZLHomeFunctionTypeQuik:
+        {
+            LifePayVC *vc = [[LifePayVC alloc] init];
+            vc.hidesBottomBarWhenPushed = YES;
+            [self pushViewController:vc];
+
+        }
+            break;
+        case ZLHomeFunctionTypeSuperMarket:
+        {
+
+            ZLSuperMarketViewController *mSuperMarketVC = [ZLSuperMarketViewController new];
+            mSuperMarketVC.mType = ZLShopTypeSuperMarket;
+            mSuperMarketVC.mLat = [NSString stringWithFormat:@"%f", mCommunityObj.cmut_lat];
+            mSuperMarketVC.mLng = [NSString stringWithFormat:@"%f", mCommunityObj.cmut_lng];
+            mSuperMarketVC.hidesBottomBarWhenPushed = YES;
+            [self pushViewController:mSuperMarketVC];
+
+        }
+            break;
+        case ZLHomeFunctionTypeRepair:
+        {
+            
+            ZLTenementRepairsViewController *ZLFixVC = [ZLTenementRepairsViewController new];
+            ZLFixVC.hidesBottomBarWhenPushed = YES;
+            ZLFixVC.mType = ZLShopTypeFix;
+            ZLFixVC.mLat = [NSString stringWithFormat:@"%f", mCommunityObj.cmut_lat];
+            ZLFixVC.mLng = [NSString stringWithFormat:@"%f", mCommunityObj.cmut_lng];
+            [self pushViewController:ZLFixVC];
+
+        }
+            break;
+        case ZLHomeFunctionTypeHouseKeeping:
+        {
+            
+            DryCleanShopTVC *vc = [[DryCleanShopTVC alloc] init];
+            vc.hidesBottomBarWhenPushed = YES;
+            vc.mType = ZLShopTypeHouseKeeping;
+            vc.mLat = [NSString stringWithFormat:@"%f", mCommunityObj.cmut_lat];
+            vc.mLng = [NSString stringWithFormat:@"%f", mCommunityObj.cmut_lng];
+            [self pushViewController:vc];
+
+        }
+            break;
+        case ZLHomeFunctionTypeConvenience:
+        {
+            BianMingVC *vc = [[BianMingVC alloc] init];
+            vc.hidesBottomBarWhenPushed = YES;
+            [self pushViewController:vc];
+  
+
+        }
+            break;
+        case ZLHomeFunctionTypeRunningMan:
+        {
+
+            ZLRunningManViewController *ZLFixVC = [ZLRunningManViewController new];
+            ZLFixVC.hidesBottomBarWhenPushed = YES;
+            ZLFixVC.mAddress = mCommunityObj;
+            [self pushViewController:ZLFixVC];
+            
+        }
+            break;
+        case ZLHomeFunctionTypeNote:
+        {
+            
+            ZLAnounceMentViewController *vc = [[ZLAnounceMentViewController alloc] init];
+            vc.hidesBottomBarWhenPushed = YES;
+            [self pushViewController:vc];
+        }
+            break;
+        case ZLHomeFunctionTypeNeighbor:
+        {
+            
+            
+        }
+            break;
+            
+            
+        default:
+            break;
     }
-    else if (mIndex == 3) {
-        DryCleanShopTVC *vc = [[DryCleanShopTVC alloc] init];
-        vc.hidesBottomBarWhenPushed = YES;
-        vc.mType = ZLShopTypeHouseKeeping;
-        vc.mLat = [NSString stringWithFormat:@"%f", mCommunityObj.cmut_lat];
-        vc.mLng = [NSString stringWithFormat:@"%f", mCommunityObj.cmut_lng];
-        [self pushViewController:vc];
-    }
-	else if (mIndex == 5){
-        ZLRunningManViewController *ZLFixVC = [ZLRunningManViewController new];
-        ZLFixVC.hidesBottomBarWhenPushed = YES;
-        ZLFixVC.mAddress = mCommunityObj;
-        [self pushViewController:ZLFixVC];
-    }
-    else if (mIndex == 4) {
-        BianMingVC *vc = [[BianMingVC alloc] init];
-        vc.hidesBottomBarWhenPushed = YES;
-        [self pushViewController:vc];
-    }
-    else if (mIndex == 6) {
-        ZLAnounceMentViewController *vc = [[ZLAnounceMentViewController alloc] init];
-        vc.hidesBottomBarWhenPushed = YES;
-        [self pushViewController:vc];
-    }
+
 
 }
 #pragma mark ----****----banner点击方法
