@@ -560,6 +560,7 @@ return [NSString stringWithFormat:@"%@%@%@",kAFAppDotNetImgBaseURLString,kAFAppD
                     
                     [ZLUserInfo updateUserInfo:user];
                 }
+                [[NSNotificationCenter defaultCenter] postNotificationName:MyUserInfoChangedNotification object:nil];
                 callback(user, info);
             } else
                 callback(nil, info);
@@ -580,8 +581,8 @@ return [NSString stringWithFormat:@"%@%@%@",kAFAppDotNetImgBaseURLString,kAFAppD
     NSMutableDictionary* paramDic = [NSMutableDictionary dictionary];
     [paramDic setInt:it.user_id forKey:@"user_id"];
     [paramDic setInt:it.user_sex forKey:@"user_sex"];
-    [paramDic setNeedStr:it.user_nick forKey:@"user_nick_name"];
-    [paramDic setNeedStr:it.user_header forKey:@"user_header_url"];
+    [paramDic setNeedStr:it.user_nick forKey:@"user_nick"];
+    [paramDic setNeedStr:it.user_header forKey:@"user_header"];
     [self loadAPIWithTag:tag path:@"/user/user_edit" parameters:paramDic call:^(APIObject *info) {
         callback(info);
     }];

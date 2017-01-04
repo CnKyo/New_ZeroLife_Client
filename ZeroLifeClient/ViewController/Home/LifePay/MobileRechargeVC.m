@@ -159,6 +159,7 @@
         UIView *view = [superView newUIViewWithBgColor:[UIColor whiteColor]];
         UIImageView *imgView = [view newUIImageViewWithImg:IMG(@"MobileRechargeMoneyView_mobile.png")];
         UITextField *field = [view newUITextFieldWithPlaceholder:@"请输入手机号码"];
+        field.keyboardType = UIKeyboardTypePhonePad;
         self.mobileField = field;
         UIView *lineView = [view newDefaultLineView];
         UIButton *btn = [view newUIButton];

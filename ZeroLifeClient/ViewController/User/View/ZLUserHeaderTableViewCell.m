@@ -24,6 +24,9 @@
     
     self.paopaoProgressView.layer.masksToBounds = YES;
     self.paopaoProgressView.layer.cornerRadius = 2.5;
+    
+    self.userImgView.layer.cornerRadius = 80/2;
+    self.userImgView.layer.masksToBounds = YES;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

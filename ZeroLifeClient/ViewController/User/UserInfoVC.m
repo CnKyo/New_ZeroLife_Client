@@ -310,8 +310,9 @@
     [SVProgressHUD showWithStatus:@"头像上传中..."];
     [[APIClient sharedClient] fileUploadWithTag:self data:data type:kFileType_photo path:kFileUploadPath_Photo call:^(NSString *fileUrlStr, APIObject *info) {
         if (info.code == RESP_STATUS_YES) {
-            [self showErrorStatus:@"图片上传成功！"];
+            [self showSuccessStatus:@"图片上传成功！"];
             self.userLocalImg = img;
+            self.user.user_header = fileUrlStr;
             self.isDataEditChaged = YES;
             [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
         } else
