@@ -151,7 +151,7 @@
         reuseCellId = @"cell";
         
         ZLPPTOrderDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
-        
+        cell.mHStatus.text = mOrderDetail.odr_state_val;
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
