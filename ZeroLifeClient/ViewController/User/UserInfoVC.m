@@ -179,7 +179,7 @@
                 if (_userLocalImg != nil)
                     imgView.image = _userLocalImg;
                 else
-                    [imgView setImageWithURL:[NSURL URLWithString:_user.user_header] placeholderImage:IMG(@"cell_img_touxiang_defult.png")];
+                    [imgView setImageWithURL:[NSURL imageurl:_user.user_header] placeholderImage:IMG(@"cell_img_touxiang_defult.png")];
                 cell.accessoryView = imgView;
             }
                 break;

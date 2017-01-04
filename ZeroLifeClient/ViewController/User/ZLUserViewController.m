@@ -161,7 +161,7 @@
 {
     NSInteger row = 1;
     if (section == 2)
-        row = 4;
+        row = 3;
     return row;
 }
 
