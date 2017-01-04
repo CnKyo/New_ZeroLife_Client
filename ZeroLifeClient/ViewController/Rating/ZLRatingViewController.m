@@ -113,7 +113,7 @@
     
     cell.mTitle.text = [NSString stringWithFormat:@"订单号：%@", _orderItem.odr_code];
     cell.mContent.text = [NSString stringWithFormat:@"下单时间：%@", _orderItem.odr_add_time];
-    [cell.mImg setImageWithURL:[NSURL imageurl:_orderItem.shop_logo] placeholderImage:ZLDefaultShopImg];
+    [cell.mImg sd_setImageWithURL:[NSURL imageurl:_orderItem.shop_logo] placeholderImage:ZLDefaultShopImg];
     
     
     

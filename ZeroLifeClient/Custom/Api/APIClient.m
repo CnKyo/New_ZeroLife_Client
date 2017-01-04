@@ -2924,7 +2924,7 @@ return [NSString stringWithFormat:@"%@%@%@",kAFAppDotNetImgBaseURLString,kAFAppD
  
  @param block 返回值
  */
-#warning 这里缺省提交的订单类型枚举值（ZLCommitOrderType）
+//#warning 这里缺省提交的订单类型枚举值（ZLCommitOrderType）
 //- (void)ZLPhoneRecharge:(int)mRecharge andOrderType:(ZLCommitOrderType)mOrderType andPhone:(NSString *)mPhone andMoney:(NSString *)mMoney block:(void(^)(APIObject *mBaseObj))block{
 //
 //    

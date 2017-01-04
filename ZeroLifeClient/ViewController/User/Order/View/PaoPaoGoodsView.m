@@ -69,7 +69,7 @@
     self.nameLable.text = [NSString compIsNone:name];
     self.msgLable.text = [NSString compIsNone:msg];
     self.priceLable.text = [NSString stringWithFormat:@"酬金\n\n￥%.2f", money];
-    [self.imgView setImageWithURL:[NSURL imageurl:imgUrl] placeholderImage:ZLDefaultGoodsImg];
+    [self.imgView sd_setImageWithURL:[NSURL imageurl:imgUrl] placeholderImage:ZLDefaultGoodsImg];
 }
 
 //-(void)reloadUIWithItem:(OrderGoodsObject *)item

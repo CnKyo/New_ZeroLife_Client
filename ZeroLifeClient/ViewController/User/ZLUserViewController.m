@@ -213,10 +213,10 @@
                 [str appendFormat:@" %@", user.community.cmut_name];
             }
             cell.userNoteLable.text = str;
-            [cell.userImgView setImageWithURL:[NSURL imageurl:user.user_header] placeholderImage:IMG(@"user_header.png")];
+            [cell.userImgView sd_setImageWithURL:[NSURL imageurl:user.user_header] placeholderImage:IMG(@"user_header.png")];
 
             //判断跑跑信息
-            if ([user.openInfo.open_state isEqualToString:kOpenState_NOTOPEN] || [user.openInfo.open_state isEqualToString:kOpenState_PAYMENTED]) {
+            if (user.openInfo==nil || [user.openInfo.open_state isEqualToString:kOpenState_NOTOPEN] || [user.openInfo.open_state isEqualToString:kOpenState_PAYMENTED]) {
                 cell.paopaoRegisterView.hidden = NO;
                 cell.paopaoInfoView.hidden = YES;
             } else {
@@ -241,11 +241,13 @@
         
         //进入跑跑腿注册界面
         [cell.paopaoRegisterView jk_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
-            if ([user.openInfo.open_state isEqualToString:kOpenState_NOTOPEN]) {
+            if (user.openInfo==nil || [user.openInfo.open_state isEqualToString:kOpenState_NOTOPEN]) {
                 UserPaoPaoRegisterVC*vc = [[UserPaoPaoRegisterVC alloc] initWithNibName:@"UserPaoPaoRegisterVC" bundle:nil];
+                vc.hidesBottomBarWhenPushed = YES;
                 [self.navigationController pushViewController:vc animated:YES];
             } else if([user.openInfo.open_state isEqualToString:kOpenState_PAYMENTED]) {
                 UserPaoPaoApplyVC *vc = [UserPaoPaoApplyVC new];
+                vc.hidesBottomBarWhenPushed = YES;
                 [self.navigationController pushViewController:vc animated:YES];
             }
         }];
