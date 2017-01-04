@@ -80,7 +80,8 @@
         if (_isScoreView == NO) {
             UserRechargeMoneyVC *vc = [[UserRechargeMoneyVC alloc] init];
             [self.navigationController pushViewController:vc animated:YES];
-        }
+        } else
+            [SVProgressHUD showInfoWithStatus:@"建设中..."];
     }];
     
     if (_isScoreView == YES) {
