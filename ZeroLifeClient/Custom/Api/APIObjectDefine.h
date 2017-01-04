@@ -1704,3 +1704,13 @@
 
 
 
+
+
+#pragma mark-----****----店铺商品收藏web处理对象
+/// 店铺商品收藏web处理对象
+@interface ProductFocusWebBridgeObject : NSObject
+@property (assign,nonatomic) int                    user_id; //!< 用户id
+@property (assign,nonatomic) int                    pro_id;    //!< 商品id
+@property (assign,nonatomic) BOOL                   is_focus;    //!< 是否收藏 0未收藏 1已收藏
+@end
+

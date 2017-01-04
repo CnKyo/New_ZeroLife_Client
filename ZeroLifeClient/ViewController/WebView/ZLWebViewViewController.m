@@ -100,6 +100,29 @@
         responseCallback(@"Response from 333333");
         [self showSpeView];
     }];
+    
+    
+    [_bridge registerHandler:@"productFocus" handler:^(id data, WVJBResponseCallback responseCallback) {
+        NSLog(@"testObjcCallback called: %@", data);
+        NSString *str = @"{'user_id': '6', 'pro_id': '11', 'is_focus': '0'}";
+
+        ProductFocusWebBridgeObject *item = [ProductFocusWebBridgeObject mj_objectWithKeyValues:str];
+        BOOL newState = !item.is_focus;
+        if (item.is_focus == NO) {
+            [[APIClient sharedClient] productFocusAddWithTag:self pro_id:item.pro_id call:^(APIObject *info) {
+                if (info.code == RESP_STATUS_YES) {
+                    item.is_focus = newState;
+                    
+                    NSString *returnStr = [item mj_JSONString];
+                    responseCallback(returnStr);
+                    
+                    [SVProgressHUD showSuccessWithStatus:@"操作成功！"];
+                } else
+                    [SVProgressHUD showErrorWithStatus:@"操作失败！"];
+            }];
+        }
+
+    }];
 
     
     //activityView
