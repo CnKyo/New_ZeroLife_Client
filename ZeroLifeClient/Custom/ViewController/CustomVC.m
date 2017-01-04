@@ -534,7 +534,7 @@
 }
 
 - (void)ZLShowEmptyView:(NSString *)mText andImage:(NSString *)mImgName andHiddenRefreshBtn:(BOOL)mHidden{
-    self.hudView.indicatorViewSize = CGSizeMake(250, 200);
+    self.hudView.indicatorViewSize = CGSizeMake(120, 120);
     self.hudView.messageLabel.text = mText;
     self.hudView.refreshButton.hidden = mHidden;
     

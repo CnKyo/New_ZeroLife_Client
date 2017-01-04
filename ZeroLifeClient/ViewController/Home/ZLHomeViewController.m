@@ -157,14 +157,14 @@
 
     NSMutableArray *images = [NSMutableArray new];
     
-    [images addObject:[UIImage imageNamed:@"1"]];
-    [images addObject:[UIImage imageNamed:@"2"]];
-    [images addObject:[UIImage imageNamed:@"3"]];
+    [images addObject:[UIImage imageNamed:@"ZLGuideImg1"]];
+    [images addObject:[UIImage imageNamed:@"ZLGuideImg2"]];
+    [images addObject:[UIImage imageNamed:@"ZLGuideImg3"]];
     
     HcdGuideView *guideView = [HcdGuideView sharedInstance];
     guideView.window = window;
     [guideView showGuideViewWithImages:images
-                        andButtonTitle:@"立即体验"
+                        andButtonTitle:@" "
                    andButtonTitleColor:[UIColor whiteColor]
                       andButtonBGColor:[UIColor clearColor]
                   andButtonBorderColor:[UIColor whiteColor]];
@@ -509,8 +509,6 @@
     if (tableView == self.mTableView) {
         if (indexPath.section == 0) {
             reuseCellId = @"cell1";
-            
-            
             
             ZLHomeScrollerTableViewCell  *cell = [[ZLHomeScrollerTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseCellId andBannerDataSource:mBannerArr andDataSource:mFunctionArr];
             
