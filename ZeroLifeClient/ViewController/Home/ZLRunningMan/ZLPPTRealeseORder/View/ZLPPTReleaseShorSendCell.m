@@ -140,14 +140,23 @@
         if (mConnectP.length <= 1 || [mConnectP isEqualToString:@"(null)-(null)"]) {
             
             mConnectP = @"点击选择送出地址";
+            self.mSendDisplay.text = mConnectP;
             
+        }else{
+            self.mSendNamePhone.text = mConnectP;
+            self.mSendDisplay.text = nil;
+
         }
         if (mAddress.length <= 0 || [mAddress isEqualToString:@"(null)(null)(null)(null)"]) {
             mAddress = @"点击选择送出地址";
+            self.mSendDisplay.text = mAddress;
+        }else{
+            self.mSendAddress.text = mAddress;
+            self.mSendDisplay.text = nil;
+
+
         }
         
-        self.mSendNamePhone.text = mConnectP;
-        self.mSendAddress.text = mAddress;
 
     }
     if (mPreOrder.mArriveAddress) {
@@ -158,14 +167,19 @@
         if (mConnectP.length <= 1 || [mConnectP isEqualToString:@"(null)-(null)"]) {
             
             mConnectP = @"点击选择送达地址";
-            
+            self.mArriveDisplay.text = mConnectP;
+        }else{
+            self.mArriveNamePhone.text = mConnectP;
+            self.mArriveDisplay.text = nil;
         }
         if (mAddress.length <= 0 || [mAddress isEqualToString:@"(null)(null)(null)(null)"]) {
             mAddress = @"点击选择送达地址";
+            self.mArriveDisplay.text = mAddress;
+        }else{
+            self.mArriveAddress.text = mAddress;
+            self.mArriveDisplay.text = nil;
         }
-        
-        self.mArriveNamePhone.text = mConnectP;
-        self.mArriveAddress.text = mAddress;
+
         
     }
 }

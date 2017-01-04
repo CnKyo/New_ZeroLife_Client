@@ -10,8 +10,11 @@
 #import "HeaderView.h"
 #import "ChineseToPinyin.h"
 #import "ZLSearchArearView.h"
+#import <AMapLocationKit/AMapLocationKit.h>
+#import "CurentLocation.h"
+
 @interface ZLSelectArearViewController ()
-<UITableViewDataSource,UITableViewDelegate,ZLSearchViewSearchDelegate>
+<UITableViewDataSource,UITableViewDelegate,ZLSearchViewSearchDelegate,AMapLocationManagerDelegate,MMApBlockCoordinate>
 {
     UITableView                 *_tableView;
     NSMutableDictionary         *_newCityDic;
@@ -26,6 +29,10 @@
 @end
 
 @implementation ZLSelectArearViewController
+{
+    AMapLocationManager *mLocation;
+
+}
 @synthesize mCommunityAdd;
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -53,7 +60,6 @@
     [super reloadTableViewDataSource];
 
     
-    
     [[APIClient sharedClient] communityListWithTag:self location:CLLocationCoordinate2DMake(mCommunityAdd.cmut_lat, mCommunityAdd.cmut_lng) search:mSearchView.mSearchTx.text province:mCommunityAdd.cmut_province city:mCommunityAdd.cmut_city county:mCommunityAdd.cmut_county call:^(NSArray *tableArr, APIObject *info) {
     //[[APIClient sharedClient] ZLGetHomeCommunity:mCommunityAdd.cmut_lat andLng:mCommunityAdd.cmut_lng andSearchText:mSearchView.mSearchTx.text andProvinceId:mCommunityAdd.cmut_province andCityId:mCommunityAdd.cmut_city andCountryId:mCommunityAdd.cmut_county block:^(APIObject *mBaseObj, NSArray *mArr) {
         
@@ -65,11 +71,13 @@
 
             [self.tableArr addObjectsFromArray:tableArr];
             [self prepareCityListDatasourceWithArray:self.tableArr andToDictionary:_newCityDic];
-
+            
             
         }else{
             [self ZLShowEmptyView:info.msg andImage:nil andHiddenRefreshBtn:NO];
             [self showErrorStatus:info.msg];
+            [self loadAddress];
+
         }
         
         if (mType == 0) {
@@ -79,6 +87,48 @@
         }
     }];
     
+}
+#pragma mark----****----加载地址
+- (void)loadAddress{
+    
+    [CurentLocation sharedManager].delegate = self;
+    [[CurentLocation sharedManager] getUSerLocation];
+    
+    mLocation = [[AMapLocationManager alloc] init];
+    mLocation.delegate = self;
+    [mLocation setDesiredAccuracy:kCLLocationAccuracyHundredMeters];
+    mLocation.locationTimeout = 3;
+    mLocation.reGeocodeTimeout = 3;
+    [mLocation requestLocationWithReGeocode:YES completionBlock:^(CLLocation *location, AMapLocationReGeocode *regeocode, NSError *error) {
+        if (error)
+        {
+            NSString *eee =@"您点得太快了哦，稍等一下下吧～～";
+            
+            [self showErrorStatus:eee];
+            MLLog(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
+        }
+        
+        
+        if (regeocode)
+        {
+            
+            MLLog(@"location:%f", location.coordinate.latitude);
+            
+            mCommunityAdd.cmut_lat = location.coordinate.latitude;
+            mCommunityAdd.cmut_lng = location.coordinate.longitude;
+            
+            MLLog(@"reGeocode:%@", regeocode);
+            
+            [self reloadTableViewDataSource];
+            
+        }
+    }];
+    
+}
+#pragma mark----maplitdelegate
+- (void)MMapreturnLatAndLng:(NSDictionary *)mCoordinate{
+    
+    MLLog(@"定位成功之后返回的东东：%@",mCoordinate);
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

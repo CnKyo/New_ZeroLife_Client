@@ -164,7 +164,7 @@
     HcdGuideView *guideView = [HcdGuideView sharedInstance];
     guideView.window = window;
     [guideView showGuideViewWithImages:images
-                        andButtonTitle:@" "
+                        andButtonTitle:@"立即开启"
                    andButtonTitleColor:[UIColor whiteColor]
                       andButtonBGColor:[UIColor clearColor]
                   andButtonBorderColor:[UIColor whiteColor]];
@@ -406,6 +406,7 @@
     
     MLLog(@"定位成功之后返回的东东：%@",mCoordinate);
 }
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

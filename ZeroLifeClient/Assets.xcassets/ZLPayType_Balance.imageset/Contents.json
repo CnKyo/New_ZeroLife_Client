@@ -2,17 +2,16 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "闪屏-1.jpg",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "闪屏.jpg",
+      "filename" : "物管费-确认支付R_yue.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "闪屏1242x2208.jpg",
+      "filename" : "物管费-确认支付R_yuex3.png",
       "scale" : "3x"
     }
   ],

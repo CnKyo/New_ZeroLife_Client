@@ -117,14 +117,22 @@
         if (mConnectP.length <= 1 || [mConnectP isEqualToString:@"(null)-(null)"]) {
             
             mConnectP = @"点击选择收货地址";
+            mHeaderView.mDisplayAddress.text = mConnectP;
+        }else{
+            mHeaderView.mName.text = mConnectP;
+            mHeaderView.mDisplayAddress.text = nil;
 
         }
         if (mAddress.length <= 0 || [mAddress isEqualToString:@"(null)"]) {
             mAddress = @"点击选择收货地址";
+            mHeaderView.mDisplayAddress.text = mAddress;
+
+        }else{
+            mHeaderView.mContent.text = mAddress;
+            mHeaderView.mDisplayAddress.text = nil;
+
         }
         
-        mHeaderView.mName.text = mConnectP;
-        mHeaderView.mContent.text = mAddress;
         
         
         return mHeaderView;

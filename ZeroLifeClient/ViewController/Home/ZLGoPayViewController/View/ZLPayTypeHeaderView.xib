@@ -15,7 +15,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cell_soukuan_item" translatesAutoresizingMaskIntoConstraints="NO" id="aA6-cc-bPc">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ZLPayType_Head" translatesAutoresizingMaskIntoConstraints="NO" id="aA6-cc-bPc">
                     <rect key="frame" x="162" y="20" width="50" height="50"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="1yf-PA-xIv"/>
@@ -60,6 +60,6 @@
         </view>
     </objects>
     <resources>
-        <image name="cell_soukuan_item" width="16" height="16"/>
+        <image name="ZLPayType_Head" width="38" height="38"/>
     </resources>
 </document>

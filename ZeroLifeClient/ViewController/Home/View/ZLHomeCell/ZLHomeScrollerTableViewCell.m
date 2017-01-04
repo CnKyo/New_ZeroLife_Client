@@ -46,7 +46,7 @@
                 [mImgUrl addObject:[Util currentSourceImgUrl:mBanner.bnr_image]];
             }
         
-            mScrollerView = [[RKImageBrowser alloc] initWithFrame:CGRectMake(0, 0, screen_width, 250)];
+            mScrollerView = [[RKImageBrowser alloc] initWithFrame:CGRectMake(0, 0, screen_width, 220)];
             mScrollerView.backgroundColor = [UIColor whiteColor];
             [mScrollerView setBrowserWithImagesArray:mImgUrl];
             __weak __typeof(self)weakSelf = self;
@@ -89,7 +89,7 @@
             //创建8个
             for (int i = 0; i < mDataSource.count; i++) {
                 if (i < 4) {
-                    CGRect frame = CGRectMake(i*screen_width/4, 0, screen_width/4, 80);
+                    CGRect frame = CGRectMake(i*screen_width/4-8, 0, screen_width/4, 80);
                     
                     ZLHomeFunctions *mFunc = mDataSource[i];
                     
@@ -104,7 +104,7 @@
                     mBgkView1Rect.size.height = 160/2;
                     mSRR.size.height = 178/2;
                 }else if(i<8){
-                    CGRect frame = CGRectMake((i-4)*screen_width/4, 80, screen_width/4, 80);
+                    CGRect frame = CGRectMake((i-4)*screen_width/4-8, 80, screen_width/4, 80);
                     ZLHomeFunctions *mFunc = mDataSource[i];
                     
                     NSString *title = mFunc.fct_name;
@@ -117,7 +117,7 @@
                     mBgkView1Rect.size.height = 160;
                     mSRR.size.height = 178;
                 }else if(i < 12){
-                    CGRect frame = CGRectMake((i-8)*screen_width/4, 0, screen_width/4, 80);
+                    CGRect frame = CGRectMake((i-8)*screen_width/4-8, 0, screen_width/4, 80);
                     ZLHomeFunctions *mFunc = mDataSource[i];
                     
                     NSString *title = mFunc.fct_name;
@@ -131,7 +131,7 @@
                     mSRR.size.height = 178;
                     
                 }else{
-                    CGRect frame = CGRectMake((i-12)*screen_width/4, 80, screen_width/4, 80);
+                    CGRect frame = CGRectMake((i-12)*screen_width/4-8, 80, screen_width/4, 80);
                     ZLHomeFunctions *mFunc = mDataSource[i];
                     
                     NSString *title = mFunc.fct_name;

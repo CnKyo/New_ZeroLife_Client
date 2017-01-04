@@ -117,14 +117,21 @@
     if (mConnectP.length <= 1 || [mConnectP isEqualToString:@"(null)-(null)"]) {
         
         mConnectP = @"点击选择收货地址";
+        self.mDisplayAddress.text = mConnectP;
+    }else{
+        self.mDisplayAddress.text = nil;
+        self.mAddressName.text = mConnectP;
         
     }
     if (mDetailAddress.length <= 0 || [mDetailAddress isEqualToString:@"(null)(null)(null)(null)"]) {
         mDetailAddress = @"点击选择收货地址";
+        self.mDisplayAddress.text = mConnectP;
+    }else{
+        self.mDisplayAddress.text = nil;
+        self.mAddressContent.text = mDetailAddress;
+        
     }
     
-    self.mAddressName.text = mConnectP;
-    self.mAddressContent.text = mDetailAddress;
     
     if (mPreOrder.mServiceTime.length <= 0) {
         mPreOrder.mServiceTime = @"选择服务时间";
