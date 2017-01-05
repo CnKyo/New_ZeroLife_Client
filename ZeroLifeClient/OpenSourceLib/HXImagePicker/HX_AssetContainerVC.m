@@ -648,7 +648,7 @@ static NSString *containerCellId = @"cellId";
 {
     [super viewWillDisappear:animated];
     [self.timer invalidate];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:18/255.0 green:183/255.0 blue:245/255.0 alpha:1]];
 }
 
