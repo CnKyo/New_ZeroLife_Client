@@ -36,7 +36,7 @@
         [self.tableArr removeAllObjects];
         [self ZLHideEmptyView];
         if (mBaseObj.code == RESP_STATUS_YES) {
-            [self showSuccessStatus:mBaseObj.msg];
+            [self dismiss];
 
             if (mList.list.count <= 0) {
                 [self ZLShowEmptyView:@"暂无数据" andImage:nil andHiddenRefreshBtn:NO];

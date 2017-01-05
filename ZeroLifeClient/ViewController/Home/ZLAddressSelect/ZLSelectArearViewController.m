@@ -75,7 +75,8 @@
                 [self showErrorStatus:@"暂无数据！"];
             }else{
             
-                [self showSuccessStatus:info.msg];
+//                [self showSuccessStatus:info.msg];
+                [self dismiss];
             }
             
         }else{
