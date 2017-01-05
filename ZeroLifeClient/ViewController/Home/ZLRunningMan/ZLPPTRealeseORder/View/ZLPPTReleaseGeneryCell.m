@@ -155,6 +155,8 @@
 
 - (void)setMPreOrder:(ZLCommitPPTPreOrder *)mPreOrder{
     
+    self.mDemandTx.placeholder = mPreOrder.mNotePlaceHolder;
+    
     if (mPreOrder.mArriveAddress) {
         
         NSString *mAddress = [NSString stringWithFormat:@"%@",mPreOrder.mArriveAddress.addr_address];

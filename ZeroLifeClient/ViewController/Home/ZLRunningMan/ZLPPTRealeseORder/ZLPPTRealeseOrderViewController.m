@@ -85,8 +85,8 @@
         
         if (mBaseObj.code == RESP_STATUS_YES) {
             
-            [self showSuccessStatus:@"验证成功!"];
-            
+//            [self showSuccessStatus:@"验证成功!"];
+            [self dismiss];
             mPPTPreOrder = mPreOrder;
             [self initSecondSectionView];
 
@@ -634,6 +634,7 @@
     mCommitPreOrder.mClassName = mClass.cls_name;
     mCommitPreOrder.mClassImg = mClass.cls_image;
     mCommitPreOrder.mTypeName = mClass.type_name;
+    mCommitPreOrder.mNotePlaceHolder = @"请尽可能详细的描述您的需求～～～";
     mType = [Util currentReleaseType:mClass.type_name];
     [self.tableView reloadData];
 }

@@ -1579,6 +1579,8 @@
 
 @property (strong,nonatomic) NSString*              mTypeName;  ///分类名称 
 
+@property (strong,nonatomic) NSString*              mNotePlaceHolder;  ///分类名称
+
 
 @end
 

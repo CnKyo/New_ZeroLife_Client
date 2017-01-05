@@ -204,14 +204,18 @@
     [[APIClient sharedClient] ZLGetRunningmanHomeList:self.mAddress.cmut_lat andLng:self.mAddress.cmut_lng andPage:self.page andPageSize:20 andClsId:mClass.cls_id block:^(APIObject *mBaseObj, ZLRunningmanHomeList *mList) {
         [mTempArr removeAllObjects];
         if (mBaseObj.code == RESP_STATUS_YES) {
-            [self showSuccessStatus:@"加载成功"];
+//            [self showSuccessStatus:@"加载成功"];
+            [self dismiss];
+
             [mTempArr addObjectsFromArray:mList.list];
             [self.tableView reloadData];
             if (mList.list.count<=0) {
+//                [self addEmptyView:self.tableView andType:ZLEmptyViewTypeWithCommon];
                 [self addEmptyView:self.tableView andType:ZLEmptyViewTypeWithCommon];
             }
         }else{
             [self showErrorStatus:mBaseObj.msg];
+//            [self addEmptyView:self.tableView andType:ZLEmptyViewTypeWithCommon];
             [self addEmptyView:self.tableView andType:ZLEmptyViewTypeWithCommon];
         }
         
@@ -398,12 +402,33 @@
             break;
         case 1:
         {
-            OrderTVC *vc = [[OrderTVC alloc] init];
-            vc.classType = kOrderClassType_paopao;
-            vc.isShopOrderBool = YES;
-            [self.navigationController pushViewController:vc animated:YES];
-//            ZLPPTMyOrderViewController *vc = [ZLPPTMyOrderViewController new];
-//            [self pushViewController:vc];
+
+            if ([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"NOTOPEN"]) {
+                
+                [self showErrorStatus:@"您还未成为跑腿者，赶紧去申请吧～"];
+                [self performSelector:@selector(ZLRuuningManHomeHeaderSectionViewBtnClicked) withObject:nil afterDelay:0.25];
+                return;
+                
+            }else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"PAYMENTED"]){
+                UserPaoPaoApplyVC *vc = [UserPaoPaoApplyVC new];
+                [self pushViewController:vc];
+                
+            }
+            else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"UNCHECK"]){
+                [self showErrorStatus:@"待审核中..."];
+            } else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"REFUSE"]){
+                [self showErrorStatus:@"审核失败！"];
+            } else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"LOGOFF"]){
+                [self showErrorStatus:@"已注销！"];
+            } else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"LOCKED"]){
+                [self showErrorStatus:@"已禁用！"];
+            }else{
+                OrderTVC *vc = [[OrderTVC alloc] init];
+                vc.classType = kOrderClassType_paopao;
+                vc.isShopOrderBool = YES;
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+
         }
             break;
         case 2:

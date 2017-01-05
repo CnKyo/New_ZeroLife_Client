@@ -272,7 +272,7 @@
 }
 #pragma mark----****----显示规格view
 - (void)showSpeView{
-    
+    [self.mSpeAddArray removeAllObjects];
 
     mSpeView.mModel = _mClsGoodsObj;
     float mP = 0;

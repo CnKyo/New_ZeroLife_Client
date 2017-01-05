@@ -229,7 +229,7 @@
         
         [mShopArr removeAllObjects];
         if (mBaseObj.code == RESP_STATUS_YES) {
-            [self showSuccessStatus:mBaseObj.msg];
+            [self dismiss];
             [mShopArr addObjectsFromArray:mShopList.list];
             
         }else{
