@@ -493,6 +493,10 @@
         [self showErrorStatus:@"已注销！"];
     } else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:kOpenState_LOCKED]){
         [self showErrorStatus:@"已禁用！"];
+    }
+    else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"null"] || [ZLUserInfo ZLCurrentUser].openInfo.open_state == nil){
+        UserPaoPaoRegisterVC*vc = [[UserPaoPaoRegisterVC alloc] initWithNibName:@"UserPaoPaoRegisterVC" bundle:nil];
+        [self pushViewController:vc];
     }else{
 
         [self showWithStatus:@"正在操作中..."];

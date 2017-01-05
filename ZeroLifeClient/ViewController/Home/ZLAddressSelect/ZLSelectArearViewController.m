@@ -68,10 +68,15 @@
         [_newCityDic removeAllObjects];
         if (info.code == RESP_STATUS_YES) {
             
-
             [self.tableArr addObjectsFromArray:tableArr];
             [self prepareCityListDatasourceWithArray:self.tableArr andToDictionary:_newCityDic];
             
+            if (tableArr.count<=0) {
+                [self showErrorStatus:@"暂无数据！"];
+            }else{
+            
+                [self showSuccessStatus:info.msg];
+            }
             
         }else{
             [self ZLShowEmptyView:info.msg andImage:nil andHiddenRefreshBtn:NO];
