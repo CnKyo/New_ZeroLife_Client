@@ -64,16 +64,14 @@
     //[self.navigationController.navigationBar.subviews[2] setHidden:YES];
     [self.navigationController.navigationBar lt_setBackgroundColor:[UIColor clearColor]];
 
-
     [[NSNotificationCenter defaultCenter] postNotificationName:MyUserNeedUpdateNotification object:nil]; //更新一下用户数据
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUserInfoChange:) name:MyUserInfoChangedNotification object:nil];
 }
 
+
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-    
     
     self.tableView.delegate = self;
     [self scrollViewDidScroll:self.tableView];
@@ -216,10 +214,7 @@
             [cell.userImgView sd_setImageWithURL:[NSURL imageurl:user.user_header] placeholderImage:IMG(@"user_header.png")];
 
             //判断跑跑信息
-            if (user.openInfo==nil || [user.openInfo.open_state isEqualToString:kOpenState_NOTOPEN] || [user.openInfo.open_state isEqualToString:kOpenState_PAYMENTED]) {
-                cell.paopaoRegisterView.hidden = NO;
-                cell.paopaoInfoView.hidden = YES;
-            } else {
+            if ([user.openInfo.open_state isEqualToString:kOpenState_CHECKED]) {
                 cell.paopaoRegisterView.hidden = YES;
                 cell.paopaoInfoView.hidden = NO;
                 
@@ -229,6 +224,9 @@
                     progress = (float)user.openInfo.uopen_empiric_val / user.openInfo.max_experience;
                 cell.paopaoProgressView.progress = progress;
                 cell.paopaoLevelLable.text = [NSString stringWithFormat:@"LV%i", user.openInfo.uopen_rank];
+            } else {
+                cell.paopaoRegisterView.hidden = NO;
+                cell.paopaoInfoView.hidden = YES;
             }
         }
         
@@ -249,7 +247,8 @@
                 UserPaoPaoApplyVC *vc = [UserPaoPaoApplyVC new];
                 vc.hidesBottomBarWhenPushed = YES;
                 [self.navigationController pushViewController:vc animated:YES];
-            }
+            } else
+                [SVProgressHUD showInfoWithStatus:[NSString strDesWithOpenState:user.openInfo.open_state]];
         }];
         
         //进入登录界面

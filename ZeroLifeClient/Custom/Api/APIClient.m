@@ -960,13 +960,14 @@ return [NSString stringWithFormat:@"%@%@%@",kAFAppDotNetImgBaseURLString,kAFAppD
  *  @param pro_id           商品id
  *  @param callback         返回信息
  */
--(void)productFocusAddWithTag:(NSObject *)tag pro_id:(int)pro_id call:(void (^)(APIObject* info))callback
+-(void)productFocusAddWithTag:(NSObject *)tag pro_id:(int)pro_id is_focus:(BOOL)is_focus call:(void (^)(APIObject* info))callback
 {
     ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
     if (user.user_id > 0) {
         NSMutableDictionary *paramDic = [NSMutableDictionary dictionary];
         [paramDic setInt:user.user_id forKey:@"user_id"];
         [paramDic setInt:pro_id forKey:@"pro_id"];
+        [paramDic setObject:StringWithBool(is_focus) forKey:@"focus_type"];
         [self loadAPIWithTag:tag path:@"/shop/product_focus" parameters:paramDic call:^(APIObject *info) {
             callback(info);
         }];

@@ -103,7 +103,7 @@
             [SVProgressHUD showWithStatus:@"处理中..."];
             [[APIClient sharedClient] userApplyPaopaoWithTag:self item:_submmitItem call:^(APIObject *info) {
                 if (info.code == RESP_STATUS_YES) {
-                    [[NSNotificationCenter defaultCenter] postNotificationName:MyUserAddressNeedUpdateNotification object:nil];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:MyUserNeedUpdateNotification object:nil];
                     
                     [self performSelector:@selector(popViewController) withObject:nil afterDelay:0.5];
                     [SVProgressHUD showSuccessWithStatus:info.msg];
@@ -128,9 +128,9 @@
         self.submmitItem.uopen_head = user.user_header;
     }
     
-    self.submmitItem.uopen_name = @"老瞿";
-    self.submmitItem.uopen_phone = @"13637959618";
-    self.submmitItem.mat_document_number = @"500102198709303715";
+//    self.submmitItem.uopen_name = @"老瞿";
+//    self.submmitItem.uopen_phone = @"13637959618";
+//    self.submmitItem.mat_document_number = @"500102198709303715";
 }
 
 

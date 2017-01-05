@@ -148,7 +148,7 @@
         str = @"未提交资料-已支付押金";
     }
     else if ([state isEqualToString:kOpenState_UNCHECK]){
-        str = @"待审核";
+        str = @"等待审核";
     }
     else if ([state isEqualToString:kOpenState_CHECKED]){
         str = @"审核通过";

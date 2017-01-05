@@ -10,7 +10,7 @@
 #import "UserRechargeMoneyVC.h"
 #import "CustomWebVC.h"
 #import "ZLGoPayViewController.h"
-
+#import "UserPaoPaoApplyVC.h"
 
 @interface UserPaoPaoRegisterVC ()
 @property(nonatomic,strong) PrePaopaoApplyObject* item;
@@ -62,7 +62,7 @@
                 vc.mOrder = mOrder;
                 vc.mOrder.sign = _item.sign;
                 vc.paySuccessCallBack = ^(ZLGoPayViewController *payVC){
-                    [payVC performSelector:@selector(popViewController_2) withObject:nil afterDelay:0.2];
+                    [self performSelector:@selector(successAndPushNext) withObject:nil afterDelay:0.2];
                 };
                 [self pushViewController:vc];
                 
@@ -100,6 +100,17 @@
     [self.payBtn setTitle:[NSString stringWithFormat:@"支付￥%.2f保证金", _item.apply_money] forState:UIControlStateNormal];
 }
 
+
+-(void)successAndPushNext
+{
+    NSMutableArray *arr = [NSMutableArray array];
+    [arr addObject:[self.navigationController.viewControllers objectAtIndex:0]];
+    
+    UserPaoPaoApplyVC *vc111 = [UserPaoPaoApplyVC new];
+    vc111.hidesBottomBarWhenPushed = YES;
+    [arr addObject:vc111];
+    [self.navigationController setViewControllers:arr animated:YES];
+}
 /*
 #pragma mark - Navigation
 

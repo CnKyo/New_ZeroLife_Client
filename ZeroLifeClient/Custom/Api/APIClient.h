@@ -125,7 +125,7 @@ typedef void (^TableShareSdkBlock)(int totalpage, NSArray *tableArr, APIShareSdk
 
 
 //用户收藏商品相关接口
--(void)productFocusAddWithTag:(NSObject *)tag pro_id:(int)pro_id call:(void (^)(APIObject* info))callback;
+-(void)productFocusAddWithTag:(NSObject *)tag pro_id:(int)pro_id is_focus:(BOOL)is_focus call:(void (^)(APIObject* info))callback;
 -(void)productFocusDelWithTag:(NSObject *)tag foc_id:(int)foc_id call:(void (^)(APIObject* info))callback;
 -(void)productFocusListWithTag:(NSObject *)tag page:(int)page call:(TablePageArrBlock)callback;
 
