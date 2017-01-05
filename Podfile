@@ -48,7 +48,7 @@ target 'ZeroLifeClient' do
   pod 'RSKImageCropper'
   pod 'WebViewJavascriptBridge'
   pod 'CardIO'
-
+  pod 'DZNEmptyDataSet'
 
 
 end

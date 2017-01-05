@@ -184,6 +184,10 @@
     [self initStaticData];
 
 }
+- (void)reloadTableViewData{
+
+    [self loadTableData:0];
+}
 - (void)loadTableData:(NSInteger)mIndex{
     
     if (mIndex<=0) {
@@ -203,8 +207,12 @@
             [self showSuccessStatus:@"加载成功"];
             [mTempArr addObjectsFromArray:mList.list];
             [self.tableView reloadData];
+            if (mList.list.count<=0) {
+                [self addEmptyView:self.tableView andType:ZLEmptyViewTypeWithCommon];
+            }
         }else{
             [self showErrorStatus:mBaseObj.msg];
+            [self addEmptyView:self.tableView andType:ZLEmptyViewTypeWithCommon];
         }
         
     }];

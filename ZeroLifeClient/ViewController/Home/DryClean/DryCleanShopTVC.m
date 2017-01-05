@@ -42,6 +42,9 @@
     [self setTableViewHaveHeader];
 
 }
+- (void)reloadTableViewData{
+    [self reloadTableViewDataSource];
+}
 - (void)reloadTableViewDataSource{
     [super reloadTableViewDataSource];
     
@@ -53,11 +56,14 @@
         if (mBaseObj.code == RESP_STATUS_YES) {
             
             [self.tableArr addObjectsFromArray:mShopHome.classify];
+            
             [self loadData];
+            
+            
         }else{
             
             [self showErrorStatus:mBaseObj.msg];
-            [self ZLShowEmptyView:mBaseObj.msg andImage:nil andHiddenRefreshBtn:NO];
+            [self addEmptyView:self.tableView andType:ZLEmptyViewTypeWithCommon];
         }
         
         [self doneHeaderRereshing];
