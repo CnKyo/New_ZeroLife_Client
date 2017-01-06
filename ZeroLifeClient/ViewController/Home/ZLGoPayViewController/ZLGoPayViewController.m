@@ -134,7 +134,7 @@
             
             if (mOrder.mPayType == ZLPayTypeWithBalance) {
             
-                ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+                //ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
                 
                 if ([[mBaseObj.data objectForKey:@"result_code"] isEqualToString:@"SUCCESS"]) {
                     self.mOrder.sign = [mBaseObj.data objectForKey:@"sign"];

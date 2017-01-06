@@ -236,8 +236,8 @@ return [NSString stringWithFormat:@"%@%@%@",kAFAppDotNetImgBaseURLString,kAFAppD
         APIShareSdkObject *info = nil;
         if (error == nil) {
             NSLog(@"\n\n ---APIObject----result:-----------%@", responseObject);
-                    NSString *result = [[NSString alloc] initWithData:responseObject  encoding:NSUTF8StringEncoding];
-                    NSLog(@"\n\n ---APIObject----result:-----------%@", result);
+//                    NSString *result = [[NSString alloc] initWithData:responseObject  encoding:NSUTF8StringEncoding];
+//                    NSLog(@"\n\n ---APIObject----result:-----------%@", result);
             info = [APIShareSdkObject mj_objectWithKeyValues:responseObject];
             if (info==nil)
                 info = [APIShareSdkObject infoWithErrorMessage:@"网络错误"];

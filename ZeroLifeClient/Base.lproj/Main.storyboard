@@ -114,7 +114,7 @@
                 <navigationController id="S3P-I2-NQ3" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="管家" image="ZLTabbar_My_Normal" selectedImage="ZLTabbar_My_Selected" id="lAb-U5-2jv"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ZeA-xO-5IL">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZeA-xO-5IL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -237,7 +237,7 @@
                                         <rect key="frame" x="0.0" y="218" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1Or-7L-2vQ" id="sJl-YY-Qjg">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bd1-4v-Wg1">
@@ -291,10 +291,10 @@
             </objects>
             <point key="canvasLocation" x="-167" y="1055"/>
         </scene>
-        <!--Cook View Controller-->
+        <!--Cook CategoryTVC-->
         <scene sceneID="scj-vE-4VA">
             <objects>
-                <viewController id="Njx-G0-Vbb" customClass="ZLCookViewController" sceneMemberID="viewController">
+                <viewController id="Njx-G0-Vbb" customClass="CookCategoryTVC" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9jS-mM-c0w"/>
                         <viewControllerLayoutGuide type="bottom" id="FGa-qn-bcN"/>
