@@ -8,6 +8,7 @@
 
 #import "ChooseRank.h"
 #import "UIView+Extension.h"
+#import "APIObjectDefine.h"
 @implementation ChooseRank
 
 
@@ -49,7 +50,9 @@
     float viewHeight = 0;
     for (int i = 0; i < self.rankArray.count; i++) {
         
-        NSString *btnName = self.rankArray[i];
+        ZLSpeObj *mSku = self.rankArray[i];
+        
+        NSString *btnName = mSku.mSpeGoodsName;
         
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         [btn setBackgroundColor:BackgroundColor];
@@ -92,7 +95,7 @@
         
         [self.btnView addSubview:btn];
         
-        btn.tag = 10000+i;
+        btn.tag = mSku.mSku.sku_id;
         
         
         //        if ([btnName isEqualToString:self.selectStr])
@@ -130,9 +133,9 @@
     
     self.selectBtn = btn;
 
-    if ([self.delegate respondsToSelector:@selector(selectBtnTitle:andBtn:)]) {
+    if ([self.delegate respondsToSelector:@selector(selectBtnTitle:andBtn:andSkuId:)]) {
         
-        [self.delegate selectBtnTitle:btn.titleLabel.text andBtn:self.selectBtn];
+        [self.delegate selectBtnTitle:btn.titleLabel.text andBtn:self.selectBtn andSkuId:btn.tag];
     }
 }
 

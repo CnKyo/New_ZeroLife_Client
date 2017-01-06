@@ -10,7 +10,7 @@
 #import "CustomDefine.h"
 @protocol ChooseRankDelegate <NSObject>
 @required
--(void)selectBtnTitle:(NSString *)title andBtn:(UIButton *)btn;
+-(void)selectBtnTitle:(NSString *)title andBtn:(UIButton *)btn andSkuId:(NSInteger)mskuId;
 
 @end
 
