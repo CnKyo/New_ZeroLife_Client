@@ -395,10 +395,16 @@
         else
             [self.tableArr removeAllObjects];
         
-        if (info.code != RESP_STATUS_YES)
+        if (info.code != RESP_STATUS_YES){
             self.errMsg = info.msg!=nil ? info.msg : @"网络错误";
-        else
+            [self addEmptyView:self.tableView andType:ZLEmptyViewTypeWithNoError];
+        }
+        else{
             self.errMsg = @"暂无数据";
+            [self addEmptyView:self.tableView andType:ZLEmptyViewTypeWithCommon];
+        }
+        
+        
     }
 
     [self doneLoadingTableViewData];
