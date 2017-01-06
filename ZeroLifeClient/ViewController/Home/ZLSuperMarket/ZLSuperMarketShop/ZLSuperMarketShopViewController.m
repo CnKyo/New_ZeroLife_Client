@@ -2051,7 +2051,10 @@ static const CGFloat mTopH = 156;
         for (ZLSpeObj *mSku in mSpe.mSpeArr) {
             
             if (self.mAddSkuArray.count <= 0) {
-                [self.mAddSkuArray addObject:mSku];
+                if (mSku.mSku.sku_id == mskuId) {
+                    [self.mAddSkuArray addObject:mSku];
+
+                }
             }else{
                 for (int i = 0;i<self.mAddSkuArray.count;i++) {
 
@@ -2063,7 +2066,10 @@ static const CGFloat mTopH = 156;
                         [self.mAddSkuArray addObject:mSku];
                         
                     }else{
-                        [self.mAddSkuArray addObject:mSku];
+                        if (mSku.mSku.sku_id == mskuId) {
+                            [self.mAddSkuArray addObject:mSku];
+                            
+                        }
                         
                     }
                     if (mSku.mSku.sta_required == 1) {
@@ -2071,8 +2077,6 @@ static const CGFloat mTopH = 156;
                         [self UpdateSpeViewPage:mGoodObj.img_url andGoodsName:mGoodObj.pro_name andGoodsPrice:mSku.mSku.sku_price andSkuCount:mSku.mSku.sku_stock andGoodsNum:mGoodObj.mNum];
                         
                     }
-
-                    
                     
                 }
             }
