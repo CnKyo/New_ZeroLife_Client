@@ -71,7 +71,7 @@
     [[APIClient sharedClient] ZLGetVerigyCode:mView.mRegistPhoneTx.text andType:1 block:^(APIObject *mBaseObj) {
         [self dismiss];
         if (mBaseObj.code == RESP_STATUS_YES) {
-            [self showSuccessStatus:mBaseObj.msg];
+            [self dismiss];
             [self timeCount];
         }else{
         

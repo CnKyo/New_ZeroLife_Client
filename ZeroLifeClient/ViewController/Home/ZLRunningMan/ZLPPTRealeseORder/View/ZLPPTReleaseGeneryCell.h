@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "APIObjectDefine.h"
-
+#import <IQTextView.h>
 /**
  设置代理
  */
@@ -54,7 +54,7 @@
 
 #pragma mark----****----通用cell1
 ///需求tx
-@property (weak, nonatomic) IBOutlet UITextView *mDemandTx;
+@property (weak, nonatomic) IBOutlet IQTextView *mDemandTx;
 ///价格tx
 @property (weak, nonatomic) IBOutlet UITextField *mProductPrice;
 

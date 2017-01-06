@@ -89,7 +89,7 @@
         [self ZLHideEmptyView];
         
         if (mBaseObj.code == RESP_STATUS_YES) {
-            [self showSuccessStatus:mBaseObj.msg];
+            [self dismiss];
             
             [self.tableArr addObjectsFromArray:mArr];
         }else{

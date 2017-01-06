@@ -312,6 +312,10 @@
     [self.mTableView reloadData];
     [self.mTableView.mj_header endRefreshing];
 }
+- (void)reloadTableViewData{
+
+    [self reloadTableViewDataSource];
+}
 #pragma mark----****----加载数据
 - (void)reloadTableViewDataSource{
 
@@ -337,7 +341,8 @@
         }else{
         
             [self showErrorStatus:mBaseObj.msg];
-            [self ZLShowEmptyView:mBaseObj.msg andImage:nil andHiddenRefreshBtn:NO];
+            
+            [self addEmptyView:_mTableView andType:ZLEmptyViewTypeWithNoNet];
         }
         [self endHeaderRereshing];
 

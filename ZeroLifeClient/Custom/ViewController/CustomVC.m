@@ -129,7 +129,10 @@
         self.tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
         self.tableView.tableFooterView = [[UIView alloc] init];
         self.tableView.backgroundColor = COLOR(247, 247, 247);
-        
+        self.tableView.emptyDataSetSource = self;
+        self.tableView.emptyDataSetDelegate = self;
+        self.tableView.tableFooterView = [UIView new];
+
         [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
 //            make.edges.equalTo(self.view);
 //            make.height.equalTo(self.view.mas_height);
@@ -152,7 +155,9 @@
         self.tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
         self.tableView.tableFooterView = [[UIView alloc] init];
         self.tableView.backgroundColor = COLOR(247, 247, 247);
-
+        self.tableView.emptyDataSetSource = self;
+        self.tableView.emptyDataSetDelegate = self;
+        self.tableView.tableFooterView = [UIView new];
         [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self.view);
             make.height.equalTo(self.view.mas_height);
@@ -549,7 +554,21 @@
         [SVProgressHUD dismiss];
     });
 }
+- (void)addEmptyView:(UITableView *)mTableView andType:(ZLEmptyViewType)mType{
+    
+    if (mTableView == self.tableView) {
+        [self.tableView reloadEmptyDataSet];
 
+    }else{
+        
+        mTableView.emptyDataSetSource = self;
+        mTableView.emptyDataSetDelegate = self;
+        [mTableView reloadEmptyDataSet];
+
+    }
+    
+    self.mEmptyType = mType;
+}
 - (void)ZLShowEmptyView:(NSString *)mText andImage:(NSString *)mImgName andHiddenRefreshBtn:(BOOL)mHidden{
     self.hudView.indicatorViewSize = CGSizeMake(120, 120);
     self.hudView.messageLabel.text = mText;
@@ -581,5 +600,139 @@
 ///重新加载数据
 - (void)reloadTableViewData{
 
+}
+#pragma mark----****----DZNEmptyviewDelegate
+///返回单张图片
+- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
+    
+    UIImage *mImg = [UIImage new];
+    
+    switch (self.mEmptyType) {
+        case ZLEmptyViewTypeWithNoNet:
+        {
+            mImg = [UIImage imageNamed:@"ZLNoNet"];
+        }
+            break;
+        case ZLEmptyViewTypeWithCommon:
+        {
+            mImg = [UIImage imageNamed:@"ZLNoCollect"];
+
+        }
+            break;
+        case ZLEmptyViewTypeWithNoData:
+        {
+            mImg = [UIImage imageNamed:@"ZLNoOrder"];
+
+            
+        }
+            break;
+        case ZLEmptyViewTypeWithNoError:
+        {
+            mImg = [UIImage imageNamed:@"ZLNoSystem"];
+        }
+            break;
+        default:
+            break;
+    }
+
+    
+    return mImg;
+}
+///返回标题文字
+- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
+    
+    NSString *text = nil;
+    UIFont *font = nil;
+    UIColor *textColor = nil;
+    
+    NSMutableDictionary *attributes = [NSMutableDictionary new];
+    
+    switch (self.mEmptyType) {
+        case ZLEmptyViewTypeWithNoNet:
+        {
+            text = @"啊哦，您要的东西飞走了哦～～";
+            font = [UIFont boldSystemFontOfSize:16.0];
+            textColor = [UIColor lightGrayColor];
+            [attributes setObject:@(-0.10) forKey:NSKernAttributeName];
+        }
+            break;
+        case ZLEmptyViewTypeWithCommon:
+        {
+            text = @"额，什么都没有～～";
+            font = [UIFont boldSystemFontOfSize:16.0];
+            textColor = [UIColor lightGrayColor];
+            [attributes setObject:@(-0.10) forKey:NSKernAttributeName];
+        }
+            break;
+        case ZLEmptyViewTypeWithNoData:
+        {
+            text = @"真的，我这里什么都没有了～～";
+            font = [UIFont boldSystemFontOfSize:16.0];
+            textColor = [UIColor lightGrayColor];
+            [attributes setObject:@(-0.10) forKey:NSKernAttributeName];
+
+        }
+            break;
+        case ZLEmptyViewTypeWithNoError:
+        {
+            text = @"哎呀，出错了呀～～";
+            font = [UIFont boldSystemFontOfSize:16.0];
+            textColor = [UIColor lightGrayColor];
+            [attributes setObject:@(-0.10) forKey:NSKernAttributeName];
+        }
+            break;
+        default:
+            break;
+    }
+    
+    if (!text) {
+        return nil;
+    }
+    
+    if (font) [attributes setObject:font forKey:NSFontAttributeName];
+    if (textColor) [attributes setObject:textColor forKey:NSForegroundColorAttributeName];
+    
+    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
+
+    
+}
+///返回详情文字
+- (NSAttributedString *)descriptionForEmptyDataSet:(UIScrollView *)scrollView {
+    NSString *text = @"点击下面的按钮重新试一下吧～～";
+    
+    NSMutableParagraphStyle *paragraph = [NSMutableParagraphStyle new];
+    paragraph.lineBreakMode = NSLineBreakByWordWrapping;
+    paragraph.alignment = NSTextAlignmentCenter;
+    
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:14.0f],
+                                 NSForegroundColorAttributeName: [UIColor lightGrayColor],
+                                 NSParagraphStyleAttributeName: paragraph};
+    
+    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
+}
+///返回可以点击的按钮 上面带文字
+- (NSAttributedString *)buttonTitleForEmptyDataSet:(UIScrollView *)scrollView forState:(UIControlState)state {
+
+
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont boldSystemFontOfSize:17.0f],NSForegroundColorAttributeName:[UIColor lightGrayColor]};
+    
+    return [[NSAttributedString alloc] initWithString:@"再试一次" attributes:attributes];
+}
+///返回可以点击的按钮 上面带图片
+- (UIImage *)buttonImageForEmptyDataSet:(UIScrollView *)scrollView forState:(UIControlState)state {
+    return [UIImage imageNamed:@"ni"];
+}
+///返回空白区域的颜色自定义
+- (UIColor *)backgroundColorForEmptyDataSet:(UIScrollView *)scrollView {
+    return [UIColor whiteColor];
+}
+//空白页点击事件
+- (void)emptyDataSetDidTapView:(UIScrollView *)scrollView {
+    [self reloadTableViewData];
+}
+
+//空白页按钮点击事件
+- (void)emptyDataSetDidTapButton:(UIScrollView *)scrollView {
+    [self reloadTableViewData];
 }
 @end

@@ -43,7 +43,9 @@
                 [self ZLShowEmptyView:@"暂无数 据" andImage:nil andHiddenRefreshBtn:NO];
 
             }else{
-                [self showSuccessStatus:mBaseObj.msg];
+                
+                [self dismiss];
+
                 [self.tableArr addObjectsFromArray:mHomeMsg.msgList];
             }
       

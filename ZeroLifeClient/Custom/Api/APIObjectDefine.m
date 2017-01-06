@@ -225,7 +225,7 @@
         if ([str hasPrefix:@"http://"] || [str hasPrefix:@"https://"])
             newStr =  str;
         else
-            newStr = [NSString stringWithFormat:@"%@%@", kAFAppDotNetImgBaseURLString, str];
+            newStr = [NSString stringWithFormat:@"%@/%@", kAFAppDotNetImgBaseURLString, str];
     }
     return newStr;
 }

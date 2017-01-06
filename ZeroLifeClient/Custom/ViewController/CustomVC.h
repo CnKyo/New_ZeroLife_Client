@@ -20,7 +20,17 @@
 #import "UIButton+CustomLocal.h"
 #import "APIClient.h"
 #import "ZLWebViewViewController.h"
-@interface CustomVC : UIViewController<UITableViewDataSource, UITableViewDelegate>
+
+
+typedef enum{
+
+    ZLEmptyViewTypeWithNoData,///没有数据
+    ZLEmptyViewTypeWithCommon,///通用view
+    ZLEmptyViewTypeWithNoNet,///无网络
+    ZLEmptyViewTypeWithNoError,///错误
+}ZLEmptyViewType;///空界面类型
+
+@interface CustomVC : UIViewController<UITableViewDataSource, UITableViewDelegate,DZNEmptyDataSetSource,DZNEmptyDataSetDelegate>
 
 @property(nonatomic,assign) BOOL                beginHeaderRereshingWhenViewWillAppear;
 @property(nonatomic,assign) BOOL				tableIsReloading;
@@ -28,7 +38,7 @@
 @property(nonatomic,strong) UITableView         *tableView;
 @property(nonatomic,strong) NSString            *errMsg;//错误信息输出
 @property(nonatomic,assign) int                 page;
-
+@property(nonatomic,assign) ZLEmptyViewType                 mEmptyType;
 
 /**
  设置左边的按钮
@@ -181,4 +191,5 @@
 ///重新加载数据
 - (void)reloadTableViewData;
 
+- (void)addEmptyView:(UITableView *)mTableView andType:(ZLEmptyViewType)mType;
 @end

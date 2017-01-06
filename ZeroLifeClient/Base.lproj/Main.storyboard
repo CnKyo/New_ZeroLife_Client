@@ -32,6 +32,7 @@
         <scene sceneID="6rn-g9-RRv">
             <objects>
                 <tabBarController id="KQS-Lb-Bhv" customClass="ZLTabBarController" sceneMemberID="viewController">
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="NZb-r2-XId">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -98,6 +99,7 @@
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
                         <outlet property="mTableView" destination="irI-pr-dmc" id="DeN-nD-N2u"/>
                     </connections>
@@ -112,7 +114,7 @@
                 <navigationController id="S3P-I2-NQ3" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="管家" image="ZLTabbar_My_Normal" selectedImage="ZLTabbar_My_Selected" id="lAb-U5-2jv"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZeA-xO-5IL">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ZeA-xO-5IL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -138,6 +140,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="jE4-Vk-1BS"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0jn-vD-ECY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -175,6 +178,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="aEH-pH-rqE"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jwp-MF-YMT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -301,6 +305,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="HNS-RA-iRT"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="em5-AU-HLI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -177,6 +177,9 @@
 		04866BA71DD41E08008DA56B /* ZLCommitOrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04866BA51DD41E08008DA56B /* ZLCommitOrderCell.xib */; };
 		04866BA91DD41E71008DA56B /* ZLCommitShopSectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04866BA81DD41E71008DA56B /* ZLCommitShopSectionView.xib */; };
 		04866BAB1DD425F8008DA56B /* ZLCommitGoodsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04866BAA1DD425F8008DA56B /* ZLCommitGoodsCell.xib */; };
+		0498DA411E1E4E4800DA131E /* ZLRunningManTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0498DA401E1E4E4800DA131E /* ZLRunningManTopView.m */; };
+		0498DA431E1E4E5200DA131E /* ZLRunningManTopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0498DA421E1E4E5100DA131E /* ZLRunningManTopView.xib */; };
+		0498DA451E1E4FB800DA131E /* ZLRunningManClassView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0498DA441E1E4FB800DA131E /* ZLRunningManClassView.xib */; };
 		049A120D1DE95D2A0087238D /* ZLSelectedCityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 049A120C1DE95D2A0087238D /* ZLSelectedCityViewController.m */; };
 		049A12111DE9821E0087238D /* ZLSpeSelectedViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 049A12101DE9821E0087238D /* ZLSpeSelectedViewCell.m */; };
 		049A12141DE982C00087238D /* ZLSpeSmallClassViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 049A12131DE982C00087238D /* ZLSpeSmallClassViewCell.m */; };
@@ -901,6 +904,10 @@
 		04866BA51DD41E08008DA56B /* ZLCommitOrderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLCommitOrderCell.xib; sourceTree = "<group>"; };
 		04866BA81DD41E71008DA56B /* ZLCommitShopSectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLCommitShopSectionView.xib; sourceTree = "<group>"; };
 		04866BAA1DD425F8008DA56B /* ZLCommitGoodsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLCommitGoodsCell.xib; sourceTree = "<group>"; };
+		0498DA3F1E1E4E4800DA131E /* ZLRunningManTopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLRunningManTopView.h; sourceTree = "<group>"; };
+		0498DA401E1E4E4800DA131E /* ZLRunningManTopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLRunningManTopView.m; sourceTree = "<group>"; };
+		0498DA421E1E4E5100DA131E /* ZLRunningManTopView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLRunningManTopView.xib; sourceTree = "<group>"; };
+		0498DA441E1E4FB800DA131E /* ZLRunningManClassView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLRunningManClassView.xib; sourceTree = "<group>"; };
 		049A120B1DE95D2A0087238D /* ZLSelectedCityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLSelectedCityViewController.h; sourceTree = "<group>"; };
 		049A120C1DE95D2A0087238D /* ZLSelectedCityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLSelectedCityViewController.m; sourceTree = "<group>"; };
 		049A120F1DE9821E0087238D /* ZLSpeSelectedViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLSpeSelectedViewCell.h; sourceTree = "<group>"; };
@@ -2348,6 +2355,10 @@
 				04B07E991DD96023004A7294 /* ZLRuuningManHomeHeaderSectionView.m */,
 				04B07E9B1DD9602E004A7294 /* ZLRuuningManHomeHeaderSectionView.xib */,
 				04B07EA21DD98570004A7294 /* ZLRuuningManHomeSecondSectionView.xib */,
+				0498DA3F1E1E4E4800DA131E /* ZLRunningManTopView.h */,
+				0498DA401E1E4E4800DA131E /* ZLRunningManTopView.m */,
+				0498DA421E1E4E5100DA131E /* ZLRunningManTopView.xib */,
+				0498DA441E1E4FB800DA131E /* ZLRunningManClassView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3556,7 +3567,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DFFAA7461DB744C5001CFBB5 /* Build configuration list for PBXNativeTarget "ZeroLifeClient" */;
 			buildPhases = (
-				E7CAA876B0CEF14DAC5272DC /* 📦 Check Pods Manifest.lock */,
+				E7CAA876B0CEF14DAC5272DC /* [CP] Check Pods Manifest.lock */,
 				8AC224CEAA60AF0D38E00797 /* [CP] Check Pods Manifest.lock */,
 				1B4D3CEB002661B9593DDC86 /* [CP] Check Pods Manifest.lock */,
 				3AD80649A67A16B6F8D6A7D8 /* [CP] Check Pods Manifest.lock */,
@@ -3781,6 +3792,7 @@
 				DFA135731DD6FBE000805BA2 /* bankCard_addBG@3x.png in Resources */,
 				DFE178611DD555C100E06F21 /* cell_address@2x.png in Resources */,
 				DF539F181DD5C01F00AF228F /* user_coupon_gray.png in Resources */,
+				0498DA431E1E4E5200DA131E /* ZLRunningManTopView.xib in Resources */,
 				DF08E8541DD16A13003E4DD9 /* MobileRechargeMoneyView_person@3x.png in Resources */,
 				DFE1788F1DD558B400E06F21 /* cell_address_myplace@2x.png in Resources */,
 				DFF9323A1DD98DF700BA8C8B /* dian_black@2x.png in Resources */,
@@ -3932,6 +3944,7 @@
 				DF08E8511DD16A13003E4DD9 /* MobileRechargeMoneyView_mobile@2x.png in Resources */,
 				DFE1787A1DD556D000E06F21 /* cell_about@3x.png in Resources */,
 				04B862B21DD5AEDF00BDEA59 /* ZLGoodsDetailCell2.xib in Resources */,
+				0498DA451E1E4FB800DA131E /* ZLRunningManClassView.xib in Resources */,
 				04721A091DE3E66C00CE8639 /* qrcode_ar_failed@2x.png in Resources */,
 				DF19C8C21E1643AB004560D7 /* ercode_default.png in Resources */,
 				DF29B69F1E11092D00CBAA3B /* icon_order_fee_mobile@2x.png in Resources */,
@@ -4118,14 +4131,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZeroLifeClient/Pods-ZeroLifeClient-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E7CAA876B0CEF14DAC5272DC /* 📦 Check Pods Manifest.lock */ = {
+		E7CAA876B0CEF14DAC5272DC /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4180,6 +4193,7 @@
 				DF08E8791DD1C072003E4DD9 /* UserAddressEditVC.m in Sources */,
 				04A8DA2D1DDAEC33000CE048 /* WKSegmentControl.m in Sources */,
 				0445AD7E1DD44CE600788779 /* ZLPayTypeTableViewCell.m in Sources */,
+				0498DA411E1E4E4800DA131E /* ZLRunningManTopView.m in Sources */,
 				04D07C151DF011F400A83CD9 /* ZLShopCampainSubView.m in Sources */,
 				0409178E1DCCA9D500DB2568 /* ZLSuperMarketShopCarView.m in Sources */,
 				DFF634C11DB873D200B5C917 /* ScrollModelVC.m in Sources */,

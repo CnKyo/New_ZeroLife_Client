@@ -51,7 +51,7 @@
     [[APIClient sharedClient] orderInfoWithTag:self odr_id:self.mOrder.odr_id odr_code:self.mOrder.odr_code call:^(OrderObject *item, APIObject *info) {
         [self ZLHideEmptyView];
         if (info.code == RESP_STATUS_YES) {
-            [self showSuccessStatus:info.msg];
+            [self dismiss];
             mOrderDetail = item;
         }else{
         

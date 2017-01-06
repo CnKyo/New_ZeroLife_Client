@@ -30,18 +30,22 @@
     [self setTableViewHaveHeaderFooter];
 
 }
+- (void)reloadTableViewData{
+
+    [self reloadTableViewDataSource];
+}
 - (void)reloadTableViewDataSource{
     [super reloadTableViewDataSource];
 
     [[APIClient sharedClient] ZLGetHomeAnouncement:self.page block:^(int totalPage, NSArray *tableArr, APIObject *info) {
 //        [self reloadWithTableArr:tableArr info:info];
         [self.tableArr removeAllObjects];
-        [self ZLHideEmptyView];
+//        [self ZLHideEmptyView];
         if (info.code == RESP_STATUS_YES) {
             [self.tableArr addObjectsFromArray:tableArr];
             
             if (tableArr.count<=0) {
-                [self ZLShowEmptyView:@"暂无数据！" andImage:nil andHiddenRefreshBtn:NO];
+                [self addEmptyView:self.tableView andType:ZLEmptyViewTypeWithCommon];
                 [self showSuccessStatus:@"暂无数据！"];
 
             }else{
@@ -52,7 +56,7 @@
         }else{
         
             [self showErrorStatus:info.msg];
-            [self ZLShowEmptyView:info.msg andImage:nil andHiddenRefreshBtn:NO];
+            [self addEmptyView:self.tableView andType:ZLEmptyViewTypeWithCommon];
         }
         [self doneLoadingTableViewData];
         [self.tableView reloadData];

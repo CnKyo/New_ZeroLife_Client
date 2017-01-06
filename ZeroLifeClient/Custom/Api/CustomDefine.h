@@ -26,6 +26,8 @@
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <Photos/Photos.h>
 #import "TXTimeChoose.h"
+#import "UIScrollView+EmptyDataSet.h"
+
 #define  KEY_USERNAME_PASSWORD @"com.company.app.usernamepassword"
 #define  KEY_USERNAME @"com.company.app.username"
 #define  KEY_PASSWORD @"com.company.app.password"
@@ -517,5 +519,9 @@ typedef enum {
     ZLShopLeftTypeClass = 2,///店铺左边类型分类
     
 }ZLShopLeftType;///店铺左边类型
+
+
+
+
 
 #endif /* CustomDefine_h */

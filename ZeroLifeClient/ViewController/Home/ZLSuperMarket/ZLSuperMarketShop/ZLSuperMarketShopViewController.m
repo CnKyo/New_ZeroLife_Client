@@ -165,6 +165,23 @@ static const CGFloat mTopH = 156;
     
 
 }
+- (void)reloadTableViewData{
+    if (mLeftDataArr.count!=0) {
+        ZLShopLeftObj *mNew = mLeftDataArr[0];
+        
+        if (mNew.mType == ZLShopLeftTypeCamp) {
+            
+            [self upDateRightTableView:mShopObj.mShopMsg.shop_id andCampId:[NSString stringWithFormat:@"%d",mNew.mId] andClassId:nil andPage:1 andType:ZLRightGoodsTypeFromCamp];
+            
+        }else{
+            
+            [self upDateRightTableView:mShopObj.mShopMsg.shop_id andCampId:nil andClassId:[NSString stringWithFormat:@"%d",mNew.mId] andPage:1 andType:ZLRightGoodsTypeFromClass];
+            
+        }
+        
+    }
+
+}
 - (void)loadData{
     [self showWithStatus:@"正在加载..."];
     
@@ -721,10 +738,17 @@ static const CGFloat mTopH = 156;
             [self dismiss];
 
             [mRightDataArr addObjectsFromArray:mShopGoodsObj.list];
+            
+            
+            if (mShopGoodsObj.list.count<=0) {
+                [self addEmptyView:mRightTableView andType:ZLEmptyViewTypeWithCommon];
+            }
+            
 
         }else{
         
             [self showErrorStatus:mBaseObj.msg];
+            [self addEmptyView:mRightTableView andType:ZLEmptyViewTypeWithCommon];
         }
         [mRightTableView reloadData];
 
