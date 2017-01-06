@@ -43,7 +43,9 @@
 #define ZLDefaultAvatorImg           [UIImage imageNamed:@"ZLDefault_Avator"]
 #define ZLDefaultClassImg           [UIImage imageNamed:@"ZLDefault_Green"]
 
-
+#define FONT(s)       [UIFont systemFontOfSize:s]
+#define BackgroundColor [UIColor colorWithRed:0.90 green:0.89 blue:0.90 alpha:1.00]
+#define MainColor        [UIColor colorWithRed:24/255.0f green:161/255.0f blue:76/255.0f alpha:1]
 #define ColorRGB(_R_, _G_, _B_)       ([UIColor colorWithRed:_R_/255.0f green:_G_/255.0f blue:_B_/255.0f alpha:1])
 
 #define COLOR(r,g,b)                [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:1]

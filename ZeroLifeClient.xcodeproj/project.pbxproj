@@ -82,6 +82,7 @@
 		044021AB1DF94A5800234066 /* ZLCustomImgButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 044021AA1DF94A5800234066 /* ZLCustomImgButton.m */; };
 		04427C3E1E1F6BF90030B010 /* ChooseRank.m in Sources */ = {isa = PBXBuildFile; fileRef = 04427C3B1E1F6BF90030B010 /* ChooseRank.m */; };
 		04427C3F1E1F6BF90030B010 /* ChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04427C3D1E1F6BF90030B010 /* ChooseView.m */; };
+		04427C451E1F90C60030B010 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 04427C441E1F90C60030B010 /* UIView+Extension.m */; };
 		0445AD791DD44AF300788779 /* ZLGoPayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0445AD781DD44AF300788779 /* ZLGoPayViewController.m */; };
 		0445AD7E1DD44CE600788779 /* ZLPayTypeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0445AD7C1DD44CE600788779 /* ZLPayTypeTableViewCell.m */; };
 		0445AD7F1DD44CE600788779 /* ZLPayTypeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0445AD7D1DD44CE600788779 /* ZLPayTypeTableViewCell.xib */; };
@@ -768,6 +769,8 @@
 		04427C3B1E1F6BF90030B010 /* ChooseRank.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseRank.m; sourceTree = "<group>"; };
 		04427C3C1E1F6BF90030B010 /* ChooseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseView.h; sourceTree = "<group>"; };
 		04427C3D1E1F6BF90030B010 /* ChooseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseView.m; sourceTree = "<group>"; };
+		04427C431E1F90C60030B010 /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
+		04427C441E1F90C60030B010 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
 		0445AD771DD44AF300788779 /* ZLGoPayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLGoPayViewController.h; sourceTree = "<group>"; };
 		0445AD781DD44AF300788779 /* ZLGoPayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLGoPayViewController.m; sourceTree = "<group>"; };
 		0445AD7B1DD44CE600788779 /* ZLPayTypeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPayTypeTableViewCell.h; sourceTree = "<group>"; };
@@ -1913,6 +1916,8 @@
 				04427C3B1E1F6BF90030B010 /* ChooseRank.m */,
 				04427C3C1E1F6BF90030B010 /* ChooseView.h */,
 				04427C3D1E1F6BF90030B010 /* ChooseView.m */,
+				04427C431E1F90C60030B010 /* UIView+Extension.h */,
+				04427C441E1F90C60030B010 /* UIView+Extension.m */,
 			);
 			path = ChooseSpeView;
 			sourceTree = "<group>";
@@ -4439,6 +4444,7 @@
 				04B862A01DD5732B00BDEA59 /* ZLGoodsDetailWithWeb.m in Sources */,
 				04721A501DE4569100CE8639 /* LHRatingView.m in Sources */,
 				DFF9323E1DD9978000BA8C8B /* TopLeftLabel.m in Sources */,
+				04427C451E1F90C60030B010 /* UIView+Extension.m in Sources */,
 				04770EEF1DDE99A9008B7505 /* ZLLoginViewController.m in Sources */,
 				047219F51DE3E66C00CE8639 /* HX_AssetContainerViewCell.m in Sources */,
 				04D64D6C1DC9CCA5004E8859 /* ZLHomeLocationView.m in Sources */,

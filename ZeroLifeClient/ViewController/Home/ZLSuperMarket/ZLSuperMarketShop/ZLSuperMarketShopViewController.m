@@ -36,10 +36,11 @@
 #import "ZLSuperMarketCommitOrderViewController.h"
 #import "UIImage+ImageEffects.h"
 
-
+#import "ChooseView.h"
+#import "ChooseRank.h"
 static const CGFloat mTopH = 156;
 
-@interface ZLSuperMarketShopViewController ()<UITableViewDelegate,UITableViewDataSource,ZLSuperMarketShopDelegate,ZLSuperMarketGoodsCellDelegate,UIScrollViewDelegate,ZLSuperMarketShopCarDelegate,ZLSuperMarketGoodsSpecDelegate,UICollectionViewDelegate,ZLHouseKeppingServiceCellDelegate,ZLSpeSelectedViewCellDelegate,StandardsViewDelegate,ZLSKUCellDelegate,LDXScoreDelegate,mCheckMoreActivityViewDelegate>
+@interface ZLSuperMarketShopViewController ()<UITableViewDelegate,UITableViewDataSource,ZLSuperMarketShopDelegate,ZLSuperMarketGoodsCellDelegate,UIScrollViewDelegate,ZLSuperMarketShopCarDelegate,ZLSuperMarketGoodsSpecDelegate,UICollectionViewDelegate,ZLHouseKeppingServiceCellDelegate,ZLSpeSelectedViewCellDelegate,StandardsViewDelegate,ZLSKUCellDelegate,LDXScoreDelegate,mCheckMoreActivityViewDelegate,ChooseRankDelegate,ChooseViewDeleagate>
 
 /**
  规格瀑布流
@@ -61,7 +62,12 @@ static const CGFloat mTopH = 156;
 
 @property(strong,nonatomic)ZLSpeHeaderView *mSpeHeaderView;
 
+@property(nonatomic,strong)ChooseView *chooseView;
+@property(nonatomic,strong)ChooseRank *chooseRank;
 
+@property(nonatomic,strong)NSMutableArray *rankArray;
+@property(nonatomic,strong)NSArray *standardList;
+@property(nonatomic,strong)NSArray *standardValueList;
 
 @end
 
@@ -117,7 +123,14 @@ static const CGFloat mTopH = 156;
     [self updateBottomView:mAddShopCarEx];
 
 }
-
+-(NSMutableArray *)rankArray{
+    
+    if (_rankArray == nil) {
+        
+        _rankArray = [[NSMutableArray alloc] init];
+    }
+    return _rankArray;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -832,8 +845,8 @@ static const CGFloat mTopH = 156;
             
             [self.mSelectedSpeArray removeAllObjects];
             [self.mSelectedSpeArray addObject:mRightDataArr[mIndexPath.row]];
-            [self showSpeView:mIndexPath];
-
+//            [self showSpeView:mIndexPath];
+            [self initChooseView:mIndexPath];
         }
             break;
             
@@ -1879,5 +1892,120 @@ static const CGFloat mTopH = 156;
     mMoreCampView.mContent.text = [NSString stringWithFormat:@"营业时间：%@-%@",mShop.mShopMsg.ext_open_time,mShop.mShopMsg.ext_close_time];
     
 }
+
+
+-(void)initChooseView:(NSIndexPath *)mIndexPath{
+    
+    self.standardList = @[@"颜色",@"尺寸",@"款式",@"领口"];
+    self.standardValueList = @[@[@"紫色",@"灰灰灰灰灰",@"蓝蓝蓝",@"黄黄",@"红红红红红红红红"],@[@"xxx",@"xxxx",@"xxxxx",@"xxxxxxx",@"xxxxxxxx",@"xxxxxxx",@"xxx",@"xxxxxxxxxxxx"],@[@"长款",@"中长款",@"短款"],@[@"圆领",@"立领",@"V领"]];
+    
+    self.chooseView = [[ChooseView alloc] initWithFrame:CGRectMake(0, DEVICE_Height, DEVICE_Width, DEVICE_Height)];
+    self.chooseView.delegate = self;
+    self.chooseView.headImage.image = [UIImage imageNamed:@"bingli"];
+    self.chooseView.LB_price.text = @"￥36.00";
+    self.chooseView.LB_stock.text = [NSString stringWithFormat:@"库存%@件",@56];
+    self.chooseView.LB_detail.text = @"请选择商品规格";
+    [self.view addSubview:self.chooseView];
+    
+    
+    CGFloat maxY = 0;
+    CGFloat height = 0;
+    for (int i = 0; i < self.standardList.count; i ++)
+    {
+        
+        self.chooseRank = [[ChooseRank alloc] initWithTitle:self.standardList[i] titleArr:self.standardValueList[i] andFrame:CGRectMake(0, maxY, DEVICE_Width, 40)];
+        maxY = CGRectGetMaxY(self.chooseRank.frame);
+        height += self.chooseRank.frame.size.height;
+        self.chooseRank.tag = 8000+i;
+        self.chooseRank.delegate = self;
+        
+        [self.chooseView.mainscrollview addSubview:self.chooseRank];
+    }
+    self.chooseView.mainscrollview.contentSize = CGSizeMake(0, height);
+    
+    //取消按钮
+    [self.chooseView.cancelBtn addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
+    //点击黑色透明视图choseView会消失
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hiddenSpeViews)];
+    [self.chooseView.alphaView addGestureRecognizer:tap];
+    [self chooseViewClick];
+}
+
+#pragma mark --立即购买
+-(void)chooseViewClick{
+    NSLog(@"--------");
+    
+    
+    [UIView animateWithDuration: 0.35 animations: ^{
+        self.chooseView.frame =CGRectMake(0, 0, DEVICE_Width, DEVICE_Height);
+    } completion: nil];
+    
+}
+
+/**
+ *  点击半透明部分或者取消按钮，弹出视图消失
+ */
+-(void)hiddenSpeViews
+{
+    //    center.y = center.y+self.view.frame.size.height;
+    [UIView animateWithDuration: 0.35 animations: ^{
+        self.chooseView.frame =CGRectMake(0, DEVICE_Height, DEVICE_Width, DEVICE_Height);
+    } completion: nil];
+    
+}
+
+
+-(void)selectBtnTitle:(NSString *)title andBtn:(UIButton *)btn{
+    
+    [self.rankArray removeAllObjects];
+    
+    for (int i=0; i < _standardList.count; i++)
+    {
+        ChooseRank *view = [self.view viewWithTag:8000+i];
+        
+        for (UIButton *obj in  view.btnView.subviews)
+        {
+            if(obj.selected){
+                
+                for (NSArray *arr in self.standardValueList)
+                {
+                    for (NSString *title in arr) {
+                        
+                        if ([view.selectBtn.titleLabel.text isEqualToString:title]) {
+                            
+                            [self.rankArray addObject:view.selectBtn.titleLabel.text];
+                        }
+                    }
+                }
+            }
+        }
+    }
+    NSLog(@"%@",self.rankArray);
+}
+
+- (void)wk_ChooseViewWithNum:(NSInteger)mNum
+{
+    NSLog(@"%ld",(long)mNum);
+    
+    
+}
+/**
+ 加入购物车
+ */
+- (void)wk_AddShopCarClick{
+    
+    NSLog(@"----加入购物车成功----");
+    
+}
+
+/**
+ 立即购买
+ */
+- (void)wk_BuyNowClick{
+    NSLog(@"----立即购买----");
+    
+}
+
+
 
 @end

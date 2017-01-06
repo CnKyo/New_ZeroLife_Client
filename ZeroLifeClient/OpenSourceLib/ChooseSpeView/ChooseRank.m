@@ -7,7 +7,7 @@
 //
 
 #import "ChooseRank.h"
-
+#import "UIView+Extension.h"
 @implementation ChooseRank
 
 
@@ -30,15 +30,15 @@
 -(void)rankView{
     
     self.packView = [[UIView alloc] initWithFrame:self.frame];
-    self.packView.my = 0;
+    self.packView.ky = 0;
     
     UILabel *line = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, DEVICE_Width, 0.5)];
-    line.backgroundColor = [UIColor colorWithRed:0.90 green:0.89 blue:0.90 alpha:1.00];
+    line.backgroundColor = BackgroundColor;
     [self.packView addSubview:line];
     
     UILabel *titleLB = [[UILabel alloc] initWithFrame:CGRectMake(20, 5, DEVICE_Width, 25)];
     titleLB.text = self.title;
-    titleLB.font = [UIFont systemFontOfSize:15];
+    titleLB.font = FONT(15);
     [self.packView addSubview:titleLB];
     
     self.btnView = [[UIView alloc] initWithFrame:CGRectMake(0,CGRectGetMaxY(titleLB.frame), DEVICE_Width, 40)];
@@ -52,10 +52,10 @@
         NSString *btnName = self.rankArray[i];
         
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [btn setBackgroundColor:[UIColor colorWithRed:0.90 green:0.89 blue:0.90 alpha:1.00]];
+        [btn setBackgroundColor:BackgroundColor];
         [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
-
+        
         btn.titleLabel.font = [UIFont systemFontOfSize:14];
         [btn setTitle:btnName forState:UIControlStateNormal];
         [btn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -63,30 +63,30 @@
         btn.layer.cornerRadius = 5;
         btn.layer.masksToBounds = YES;
         
-        NSDictionary *dict = [NSDictionary dictionaryWithObject:[UIFont systemFontOfSize:13] forKey:NSFontAttributeName];
+        NSDictionary *dict = [NSDictionary dictionaryWithObject:FONT(13) forKey:NSFontAttributeName];
         CGSize btnSize = [btnName sizeWithAttributes:dict];
         
-        btn.mwidth = btnSize.width + 15;
-        btn.mheight = btnSize.height + 12;
+        btn.kwidth = btnSize.width + 15;
+        btn.kheight = btnSize.height + 12;
         
         if (i==0)
         {
-            btn.mx = 20;
+            btn.kx = 20;
             btnWidth += CGRectGetMaxX(btn.frame);
         }
         else{
             btnWidth += CGRectGetMaxX(btn.frame)+20;
             if (btnWidth > DEVICE_Width) {
                 count++;
-                btn.mx = 20;
+                btn.kx = 20;
                 btnWidth = CGRectGetMaxX(btn.frame);
             }
             else{
                 
-                btn.mx += btnWidth - btn.mwidth;
+                btn.kx += btnWidth - btn.kwidth;
             }
         }
-        btn.my += count * (btn.mheight+10)+10;
+        btn.ky += count * (btn.kheight+10)+10;
         
         viewHeight = CGRectGetMaxY(btn.frame)+10;
         
@@ -95,18 +95,18 @@
         btn.tag = 10000+i;
         
         
-//        if ([btnName isEqualToString:self.selectStr])
-//        {
-//            self.selectBtn = btn;
-//            self.selectBtn.selected = YES;
-//            self.selectBtn.backgroundColor = [UIColor greenColor];
-//        }
+        //        if ([btnName isEqualToString:self.selectStr])
+        //        {
+        //            self.selectBtn = btn;
+        //            self.selectBtn.selected = YES;
+        //            self.selectBtn.backgroundColor = [UIColor greenColor];
+        //        }
         
     }
-    self.btnView.mheight = viewHeight;
-    self.packView.mheight = self.btnView.mheight+CGRectGetMaxY(titleLB.frame);
-
-    self.mheight = self.packView.mheight;
+    self.btnView.kheight = viewHeight;
+    self.packView.kheight = self.btnView.kheight+CGRectGetMaxY(titleLB.frame);
+    
+    self.kheight = self.packView.kheight;
     
     [self addSubview:self.packView];
 }
