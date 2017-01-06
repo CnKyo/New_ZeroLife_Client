@@ -57,27 +57,22 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.tableArr.count > 0)
-        return 60;
-    return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+    return 60;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.tableArr.count > 0) {
-        static NSString *CellIdentifier = @"Cell_ChooseAddressMapTableViewCell";
-        SelectedAddressTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if (cell == nil) {
-            cell = [[SelectedAddressTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        }
-        
-        AddressObject *item = [self.tableArr objectAtIndex:indexPath.row];
-        
-        cell.nameLable.text = item.cmut_name;
-        cell.addressLable.text = item.addr_address;
-        return cell;
+    static NSString *CellIdentifier = @"Cell_ChooseAddressMapTableViewCell";
+    SelectedAddressTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[SelectedAddressTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    return [super tableView:tableView cellForRowAtIndexPath:indexPath];
+    
+    AddressObject *item = [self.tableArr objectAtIndex:indexPath.row];
+    
+    cell.nameLable.text = item.cmut_name;
+    cell.addressLable.text = item.addr_address;
+    return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -93,6 +88,9 @@
 }
 
 
+- (void)reloadTableViewData{
+    [self beginHeaderRereshing];
+}
 
 - (void)reloadTableViewDataSource{
     [super reloadTableViewDataSource];

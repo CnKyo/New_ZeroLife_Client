@@ -32,36 +32,17 @@
     [self setTableViewHaveHeaderFooter];
 
 }
+
+- (void)reloadTableViewData{
+    [self beginHeaderRereshing];
+}
+
 - (void)reloadTableViewDataSource{
     [super reloadTableViewDataSource];
     
- 
     [[APIClient sharedClient] ZLGetPPTRewardList:[NSString stringWithFormat:@"%d",self.page] block:^(APIObject *mBaseObj, ZLPPTRewardList *mList) {
-
-        
-        [self.tableArr removeAllObjects];
-        [self ZLHideEmptyView];
-        if (mBaseObj.code == RESP_STATUS_YES) {
-            [self dismiss];
-            
-            if (mList.list.count <= 0) {
-                [self ZLShowEmptyView:@"暂无数据" andImage:nil andHiddenRefreshBtn:NO];
-            }else{
-                [self reloadWithTableArr:mList.list info:mBaseObj];
-            }
-            
-        }else{
-            [self ZLShowEmptyView:@"暂无数据" andImage:nil andHiddenRefreshBtn:NO];
-            [self showErrorStatus:mBaseObj.msg];
-        }
-        
-        [self doneLoadingTableViewData];
-        [self.tableView reloadData];
-        
+        [self reloadWithTableArr:mList.list info:mBaseObj];
     }];
-    
-    
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -82,36 +63,27 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView              // Default is 1 if not implemented
 {
     return 1;
-
 }
+
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return 160;
-   
-    
 }
+
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     
     mHeaderSectionView = [ZLPPTRewardHeadView shareView];
     mHeaderSectionView.mRewardMoney.text = [NSString stringWithFormat:@"¥%.2f元",self.mTotleMoney];
     return mHeaderSectionView;
- 
 }
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    
     return self.tableArr.count;
-    
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    
     return 70;
-    
-    
-    
-    
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -131,6 +103,7 @@
     return cell;
     
 }
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

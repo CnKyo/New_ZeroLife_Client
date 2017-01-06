@@ -39,25 +39,34 @@ static NSString *const kTagsTableCellReuseIdentifier = @"TagsTableCell";
     [self addTableView];
     [self setTableViewHaveHeader];
 
+    self.beginHeaderRereshingWhenViewWillAppear = YES;
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
 }
 
 
-
+- (void)reloadTableViewData{
+    [self beginHeaderRereshing];
+}
 
 - (void)reloadTableViewDataSource{
     [super reloadTableViewDataSource];
     
-    [SVProgressHUD showWithStatus:@"加载类别中..."];
     [[APIClient sharedClient] cookCategoryQueryWithTag:self call:^(CookCategoryObject *item, APIShareSdkObject *info) {
         
         if (info.retCode == RETCODE_SUCCESS) {
             self.item = item;
-            if (item == nil)
+            if (item == nil) {
                 self.errMsg = @"暂无数据";
-            [SVProgressHUD dismiss];
+                [self addEmptyView:self.tableView andType:ZLEmptyViewTypeWithNoData];
+            }
         } else {
             self.errMsg = info.msg!=nil ? info.msg : @"网络错误";
-            [SVProgressHUD showErrorWithStatus:info.msg];
+            [self addEmptyView:self.tableView andType:ZLEmptyViewTypeWithNoError];
         }
         
         [self doneLoadingTableViewData];

@@ -32,8 +32,9 @@
 }
 - (void)reloadTableViewData{
 
-    [self reloadTableViewDataSource];
+    [self beginHeaderRereshing];
 }
+
 - (void)reloadTableViewDataSource{
     [super reloadTableViewDataSource];
 
@@ -80,10 +81,6 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView              // Default is 1 if not implemented
 {
     return 1;
-    
-    
-    
-    
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -93,19 +90,11 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    
     return 365;
-    
-    
-    
-    
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    
     NSString *reuseCellId = nil;
     
     reuseCellId = @"cell";
@@ -115,10 +104,8 @@
 
     [cell setMAnouncement:self.tableArr[indexPath.row]];
     return cell;
-    
-    
-    
 }
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

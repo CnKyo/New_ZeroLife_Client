@@ -334,6 +334,7 @@
     if (self.page != 1)
         self.page = 1;
     self.tableIsReloading = YES;
+    [self.tableView reloadEmptyDataSet];
     [self reloadTableViewDataSource];
 }
 
@@ -354,6 +355,13 @@
     }
     
     self.tableIsReloading = NO;
+    
+    if (self.tableArr.count == 0) {
+        if (self.errMsg.length > 0)
+            [self addEmptyView:self.tableView andType:ZLEmptyViewTypeWithNoError];
+        else
+            [self addEmptyView:self.tableView andType:ZLEmptyViewTypeWithCommon];
+    }
     
     [self.tableView reloadData];
     [self.tableView.mj_header endRefreshing];
@@ -397,11 +405,9 @@
         
         if (info.code != RESP_STATUS_YES){
             self.errMsg = info.msg!=nil ? info.msg : @"网络错误";
-            [self addEmptyView:self.tableView andType:ZLEmptyViewTypeWithNoError];
         }
         else{
-            self.errMsg = @"暂无数据";
-            [self addEmptyView:self.tableView andType:ZLEmptyViewTypeWithCommon];
+            self.errMsg = @"";
         }
         
         
@@ -560,6 +566,7 @@
         [SVProgressHUD dismiss];
     });
 }
+
 - (void)addEmptyView:(UITableView *)mTableView andType:(ZLEmptyViewType)mType{
     
     if (mTableView == self.tableView) {
@@ -575,6 +582,7 @@
     
     self.mEmptyType = mType;
 }
+
 - (void)ZLShowEmptyView:(NSString *)mText andImage:(NSString *)mImgName andHiddenRefreshBtn:(BOOL)mHidden{
     self.hudView.indicatorViewSize = CGSizeMake(120, 120);
     self.hudView.messageLabel.text = mText;
@@ -607,6 +615,8 @@
 - (void)reloadTableViewData{
 
 }
+
+
 #pragma mark----****----DZNEmptyviewDelegate
 ///返回单张图片
 - (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
@@ -741,4 +751,14 @@
 - (void)emptyDataSetDidTapButton:(UIScrollView *)scrollView {
     [self reloadTableViewData];
 }
+
+- (BOOL)emptyDataSetShouldDisplay:(UIScrollView *)scrollView
+{
+    if (_tableIsReloading) {
+        return NO;
+    } else
+        return YES;
+}
+
+
 @end

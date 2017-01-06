@@ -160,112 +160,111 @@
 }
 
 #pragma mark -- tableviewDelegate
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.tableArr.count;
+}
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.tableArr.count > 0)
-        return 60;
-    return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+    return 60;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.tableArr.count > 0) {
-        static NSString *CellIdentifier = @"Cell_UserYuETableViewCell";
-        UserYuETableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if (cell == nil) {
-            cell = [[UserYuETableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-            cell.selectionStyle = UITableViewCellSelectionStyleGray;
-        }
-
-        if (_isScoreView == YES) { //如果是积分界面
-            cell.msgLable.text = @"积分商场兑换";
-            cell.imgView.image = IMG(@"cell_score_item.png");
-            
-            UserScoreRecordObject *item = [self.tableArr objectAtIndex:indexPath.row];
-            
-            cell.timeLable.text = [NSString compIsNone:item.recs_add_time];
-            cell.msgLable.text = [NSString compIsNone:item.recs_desc];
-            switch (item.recs_record_type) {
-                case kWalletRecordType_input:
-                    cell.moneyLable.text = [NSString stringWithFormat:@"+%i", item.uwal_operation_score];
-                    break;
-                case kWalletRecordType_output:
-                    cell.moneyLable.text = [NSString stringWithFormat:@"-%i", item.uwal_operation_score];
-                    break;
-                default:
-                    break;
-            }
-            
-            
-        } else {
-            WalletRecordObject *item = [self.tableArr objectAtIndex:indexPath.row];
-            
-            cell.timeLable.text = [NSString compIsNone:item.recw_add_time];
-            switch (item.recw_record_type) {
-                case kWalletRecordType_input:
-                    cell.moneyLable.text = [NSString stringWithFormat:@"+%.2f", item.uwal_operation_money];
-                    break;
-                case kWalletRecordType_output:
-                    cell.moneyLable.text = [NSString stringWithFormat:@"-%.2f", item.uwal_operation_money];
-                    break;
-                default:
-                    break;
-            }
-            
-            cell.imgView.image = [UIImage imageNamed:[NSString iconImgStrOrderType:item.odr_type]];
-
-            NSString *str = @"";
-            switch (item.odr_type) {
-                case kOrderClassType_fix:
-                    str = @"报修";
-                    break;
-                case kOrderClassType_product:
-                    str = @"购物";
-                    break;
-                case kOrderClassType_dryclean:
-                    str = @"干洗";
-                    break;
-                case kOrderClassType_paopao:
-                    str = @"跑跑腿";
-                    break;
-                case kOrderClassType_paopao_apply:
-                    str = @"跑跑腿申请";
-                    break;
-                case kOrderClassType_fee_mobile:
-                    str = @"手机充值";
-                    break;
-                case kOrderClassType_fee_peroperty:
-                    str = @"物管费";
-                    break;
-                case kOrderClassType_balance_present:
-                    str = @"余额提现";
-                    break;
-                case kOrderClassType_balance_recharge:
-                    str = @"余额充值";
-                    break;
-                case kOrderClassType_balance_transfer:
-                    str = @"转账";
-                    break;
-                case kOrderClassType_balance_collection:
-                    str = @"收款";
-                    break;
-                case kOrderClassType_fee_sdq:
-                    str = @"水电气缴费";
-                    break;
-                case kOrderClassType_fee_parking:
-                    str = @"停车缴费";
-                    break;
-                default:
-                    break;
-            }
-            cell.msgLable.text = str;
-            
+    static NSString *CellIdentifier = @"Cell_UserYuETableViewCell";
+    UserYuETableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[UserYuETableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell.selectionStyle = UITableViewCellSelectionStyleGray;
+    }
+    
+    if (_isScoreView == YES) { //如果是积分界面
+        cell.msgLable.text = @"积分商场兑换";
+        cell.imgView.image = IMG(@"cell_score_item.png");
+        
+        UserScoreRecordObject *item = [self.tableArr objectAtIndex:indexPath.row];
+        
+        cell.timeLable.text = [NSString compIsNone:item.recs_add_time];
+        cell.msgLable.text = [NSString compIsNone:item.recs_desc];
+        switch (item.recs_record_type) {
+            case kWalletRecordType_input:
+                cell.moneyLable.text = [NSString stringWithFormat:@"+%i", item.uwal_operation_score];
+                break;
+            case kWalletRecordType_output:
+                cell.moneyLable.text = [NSString stringWithFormat:@"-%i", item.uwal_operation_score];
+                break;
+            default:
+                break;
         }
         
-        return cell;
+        
+    } else {
+        WalletRecordObject *item = [self.tableArr objectAtIndex:indexPath.row];
+        
+        cell.timeLable.text = [NSString compIsNone:item.recw_add_time];
+        switch (item.recw_record_type) {
+            case kWalletRecordType_input:
+                cell.moneyLable.text = [NSString stringWithFormat:@"+%.2f", item.uwal_operation_money];
+                break;
+            case kWalletRecordType_output:
+                cell.moneyLable.text = [NSString stringWithFormat:@"-%.2f", item.uwal_operation_money];
+                break;
+            default:
+                break;
+        }
+        
+        cell.imgView.image = [UIImage imageNamed:[NSString iconImgStrOrderType:item.odr_type]];
+        
+        NSString *str = @"";
+        switch (item.odr_type) {
+            case kOrderClassType_fix:
+                str = @"报修";
+                break;
+            case kOrderClassType_product:
+                str = @"购物";
+                break;
+            case kOrderClassType_dryclean:
+                str = @"干洗";
+                break;
+            case kOrderClassType_paopao:
+                str = @"跑跑腿";
+                break;
+            case kOrderClassType_paopao_apply:
+                str = @"跑跑腿申请";
+                break;
+            case kOrderClassType_fee_mobile:
+                str = @"手机充值";
+                break;
+            case kOrderClassType_fee_peroperty:
+                str = @"物管费";
+                break;
+            case kOrderClassType_balance_present:
+                str = @"余额提现";
+                break;
+            case kOrderClassType_balance_recharge:
+                str = @"余额充值";
+                break;
+            case kOrderClassType_balance_transfer:
+                str = @"转账";
+                break;
+            case kOrderClassType_balance_collection:
+                str = @"收款";
+                break;
+            case kOrderClassType_fee_sdq:
+                str = @"水电气缴费";
+                break;
+            case kOrderClassType_fee_parking:
+                str = @"停车缴费";
+                break;
+            default:
+                str = @"其它";
+                break;
+        }
+        cell.msgLable.text = str;
+        
     }
-    return [super tableView:tableView cellForRowAtIndexPath:indexPath];
+    
+    return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -274,6 +273,9 @@
 }
 
 
+- (void)reloadTableViewData{
+    [self beginHeaderRereshing];
+}
 
 - (void)reloadTableViewDataSource{
     [super reloadTableViewDataSource];

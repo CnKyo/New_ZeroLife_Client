@@ -50,41 +50,35 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.tableArr.count > 0)
-        return 60;
-    return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+    return 60;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.tableArr.count > 0) {
-        static NSString *CellIdentifier = @"Cell_TransferAccountHistoryTableViewCell";
-        TransferAccountHistoryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if (cell == nil) {
-            cell = [[TransferAccountHistoryTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-            cell.selectionStyle = UITableViewCellSelectionStyleGray;
-        }
-        WalletRecordObject *item = [self.tableArr objectAtIndex:indexPath.row];
-        
-        cell.nameLable.text = [NSString compIsNone:item.target_name];
-        cell.timeLable.text = [NSString compIsNone:item.recw_add_time];
-        switch (item.recw_record_type) {
-            case kWalletRecordType_input:
-                cell.moneyLable.text = [NSString stringWithFormat:@"+%.2f", item.uwal_operation_money];
-                cell.statusLable.text = @"转入";
-                break;
-            case kWalletRecordType_output:
-                cell.moneyLable.text = [NSString stringWithFormat:@"-%.2f", item.uwal_operation_money];
-                cell.statusLable.text = @"转出";
-                break;
-            default:
-                break;
-        }
-        
-        
-        return cell;
+    static NSString *CellIdentifier = @"Cell_TransferAccountHistoryTableViewCell";
+    TransferAccountHistoryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[TransferAccountHistoryTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell.selectionStyle = UITableViewCellSelectionStyleGray;
     }
-    return [super tableView:tableView cellForRowAtIndexPath:indexPath];
+    WalletRecordObject *item = [self.tableArr objectAtIndex:indexPath.row];
+    
+    cell.nameLable.text = [NSString compIsNone:item.target_name];
+    cell.timeLable.text = [NSString compIsNone:item.recw_add_time];
+    switch (item.recw_record_type) {
+        case kWalletRecordType_input:
+            cell.moneyLable.text = [NSString stringWithFormat:@"+%.2f", item.uwal_operation_money];
+            cell.statusLable.text = @"转入";
+            break;
+        case kWalletRecordType_output:
+            cell.moneyLable.text = [NSString stringWithFormat:@"-%.2f", item.uwal_operation_money];
+            cell.statusLable.text = @"转出";
+            break;
+        default:
+            break;
+    }
+    
+    return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -97,7 +91,9 @@
 //    }
 }
 
-
+- (void)reloadTableViewData{
+    [self beginHeaderRereshing];
+}
 
 - (void)reloadTableViewDataSource{
     [super reloadTableViewDataSource];
@@ -105,17 +101,7 @@
     [[APIClient sharedClient] walletRecordListWithTag:self type:kOrderClassType_balance_transfer page:self.page call:^(int totalPage, NSArray *tableArr, APIObject *info) {
         [self reloadWithTableArr:tableArr info:info];
     }];
-    //[self performSelector:@selector(donwData) withObject:nil afterDelay:0.5];
 }
-
--(void)donwData
-{
-    for (int i=0; i<10; i++) {
-        [self.tableArr addObject:@"111"];
-    }
-    [self doneLoadingTableViewData];
-}
-
 
 
 @end

@@ -53,6 +53,10 @@
  }
  */
 
+- (void)reloadTableViewData{
+    [self beginHeaderRereshing];
+}
+
 - (void)reloadTableViewDataSource{
     [super reloadTableViewDataSource];
     
@@ -92,35 +96,27 @@
 #pragma mark -- tableviewDelegate
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (self.tableArr.count > 0)
-        return self.tableArr.count;
-    return [super tableView:tableView numberOfRowsInSection:section];
+    return self.tableArr.count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.tableArr.count > 0)
-        return 60;
-    return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+    return 60;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.tableArr.count > 0) {
-        static NSString *CellIdentifier = @"CookTVCTableViewCell";
-        ImageTextTableViewCell *cell = (ImageTextTableViewCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if (cell == nil) {
-            cell= [[ImageTextTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-            
-        }
-        CookObject *item = [self.tableArr objectAtIndex:indexPath.row];
-        cell.text1Lable.text = item.name;
-        cell.text2Lable.text = item.ctgTitles;
-        [cell.iconImgView setImageWithURL:[NSURL URLWithString:item.thumbnail] placeholderImage:IMG(@"DefaultImg.png")];
-        return cell;
+    static NSString *CellIdentifier = @"CookTVCTableViewCell";
+    ImageTextTableViewCell *cell = (ImageTextTableViewCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell= [[ImageTextTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        
     }
-    
-    return [super tableView:tableView cellForRowAtIndexPath:indexPath];
+    CookObject *item = [self.tableArr objectAtIndex:indexPath.row];
+    cell.text1Lable.text = item.name;
+    cell.text2Lable.text = item.ctgTitles;
+    [cell.iconImgView setImageWithURL:[NSURL URLWithString:item.thumbnail] placeholderImage:IMG(@"DefaultImg.png")];
+    return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

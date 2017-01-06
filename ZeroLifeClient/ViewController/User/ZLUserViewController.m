@@ -64,7 +64,7 @@
     //[self.navigationController.navigationBar.subviews[2] setHidden:YES];
     [self.navigationController.navigationBar lt_setBackgroundColor:[UIColor clearColor]];
 
-    [[NSNotificationCenter defaultCenter] postNotificationName:MyUserNeedUpdateNotification object:nil]; //更新一下用户数据
+    //[[NSNotificationCenter defaultCenter] postNotificationName:MyUserNeedUpdateNotification object:nil]; //更新一下用户数据
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUserInfoChange:) name:MyUserInfoChangedNotification object:nil];
 }
 

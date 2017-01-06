@@ -58,74 +58,69 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.tableArr.count > 0)
-        return 370;
-    return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+    return 370;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.tableArr.count > 0) {
-        static NSString *CellIdentifier = @"Cell_WuGuanFeePayTableViewCell";
-        WuGuanFeePayTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if (cell == nil) {
-            cell = [[WuGuanFeePayTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-            cell.selectionStyle = UITableViewCellSelectionStyleGray;
-            //cell.backgroundColor = [UIColor redColor];
-        }
-        
-        PropertyFeeObject *item = [self.tableArr objectAtIndex:indexPath.row];
-        
-        cell.pfee_companyLable.text = [NSString compIsNone:item.pfee_company];
-        cell.pfee_titleLable.text = [NSString compIsNone:item.pfee_title];
-        cell.pfee_costsLable.text = [NSString stringWithFormat:@"￥%.2f", item.pfee_costs];
-        cell.pfee_nameLable.text = [NSString stringWithFormat:@"户主姓名：%@", [NSString compIsNone:item.pfee_name] ] ;
-        cell.pfee_menpaiLable.text = [NSString stringWithFormat:@"门户号：%i-%i-%i-%i", item.pfeel_ban, item.pfee_unit, item.pfee_floor, item.pfee_number];
-        cell.pfee_endtimeLable.text = [NSString stringWithFormat:@"截止日期：%@", [NSString compIsNone:item.pfee_end_time] ];
-        
-        [cell.actionBtn jk_addActionHandler:^(NSInteger tag) {
-            [SVProgressHUD showWithStatus:@"正在验证..."];
-            [[APIClient sharedClient] preOrderPropertyWithTag:self pfee_id:item.pfee_id call:^(PreApplyObject *item11, APIObject *info) {
-                if (info.code==RESP_STATUS_YES && item!=nil) {
-
-                    //[SVProgressHUD showSuccessWithStatus:@"验证成功"];
-                    
-                    NSString *spec = [item11 getCustomSpecWithMoney:item.pfee_costs];
-                    
-                    NSMutableArray *mPayArr = [NSMutableArray new];
-                    NSMutableDictionary *mPara = [NSMutableDictionary new];
-                    [mPara setObject:item11.odrg_pro_name forKey:@"odrg_pro_name"];
-                    [mPara setObject:spec forKey:@"odrg_spec"];
-                    [mPara setObject:StringWithDouble(item.pfee_costs) forKey:@"odrg_price"];
-                    [mPara setInt:item.pfee_id forKey:@"pfee_id"];
-                    [mPayArr addObject:mPara];
-                    
-                    [SVProgressHUD showWithStatus:@"生成预订单中..."];
-                    [[APIClient sharedClient] ZLCommitOrder:kOrderClassType_fee_peroperty andShopId:nil andGoods:[Util arrToJson:mPayArr] andSendAddress:nil andArriveAddress:nil andServiceTime:nil andSendType:0 andSendPrice:nil andCoupId:nil andRemark:nil andSign:item11.sign block:^(APIObject *mBaseObj, ZLCreateOrderObj *mOrder) {
-                        if (mBaseObj.code == RESP_STATUS_YES) {
-                            ZLGoPayViewController *vc = [ZLGoPayViewController new];
-                            vc.mOrder = mOrder;
-                            vc.paySuccessCallBack = ^(ZLGoPayViewController *payVC){
-                                [payVC performSelector:@selector(popViewController) withObject:nil afterDelay:0.2];
-                                
-                                [self.tableArr removeObjectAtIndex:indexPath.row];
-                                [self.tableView reloadData];
-                            };
-                            [self pushViewController:vc];
-                            
-                            [self showSuccessStatus:mBaseObj.msg];
-                        } else
-                            [self showErrorStatus:mBaseObj.msg];
-                    }];
-                    
-                } else
-                    [SVProgressHUD showErrorWithStatus:info.msg];
-            }];
-        }];
-        
-        return cell;
+    static NSString *CellIdentifier = @"Cell_WuGuanFeePayTableViewCell";
+    WuGuanFeePayTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[WuGuanFeePayTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell.selectionStyle = UITableViewCellSelectionStyleGray;
+        //cell.backgroundColor = [UIColor redColor];
     }
-    return [super tableView:tableView cellForRowAtIndexPath:indexPath];
+    
+    PropertyFeeObject *item = [self.tableArr objectAtIndex:indexPath.row];
+    
+    cell.pfee_companyLable.text = [NSString compIsNone:item.pfee_company];
+    cell.pfee_titleLable.text = [NSString compIsNone:item.pfee_title];
+    cell.pfee_costsLable.text = [NSString stringWithFormat:@"￥%.2f", item.pfee_costs];
+    cell.pfee_nameLable.text = [NSString stringWithFormat:@"户主姓名：%@", [NSString compIsNone:item.pfee_name] ] ;
+    cell.pfee_menpaiLable.text = [NSString stringWithFormat:@"门户号：%i-%i-%i-%i", item.pfeel_ban, item.pfee_unit, item.pfee_floor, item.pfee_number];
+    cell.pfee_endtimeLable.text = [NSString stringWithFormat:@"截止日期：%@", [NSString compIsNone:item.pfee_end_time] ];
+    
+    [cell.actionBtn jk_addActionHandler:^(NSInteger tag) {
+        [SVProgressHUD showWithStatus:@"正在验证..."];
+        [[APIClient sharedClient] preOrderPropertyWithTag:self pfee_id:item.pfee_id call:^(PreApplyObject *item11, APIObject *info) {
+            if (info.code==RESP_STATUS_YES && item!=nil) {
+                
+                //[SVProgressHUD showSuccessWithStatus:@"验证成功"];
+                
+                NSString *spec = [item11 getCustomSpecWithMoney:item.pfee_costs];
+                
+                NSMutableArray *mPayArr = [NSMutableArray new];
+                NSMutableDictionary *mPara = [NSMutableDictionary new];
+                [mPara setObject:item11.odrg_pro_name forKey:@"odrg_pro_name"];
+                [mPara setObject:spec forKey:@"odrg_spec"];
+                [mPara setObject:StringWithDouble(item.pfee_costs) forKey:@"odrg_price"];
+                [mPara setInt:item.pfee_id forKey:@"pfee_id"];
+                [mPayArr addObject:mPara];
+                
+                [SVProgressHUD showWithStatus:@"生成预订单中..."];
+                [[APIClient sharedClient] ZLCommitOrder:kOrderClassType_fee_peroperty andShopId:nil andGoods:[Util arrToJson:mPayArr] andSendAddress:nil andArriveAddress:nil andServiceTime:nil andSendType:0 andSendPrice:nil andCoupId:nil andRemark:nil andSign:item11.sign block:^(APIObject *mBaseObj, ZLCreateOrderObj *mOrder) {
+                    if (mBaseObj.code == RESP_STATUS_YES) {
+                        ZLGoPayViewController *vc = [ZLGoPayViewController new];
+                        vc.mOrder = mOrder;
+                        vc.paySuccessCallBack = ^(ZLGoPayViewController *payVC){
+                            [payVC performSelector:@selector(popViewController) withObject:nil afterDelay:0.2];
+                            
+                            [self.tableArr removeObjectAtIndex:indexPath.row];
+                            [self.tableView reloadData];
+                        };
+                        [self pushViewController:vc];
+                        
+                        [self showSuccessStatus:mBaseObj.msg];
+                    } else
+                        [self showErrorStatus:mBaseObj.msg];
+                }];
+                
+            } else
+                [SVProgressHUD showErrorWithStatus:info.msg];
+        }];
+    }];
+    
+    return cell;
 }
 
 
@@ -141,7 +136,9 @@
 //    }
 }
 
-
+- (void)reloadTableViewData{
+    [self beginHeaderRereshing];
+}
 
 - (void)reloadTableViewDataSource{
     [super reloadTableViewDataSource];

@@ -79,69 +79,65 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.tableArr.count > 0)
-        return 100;
-    return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+    return 100;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.tableArr.count > 0) {
-        static NSString *CellIdentifier = @"Cell_BankCardTableViewCell";
-        BankCardTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if (cell == nil) {
-            cell = [[BankCardTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-            cell.selectionStyle = UITableViewCellSelectionStyleGray;
-        }
-        BankCardObject *item = [self.tableArr objectAtIndex:indexPath.row];
-        cell.bankNameLable.text = [NSString compIsNone:item.bank_name];
-        cell.cardTypeLable.text = [NSString compIsNone:item.bank_type];
-        cell.cardNumberLable.text = [NSString compIsNone:item.bank_card_val];
-        
-        //删除
-        [cell.deleteBtn jk_addActionHandler:^(NSInteger tag) {
-            
-            ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
-            if ([user.wallet.pass isEqualToString:kWalletPayment_Pass]) {
-                SecurityPasswordAlertView *alertView = [[SecurityPasswordAlertView alloc] init];
-                __strong __typeof(SecurityPasswordAlertView *)strongSelf = alertView;
-                alertView.inputPwdCallBack = ^(NSString* pwd) {
-                    [strongSelf close];
-                    
-                    [SVProgressHUD showWithStatus:@"银行卡删除中..."];
-                    [[APIClient sharedClient] bankCardDeleteWithTag:self bank_id:item.bank_id security_password:pwd call:^(APIObject *info) {
-                        if (info.code == RESP_STATUS_YES) {
-                            if (self.tableArr.count > 1) {
-                                [self.tableArr removeObjectAtIndex:indexPath.row];
-                                [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-                            } else {
-                                [self.tableArr removeAllObjects];
-                                [self.tableView reloadData];
-                            }
-                            
-                            
-                            [SVProgressHUD showSuccessWithStatus:info.msg];
-                        } else
-                            [SVProgressHUD showErrorWithStatus:info.msg];
-                    }];
-                };
-                [alertView showAlert];
-            } else
-                [SVProgressHUD showErrorWithStatus:@"请先设置交易安全密码"];
-
-        }];
-
-        
-        return cell;
+    static NSString *CellIdentifier = @"Cell_BankCardTableViewCell";
+    BankCardTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[BankCardTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell.selectionStyle = UITableViewCellSelectionStyleGray;
     }
-    return [super tableView:tableView cellForRowAtIndexPath:indexPath];
+    BankCardObject *item = [self.tableArr objectAtIndex:indexPath.row];
+    cell.bankNameLable.text = [NSString compIsNone:item.bank_name];
+    cell.cardTypeLable.text = [NSString compIsNone:item.bank_type];
+    cell.cardNumberLable.text = [NSString compIsNone:item.bank_card_val];
+    
+    //删除
+    [cell.deleteBtn jk_addActionHandler:^(NSInteger tag) {
+        
+        ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+        if ([user.wallet.pass isEqualToString:kWalletPayment_Pass]) {
+            SecurityPasswordAlertView *alertView = [[SecurityPasswordAlertView alloc] init];
+            __strong __typeof(SecurityPasswordAlertView *)strongSelf = alertView;
+            alertView.inputPwdCallBack = ^(NSString* pwd) {
+                [strongSelf close];
+                
+                [SVProgressHUD showWithStatus:@"银行卡删除中..."];
+                [[APIClient sharedClient] bankCardDeleteWithTag:self bank_id:item.bank_id security_password:pwd call:^(APIObject *info) {
+                    if (info.code == RESP_STATUS_YES) {
+                        if (self.tableArr.count > 1) {
+                            [self.tableArr removeObjectAtIndex:indexPath.row];
+                            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+                        } else {
+                            [self.tableArr removeAllObjects];
+                            [self.tableView reloadData];
+                        }
+                        
+                        
+                        [SVProgressHUD showSuccessWithStatus:info.msg];
+                    } else
+                        [SVProgressHUD showErrorWithStatus:info.msg];
+                }];
+            };
+            [alertView showAlert];
+        } else
+            [SVProgressHUD showErrorWithStatus:@"请先设置交易安全密码"];
+        
+    }];
+    
+    
+    return cell;
+
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    if (self.tableArr.count > 0) {
+    if (self.tableArr.count > indexPath.row) {
         if (self.chooseCallBack) {
             BankCardObject *item = [self.tableArr objectAtIndex:indexPath.row];
             self.chooseCallBack(item);
@@ -155,7 +151,9 @@
     }
 }
 
-
+- (void)reloadTableViewData{
+    [self beginHeaderRereshing];
+}
 
 - (void)reloadTableViewDataSource{
     [super reloadTableViewDataSource];

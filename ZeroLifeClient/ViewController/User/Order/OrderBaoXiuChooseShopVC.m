@@ -62,56 +62,54 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.tableArr.count > 0)
-        return 90;
-    return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+    return 90;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.tableArr.count > 0) {
-        static NSString *CellIdentifier = @"Cell_BaoXiuChooseShopNewTableViewCell";
-        BaoXiuChooseShopNewTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if (cell == nil) {
-            cell = [[BaoXiuChooseShopNewTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        }
-        OrderRepairBidObject *item = [self.tableArr objectAtIndex:indexPath.row];
-        
-        cell.nameLable.text = [NSString compIsNone:item.shop_name];
-        cell.salesMonthLable.text = [NSString stringWithFormat:@"%i人选择", item.ext_sales_month];
-        cell.ratingBarView.starNumber = [item.ext_score integerValue];
-        
-        NSDictionary* style2 = @{@"body" : @[[UIFont systemFontOfSize:14], [UIColor grayColor]],
-                                 @"u": @[[UIFont systemFontOfSize:15], COLOR_NavBar] };
-        cell.priceLable.attributedText = [[NSString stringWithFormat:@"报价：<u>￥%.2f</u>", item.bid_price] attributedStringWithStyleBook:style2];
-
-        
-        [cell.imgView sd_setImageWithURL:[NSURL imageurl:item.shop_logo] placeholderImage:ZLDefaultShopImg];
-
-        
-        [cell.chooseBtn jk_addActionHandler:^(NSInteger tag) {
-            if (self.chooseCallBack) {
-                self.chooseCallBack(item);
-                [self popViewController];
-            }
-            //[self performSelector:@selector(popViewController) withObject:nil afterDelay:0.2];
-        }];
-        
-        //        //UserAddressTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[UserAddressTableViewCell reuseIdentifier]];
-        //        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        //        cell.backgroundColor = [UIColor whiteColor];
-        //        cell.nameLable.text = @"张三  188****4324  户主";
-        //        cell.addressLable.text = @"重庆市渝中区石油路万科中心1栋1004 重庆超尔科技有限公司";
-        return cell;
+    static NSString *CellIdentifier = @"Cell_BaoXiuChooseShopNewTableViewCell";
+    BaoXiuChooseShopNewTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[BaoXiuChooseShopNewTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
+    OrderRepairBidObject *item = [self.tableArr objectAtIndex:indexPath.row];
     
-    return [super tableView:tableView cellForRowAtIndexPath:indexPath];
+    cell.nameLable.text = [NSString compIsNone:item.shop_name];
+    cell.salesMonthLable.text = [NSString stringWithFormat:@"%i人选择", item.ext_sales_month];
+    cell.ratingBarView.starNumber = [item.ext_score integerValue];
+    
+    NSDictionary* style2 = @{@"body" : @[[UIFont systemFontOfSize:14], [UIColor grayColor]],
+                             @"u": @[[UIFont systemFontOfSize:15], COLOR_NavBar] };
+    cell.priceLable.attributedText = [[NSString stringWithFormat:@"报价：<u>￥%.2f</u>", item.bid_price] attributedStringWithStyleBook:style2];
+    
+    
+    [cell.imgView sd_setImageWithURL:[NSURL imageurl:item.shop_logo] placeholderImage:ZLDefaultShopImg];
+    
+    
+    [cell.chooseBtn jk_addActionHandler:^(NSInteger tag) {
+        if (self.chooseCallBack) {
+            self.chooseCallBack(item);
+            [self popViewController];
+        }
+        //[self performSelector:@selector(popViewController) withObject:nil afterDelay:0.2];
+    }];
+    
+    //        //UserAddressTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[UserAddressTableViewCell reuseIdentifier]];
+    //        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    //        cell.backgroundColor = [UIColor whiteColor];
+    //        cell.nameLable.text = @"张三  188****4324  户主";
+    //        cell.addressLable.text = @"重庆市渝中区石油路万科中心1栋1004 重庆超尔科技有限公司";
+    return cell;
 }
 
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (void)reloadTableViewData{
+    [self beginHeaderRereshing];
 }
 
 - (void)reloadTableViewDataSource{

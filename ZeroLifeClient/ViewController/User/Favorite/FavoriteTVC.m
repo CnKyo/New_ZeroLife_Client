@@ -53,6 +53,9 @@
  */
 
 #pragma mark -- tableviewDelegate
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.tableArr.count;
+}
 
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     if (editingStyle == UITableViewCellEditingStyleDelete) {
@@ -84,39 +87,34 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.tableArr.count > 0)
-        return 100;
-    return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+    return 100;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.tableArr.count > 0) {
-        static NSString *CellIdentifier = @"Cell_FavoriteGoodsTableViewCell";
-        FavoriteGoodsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if (cell == nil) {
-            cell = [[FavoriteGoodsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-            cell.selectionStyle = UITableViewCellSelectionStyleGray;
-        }
-        
-        ProductFocusObject *item = [self.tableArr objectAtIndex:indexPath.row];
-        
-//        NSDictionary* style = @{@"body" : @[[UIFont systemFontOfSize:15], COLOR(253, 160, 0)],
-//                                @"u" : @[[UIFont systemFontOfSize:13],
-//                                         [UIColor grayColor],
-//                                         @{NSStrikethroughStyleAttributeName : @(NSUnderlineStyleSingle|NSUnderlinePatternSolid)}]};
-//        
-//        NSString *str1 = [NSString stringWithFormat:@"%@ <u>%@</u>", @"￥100.00", @"￥55.00"];
-//        cell.priceLable.attributedText = [str1 attributedStringWithStyleBook:style];
-        
-        cell.priceLable.text = [NSString stringWithFormat:@"￥%.2f", item.sku_price];
-        cell.iconImgView.image = IMG(@"choose_on.png");
-        cell.nameLable.text = [NSString compIsNone:item.pro_name];
-        cell.msgLable.text = [NSString compIsNone:item.pro_spec];
-
-        return cell;
+    static NSString *CellIdentifier = @"Cell_FavoriteGoodsTableViewCell";
+    FavoriteGoodsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[FavoriteGoodsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell.selectionStyle = UITableViewCellSelectionStyleGray;
     }
-    return [super tableView:tableView cellForRowAtIndexPath:indexPath];
+    
+    ProductFocusObject *item = [self.tableArr objectAtIndex:indexPath.row];
+    
+    //        NSDictionary* style = @{@"body" : @[[UIFont systemFontOfSize:15], COLOR(253, 160, 0)],
+    //                                @"u" : @[[UIFont systemFontOfSize:13],
+    //                                         [UIColor grayColor],
+    //                                         @{NSStrikethroughStyleAttributeName : @(NSUnderlineStyleSingle|NSUnderlinePatternSolid)}]};
+    //
+    //        NSString *str1 = [NSString stringWithFormat:@"%@ <u>%@</u>", @"￥100.00", @"￥55.00"];
+    //        cell.priceLable.attributedText = [str1 attributedStringWithStyleBook:style];
+    
+    cell.priceLable.text = [NSString stringWithFormat:@"￥%.2f", item.sku_price];
+    cell.iconImgView.image = IMG(@"choose_on.png");
+    cell.nameLable.text = [NSString compIsNone:item.pro_name];
+    cell.msgLable.text = [NSString compIsNone:item.pro_spec];
+    
+    return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -129,7 +127,9 @@
 //    }
 }
 
-
+- (void)reloadTableViewData{
+    [self beginHeaderRereshing];
+}
 
 - (void)reloadTableViewDataSource{
     [super reloadTableViewDataSource];
@@ -141,12 +141,5 @@
    // [self performSelector:@selector(donwData) withObject:nil afterDelay:0.5];
 }
 
--(void)donwData
-{
-    for (int i=0; i<10; i++) {
-        [self.tableArr addObject:@"111"];
-    }
-    [self doneLoadingTableViewData];
-}
 
 @end

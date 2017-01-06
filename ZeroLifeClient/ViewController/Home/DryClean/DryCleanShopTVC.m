@@ -42,9 +42,11 @@
     [self setTableViewHaveHeader];
 
 }
+
 - (void)reloadTableViewData{
     [self reloadTableViewDataSource];
 }
+
 - (void)reloadTableViewDataSource{
     [super reloadTableViewDataSource];
     

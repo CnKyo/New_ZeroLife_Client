@@ -29,6 +29,7 @@
         self.timeLable = [superView newUILableWithText:@"2016-10-05 10:23:42" textColor:color font:[UIFont systemFontOfSize:13]];
         self.msgLable.numberOfLines = 0;
         
+        self.moneyLable.minimumScaleFactor = 14;
         [self.imgView makeConstraints:^(MASConstraintMaker *make) {
             make.width.height.equalTo(36);
             make.centerY.equalTo(superView.centerY);
@@ -37,7 +38,7 @@
         [self.moneyLable makeConstraints:^(MASConstraintMaker *make) {
             make.right.equalTo(superView.right).offset(-padding);
             make.top.bottom.equalTo(superView);
-            make.width.lessThanOrEqualTo(65);
+            make.width.lessThanOrEqualTo(100);
         }];
         [self.msgLable makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(_imgView.right).offset(padding);

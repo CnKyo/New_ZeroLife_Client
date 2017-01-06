@@ -121,43 +121,36 @@
     return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (self.tableArr.count > 0)
-        return self.tableArr.count;
-    return [super tableView:tableView numberOfRowsInSection:section];
+    return self.tableArr.count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.tableArr.count > 0)
-        return 210;
-    return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+    return 210;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.tableArr.count > 0) {
-        static NSString *CellIdentifier = @"Cell_OrderTableViewCell";
-        OrderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if (cell == nil) {
-            cell = [[OrderTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        }
-        
-        OrderObject *item = [self.tableArr objectAtIndex:indexPath.row];
-
-        cell.orderClassType = _classType;
-        [cell reloadUIWithItem:item];
-        
-        //添加订单处理事件
-        [cell.actionBtn1 jk_addActionHandler:^(NSInteger tag) {
-            [self loadAPIwithState:cell.actionBtn1.stateStr orderIndex:indexPath.row];
-        }];
-        [cell.actionBtn2 jk_addActionHandler:^(NSInteger tag) {
-            [self loadAPIwithState:cell.actionBtn2.stateStr orderIndex:indexPath.row];
-        }];
-
-        return cell;
+    static NSString *CellIdentifier = @"Cell_OrderTableViewCell";
+    OrderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[OrderTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    return [super tableView:tableView cellForRowAtIndexPath:indexPath];
+    
+    OrderObject *item = [self.tableArr objectAtIndex:indexPath.row];
+    
+    cell.orderClassType = _classType;
+    [cell reloadUIWithItem:item];
+    
+    //添加订单处理事件
+    [cell.actionBtn1 jk_addActionHandler:^(NSInteger tag) {
+        [self loadAPIwithState:cell.actionBtn1.stateStr orderIndex:indexPath.row];
+    }];
+    [cell.actionBtn2 jk_addActionHandler:^(NSInteger tag) {
+        [self loadAPIwithState:cell.actionBtn2.stateStr orderIndex:indexPath.row];
+    }];
+    
+    return cell;
 }
 
 -(void)loadAPIwithState:(NSString *)stateStr orderIndex:(NSInteger)row
@@ -177,7 +170,7 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    if (self.tableArr.count > 0) {
+    if (self.tableArr.count > indexPath.row) {
         OrderObject *item = [self.tableArr objectAtIndex:indexPath.row];
 
         OrderDetailVC *vc = [[OrderDetailVC alloc] init];
@@ -186,6 +179,10 @@
         vc.isShopOrderBool = _isShopOrderBool;
         [self.navigationController pushViewController:vc animated:YES];
     }
+}
+
+- (void)reloadTableViewData{
+    [self beginHeaderRereshing];
 }
 
 - (void)reloadTableViewDataSource{

@@ -52,69 +52,66 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.tableArr.count > 0)
-        return 120;
-    return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+    return 120;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-        static NSString *CellIdentifier = @"Cell_LifePayVCTableViewCell";
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-            cell.selectionStyle = UITableViewCellSelectionStyleGray;
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            cell.backgroundColor = [UIColor whiteColor];
-            UIView *superView = cell.contentView;
-            int padding = 10;
-            UIImageView *imgView = [superView newUIImageView];
-            UILabel *textLable = [superView newUILableWithText:@"" textColor:[UIColor blackColor] font:[UIFont systemFontOfSize:15]];
-            UILabel *gopayLable = [superView newUILableWithText:@"去交费" textColor:[UIColor grayColor] font:[UIFont systemFontOfSize:15] textAlignment:NSTextAlignmentRight];
-            imgView.tag = 11;
-            textLable.tag = 12;
-            [imgView makeConstraints:^(MASConstraintMaker *make) {
-                make.width.height.equalTo(30);
-                make.left.equalTo(superView.left).offset(padding);
-                make.centerY.equalTo(superView.centerY);
-            }];
-            [gopayLable makeConstraints:^(MASConstraintMaker *make) {
-                make.top.bottom.right.equalTo(superView);
-                make.width.equalTo(80);
-            }];
-            [textLable makeConstraints:^(MASConstraintMaker *make) {
-                make.top.bottom.equalTo(superView);
-                make.left.equalTo(imgView.right).offset(padding);
-                make.right.lessThanOrEqualTo(gopayLable.left).offset(-padding);
-            }];
-        }
-        
-        UIImageView *imgView = (UIImageView *)[cell.contentView viewWithTag:11];
-        UILabel *textLable = (UILabel *)[cell.contentView viewWithTag:12];
-        
-        switch (indexPath.row) {
-            case 0:
-                imgView.image = [UIImage imageNamed:[NSString iconImgStrOrderType:kOrderClassType_fee_peroperty]];
-                textLable.text = @"缴物管费";
-                break;
-            case 1:
-                imgView.image = [UIImage imageNamed:[NSString iconImgStrOrderType:kOrderClassType_fee_sdq]];
-                textLable.text = @"水电煤";
-                break;
-            case 2:
-//                imgView.image = [UIImage imageNamed:[NSString iconImgStrOrderType:kOrderClassType_fee_parking]];
-//                textLable.text = @"停车费";
-//                break;
-//            case 3:
-                imgView.image = [UIImage imageNamed:[NSString iconImgStrOrderType:kOrderClassType_fee_mobile]];
-                textLable.text = @"手机充值";
-                break;
-            default:
-                break;
-        }
-        
-        return cell;
+    static NSString *CellIdentifier = @"Cell_LifePayVCTableViewCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell.selectionStyle = UITableViewCellSelectionStyleGray;
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.backgroundColor = [UIColor whiteColor];
+        UIView *superView = cell.contentView;
+        int padding = 10;
+        UIImageView *imgView = [superView newUIImageView];
+        UILabel *textLable = [superView newUILableWithText:@"" textColor:[UIColor blackColor] font:[UIFont systemFontOfSize:15]];
+        UILabel *gopayLable = [superView newUILableWithText:@"去交费" textColor:[UIColor grayColor] font:[UIFont systemFontOfSize:15] textAlignment:NSTextAlignmentRight];
+        imgView.tag = 11;
+        textLable.tag = 12;
+        [imgView makeConstraints:^(MASConstraintMaker *make) {
+            make.width.height.equalTo(30);
+            make.left.equalTo(superView.left).offset(padding);
+            make.centerY.equalTo(superView.centerY);
+        }];
+        [gopayLable makeConstraints:^(MASConstraintMaker *make) {
+            make.top.bottom.right.equalTo(superView);
+            make.width.equalTo(80);
+        }];
+        [textLable makeConstraints:^(MASConstraintMaker *make) {
+            make.top.bottom.equalTo(superView);
+            make.left.equalTo(imgView.right).offset(padding);
+            make.right.lessThanOrEqualTo(gopayLable.left).offset(-padding);
+        }];
+    }
     
+    UIImageView *imgView = (UIImageView *)[cell.contentView viewWithTag:11];
+    UILabel *textLable = (UILabel *)[cell.contentView viewWithTag:12];
+    
+    switch (indexPath.row) {
+        case 0:
+            imgView.image = [UIImage imageNamed:[NSString iconImgStrOrderType:kOrderClassType_fee_peroperty]];
+            textLable.text = @"缴物管费";
+            break;
+        case 1:
+            imgView.image = [UIImage imageNamed:[NSString iconImgStrOrderType:kOrderClassType_fee_sdq]];
+            textLable.text = @"水电煤";
+            break;
+        case 2:
+            //                imgView.image = [UIImage imageNamed:[NSString iconImgStrOrderType:kOrderClassType_fee_parking]];
+            //                textLable.text = @"停车费";
+            //                break;
+            //            case 3:
+            imgView.image = [UIImage imageNamed:[NSString iconImgStrOrderType:kOrderClassType_fee_mobile]];
+            textLable.text = @"手机充值";
+            break;
+        default:
+            break;
+    }
+    
+    return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

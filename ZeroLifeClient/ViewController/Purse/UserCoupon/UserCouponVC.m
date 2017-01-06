@@ -149,89 +149,85 @@
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
 }
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.tableArr.count;
 }
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.tableArr.count > 0)
-        return 100;
-    return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+    return 100;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.tableArr.count > 0) {
-        static NSString *CellIdentifier = @"Cell_UserCouponTableViewCell";
-        UserCouponTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if (cell == nil) {
-            cell = [[UserCouponTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        }
-        
-        CouponObject *item = [self.tableArr objectAtIndex:indexPath.row];
-        
-        UIColor *bordColor = nil;
-        NSString *typeStr = item.cup_name;
-        NSString *stateStr = @"";
-        
-        if ([item.cuc_state isEqualToString:kCouponState_NoUse]) {
-            stateStr = @"未使用";
-            bordColor = COLOR(253, 126, 0);
-            cell.view.imgView.image = IMG(@"user_coupon_jushe.png");
-            cell.view.statusLable.textColor = [UIColor whiteColor];
-            cell.view.timeLable.textColor = [UIColor whiteColor];
-            
-            
-        } else if ([item.cuc_state isEqualToString:kCouponState_IsUsed]) {
-            typeStr = @"已使用";
-            bordColor = COLOR(253, 87, 88);
-            cell.view.imgView.image = IMG(@"user_coupon_red.png");
-            cell.view.statusLable.textColor = [UIColor whiteColor];
-            cell.view.timeLable.textColor = [UIColor whiteColor];
-            
-        } else if ([item.cuc_state isEqualToString:kCouponState_Overdue]) {
-            typeStr = @"已过期";
-            bordColor = COLOR(222, 222, 222);
-            cell.view.imgView.image = IMG(@"user_coupon_gray.png");
-            cell.view.statusLable.textColor = COLOR(150, 150, 150);
-            cell.view.timeLable.textColor = COLOR(150, 150, 150);
-        }
-        
-        CGFloat moneyBaseWidth = 50;
-        NSDictionary *attrs = @{NSFontAttributeName : cell.view.typeLable.font};
-        CGSize size = [typeStr sizeWithAttributes:attrs];
-        size.width += 10;
-        NSLog(@"width: %.2f", size.width);
-        [cell.view.typeLable updateConstraints:^(MASConstraintMaker *make) {
-            make.width.equalTo(size.width);
-        }];
-        [cell.view.moneyLable updateConstraints:^(MASConstraintMaker *make) {
-            if (size.width < moneyBaseWidth) {
-                make.width.equalTo(moneyBaseWidth);
-            } else {
-                make.width.equalTo(size.width);
-            }
-        }];
-        
-        NSDictionary* style = @{@"body" : @[[UIFont systemFontOfSize:25], bordColor],
-                                @"u" : @[[UIFont systemFontOfSize:14], COLOR(253, 156, 16)]};
-        
-        NSString *moneyStr = [NSString stringWithFormat:@"%.2f <u>元</u>", item.cup_price];
-        cell.view.typeLable.text = typeStr;
-        cell.view.layer.borderColor = bordColor.CGColor;
-        cell.view.typeLable.layer.borderColor = bordColor.CGColor;
-        cell.view.typeLable.textColor = bordColor;
-        cell.view.moneyLable.attributedText = [moneyStr attributedStringWithStyleBook:style];
-        
-        cell.view.nameLable.text = [NSString compIsNone:item.cup_author];
-        cell.view.desLable.text = [NSString compIsNone:item.cup_content];
-        cell.view.timeLable.text = [item.cuc_overdue substringWithRange:NSMakeRange(0, 10)];
-        
-        
-        return cell;
+    static NSString *CellIdentifier = @"Cell_UserCouponTableViewCell";
+    UserCouponTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[UserCouponTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    return [super tableView:tableView cellForRowAtIndexPath:indexPath];
+    CouponObject *item = [self.tableArr objectAtIndex:indexPath.row];
+    
+    UIColor *bordColor = nil;
+    NSString *typeStr = item.cup_name;
+    NSString *stateStr = @"";
+    
+    if ([item.cuc_state isEqualToString:kCouponState_NoUse]) {
+        stateStr = @"未使用";
+        bordColor = COLOR(253, 126, 0);
+        cell.view.imgView.image = IMG(@"user_coupon_jushe.png");
+        cell.view.statusLable.textColor = [UIColor whiteColor];
+        cell.view.timeLable.textColor = [UIColor whiteColor];
+        
+        
+    } else if ([item.cuc_state isEqualToString:kCouponState_IsUsed]) {
+        typeStr = @"已使用";
+        bordColor = COLOR(253, 87, 88);
+        cell.view.imgView.image = IMG(@"user_coupon_red.png");
+        cell.view.statusLable.textColor = [UIColor whiteColor];
+        cell.view.timeLable.textColor = [UIColor whiteColor];
+        
+    } else if ([item.cuc_state isEqualToString:kCouponState_Overdue]) {
+        typeStr = @"已过期";
+        bordColor = COLOR(222, 222, 222);
+        cell.view.imgView.image = IMG(@"user_coupon_gray.png");
+        cell.view.statusLable.textColor = COLOR(150, 150, 150);
+        cell.view.timeLable.textColor = COLOR(150, 150, 150);
+    }
+    
+    CGFloat moneyBaseWidth = 50;
+    NSDictionary *attrs = @{NSFontAttributeName : cell.view.typeLable.font};
+    CGSize size = [typeStr sizeWithAttributes:attrs];
+    size.width += 10;
+    NSLog(@"width: %.2f", size.width);
+    [cell.view.typeLable updateConstraints:^(MASConstraintMaker *make) {
+        make.width.equalTo(size.width);
+    }];
+    [cell.view.moneyLable updateConstraints:^(MASConstraintMaker *make) {
+        if (size.width < moneyBaseWidth) {
+            make.width.equalTo(moneyBaseWidth);
+        } else {
+            make.width.equalTo(size.width);
+        }
+    }];
+    
+    NSDictionary* style = @{@"body" : @[[UIFont systemFontOfSize:25], bordColor],
+                            @"u" : @[[UIFont systemFontOfSize:14], COLOR(253, 156, 16)]};
+    
+    NSString *moneyStr = [NSString stringWithFormat:@"%.2f <u>元</u>", item.cup_price];
+    cell.view.typeLable.text = typeStr;
+    cell.view.layer.borderColor = bordColor.CGColor;
+    cell.view.typeLable.layer.borderColor = bordColor.CGColor;
+    cell.view.typeLable.textColor = bordColor;
+    cell.view.moneyLable.attributedText = [moneyStr attributedStringWithStyleBook:style];
+    
+    cell.view.nameLable.text = [NSString compIsNone:item.cup_author];
+    cell.view.desLable.text = [NSString compIsNone:item.cup_content];
+    cell.view.timeLable.text = [item.cuc_overdue substringWithRange:NSMakeRange(0, 10)];
+    
+    
+    return cell;
 }
 
 
@@ -239,11 +235,15 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    if (self.block) {
+    if (self.tableArr.count>indexPath.row && self.block) {
         CouponObject *item = [self.tableArr objectAtIndex:indexPath.row];
         self.block(item);
         [self performSelector:@selector(popViewController) withObject:nil afterDelay:0.2];
     }
+}
+
+- (void)reloadTableViewData{
+    [self beginHeaderRereshing];
 }
 
 - (void)reloadTableViewDataSource{

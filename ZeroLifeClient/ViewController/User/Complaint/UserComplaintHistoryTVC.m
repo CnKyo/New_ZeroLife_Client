@@ -48,50 +48,48 @@
  */
 
 #pragma mark -- tableviewDelegate
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.tableArr.count;
+}
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.tableArr.count > 0)
-        return 60;
-    return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+    return 60;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.tableArr.count > 0) {
-        static NSString *CellIdentifier = @"Cell_UserComplaintHistoryTableViewCell";
-        UserComplaintHistoryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if (cell == nil) {
-            cell = [[UserComplaintHistoryTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-            cell.selectionStyle = UITableViewCellSelectionStyleGray;
-            cell.backgroundColor = [UIColor whiteColor];
-        }
-        
-        ComplaintObject *item = [self.tableArr objectAtIndex:indexPath.row];
-
-        cell.timeLable.text = item.cpm_add_time;
-        cell.msgLable.text = item.cpm_content;
-        
-        switch (item.cpm_type) {
-            case kComplaintType_company:
-                cell.iconImgView.image = IMG(@"cell_complaint_gongsi.png");
-                cell.nameLable.text = @"对公司投诉";
-                break;
-            case kComplaintType_community:
-                cell.iconImgView.image = IMG(@"cell_complaint_wuguan.png");
-                cell.nameLable.text = @"物管投诉";
-                break;
-            case kComplaintType_people:
-                cell.iconImgView.image = IMG(@"cell_complaint_juming.png");
-                cell.nameLable.text = @"居民投诉";
-                break;
-            default:
-                break;
-        }
-        
-        return cell;
+    static NSString *CellIdentifier = @"Cell_UserComplaintHistoryTableViewCell";
+    UserComplaintHistoryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[UserComplaintHistoryTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell.selectionStyle = UITableViewCellSelectionStyleGray;
+        cell.backgroundColor = [UIColor whiteColor];
     }
-    return [super tableView:tableView cellForRowAtIndexPath:indexPath];
+    
+    ComplaintObject *item = [self.tableArr objectAtIndex:indexPath.row];
+    
+    cell.timeLable.text = item.cpm_add_time;
+    cell.msgLable.text = item.cpm_content;
+    
+    switch (item.cpm_type) {
+        case kComplaintType_company:
+            cell.iconImgView.image = IMG(@"cell_complaint_gongsi.png");
+            cell.nameLable.text = @"对公司投诉";
+            break;
+        case kComplaintType_community:
+            cell.iconImgView.image = IMG(@"cell_complaint_wuguan.png");
+            cell.nameLable.text = @"物管投诉";
+            break;
+        case kComplaintType_people:
+            cell.iconImgView.image = IMG(@"cell_complaint_juming.png");
+            cell.nameLable.text = @"居民投诉";
+            break;
+        default:
+            break;
+    }
+    
+    return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -104,7 +102,9 @@
 //    }
 }
 
-
+- (void)reloadTableViewData{
+    [self beginHeaderRereshing];
+}
 
 - (void)reloadTableViewDataSource{
     [super reloadTableViewDataSource];
@@ -112,16 +112,8 @@
     [[APIClient sharedClient] complaintListWithTag:self page:self.page call:^(int totalPage, NSArray *tableArr, APIObject *info) {
         [self reloadWithTableArr:tableArr info:info];
     }];
-    //[self performSelector:@selector(donwData) withObject:nil afterDelay:0.5];
 }
 
--(void)donwData
-{
-    for (int i=0; i<10; i++) {
-        [self.tableArr addObject:@"111"];
-    }
-    [self doneLoadingTableViewData];
-}
 
 
 @end
