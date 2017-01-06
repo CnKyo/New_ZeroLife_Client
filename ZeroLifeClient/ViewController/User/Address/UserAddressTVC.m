@@ -108,26 +108,16 @@
 #pragma mark -- tableviewDelegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    if (self.tableArr.count > 0)
-        return self.tableArr.count;
-    return 1;
+    return self.tableArr.count;
 }
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (self.tableArr.count > 0)
-        return 1;
-    else {
-        if (self.tableIsReloading)
-            return 0;
-        else
-            return 1;
-    }
+    return 1;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.tableArr.count > 0)
-        return 80;
-    return 50;
+    return 80;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

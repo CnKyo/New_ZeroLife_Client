@@ -104,6 +104,8 @@
 #define DEVICE_ContentView_Height (DEVICE_Height - DEVICE_InStatusBar_Height)
 #define TOP_Height                      (DEVICE_StatuBar_Height+DEVICE_NavBar_Height)
 
+#define NAVBAR_Height            64.0
+
 #define PerDeviceWidth(__NUMBER__)      (DEVICE_Width * __NUMBER__)
 #define PerDeviceHeight(__NUMBER__)     (DEVICE_Height * __NUMBER__)
 
@@ -207,7 +209,7 @@ static int const RESP_STATUS_LOGIN                  = 300;             //需要�
 static NSString* const  kAFAppDotNetApiBaseURLString    = @"http://192.168.1.114";
 static NSString* const  kAFAppDotNetApiExtraURLString    = @"/api/app/client";
 static NSString* const  kAFAppDotNetApiServiceURLString    = @"/api/app/service";
-static NSString* const  kAFAppDotNetImgBaseURLString    = @"http://192.168.1.114/resources";
+static NSString* const  kAFAppDotNetImgBaseURLString    = @"http://192.168.1.114/resource";
 
 
 static NSString * const MyUserNeedUpdateNotification     = @"MyUserNeedUpdateNotification";

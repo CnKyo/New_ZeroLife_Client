@@ -206,19 +206,21 @@
     
     MLLog(@"优惠券");
     
-    UserCouponVC *vc = [[UserCouponVC alloc] init];
-    [vc.tableArr setArray: mFixPreOrder.coupons];
-    
-    vc.block = ^(CouponObject *mCoupon) {
+    if (mFixPreOrder.coupons.count > 0) {
+        UserCouponVC *vc = [[UserCouponVC alloc] init];
+        [vc.tableArr setArray: mFixPreOrder.coupons];
         
-        mFixPreOrder.mCoupon = mCoupon;
-        
-        [self.tableView reloadData];
-    };
-    [self.navigationController pushViewController:vc animated:YES];
-
-    
+        vc.block = ^(CouponObject *mCoupon) {
+            
+            mFixPreOrder.mCoupon = mCoupon;
+            
+            [self.tableView reloadData];
+        };
+        [self.navigationController pushViewController:vc animated:YES];
+    } else
+        [SVProgressHUD showErrorWithStatus:@"暂无可用优惠券"];
 }
+
 #pragma mark----****----上传图片
 /**
  上传图片
@@ -356,12 +358,12 @@
     
     [mPara setInt:self.mClassObj.mClassId forKey:@"cls_id"];
     
-    [mPara setObject:mFixPreOrder.goods.pro_name forKey:@"odrg_pro_name"];
+    [mPara setNeedStr:mFixPreOrder.goods.pro_name forKey:@"odrg_pro_name"];
 
-    [mPara setObject:mFixPreOrder.goods.pro_spec forKey:@"odrg_spec"];
+    [mPara setNeedStr:mFixPreOrder.goods.pro_spec forKey:@"odrg_spec"];
     [mPara setInt:0 forKey:@"odrg_price"];
 
-    [mPara setObject:mFixPreOrder.goods.img_url forKey:@"odrg_img"];
+    [mPara setNeedStr:mFixPreOrder.goods.img_url forKey:@"odrg_img"];
 
     if (mFixPreOrder.mUpLoadImgUrl) {
         [mPara setObject:mFixPreOrder.mUpLoadImgUrl forKey:@"odrg_img_repair"];

@@ -10,6 +10,7 @@
 #import "UIButton+CustomLocal.h"
 #import <AFNetworking/UIButton+AFNetworking.h>
 #import <SDWebImage/UIButton+WebCache.h>
+#import "UIImage+ThumbnailImage.h"
 
 @implementation OrderBaoxiuImgVideoView
 
@@ -70,7 +71,12 @@
 -(void)reloadUIWithItem:(OrderGoodsObject *)item
 {
     [self.imgBtn sd_setImageWithURL:[NSURL imageurl:item.odrg_img_repair] forState:UIControlStateNormal];
-    [self.videoBtn sd_setImageWithURL:[NSURL imageurl:item.odrg_video_repair] forState:UIControlStateNormal];
+    //[self.videoBtn sd_setImageWithURL:[NSURL imageurl:item.odrg_video_repair] forState:UIControlStateNormal];
+    
+    NSString *url = [NSString linkUrl:item.odrg_video_repair];
+    UIImage *img = [UIImage getThumbnailImage:url];
+    [self.videoBtn setImage:img forState:UIControlStateNormal];
+    
 }
 
 

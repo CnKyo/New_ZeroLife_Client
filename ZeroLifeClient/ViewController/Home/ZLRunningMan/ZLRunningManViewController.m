@@ -24,6 +24,10 @@
 
 #import "OrderTVC.h"
 #import "ZLRunningManTopView.h"
+
+static int const ZLRunningManVC_TopView_Height                  = 100;
+static int const ZLRunningManVC_ClassView_Height                  = 80;
+
 @interface ZLRunningManViewController ()<UITableViewDelegate,UITableViewDataSource,ZLRunningManHomeCellDelegate,ZLRunningManCellDelegate,ZLRuuningManHomeHeaderSectionViewDelegate,ZLCustomSegViewDelegate,ZLRunningManTopViewDelegate>
 
 @property (assign,nonatomic)     NSInteger mIndex;
@@ -109,7 +113,7 @@
     self.tableView.tableFooterView = [UIView new];
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view).offset(284);
+        make.top.equalTo(self.view).offset(NAVBAR_Height+ZLRunningManVC_TopView_Height+ZLRunningManVC_ClassView_Height+1);
         make.left.right.equalTo(self.view).offset(@0);
         make.bottom.equalTo(self.view);
     }];
@@ -145,7 +149,7 @@
     }
     
     mTopView = [ZLRunningManTopView initView:self.tableArr];
-    mTopView.frame = CGRectMake(0, 64, DEVICE_Width, 100);
+    mTopView.frame = CGRectMake(0, NAVBAR_Height, DEVICE_Width, ZLRunningManVC_TopView_Height);
     mTopView.delegate = self;
 
     [self.view addSubview:mTopView];
@@ -197,7 +201,7 @@
     
     mClassView = [ZLRunningManTopView initclassViewText:mTTArr andImg:mImgArr];
     mClassView.delegate = self;
-    mClassView.frame = CGRectMake(0, 164, DEVICE_Width, 120);
+    mClassView.frame = CGRectMake(0, NAVBAR_Height+ZLRunningManVC_TopView_Height, DEVICE_Width, ZLRunningManVC_ClassView_Height);
     [self.view addSubview:mClassView];
 
 

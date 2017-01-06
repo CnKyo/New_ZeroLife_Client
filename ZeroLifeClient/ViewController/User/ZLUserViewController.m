@@ -211,7 +211,8 @@
                 [str appendFormat:@" %@", user.community.cmut_name];
             }
             cell.userNoteLable.text = str;
-            [cell.userImgView sd_setImageWithURL:[NSURL imageurl:user.user_header] placeholderImage:IMG(@"user_header.png")];
+            NSURL *url = [NSURL imageurl:user.user_header];
+            [cell.userImgView sd_setImageWithURL:url placeholderImage:IMG(@"user_header.png")];
 
             //判断跑跑信息
             if ([user.openInfo.open_state isEqualToString:kOpenState_CHECKED]) {

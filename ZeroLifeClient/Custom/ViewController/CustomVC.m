@@ -27,6 +27,7 @@
     if (self) {
         self.page = 1;
         self.beginHeaderRereshingWhenViewWillAppear = YES;
+        self.mEmptyType = ZLEmptyViewTypeWithLodding;
         self.tableArr = [NSMutableArray array];
     }
     return self;
@@ -334,7 +335,7 @@
     if (self.page != 1)
         self.page = 1;
     self.tableIsReloading = YES;
-    [self.tableView reloadEmptyDataSet];
+    //[self.tableView reloadEmptyDataSet];
     [self reloadTableViewDataSource];
 }
 
@@ -360,7 +361,7 @@
         if (self.errMsg.length > 0)
             [self addEmptyView:self.tableView andType:ZLEmptyViewTypeWithNoError];
         else
-            [self addEmptyView:self.tableView andType:ZLEmptyViewTypeWithCommon];
+            [self addEmptyView:self.tableView andType:ZLEmptyViewTypeWithNoData];
     }
     
     [self.tableView reloadData];
@@ -637,9 +638,12 @@
             break;
         case ZLEmptyViewTypeWithNoData:
         {
-            mImg = [UIImage imageNamed:@"ZLNoOrder"];
-
-            
+            mImg = [UIImage imageNamed:@"ZLNoCollect"];
+        }
+            break;
+        case ZLEmptyViewTypeWithLodding:
+        {
+            mImg = [UIImage imageNamed:@"ZLNoCollect"];
         }
             break;
         case ZLEmptyViewTypeWithNoError:
@@ -687,6 +691,15 @@
             textColor = [UIColor lightGrayColor];
             [attributes setObject:@(-0.10) forKey:NSKernAttributeName];
 
+        }
+            break;
+        case ZLEmptyViewTypeWithLodding:
+        {
+            text = @"真的，我这里正在努力加载～～";
+            font = [UIFont boldSystemFontOfSize:16.0];
+            textColor = [UIColor lightGrayColor];
+            [attributes setObject:@(-0.10) forKey:NSKernAttributeName];
+            
         }
             break;
         case ZLEmptyViewTypeWithNoError:
@@ -740,7 +753,7 @@
 }
 ///返回空白区域的颜色自定义
 - (UIColor *)backgroundColorForEmptyDataSet:(UIScrollView *)scrollView {
-    return [UIColor whiteColor];
+    return COLOR(247, 247, 247);
 }
 //空白页点击事件
 - (void)emptyDataSetDidTapView:(UIScrollView *)scrollView {
@@ -752,13 +765,7 @@
     [self reloadTableViewData];
 }
 
-- (BOOL)emptyDataSetShouldDisplay:(UIScrollView *)scrollView
-{
-    if (_tableIsReloading) {
-        return NO;
-    } else
-        return YES;
-}
+
 
 
 @end

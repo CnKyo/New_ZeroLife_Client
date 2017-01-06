@@ -114,7 +114,7 @@ static NSString *const kTagsTableCellReuseIdentifier = @"TagsTableCell";
 {
     if (_item != nil)
         return _item.childs.count;
-    return 1;
+    return 0;
 }
 
 - (nullable NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
