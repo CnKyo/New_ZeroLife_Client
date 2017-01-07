@@ -652,6 +652,7 @@ static const CGFloat mTopH = 156;
                 
                 ZLWebViewViewController *mWebvc = [ZLWebViewViewController new];
                 mWebvc.mUrl = [NSString stringWithFormat:@"%@/wap/good/goodsdetails?pro_id=%d&sku_id=%d&shop_id=%d&user_id=%d",[[APIClient sharedClient] currentUrl],mCGoodsObj.pro_id,mCGoodsObj.sku_id,self.mShopObj.shop_id,[ZLUserInfo ZLCurrentUser].user_id];
+                mWebvc.mShopObj = mShopObj;
                 mWebvc.mCamGoodsObj = mCGoodsObj;
                 mWebvc.mShopId = self.mShopObj.shop_id;
                 mWebvc.mType = _mType;
@@ -667,6 +668,7 @@ static const CGFloat mTopH = 156;
                 
                 ZLWebViewViewController *mWebvc = [ZLWebViewViewController new];
                 mWebvc.mUrl = [NSString stringWithFormat:@"%@/wap/good/goodsdetails?pro_id=%d&sku_id=%d&shop_id=%d&user_id=%d",[[APIClient sharedClient] currentUrl],mCGoodsObj.pro_id,mCGoodsObj.sku_id,self.mShopObj.shop_id,[ZLUserInfo ZLCurrentUser].user_id];
+                mWebvc.mShopObj = mShopObj;
                 mWebvc.mClsGoodsObj = mCGoodsObj;
                 mWebvc.mShopId = self.mShopObj.shop_id;
                 mWebvc.mType = _mType;
@@ -1148,11 +1150,28 @@ static const CGFloat mTopH = 156;
         num = 1;
     }
     
+    float price = mPrice*num;
+    
+    NSString *mbtnContent = nil;
+    if (price<mShopObj.mShopMsg.ext_min_price) {
+        mbtnContent = [NSString stringWithFormat:@"还差%.2f元起送",mShopObj.mShopMsg.ext_min_price-price];
+        mSpeView.mBuyNowBtn.userInteractionEnabled = NO;
+        [mSpeView.mBuyNowBtn setBackgroundColor:[UIColor lightGrayColor]];
+    }else if (price<=0){
+        mbtnContent = [NSString stringWithFormat:@"还差%.2f元起送",mShopObj.mShopMsg.ext_min_price];
+        mSpeView.mBuyNowBtn.userInteractionEnabled = NO;
+        [mSpeView.mBuyNowBtn setBackgroundColor:[UIColor lightGrayColor]];
+    }else{
+        mbtnContent = @"去结算";
+        mSpeView.mBuyNowBtn.userInteractionEnabled = YES;
+        [mSpeView.mBuyNowBtn setBackgroundColor:[UIColor redColor]];
+    }
+    [mSpeView.mBuyNowBtn setTitle:mbtnContent forState:0];
     
     
     [mSpeView.mGoodsImg sd_setImageWithURL:[NSURL URLWithString:[Util currentSourceImgUrl:mGoodsImg]] placeholderImage:[UIImage imageNamed:@"ZLDefault_Img"]];
     mSpeView.mGoodsName.text = mName;
-    mSpeView.mGoodsPrice.text = [NSString stringWithFormat:@"价格：%.2f元",mPrice];
+    mSpeView.mGoodsPrice.text = [NSString stringWithFormat:@"价格：%.2f元",price];
     mSpeView.mGoodsRep.text = [NSString stringWithFormat:@"库存：%d",mcount];
     mSpeView.mNum.text = [NSString stringWithFormat:@"%d",num];
 
@@ -1331,12 +1350,14 @@ static const CGFloat mTopH = 156;
     for (ZLSpeObj *mObj  in self.mAddSkuArray) {
         if (mObj.mSku.sta_required == 1) {
             mAddShopCarEx.mTotlePrice+=mObj.mSku.sku_price;
+            [self UpdateSpeViewPage:mGoodObj.img_url andGoodsName:mGoodObj.pro_name andGoodsPrice:mObj.mSku.sku_price andSkuCount:mObj.mSku.sku_stock andGoodsNum:mGoodObj.mNum];
+
 
         }
     }
     mAddShopCarEx.mGoodsNum += 1;
     mSpeView.mNum.text = [NSString stringWithFormat:@"%d",mGoodObj.mNum];
-//    [self updateBottomView:mAddShopCarEx];
+
 
 }
 #pragma mark----****---- 规格 减按钮代理方法
@@ -1361,7 +1382,8 @@ static const CGFloat mTopH = 156;
     for (ZLSpeObj *mObj  in self.mAddSkuArray) {
         if (mObj.mSku.sta_required == 1) {
             mAddShopCarEx.mTotlePrice-=mObj.mSku.sku_price;
-            
+            [self UpdateSpeViewPage:mGoodObj.img_url andGoodsName:mGoodObj.pro_name andGoodsPrice:mObj.mSku.sku_price andSkuCount:mObj.mSku.sku_stock andGoodsNum:mGoodObj.mNum];
+
         }
     }
     mAddShopCarEx.mGoodsNum -= 1;

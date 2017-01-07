@@ -220,18 +220,27 @@
 //            
 //        }];
 //    }];
-    NSMutableArray *images = [NSMutableArray new];
     
-    [images addObject:[UIImage imageNamed:@"ZLGuideImg1"]];
-    [images addObject:[UIImage imageNamed:@"ZLGuideImg2"]];
-    [images addObject:[UIImage imageNamed:@"ZLGuideImg3"]];
-    
-    GuideView* guide = [[GuideView alloc]initWithFrame:CGRectMake(0, 0, DEVICE_Width, DEVICE_Height)];
-    guide.guideImages = images;
-    [self.window.rootViewController.view addSubview:guide];
-    [UIView animateWithDuration:0.5 animations:^{
-        guide.frame = CGRectMake(0, 0, DEVICE_Width, DEVICE_Height);
-    }];
+    // 引导页在程序中只会显示一次
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    int a=[[userDefaults objectForKey:@"isShow"] intValue];
+    if (a!=10) {
+        [userDefaults setObject:@"10" forKey:@"isShow"];
+        NSMutableArray *images = [NSMutableArray new];
+        
+        [images addObject:[UIImage imageNamed:@"ZLGuideImg1"]];
+        [images addObject:[UIImage imageNamed:@"ZLGuideImg2"]];
+        [images addObject:[UIImage imageNamed:@"ZLGuideImg3"]];
+        
+        GuideView* guide = [[GuideView alloc]initWithFrame:CGRectMake(0, 0, DEVICE_Width, DEVICE_Height)];
+        guide.guideImages = images;
+        [self.window.rootViewController.view addSubview:guide];
+        [UIView animateWithDuration:0.5 animations:^{
+            guide.frame = CGRectMake(0, 0, DEVICE_Width, DEVICE_Height);
+        }];
+
+        [userDefaults synchronize];
+    }
     
 }
 
