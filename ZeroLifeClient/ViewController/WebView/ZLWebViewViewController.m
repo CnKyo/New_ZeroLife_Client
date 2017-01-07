@@ -871,6 +871,15 @@
     
     if (self.mAddSkuArray.count <= 0) {
         [self.mAddSkuArray addObject:mSku];
+        for (ZLSpeObj *mAdd in self.mAddSkuArray) {
+            if (mAdd.mSku.sku_id == mSku.mSku.sku_id) {
+                mAdd.mIsSelected = YES;
+                [self.mAddSkuArray removeObject:mSku];
+                [self.mAddSkuArray addObject:mAdd];
+                
+            }
+        }
+
     }else{
         for (int i = 0;i<self.mAddSkuArray.count;i++) {
             
@@ -892,6 +901,19 @@
     }
     
     
+    for (ZLSpeObj *mAdd in self.mAddSkuArray) {
+        if (mAdd.mSku.sku_id == mSku.mSku.sku_id) {
+            mAdd.mIsSelected = YES;
+            [self.mAddSkuArray removeObject:mSku];
+            [self.mAddSkuArray addObject:mAdd];
+        }
+    }
+    
+    
+    MLLog(@"选中的规格是：%@",self.mAddSkuArray);
+    
+
+
     if (mSku.mSku.sta_required == 1) {
         
         //        mAddShopCarEx.mTotlePrice = mSku.mSku.sku_price;
@@ -899,7 +921,17 @@
         
     }
     
-    
+    for (ZLSpeObj *msku in mSpe.mSpeArr) {
+        for (ZLSpeObj *mspe in self.mAddSkuArray) {
+            if (msku.mSku.sku_id == mspe.mSku.sku_id) {
+                msku.mIsSelected = YES;
+            }else{
+                msku.mIsSelected = NO;
+                
+            }
+            [_mSpeTableView reloadData];
+        }
+    }
     
 }
 

@@ -1130,6 +1130,7 @@
 @property (assign,nonatomic) int                    mStock; //!< 库存
 @property (assign,nonatomic) int                    mIsValid;   //!< 是否有效
 @property (strong,nonatomic) ZLGoodsSKU *           mSku;   //!< sku对象
+@property (assign,nonatomic) BOOL                   mIsSelected;   ///是否选中
 @end
 
 

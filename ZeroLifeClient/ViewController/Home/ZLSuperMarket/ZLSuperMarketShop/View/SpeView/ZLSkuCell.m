@@ -100,8 +100,8 @@
         [btn setTitle:str forState:UIControlStateNormal];
         btn.backgroundColor = [UIColor whiteColor];
         
-        [btn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-        [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+//        [btn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+//        [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
         
         btn.layer.cornerRadius = 5;
         btn.layer.borderWidth = 0.5;
@@ -111,6 +111,15 @@
         
         
         btn.tag = i;
+        
+        
+        if (mSpe.mIsSelected == YES) {
+            btn.backgroundColor = M_CO;
+            [btn setTitleColor:[UIColor whiteColor] forState:0];
+        }else{
+            btn.backgroundColor = [UIColor whiteColor];
+            [btn setTitleColor:[UIColor grayColor] forState:0];
+        }
         
         
         [tempArr addObject:btn];
