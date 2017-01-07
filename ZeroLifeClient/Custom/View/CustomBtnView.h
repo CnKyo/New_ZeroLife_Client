@@ -13,4 +13,18 @@
 @property (nonatomic, strong) UILabel *textLable;
 
 +(CustomBtnView *)initWithTag:(NSInteger)tag title:(NSString *)title img:(UIImage *)img;
+
++(CustomBtnView *)initWithTag:(NSInteger)tag title:(NSString *)title imgDefult:(UIImage *)imgDefult imgUrl:(NSURL *)imgUrl;
+
+@end
+
+
+
+
+@interface CustomBtnView111 : QUItemBtnView
+@property (nonatomic, strong) UIImageView *imgView;
+@property (nonatomic, strong) UILabel *textLable;
+
++(CustomBtnView111 *)initWithTag:(NSInteger)tag title:(NSString *)title imgDefult:(UIImage *)imgDefult imgUrl:(NSURL *)imgUrl;
+
 @end

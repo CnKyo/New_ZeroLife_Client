@@ -59,7 +59,7 @@
 - (void)setMGoods:(LKDBHelperGoodsObj *)mGoods{
 
     
-    [self.mGoodsImg sd_setImageWithURL:[NSURL URLWithString:[Util currentSourceImgUrl:mGoods.mGoodsImg]] placeholderImage:IMG(@"ZLDefault_Green")];
+    [self.mGoodsImg sd_setImageWithURL:[NSURL URLWithString:[Util currentSourceImgUrl:mGoods.mGoodsImg]] placeholderImage:IMG(@"ZLDefault_Img")];
     self.mGoodsName.text = mGoods.mGoodsName;
     self.mNum.text = [NSString stringWithFormat:@"%d",mGoods.mExtObj.mGoodsNum];
     NSString *mSpe = @"";
