@@ -40,17 +40,21 @@
 -(void)loadView
 {
     [super loadView];
-    
+    self.view.backgroundColor = [UIColor whiteColor];
     
     [self addTableViewWithStyleGrouped];
+    [self setTableViewHaveHeader];
+    
+    [self.tableView remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.equalTo(self.view);
+        make.top.equalTo(self.view.top).offset(-NAVBAR_Height);
+    }];
+    
     [self.tableView registerNib:[ZLUserHeaderTableViewCell jk_nib] forCellReuseIdentifier:[ZLUserHeaderTableViewCell reuseIdentifier]];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.showsVerticalScrollIndicator = NO;
     
 
-
-
-    
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] bk_initWithImage:IMG(@"itemBar_setting.png") style:UIBarButtonItemStylePlain handler:^(id  _Nonnull sender) {
         SystemSettingVC *vc = [[SystemSettingVC alloc] init];
         vc.hidesBottomBarWhenPushed = YES;
@@ -92,6 +96,8 @@
                 [SVProgressHUD showWithStatus:@"退出中..."];
                 [[APIClient sharedClient] userLoginOutWithTag:self call:^(APIObject *info) {
                     if (info.code == RESP_STATUS_YES) {
+                        [SVProgressHUD dismiss];
+                        
                         [ZLUserInfo logOut];
                         [ZLLoginViewController startPresent:self];
                     } else
@@ -184,7 +190,7 @@
 {
     CGFloat height = 50;
     if (indexPath.section == 0)
-        height = 250;
+        height = 250+NAVBAR_Height;
     else if (indexPath.section == 1)
         height = 120;
     return height;
@@ -414,6 +420,21 @@
         }
 
     }
+}
+
+
+- (void)reloadTableViewDataSource{
+    [super reloadTableViewDataSource];
+    
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    if (user.user_id > 0) {
+        [[APIClient sharedClient] userInfoWithTag:self call:^(ZLUserInfo *user, APIObject *info) {
+            [self.tableView reloadData];
+            [self doneLoadingTableViewData];
+        }];
+    } else
+        [self performSelector:@selector(doneLoadingTableViewData) withObject:nil afterDelay:0.1];
+
 }
 
 - (void)selectItemBtnView:(QUItemBtnView *)view

@@ -299,7 +299,6 @@
             [self reloadWithTableArr:tableArr info:info];
         }];
     }
-
 }
 
 -(void)donwData

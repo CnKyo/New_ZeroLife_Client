@@ -1752,9 +1752,10 @@
 @property (nonatomic, strong) NSString *            _j_msgid;              //
 @property (nonatomic, strong) JPushReceiveAPSObject *aps;              //
 @property (nonatomic, strong) NSString *            model;              //
-@property (nonatomic, assign) int                   type;              //
-@property (nonatomic, strong) NSString *            order_type;              //
-@property (nonatomic, strong) NSString *            order_code;              //
+@property (nonatomic, assign) int                   msg_type;              //
+@property (nonatomic, assign) int                   odr_id;              //
+@property (nonatomic, strong) NSString *            odr_type;              //
+@property (nonatomic, assign) int                   odr_code;              //
 @property (nonatomic, strong) NSString *            url;              //
 @end
 
