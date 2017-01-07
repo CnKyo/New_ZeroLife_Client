@@ -20,6 +20,7 @@
 #import "SecurityPasswordVC.h"
 
 #import "SingInView.h"
+#import "ZLLoginViewController.h"
 
 
 @implementation PurseHeaderView
@@ -200,6 +201,12 @@
         
         //余额
         [yuEView jk_handleControlEvents:UIControlEventTouchUpInside withBlock:^(id weakSender) {
+            ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+            if (user == nil) {
+                [ZLLoginViewController startPresent:self];
+                return;
+            }
+            
             UserScoreYuEVC *vc = [[UserScoreYuEVC alloc] init];
             vc.isScoreView = NO;
             vc.hidesBottomBarWhenPushed = YES;
@@ -208,6 +215,12 @@
         
         //积分
         [jiFenView jk_handleControlEvents:UIControlEventTouchUpInside withBlock:^(id weakSender) {
+            ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+            if (user == nil) {
+                [ZLLoginViewController startPresent:self];
+                return;
+            }
+            
             UserScoreYuEVC *vc = [[UserScoreYuEVC alloc] init];
             vc.isScoreView = YES;
             vc.hidesBottomBarWhenPushed = YES;
@@ -216,6 +229,12 @@
         
         //优惠券
         [youHuiView jk_handleControlEvents:UIControlEventTouchUpInside withBlock:^(id weakSender) {
+            ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+            if (user == nil) {
+                [ZLLoginViewController startPresent:self];
+                return;
+            }
+            
             UserCouponVC *vc = [[UserCouponVC alloc] init];
             vc.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:vc animated:YES];
@@ -223,6 +242,12 @@
         
         //转帐
         [btn1 jk_addActionHandler:^(NSInteger tag) {
+            ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+            if (user == nil) {
+                [ZLLoginViewController startPresent:self];
+                return;
+            }
+            
             TransferAccountVC *vc = [[TransferAccountVC alloc] initWithNibName:@"TransferAccountVC" bundle:nil];
             vc.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:vc animated:YES];
@@ -230,6 +255,12 @@
         
         //提现
         [btn2 jk_addActionHandler:^(NSInteger tag) {
+            ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+            if (user == nil) {
+                [ZLLoginViewController startPresent:self];
+                return;
+            }
+            
             WithDrawalVC *vc = [[WithDrawalVC alloc] initWithNibName:@"WithDrawalVC" bundle:nil];
             vc.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:vc animated:YES];
@@ -237,6 +268,12 @@
         
         //二维码收款
         [btn3 jk_addActionHandler:^(NSInteger tag) {
+            ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+            if (user == nil) {
+                [ZLLoginViewController startPresent:self];
+                return;
+            }
+            
             SouKuanVC *vc = [[SouKuanVC alloc] init];
             vc.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:vc animated:YES];
@@ -244,6 +281,12 @@
         
         //交易密码
         [btn4 jk_addActionHandler:^(NSInteger tag) {
+            ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+            if (user == nil) {
+                [ZLLoginViewController startPresent:self];
+                return;
+            }
+            
             SecurityPasswordVC *vc = [[SecurityPasswordVC alloc] init];
             vc.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:vc animated:YES];
@@ -262,6 +305,12 @@
     
     __weak __typeof__(SingInHeaderView) *weakHeaderViewSelf = headerView;
     headerView.chooseSingInCallBack = ^() {
+        ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+        if (user == nil) {
+            [ZLLoginViewController startPresent:self];
+            return;
+        }
+        
         [self showWithStatus:@"正在签到..."];
         [[APIClient sharedClient] userSignWithTag:self call:^(int score, APIObject *info) {
             if (info.code == RESP_STATUS_YES) {

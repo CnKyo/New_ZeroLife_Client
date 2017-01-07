@@ -374,6 +374,12 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    if (user == nil) {
+        [ZLLoginViewController startPresent:self];
+        return;
+    }
+    
     if (indexPath.section == 0) {
 
         
@@ -405,6 +411,11 @@
 
 - (void)selectItemBtnView:(QUItemBtnView *)view
 {
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    if (user == nil) {
+        [ZLLoginViewController startPresent:self];
+        return;
+    }
     
     OrderTVC *vc = [[OrderTVC alloc] init];
     
