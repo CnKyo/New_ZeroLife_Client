@@ -23,7 +23,7 @@
 
 
 typedef enum{
-
+    ZLEmptyViewTypeWithLodding,///加载中
     ZLEmptyViewTypeWithNoData,///没有数据
     ZLEmptyViewTypeWithCommon,///通用view
     ZLEmptyViewTypeWithNoNet,///无网络

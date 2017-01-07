@@ -43,9 +43,7 @@
 #define ZLDefaultAvatorImg           [UIImage imageNamed:@"ZLDefault_Avator"]
 #define ZLDefaultClassImg           [UIImage imageNamed:@"ZLDefault_Green"]
 
-#define FONT(s)       [UIFont systemFontOfSize:s]
-#define BackgroundColor [UIColor colorWithRed:0.90 green:0.89 blue:0.90 alpha:1.00]
-#define MainColor        [UIColor colorWithRed:24/255.0f green:161/255.0f blue:76/255.0f alpha:1]
+
 #define ColorRGB(_R_, _G_, _B_)       ([UIColor colorWithRed:_R_/255.0f green:_G_/255.0f blue:_B_/255.0f alpha:1])
 
 #define COLOR(r,g,b)                [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:1]
@@ -105,6 +103,8 @@
 #define DEVICE_StatuNavBar_Height       (DEVICE_StatuBar_Height + DEVICE_NavBar_Height)
 #define DEVICE_ContentView_Height (DEVICE_Height - DEVICE_InStatusBar_Height)
 #define TOP_Height                      (DEVICE_StatuBar_Height+DEVICE_NavBar_Height)
+
+#define NAVBAR_Height            64.0
 
 #define PerDeviceWidth(__NUMBER__)      (DEVICE_Width * __NUMBER__)
 #define PerDeviceHeight(__NUMBER__)     (DEVICE_Height * __NUMBER__)
@@ -192,6 +192,9 @@ typedef enum {
 
 
 
+static NSString *JPush_AppKey = @"5e3e27da01ec6cb61b8e2b4d";
+static NSString *JPush_Channel = @"25b4503e82ad1f91cfc56061";
+static BOOL JPush_IsProduction = NO;
 
 
 static int const RESP_STATUS_YES                  = 200;             //成功
@@ -206,10 +209,10 @@ static int const RESP_STATUS_LOGIN                  = 300;             //需要�
 //static NSString* const  kAFAppDotNetApiExtraURLString    = @"/crkj_zlife/api/app/client";
 //static NSString* const  kAFAppDotNetApiServiceURLString    = @"/crkj_zlife/api/app/service";
 
-static NSString* const  kAFAppDotNetApiBaseURLString    = @"http://192.168.1.120:8888";
+static NSString* const  kAFAppDotNetApiBaseURLString    = @"http://192.168.1.114";
 static NSString* const  kAFAppDotNetApiExtraURLString    = @"/api/app/client";
 static NSString* const  kAFAppDotNetApiServiceURLString    = @"/api/app/service";
-static NSString* const  kAFAppDotNetImgBaseURLString    = @"http://192.168.1.120:8888/resource";
+static NSString* const  kAFAppDotNetImgBaseURLString    = @"http://192.168.1.114/resource";
 
 
 static NSString * const MyUserNeedUpdateNotification     = @"MyUserNeedUpdateNotification";

@@ -190,6 +190,9 @@ typedef void (^TableShareSdkBlock)(int totalpage, NSArray *tableArr, APIShareSdk
 #pragma mark----****----登录
 ///登录
 - (void)ZLLoginWithPhone:(NSString *)mPhone andPwd:(NSString *)mPwd block:(void(^)(APIObject *mBaseObj,ZLUserInfo *mUser))block;
+-(void)userLoginOutWithTag:(NSObject *)tag call:(void (^)(APIObject* info))callback;
+-(void)userJpushUpdateWithTag:(NSObject *)tag jpush_id:(NSString *)jpush_id call:(void (^)(APIObject* info))callback;
+
 #pragma mark----****----注册
 ///注册
 - (void)ZLRegistPhone:(NSString *)mPhone andPwd:(NSString *)mPwd andCode:(NSString *)mCode block:(void(^)(APIObject *mBaseObj))block;

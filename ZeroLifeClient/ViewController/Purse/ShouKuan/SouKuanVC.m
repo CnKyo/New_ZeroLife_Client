@@ -56,9 +56,10 @@
     CGFloat codeWidth = DEVICE_Width;
     CGFloat codeHeight = codeWidth * 0.7;
     UIImage *codeImg = IMG(@"ercode_default.png");
-    if (user.user_qrcode.length > 0)
-        codeImg = [CreatQRCodeAndBarCodeFromLeon qrImageWithString:user.user_qrcode size:CGSizeMake(codeWidth, codeHeight) color:[UIColor blackColor] backGroundColor:[UIColor clearColor]];
-
+    if (user.user_qrcode.length > 0) {
+        //codeImg = [CreatQRCodeAndBarCodeFromLeon qrImageWithString:user.user_qrcode size:CGSizeMake(codeWidth, codeHeight) color:[UIColor blackColor] backGroundColor:[UIColor clearColor]];
+        codeImg = [CreatQRCodeAndBarCodeFromLeon qrImage11WithString:user.user_qrcode size:CGSizeMake(codeWidth, codeHeight)];
+    }
     
     UIView *superView = self.view;
     int padding = 10;

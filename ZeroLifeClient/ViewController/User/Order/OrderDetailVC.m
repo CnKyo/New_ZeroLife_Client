@@ -20,6 +20,7 @@
 #import "BaoXiuWorkerView.h"
 #import "BaoXiuShopNoteView.h"
 #import "OrderHeaderStatusView.h"
+#import "UIImage+ThumbnailImage.h"
 
 #import "OrderBaoXiuChooseShopVC.h"
 #import <JKCategories/UIControl+JKActionBlocks.h>
@@ -389,7 +390,7 @@
 
         
         if (_classType == kOrderClassType_fix) {
-            UILabel *orderSMFLable = [view newUILableWithText:[NSString stringWithFormat:@"上门费：￥%.2f", _item.odr_amount] textColor:color font:font];
+            UILabel *orderSMFLable = [view newUILableWithText:[NSString stringWithFormat:@"上门费：￥%.2f", _item.odr_deliver_fee] textColor:color font:font];
             [orderSMFLable makeConstraints:^(MASConstraintMaker *make) {
                 make.left.right.height.equalTo(orderNoteLable);
                 make.top.equalTo(littleLastView.bottom);
@@ -451,34 +452,55 @@
         } else if ([_item.odr_state isEqualToString:kOrderState_SSERVICE]) { //商家服务中
             UIView *chooseView = ({
                 UIView *view = [superView newUIViewWithBgColor:[UIColor whiteColor]];
-                UIView *lineView111 = [view newDefaultLineView];
+                
                 BaoXiuShopNoteView *itemView1 = [[BaoXiuShopNoteView alloc] init];
-                BaoXiuWorkerView *itemView2 = [[BaoXiuWorkerView alloc] init];
                 [view addSubview:itemView1];
-                [view addSubview:itemView2];
                 [itemView1 makeConstraints:^(MASConstraintMaker *make) {
-                    make.top.equalTo(view.top).offset(padding);
+                    make.top.bottom.equalTo(view);
                     make.left.right.equalTo(view);
-                    make.height.equalTo(60);
                 }];
-                [lineView111 makeConstraints:^(MASConstraintMaker *make) {
-                    make.top.equalTo(itemView1.bottom);
-                    make.left.right.equalTo(view);
-                    make.height.equalTo(OnePixNumber);
-                }];
-                [itemView2 makeConstraints:^(MASConstraintMaker *make) {
-                    make.top.equalTo(lineView111.bottom);
-                    make.left.right.equalTo(view);
-                    make.height.equalTo(60);
-                }];
-                [view makeConstraints:^(MASConstraintMaker *make) {
-                    make.bottom.equalTo(itemView2.bottom);
-                }];
+//                [itemView1 makeConstraints:^(MASConstraintMaker *make) {
+//                    make.top.equalTo(view.top).offset(padding);
+//                    make.left.right.equalTo(view);
+//                    make.height.equalTo(60);
+//                }];
+                
+//                UIView *lineView111 = [view newDefaultLineView];
+//                [lineView111 makeConstraints:^(MASConstraintMaker *make) {
+//                    make.top.equalTo(itemView1.bottom);
+//                    make.left.right.equalTo(view);
+//                    make.height.equalTo(OnePixNumber);
+//                }];
+//                
+//                BaoXiuWorkerView *itemView2 = [[BaoXiuWorkerView alloc] init];
+//                [view addSubview:itemView2];
+//                [itemView2 makeConstraints:^(MASConstraintMaker *make) {
+//                    make.top.equalTo(lineView111.bottom);
+//                    make.left.right.equalTo(view);
+//                    make.height.equalTo(60);
+//                }];
+//                [view makeConstraints:^(MASConstraintMaker *make) {
+//                    make.bottom.equalTo(itemView2.bottom);
+//                }];
+                
+                OrderGoodsObject *it = _item.goods.count>0 ? [_item.goods objectAtIndex:0] : nil;
+                itemView1.nameLable.text = [NSString stringWithFormat:@"%@竞价成功，并安排人员进行维修", _item.shop_name];
+                itemView1.priceLable.text = [NSString stringWithFormat:@"￥%.2f", it.odrg_price];
+//                itemView2.workerLable.text = [NSString stringWithFormat:@"%@ %@", _item.odr_deliver_name, _item.odr_deliver_phone];
+//                [itemView2.mobileBtn jk_addActionHandler:^(NSInteger tag) {
+//                    if (_item.odr_deliver_phone.length > 1) {
+//                        NSString *str = [NSString stringWithFormat:@"tel://%@", _item.odr_deliver_phone];
+//                        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+//                    } else
+//                        [SVProgressHUD showErrorWithStatus:@"暂无联系电话"];
+//                }];
+                
                 view;
             });
             [chooseView updateConstraints:^(MASConstraintMaker *make) {
                 make.left.right.equalTo(superView);
                 make.top.equalTo(lastView.bottom).offset(padding);
+                make.height.equalTo(60);
             }];
             lastView = chooseView;
         }

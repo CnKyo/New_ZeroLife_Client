@@ -88,9 +88,16 @@
             [btn11 setStyleNavColor];
             
             [btn11 jk_addActionHandler:^(NSInteger tag) {
-                [ZLUserInfo logOut];
                 
-                [ZLLoginViewController startPresent:self];
+                [SVProgressHUD showWithStatus:@"退出中..."];
+                [[APIClient sharedClient] userLoginOutWithTag:self call:^(APIObject *info) {
+                    if (info.code == RESP_STATUS_YES) {
+                        [ZLUserInfo logOut];
+                        [ZLLoginViewController startPresent:self];
+                    } else
+                        [SVProgressHUD showErrorWithStatus:info.msg];
+                }];
+
             }];
             view;
         });
@@ -211,7 +218,8 @@
                 [str appendFormat:@" %@", user.community.cmut_name];
             }
             cell.userNoteLable.text = str;
-            [cell.userImgView sd_setImageWithURL:[NSURL imageurl:user.user_header] placeholderImage:IMG(@"user_header.png")];
+            NSURL *url = [NSURL imageurl:user.user_header];
+            [cell.userImgView sd_setImageWithURL:url placeholderImage:IMG(@"user_header.png")];
 
             //判断跑跑信息
             if ([user.openInfo.open_state isEqualToString:kOpenState_CHECKED]) {
@@ -373,6 +381,12 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    if (user == nil) {
+        [ZLLoginViewController startPresent:self];
+        return;
+    }
+    
     if (indexPath.section == 0) {
 
         
@@ -404,6 +418,11 @@
 
 - (void)selectItemBtnView:(QUItemBtnView *)view
 {
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    if (user == nil) {
+        [ZLLoginViewController startPresent:self];
+        return;
+    }
     
     OrderTVC *vc = [[OrderTVC alloc] init];
     

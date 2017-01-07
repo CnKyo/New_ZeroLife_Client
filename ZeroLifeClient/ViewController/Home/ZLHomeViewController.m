@@ -183,7 +183,7 @@
     if (scrollView ==  self.mTableView) {
         MLLog(@"YYYYY是：%f",offsetY);
         if (offsetY > NAVBAR_CHANGE_POINT) {
-            CGFloat alpha = MIN(1, 1 - ((NAVBAR_CHANGE_POINT + 64 - offsetY) / 64));
+            CGFloat alpha = MIN(1, 1 - ((NAVBAR_CHANGE_POINT + NAVBAR_Height - offsetY) / NAVBAR_Height));
             MLLog(@"Yaaaaaa是：%f",alpha);
             [self.navigationController.navigationBar lt_setBackgroundColor:[color colorWithAlphaComponent:alpha]];
             [mLocationView setBackgroundColor:[[UIColor whiteColor] colorWithAlphaComponent:alpha/2]];

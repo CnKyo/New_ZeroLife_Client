@@ -42,6 +42,11 @@
     self = [super initWithFrame:frame];
     if (self) {
         
+        //图片数组
+        _imagesAry = [NSMutableArray arrayWithCapacity:0];
+        //添加计时器
+        [self addtimer];
+        
         // 视图内容布局
         _picScrollView = [[UIScrollView alloc] initWithFrame:self.bounds];
         _picScrollView.showsHorizontalScrollIndicator = NO;
