@@ -1280,3 +1280,14 @@ bool m_bind = NO;
 @implementation ProductFocusWebBridgeObject
 @end
 
+
+
+
+
+
+@implementation JPushReceiveAPSObject
+@end
+
+@implementation JPushReceiveObject
+@end
+

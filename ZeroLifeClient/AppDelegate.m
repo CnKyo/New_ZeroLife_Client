@@ -84,26 +84,21 @@
 //注册极光sdk信息
 -(void)initJpushWithOptions:(NSDictionary *)launchOptions
 {
-    //Required
-    if ([[UIDevice currentDevice].systemVersion floatValue] >= 10.0) {
-        JPUSHRegisterEntity * entity = [[JPUSHRegisterEntity alloc] init];
-        entity.types = UNAuthorizationOptionAlert|UNAuthorizationOptionBadge|UNAuthorizationOptionSound;
-        [JPUSHService registerForRemoteNotificationConfig:entity delegate:self];
-    }
-    else if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
+    JPUSHRegisterEntity * entity = [[JPUSHRegisterEntity alloc] init];
+    entity.types = JPAuthorizationOptionAlert|JPAuthorizationOptionBadge|JPAuthorizationOptionSound;
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
         //可以添加自定义categories
-        [JPUSHService registerForRemoteNotificationTypes:(UIUserNotificationTypeBadge |
-                                                          UIUserNotificationTypeSound |
-                                                          UIUserNotificationTypeAlert)
-                                              categories:nil];
+        //    if ([[UIDevice currentDevice].systemVersion floatValue] >= 10.0) {
+        //      NSSet<UNNotificationCategory *> *categories;
+        //      entity.categories = categories;
+        //    }
+        //    else {
+        //      NSSet<UIUserNotificationCategory *> *categories;
+        //      entity.categories = categories;
+        //    }
     }
-    else {
-        //categories 必须为nil
-        [JPUSHService registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
-                                                          UIRemoteNotificationTypeSound |
-                                                          UIRemoteNotificationTypeAlert)
-                                              categories:nil];
-    }
+    [JPUSHService registerForRemoteNotificationConfig:entity delegate:self];
+    
     
 #warning 极光推送在正式环境时一定铭记改状态
     NSString *advertisingId = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
@@ -111,6 +106,8 @@
                           channel:JPush_Channel
                  apsForProduction:JPush_IsProduction
             advertisingIdentifier:advertisingId];
+    
+    
     [JPUSHService registrationIDCompletionHandler:^(int resCode, NSString *registrationID) {
         if(resCode == 0){
             NSLog(@"registrationID获取成功：%@",registrationID);
@@ -239,6 +236,7 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
 }
 
 
@@ -448,18 +446,13 @@
 {
     [JPUSHService handleRemoteNotification:userInfo];
     NSLog(@"iOS6及以下系统，收到通知:%@", [self logDic:userInfo]);
-    //[rootViewController addNotificationCount];
 }
 
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler: (void (^)(UIBackgroundFetchResult))completionHandler {
     [JPUSHService handleRemoteNotification:userInfo];
     NSLog(@"iOS7及以上系统，收到通知:%@", [self logDic:userInfo]);
-    
-    //    if ([[UIDevice currentDevice].systemVersion floatValue]<10.0 || application.applicationState>0) {
-    //        [rootViewController addNotificationCount];
-    //    }
-    
+
     completionHandler(UIBackgroundFetchResultNewData);
 }
 

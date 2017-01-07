@@ -17,6 +17,8 @@
 #import <LKDBHelper.h>
 #import "ZLSuperMarketCommitOrderViewController.h"
 #import "ZLSuperMarketCommitOrderViewController.h"
+#import "ZLLoginViewController.h"
+
 @interface ZLWebViewViewController ()<UIWebViewDelegate,ZLSuperMarketGoodsSpecDelegate,UITableViewDelegate,UITableViewDataSource,StandardsViewDelegate,ZLSKUCellDelegate>
 @property (nonatomic, weak) UIWebView * webView;
 
@@ -106,6 +108,12 @@
         NSLog(@"testObjcCallback called: %@", data);
         //NSString *str = @"{'user_id': '6', 'pro_id': '11', 'is_focus': '0'}";
 
+        ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+        if (user == nil) {
+            [ZLLoginViewController startPresent:self];
+            return;
+        }
+        
         ProductFocusWebBridgeObject *item = [ProductFocusWebBridgeObject mj_objectWithKeyValues:data];
         BOOL newState = item.is_focus;
         

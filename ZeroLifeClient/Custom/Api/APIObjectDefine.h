@@ -1736,3 +1736,26 @@
 @property (assign,nonatomic) BOOL                   is_focus;    //!< 是否收藏 0未收藏 1已收藏
 @end
 
+
+
+
+
+#pragma mark-----****----JPush对象
+@interface JPushReceiveAPSObject : NSObject
+@property (nonatomic, strong) NSString *            alert;              //
+@property (nonatomic, assign) int                   badge;              //
+@property (nonatomic, strong) NSString *            sound;              //
+@end
+
+//jpush推送接收数据
+@interface JPushReceiveObject : NSObject
+@property (nonatomic, strong) NSString *            _j_msgid;              //
+@property (nonatomic, strong) JPushReceiveAPSObject *aps;              //
+@property (nonatomic, strong) NSString *            model;              //
+@property (nonatomic, assign) int                   type;              //
+@property (nonatomic, strong) NSString *            order_type;              //
+@property (nonatomic, strong) NSString *            order_code;              //
+@property (nonatomic, strong) NSString *            url;              //
+@end
+
+
