@@ -36,11 +36,9 @@
 #import "ZLSuperMarketCommitOrderViewController.h"
 #import "UIImage+ImageEffects.h"
 
-#import "ChooseView.h"
-#import "ChooseRank.h"
 static const CGFloat mTopH = 156;
 
-@interface ZLSuperMarketShopViewController ()<UITableViewDelegate,UITableViewDataSource,ZLSuperMarketShopDelegate,ZLSuperMarketGoodsCellDelegate,UIScrollViewDelegate,ZLSuperMarketShopCarDelegate,ZLSuperMarketGoodsSpecDelegate,UICollectionViewDelegate,ZLHouseKeppingServiceCellDelegate,ZLSpeSelectedViewCellDelegate,StandardsViewDelegate,ZLSKUCellDelegate,LDXScoreDelegate,mCheckMoreActivityViewDelegate,ChooseRankDelegate,ChooseViewDeleagate>
+@interface ZLSuperMarketShopViewController ()<UITableViewDelegate,UITableViewDataSource,ZLSuperMarketShopDelegate,ZLSuperMarketGoodsCellDelegate,UIScrollViewDelegate,ZLSuperMarketShopCarDelegate,ZLSuperMarketGoodsSpecDelegate,UICollectionViewDelegate,ZLHouseKeppingServiceCellDelegate,ZLSpeSelectedViewCellDelegate,StandardsViewDelegate,ZLSKUCellDelegate,LDXScoreDelegate,mCheckMoreActivityViewDelegate>
 
 /**
  规格瀑布流
@@ -61,13 +59,6 @@ static const CGFloat mTopH = 156;
 
 
 @property(strong,nonatomic)ZLSpeHeaderView *mSpeHeaderView;
-
-@property(nonatomic,strong)ChooseView *chooseView;
-@property(nonatomic,strong)ChooseRank *chooseRank;
-
-@property(nonatomic,strong)NSMutableArray *rankArray;
-@property(nonatomic,strong)NSArray *standardList;
-@property(nonatomic,strong)NSArray *standardValueList;
 
 @end
 
@@ -123,14 +114,7 @@ static const CGFloat mTopH = 156;
     [self updateBottomView:mAddShopCarEx];
 
 }
--(NSMutableArray *)rankArray{
-    
-    if (_rankArray == nil) {
-        
-        _rankArray = [[NSMutableArray alloc] init];
-    }
-    return _rankArray;
-}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -154,7 +138,6 @@ static const CGFloat mTopH = 156;
     [self initSpeView];
     [self initMoreCampView];
     [self loadData];
-    [self loadSpeView];
 }
 
 - (void)loadView{
@@ -1167,10 +1150,12 @@ static const CGFloat mTopH = 156;
     
     
     
-    [self.chooseView.headImage sd_setImageWithURL:[NSURL URLWithString:[Util currentSourceImgUrl:mGoodsImg]] placeholderImage:[UIImage imageNamed:@"ZLDefault_Img"]];
-    self.chooseView.LB_detail.text = mName;
-    self.chooseView.LB_price.text = [NSString stringWithFormat:@"价格：%.2f元",mPrice];
-    self.chooseView.LB_stock.text = [NSString stringWithFormat:@"库存：%d",mcount];
+    [mSpeView.mGoodsImg sd_setImageWithURL:[NSURL URLWithString:[Util currentSourceImgUrl:mGoodsImg]] placeholderImage:[UIImage imageNamed:@"ZLDefault_Img"]];
+    mSpeView.mGoodsName.text = mName;
+    mSpeView.mGoodsPrice.text = [NSString stringWithFormat:@"价格：%.2f元",mPrice];
+    mSpeView.mGoodsRep.text = [NSString stringWithFormat:@"库存：%d",mcount];
+    mSpeView.mNum.text = [NSString stringWithFormat:@"%d",num];
+
     
 }
 -(StandardsView *)buildStandardView:(UIImage *)img andIndex:(NSInteger)index
@@ -1922,228 +1907,5 @@ static const CGFloat mTopH = 156;
     mMoreCampView.mContent.text = [NSString stringWithFormat:@"营业时间：%@-%@",mShop.mShopMsg.ext_open_time,mShop.mShopMsg.ext_close_time];
     
 }
-
-
--(void)loadSpeView{
-    
-    
-    self.chooseView = [[ChooseView alloc] initWithFrame:CGRectMake(0, DEVICE_Height, DEVICE_Width, DEVICE_Height)];
-    self.chooseView.delegate = self;
-    self.chooseView.headImage.image = [UIImage imageNamed:@"bingli"];
-    self.chooseView.LB_price.text = @"￥36.00";
-    self.chooseView.LB_stock.text = [NSString stringWithFormat:@"库存%@件",@56];
-    self.chooseView.LB_detail.text = @"请选择商品规格";
-    [self.view addSubview:self.chooseView];
-    
-    
-    //取消按钮
-    [self.chooseView.cancelBtn addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
-    //点击黑色透明视图choseView会消失
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hiddenSpeViews)];
-    [self.chooseView.alphaView addGestureRecognizer:tap];
-}
-
-#pragma mark --加载规格view
--(void)updateSpeView:(NSIndexPath *)mIndexPath{
-    NSLog(@"--------");
-    [self.mSpeAddArray removeAllObjects];
-    [self.mAddSkuArray removeAllObjects];
-    ZLGoodsWithClass *mGoodObj = mRightDataArr[mIndexPath.row];
-    mSpeView.mIndexPath = mIndexPath;
-    mSpeView.mModel = mGoodObj;
-    float mP = 0;
-    int count = 0;
-    for (ZLGoodsSKU *sku in mGoodObj.skus) {
-        if (mGoodObj.sku_id == sku.sku_id) {
-            mP = sku.sku_price;
-            count = sku.sku_stock;
-        }
-    }
-    
-    [self UpdateSpeViewPage:mGoodObj.img_url andGoodsName:mGoodObj.pro_name andGoodsPrice:mP andSkuCount:count andGoodsNum:mGoodObj.mNum];
-    
-    ///规格数组
-    NSMutableArray *mSkuTempArr = [NSMutableArray new];
-    
-    ///从这里取值
-    ZLGoodsWithClass *mGoods = mRightDataArr[mIndexPath.row];
-    
-    
-    for (int i = 0;i<mGoods.skus.count;i++) {
-        
-        ZLGoodsSKU *mOne = mGoods.skus[i];
-        
-        BOOL mIsAdd = YES;
-        
-        for (int j = 0; j<mSkuTempArr.count ; j++) {
-            
-            
-            
-            ZLGoodsSpeList *mTwo = mSkuTempArr[j];
-            
-            if (mOne.sta_id == mTwo.mStaId) {
-                
-                
-                
-                ZLSpeObj *mSkuValue  = [ZLSpeObj new];
-                mSkuValue.mSpeGoodsName = mOne.sta_val_name;
-                mSkuValue.mSku = mOne;
-                mSkuValue.mSta_val_id = mOne.sta_val_id;
-                
-                [mTwo.mSpeArr addObject:mSkuValue];
-                [mSkuTempArr replaceObjectAtIndex:j withObject:mTwo];
-                mIsAdd = NO;
-                continue;
-                
-            }
-            
-        }
-        
-        
-        if (mIsAdd == YES) {
-            
-            ZLGoodsSpeList *mSpeListObj = [ZLGoodsSpeList new];
-            mSpeListObj.mSpeName = mOne.sta_name;
-            mSpeListObj.mStaId = mOne.sta_id;
-            
-            ZLSpeObj *mSkuValue  = [ZLSpeObj new];
-            mSkuValue.mSpeGoodsName = mOne.sta_val_name;
-            mSkuValue.mSku = mOne;
-            mSkuValue.mSta_val_id = mOne.sta_val_id;
-            
-            NSMutableArray *tempArr = [NSMutableArray new];
-            [tempArr addObject:mSkuValue];
-            mSpeListObj.mSpeArr = tempArr;
-            
-            [mSkuTempArr addObject:mSpeListObj];
-            
-        }
-        
-        
-    }
-    
-    [self.mSpeAddArray addObjectsFromArray:mSkuTempArr];
-    
-    for (ChooseRank *mView in self.chooseView.mainscrollview.subviews) {
-        [mView removeAllSubviews];
-    }
-    
-    CGFloat maxY = 0;
-    CGFloat height = 0;
-    for (int i = 0; i < self.mSpeAddArray.count; i ++)
-    {
-        
-        ZLGoodsSpeList *mSpe = self.mSpeAddArray[i];
-        
-        self.chooseRank = [[ChooseRank alloc] initWithTitle:mSpe.mSpeName titleArr:mSpe.mSpeArr andFrame:CGRectMake(0, maxY, DEVICE_Width, 40)];
-        maxY = CGRectGetMaxY(self.chooseRank.frame);
-        height += self.chooseRank.frame.size.height;
-        self.chooseRank.tag = 8000+i;
-        self.chooseRank.delegate = self;
-        
-        [self.chooseView.mainscrollview addSubview:self.chooseRank];
-    }
-    self.chooseView.mainscrollview.contentSize = CGSizeMake(0, height);
-
-    
-    
-    [UIView animateWithDuration: 0.35 animations: ^{
-        self.chooseView.frame =CGRectMake(0, 0, DEVICE_Width, DEVICE_Height);
-    } completion: nil];
-    
-}
-
-/**
- *  点击半透明部分或者取消按钮，弹出视图消失
- */
--(void)hiddenSpeViews
-{
-    //    center.y = center.y+self.view.frame.size.height;
-    [UIView animateWithDuration: 0.35 animations: ^{
-        self.chooseView.frame =CGRectMake(0, DEVICE_Height, DEVICE_Width, DEVICE_Height);
-    } completion: nil];
-    
-}
-
-
--(void)selectBtnTitle:(NSString *)title andBtn:(UIButton *)btn andSkuId:(NSInteger)mskuId{
-    
-    if (self.mSelectedSpeArray.count<=0) {
-        return;
-    }
-    
-    ZLGoodsWithClass *mGoodObj = self.mSelectedSpeArray[0];
-    
-    for (ZLGoodsSpeList *mSpe in self.mSpeAddArray) {
-        
-        for (ZLSpeObj *mSku in mSpe.mSpeArr) {
-            
-            if (self.mAddSkuArray.count <= 0) {
-                if (mSku.mSku.sku_id == mskuId) {
-                    [self.mAddSkuArray addObject:mSku];
-
-                }
-            }else{
-                for (int i = 0;i<self.mAddSkuArray.count;i++) {
-
-                    ZLSpeObj *mOne =  self.mAddSkuArray[i];
-                    
-                    
-                    if (mOne.mSku.sta_id == mSku.mSku.sta_id) {
-                        [self.mAddSkuArray removeObject:mOne];
-                        [self.mAddSkuArray addObject:mSku];
-                        
-                    }else{
-                        if (mSku.mSku.sku_id == mskuId) {
-                            [self.mAddSkuArray addObject:mSku];
-                            
-                        }
-                        
-                    }
-                    if (mSku.mSku.sta_required == 1) {
-                        
-                        [self UpdateSpeViewPage:mGoodObj.img_url andGoodsName:mGoodObj.pro_name andGoodsPrice:mSku.mSku.sku_price andSkuCount:mSku.mSku.sku_stock andGoodsNum:mGoodObj.mNum];
-                        
-                    }
-                    
-                }
-            }
-
-        }
-    }
-    
-    
-    
-    
-    MLLog(@"选择的规格是：%@",self.mAddSkuArray);
-   
-
-
-}
-
-- (void)wk_ChooseViewWithNum:(NSInteger)mNum
-{
-    NSLog(@"%ld",(long)mNum);
-    
-    
-}
-/**
- 加入购物车
- */
-- (void)wk_AddShopCarClick{
-    
-    NSLog(@"----加入购物车成功----");
-    
-}
-
-/**
- 立即购买
- */
-- (void)wk_BuyNowClick{
-    NSLog(@"----立即购买----");
-    
-}
-
-
 
 @end
