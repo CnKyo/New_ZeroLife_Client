@@ -79,5 +79,7 @@
 
 @property (strong,nonatomic) ZLRunningmanHomeOrder *mOrder;
 
+@property (assign,nonatomic) int mType;
+
 
 @end

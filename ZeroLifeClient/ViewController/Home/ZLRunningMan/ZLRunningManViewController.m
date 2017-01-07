@@ -185,7 +185,7 @@ static int const ZLRunningManVC_ClassView_Height                  = 80;
     
 }
 - (void)reloadTableViewData{
-    [self loadTableData:0];
+    [self loadTableData:_mIndex];
 
 }
 - (void)initSecondSectionView:(NSArray *)mData{
@@ -350,6 +350,7 @@ static int const ZLRunningManVC_ClassView_Height                  = 80;
     
     ZLRunningManCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
     cell.delegate = self;
+    cell.mType = mType;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     [cell setMOrder:mTempArr[indexPath.row]];
     return cell;

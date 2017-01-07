@@ -42,7 +42,18 @@
 
 - (void)setMOrder:(ZLRunningmanHomeOrder *)mOrder{
 
-    [self.mImg sd_setImageWithURL:[NSURL imageurl:nil] placeholderImage:ZLDefaultAvatorImg];
+    UIImage *mLogo = [UIImage new];
+    
+    if (self.mType  == ZLPPTReleaseTypeWithBuyStaff) {
+        mLogo = [UIImage imageNamed:@"PPTIcon_Buy"];
+        
+    }else{
+        mLogo = [UIImage imageNamed:@"PPTIcon_Do"];
+    }
+    
+//    [self.mImg sd_setImageWithURL:[NSURL imageurl:nil] placeholderImage:ZLDefaultAvatorImg];
+    
+    self.mImg.image = mLogo;
     
     self.mName.text = mOrder.odrg_pro_name;
     self.mTime.text = [NSString stringWithFormat:@"%@分钟内完成",mOrder.odr_timing];

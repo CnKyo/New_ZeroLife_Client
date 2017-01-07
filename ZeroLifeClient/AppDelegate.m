@@ -34,6 +34,7 @@
 
 
 #import "APIClient.h"
+#import "GuideView.h"
 
 
 @interface AppDelegate ()<UIAlertViewDelegate,WXApiDelegate, JPUSHRegisterDelegate>
@@ -219,8 +220,18 @@
 //            
 //        }];
 //    }];
+    NSMutableArray *images = [NSMutableArray new];
     
-
+    [images addObject:[UIImage imageNamed:@"ZLGuideImg1"]];
+    [images addObject:[UIImage imageNamed:@"ZLGuideImg2"]];
+    [images addObject:[UIImage imageNamed:@"ZLGuideImg3"]];
+    
+    GuideView* guide = [[GuideView alloc]initWithFrame:CGRectMake(0, 0, DEVICE_Width, DEVICE_Height)];
+    guide.guideImages = images;
+    [self.window.rootViewController.view addSubview:guide];
+    [UIView animateWithDuration:0.5 animations:^{
+        guide.frame = CGRectMake(0, 0, DEVICE_Width, DEVICE_Height);
+    }];
     
 }
 
