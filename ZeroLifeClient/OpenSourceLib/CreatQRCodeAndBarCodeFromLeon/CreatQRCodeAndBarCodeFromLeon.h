@@ -32,4 +32,6 @@
  *  @return 返回一张图片
  */
 + (UIImage *)generateBarCode:(NSString *)code size:(CGSize)size color:(UIColor *)color backGroundColor:(UIColor *)backGroundColor;
+
++ (UIImage *)qrImage11WithString:(NSString *)string size:(CGSize)size;
 @end

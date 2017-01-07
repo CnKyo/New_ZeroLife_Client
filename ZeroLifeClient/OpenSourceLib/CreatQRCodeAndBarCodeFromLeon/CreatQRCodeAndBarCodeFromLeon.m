@@ -97,7 +97,19 @@
 }
 
 
-
++ (UIImage *)qrImage11WithString:(NSString *)string size:(CGSize)size
+{
+    NSData *data = [string dataUsingEncoding:NSISOLatin1StringEncoding]; // NSISOLatin1StringEncoding 编码
+    
+    CIFilter *filter = [CIFilter filterWithName:@"CIQRCodeGenerator"];
+    [filter setValue:data forKey:@"inputMessage"];
+    
+    CIImage *outputImage = filter.outputImage;
+    NSLog(@"%@", NSStringFromCGSize(outputImage.extent.size));
+    
+    UIImage *smallImage = [self imageWithCIImage:outputImage orientation: UIImageOrientationUp];
+    return [self resizeImageWithoutInterpolation:smallImage size:size];
+}
 
 
 @end
