@@ -63,6 +63,11 @@
     [SVProgressHUD setBackgroundColor:[UIColor colorWithWhite:0.9 alpha:1]];
     [SVProgressHUD setMinimumDismissTimeInterval:2.0];
     
+    
+    [[IQKeyboardManager sharedManager] setEnable:YES];///视图开始加载键盘位置开启调整
+    [[IQKeyboardManager sharedManager]setEnableAutoToolbar:YES];///是否启用自定义工具栏
+    [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;///启用手势
+    
 //    //设置窗口的根控制器
 //    self.window.rootViewController = [[ZLTabBarViewController alloc] init];
 //    //显示窗口
