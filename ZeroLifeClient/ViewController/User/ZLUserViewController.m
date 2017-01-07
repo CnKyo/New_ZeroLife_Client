@@ -88,9 +88,16 @@
             [btn11 setStyleNavColor];
             
             [btn11 jk_addActionHandler:^(NSInteger tag) {
-                [ZLUserInfo logOut];
                 
-                [ZLLoginViewController startPresent:self];
+                [SVProgressHUD showWithStatus:@"退出中..."];
+                [[APIClient sharedClient] userLoginOutWithTag:self call:^(APIObject *info) {
+                    if (info.code == RESP_STATUS_YES) {
+                        [ZLUserInfo logOut];
+                        [ZLLoginViewController startPresent:self];
+                    } else
+                        [SVProgressHUD showErrorWithStatus:info.msg];
+                }];
+
             }];
             view;
         });

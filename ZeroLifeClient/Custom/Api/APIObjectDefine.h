@@ -652,6 +652,7 @@
 @property (assign,nonatomic) BOOL                   user_is_authent; //!< 是否已经认证（Y(1), N(0)）
 @property (assign,nonatomic) BOOL                   user_is_bind; //!< 是否绑定（银行卡）1:认证；0：未认证
 @property (strong,nonatomic) NSString*              user_add_time; //!< 注册时间
+@property (strong,nonatomic) NSString*              sign; //!< 退出登录使用的签名
 
 @property (nonatomic,strong) WalletObject*          wallet; //!< 用户钱包信息
 @property (nonatomic,strong) CommunityObject*       community; //!< 用户绑定小区信息

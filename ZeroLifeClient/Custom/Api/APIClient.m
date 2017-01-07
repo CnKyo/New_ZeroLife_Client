@@ -11,6 +11,9 @@
 #import <WXApiObject.h>
 #import <WXApi.h>
 #import <AlipaySDK/AlipaySDK.h>
+
+#import <JPush/JPUSHService.h>
+
 #pragma mark -
 #pragma mark NSMutableDictionary
 @implementation NSMutableDictionary (APIClient_MyAdditions)
@@ -482,6 +485,8 @@ return [NSString stringWithFormat:@"%@%@%@",kAFAppDotNetImgBaseURLString,kAFAppD
     [para setObject:[Util getAppVersion] forKey:@"app_v"];
     [para setObject:[Util getAPPBuildNum] forKey:@"sys_v"];
     
+    [para setNeedStr:[JPUSHService registrationID] forKey:@"jpush"]; //极光注册ID
+    
     [self loadAPIWithTag:self path:@"/user/user_login" parameters:para call:^(APIObject *info) {
         if (info.code == RESP_STATUS_YES) {
             ZLUserInfo *user = [ZLUserInfo mj_objectWithKeyValues:[info.data objectWithKey:@"user"]];
@@ -503,6 +508,51 @@ return [NSString stringWithFormat:@"%@%@%@",kAFAppDotNetImgBaseURLString,kAFAppD
         } else
             block(info, nil);
     }];
+}
+
+
+/**
+ *  用户提交极光注册ID接口
+ *
+ *  @param tag      链接对象
+ *  @param jpush_id  极光注册ID
+ *  @param callback 返回信息
+ */
+-(void)userJpushUpdateWithTag:(NSObject *)tag jpush_id:(NSString *)jpush_id call:(void (^)(APIObject* info))callback
+{
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    if (user.user_id > 0) {
+        NSMutableDictionary* paramDic = [NSMutableDictionary dictionary];
+        [paramDic setInt:user.user_id forKey:@"user_id"];
+        [paramDic setNeedStr:user.sign forKey:@"sign"];
+        [paramDic setNeedStr:jpush_id forKey:@"jpush"];
+        [paramDic setObject:@"ios" forKey:@"sys_t"];
+        [self loadAPIWithTag:tag path:@"/user/jpush" parameters:paramDic call:^(APIObject *info) {
+            callback(info);
+        }];
+    }
+}
+
+
+
+/**
+ *  用户退出登录接口
+ *
+ *  @param tag      链接对象
+ *  @param callback 返回信息
+ */
+-(void)userLoginOutWithTag:(NSObject *)tag call:(void (^)(APIObject* info))callback
+{
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    if (user.user_id > 0) {
+        NSMutableDictionary* paramDic = [NSMutableDictionary dictionary];
+        [paramDic setInt:user.user_id forKey:@"user_id"];
+        [paramDic setNeedStr:user.sign forKey:@"sign"];
+        [self loadAPIWithTag:tag path:@"/user/user_logout" parameters:paramDic call:^(APIObject *info) {
+            callback(info);
+        }];
+    } else
+        callback([APIObject infoWithReLoginErrorMessage:@"您尚未登陆"]);
 }
 
 
