@@ -34,7 +34,7 @@
     
     mAddArr = [NSMutableArray new];
     
-    [self addRightBtn:YES andTitel:@"清空" andImage:nil];
+    [self addRightBtn:YES andTitel:@"   清 空" andImage:nil];
 
     [self initView];
 }
@@ -318,7 +318,10 @@
         return;
     }
     else{
-        [self.tableArr replaceObjectAtIndex:mIndexPath.row withObject:mGoods];
+        
+        [mGoods deleteToDB];
+        
+        [mTableView deleteRowsAtIndexPaths:@[mIndexPath] withRowAnimation:YES];
         [mTableView beginUpdates];
         [mTableView reloadRowsAtIndexPaths:@[mIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
         [mTableView endUpdates];

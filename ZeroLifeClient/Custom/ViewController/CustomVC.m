@@ -510,7 +510,7 @@
 - (void)addRightBtn:(BOOL)mHidden andTitel:(NSString *)mBackTitle andImage:(UIImage *)mImage{
     
     UIButton *mRightBtn = [[UIButton alloc]initWithFrame:CGRectMake(DEVICE_Width-60,15,25,25)];
-    mRightBtn.titleLabel.font = [UIFont systemFontOfSize:16];
+    mRightBtn.titleLabel.font = [UIFont systemFontOfSize:15];
     mRightBtn.titleLabel.textAlignment = NSTextAlignmentRight;
     CGRect mR = mRightBtn.frame;
     if (!mHidden) {
