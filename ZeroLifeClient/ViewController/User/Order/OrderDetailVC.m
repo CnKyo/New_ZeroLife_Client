@@ -55,6 +55,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"订单详情";
+    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
     
     [self.scrollView.mj_header beginRefreshing];
     //[self donwData];
@@ -70,6 +71,9 @@
     UIView *superView = self.contentView;
     UIView *lastView = nil;
     int padding = 10;
+    
+//    self.scrollView.backgroundColor = [UIColor redColor];
+//    self.contentView.backgroundColor = [UIColor yellowColor];
     
     //订单状态信息相关
     OrderHeaderStatusView *statusView = [[OrderHeaderStatusView alloc] init];
