@@ -24,6 +24,8 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    
+    self.mRateTxView.placeholder = @"写下您对本次订单的评价内容吧~";
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -45,11 +47,13 @@
     self.mRateBgkView.layer.borderWidth = 0.5;
     self.mRateBgkView.layer.cornerRadius = 3;
     
-    LHRatingView * rView = [[LHRatingView alloc]initWithFrame:CGRectMake(DEVICE_Width/2-140, 0, 280, 60)];
+    LHRatingView * rView = [[LHRatingView alloc]initWithFrame:CGRectMake(DEVICE_Width/2-155, 0, 300, 60)];
 //    rView.center = self.mRateView.center;
     rView.ratingType = INTEGER_TYPE;//整颗星
     rView.delegate = self;
     [self.mRateView addSubview:rView];
+    
+    self.mRateTxView.delegate = self;
 
     
     CGFloat xWidth = [UIScreen mainScreen].bounds.size.width;

@@ -77,7 +77,7 @@
 
                     [SVProgressHUD showSuccessWithStatus:@"删除成功"];
                 } else
-                    [SVProgressHUD showSuccessWithStatus:info.msg];
+                    [SVProgressHUD showErrorWithStatus:info.msg];
             }];
             
 

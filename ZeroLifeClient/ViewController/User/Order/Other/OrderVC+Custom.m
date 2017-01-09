@@ -49,7 +49,7 @@
                         callback(item);
                         [SVProgressHUD showSuccessWithStatus:@"操作成功"];
                     } else
-                        [SVProgressHUD showSuccessWithStatus:info.msg];
+                        [SVProgressHUD showErrorWithStatus:info.msg];
                 }];
             }
             
@@ -135,7 +135,7 @@
                         callback(item); //返回新订单信息
                         [SVProgressHUD showSuccessWithStatus:@"操作成功"];
                     } else
-                        [SVProgressHUD showSuccessWithStatus:info.msg];
+                        [SVProgressHUD showErrorWithStatus:info.msg];
                 }];
             };
             [self.navigationController pushViewController:vc animated:YES];
@@ -162,7 +162,7 @@
                     callback(item);
                     [SVProgressHUD showSuccessWithStatus:@"操作成功"];
                 } else
-                    [SVProgressHUD showSuccessWithStatus:info.msg];
+                    [SVProgressHUD showErrorWithStatus:info.msg];
             }];
         }
         
@@ -262,7 +262,7 @@
                     callback(item);
                     [SVProgressHUD showSuccessWithStatus:@"操作成功"];
                 } else
-                    [SVProgressHUD showSuccessWithStatus:info.msg];
+                    [SVProgressHUD showErrorWithStatus:info.msg];
             }];
         } else
             [SVProgressHUD showErrorWithStatus:@"请输入差价金额"];

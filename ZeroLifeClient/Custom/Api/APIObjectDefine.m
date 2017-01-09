@@ -461,6 +461,9 @@
 
 
 
+@implementation FileUploadResponseObject
+@end
+
 @implementation RegionObject
 @end
 

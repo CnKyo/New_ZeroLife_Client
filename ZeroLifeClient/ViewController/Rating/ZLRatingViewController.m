@@ -13,6 +13,7 @@
 @property(nonatomic,assign) double com_star;
 @property(nonatomic,strong) NSString* com_content;
 @property(nonatomic,strong) NSMutableArray* com_imgsArr;
+@property(nonatomic,strong) NSMutableArray* com_imgsUrlArr;
 @end
 
 @implementation ZLRatingViewController
@@ -22,6 +23,7 @@
     // Do any additional setup after loading the view.
     self.title = @"评价";
     self.com_imgsArr = [NSMutableArray array];
+    self.com_imgsUrlArr = [NSMutableArray array];
     
     [self addTableView];
     UINib   *nib = [UINib nibWithNibName:@"ZLRatingTableViewCell" bundle:nil];
@@ -48,30 +50,64 @@
         return;
     }
     
-    NSMutableString *str = [NSMutableString new];
+    if (_com_content==nil || _com_content.length==0) {
+        [SVProgressHUD showErrorWithStatus:@"请输入评价内容"];
+        return;
+    }
+    
+    if (_com_content.length < 8) {
+        [SVProgressHUD showErrorWithStatus:@"多输几个字呗，亲"];
+        return;
+    }
+
+
     if (_com_imgsArr.count > 0) {
-        for (int i=0; i<_com_imgsArr.count; i++) {
-            NSString *str11 = [_com_imgsArr objectAtIndex:i];
-            [str appendString:str11];
+        NSMutableArray *arr = [NSMutableArray array];
+        for (UIImage *img in _com_imgsArr) {
+            NSData* data = UIImageJPEGRepresentation(img, 1.0);
+            [arr addObject:data];
+        }
+        
+        [SVProgressHUD showWithStatus:@"上传中..."];
+        [[APIClient sharedClient] fileUploadWithTag:self uploadDatas:arr type:kFileType_photo path:kFileUploadPath_Orders call:^(NSArray *tableArr, APIObject *info) {
+            if (info.code == RESP_STATUS_YES) {
+                [self.com_imgsUrlArr setArray:tableArr];
+                [self evaluateSubmmit];
+            } else
+                [SVProgressHUD showErrorWithStatus:info.msg];
+        }];
+    } else
+        [self evaluateSubmmit];
+}
+
+
+-(void)evaluateSubmmit
+{
+    NSMutableString *str = [NSMutableString new];
+    if (_com_imgsUrlArr.count > 0) {
+        for (int i=0; i<_com_imgsUrlArr.count; i++) {
+            FileUploadResponseObject *item = [_com_imgsUrlArr objectAtIndex:i];
+            [str appendString:item.name];
             
-            if (i< _com_imgsArr.count-1)
+            if (i< _com_imgsUrlArr.count-1)
                 [str appendString:@","];
         }
     }
     
+    
     [SVProgressHUD showWithStatus:@"评价中..."];
     [[APIClient sharedClient] orderOprateEvaluateWithTag:self odr_id:_orderItem.odr_id com_star:_com_star com_content:_com_content com_imgs:str com_is_security:YES call:^(NSString *odr_state_val, NSMutableArray *odr_state_next, APIObject *info) {
         if (info.code == RESP_STATUS_YES) {
-
+            
             if (self.evaluateSuccessCallBack) {
                 self.evaluateSuccessCallBack(odr_state_val, odr_state_next);
             }
             
             [self performSelector:@selector(popViewController) withObject:nil afterDelay:0.5];
-
+            
             [SVProgressHUD showSuccessWithStatus:@"操作成功"];
         } else
-            [SVProgressHUD showSuccessWithStatus:info.msg];
+            [SVProgressHUD showErrorWithStatus:info.msg];
     }];
 }
 
@@ -164,20 +200,9 @@
  */
 - (void)ZLRatingTableViewCellWithImagesArr:(NSMutableArray *)mImgArr{
     MLLog(@"%@",mImgArr);
+    
+    self.com_imgsArr = mImgArr;
 
-    for (int i=0; i<mImgArr.count; i++) {
-        UIImage *img = [mImgArr objectAtIndex:i];
-        NSData* data = UIImageJPEGRepresentation(img, 1.0);
-        [SVProgressHUD showWithStatus:@"上传中..."];
-        [[APIClient sharedClient] fileUploadWithTag:self data:data type:kFileType_photo path:kFileUploadPath_Orders call:^(NSString *fileUrlStr, APIObject *info) {
-            if (info.code == RESP_STATUS_YES) {
-                [self.com_imgsArr addObject:fileUrlStr];
-                [SVProgressHUD showSuccessWithStatus:@"上传成功"];
-            } else
-                [SVProgressHUD showSuccessWithStatus:info.msg];
-        }];
-        
-    }
 }
 
 

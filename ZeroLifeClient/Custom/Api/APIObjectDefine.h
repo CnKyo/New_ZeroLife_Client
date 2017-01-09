@@ -131,6 +131,13 @@
 
 
 
+#pragma mark -  文件上传返回对象
+@interface FileUploadResponseObject : NSObject
+@property(nonatomic,assign) kFileType               type;         //!< 上传格式
+@property(nonatomic,strong) NSString *              name;            //!< 上传文件路径
+@end
+
+
 #pragma mark -  省市区对象
 @interface RegionObject : NSObject
 @property(nonatomic,assign) int                     gion_id;         //!< 
