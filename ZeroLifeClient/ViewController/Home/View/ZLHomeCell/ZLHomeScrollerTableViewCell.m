@@ -158,6 +158,8 @@
             scrollView.frame = mSRR;
             [scrollView addSubview:mBgkView1];
             [scrollView addSubview:mBgkView2];
+            scrollView.contentSize = CGSizeMake(mSRR.size.width, mSRR.size.height);
+
             [self addSubview:scrollView];
         }
        
