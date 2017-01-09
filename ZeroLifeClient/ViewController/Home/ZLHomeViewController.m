@@ -35,6 +35,8 @@
 #import <AMapLocationKit/AMapLocationKit.h>
 #import <UINavigationBar+Awesome.h>
 #import "ZLWebVc.h"
+#import "GuideView.h"
+
 
 #define NAVBAR_CHANGE_POINT 30
 @interface ZLHomeViewController ()<UITableViewDelegate,UITableViewDataSource,ZLHomeScrollerTableCellDelegate,ZLHomeLocationViewDelegate,ZLCoupViewDelegate,AMapLocationManagerDelegate,MMApBlockCoordinate>
@@ -75,8 +77,6 @@
     NSNotificationCenter *mNotify = [NSNotificationCenter defaultCenter];
     [mNotify addObserver:self selector:@selector(webAction:) name:@"ZLAdView" object:nil];
     
-    [self initAdView];
-    
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(10, -60) forBarMetrics:UIBarMetricsDefault];
 
     
@@ -93,7 +93,6 @@
     self.mTableView.separatorStyle = UITableViewCellSelectionStyleNone;
 
     [self initLeftAndRightBarButton];
-//    [self addTableView];
     
     UINib   *nib = [UINib nibWithNibName:@"ZLHomeOtherCell" bundle:nil];
     [self.mTableView registerNib:nib forCellReuseIdentifier:@"cell2"];
@@ -101,7 +100,6 @@
     
     [self initCoupView];
     
-//    [self loadData];
     [self.navigationController.navigationBar lt_setBackgroundColor:[UIColor clearColor]];
     
     [self TableViewHaveHeader];
@@ -150,31 +148,7 @@
 - (void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:@"ZLAdView"];
 }
-- (void)initAdView{
-    
-    
-    UIWindow *window = [UIApplication sharedApplication].keyWindow;
 
-    NSMutableArray *images = [NSMutableArray new];
-    
-    [images addObject:[UIImage imageNamed:@"ZLGuideImg1"]];
-    [images addObject:[UIImage imageNamed:@"ZLGuideImg2"]];
-    [images addObject:[UIImage imageNamed:@"ZLGuideImg3"]];
-    
-    HcdGuideView *guideView = [HcdGuideView sharedInstance];
-    guideView.window = window;
-    [guideView showGuideViewWithImages:images
-                        andButtonTitle:@"立即开启"
-                   andButtonTitleColor:[UIColor whiteColor]
-                      andButtonBGColor:[UIColor clearColor]
-                  andButtonBorderColor:[UIColor whiteColor]];
-    
-    
-    
-    
-        
-
-}
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     UIColor * color = M_CO;

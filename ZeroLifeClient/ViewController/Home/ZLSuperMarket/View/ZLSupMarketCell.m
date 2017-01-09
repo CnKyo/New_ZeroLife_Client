@@ -111,6 +111,7 @@
                     
                     mBgkView1Rect.size.height = 160/2;
                     mSRR.size.height = 178/2;
+                    
                 }else if(i<8){
 
                     CGRect frame = CGRectMake((i-4)*screen_width/4, 80, screen_width/4, 80);
@@ -154,12 +155,13 @@
                     
                 }
             }
-            
+          
             mBgkView1.frame =mBgkView1Rect;
             mBgkView2.frame =mBgkView2Rect;
             scrollView.frame = mSRR;
             [scrollView addSubview:mBgkView1];
             [scrollView addSubview:mBgkView2];
+            scrollView.contentSize = CGSizeMake(mSRR.size.width, mSRR.size.height);
             [self addSubview:scrollView];
 
         }

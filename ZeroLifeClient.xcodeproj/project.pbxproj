@@ -96,6 +96,7 @@
 		0464E7071DF26B4E00A3F954 /* StandarsAdd@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0464E7011DF26B4E00A3F954 /* StandarsAdd@2x.png */; };
 		0464E7081DF26B4E00A3F954 /* StandarsDel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0464E7021DF26B4E00A3F954 /* StandarsDel@2x.png */; };
 		0464E7091DF26B4E00A3F954 /* ThrowLineTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 0464E7041DF26B4E00A3F954 /* ThrowLineTool.m */; };
+		046A75561E20C13300AF883C /* GuideView.m in Sources */ = {isa = PBXBuildFile; fileRef = 046A75551E20C13300AF883C /* GuideView.m */; };
 		047109C51DE28EDE00CFA292 /* ZLOrderReturnViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 047109C41DE28EDE00CFA292 /* ZLOrderReturnViewController.m */; };
 		047109C91DE294BF00CFA292 /* ZLORderReturnCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 047109C71DE294BF00CFA292 /* ZLORderReturnCell.m */; };
 		047109CA1DE294BF00CFA292 /* ZLORderReturnCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 047109C81DE294BF00CFA292 /* ZLORderReturnCell.xib */; };
@@ -789,6 +790,8 @@
 		0464E7021DF26B4E00A3F954 /* StandarsDel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "StandarsDel@2x.png"; sourceTree = "<group>"; };
 		0464E7031DF26B4E00A3F954 /* ThrowLineTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThrowLineTool.h; sourceTree = "<group>"; };
 		0464E7041DF26B4E00A3F954 /* ThrowLineTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThrowLineTool.m; sourceTree = "<group>"; };
+		046A75541E20C13300AF883C /* GuideView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideView.h; sourceTree = "<group>"; };
+		046A75551E20C13300AF883C /* GuideView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideView.m; sourceTree = "<group>"; };
 		047109C31DE28EDE00CFA292 /* ZLOrderReturnViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLOrderReturnViewController.h; sourceTree = "<group>"; };
 		047109C41DE28EDE00CFA292 /* ZLOrderReturnViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLOrderReturnViewController.m; sourceTree = "<group>"; };
 		047109C61DE294BF00CFA292 /* ZLORderReturnCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLORderReturnCell.h; sourceTree = "<group>"; };
@@ -1954,6 +1957,15 @@
 				041BD65A1DF5380300057756 /* ZLSkuCell.xib */,
 			);
 			path = SpeView;
+			sourceTree = "<group>";
+		};
+		046A75531E20C13300AF883C /* GuideView */ = {
+			isa = PBXGroup;
+			children = (
+				046A75541E20C13300AF883C /* GuideView.h */,
+				046A75551E20C13300AF883C /* GuideView.m */,
+			);
+			path = GuideView;
 			sourceTree = "<group>";
 		};
 		047109C11DE28EBD00CFA292 /* ZLOrderReturn */ = {
@@ -3472,6 +3484,7 @@
 		DFFAA7531DB744EF001CFBB5 /* OpenSourceLib */ = {
 			isa = PBXGroup;
 			children = (
+				046A75531E20C13300AF883C /* GuideView */,
 				043F69751E1A29C300B33EA0 /* ImageEffects */,
 				043F69711E19E3D700B33EA0 /* CustomProgress */,
 				042B52A81E12298200B093BE /* ZLCurrentLocation */,
@@ -4458,6 +4471,7 @@
 				DFA135811DD7056000805BA2 /* SouKuanVC.m in Sources */,
 				04B07EAF1DD98DA5004A7294 /* ZLPPTAnounceMentTableViewCell.m in Sources */,
 				DF98EC531DD2F64A0006EBFE /* OrderNoteValueView.m in Sources */,
+				046A75561E20C13300AF883C /* GuideView.m in Sources */,
 				DF8DBCC41DD0202B002E574B /* UserComplaintHistoryTableViewCell.m in Sources */,
 				DFA135601DD6EB6C00805BA2 /* WithDrawalVC.m in Sources */,
 				DF5C49041DBA1BEC006E4825 /* DCWebImageManager.m in Sources */,
