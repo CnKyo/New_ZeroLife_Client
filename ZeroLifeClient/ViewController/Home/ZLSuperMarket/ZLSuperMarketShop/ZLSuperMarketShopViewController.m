@@ -104,7 +104,8 @@ static const CGFloat mTopH = 156;
     mCheckMoreActivityView *mMoreCampView;
     
     
-    
+    ///规格数组
+    NSMutableArray *mSkuTempArr;
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -126,7 +127,7 @@ static const CGFloat mTopH = 156;
     mRightDataArr = [NSMutableArray new];
     self.mSelectedSpeArray = [NSMutableArray new];
     self.mAddSkuArray = [NSMutableArray new];
-
+    mSkuTempArr = [NSMutableArray new];
     mAddShopCarEx = [ZLAddShopCarExObj new];
     mLeftDataSource = [ZLShopLeftTableArr new];
     
@@ -1029,9 +1030,6 @@ static const CGFloat mTopH = 156;
 }
 #pragma mark----****----加载规格view
 - (void)initSpeView{
-
-
-
     
     CGRect mSpeRect = self.view.bounds;
     mSpeRect.origin.y = DEVICE_Height;
@@ -1056,7 +1054,7 @@ static const CGFloat mTopH = 156;
 }
 #pragma mark----****----显示规格view
 - (void)showSpeView:(NSIndexPath *)mIndexPath{
-    
+    [mSkuTempArr removeAllObjects];
     ZLGoodsWithClass *mGoodObj = mRightDataArr[mIndexPath.row];
     mSpeView.mIndexPath = mIndexPath;
     mSpeView.mModel = mGoodObj;
@@ -1071,8 +1069,6 @@ static const CGFloat mTopH = 156;
     
     [self UpdateSpeViewPage:mGoodObj.img_url andGoodsName:mGoodObj.pro_name andGoodsPrice:mP andSkuCount:count andGoodsNum:mGoodObj.mNum];
     
-    ///规格数组
-    NSMutableArray *mSkuTempArr = [NSMutableArray new];
     
     ///从这里取值
     ZLGoodsWithClass *mGoods = mRightDataArr[mIndexPath.row];
@@ -1085,14 +1081,10 @@ static const CGFloat mTopH = 156;
         BOOL mIsAdd = YES;
         
         for (int j = 0; j<mSkuTempArr.count ; j++) {
-            
-            
-            
+
             ZLGoodsSpeList *mTwo = mSkuTempArr[j];
             
             if (mOne.sta_id == mTwo.mStaId) {
-                
-                
                 
                 ZLSpeObj *mSkuValue  = [ZLSpeObj new];
                 mSkuValue.mSpeGoodsName = mOne.sta_val_name;
@@ -1140,17 +1132,6 @@ static const CGFloat mTopH = 156;
         mSpeRect.origin.y = 0;
         mSpeView.frame = mSpeRect;
     }];
-
-
-    
-//    StandardsView *mystandardsView = [self buildStandardView:[UIImage imageNamed:@"bg.jpg"] andIndex:mIndexPath.row];
-//    mystandardsView.GoodDetailView = self.view;//设置该属性 对应的view 会缩小
-//    
-//    mystandardsView.showAnimationType = StandsViewShowAnimationShowFrombelow;
-//    mystandardsView.dismissAnimationType = StandsViewDismissAnimationDisFrombelow;
-//    
-//    
-//    [mystandardsView show];
 
 }
 #pragma mark----****----更新规格页面数据
@@ -1419,60 +1400,7 @@ static const CGFloat mTopH = 156;
 - (void)ZLSuperMarketShopCarBtnSelected:(NSIndexPath *)mIndexPath{
     
     ZLGoodsWithClass *mGoodObj = mRightDataArr[mIndexPath.row];
-    LKDBHelperGoodsObj *ZLAddObj = [LKDBHelperGoodsObj new];
-    ZLAddObj.mExtObj = [ZLAddShopCarExObj new];
-    
-
-    NSString *mSKUname = @"";
-
-    
-    for (int i = 0;i<self.mAddSkuArray.count;i++) {
-        
-        ZLSpeObj *mSpeO = self.mAddSkuArray[i];
-        
-        if (mSpeO.mSku.sta_required == 1) {
-            
-            if (mGoodObj.mNum<=0) {
-                mGoodObj.mNum = 1;
-            }
-            
-            ZLAddObj.mSKUID = mSpeO.mSku.sku_id;
-            ZLAddObj.mExtObj.mTotlePrice = mGoodObj.mNum*mSpeO.mSku.sku_price;
-
-        }
-        
-        if (i==self.mAddSkuArray.count-1) {
-            mSKUname = [mSKUname stringByAppendingString:[NSString stringWithFormat:@"%@",mSpeO.mSku.sta_val_name]];
-            
-        }else{
-            mSKUname = [mSKUname stringByAppendingString:[NSString stringWithFormat:@"%@-",mSpeO.mSku.sta_val_name]];
-        }
-
-    }
-    
-    ZLAddObj.mNum = mGoodObj.mNum;
-    ZLAddObj.mGoodsId = mGoodObj.pro_id;
-    ZLAddObj.mGoodsName =mGoodObj.pro_name;
-    ZLAddObj.mGoodsImg = mGoodObj.img_url;
-    ZLAddObj.mExtObj.mGoodsNum = mGoodObj.mNum;
-    ZLAddObj.mShopId = self.mShopObj.shop_id;
-    ZLAddObj.mGoodsSKU = self.mAddSkuArray;
-    ZLAddObj.mSpe = [ZLSpeObj new];
-    ZLAddObj.mSpe.mSpeGoodsName = mSKUname;
-
-    if (ZLAddObj.mExtObj.mGoodsNum==0) {
-        
-        ZLAddObj.mExtObj.mGoodsNum = 1;
-        
-    }else if (ZLAddObj.mExtObj.mGoodsNum<0){
-        [self showErrorStatus:@"请选择数量！"];
-        return;
-    }
-    [ZLAddObj saveToDB];
-
-    
-    NSArray *mLKDArr =  [LKDBHelperGoodsObj searchWithWhere:[NSString stringWithFormat:@"mShopId=%d",self.mShopObj.shop_id]];
-
+    [self LKDB_SaveToDB:mGoodObj];
     [self updateBottomView:mAddShopCarEx];
     [self hiddenSpeView];
     [self.mAddSkuArray removeAllObjects];
@@ -1489,7 +1417,6 @@ static const CGFloat mTopH = 156;
     LKDBHelperGoodsObj *ZLAddObj = [LKDBHelperGoodsObj new];
     ZLAddObj.mExtObj = [ZLAddShopCarExObj new];
     
-    
     NSString *mSKUname = @"";
     
     
@@ -1497,6 +1424,9 @@ static const CGFloat mTopH = 156;
         
         ZLSpeObj *mSpeO = self.mAddSkuArray[i];
         
+        if (mGoodObj.mNum<=0) {
+            mGoodObj.mNum = 1;
+        }
         if (mSpeO.mSku.sta_required == 1) {
             ZLAddObj.mSKUID = mSpeO.mSku.sku_id;
             ZLAddObj.mExtObj.mTotlePrice = mGoodObj.mNum*mSpeO.mSku.sku_price;
@@ -1511,7 +1441,10 @@ static const CGFloat mTopH = 156;
         }
         
     }
-    
+    if (ZLAddObj.mSKUID <= 0) {
+        [self showErrorStatus:@"请选择规格！"];
+        return;
+    }
     ZLAddObj.mNum = mGoodObj.mNum;
     ZLAddObj.mGoodsId = mGoodObj.pro_id;
     ZLAddObj.mGoodsName =mGoodObj.pro_name;
@@ -1547,22 +1480,30 @@ static const CGFloat mTopH = 156;
         [mPara setInt:mGoods.mGoodsId forKey:@"pro_id"];
         [mPara setInt:mGoods.mExtObj.mGoodsNum forKey:@"odrg_number"];
         [mPara setInt:mGoods.mCampId forKey:@"cam_gid"];
-        
-        for (int i =0;i<mGoods.mGoodsSKU.count;i++) {
-            ZLSpeObj *mSpe = mGoods.mGoodsSKU[i];
-            
-            if (mSpe.mSku.sta_required == 1) {
-                [mPara setInt:mSpe.mSku.sku_id forKey:@"sku_id"];
-            }
-            
-            if (i==mGoods.mGoodsSKU.count-1) {
-                mContent = [mContent stringByAppendingString:[NSString stringWithFormat:@"%@",mSpe.mSpeGoodsName]];
+
+        if (mGoods.mGoodsSKU.count>2) {
+            for (int i =0;i<mGoods.mGoodsSKU.count;i++) {
+                ZLSpeObj *mSpe = mGoods.mGoodsSKU[i];
                 
-            }else{
-                mContent = [mContent stringByAppendingString:[NSString stringWithFormat:@"%@,",mSpe.mSpeGoodsName]];
+                if (mSpe.mSku.sta_required == 1) {
+                    [mPara setInt:mGoods.mSKUID forKey:@"sku_id"];
+
+                }
+
+                
+                if (i==mGoods.mGoodsSKU.count-1) {
+                    mContent = [mContent stringByAppendingString:[NSString stringWithFormat:@"%@",mSpe.mSpeGoodsName]];
+                    
+                }else{
+                    mContent = [mContent stringByAppendingString:[NSString stringWithFormat:@"%@,",mSpe.mSpeGoodsName]];
+                }
             }
+        }else{
+            [mPara setInt:mGoods.mSKUID forKey:@"sku_id"];
+
         }
         [mPara setObject:mSKUname forKey:@"odrg_spec"];
+
         
         [mPayArr addObject:mPara];
     }
@@ -1936,6 +1877,66 @@ static const CGFloat mTopH = 156;
     
     mMoreCampView.mShopName.text = mShop.mShopMsg.shop_name;
     mMoreCampView.mContent.text = [NSString stringWithFormat:@"营业时间：%@-%@",mShop.mShopMsg.ext_open_time,mShop.mShopMsg.ext_close_time];
+    
+}
+#pragma mark----****----保存数据库
+- (void)LKDB_SaveToDB:(ZLGoodsWithClass *)mGoodObj{
+
+    LKDBHelperGoodsObj *ZLAddObj = [LKDBHelperGoodsObj new];
+    ZLAddObj.mExtObj = [ZLAddShopCarExObj new];
+    
+    
+    NSString *mSKUname = @"";
+    
+    MLLog(@"----%@",mSkuTempArr);
+    
+    for (int i = 0;i<self.mAddSkuArray.count;i++) {
+        
+        ZLSpeObj *mSpeO = self.mAddSkuArray[i];
+        
+        
+        if (mGoodObj.mNum<=0) {
+            mGoodObj.mNum = 1;
+        }
+        if (mSpeO.mSku.sta_required == 1) {
+            ZLAddObj.mSKUID = mSpeO.mSku.sku_id;
+            ZLAddObj.mExtObj.mTotlePrice = mGoodObj.mNum*mSpeO.mSku.sku_price;
+            
+        }
+        
+        
+        
+        if (i==self.mAddSkuArray.count-1) {
+            mSKUname = [mSKUname stringByAppendingString:[NSString stringWithFormat:@"%@",mSpeO.mSku.sta_val_name]];
+            
+        }else{
+            mSKUname = [mSKUname stringByAppendingString:[NSString stringWithFormat:@"%@-",mSpeO.mSku.sta_val_name]];
+        }
+        
+    }
+    if (ZLAddObj.mSKUID <= 0) {
+        [self showErrorStatus:@"请选择规格！"];
+        return;
+    }
+    ZLAddObj.mNum = mGoodObj.mNum;
+    ZLAddObj.mGoodsId = mGoodObj.pro_id;
+    ZLAddObj.mGoodsName =mGoodObj.pro_name;
+    ZLAddObj.mGoodsImg = mGoodObj.img_url;
+    ZLAddObj.mExtObj.mGoodsNum = mGoodObj.mNum;
+    ZLAddObj.mShopId = self.mShopObj.shop_id;
+    ZLAddObj.mGoodsSKU = self.mAddSkuArray;
+    ZLAddObj.mSpe = [ZLSpeObj new];
+    ZLAddObj.mSpe.mSpeGoodsName = mSKUname;
+    
+    if (ZLAddObj.mExtObj.mGoodsNum==0) {
+        
+        ZLAddObj.mExtObj.mGoodsNum = 1;
+        
+    }else if (ZLAddObj.mExtObj.mGoodsNum<0){
+        [self showErrorStatus:@"请选择数量！"];
+        return;
+    }
+    [ZLAddObj saveToDB];
     
 }
 

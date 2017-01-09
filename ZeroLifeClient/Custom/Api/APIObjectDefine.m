@@ -1119,10 +1119,10 @@ bool m_bind = NO;
 
 @implementation LKDBHelperGoodsObj
 
-+ (NSString *)getPrimaryKey{
-
-    return @"mSKUID";
-}
+//+ (NSString *)getPrimaryKey{
+//
+//    return @"mSKUID";
+//}
 
 @end
 

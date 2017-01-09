@@ -156,8 +156,7 @@
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
-                                <action selector="mBuyNow:" destination="iN0-l3-epB" eventType="touchUpInside" id="Heo-cc-xXk"/>
-                                <action selector="mOKAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="gm0-EO-3j2"/>
+                                <action selector="mBuyNow:" destination="iN0-l3-epB" eventType="touchUpInside" id="fIr-Zi-fDY"/>
                             </connections>
                         </button>
                     </subviews>
