@@ -150,6 +150,7 @@
     
     UserAddressTVC *vc = [UserAddressTVC new];
     vc.isChooseAddress = YES;
+    vc.oldAdrItem = mFixPreOrder.mAddress;
     vc.block = ^(AddressObject *mAddress){
         MLLog(@"%@",mAddress);
         mFixPreOrder.mAddress = mAddress;
@@ -242,7 +243,7 @@
 - (void)upLoadDataField:(NSData *)mData withType:(kFileType)mType{
     
     [SVProgressHUD showWithStatus:@"文件上传中..."];
-    [[APIClient sharedClient] fileUploadWithTag:self data:mData type:mType path:kFileUploadPath_Orders call:^(NSString *fileUrlStr, APIObject *info) {
+    [[APIClient sharedClient] fileOneUploadWithTag:self data:mData type:mType path:kFileUploadPath_Orders call:^(NSString *fileUrlStr, APIObject *info) {
         if (info.code == RESP_STATUS_YES) {
             
             

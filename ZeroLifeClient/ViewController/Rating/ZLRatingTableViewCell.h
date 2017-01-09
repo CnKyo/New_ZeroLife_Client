@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <IQKeyboardManager/IQTextView.h>
 
 
 /**
@@ -70,7 +71,7 @@
 /**
  评价输入框
  */
-@property (weak, nonatomic) IBOutlet UITextView *mRateTxView;
+@property (weak, nonatomic) IBOutlet IQTextView *mRateTxView;
 
 /**
  上传图片view

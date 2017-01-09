@@ -421,16 +421,18 @@ return [NSString stringWithFormat:@"%@%@%@",kAFAppDotNetImgBaseURLString,kAFAppD
 }
 
 
+
+
 /**
  *   文件上传接口
  *
  *  @param tag      链接对象
- *  @param data     上传数据
+ *  @param uploadDatas     上传数据的NSData集合
  *  @param type     文件类型（1-图片，2-音频）
  *  @param path     功能参数（用户头像-U_PHOTO，用户认证文件-U_AUT，用户跑跑腿申请资料-U_APPLY，用户订单处理-U_ORDERS）
  *  @param callback 返回列表
  */
--(void)fileUploadWithTag:(NSObject *)tag data:(NSData *)data type:(kFileType)type path:(NSString *)path call:(void (^)(NSString *fileUrlStr, APIObject* info))callback
+-(void)fileUploadWithTag:(NSObject *)tag uploadDatas:(NSArray *)uploadDatas type:(kFileType)type path:(NSString *)path call:(TableArrBlock)callback
 {
     ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
     if (user.user_id > 0) {
@@ -439,40 +441,79 @@ return [NSString stringWithFormat:@"%@%@%@",kAFAppDotNetImgBaseURLString,kAFAppD
         [paramDic setObject:path forKey:@"path"];
         [paramDic setInt:user.user_id forKey:@"user_id"];
         [self postWithTag:tag path:@"/resource/api/app/client/file/upload" parameters:paramDic constructingBodyWithBlockBack:^(id<AFMultipartFormData> formData) {
-            if (type == kFileType_photo)
-                [formData appendPartWithFileData:data name:@"file" fileName:@"img.png" mimeType:@"image/jpg/png"];
+            NSString *mimeType = nil;
+            NSString *fileExt = nil;
             
-            if (type == kFileType_video)
-                [formData appendPartWithFileData:data name:@"file" fileName:@"aa.mp4" mimeType:@"video/mpeg4"];
+            switch (type) {
+                case kFileType_photo:
+                    fileExt = @".png";
+                    mimeType = @"image/jpg/png";
+                    break;
+                case kFileType_video:
+                    fileExt = @".mp4";
+                    mimeType = @"video/mpeg4";
+                    break;
+                default:
+                    break;
+            }
+            
+            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+            formatter.dateFormat = @"yyyyMMddHHmmss";
+            NSString *timeStr = [formatter stringFromDate:[NSDate date]];
+            
+            for (int i=0; i<uploadDatas.count; i++) {
+                NSString *fileName = [NSString stringWithFormat:@"%@_%i%@",timeStr, i, fileExt];
+                NSString *name = [NSString stringWithFormat:@"uploadFile%i", i];
+                [formData appendPartWithFileData:uploadDatas[i] name:name fileName:fileName mimeType:mimeType];
+            }
             
         } call:^(NSError *error, id responseObject) {
+            APIObject *info = nil;
             if (error == nil) {
-                
-                NSDictionary *resbObj = [Util deleteEmpty:responseObject];
-                MLLog(@"----**resbObj**----%@",resbObj);
-                APIObject *info = [APIObject mj_objectWithKeyValues:resbObj];
-                
-                if (info.code == RESP_STATUS_YES) {
-                    
-                    NSString *full_path = nil;
-                    
-                    for (NSDictionary *dic in info.data) {
-                        full_path = [dic objectWithKey:@"name"];
-                    }
-                    
-                    
-                    callback(full_path, info);
-                } else
-                    callback(nil, info);
-
+                NSLog(@"\n\n ---APIObject----result:-----------%@", responseObject);
+                info = [APIObject mj_objectWithKeyValues:responseObject];
+                if (info==nil)
+                    info = [APIObject infoWithErrorMessage:@"网络错误"];
             } else {
-                NSLog(@"error:%@", error);
-                callback(nil, [APIObject infoWithError:error]);
+                NSLog(@"\n\n ---APIObject----result error:-----------%@", error);
+                info = [APIObject infoWithError:error];
             }
+            
+            if (info.code == RESP_STATUS_YES) {
+                NSArray *newArr = [FileUploadResponseObject mj_objectArrayWithKeyValuesArray:info.data];
+                callback(newArr, info);
+            } else
+                callback(nil, info);
+
         }];
     } else
         callback(nil, [APIObject infoWithReLoginErrorMessage:@"请重新登陆"]);
 }
+
+
+
+/**
+ *   单个文件上传接口
+ *
+ *  @param tag      链接对象
+ *  @param data     上传数据
+ *  @param type     文件类型（1-图片，2-音频）
+ *  @param path     功能参数（用户头像-U_PHOTO，用户认证文件-U_AUT，用户跑跑腿申请资料-U_APPLY，用户订单处理-U_ORDERS）
+ *  @param callback 返回列表
+ */
+-(void)fileOneUploadWithTag:(NSObject *)tag data:(NSData *)data type:(kFileType)type path:(NSString *)path call:(void (^)(NSString *fileUrlStr, APIObject* info))callback
+{
+    NSArray *arr = [NSArray arrayWithObject:data];
+    
+    [self fileUploadWithTag:tag uploadDatas:arr type:type path:path call:^(NSArray *tableArr, APIObject *info) {
+        if (tableArr.count > 0) {
+            FileUploadResponseObject *item = [tableArr objectAtIndex:0];
+            callback(item.name, info);
+        } else
+            callback(nil, info);
+    }];
+}
+
 
 
 #pragma mark----****----用户登录注册管理

@@ -77,7 +77,7 @@
 
                     [SVProgressHUD showSuccessWithStatus:@"删除成功"];
                 } else
-                    [SVProgressHUD showSuccessWithStatus:info.msg];
+                    [SVProgressHUD showErrorWithStatus:info.msg];
             }];
             
 
@@ -113,6 +113,7 @@
     cell.iconImgView.image = IMG(@"choose_on.png");
     cell.nameLable.text = [NSString compIsNone:item.pro_name];
     cell.msgLable.text = [NSString compIsNone:item.pro_spec];
+    [cell.iconImgView sd_setImageWithURL:[NSURL imageurl:item.img_url] placeholderImage:ZLDefaultGoodsImg];
     
     return cell;
 }

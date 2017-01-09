@@ -99,9 +99,9 @@
         UIView *superView = self.contentView;
         
         self.iconImgView = [superView newUIImageViewWithImg:IMG(@"choose_on.png")];
-        self.nameLable = [superView newUILableWithText:@"" textColor:[UIColor blackColor] font:font];
+        self.nameLable = [superView newUILableWithText:@"" textColor:[UIColor blackColor] font:[UIFont systemFontOfSize:15]];
         self.msgLable = [superView newUILableWithText:@"" textColor:color font:font];
-        self.priceLable = [superView newUILableWithText:@"" textColor:color font:font];
+        self.priceLable = [superView newUILableWithText:@"" textColor:COLOR(249, 157, 45) font:[UIFont systemFontOfSize:15]];
         
         [self.iconImgView makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(superView.left).offset(padding);

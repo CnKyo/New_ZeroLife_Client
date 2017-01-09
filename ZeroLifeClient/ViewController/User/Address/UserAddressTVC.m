@@ -130,20 +130,8 @@
         }
         
         
-        
-        if (_isChooseAddress == YES) {
-            cell.chooseBtn.enabled = YES;
-            cell.editBtn.enabled = NO;
-            if (indexPath.section == 1) {
-                [cell.chooseBtn setImage:IMG(@"shimingrenzheng_on.png") forState:UIControlStateNormal];
-            } else
-                [cell.chooseBtn setImage:IMG(@"shimingrenzheng_off.png") forState:UIControlStateNormal];
-            
-        } else {
-            cell.chooseBtn.enabled = NO;
-            cell.editBtn.enabled = YES;
-            [cell.chooseBtn setImage:IMG(@"cell_address_myplace.png") forState:UIControlStateNormal];
-        }
+        BOOL isSameItem = NO;
+
         
         NSDictionary* style = @{@"body" : @[[UIFont systemFontOfSize:14], [UIColor grayColor]],
                                 @"red" : @[[UIFont systemFontOfSize:14], COLOR(253, 151, 0)]};
@@ -166,6 +154,7 @@
             
             [str2 appendFormat:@"%@  %@  %@", item.real_owner, item.real_phone, [NSString houseIsOwner:item.real_is_owner]];
             
+
         } else {
             AddressObject *item = [self.tableArr objectAtIndex:indexPath.section];
             
@@ -174,8 +163,26 @@
             [str1 appendString:[item getProvinceCityCountyAddressStr]];
             
             [str2 appendFormat:@"%@  %@", item.addr_name, item.addr_phone];
+            
+            if (_oldAdrItem!=nil && _oldAdrItem.addr_id==item.addr_id)
+                isSameItem = YES;
+            
         }
 
+        
+        if (_isChooseAddress == YES) {
+            cell.chooseBtn.enabled = YES;
+            cell.editBtn.enabled = NO;
+            if (isSameItem) {
+                [cell.chooseBtn setImage:IMG(@"shimingrenzheng_on.png") forState:UIControlStateNormal];
+            } else
+                [cell.chooseBtn setImage:IMG(@"shimingrenzheng_off.png") forState:UIControlStateNormal];
+            
+        } else {
+            cell.chooseBtn.enabled = NO;
+            cell.editBtn.enabled = YES;
+            [cell.chooseBtn setImage:IMG(@"cell_address_myplace.png") forState:UIControlStateNormal];
+        }
         
         
         cell.addressLable.attributedText = [str1 attributedStringWithStyleBook:style];

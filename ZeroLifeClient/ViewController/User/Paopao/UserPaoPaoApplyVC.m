@@ -171,7 +171,7 @@
         [self startChoosePhotoCall:^(UIImage *img) {
             [SVProgressHUD showWithStatus:@"上传中..."];
             NSData* data = UIImageJPEGRepresentation(img, 0.7);
-            [[APIClient sharedClient] fileUploadWithTag:self data:data type:kFileType_photo path:kFileUploadPath_Apply call:^(NSString *fileUrlStr, APIObject *info) {
+            [[APIClient sharedClient] fileOneUploadWithTag:self data:data type:kFileType_photo path:kFileUploadPath_Apply call:^(NSString *fileUrlStr, APIObject *info) {
                 if (info.code == RESP_STATUS_YES) {
                     [cell.img1Btn setBackgroundImage:img forState:UIControlStateNormal];
                     self.submmitItem.mat_hand_url = fileUrlStr;
@@ -188,7 +188,7 @@
         [self startChoosePhotoCall:^(UIImage *img) {
             [SVProgressHUD showWithStatus:@"上传中..."];
             NSData* data = UIImageJPEGRepresentation(img, 0.7);
-            [[APIClient sharedClient] fileUploadWithTag:self data:data type:kFileType_photo path:kFileUploadPath_Apply call:^(NSString *fileUrlStr, APIObject *info) {
+            [[APIClient sharedClient] fileOneUploadWithTag:self data:data type:kFileType_photo path:kFileUploadPath_Apply call:^(NSString *fileUrlStr, APIObject *info) {
                 if (info.code == RESP_STATUS_YES) {
                     [cell.img2Btn setBackgroundImage:img forState:UIControlStateNormal];
                     self.submmitItem.mat_document_url = fileUrlStr;
@@ -206,7 +206,7 @@
         [self startChoosePhotoCall:^(UIImage *img) {
             [SVProgressHUD showWithStatus:@"上传中..."];
             NSData* data = UIImageJPEGRepresentation(img, 0.7);
-            [[APIClient sharedClient] fileUploadWithTag:self data:data type:kFileType_photo path:kFileUploadPath_Apply call:^(NSString *fileUrlStr, APIObject *info) {
+            [[APIClient sharedClient] fileOneUploadWithTag:self data:data type:kFileType_photo path:kFileUploadPath_Apply call:^(NSString *fileUrlStr, APIObject *info) {
                 if (info.code == RESP_STATUS_YES) {
                     [cell.img3Btn setBackgroundImage:img forState:UIControlStateNormal];
                     self.submmitItem.mat_back_url = fileUrlStr;
