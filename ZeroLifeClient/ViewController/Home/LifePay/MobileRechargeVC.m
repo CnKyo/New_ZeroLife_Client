@@ -30,7 +30,7 @@
 
 -(void)reloadUIWithData
 {
-    int row = 3;
+    int row = 4;
     int offsetX = 10;
     int offsetY = 20;
     
@@ -57,7 +57,7 @@
                 } else
                     make.top.equalTo(lastView.bottom).offset(offsetY);
                 
-                make.height.equalTo(btn.width).multipliedBy(0.4);
+                make.height.equalTo(btn.width).multipliedBy(0.45);
             } else {
                 make.width.top.bottom.equalTo(lastView);
                 make.left.equalTo(lastView.right).offset(offsetX);
@@ -225,7 +225,7 @@
         view;
     });
     
-    self.moneyChooseView = [[MobileRechargeMoneyView alloc] initWithTitleArr:@[@"10", @"20", @"30", @"50", @"100", @"200",]];
+    self.moneyChooseView = [[MobileRechargeMoneyView alloc] initWithTitleArr:@[@"30", @"50", @"100", @"300",]];
     self.moneyChooseView.chooseCallBack = ^(NSString *chooseStr){
     
         mMoneyStr = chooseStr;
