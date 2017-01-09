@@ -22,7 +22,7 @@
 
 @property (nonatomic, assign) int mShopId;
 
-@property (nonatomic, assign) ZLShopType mType;
+@property (nonatomic, assign) kOrderClassType mType;
 @property (nonatomic, assign) ZLShopObj *mShopObj;
 
 

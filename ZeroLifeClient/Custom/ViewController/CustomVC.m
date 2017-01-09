@@ -601,7 +601,7 @@
     [self.hudView.refreshButton setTitle:@"重新加载" forState:UIControlStateNormal];
     
     if (mImgName.length <= 0) {
-        mImgName = @"ZLEmpty_Image";
+        mImgName = @"ZLNoCollect";
     }
     
     self.hudView.customImage = [UIImage imageNamed:mImgName];

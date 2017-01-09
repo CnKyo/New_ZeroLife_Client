@@ -269,7 +269,7 @@
         
     }else{
         ZLSuperMarketShopViewController *ZLSuperMarketShopVC = [ZLSuperMarketShopViewController new];
-        ZLSuperMarketShopVC.mType = ZLShopTypeSuperMarket;
+        ZLSuperMarketShopVC.mType = kOrderClassType_product;
 
         ZLSuperMarketShopVC.mShopObj = self.tableArr[indexPath.row];
         [self pushViewController:ZLSuperMarketShopVC];
