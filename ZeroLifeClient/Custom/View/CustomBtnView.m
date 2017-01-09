@@ -28,14 +28,13 @@
             self.textLable.highlightedTextColor = [UIColor blackColor];
             [self.imgView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.top.centerX.equalTo(view);
-                make.height.equalTo(view.height).multipliedBy(0.5);
+                make.height.equalTo(view.height).multipliedBy(0.6);
                 make.width.equalTo(_imgView.mas_height);
             }];
             [self.textLable mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.top.equalTo(_imgView.mas_bottom);
                 make.left.right.bottom.equalTo(view);
             }];
-            
             view;
         });
         
@@ -45,6 +44,7 @@
             make.centerX.equalTo(self.mas_centerX);
             make.centerY.equalTo(self.mas_centerY);
         }];
+        
     }
     return self;
 }
@@ -58,4 +58,76 @@
     return btnView;
 }
 
++(CustomBtnView *)initWithTag:(NSInteger)tag title:(NSString *)title imgDefult:(UIImage *)imgDefult imgUrl:(NSURL *)imgUrl
+{
+    CustomBtnView *btnView = [[CustomBtnView alloc] init];
+    btnView.tag = tag;
+    //btnView.imgView.image = imgDefult;
+    btnView.textLable.text = title;
+    
+    
+    [btnView.imgView sd_setImageWithURL:imgUrl placeholderImage:imgDefult];
+    
+    return btnView;
+}
+
 @end
+
+
+
+@implementation CustomBtnView111
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        
+        UIView *aView = ({
+            UIView *view = [self newUIView];
+            //view.backgroundColor = [UIColor redColor];
+            
+            self.imgView = [view newUIImageView];
+            self.imgView.contentMode = UIViewContentModeScaleAspectFit;
+            self.textLable = [view newUILableWithText:@"" textColor:[UIColor colorWithWhite:0.2 alpha:1] font:[UIFont systemFontOfSize:14] textAlignment:NSTextAlignmentCenter];
+            self.textLable.adjustsFontSizeToFitWidth = YES;
+            self.textLable.numberOfLines = 0;
+            self.textLable.highlightedTextColor = [UIColor blackColor];
+            [self.imgView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.centerX.equalTo(view);
+                //make.height.equalTo(view.height).multipliedBy(0.6);
+                make.width.equalTo(_imgView.mas_height);
+            }];
+            [self.textLable mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(_imgView.mas_bottom);
+                make.left.right.bottom.equalTo(view);
+                make.height.equalTo(25);
+            }];
+            view;
+        });
+        
+        [aView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.height.equalTo(self.mas_height).multipliedBy(0.6);
+            make.width.equalTo(aView.mas_height);
+            make.centerX.equalTo(self.mas_centerX);
+            make.centerY.equalTo(self.mas_centerY);
+        }];
+        
+    }
+    return self;
+}
+
+
++(CustomBtnView111 *)initWithTag:(NSInteger)tag title:(NSString *)title imgDefult:(UIImage *)imgDefult imgUrl:(NSURL *)imgUrl
+{
+    CustomBtnView111 *btnView = [[CustomBtnView111 alloc] init];
+    btnView.tag = tag;
+    //btnView.imgView.image = imgDefult;
+    btnView.textLable.text = title;
+    
+    [btnView.imgView sd_setImageWithURL:imgUrl placeholderImage:imgDefult];
+    
+    return btnView;
+}
+
+@end
+
