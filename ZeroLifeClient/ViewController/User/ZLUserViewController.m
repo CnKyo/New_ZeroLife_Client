@@ -47,7 +47,7 @@
     
     [self.tableView remakeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.equalTo(self.view);
-        make.top.equalTo(self.view.top).offset(-NAVBAR_Height);
+        make.top.equalTo(self.view.top).offset(-NAVBAR_Height-1);
     }];
     
     [self.tableView registerNib:[ZLUserHeaderTableViewCell jk_nib] forCellReuseIdentifier:[ZLUserHeaderTableViewCell reuseIdentifier]];
@@ -60,6 +60,7 @@
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
     }];
+    
 }
 
 - (void)viewDidLoad {
@@ -79,6 +80,9 @@
     
     self.tableView.delegate = self;
     [self scrollViewDidScroll:self.tableView];
+    
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, DEVICE_Width, 1)];
+    self.tableView.tableHeaderView = view;
     [self.tableView reloadData];
     
     //__weak __typeof(self)weakSelf = self;
@@ -202,6 +206,7 @@
     if (indexPath.section == 0) {
         ZLUserHeaderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[ZLUserHeaderTableViewCell reuseIdentifier]];
         //cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
         
         ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
         
