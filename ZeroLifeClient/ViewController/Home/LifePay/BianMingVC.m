@@ -9,7 +9,9 @@
 #import "BianMingVC.h"
 #import "CustomBtnView.h"
 
-@interface BianMingVC ()
+#import "CustomWebVC.h"
+
+@interface BianMingVC ()<QUItemBtnViewDelegate>
 @property(nonatomic,strong) NSArray *arr;
 @end
 
@@ -102,10 +104,9 @@
                 UIView *lineViewS = [view newDefaultLineView];
                 lineViewS.frame = CGRectMake(originX, 0, offset, heightTotal);
             }
-            UIImageView *mImgv = [UIImageView new];
-            [mImgv sd_setImageWithURL:[NSURL URLWithString:mObj.pla_logo] placeholderImage:IMG(@"ZLDefault_Green")];
             
-            CustomBtnView *btn = [CustomBtnView initWithTag:i title:title img:mImgv.image];
+            CustomBtnView111 *btn = [CustomBtnView111 initWithTag:200+i title:title imgDefult:IMG(@"ZLDefault_Green") imgUrl:[NSURL imageurl:mObj.pla_logo]];
+            btn.delegate = self;
             [view addSubview:btn];
             btn.frame = CGRectMake(originX, originY, width, width);
             lastView = btn;
@@ -120,7 +121,26 @@
         make.top.equalTo(noteLable.bottom);
     }];
     
+    [self.contentView remakeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.scrollView);
+        make.width.equalTo(self.scrollView);
+        make.bottom.equalTo(aView.bottom).offset(padding);
+    }];
+}
+
+
+- (void)selectItemBtnView:(QUItemBtnView *)view
+{
+    NSInteger index = view.tag - 200;
     
+    if (_arr.count > index) {
+        ZLHomeServicePerson *mObj = [_arr objectAtIndex:index];
+        
+        CustomWebVC *vc = [[CustomWebVC alloc] init];
+        vc.title = mObj.pla_name;
+        vc.linkUrl = mObj.pla_uri;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 @end

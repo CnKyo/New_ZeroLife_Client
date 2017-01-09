@@ -49,17 +49,17 @@
     /**
      IQKeyboardManager为自定义收起键盘
      **/
-    [[IQKeyboardManager sharedManager] setEnable:YES];///视图开始加载键盘位置开启调整
-    [[IQKeyboardManager sharedManager]setEnableAutoToolbar:YES];///是否启用自定义工具栏
-    [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;///启用手势
-    [IQKeyboardManager sharedManager].shouldHidePreviousNext = YES;///隐藏上／下一步工具条
+//    [[IQKeyboardManager sharedManager] setEnable:YES];///视图开始加载键盘位置开启调整
+//    [[IQKeyboardManager sharedManager]setEnableAutoToolbar:YES];///是否启用自定义工具栏
+//    [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;///启用手势
+    [IQKeyboardManager sharedManager].previousNextDisplayMode = IQPreviousNextDisplayModeAlwaysHide;///隐藏上／下一步工具条
 }
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [IQKeyboardManager sharedManager].shouldHidePreviousNext = NO;///显示上／下一步工具条
-    [[IQKeyboardManager sharedManager] setEnable:NO];///视图消失键盘位置取消调整
-    [[IQKeyboardManager sharedManager] setEnableAutoToolbar:NO];///关闭自定义工具栏
+    [IQKeyboardManager sharedManager].previousNextDisplayMode = IQPreviousNextDisplayModeDefault;///显示上／下一步工具条
+//    [[IQKeyboardManager sharedManager] setEnable:NO];///视图消失键盘位置取消调整
+//    [[IQKeyboardManager sharedManager] setEnableAutoToolbar:NO];///关闭自定义工具栏
     
 }
 

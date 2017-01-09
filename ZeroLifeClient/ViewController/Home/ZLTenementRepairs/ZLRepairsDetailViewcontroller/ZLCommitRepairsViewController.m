@@ -27,24 +27,24 @@
     ZLCreatePreOrder *mFixPreOrder;
         
 }
--(void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    
-    /**
-     IQKeyboardManager为自定义收起键盘
-     **/
-    [[IQKeyboardManager sharedManager] setEnable:YES];///视图开始加载键盘位置开启调整
-    [[IQKeyboardManager sharedManager]setEnableAutoToolbar:YES];///是否启用自定义工具栏
-    [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;///启用手势
-}
--(void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    [[IQKeyboardManager sharedManager] setEnable:NO];///视图消失键盘位置取消调整
-    [[IQKeyboardManager sharedManager] setEnableAutoToolbar:NO];///关闭自定义工具栏
-    
-}
+//-(void)viewWillAppear:(BOOL)animated
+//{
+//    [super viewWillAppear:animated];
+//    
+//    /**
+//     IQKeyboardManager为自定义收起键盘
+//     **/
+//    [[IQKeyboardManager sharedManager] setEnable:YES];///视图开始加载键盘位置开启调整
+//    [[IQKeyboardManager sharedManager]setEnableAutoToolbar:YES];///是否启用自定义工具栏
+//    [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;///启用手势
+//}
+//-(void)viewWillDisappear:(BOOL)animated
+//{
+//    [super viewWillDisappear:animated];
+//    [[IQKeyboardManager sharedManager] setEnable:NO];///视图消失键盘位置取消调整
+//    [[IQKeyboardManager sharedManager] setEnableAutoToolbar:NO];///关闭自定义工具栏
+//    
+//}
 
 
 - (void)viewDidLoad {

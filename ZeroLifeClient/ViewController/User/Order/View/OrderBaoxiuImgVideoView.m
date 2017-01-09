@@ -29,8 +29,8 @@
         
         self.imgBtn = [superView newUIButton];
         self.videoBtn = [superView newUIButton];
-        [self.videoBtn setStyleNavColor];
-        [self.imgBtn setStyleNavColor];
+        //[self.videoBtn setStyleNavColor];
+        //[self.imgBtn setStyleNavColor];
         
         UILabel *noteLable1 = [superView newUILableWithText:@"图片" textColor:color font:font textAlignment:NSTextAlignmentCenter];
         UILabel *noteLable2 = [superView newUILableWithText:@"视频" textColor:color font:font textAlignment:NSTextAlignmentCenter];
@@ -70,11 +70,17 @@
 
 -(void)reloadUIWithItem:(OrderGoodsObject *)item
 {
-    [self.imgBtn sd_setImageWithURL:[NSURL imageurl:item.odrg_img_repair] forState:UIControlStateNormal];
+    
+    
+    
+    [self.imgBtn sd_setImageWithURL:[NSURL imageurl:item.odrg_img_repair] forState:UIControlStateNormal placeholderImage:IMG(@"ZLFix_UploadImg")];
     //[self.videoBtn sd_setImageWithURL:[NSURL imageurl:item.odrg_video_repair] forState:UIControlStateNormal];
     
     NSString *url = [NSString linkUrl:item.odrg_video_repair];
     UIImage *img = [UIImage getThumbnailImage:url];
+    if (img == nil)
+        img = IMG(@"ZLFix_UploadVideo");
+    
     [self.videoBtn setImage:img forState:UIControlStateNormal];
     
 }
