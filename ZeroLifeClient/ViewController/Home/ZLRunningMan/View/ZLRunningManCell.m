@@ -67,6 +67,8 @@
         self.mBtn.hidden = YES;
     }else{
         [self.mBtn setTitle:@"立即接单" forState:0];
+        self.mBtn.hidden = NO;
+
     }
     
     

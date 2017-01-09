@@ -64,7 +64,7 @@ static int const ZLRunningManVC_ClassView_Height                  = 80;
 
     [super viewWillAppear:animated];
     [self updateUserInfo];
-    //[self loadTableData:_mIndex];
+    [self loadTableData:_mIndex];
 
 }
 - (void)updateUserInfo{
@@ -103,20 +103,30 @@ static int const ZLRunningManVC_ClassView_Height                  = 80;
         
     }else{
 
-        if (_mAddress) {
-            [[APIClient sharedClient] ZLGetPPTLocation:_mAddress block:^(APIObject *mBaseObj) {
-                if (mBaseObj.code == RESP_STATUS_YES) {
-                    
-                }else{
-                    [self showErrorStatus:@"定位失败！请打开定位！"];
-                    [self loadLocation];
-                }
-            }];
+        ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+        
+        if (user.user_id <= 0) {
+            [APIObject infoWithReLoginErrorMessage:@"请重新登陆"];
         }else{
-            [self loadLocation];
-
-            
+            if (_mAddress) {
+                
+                [[APIClient sharedClient] ZLGetPPTLocation:_mAddress block:^(APIObject *mBaseObj) {
+                    if (mBaseObj.code == RESP_STATUS_YES) {
+                        
+                    }else{
+                        [self showErrorStatus:@"定位失败！请打开定位！"];
+                        [self loadLocation];
+                    }
+                }];
+            }else{
+                [self loadLocation];
+                
+                
+            }
         }
+        
+        
+        
         
     }
 
@@ -449,12 +459,17 @@ static int const ZLRunningManVC_ClassView_Height                  = 80;
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    if (indexPath.section == 1) {
-        ZLPPTOrderDetailViewController *vc = [ZLPPTOrderDetailViewController new];
-        vc.mOrder = mTempArr[indexPath.row];
-        [self pushViewController:vc];
-    }
+    ZLPPTOrderDetailViewController *vc = [ZLPPTOrderDetailViewController new];
+    vc.mOrder = mTempArr[indexPath.row];
+    [self pushViewController:vc];
     
+//    OrderObject *item = [self.tableArr objectAtIndex:indexPath.row];
+//    
+//    OrderDetailVC *vc = [[OrderDetailVC alloc] init];
+//    vc.classType = kOrderClassType_paopao;
+//    vc.item = item;
+//    vc.isShopOrderBool = YES;
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark----****----去发布

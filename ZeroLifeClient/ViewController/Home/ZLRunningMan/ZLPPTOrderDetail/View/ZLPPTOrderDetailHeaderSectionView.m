@@ -30,5 +30,11 @@
     ZLPPTOrderDetailHeaderSectionView *view = [[[NSBundle mainBundle] loadNibNamed:@"ZLPPTOrderDetailHeaderSectionView2" owner:self options:nil] objectAtIndex:0];
     return view;
 }
+- (IBAction)mPhoneAction:(UIButton *)sender {
+    if ([_delegate respondsToSelector:@selector(ZLPPTOrderDetailHeaderSectionViewWithRunnerPhoneAction)]) {
+        [_delegate ZLPPTOrderDetailHeaderSectionViewWithRunnerPhoneAction];
+    }
+    
+}
 
 @end

@@ -222,9 +222,14 @@
     if (mOrderDetail.odr_deliver_phone.length<=0) {
         [self showErrorStatus:@"暂无电话哦～"];
         return;
+    }else if ([ZLUserInfo ZLCurrentUser].user_id == _mOrder.user_id){
+        [self showErrorStatus:@"您不能给自己打电话哟～～"];
+        return;
+    }else{
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"telprompt://%@",mOrderDetail.odr_deliver_phone]]];
     }
     
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"telprompt://%@",mOrderDetail.odr_deliver_phone]]];
+    
 }
 
 @end
