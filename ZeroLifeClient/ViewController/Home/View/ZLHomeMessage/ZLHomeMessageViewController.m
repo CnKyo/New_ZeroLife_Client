@@ -37,7 +37,6 @@
 - (void)reloadTableViewDataSource{
     [super reloadTableViewDataSource];
     
-    [self showWithStatus:@"加载中..."];
     [[APIClient sharedClient] ZLGetHomeMsgList:^(APIObject *mBaseObj, ZLHomeMsgObj *mHomeMsg) {
         [self reloadWithTableArr:mHomeMsg.msgList info:mBaseObj];
     }];

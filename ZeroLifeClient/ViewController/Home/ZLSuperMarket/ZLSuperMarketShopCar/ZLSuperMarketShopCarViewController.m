@@ -283,6 +283,7 @@
         if (mBaseObj.code == RESP_STATUS_YES) {
             [self dismiss];
             ZLSuperMarketCommitOrderViewController *ZLCommitVC = [ZLSuperMarketCommitOrderViewController new];
+            ZLCommitVC.mOrderType = _mType;
             ZLCommitVC.mPreOrder = [ZLPreOrderObj new];
             ZLCommitVC.mPreOrder =  mPreOrder;
             ZLCommitVC.mShopId = self.mShopId;

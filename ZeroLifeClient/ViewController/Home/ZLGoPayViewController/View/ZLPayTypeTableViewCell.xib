@@ -16,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="49.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GGC-Ka-Tby">
@@ -63,8 +63,8 @@
                 <constraints>
                     <constraint firstItem="d2e-Nq-PzG" firstAttribute="leading" secondItem="PLm-wv-d8e" secondAttribute="trailing" constant="8" id="1yp-VN-XXt"/>
                     <constraint firstItem="PLm-wv-d8e" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-3" id="3Np-P0-kYm"/>
+                    <constraint firstItem="C0S-Dp-cYh" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="3to-ou-P0n"/>
                     <constraint firstItem="C0S-Dp-cYh" firstAttribute="leading" secondItem="d2e-Nq-PzG" secondAttribute="trailing" constant="8" id="5Gv-xJ-sDy"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="C0S-Dp-cYh" secondAttribute="bottom" constant="6" id="Gpk-IK-bwp"/>
                     <constraint firstItem="yf3-nQ-0g4" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-8" id="Jwv-PG-65q"/>
                     <constraint firstAttribute="bottomMargin" secondItem="yf3-nQ-0g4" secondAttribute="bottom" constant="-8" id="O8F-0X-pzw"/>
                     <constraint firstItem="GGC-Ka-Tby" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-8" id="Q11-rc-1u2"/>
@@ -73,7 +73,6 @@
                     <constraint firstAttribute="trailingMargin" secondItem="C0S-Dp-cYh" secondAttribute="trailing" id="Vru-ho-MEs"/>
                     <constraint firstItem="GGC-Ka-Tby" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-8" id="cRL-Zc-FuK"/>
                     <constraint firstItem="yf3-nQ-0g4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-8" id="e8w-Xf-OH1"/>
-                    <constraint firstItem="C0S-Dp-cYh" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="7" id="eSz-J1-9Cz"/>
                     <constraint firstAttribute="trailingMargin" secondItem="yf3-nQ-0g4" secondAttribute="trailing" constant="-8" id="osl-cN-QWR"/>
                     <constraint firstAttribute="trailingMargin" secondItem="GGC-Ka-Tby" secondAttribute="trailing" constant="-8" id="yYX-QY-oNk"/>
                 </constraints>

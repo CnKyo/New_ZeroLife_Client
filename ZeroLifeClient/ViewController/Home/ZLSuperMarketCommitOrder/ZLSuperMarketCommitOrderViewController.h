@@ -9,6 +9,9 @@
 #import "CustomVC.h"
 
 @interface ZLSuperMarketCommitOrderViewController : CustomVC
+
+@property (assign,nonatomic) kOrderClassType mOrderType;
+
 ///购物车数据源
 @property (strong,nonatomic)ZLPreOrderObj *mPreOrder;
 

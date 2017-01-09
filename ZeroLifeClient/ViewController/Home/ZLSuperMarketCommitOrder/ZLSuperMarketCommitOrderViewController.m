@@ -295,7 +295,7 @@
     }
 
     [self showWithStatus:@"正在提交..."];
-    [[APIClient sharedClient] ZLCommitOrder:kOrderClassType_product andShopId:[NSString stringWithFormat:@"%d",self.mPreOrder.shop_id] andGoods:[Util arrToJson:mPayArr] andSendAddress:[NSString stringWithFormat:@"%d",self.mPreOrder.mAddress.addr_id] andArriveAddress:nil andServiceTime:nil andSendType:self.mPreOrder.mSendType andSendPrice:nil andCoupId:[NSString stringWithFormat:@"%d",self.mPreOrder.mCoupon.cuc_id] andRemark:self.mPreOrder.mNote andSign:self.mPreOrder.sign block:^(APIObject *mBaseObj,ZLCreateOrderObj *mOrder) {
+    [[APIClient sharedClient] ZLCommitOrder:_mOrderType andShopId:[NSString stringWithFormat:@"%d",self.mPreOrder.shop_id] andGoods:[Util arrToJson:mPayArr] andSendAddress:[NSString stringWithFormat:@"%d",self.mPreOrder.mAddress.addr_id] andArriveAddress:nil andServiceTime:nil andSendType:self.mPreOrder.mSendType andSendPrice:nil andCoupId:[NSString stringWithFormat:@"%d",self.mPreOrder.mCoupon.cuc_id] andRemark:self.mPreOrder.mNote andSign:self.mPreOrder.sign block:^(APIObject *mBaseObj,ZLCreateOrderObj *mOrder) {
         
         if (mBaseObj.code == RESP_STATUS_YES) {
             
