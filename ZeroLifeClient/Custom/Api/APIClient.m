@@ -634,6 +634,9 @@ return [NSString stringWithFormat:@"%@%@%@",kAFAppDotNetImgBaseURLString,kAFAppD
     if (user.user_id > 0) {
         NSMutableDictionary* paramDic = [NSMutableDictionary dictionary];
         [paramDic setInt:user.user_id forKey:@"user_id"];
+        
+        [paramDic setNeedStr:[JPUSHService registrationID] forKey:@"jpush"]; //极光注册ID
+        
         [self loadAPIWithTag:self path:@"/user/userInfo_index" parameters:paramDic call:^(APIObject *info) {
             if (info.code == RESP_STATUS_YES) {
                 ZLUserInfo *user = [ZLUserInfo mj_objectWithKeyValues:[info.data objectWithKey:@"user"]];
