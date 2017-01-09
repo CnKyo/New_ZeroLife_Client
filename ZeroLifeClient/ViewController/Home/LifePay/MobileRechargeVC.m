@@ -238,7 +238,7 @@
     [btn11 jk_addActionHandler:^(NSInteger tag) {
         
         if (![Util isMobileNumber:_mobileField.text]) {
-            [self showErrorStatus:@"请选择您要充值的手机号码177！"];
+            [self showErrorStatus:@"请选择您要充值的手机号码！"];
             [_mobileField becomeFirstResponder];
             return ;
         }
