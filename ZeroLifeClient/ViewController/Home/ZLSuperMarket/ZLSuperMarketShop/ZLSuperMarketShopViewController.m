@@ -983,6 +983,7 @@ static const CGFloat mTopH = 156;
             ZLSuperMarketCommitOrderViewController *ZLCommitVC = [ZLSuperMarketCommitOrderViewController new];
             ZLCommitVC.mPreOrder = [ZLPreOrderObj new];
             ZLCommitVC.mPreOrder =  mPreOrder;
+            ZLCommitVC.mOrderType = _mType;
             ZLCommitVC.mShopId = self.mShopObj.shop_id;
             [self pushViewController:ZLCommitVC];
         }else{
@@ -1457,10 +1458,7 @@ static const CGFloat mTopH = 156;
     ZLAddObj.mGoodsSKU = self.mAddSkuArray;
     ZLAddObj.mSpe = [ZLSpeObj new];
     ZLAddObj.mSpe.mSpeGoodsName = mSKUname;
-    if (!ZLAddObj.mSKUID) {
-        [self showErrorStatus:@"请先选择规格！"];
-        return;
-    }
+
     if (ZLAddObj.mExtObj.mGoodsNum==0) {
         
         ZLAddObj.mExtObj.mGoodsNum = 1;
@@ -1522,10 +1520,7 @@ static const CGFloat mTopH = 156;
     ZLAddObj.mGoodsSKU = self.mAddSkuArray;
     ZLAddObj.mSpe = [ZLSpeObj new];
     ZLAddObj.mSpe.mSpeGoodsName = mSKUname;
-    if (!ZLAddObj.mSKUID) {
-        [self showErrorStatus:@"请先选择规格！"];
-        return;
-    }
+
     if (ZLAddObj.mExtObj.mGoodsNum==0) {
         
         ZLAddObj.mExtObj.mGoodsNum = 1;
@@ -1581,6 +1576,7 @@ static const CGFloat mTopH = 156;
             [self dismiss];
             ZLSuperMarketCommitOrderViewController *ZLCommitVC = [ZLSuperMarketCommitOrderViewController new];
             ZLCommitVC.mPreOrder = [ZLPreOrderObj new];
+            ZLCommitVC.mOrderType = _mType;
             ZLCommitVC.mPreOrder =  mPreOrder;
             [self pushViewController:ZLCommitVC];
         }else{
