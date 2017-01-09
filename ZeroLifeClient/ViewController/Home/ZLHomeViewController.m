@@ -36,7 +36,7 @@
 #import <UINavigationBar+Awesome.h>
 #import "ZLWebVc.h"
 #import "GuideView.h"
-
+#import "ZLNeighbourhoodViewController.h"
 
 #define NAVBAR_CHANGE_POINT 30
 @interface ZLHomeViewController ()<UITableViewDelegate,UITableViewDataSource,ZLHomeScrollerTableCellDelegate,ZLHomeLocationViewDelegate,ZLCoupViewDelegate,AMapLocationManagerDelegate,MMApBlockCoordinate>
@@ -655,8 +655,10 @@
             break;
         case ZLHomeFunctionTypeNeighbor:
         {
-            
-            
+            ZLNeighbourhoodViewController *vc= [[ZLNeighbourhoodViewController alloc] init];
+            vc.navigationItem.title = @"邻里圈";
+            vc.hidesBottomBarWhenPushed = YES;
+            [self pushViewController:vc];
         }
             break;
             

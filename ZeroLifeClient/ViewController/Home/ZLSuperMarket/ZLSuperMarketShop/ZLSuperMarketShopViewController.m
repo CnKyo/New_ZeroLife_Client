@@ -278,17 +278,19 @@ static const CGFloat mTopH = 156;
 - (void)upDatePage:(ZLShopObj *)mShop{
     
     NSString *mHeadUrl = [Util currentSourceImgUrl:mShop.mShopMsg.shop_logo];
-    UIImage *mHead = nil;
-    mHead = [UIImage imageNamed:@"ZLDefault_Shop"];
+    mHeaderView.mBgkImg.backgroundColor = M_CO;
+//    UIImage *mHead = nil;
+//    mHead = [UIImage imageNamed:@"ZLDefault_Shop"];
+//    
+//    UIImage *mLastImg = [mHead applyLightEffect];
+//    mHeaderView.mBgkImg.image = mLastImg;
     
-    UIImage *mLastImg = [mHead applyLightEffect];
-    mHeaderView.mBgkImg.image = mLastImg;
     [mHeaderView.mShopLogo sd_setImageWithURL:[NSURL URLWithString:mHeadUrl] placeholderImage:[UIImage imageNamed:@"ZLDefault_Shop"]];
     
     [mHeaderView.mShopLogo sd_setImageWithURL:[NSURL URLWithString:mHeadUrl] placeholderImage:[UIImage imageNamed:@"ZLDefault_Shop"] options:SDWebImageRetryFailed completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         if (image != nil) {
             UIImage *mLastImg11 = [image applyLightEffect];
-            mHeaderView.mBgkImg.image = mLastImg11;
+//            mHeaderView.mBgkImg.image = mLastImg11;
         }
     }];
     
@@ -651,7 +653,15 @@ static const CGFloat mTopH = 156;
                 ZLGoodsWithCamp *mCGoodsObj = mRightDataArr[indexPath.row];
                 
                 ZLWebViewViewController *mWebvc = [ZLWebViewViewController new];
-                mWebvc.mUrl = [NSString stringWithFormat:@"%@/wap/good/goodsdetails?pro_id=%d&sku_id=%d&shop_id=%d&user_id=%d",[[APIClient sharedClient] currentUrl],mCGoodsObj.pro_id,mCGoodsObj.sku_id,self.mShopObj.shop_id,[ZLUserInfo ZLCurrentUser].user_id];
+                
+                NSString *mUrl = nil;
+                
+                if (_mType == kOrderClassType_product) {
+                    mUrl = [NSString stringWithFormat:@"%@/wap/good/goodsdetails?pro_id=%d&sku_id=%d&shop_id=%d&user_id=%d",[[APIClient sharedClient] currentUrl],mCGoodsObj.pro_id,mCGoodsObj.sku_id,self.mShopObj.shop_id,[ZLUserInfo ZLCurrentUser].user_id];
+                }else{
+                    mUrl = [NSString stringWithFormat:@"%@/wap/good/dryDetails?pro_id=%d&shop_id=%d",[[APIClient sharedClient] currentUrl],mCGoodsObj.pro_id,self.mShopObj.shop_id];
+                }
+                mWebvc.mUrl = mUrl;
                 mWebvc.mShopObj = mShopObj;
                 mWebvc.mCamGoodsObj = mCGoodsObj;
                 mWebvc.mShopId = self.mShopObj.shop_id;
@@ -667,7 +677,14 @@ static const CGFloat mTopH = 156;
                 ZLGoodsWithClass *mCGoodsObj = mRightDataArr[indexPath.row];
                 
                 ZLWebViewViewController *mWebvc = [ZLWebViewViewController new];
-                mWebvc.mUrl = [NSString stringWithFormat:@"%@/wap/good/goodsdetails?pro_id=%d&sku_id=%d&shop_id=%d&user_id=%d",[[APIClient sharedClient] currentUrl],mCGoodsObj.pro_id,mCGoodsObj.sku_id,self.mShopObj.shop_id,[ZLUserInfo ZLCurrentUser].user_id];
+                NSString *mUrl = nil;
+                
+                if (_mType == kOrderClassType_product) {
+                    mUrl = [NSString stringWithFormat:@"%@/wap/good/goodsdetails?pro_id=%d&sku_id=%d&shop_id=%d&user_id=%d",[[APIClient sharedClient] currentUrl],mCGoodsObj.pro_id,mCGoodsObj.sku_id,self.mShopObj.shop_id,[ZLUserInfo ZLCurrentUser].user_id];
+                }else{
+                    mUrl = [NSString stringWithFormat:@"%@/wap/good/dryDetails?pro_id=%d&shop_id=%d",[[APIClient sharedClient] currentUrl],mCGoodsObj.pro_id,self.mShopObj.shop_id];
+                }
+                mWebvc.mUrl = mUrl;
                 mWebvc.mShopObj = mShopObj;
                 mWebvc.mClsGoodsObj = mCGoodsObj;
                 mWebvc.mShopId = self.mShopObj.shop_id;

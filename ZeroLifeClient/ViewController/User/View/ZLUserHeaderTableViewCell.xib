@@ -197,6 +197,7 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="mBgkImg" destination="pzN-6o-fvF" id="3WA-VM-kfw"/>
                 <outlet property="paopaoInfoView" destination="5PL-3w-SJt" id="kHN-95-WlS"/>
                 <outlet property="paopaoLevelLable" destination="tEw-zQ-qUq" id="TxC-wy-psB"/>
                 <outlet property="paopaoProgressView" destination="aIN-Qx-RpY" id="e47-Nf-37e"/>
