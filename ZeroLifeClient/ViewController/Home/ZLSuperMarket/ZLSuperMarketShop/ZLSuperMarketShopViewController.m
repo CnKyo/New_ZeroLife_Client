@@ -949,10 +949,11 @@ static const CGFloat mTopH = 156;
     }
     
     NSMutableArray *mPayArr = [NSMutableArray new];
-    NSMutableDictionary *mPara = [NSMutableDictionary new];
     NSString *mContent = @"";
     
     for (LKDBHelperGoodsObj *mGoods in mShopCarArrSource) {
+        NSMutableDictionary *mPara = [NSMutableDictionary new];
+
         [mPara setInt:mGoods.mGoodsId forKey:@"pro_id"];
         [mPara setInt:mGoods.mExtObj.mGoodsNum forKey:@"odrg_number"];
         [mPara setInt:mGoods.mCampId forKey:@"cam_gid"];
@@ -1535,19 +1536,14 @@ static const CGFloat mTopH = 156;
     [self hiddenSpeView];
     
     NSMutableArray *mPayArr = [NSMutableArray new];
-    NSMutableDictionary *mPara = [NSMutableDictionary new];
     NSString *mContent = @"";
 
-    for (ZLSpeObj *mSP in self.mAddSkuArray) {
-        if (mSP.mSku.sta_required == 1) {
-            [mPara setInt:mSP.mSku.sku_id forKey:@"sku_id"];
-        }
-
-    }
     [self.mAddSkuArray removeAllObjects];
 
 
     for (LKDBHelperGoodsObj *mGoods in mShopCarArr) {
+        NSMutableDictionary *mPara = [NSMutableDictionary new];
+
         [mPara setInt:mGoods.mGoodsId forKey:@"pro_id"];
         [mPara setInt:mGoods.mExtObj.mGoodsNum forKey:@"odrg_number"];
         [mPara setInt:mGoods.mCampId forKey:@"cam_gid"];

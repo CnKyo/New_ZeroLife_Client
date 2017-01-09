@@ -23,6 +23,9 @@
     
     
     NSMutableArray *mAddArr;
+    
+    NSMutableArray *mPayArr;
+
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -37,7 +40,8 @@
 }
 
 - (void)initView{
-    
+    mPayArr = [NSMutableArray new];
+
     
     mTableView = [UITableView new];
     mTableView.delegate = self;
@@ -249,15 +253,13 @@
         return;
     }
     
-    
-    NSMutableArray *mPayArr = [NSMutableArray new];
-    NSMutableDictionary *mPara = [NSMutableDictionary new];
-    NSString *mContent = @"";
-
     for (LKDBHelperGoodsObj *mGoods in mAddArr) {
+        NSMutableDictionary *mPara = [NSMutableDictionary new];
+
         [mPara setInt:mGoods.mGoodsId forKey:@"pro_id"];
         [mPara setInt:mGoods.mExtObj.mGoodsNum forKey:@"odrg_number"];
         [mPara setInt:mGoods.mCampId forKey:@"cam_gid"];
+        [mPara setObject:[self wk_ShopCarGoodsToString:mGoods.mGoodsSKU] forKey:@"odrg_spec"];
 
         for (int i =0;i<mGoods.mGoodsSKU.count;i++) {
             ZLSpeObj *mSpe = mGoods.mGoodsSKU[i];
@@ -265,15 +267,7 @@
             if (mSpe.mSku.sta_required == 1) {
                 [mPara setInt:mSpe.mSku.sku_id forKey:@"sku_id"];
             }
-
-            if (i==mGoods.mGoodsSKU.count-1) {
-                mContent = [mContent stringByAppendingString:[NSString stringWithFormat:@"%@",mSpe.mSpeGoodsName]];
-                
-            }else{
-                mContent = [mContent stringByAppendingString:[NSString stringWithFormat:@"%@,",mSpe.mSpeGoodsName]];
-            }
         }
-        [mPara setObject:mContent forKey:@"odrg_spec"];
    
         [mPayArr addObject:mPara];
     }
@@ -463,6 +457,29 @@
     al.delegate = self;
     al.tag = tag;
     [al show];
+}
+
+#pragma mark----商品规格字符串
+/**
+ 商品规格字符串
+ 
+ @param mGoods 商品数组
+ @return 返回字符串
+ */
+- (NSString *)wk_ShopCarGoodsToString:(NSArray *)mGoods{
+    NSString *mContent = @"";
+    
+    for (int i =0;i<mGoods.count;i++) {
+        ZLSpeObj *mSpe =mGoods[i];
+        
+        if (i==mGoods.count-1) {
+            mContent = [mContent stringByAppendingString:[NSString stringWithFormat:@"%@",mSpe.mSpeGoodsName]];
+            
+        }else{
+            mContent = [mContent stringByAppendingString:[NSString stringWithFormat:@"%@,",mSpe.mSpeGoodsName]];
+        }
+    }
+    return mContent;
 }
 
 @end
