@@ -310,7 +310,7 @@ typedef void (^TableShareSdkBlock)(int totalpage, NSArray *tableArr, APIShareSdk
  @param mGoods 商品json数组
  @param block 返回值
  */
-- (void)ZLCommitPreOrderWithType:(ZLShopType)mType andShopId:(int)mShopId andGoodsArr:(NSString *)mGoods block:(void (^)(APIObject *mBaseObj,ZLPreOrderObj *mPreOrder))block;
+- (void)ZLCommitPreOrderWithType:(kOrderClassType)mType andShopId:(int)mShopId andGoodsArr:(NSString *)mGoods block:(void (^)(APIObject *mBaseObj,ZLPreOrderObj *mPreOrder))block;
 
 
 

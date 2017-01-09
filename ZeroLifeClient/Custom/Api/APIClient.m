@@ -2483,7 +2483,7 @@ return [NSString stringWithFormat:@"%@%@%@",kAFAppDotNetImgBaseURLString,kAFAppD
  @param mGoods 商品json数组
  @param block 返回值
  */
-- (void)ZLCommitPreOrderWithType:(ZLShopType)mType andShopId:(int)mShopId andGoodsArr:(NSString *)mGoods block:(void (^)(APIObject *mBaseObj,ZLPreOrderObj *mPreOrder))block{
+- (void)ZLCommitPreOrderWithType:(kOrderClassType)mType andShopId:(int)mShopId andGoodsArr:(NSString *)mGoods block:(void (^)(APIObject *mBaseObj,ZLPreOrderObj *mPreOrder))block{
 
     ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
     if (user.user_id > 0) {
@@ -2498,7 +2498,7 @@ return [NSString stringWithFormat:@"%@%@%@",kAFAppDotNetImgBaseURLString,kAFAppD
         [para setObject:mGoods forKey:@"goods"];
         
         NSString *mUrl = nil;
-        if (mType == ZLShopTypeSuperMarket) {
+        if (mType == kOrderClassType_product) {
             mUrl = @"/preorder/pre_products";
         }else{
             mUrl = @"/preorder/pre_dryclean";
