@@ -310,7 +310,7 @@
     NSData* data = UIImageJPEGRepresentation(img, 1.0);
     
     [SVProgressHUD showWithStatus:@"头像上传中..."];
-    [[APIClient sharedClient] fileUploadWithTag:self data:data type:kFileType_photo path:kFileUploadPath_Photo call:^(NSString *fileUrlStr, APIObject *info) {
+    [[APIClient sharedClient] fileOneUploadWithTag:self data:data type:kFileType_photo path:kFileUploadPath_Photo call:^(NSString *fileUrlStr, APIObject *info) {
         if (info.code == RESP_STATUS_YES) {
             [self showSuccessStatus:@"图片上传成功！"];
             self.userLocalImg = img;

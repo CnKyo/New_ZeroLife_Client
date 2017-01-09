@@ -142,10 +142,8 @@
 		04721A231DE42C7F00CE8639 /* mBundleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04721A1F1DE42C7F00CE8639 /* mBundleView.m */; };
 		04721A241DE42C7F00CE8639 /* mBundleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04721A201DE42C7F00CE8639 /* mBundleView.xib */; };
 		04721A2E1DE4325B00CE8639 /* ZLRatingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04721A2D1DE4325B00CE8639 /* ZLRatingViewController.m */; };
-		04721A4A1DE4569100CE8639 /* starFore.png in Resources */ = {isa = PBXBuildFile; fileRef = 04721A421DE4569100CE8639 /* starFore.png */; };
 		04721A4B1DE4569100CE8639 /* starFore@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04721A431DE4569100CE8639 /* starFore@2x.png */; };
 		04721A4C1DE4569100CE8639 /* starFore@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04721A441DE4569100CE8639 /* starFore@3x.png */; };
-		04721A4D1DE4569100CE8639 /* starGray.png in Resources */ = {isa = PBXBuildFile; fileRef = 04721A451DE4569100CE8639 /* starGray.png */; };
 		04721A4E1DE4569100CE8639 /* starGray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04721A461DE4569100CE8639 /* starGray@2x.png */; };
 		04721A4F1DE4569100CE8639 /* starGray@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04721A471DE4569100CE8639 /* starGray@3x.png */; };
 		04721A501DE4569100CE8639 /* LHRatingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04721A491DE4569100CE8639 /* LHRatingView.m */; };
@@ -860,10 +858,8 @@
 		04721A201DE42C7F00CE8639 /* mBundleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mBundleView.xib; sourceTree = "<group>"; };
 		04721A2C1DE4325B00CE8639 /* ZLRatingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLRatingViewController.h; sourceTree = "<group>"; };
 		04721A2D1DE4325B00CE8639 /* ZLRatingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLRatingViewController.m; sourceTree = "<group>"; };
-		04721A421DE4569100CE8639 /* starFore.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = starFore.png; sourceTree = "<group>"; };
 		04721A431DE4569100CE8639 /* starFore@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "starFore@2x.png"; sourceTree = "<group>"; };
 		04721A441DE4569100CE8639 /* starFore@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "starFore@3x.png"; sourceTree = "<group>"; };
-		04721A451DE4569100CE8639 /* starGray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = starGray.png; sourceTree = "<group>"; };
 		04721A461DE4569100CE8639 /* starGray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "starGray@2x.png"; sourceTree = "<group>"; };
 		04721A471DE4569100CE8639 /* starGray@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "starGray@3x.png"; sourceTree = "<group>"; };
 		04721A481DE4569100CE8639 /* LHRatingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHRatingView.h; sourceTree = "<group>"; };
@@ -2131,10 +2127,8 @@
 		04721A411DE4569100CE8639 /* image */ = {
 			isa = PBXGroup;
 			children = (
-				04721A421DE4569100CE8639 /* starFore.png */,
 				04721A431DE4569100CE8639 /* starFore@2x.png */,
 				04721A441DE4569100CE8639 /* starFore@3x.png */,
-				04721A451DE4569100CE8639 /* starGray.png */,
 				04721A461DE4569100CE8639 /* starGray@2x.png */,
 				04721A471DE4569100CE8639 /* starGray@3x.png */,
 			);
@@ -3742,7 +3736,6 @@
 				04721A081DE3E66C00CE8639 /* qmusic_player_play_default@2x.png in Resources */,
 				DF630D501DD45D790076A92C /* purse_tixian.png in Resources */,
 				DF630D361DD44CE60076A92C /* sigin_qian@2x.png in Resources */,
-				04721A4A1DE4569100CE8639 /* starFore.png in Resources */,
 				DF993D3F1DDAE7640061D7CA /* baoxiuShop_pei@2x.png in Resources */,
 				DFBAA9801DF159B9004315F9 /* user_header@3x.png in Resources */,
 				DFA3C0ED1E153C9C00DF8923 /* OrderMainTainVC.xib in Resources */,
@@ -3963,7 +3956,6 @@
 				DF08E84D1DD16A13003E4DD9 /* MobileRechargeMoneyView_kuangChoose@2x.png in Resources */,
 				04721A4C1DE4569100CE8639 /* starFore@3x.png in Resources */,
 				DF29B6A41E11092D00CBAA3B /* icon_order_fee_peroperty@3x.png in Resources */,
-				04721A4D1DE4569100CE8639 /* starGray.png in Resources */,
 				DF993D421DDAE7640061D7CA /* baoxiuShop_souhou@3x.png in Resources */,
 				DF630D3A1DD44CE60076A92C /* sigin_qianYes@3x.png in Resources */,
 				DF539F0B1DD595F400AF228F /* user_payTyple_weixin@2x.png in Resources */,
