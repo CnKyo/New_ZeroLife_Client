@@ -1657,6 +1657,9 @@
     }else if ([mString isEqualToString:@"/ppao/ppao_order_info"]){
         return YES;
         
+    }else if ([mString isEqualToString:@"/ppao/ppao_location"]){
+        return YES;
+        
     }else {
         return NO;
     }

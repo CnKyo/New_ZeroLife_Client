@@ -438,6 +438,14 @@ typedef void (^TableShareSdkBlock)(int totalpage, NSArray *tableArr, APIShareSdk
  @param block 返回值
  */
 - (void)ZLGetRunningmanHomeList:(double)mLat andLng:(double)mLng andPage:(int)mPage andPageSize:(int)mPageSize andClsId:(int)mId block:(void(^)(APIObject *mBaseObj,ZLRunningmanHomeList *mList))block;
+#pragma mark----****----  获取跑腿者经纬度
+/**
+ 获取跑腿者经纬度
+
+ @param mLocation 位置信息
+ @param block 返回值
+ */
+- (void)ZLGetPPTLocation:(CommunityObject *)mLocation block:(void(^)(APIObject *mBaseObj))block;
 
 
 #pragma mark----****----获取发布跑跑腿预订单

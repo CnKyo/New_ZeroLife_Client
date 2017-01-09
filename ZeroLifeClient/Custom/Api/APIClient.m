@@ -3144,7 +3144,33 @@ return [NSString stringWithFormat:@"%@%@%@",kAFAppDotNetImgBaseURLString,kAFAppD
     }];
     
 }
+#pragma mark----****----  获取跑腿者经纬度
+/**
+ 获取跑腿者经纬度
+ 
+ @param mLocation 位置信息
+ @param block 返回值
+ */
+- (void)ZLGetPPTLocation:(CommunityObject *)mLocation block:(void(^)(APIObject *mBaseObj))block{
 
+    NSMutableDictionary* para = [NSMutableDictionary dictionary];
+    
+
+ 
+    [para setInt:[ZLUserInfo ZLCurrentUser].user_id forKey:@"user_id"];
+    
+    [para setObject:NumberWithFloat(mLocation.cmut_lat) forKey:@"lat"];
+    [para setObject:NumberWithFloat(mLocation.cmut_lng) forKey:@"lng"];
+    
+    
+    [self loadAPIWithTag:self path:@"/ppao/ppao_location" parameters:para call:^(APIObject *info) {
+        
+        block(info);
+        
+    }];
+
+    
+}
 
 #pragma mark----****----获取发布跑跑腿预订单
 /**

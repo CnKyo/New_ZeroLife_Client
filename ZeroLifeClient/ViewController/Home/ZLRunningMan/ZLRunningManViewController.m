@@ -24,11 +24,13 @@
 
 #import "OrderTVC.h"
 #import "ZLRunningManTopView.h"
+#import <AMapLocationKit/AMapLocationKit.h>
+#import "CurentLocation.h"
 
 static int const ZLRunningManVC_TopView_Height                  = 100;
 static int const ZLRunningManVC_ClassView_Height                  = 80;
 
-@interface ZLRunningManViewController ()<UITableViewDelegate,UITableViewDataSource,ZLRunningManHomeCellDelegate,ZLRunningManCellDelegate,ZLRuuningManHomeHeaderSectionViewDelegate,ZLCustomSegViewDelegate,ZLRunningManTopViewDelegate>
+@interface ZLRunningManViewController ()<UITableViewDelegate,UITableViewDataSource,ZLRunningManHomeCellDelegate,ZLRunningManCellDelegate,ZLRuuningManHomeHeaderSectionViewDelegate,ZLCustomSegViewDelegate,ZLRunningManTopViewDelegate,AMapLocationManagerDelegate,MMApBlockCoordinate>
 
 @property (assign,nonatomic)     NSInteger mIndex;
 
@@ -53,6 +55,9 @@ static int const ZLRunningManVC_ClassView_Height                  = 80;
     
     ZLRunningManTopView *mTopView;
     ZLRunningManTopView *mClassView;
+    
+    AMapLocationManager *mLocation;
+
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -76,6 +81,88 @@ static int const ZLRunningManVC_ClassView_Height                  = 80;
 
     
 }
+#pragma mark----****----****加载跑腿者经纬度
+- (void)initPPTLocation{
+
+    if ([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"NOTOPEN"]) {
+        
+        MLLog(@"未开通");
+        
+    }else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"PAYMENTED"]){
+        MLLog(@"未支付");
+        
+    }
+    else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"UNCHECK"]){
+        MLLog(@"待审核中...");
+    } else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"REFUSE"]){
+        MLLog(@"审核失败！");
+    } else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"LOGOFF"]){
+        MLLog(@"已注销！");
+    } else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"LOCKED"]){
+        MLLog(@"已已禁用！");
+        
+    }else{
+
+        if (_mAddress) {
+            [[APIClient sharedClient] ZLGetPPTLocation:_mAddress block:^(APIObject *mBaseObj) {
+                if (mBaseObj.code == RESP_STATUS_YES) {
+                    
+                }else{
+                    [self showErrorStatus:@"定位失败！请打开定位！"];
+                    [self loadLocation];
+                }
+            }];
+        }else{
+            [self loadLocation];
+
+            
+        }
+        
+    }
+
+}
+#pragma mark----****----****获取经纬度
+- (void)loadLocation{
+    
+    [CurentLocation sharedManager].delegate = self;
+    [[CurentLocation sharedManager] getUSerLocation];
+    
+    mLocation = [[AMapLocationManager alloc] init];
+    mLocation.delegate = self;
+    [mLocation setDesiredAccuracy:kCLLocationAccuracyHundredMeters];
+    mLocation.locationTimeout = 3;
+    mLocation.reGeocodeTimeout = 3;
+    [mLocation requestLocationWithReGeocode:YES completionBlock:^(CLLocation *location, AMapLocationReGeocode *regeocode, NSError *error) {
+        if (error)
+        {
+            NSString *eee =@"定位失败！请检查网络和定位设置！";
+            
+            [self showErrorStatus:eee];
+            MLLog(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
+        }
+        
+        
+        if (regeocode)
+        {
+            
+            MLLog(@"location:%f", location.coordinate.latitude);
+            
+            _mAddress.cmut_lat = location.coordinate.latitude;
+            _mAddress.cmut_lng = location.coordinate.longitude;
+            
+            MLLog(@"reGeocode:%@", regeocode);
+            
+            [self initPPTLocation];
+            
+        }
+    }];
+
+}
+#pragma mark----maplitdelegate
+- (void)MMapreturnLatAndLng:(NSDictionary *)mCoordinate{
+    
+    MLLog(@"定位成功之后返回的东东：%@",mCoordinate);
+}
 #pragma mark----****----用户需要更新数据
 -(void)handleUserInfoNeedChange:(NSNotification *)note
 {
@@ -91,7 +178,7 @@ static int const ZLRunningManVC_ClassView_Height                  = 80;
     _mIndex = 0;
     mClassObj = [ZLPPTHomeClassList new];
     mTempArr = [NSMutableArray new];
-    
+    [self initPPTLocation];
     [self addRightBtn:YES andTitel:@"发布跑单" andImage:nil];
     
     

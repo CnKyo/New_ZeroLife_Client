@@ -76,7 +76,7 @@
 - (void)reloadTableViewData{
     [super reloadTableViewData];
     
-    self.mShopCarArr = [LKDBHelperGoodsObj searchWithWhere:[NSString stringWithFormat:@"%d",self.mShopId]];
+    self.mShopCarArr = [LKDBHelperGoodsObj searchWithWhere:[NSString stringWithFormat:@"mShopId=%d",self.mShopId]];
 
     [self ZLHideEmptyView];
     [self.tableArr addObjectsFromArray:self.mShopCarArr];

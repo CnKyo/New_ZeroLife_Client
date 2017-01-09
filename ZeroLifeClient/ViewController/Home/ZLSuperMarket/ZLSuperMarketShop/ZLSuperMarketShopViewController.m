@@ -362,7 +362,7 @@ static const CGFloat mTopH = 156;
     NSInteger num = 0;
     float price = 0.0;
     
-    NSArray *mLKDArr =  [LKDBHelperGoodsObj searchWithWhere:[NSString stringWithFormat:@"%d",self.mShopObj.shop_id]];
+    NSArray *mLKDArr =  [LKDBHelperGoodsObj searchWithWhere:[NSString stringWithFormat:@"mShopId=%d",self.mShopObj.shop_id]];
     num = mLKDArr.count;
     
     for (int i = 0; i<mLKDArr.count; i++) {
@@ -922,7 +922,7 @@ static const CGFloat mTopH = 156;
 - (void)ZLSuperMarketShopCarDidSelected{
     
     
-    if ([LKDBHelperGoodsObj searchWithWhere:[NSString stringWithFormat:@"%d",self.mShopObj.shop_id]].count <= 0) {
+    if ([LKDBHelperGoodsObj searchWithWhere:[NSString stringWithFormat:@"mShopId=%d",self.mShopObj.shop_id]].count <= 0) {
         [self showErrorStatus:@"购物车空空如也，快去挑选商品吧！"];
         return;
     }
@@ -941,7 +941,7 @@ static const CGFloat mTopH = 156;
  */
 - (void)ZLSuperMarketGoPayDidSelected{
     
-    NSArray *mShopCarArrSource = [LKDBHelperGoodsObj searchWithWhere:[NSString stringWithFormat:@"%d",self.mShopObj.shop_id]];
+    NSArray *mShopCarArrSource = [LKDBHelperGoodsObj searchWithWhere:[NSString stringWithFormat:@"mShopId=%d",self.mShopObj.shop_id]];
     
     if (mShopCarArrSource.count <= 0) {
         [self showErrorStatus:@"购物车空空如也，快去挑选商品吧！"];
@@ -1471,7 +1471,7 @@ static const CGFloat mTopH = 156;
     [ZLAddObj saveToDB];
 
     
-    NSArray *mLKDArr =  [LKDBHelperGoodsObj searchWithWhere:[NSString stringWithFormat:@"%d",self.mShopObj.shop_id]];
+    NSArray *mLKDArr =  [LKDBHelperGoodsObj searchWithWhere:[NSString stringWithFormat:@"mShopId=%d",self.mShopObj.shop_id]];
 
     [self updateBottomView:mAddShopCarEx];
     [self hiddenSpeView];
