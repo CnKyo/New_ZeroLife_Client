@@ -26,6 +26,7 @@
 @implementation LTPickerView
 -(void)awakeFromNib
 {
+    [super awakeFromNib];
     [self loadNibFile];
 }
 

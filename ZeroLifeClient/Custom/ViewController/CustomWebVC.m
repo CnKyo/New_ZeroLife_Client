@@ -68,7 +68,8 @@
     [SVProgressHUD dismiss];
 }
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
-    [SVProgressHUD showErrorWithStatus:@"加载错误~"];
+    [SVProgressHUD dismiss];
+    NSLog(@"error:%@", error);
 }
 
 @end
