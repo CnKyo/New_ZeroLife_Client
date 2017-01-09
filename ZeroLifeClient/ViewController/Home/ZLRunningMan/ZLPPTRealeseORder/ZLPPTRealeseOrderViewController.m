@@ -357,6 +357,7 @@
 - (void)ZLPPTReleaseGeneryCellWithArriveTimeBtnClicked{
     UserAddressTVC *vc = [UserAddressTVC new];
     vc.isChooseAddress = YES;
+    vc.oldAdrItem = mCommitPreOrder.mArriveAddress;
     vc.block = ^(AddressObject *mAddress){
         MLLog(@"%@",mAddress);
         mCommitPreOrder.mArriveAddress = mAddress;
@@ -569,6 +570,7 @@
 - (void)ZLPPTReleaseShorSendCellWithSendAddressAction{
     UserAddressTVC *vc = [UserAddressTVC new];
     vc.isChooseAddress = YES;
+    vc.oldAdrItem = mCommitPreOrder.mSendAddress;
     vc.block = ^(AddressObject *mAddress){
         MLLog(@"%@",mAddress);
         mCommitPreOrder.mSendAddress = mAddress;
@@ -583,6 +585,7 @@
 - (void)ZLPPTReleaseShorSendCellWithArriveAddressAction{
     UserAddressTVC *vc = [UserAddressTVC new];
     vc.isChooseAddress = YES;
+    vc.oldAdrItem = mCommitPreOrder.mArriveAddress;
     vc.block = ^(AddressObject *mAddress){
         MLLog(@"%@",mAddress);
         mCommitPreOrder.mArriveAddress = mAddress;

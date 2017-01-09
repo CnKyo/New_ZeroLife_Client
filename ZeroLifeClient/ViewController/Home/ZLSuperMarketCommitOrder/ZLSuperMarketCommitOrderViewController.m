@@ -262,6 +262,7 @@
     
     UserAddressTVC *vc = [UserAddressTVC new];
     vc.isChooseAddress = YES;
+    vc.oldAdrItem = self.mPreOrder.mAddress;
     vc.block = ^(AddressObject *mAddress){
         MLLog(@"%@",mAddress);
         self.mPreOrder.mAddress = mAddress;

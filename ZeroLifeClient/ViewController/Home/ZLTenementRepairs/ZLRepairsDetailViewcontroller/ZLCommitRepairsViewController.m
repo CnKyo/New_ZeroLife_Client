@@ -150,6 +150,7 @@
     
     UserAddressTVC *vc = [UserAddressTVC new];
     vc.isChooseAddress = YES;
+    vc.oldAdrItem = mFixPreOrder.mAddress;
     vc.block = ^(AddressObject *mAddress){
         MLLog(@"%@",mAddress);
         mFixPreOrder.mAddress = mAddress;
