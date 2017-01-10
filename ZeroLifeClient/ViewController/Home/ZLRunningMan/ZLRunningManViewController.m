@@ -60,6 +60,8 @@ static int const ZLRunningManVC_ClassView_Height                  = 80;
 
 }
 
+
+
 - (void)viewWillAppear:(BOOL)animated{
 
     [super viewWillAppear:animated];
@@ -227,6 +229,8 @@ static int const ZLRunningManVC_ClassView_Height                  = 80;
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell3"];
     
     [self loadClassData];
+    
+    self.beginHeaderRereshingWhenViewWillAppear = NO;
 }
 
 - (void)initStaticData{
