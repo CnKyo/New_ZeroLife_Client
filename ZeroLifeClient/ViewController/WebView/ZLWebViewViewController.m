@@ -694,6 +694,9 @@
         
         ZLSpeObj *mSpeO = self.mAddSkuArray[i];
         
+        if (_mClsGoodsObj.mNum<=0) {
+            _mClsGoodsObj.mNum = 1;
+        }
         if (mSpeO.mSku.sta_required == 1) {
             ZLAddObj.mSKUID = mSpeO.mSku.sku_id;
             ZLAddObj.mExtObj.mTotlePrice = _mClsGoodsObj.mNum*mSpeO.mSku.sku_price;
@@ -753,20 +756,25 @@
         [mPara setInt:mGoods.mGoodsId forKey:@"pro_id"];
         [mPara setInt:mGoods.mExtObj.mGoodsNum forKey:@"odrg_number"];
         [mPara setInt:mGoods.mCampId forKey:@"cam_gid"];
-        
-        for (int i =0;i<mGoods.mGoodsSKU.count;i++) {
-            ZLSpeObj *mSpe = mGoods.mGoodsSKU[i];
-            
-            if (mSpe.mSku.sta_required == 1) {
-                [mPara setInt:mSpe.mSku.sku_id forKey:@"sku_id"];
-            }
-            
-            if (i==mGoods.mGoodsSKU.count-1) {
-                mContent = [mContent stringByAppendingString:[NSString stringWithFormat:@"%@",mSpe.mSpeGoodsName]];
+        if (mGoods.mGoodsSKU.count>2) {
+            for (int i =0;i<mGoods.mGoodsSKU.count;i++) {
+                ZLSpeObj *mSpe = mGoods.mGoodsSKU[i];
                 
-            }else{
-                mContent = [mContent stringByAppendingString:[NSString stringWithFormat:@"%@,",mSpe.mSpeGoodsName]];
+                if (mSpe.mSku.sta_required == 1) {
+                    [mPara setInt:mSpe.mSku.sku_id forKey:@"sku_id"];
+                }
+                
+                if (i==mGoods.mGoodsSKU.count-1) {
+                    mContent = [mContent stringByAppendingString:[NSString stringWithFormat:@"%@",mSpe.mSpeGoodsName]];
+                    
+                }else{
+                    mContent = [mContent stringByAppendingString:[NSString stringWithFormat:@"%@,",mSpe.mSpeGoodsName]];
+                }
             }
+
+        }else{
+            [mPara setInt:mGoods.mSKUID forKey:@"sku_id"];
+
         }
         [mPara setObject:mSKUname forKey:@"odrg_spec"];
         
