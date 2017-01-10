@@ -58,6 +58,7 @@ static int const ZLRunningManVC_ClassView_Height                  = 80;
     
     AMapLocationManager *mLocation;
 
+    BOOL mIsVerrify;
 }
 
 
@@ -84,53 +85,51 @@ static int const ZLRunningManVC_ClassView_Height                  = 80;
 }
 #pragma mark----****----****加载跑腿者经纬度
 - (void)initPPTLocation{
-
-    if ([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"NOTOPEN"]) {
-        
-        MLLog(@"未开通");
-        
-    }else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"PAYMENTED"]){
-        MLLog(@"未支付");
-        
-    }
-    else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"UNCHECK"]){
-        MLLog(@"待审核中...");
-    } else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"REFUSE"]){
-        MLLog(@"审核失败！");
-    } else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"LOGOFF"]){
-        MLLog(@"已注销！");
-    } else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"LOCKED"]){
-        MLLog(@"已已禁用！");
-        
-    }else{
-
-        ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
-        
-        if (user.user_id <= 0) {
-            [APIObject infoWithReLoginErrorMessage:@"请重新登陆"];
-        }else{
-            if (_mAddress) {
-                
-                [[APIClient sharedClient] ZLGetPPTLocation:_mAddress block:^(APIObject *mBaseObj) {
-                    if (mBaseObj.code == RESP_STATUS_YES) {
-                        
-                    }else{
-                        [self showErrorStatus:@"定位失败！请打开定位！"];
-                        [self loadLocation];
-                    }
-                }];
-            }else{
-                [self loadLocation];
-                
-                
-            }
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    if (user.openInfo) {
+        if ([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"NOTOPEN"]) {
+            
+            MLLog(@"未开通");
+            
+        }else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"PAYMENTED"]){
+            MLLog(@"未支付");
+            
         }
-        
-        
-        
-        
-    }
+        else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"UNCHECK"]){
+            MLLog(@"待审核中...");
+        } else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"REFUSE"]){
+            MLLog(@"审核失败！");
+        } else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"LOGOFF"]){
+            MLLog(@"已注销！");
+        } else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"LOCKED"]){
+            MLLog(@"已已禁用！");
+            
+        }else{
+            
+            
+            if (user.user_id <= 0) {
+                [APIObject infoWithReLoginErrorMessage:@"请重新登陆"];
+            }else{
+                if (_mAddress.cmut_lat > 0 || _mAddress.cmut_lng > 0) {
+                    
+                    [[APIClient sharedClient] ZLGetPPTLocation:_mAddress block:^(APIObject *mBaseObj) {
+                        if (mBaseObj.code == RESP_STATUS_YES) {
+                            mIsVerrify = YES;
+                        }else{
+                            mIsVerrify = NO;
+                        }
+                    }];
+                }else{
+                    [self loadLocation];
+                    
+                    
+                }
+            }
 
+        }
+
+    }
+  
 }
 #pragma mark----****----****获取经纬度
 - (void)loadLocation{
@@ -147,7 +146,7 @@ static int const ZLRunningManVC_ClassView_Height                  = 80;
         if (error)
         {
             NSString *eee =@"定位失败！请检查网络和定位设置！";
-            
+            mIsVerrify = NO;
             [self showErrorStatus:eee];
             MLLog(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
         }
@@ -162,8 +161,8 @@ static int const ZLRunningManVC_ClassView_Height                  = 80;
             _mAddress.cmut_lng = location.coordinate.longitude;
             
             MLLog(@"reGeocode:%@", regeocode);
+            mIsVerrify = YES;
             
-            [self initPPTLocation];
             
         }
     }];
@@ -450,7 +449,11 @@ static int const ZLRunningManVC_ClassView_Height                  = 80;
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
+    if (mIsVerrify == NO) {
+        [self showErrorStatus:@"您需要打开定位才能接单哦～～"];
+        [self initPPTLocation];
+        return;
+    }
     ZLPPTOrderDetailViewController *vc = [ZLPPTOrderDetailViewController new];
     vc.mOrder = mTempArr[indexPath.row];
     [self pushViewController:vc];
@@ -500,7 +503,11 @@ static int const ZLRunningManVC_ClassView_Height                  = 80;
         UserPaoPaoRegisterVC*vc = [[UserPaoPaoRegisterVC alloc] initWithNibName:@"UserPaoPaoRegisterVC" bundle:nil];
         [self pushViewController:vc];
     }else{
-
+        if (mIsVerrify == NO) {
+            [self showErrorStatus:@"您需要打开定位才能接单哦～～"];
+            [self initPPTLocation];
+            return;
+        }
         [self showWithStatus:@"正在操作中..."];
 
         ZLOperatorPPTOrderStatus mOrderStatus;;

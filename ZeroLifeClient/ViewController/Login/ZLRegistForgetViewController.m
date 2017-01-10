@@ -113,9 +113,10 @@
         [self dismiss];
         if (mBaseObj.code == RESP_STATUS_YES) {
             [self showSuccessStatus:mBaseObj.msg];
-            otherLoginViewController *ooo = [[otherLoginViewController alloc] initWithNibName:@"otherLoginViewController" bundle:nil];
-            
-            [self pushViewController:ooo];
+//            otherLoginViewController *ooo = [[otherLoginViewController alloc] initWithNibName:@"otherLoginViewController" bundle:nil];
+//            
+//            [self pushViewController:ooo];
+            [self popViewController];
         }else{
         
             [self showErrorStatus:mBaseObj.msg];
