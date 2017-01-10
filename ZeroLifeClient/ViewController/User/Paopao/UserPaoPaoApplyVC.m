@@ -15,6 +15,7 @@
 #import <WPAttributedMarkup/WPAttributedStyleAction.h>
 #import <CoreText/CoreText.h>
 
+#import "CustomWebVC.h"
 
 @interface UserPaoPaoApplyVC ()
 @property(nonatomic,strong) UserPaoPaoApplyTableViewCell *customCell;
@@ -53,7 +54,10 @@
         
         NSDictionary* style = @{@"body" : @[[UIFont systemFontOfSize:13], [UIColor darkGrayColor]],
                                 @"help":[WPAttributedStyleAction styledActionWithAction:^{
-
+                                    CustomWebVC *vc = [[CustomWebVC alloc] init];
+                                    vc.linkUrl = [NSString stringWithFormat:@"%@%@/wap/agreement/ppaoAgreement", kAFAppDotNetApiBaseURLString, kAFAppDotNetApiExtraURLString];
+                                    vc.title = @"跑跑腿协议";
+                                    [self.navigationController pushViewController:vc animated:YES];
                                 }],
                                 @"thumbN":IMG(@"gou_no.png"),
                                 @"thumbY":IMG(@"gou_yes.png") };
