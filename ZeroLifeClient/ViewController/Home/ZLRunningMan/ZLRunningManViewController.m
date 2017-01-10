@@ -108,7 +108,7 @@ static int const ZLRunningManVC_ClassView_Height                  = 80;
             
             
             if (user.user_id <= 0) {
-                [APIObject infoWithReLoginErrorMessage:@"请重新登陆"];
+                [APIObject infoWithReLoginErrorMessage:@"请登陆~~"];
             }else{
                 if (_mAddress.cmut_lat > 0 || _mAddress.cmut_lng > 0) {
                     
@@ -259,6 +259,11 @@ static int const ZLRunningManVC_ClassView_Height                  = 80;
 
 - (void)loadClassData{
 
+    ZLUserInfo *mUser = [ZLUserInfo ZLCurrentUser];
+    if (!mUser) {
+        [APIObject infoWithReLoginErrorMessage:@"请登陆~~"];
+        return;
+    }
     [self showWithStatus:@"正在加载..."];
     
     [[APIClient sharedClient] ZLGetPPTHome:^(APIObject *mBaseObj, ZLPPTHomeClassList *mList) {
@@ -284,7 +289,19 @@ static int const ZLRunningManVC_ClassView_Height                  = 80;
     
 }
 - (void)reloadTableViewData{
-    [self beginHeaderRereshing];
+    ZLUserInfo *mUser = [ZLUserInfo ZLCurrentUser];
+    if (!mUser) {
+        [APIObject infoWithReLoginErrorMessage:@"请登陆~~"];
+        return;
+    }else{
+        if (mClassObj.classifyList.count<=0) {
+            [self loadClassData];
+        }else{
+            [self beginHeaderRereshing];
+        }
+        
+    }
+    
 
 
 }
@@ -311,6 +328,8 @@ static int const ZLRunningManVC_ClassView_Height                  = 80;
 - (void)reloadTableViewDataSource{
     [super reloadTableViewDataSource];
 
+  
+    
     if (_mIndex
         <=0) {
         _mIndex = 0;
