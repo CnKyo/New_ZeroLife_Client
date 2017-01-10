@@ -35,7 +35,8 @@
 
 #import "APIClient.h"
 #import "GuideView.h"
-
+#import "PushAudioPlayer.h"
+#import "UIViewController+Additions.h"
 
 @interface AppDelegate ()<UIAlertViewDelegate,WXApiDelegate, JPUSHRegisterDelegate>
 
@@ -263,6 +264,7 @@
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
     [application setApplicationIconBadgeNumber:0];
+    [JPUSHService setBadge:0];
     [application cancelAllLocalNotifications];
 }
 
@@ -545,7 +547,33 @@
     
     JPushReceiveObject *it = [JPushReceiveObject mj_objectWithKeyValues:dic];
 
-    
+    UIApplicationState state = [[UIApplication sharedApplication] applicationState];
+    if (state == UIApplicationStateActive && [[UIDevice currentDevice].systemVersion floatValue] < 10.0) {
+        if (it.aps.alert.length > 0) {
+            
+            if (it.aps.sound.length > 0 && ![it.aps.sound isEqualToString:@"default"]) {
+                [[PushAudioPlayer sharedClient] play:it.aps.sound];
+            }
+            
+//            UIViewController *vc = [UIViewController topViewController];
+//            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:it.aps.alert preferredStyle:UIAlertControllerStyleAlert];
+//            UIAlertAction *ok = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+//                [self goToVCWithPush:it];
+//            }];
+//            UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) { }];
+//            [alert addAction:cancel];
+//            [alert addAction:ok];
+//            [vc presentViewController:alert animated:YES completion:nil];
+        }
+    }
+    else if (state == UIApplicationStateActive) {
+        if (it.aps.sound.length > 0 && ![it.aps.sound isEqualToString:@"default"]) {
+            [[PushAudioPlayer sharedClient] play:it.aps.sound];
+        }
+    }
+    else {
+        //[self goToVCWithPush:it];
+    }
     
     NSString *tempStr1 =
     [[dic description] stringByReplacingOccurrencesOfString:@"\\u"

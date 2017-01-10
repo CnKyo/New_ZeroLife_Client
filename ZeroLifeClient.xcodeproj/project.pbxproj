@@ -462,6 +462,7 @@
 		DF8DBCE81DD06C8A002E574B /* DryCleanShopTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF8DBCE71DD06C8A002E574B /* DryCleanShopTableViewCell.m */; };
 		DF8DBCED1DD0782F002E574B /* LifePayVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF8DBCEC1DD0782F002E574B /* LifePayVC.m */; };
 		DF8DBCF31DD07CB2002E574B /* MobileRechargeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF8DBCF21DD07CB2002E574B /* MobileRechargeVC.m */; };
+		DF98AFFA1E24D2BF00F08BF4 /* PushAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = DF98AFF91E24D2BF00F08BF4 /* PushAudioPlayer.m */; };
 		DF98EC351DD2AE460006EBFE /* OrderTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF98EC341DD2AE460006EBFE /* OrderTVC.m */; };
 		DF98EC381DD2AE880006EBFE /* OrderGoodsThumbListView.m in Sources */ = {isa = PBXBuildFile; fileRef = DF98EC371DD2AE880006EBFE /* OrderGoodsThumbListView.m */; };
 		DF98EC3B1DD2B0C70006EBFE /* OrderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF98EC3A1DD2B0C70006EBFE /* OrderTableViewCell.m */; };
@@ -1328,6 +1329,8 @@
 		DF8DBCEC1DD0782F002E574B /* LifePayVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LifePayVC.m; sourceTree = "<group>"; };
 		DF8DBCF11DD07CB2002E574B /* MobileRechargeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobileRechargeVC.h; sourceTree = "<group>"; };
 		DF8DBCF21DD07CB2002E574B /* MobileRechargeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobileRechargeVC.m; sourceTree = "<group>"; };
+		DF98AFF81E24D2BF00F08BF4 /* PushAudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushAudioPlayer.h; sourceTree = "<group>"; };
+		DF98AFF91E24D2BF00F08BF4 /* PushAudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushAudioPlayer.m; sourceTree = "<group>"; };
 		DF98EC331DD2AE460006EBFE /* OrderTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderTVC.h; sourceTree = "<group>"; };
 		DF98EC341DD2AE460006EBFE /* OrderTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderTVC.m; sourceTree = "<group>"; };
 		DF98EC361DD2AE880006EBFE /* OrderGoodsThumbListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderGoodsThumbListView.h; sourceTree = "<group>"; };
@@ -3560,6 +3563,8 @@
 				DF8DBCB31DD0127D002E574B /* UIButton+CustomLocal.m */,
 				DF36600E1E1F86F2006EA3A5 /* UIImage+ThumbnailImage.h */,
 				DF36600F1E1F86F2006EA3A5 /* UIImage+ThumbnailImage.m */,
+				DF98AFF81E24D2BF00F08BF4 /* PushAudioPlayer.h */,
+				DF98AFF91E24D2BF00F08BF4 /* PushAudioPlayer.m */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -4257,6 +4262,7 @@
 				DF8DBCD81DD055E8002E574B /* ImgNameView.m in Sources */,
 				DF98EC471DD2CBD90006EBFE /* OrderAddressView.m in Sources */,
 				04D64D741DC9CCDC004E8859 /* ZLHomeOtherCell.m in Sources */,
+				DF98AFFA1E24D2BF00F08BF4 /* PushAudioPlayer.m in Sources */,
 				04866B9E1DD415AF008DA56B /* ZLCommitOrderHeaderView.m in Sources */,
 				DF630D6C1DD465B90076A92C /* UserYuEHeaderView.m in Sources */,
 				DF7F1BFA1DCDDD3000D2242B /* ComplaintJumingView.m in Sources */,
