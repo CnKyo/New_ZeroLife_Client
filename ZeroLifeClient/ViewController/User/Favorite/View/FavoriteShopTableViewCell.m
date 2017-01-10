@@ -129,4 +129,21 @@
     return self;
 }
 
+- (void)setMItem:(ZLGoodsWithClass *)mItem{
+
+    self.nameLable.text = mItem.pro_name;
+    [self.iconImgView sd_setImageWithURL:[NSURL imageurl:mItem.img_url] placeholderImage:ZLDefaultGoodsImg];
+    self.msgLable.text = [NSString stringWithFormat:@"规格：%@",mItem.pro_unit];
+    
+    NSString *mPrice = nil;
+    if (mItem.skus.count>0) {
+   
+        ZLGoodsSKU *mSku = mItem.skus[0];
+        mPrice = [NSString stringWithFormat:@"¥%.2f元",mSku.sku_price];
+    }else{
+        mPrice = @"暂无价格";
+    }
+    self.priceLable.text = mPrice;
+    
+ }
 @end

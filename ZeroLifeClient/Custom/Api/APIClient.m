@@ -1104,7 +1104,7 @@ return [NSString stringWithFormat:@"%@%@%@",kAFAppDotNetImgBaseURLString,kAFAppD
     if (user.user_id > 0) {
         NSMutableDictionary* paramDic = [NSMutableDictionary dictionary];
         [paramDic setInt:user.user_id forKey:@"user_id"];
-        [self loadAPITableListWithTag:self path:@"/user/userEnshrine/findEnshrineList" parameters:paramDic pageIndex:page subClass:[ProductFocusObject class] call:^(int totalPage, NSArray *tableArr, APIObject *info) {
+        [self loadAPITableListWithTag:self path:@"/user/userEnshrine/findEnshrineList" parameters:paramDic pageIndex:page subClass:[ZLGoodsWithClass class] call:^(int totalPage, NSArray *tableArr, APIObject *info) {
             callback(totalPage, tableArr, info);
         }];
     } else

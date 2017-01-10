@@ -296,24 +296,40 @@
 
 
 #pragma mark -  用户收藏商品对象
+@class ProductFocusGoodsStaObject;
 @interface ProductFocusObject : NSObject
-@property (assign,nonatomic) int                    foc_id;   //!< 收藏的ID
-@property (assign,nonatomic) int                    shop_id;   //!< 店铺ID
-@property (strong,nonatomic) NSString*              img_url;   //!< 商品图片
-@property (strong,nonatomic) NSString*              pro_name;   //!< 商品名称
-@property (strong,nonatomic) NSString*              pro_spec;   //!< 商品描述
-@property (strong,nonatomic) NSString*              pro_unit;   //!< 商品单位
-@property (assign,nonatomic) int                    pro_id; //!< 商品id
-@property (assign,nonatomic) int                    cls_id1; //!< 商品分类1
-@property (assign,nonatomic) int                    cls_id2; //!< 商品分类2
-@property (assign,nonatomic) int                    cls_id3; //!< 商品分类3
-@property (assign,nonatomic) float                  sku_price;       //!< 商品价格
 @property (strong,nonatomic) NSString*              pro_date_life; //!< 有效期
+@property (assign,nonatomic) int                    pro_sales_total;   //!< 收藏的ID
+@property (assign,nonatomic) int                    cls_id3; //!< 商品分类3
 @property (strong,nonatomic) NSString*              shop_name;    //!< 超市名称
 @property (assign,nonatomic) int                    pro_state;    //!< 商品状态
-@property (strong,nonatomic) NSString*              ext_max_time;    //!< 配送时间
-@end
+@property (strong,nonatomic) NSString*              img_url;   //!< 商品图片
+@property (assign,nonatomic) int                    cls_id2; //!< 商品分类2
+@property (strong,nonatomic) NSArray*               sta_list;   //!< 商品名称
+@property (strong,nonatomic) NSString*              pro_unit;   //!< 商品单位
+@property (strong,nonatomic) NSString*              pro_name;   //!< 商品名称
+@property (assign,nonatomic) int                    pro_id; //!< 商品id
+@property (assign,nonatomic) int                    foc_id;   //!< 收藏的ID
+@property (assign,nonatomic) int                    cls_id1; //!< 商品分类1
+@property (assign,nonatomic) int                    shop_id;   //!< 店铺ID
 
+@end
+@class ProductFocusGoodsSkuListObject;
+@interface ProductFocusGoodsStaObject : NSObject
+@property (assign,nonatomic) int                    sta_id;   //!< 收藏的ID
+@property (strong,nonatomic) NSString*              sta_name;    //!< 超市名称
+@property (strong,nonatomic) NSArray*               sta_val_list;   //!< 商品名称
+@end
+@interface ProductFocusGoodsSkuListObject : NSObject
+@property (assign,nonatomic) int                    sta_val_id;   //!< 收藏的ID
+@property (strong,nonatomic) NSString*              sta_val_name;    //!< 超市名称
+@property (strong,nonatomic) NSArray*               sku_list;   //!< 商品名称
+@end
+@interface ProductFocusGoodsSkuObject : NSObject
+@property (assign,nonatomic) int                    sku_id;   //!< 收藏的ID
+@property (assign,nonatomic) float                  sku_price;   //!< 收藏的ID
+@property (assign,nonatomic) int                    sku_stock;   //!< 收藏的ID
+@end
 
 #pragma mark -  用户积分记录对象
 @interface UserScoreRecordObject : NSObject
@@ -1016,14 +1032,20 @@
 @property (assign,nonatomic) int                    pro_sales_total;    //!< 销售量
 @property (strong,nonatomic) NSString*              pro_date_create;    //!< 生产日期
 @property (strong,nonatomic) NSString*              pro_name;   //!< 商品名称
+///收藏字段
+@property (assign,nonatomic) int                    cls_id1; //!< 商品id
+
+@property (assign,nonatomic) int                    cls_id2; //!< 商品id
+@property (assign,nonatomic) int                    cls_id3; //!< 商品id
+@property (assign,nonatomic) int                    foc_id; //!< 商品id
+@property (assign,nonatomic) int                    shop_id; //!< 商品id
+@property (strong,nonatomic) NSString*              ext_open_time;
+@property (strong,nonatomic) NSString*              ext_max_time;
+@property (strong,nonatomic) NSString*              ext_close_time;
+@property (strong,nonatomic) NSString*              shop_name;
+@property (assign,nonatomic) float                    ext_min_price; //!< 商品id
+
 @end
-
-
-
-
-
-
-
 
 
 #pragma mark----****----商品库存对象

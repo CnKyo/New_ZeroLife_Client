@@ -98,23 +98,7 @@
         cell = [[FavoriteGoodsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         cell.selectionStyle = UITableViewCellSelectionStyleGray;
     }
-    
-    ProductFocusObject *item = [self.tableArr objectAtIndex:indexPath.row];
-    
-    //        NSDictionary* style = @{@"body" : @[[UIFont systemFontOfSize:15], COLOR(253, 160, 0)],
-    //                                @"u" : @[[UIFont systemFontOfSize:13],
-    //                                         [UIColor grayColor],
-    //                                         @{NSStrikethroughStyleAttributeName : @(NSUnderlineStyleSingle|NSUnderlinePatternSolid)}]};
-    //
-    //        NSString *str1 = [NSString stringWithFormat:@"%@ <u>%@</u>", @"￥100.00", @"￥55.00"];
-    //        cell.priceLable.attributedText = [str1 attributedStringWithStyleBook:style];
-    
-    cell.priceLable.text = [NSString stringWithFormat:@"￥%.2f", item.sku_price];
-    cell.iconImgView.image = IMG(@"choose_on.png");
-    cell.nameLable.text = [NSString compIsNone:item.pro_name];
-    cell.msgLable.text = [NSString compIsNone:item.pro_spec];
-    [cell.iconImgView sd_setImageWithURL:[NSURL imageurl:item.img_url] placeholderImage:ZLDefaultGoodsImg];
-    
+    [cell setMItem:self.tableArr[indexPath.row]];    
     return cell;
 }
 
@@ -122,10 +106,23 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-//    if (self.tableArr.count > 0) {
-//        FeePayHistoryDetailVC *vc = [[FeePayHistoryDetailVC alloc] init];
-//        [self.navigationController pushViewController:vc animated:YES];
-//    }
+    ZLGoodsWithClass *mGoods = self.tableArr[indexPath.row];
+    
+    if (mGoods.skus.count > 0) {
+        ZLGoodsSKU *mSku = mGoods.skus[0];
+        mGoods.sku_id = mSku.sku_id;
+    }
+    
+    ZLWebViewViewController *mWebvc = [ZLWebViewViewController new];
+    
+    
+    mWebvc.mUrl = [NSString stringWithFormat:@"%@/wap/good/goodsdetails?pro_id=%d&sku_id=%d&shop_id=%d&user_id=%d",[[APIClient sharedClient] currentUrl],mGoods.pro_id,mGoods.sku_id,mGoods.shop_id,[ZLUserInfo ZLCurrentUser].user_id];
+    mWebvc.mClsGoodsObj = mGoods;
+    mWebvc.mShopObj.mShopMsg.ext_min_price = mGoods.ext_min_price;
+    mWebvc.mShopId = mGoods.shop_id;
+    mWebvc.mType = kOrderClassType_product;
+    [self pushViewController:mWebvc];
+
 }
 
 - (void)reloadTableViewData{

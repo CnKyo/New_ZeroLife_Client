@@ -681,6 +681,24 @@
 
 
 @implementation ProductFocusObject
++ (NSDictionary *)mj_objectClassInArray
+{
+    return @{@"sta_list" : @"ProductFocusGoodsStaObject"};
+}
+@end
+@implementation ProductFocusGoodsStaObject
++ (NSDictionary *)mj_objectClassInArray
+{
+    return @{@"sta_val_list" : @"ProductFocusGoodsSkuListObject"};
+}
+@end
+@implementation ProductFocusGoodsSkuListObject
++ (NSDictionary *)mj_objectClassInArray
+{
+    return @{@"sku_list" : @"ProductFocusGoodsSkuObject"};
+}
+@end
+@implementation ProductFocusGoodsSkuObject
 @end
 
 
