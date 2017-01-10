@@ -29,7 +29,7 @@
             return ;
         }
         if (![Util checkBankCard:_bankCardNumberField.text]) {
-            [SVProgressHUD showErrorWithStatus:@"您输入的身份证号有误！请重新输入！"];
+            [SVProgressHUD showErrorWithStatus:@"您输入的银行卡卡号有误！请重新输入！"];
             return;
         }
         

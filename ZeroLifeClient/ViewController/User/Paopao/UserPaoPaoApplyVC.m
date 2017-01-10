@@ -80,12 +80,20 @@
                 [SVProgressHUD showErrorWithStatus:@"请输入身份证号"];
                 return ;
             }
+            if (![Util checkIdentityCardNo:_submmitItem.mat_document_number]) {
+                [SVProgressHUD showErrorWithStatus:@"您输入的身份证号有误！请重新输入！"];
+                return;
+            }
             
             if (_customCell.mobileField.text.length > 0)
                 self.submmitItem.uopen_phone = _customCell.mobileField.text;
             if (_submmitItem.uopen_phone==nil || _submmitItem.uopen_phone.length == 0) {
                 [SVProgressHUD showErrorWithStatus:@"请输入手机号"];
                 return ;
+            }
+            if (![Util isMobileNumber:_submmitItem.uopen_phone]) {
+                [SVProgressHUD showErrorWithStatus:@"您输入的手机号码有误！请重新输入！"];
+                return;
             }
             
             if (_submmitItem.mat_hand_url==nil || _submmitItem.mat_hand_url.length == 0) {
@@ -180,7 +188,7 @@
                     [cell.img1Btn setBackgroundImage:img forState:UIControlStateNormal];
                     self.submmitItem.mat_hand_url = fileUrlStr;
                     
-                    [SVProgressHUD showSuccessWithStatus:info.msg];
+                    [SVProgressHUD showSuccessWithStatus:@"上传成功!"];
                 } else {
                     [SVProgressHUD showErrorWithStatus:info.msg];
                 }
@@ -197,7 +205,7 @@
                     [cell.img2Btn setBackgroundImage:img forState:UIControlStateNormal];
                     self.submmitItem.mat_document_url = fileUrlStr;
                     
-                    [SVProgressHUD showSuccessWithStatus:info.msg];
+                    [SVProgressHUD showSuccessWithStatus:@"上传成功!"];
                 } else {
                     [SVProgressHUD showErrorWithStatus:info.msg];
                 }
@@ -215,7 +223,7 @@
                     [cell.img3Btn setBackgroundImage:img forState:UIControlStateNormal];
                     self.submmitItem.mat_back_url = fileUrlStr;
                     
-                    [SVProgressHUD showSuccessWithStatus:info.msg];
+                    [SVProgressHUD showSuccessWithStatus:@"上传成功!"];
                 } else {
                     [SVProgressHUD showErrorWithStatus:info.msg];
                 }
