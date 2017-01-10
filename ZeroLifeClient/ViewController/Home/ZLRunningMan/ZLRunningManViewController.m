@@ -66,8 +66,7 @@ static int const ZLRunningManVC_ClassView_Height                  = 80;
 
     [super viewWillAppear:animated];
     [self updateUserInfo];
-    [self loadTableData:_mIndex];
-
+    [self beginHeaderRereshing];
 }
 - (void)updateUserInfo{
 
@@ -274,7 +273,7 @@ static int const ZLRunningManVC_ClassView_Height                  = 80;
             [self initSecondSectionView:mList.classifyList];
             
             if (mList.classifyList.count>0) {
-                [self loadTableData:0];
+                [self beginHeaderRereshing];
             }
             
             
@@ -286,7 +285,8 @@ static int const ZLRunningManVC_ClassView_Height                  = 80;
     
 }
 - (void)reloadTableViewData{
-    [self loadTableData:_mIndex];
+    [self beginHeaderRereshing];
+
 
 }
 - (void)initSecondSectionView:(NSArray *)mData{
@@ -305,53 +305,41 @@ static int const ZLRunningManVC_ClassView_Height                  = 80;
     mClassView.frame = CGRectMake(0, NAVBAR_Height+ZLRunningManVC_TopView_Height, DEVICE_Width, ZLRunningManVC_ClassView_Height);
     [self.view addSubview:mClassView];
 
+    [self setTableViewHaveHeaderFooter];
 
 }
 
-- (void)loadTableData:(NSInteger)mIndex{
-    
-    if (mIndex<=0) {
-        mIndex = 0;
+- (void)reloadTableViewDataSource{
+    [super reloadTableViewDataSource];
+
+    if (_mIndex
+        <=0) {
+        _mIndex = 0;
     }
     
-   ZLPPTClassObj *mClass = mClassObj.classifyList[mIndex];
+    ZLPPTClassObj *mClass = mClassObj.classifyList[_mIndex];
     mType = [Util currentReleaseType:mClass.type_name];
     
-//    self.mAddress.cmut_lat = 29.857057;
-//    self.mAddress.cmut_lng = 106.31326;
     
     [self showWithStatus:@"正在加载..."];
     [[APIClient sharedClient] ZLGetRunningmanHomeList:self.mAddress.cmut_lat andLng:self.mAddress.cmut_lng andPage:self.page andPageSize:20 andClsId:mClass.cls_id block:^(APIObject *mBaseObj, ZLRunningmanHomeList *mList) {
         [mTempArr removeAllObjects];
         if (mBaseObj.code == RESP_STATUS_YES) {
-//            [self showSuccessStatus:@"加载成功"];
             [self dismiss];
-
+            
             [mTempArr addObjectsFromArray:mList.list];
-            [self.tableView reloadData];
             if (mList.list.count<=0) {
-//                [self addEmptyView:self.tableView andType:ZLEmptyViewTypeWithCommon];
                 [self addEmptyView:self.tableView andType:ZLEmptyViewTypeWithCommon];
             }
         }else{
             [self showErrorStatus:mBaseObj.msg];
-//            [self addEmptyView:self.tableView andType:ZLEmptyViewTypeWithCommon];
             [self addEmptyView:self.tableView andType:ZLEmptyViewTypeWithCommon];
         }
-        
+        [self doneLoadingTableViewData];
+        [self.tableView reloadData];
+
     }];
-    
-    
 }
-//- (void)segmentedControlChangedValue:(HMSegmentedControl *)segmentedControl {
-//    
-//    MLLog(@"Selected index %ld (via UIControlEventValueChanged)", (long)segmentedControl.selectedSegmentIndex);
-//    
-//    NSInteger mIndex = segmentedControl.selectedSegmentIndex;
-//    
-//    [self loadTableData:mIndex];
-//    
-//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -522,8 +510,7 @@ static int const ZLRunningManVC_ClassView_Height                  = 80;
             [[APIClient sharedClient] ZLReleaseOperatorPPTOrder:mOrder.odr_id andOrderCode:mOrder.odr_code andOperatorStatus:mOrderStatus block:^(APIObject *resb) {
                 if (resb.code == RESP_STATUS_YES) {
                     [self showSuccessStatus:resb.msg];
-                    [self loadTableData:_mIndex];
-                    
+                    [self beginHeaderRereshing];
                 }else{
                     
                     [self showErrorStatus:resb.msg];
@@ -537,8 +524,7 @@ static int const ZLRunningManVC_ClassView_Height                  = 80;
             [[APIClient sharedClient] ZLOperatorPPTOrder:mOrder.odr_id andOrderCode:mOrder.odr_code andOperatorStatus:mOrderStatus block:^(APIObject *resb) {
                 if (resb.code == RESP_STATUS_YES) {
                     [self showSuccessStatus:resb.msg];
-                    [self loadTableData:_mIndex];
-                    
+                    [self beginHeaderRereshing];
                 }else{
                     
                     [self showErrorStatus:resb.msg];
@@ -707,8 +693,7 @@ static int const ZLRunningManVC_ClassView_Height                  = 80;
 - (void)ZLRunningManClassViewBtnClickedWithIndex:(NSInteger)mIndex{
     _mIndex = mIndex;
     MLLog(@"%ld",(long)mIndex);
-    [self loadTableData:mIndex];
-
+    [self beginHeaderRereshing];
 }
 
 @end

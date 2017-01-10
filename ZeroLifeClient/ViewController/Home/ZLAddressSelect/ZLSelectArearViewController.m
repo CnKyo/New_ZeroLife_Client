@@ -56,6 +56,9 @@
 
     [self setTableViewHaveHeader];
 }
+- (void)reloadTableViewData{
+    [self loadAddress];
+}
 - (void)reloadTableViewDataSource{
     [super reloadTableViewDataSource];
 
