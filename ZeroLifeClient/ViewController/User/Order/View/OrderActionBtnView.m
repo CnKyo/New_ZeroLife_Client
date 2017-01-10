@@ -8,7 +8,8 @@
 
 #import "OrderActionBtnView.h"
 #import <JKCategories/UIButton+JKBackgroundColor.h>
-
+#import "UIButton+Border.h"
+#import "APIObjectDefine.h"
 
 @implementation OrderButton
 
@@ -18,6 +19,8 @@
     NSString *title = [NSString strDesWithOrderState:stateStr];
 
     [self setTitle:title forState:UIControlStateNormal];
+    
+    [self setTitleAndBorderColor:[UIColor colorWithOrderState:stateStr]];
 }
 
 @end
