@@ -186,13 +186,15 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    CGFloat cellHt = 0.0;
+    ZLFixClassExtObj *mP = self.tableArr[indexPath.section];
    
-    if (self.tableArr.count != 0) {
-        ZLRepairsColumsView * cellView = [[ZLRepairsColumsView alloc] init];
-        cellView.dataArrayCount = self.tableArr.count;
-        cellHt += cellView.cellHeight;
-    }
+    CGFloat cellHt = 0.0;
+    
+    
+    ZLRepairsColumsView * cellView = [[ZLRepairsColumsView alloc] init];
+    
+    cellView.dataArrayCount = mP.mClassArr.count;
+    cellHt += cellView.cellHeight;
     
     return cellHt;
 }

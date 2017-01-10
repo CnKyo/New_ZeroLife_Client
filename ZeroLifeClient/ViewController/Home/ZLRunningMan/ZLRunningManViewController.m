@@ -109,13 +109,12 @@ static int const ZLRunningManVC_ClassView_Height                  = 80;
         if (user.user_id <= 0) {
             [APIObject infoWithReLoginErrorMessage:@"请重新登陆"];
         }else{
-            if (_mAddress) {
+            if (_mAddress.cmut_lat > 0 || _mAddress.cmut_lng > 0) {
                 
                 [[APIClient sharedClient] ZLGetPPTLocation:_mAddress block:^(APIObject *mBaseObj) {
                     if (mBaseObj.code == RESP_STATUS_YES) {
                         
                     }else{
-                        [self showErrorStatus:@"定位失败！请打开定位！"];
                         [self loadLocation];
                     }
                 }];
