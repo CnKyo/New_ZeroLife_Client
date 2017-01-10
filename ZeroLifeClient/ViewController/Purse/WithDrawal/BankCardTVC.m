@@ -94,8 +94,8 @@
         cell.selectionStyle = UITableViewCellSelectionStyleGray;
     }
     BankCardObject *item = [self.tableArr objectAtIndex:indexPath.row];
-    cell.bankNameLable.text = [NSString compIsNone:item.bank_name];
-    cell.cardTypeLable.text = [NSString compIsNone:item.bank_type];
+    cell.bankNameLable.text = item.bank_name.length>0 ? item.bank_name : @"未知银行";
+    cell.cardTypeLable.text = item.bank_type.length>0 ? item.bank_type : @"未知银行卡类型";
     cell.cardNumberLable.text = [NSString compIsNone:item.bank_card_val];
     
     //删除

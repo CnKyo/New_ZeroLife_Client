@@ -125,11 +125,18 @@
         
         uwal_balance = _item.uwal_balance;
 
-        if (_item.bank.id_card_val.length > 0)
-            str1 = _item.bank.id_card_val;
-        
-        if (_item.bank.bank_card_val.length > 0)
-            str2 = _item.bank.bank_card_val;
+        if (_item.bank != nil) {
+            if (_item.bank.bank_name.length > 0)
+                str1 = _item.bank.bank_name;
+            else
+                str1 = @"未知银行";
+            
+            if (_item.bank.bank_card_val.length > 0)
+                str2 = _item.bank.bank_card_val;
+            else
+                str2 = @"未知卡号";
+        }
+
     } else {
         ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
         uwal_balance = user.wallet.uwal_balance;
