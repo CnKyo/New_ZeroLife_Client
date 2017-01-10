@@ -355,6 +355,7 @@
 		DF29B6B51E1123D700CBAA3B /* UserPaoPaoApplyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF29B6B31E1123D700CBAA3B /* UserPaoPaoApplyVC.m */; };
 		DF29B6BB1E1131C200CBAA3B /* UserPaoPaoApplyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF29B6B91E1131C200CBAA3B /* UserPaoPaoApplyTableViewCell.m */; };
 		DF29B6BC1E1131C200CBAA3B /* UserPaoPaoApplyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF29B6BA1E1131C200CBAA3B /* UserPaoPaoApplyTableViewCell.xib */; };
+		DF2F15951E2480610053CB06 /* notice_paopao_new.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = DF2F15941E2480610053CB06 /* notice_paopao_new.mp3 */; };
 		DF300D101E02816700AC23CC /* bankcar_del@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF300D0E1E02816700AC23CC /* bankcar_del@3x.png */; };
 		DF300D111E02816700AC23CC /* bankcar_del@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF300D0F1E02816700AC23CC /* bankcar_del@2x.png */; };
 		DF300D141E02879C00AC23CC /* UserComplaintUpVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF300D131E02879C00AC23CC /* UserComplaintUpVC.m */; };
@@ -1172,6 +1173,7 @@
 		DF29B6B81E1131C200CBAA3B /* UserPaoPaoApplyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserPaoPaoApplyTableViewCell.h; sourceTree = "<group>"; };
 		DF29B6B91E1131C200CBAA3B /* UserPaoPaoApplyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserPaoPaoApplyTableViewCell.m; sourceTree = "<group>"; };
 		DF29B6BA1E1131C200CBAA3B /* UserPaoPaoApplyTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserPaoPaoApplyTableViewCell.xib; sourceTree = "<group>"; };
+		DF2F15941E2480610053CB06 /* notice_paopao_new.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = notice_paopao_new.mp3; sourceTree = "<group>"; };
 		DF300D0E1E02816700AC23CC /* bankcar_del@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bankcar_del@3x.png"; sourceTree = "<group>"; };
 		DF300D0F1E02816700AC23CC /* bankcar_del@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bankcar_del@2x.png"; sourceTree = "<group>"; };
 		DF300D121E02879C00AC23CC /* UserComplaintUpVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserComplaintUpVC.h; sourceTree = "<group>"; };
@@ -3260,6 +3262,7 @@
 		DFFAA7521DB744EF001CFBB5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DF2F15941E2480610053CB06 /* notice_paopao_new.mp3 */,
 				DF3660111E1F8E36006EA3A5 /* fix_man@2x.png */,
 				DF3660121E1F8E36006EA3A5 /* fix_man@3x.png */,
 				DF19C8C11E1643AB004560D7 /* ercode_default.png */,
@@ -3785,6 +3788,7 @@
 				040917711DCC5E1000DB2568 /* ZLSuperMarketSearchView.xib in Resources */,
 				DFE1788C1DD558B400E06F21 /* cell_address_del@3x.png in Resources */,
 				DF630D661DD462F60076A92C /* UserIDAuthTableViewCell.xib in Resources */,
+				DF2F15951E2480610053CB06 /* notice_paopao_new.mp3 in Resources */,
 				04A8DA141DDAB211000CE048 /* ZLPPTOrderDetailCell2.xib in Resources */,
 				04721A001DE3E66C00CE8639 /* activate_friends_seleted@2x.png in Resources */,
 				DF7F1BF21DCDD5F200D2242B /* wuguan_on@2x.png in Resources */,
