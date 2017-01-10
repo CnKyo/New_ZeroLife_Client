@@ -463,6 +463,7 @@
 		DF8DBCED1DD0782F002E574B /* LifePayVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF8DBCEC1DD0782F002E574B /* LifePayVC.m */; };
 		DF8DBCF31DD07CB2002E574B /* MobileRechargeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF8DBCF21DD07CB2002E574B /* MobileRechargeVC.m */; };
 		DF98AFFA1E24D2BF00F08BF4 /* PushAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = DF98AFF91E24D2BF00F08BF4 /* PushAudioPlayer.m */; };
+		DF98B00E1E24EDC400F08BF4 /* UIButton+Border.m in Sources */ = {isa = PBXBuildFile; fileRef = DF98B00D1E24EDC400F08BF4 /* UIButton+Border.m */; };
 		DF98EC351DD2AE460006EBFE /* OrderTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF98EC341DD2AE460006EBFE /* OrderTVC.m */; };
 		DF98EC381DD2AE880006EBFE /* OrderGoodsThumbListView.m in Sources */ = {isa = PBXBuildFile; fileRef = DF98EC371DD2AE880006EBFE /* OrderGoodsThumbListView.m */; };
 		DF98EC3B1DD2B0C70006EBFE /* OrderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF98EC3A1DD2B0C70006EBFE /* OrderTableViewCell.m */; };
@@ -1331,6 +1332,8 @@
 		DF8DBCF21DD07CB2002E574B /* MobileRechargeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobileRechargeVC.m; sourceTree = "<group>"; };
 		DF98AFF81E24D2BF00F08BF4 /* PushAudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushAudioPlayer.h; sourceTree = "<group>"; };
 		DF98AFF91E24D2BF00F08BF4 /* PushAudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushAudioPlayer.m; sourceTree = "<group>"; };
+		DF98B00C1E24EDC400F08BF4 /* UIButton+Border.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Border.h"; sourceTree = "<group>"; };
+		DF98B00D1E24EDC400F08BF4 /* UIButton+Border.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Border.m"; sourceTree = "<group>"; };
 		DF98EC331DD2AE460006EBFE /* OrderTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderTVC.h; sourceTree = "<group>"; };
 		DF98EC341DD2AE460006EBFE /* OrderTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderTVC.m; sourceTree = "<group>"; };
 		DF98EC361DD2AE880006EBFE /* OrderGoodsThumbListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderGoodsThumbListView.h; sourceTree = "<group>"; };
@@ -3565,6 +3568,8 @@
 				DF36600F1E1F86F2006EA3A5 /* UIImage+ThumbnailImage.m */,
 				DF98AFF81E24D2BF00F08BF4 /* PushAudioPlayer.h */,
 				DF98AFF91E24D2BF00F08BF4 /* PushAudioPlayer.m */,
+				DF98B00C1E24EDC400F08BF4 /* UIButton+Border.h */,
+				DF98B00D1E24EDC400F08BF4 /* UIButton+Border.m */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -4503,6 +4508,7 @@
 				DF8DBCE01DD05D61002E574B /* QUItemBtnView.m in Sources */,
 				04B07EBA1DD9A643004A7294 /* ZLPPTRewardHeadView.m in Sources */,
 				04721A211DE42C7F00CE8639 /* otherLoginViewController.m in Sources */,
+				DF98B00E1E24EDC400F08BF4 /* UIButton+Border.m in Sources */,
 				DF630D0E1DD419830076A92C /* BaoXiuWorkerView.m in Sources */,
 				041657311DD6F383004E7D9A /* ZLCommitRepairsViewController.m in Sources */,
 				DF29B6B51E1123D700CBAA3B /* UserPaoPaoApplyVC.m in Sources */,

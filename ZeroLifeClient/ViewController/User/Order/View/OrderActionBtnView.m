@@ -8,7 +8,8 @@
 
 #import "OrderActionBtnView.h"
 #import <JKCategories/UIButton+JKBackgroundColor.h>
-
+#import "UIButton+Border.h"
+#import "APIObjectDefine.h"
 
 @implementation OrderButton
 
@@ -18,6 +19,8 @@
     NSString *title = [NSString strDesWithOrderState:stateStr];
 
     [self setTitle:title forState:UIControlStateNormal];
+    
+    [self setTitleAndBorderColor:[UIColor colorWithOrderState:stateStr]];
 }
 
 @end
@@ -47,12 +50,12 @@
         [self.actionBtn1 setTitle:@"取消支付" forState:UIControlStateNormal];
         [self.actionBtn2 setTitle:@"去支付" forState:UIControlStateNormal];
         [self.actionBtn3 setTitle:@"去评价" forState:UIControlStateNormal];
-        [self.actionBtn1 setTitleColor:color forState:UIControlStateNormal];
-        [self.actionBtn2 setTitleColor:color forState:UIControlStateNormal];
-        [self.actionBtn3 setTitleColor:color forState:UIControlStateNormal];
-        [self.actionBtn1 jk_setBackgroundColor:COLOR_BtnBar forState:UIControlStateNormal];
-        [self.actionBtn2 jk_setBackgroundColor:COLOR_BtnBar forState:UIControlStateNormal];
-        [self.actionBtn3 jk_setBackgroundColor:COLOR_BtnBar forState:UIControlStateNormal];
+        //[self.actionBtn1 setTitleColor:color forState:UIControlStateNormal];
+        //[self.actionBtn2 setTitleColor:color forState:UIControlStateNormal];
+        //[self.actionBtn3 setTitleColor:color forState:UIControlStateNormal];
+        //[self.actionBtn1 jk_setBackgroundColor:COLOR_BtnBar forState:UIControlStateNormal];
+        //[self.actionBtn2 jk_setBackgroundColor:COLOR_BtnBar forState:UIControlStateNormal];
+        //[self.actionBtn3 jk_setBackgroundColor:COLOR_BtnBar forState:UIControlStateNormal];
         [superView addSubview:_actionBtn1];
         [superView addSubview:_actionBtn2];
         [superView addSubview:_actionBtn3];

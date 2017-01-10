@@ -28,17 +28,33 @@
             [SVProgressHUD showErrorWithStatus:@"请输入银行卡卡号"];
             return ;
         }
+        if (![Util checkBankCard:_bankCardNumberField.text]) {
+            [SVProgressHUD showErrorWithStatus:@"您输入的身份证号有误！请重新输入！"];
+            return;
+        }
+        
         if (_bankCardMobileField.text.length == 0) {
             [SVProgressHUD showErrorWithStatus:@"请输入银行卡预留手机号"];
             return ;
         }
+        if (![Util isMobileNumber:_bankCardMobileField.text]) {
+            [SVProgressHUD showErrorWithStatus:@"您输入的手机号码有误！请重新输入！"];
+            return;
+        }
+        
         if (_realNameField.text.length == 0) {
             [SVProgressHUD showErrorWithStatus:@"请输入您的真实姓名"];
             return ;
         }
+        
+        
         if (_idCardField.text.length == 0) {
             [SVProgressHUD showErrorWithStatus:@"请输入您的身份证号"];
             return ;
+        }
+        if (![Util checkIdentityCardNo:_idCardField.text]) {
+            [SVProgressHUD showErrorWithStatus:@"您输入的身份证号有误！请重新输入！"];
+            return;
         }
         
         [SVProgressHUD showWithStatus:@"银行卡添加中..."];

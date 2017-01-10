@@ -134,7 +134,7 @@
             
             if (mOrder.mPayType == ZLPayTypeWithBalance) {
             
-                //ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+                //
                 
                 if ([[mBaseObj.data objectForKey:@"result_code"] isEqualToString:@"SUCCESS"]) {
                     self.mOrder.sign = [mBaseObj.data objectForKey:@"sign"];
@@ -150,8 +150,13 @@
                     };
                     [alertView showAlert];
                 } else{
-                    [SVProgressHUD showErrorWithStatus:@"请先设置交易安全密码"];
-                    [self performSelector:@selector(pushSecurityPasswordVC) withObject:nil afterDelay:0.25];
+                    [SVProgressHUD showErrorWithStatus:[mBaseObj.data objectForKey:@"result_msg"]];
+                    
+                    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+                    if ([user.wallet.pass isEqualToString:kWalletPayment_NoPass]) {
+                        [self performSelector:@selector(pushSecurityPasswordVC) withObject:nil afterDelay:0.25];
+                    }
+                    
                     return;
                 }
                 

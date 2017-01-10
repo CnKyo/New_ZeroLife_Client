@@ -227,7 +227,8 @@
                 [str appendString:@" 未认证"];
             else {
                 [str appendString:@" 已认证"];
-                [str appendFormat:@" %@", user.community.cmut_name];
+                if (user.community.cmut_name.length > 0)
+                    [str appendFormat:@" %@", user.community.cmut_name];
             }
             cell.userNoteLable.text = str;
             NSURL *url = [NSURL imageurl:user.user_header];

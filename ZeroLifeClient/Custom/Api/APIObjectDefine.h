@@ -40,6 +40,10 @@
 + (NSString*)linkUrl:(NSString*)str;
 @end
 
+@interface UIColor(QUAdd)
++(UIColor *)colorWithOrderState:(NSString *)state;
+@end
+
 
 @interface NSURL (AFObjectDefine)
 + (NSURL*)imageurl:(NSString*)str;
