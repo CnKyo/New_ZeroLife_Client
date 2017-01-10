@@ -169,7 +169,9 @@
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    
+    if (section == 0) {
+        return mBannerArr.count;
+    }
     if (section == 2) {
         return self.tableArr.count;
     }else{
