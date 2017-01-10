@@ -7,6 +7,9 @@
 //
 
 #import "OrderTableViewCell.h"
+#import "UIButton+Border.h"
+#import "APIObjectDefine.h"
+
 
 @implementation OrderTableViewCell
 

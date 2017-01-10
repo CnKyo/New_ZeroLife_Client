@@ -234,6 +234,68 @@
 
 
 
+
+@implementation UIColor (QUAdd)
+//商户状态
++(UIColor *)colorWithOrderState:(NSString *)state
+{
+    
+    UIColor *color1 = [UIColor grayColor];
+    UIColor *color2 = COLOR(255, 125, 19);
+    UIColor *color = color1;
+    //NSString *str = @"";
+    if ([state isEqualToString:kOrderState_UCANCEL]) {
+        //str = @"取消订单";
+    }
+    if ([state isEqualToString:kOrderState_UDONE]) {
+        //str = @"确认完成";
+        color = color2;
+    }
+    else if ([state isEqualToString:kOrderState_PAYMENTED]) {
+        //str = @"去支付";
+        color = color2;
+    }
+    else if ([state isEqualToString:kOrderState_DIFFPAYED]) {
+        //str = @"支付差价";
+        color = color2;
+    }
+    else if ([state isEqualToString:kOrderState_EVALUATE]) {
+        //str = @"去评价";
+        color = color2;
+    }
+    else if ([state isEqualToString:kOrderState_MAINTAIN]) {
+        //str = @"去维权";
+    }
+    else if ([state isEqualToString:kOrderState_SERPOINT]) {
+        //str = @"选服务商";
+        color = color2;
+    }
+    
+    //商家端状态
+    else if ([state isEqualToString:kOrderState_SCANCEL]){
+        //str = @"取消订单";
+    }
+    else if ([state isEqualToString:kOrderState_SDONE]) {
+        //str = @"完成订单";
+        color = color2;
+    }
+    else if ([state isEqualToString:kOrderState_SSERVICE]){
+        //str = @"开始服务";
+        color = color2;
+    }
+    else if ([state isEqualToString:kOrderState_DIFFWAIT]){
+        //str = @"提交差价";
+        color = color2;
+    }
+    
+    return color;
+}
+
+@end
+
+
+
+
 @implementation NSURL (AFObjectDefine)
 + (NSURL*)imageurl:(NSString*)str
 {
