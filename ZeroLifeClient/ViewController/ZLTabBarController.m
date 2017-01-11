@@ -34,6 +34,7 @@
 - (void)setUpItemTitleTextAttrs
 {
     self.tabBar.tintColor = M_CO;
+    self.tabBar.translucent = NO;
     
     //设置tabbar边缘线
     self.tabBar.layer.borderWidth = 0.50;
