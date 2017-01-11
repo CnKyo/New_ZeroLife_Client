@@ -49,6 +49,7 @@ target 'ZeroLifeClient' do
   pod 'WebViewJavascriptBridge','~> 5.0'
   pod 'CardIO'
   pod 'DZNEmptyDataSet'
+  pod 'PYPhotoBrowser'
 
 
 end
