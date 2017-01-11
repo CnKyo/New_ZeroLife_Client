@@ -35,6 +35,8 @@
 +(NSString *)iconImgStrOrderType:(kOrderClassType)type; //!< 根据订单类型得到图标名称
 +(NSString *)strDesWithOrderState:(NSString *)state; //!< 根据订单类型得到订单操作名称
 +(NSString *)strDesWithOpenState:(NSString *)state; //!< 根据开通状态类型得到名称
++(NSString *)strDesWithComplaintState:(kComplaintType)type; //!< 根据投诉类型得到名称
++(NSString *)iconImgStrWithComplaintState:(kComplaintType)type; //!< 根据投诉类型得到图标名称
 +(NSString *)urlWithExtra:(NSString *)str;  //!< 组合url地址
 + (NSString *)urlWithServiceUrl:(NSString *)mUrl;
 + (NSString*)linkUrl:(NSString*)str;

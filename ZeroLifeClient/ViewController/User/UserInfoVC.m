@@ -216,7 +216,7 @@
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
                 imgView.image = IMG(@"cell_img_hourse.png");
                 textLabel.text = @"房屋管理";
-                field.placeholder = @"请添加房屋地址";
+                field.placeholder = @"点击管理房屋地址";
                 break;
             default:
                 break;

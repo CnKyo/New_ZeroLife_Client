@@ -166,6 +166,46 @@
 }
 
 
++(NSString *)strDesWithComplaintState:(kComplaintType)type
+{
+    NSString *str = @"";
+    switch (type) {
+        case kComplaintType_company:
+            str = @"对公司投诉";
+            break;
+        case kComplaintType_community:
+            str = @"物管投诉";
+            break;
+        case kComplaintType_people:
+            str = @"居民投诉";
+            break;
+        default:
+            break;
+    }
+    return str;
+}
+
++(NSString *)iconImgStrWithComplaintState:(kComplaintType)type
+{
+    NSString *str = @"";
+    switch (type) {
+        case kComplaintType_company:
+            str = @"cell_complaint_gongsi.png";
+            //str = @"对公司投诉";
+            break;
+        case kComplaintType_community:
+            str = @"cell_complaint_wuguan.png";
+            //str = @"物管投诉";
+            break;
+        case kComplaintType_people:
+            str = @"cell_complaint_juming.png";
+            //str = @"居民投诉";
+            break;
+        default:
+            break;
+    }
+    return str;
+}
 
 +(NSString *)iconImgStrOrderType:(kOrderClassType)type
 {
