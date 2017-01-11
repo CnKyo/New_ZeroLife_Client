@@ -22,6 +22,8 @@
 #import "SingInView.h"
 #import "ZLLoginViewController.h"
 
+#import <UINavigationBar+Awesome.h>
+
 
 @implementation PurseHeaderView
 
@@ -337,7 +339,8 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.navigationController.navigationBarHidden = YES;
+    
+    [self.navigationController.navigationBar lt_setBackgroundColor:[UIColor clearColor]];
     
     [self reloadUIWithData];
 }
@@ -346,7 +349,7 @@
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    self.navigationController.navigationBarHidden = NO;
+    [self.navigationController.navigationBar lt_reset];
 }
 
 - (void)didReceiveMemoryWarning {

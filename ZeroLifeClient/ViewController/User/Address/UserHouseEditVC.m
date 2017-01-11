@@ -95,12 +95,15 @@
     if (self.title==nil || self.title.length == 0) {
         if (_item == nil) {
             self.title =  @"添加房屋";
-            self.item = [HouseObject new];
-            self.item.user_id = [ZLUserInfo ZLCurrentUser].user_id;
-            self.item.real_sex = kUserSexType_man;
         } else {
             self.title =  @"编辑房屋";
         }
+    }
+    
+    if (_item == nil) {
+        self.item = [HouseObject new];
+        self.item.user_id = [ZLUserInfo ZLCurrentUser].user_id;
+        self.item.real_sex = kUserSexType_man;
     }
 }
 
@@ -204,7 +207,10 @@
                 [self.banArr setArray:tableArr];
                 self.customCell.addressField.dataArr = _banArr;
                 
-                [SVProgressHUD showSuccessWithStatus:info.msg];
+                if (tableArr.count > 0)
+                    [SVProgressHUD showSuccessWithStatus:@"楼栋信息加载成功！"];
+                else
+                    [SVProgressHUD showErrorWithStatus:@"暂无该小区楼栋信息！"];
             } else
                 [SVProgressHUD showErrorWithStatus:info.msg];
         }];
