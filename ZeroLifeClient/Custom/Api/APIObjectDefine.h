@@ -1032,6 +1032,8 @@
 @property (strong,nonatomic) NSString*              pro_weight; //!< 商品重量
 @property (strong,nonatomic) NSString*              img_url;    //!< 商品小图URL
 @property (assign,nonatomic) int                    sku_id; //!< SKU id
+@property (assign,nonatomic) int                    sku_id_def; //!< SKU id
+
 @property (strong,nonatomic) NSString*              pro_date_life;  //!< 保质期
 @property (assign,nonatomic) int                    pro_sales_total;    //!< 销售量
 @property (strong,nonatomic) NSString*              pro_date_create;    //!< 生产日期
@@ -1441,11 +1443,12 @@
 ///描述
 @property (strong,nonatomic) NSString* des;
 ///完成时间
-@property (strong,nonatomic) NSString* odr_finished_time;
+@property (strong,nonatomic) NSString* rat_add_time;
 ///配送费
-@property (assign,nonatomic) float odr_deliver_fee;
+@property (assign,nonatomic) float deliver_fee;
 ///订单号
 @property (strong,nonatomic) NSString* odr_code;
+@property (assign,nonatomic) int rat_is_in;
 
 @end
 

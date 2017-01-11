@@ -107,7 +107,7 @@
         
     } else if (_classType == kOrderClassType_paopao) {
         if ([_item.cls_type isEqualToString:kPaopaoCLSType_SEND]) {
-            OrderAddressView *addressView1 = [[OrderAddressView alloc] initWithNote:@"取货地址" name:[NSString stringWithFormat:@"%@  %@", _item.odr_pick_name, _item.odr_pick_phone] address:[NSString compIsNone:_item.odr_pick_address]];
+            OrderAddressView *addressView1 = [[OrderAddressView alloc] initWithNote:@"取货地址" name:[NSString stringWithFormat:@"%@  %@", _item.odr_deliver_name, _item.odr_deliver_phone] address:[NSString compIsNone:_item.odr_deliver_address]];
             [superView addSubview:addressView1];
             [addressView1 updateConstraints:^(MASConstraintMaker *make) {
                 make.left.right.equalTo(superView);
@@ -115,7 +115,7 @@
             }];
             lastView = addressView1;
         }
-        OrderAddressView *addressView2 = [[OrderAddressView alloc] initWithNote:@"送达地址" name:[NSString stringWithFormat:@"%@  %@", _item.odr_deliver_name, _item.odr_deliver_phone] address:[NSString compIsNone:_item.odr_deliver_address]];
+        OrderAddressView *addressView2 = [[OrderAddressView alloc] initWithNote:@"送达地址" name:[NSString stringWithFormat:@"%@  %@", _item.odr_pick_name, _item.odr_pick_phone] address:[NSString compIsNone:_item.odr_pick_address]];
         [superView addSubview:addressView2];
         [addressView2 updateConstraints:^(MASConstraintMaker *make) {
             make.left.right.equalTo(superView);

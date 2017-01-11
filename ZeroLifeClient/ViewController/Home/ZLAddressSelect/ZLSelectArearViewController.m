@@ -112,7 +112,7 @@
     [mLocation requestLocationWithReGeocode:YES completionBlock:^(CLLocation *location, AMapLocationReGeocode *regeocode, NSError *error) {
         if (error)
         {
-            
+            [self ZLShowEmptyView:@"定位失败！" andImage:nil andHiddenRefreshBtn:NO];
             MLLog(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
         }
         
@@ -126,8 +126,8 @@
             mCommunityAdd.cmut_lng = location.coordinate.longitude;
             
             MLLog(@"reGeocode:%@", regeocode);
-            
-            [self reloadTableViewDataSource];
+            [self doneHeaderRereshing];
+
             
         }
     }];
@@ -137,6 +137,10 @@
 - (void)MMapreturnLatAndLng:(NSDictionary *)mCoordinate{
     
     MLLog(@"定位成功之后返回的东东：%@",mCoordinate);
+    mCommunityAdd.cmut_lat = [[mCoordinate objectForKey:@"wei"] doubleValue];
+    mCommunityAdd.cmut_lng = [[mCoordinate objectForKey:@"jing"] doubleValue];
+    
+    [self doneHeaderRereshing];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

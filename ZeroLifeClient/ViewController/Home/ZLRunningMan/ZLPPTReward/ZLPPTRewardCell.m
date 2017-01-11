@@ -24,8 +24,8 @@
 - (void)setMObj:(ZLPPTRewardObj *)mObj{
 
     self.mTitle.text = mObj.des;
-    self.mTime.text = mObj.odr_finished_time;
-    self.mMoney.text = [NSString stringWithFormat:@"+¥%.2f元",mObj.odr_deliver_fee];
+    self.mTime.text = mObj.rat_add_time;
+    self.mMoney.text = [NSString stringWithFormat:@"+¥%.2f元",mObj.deliver_fee];
     
     
 }

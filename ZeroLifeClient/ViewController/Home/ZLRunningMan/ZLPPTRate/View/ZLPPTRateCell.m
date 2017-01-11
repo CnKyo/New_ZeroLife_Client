@@ -176,6 +176,10 @@
         [vv removeFromSuperview];
     }
     
+    for (UIImageView *mImg in self.mImgView.subviews) {
+        [mImg removeFromSuperview];
+    }
+    
     int x = 0;
     
     for ( int i = 0; i<mStars; i++) {

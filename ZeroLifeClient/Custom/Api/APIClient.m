@@ -2897,7 +2897,7 @@ return [NSString stringWithFormat:@"%@%@%@",kAFAppDotNetImgBaseURLString,kAFAppD
             
             if (info.code == RESP_STATUS_YES) {
                 
-                block(info,[ZLPPTRewardList mj_objectWithKeyValues:[info.data objectForKey:@"orders"]]);
+                block(info,[ZLPPTRewardList mj_objectWithKeyValues:info.data]);
                 
             }else{
                 

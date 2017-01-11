@@ -65,7 +65,8 @@
 
     ZLCustomSegView *mSecondSectionView = [ZLCustomSegView initViewType:ZLCustomSegViewTypeTextAndImage andTextArr:mText andImgArr:mImg];
     mSecondSectionView.delegate = view;
-    mSecondSectionView.frame = CGRectMake(0, 0, DEVICE_Width, 80);
+    ///这里要绑定view的frame不然会导致底部点击失效
+    mSecondSectionView.frame = view.bounds;
     
     [view addSubview:mSecondSectionView];
     return view;

@@ -1687,13 +1687,24 @@
  */
 + (NSArray *)wk_StringToArr:(NSString *)string{
     
+    NSMutableArray *mImgArr = [NSMutableArray new];
+    
     if (string.length<=0 || [string isEqualToString:@""]) {
         return nil;
     }else{
-        return [string componentsSeparatedByString:@","];
+        
+        NSArray *mArr = [string componentsSeparatedByString:@","];
+        
+        for (int i = 0; i<mArr.count; i++) {
+            NSString *mImgStr = mArr[i];
+            
+            if (mImgStr.length>0) {
+                [mImgArr addObject:mImgStr];
+            }
+        }
+        return mImgArr;
     }
-    
-    
+
 }
 
 @end

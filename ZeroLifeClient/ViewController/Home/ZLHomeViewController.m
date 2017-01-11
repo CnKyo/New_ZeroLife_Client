@@ -343,8 +343,8 @@
 #pragma mark----****----加载地址
 - (void)loadAddress{
     
-//    [CurentLocation sharedManager].delegate = self;
-//    [[CurentLocation sharedManager] getUSerLocation];
+    [CurentLocation sharedManager].delegate = self;
+    [[CurentLocation sharedManager] getUSerLocation];
     
     mLocation = [[AMapLocationManager alloc] init];
     mLocation.delegate = self;
@@ -384,6 +384,9 @@
 - (void)MMapreturnLatAndLng:(NSDictionary *)mCoordinate{
     
     MLLog(@"定位成功之后返回的东东：%@",mCoordinate);
+    
+    mCommunityObj.cmut_lat = [[mCoordinate objectForKey:@"wei"] doubleValue];
+    mCommunityObj.cmut_lng = [[mCoordinate objectForKey:@"jing"] doubleValue];
 }
 
 - (void)didReceiveMemoryWarning {

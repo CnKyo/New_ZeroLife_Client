@@ -108,11 +108,7 @@
     
     ZLGoodsWithClass *mGoods = self.tableArr[indexPath.row];
     
-    if (mGoods.skus.count > 0) {
-        ZLGoodsSKU *mSku = mGoods.skus[0];
-        mGoods.sku_id = mSku.sku_id;
-    }
-    
+    mGoods.sku_id = mGoods.sku_id_def;
     ZLWebViewViewController *mWebvc = [ZLWebViewViewController new];
     
     
