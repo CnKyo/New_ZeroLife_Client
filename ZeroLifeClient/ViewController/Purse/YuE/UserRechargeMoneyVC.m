@@ -43,9 +43,15 @@
                 return ;
             }
             
+            float money = [_moneyField.text floatValue];
+            if (money <= 0) {
+                [SVProgressHUD showErrorWithStatus:@"您要充值的金额不能大或等于0"];
+                return ;
+            }
+            
             [[IQKeyboardManager sharedManager] resignFirstResponder];
             
-            NSString *spec = [_item getCustomSpecWithMoney:[_moneyField.text floatValue]];
+            NSString *spec = [_item getCustomSpecWithMoney:money];
             
             NSMutableArray *mPayArr = [NSMutableArray new];
             NSMutableDictionary *mPara = [NSMutableDictionary new];
