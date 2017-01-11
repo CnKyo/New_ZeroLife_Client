@@ -74,16 +74,16 @@
             [self prepareCityListDatasourceWithArray:self.tableArr andToDictionary:_newCityDic];
             
             if (tableArr.count<=0) {
-                [self showErrorStatus:@"暂无数据！"];
+                
+                [self ZLShowEmptyView:info.msg andImage:@"暂无数据！" andHiddenRefreshBtn:NO];
+
             }else{
             
-//                [self showSuccessStatus:info.msg];
                 [self dismiss];
             }
             
         }else{
             [self ZLShowEmptyView:info.msg andImage:nil andHiddenRefreshBtn:NO];
-            [self showErrorStatus:info.msg];
             [self loadAddress];
 
         }
@@ -112,9 +112,7 @@
     [mLocation requestLocationWithReGeocode:YES completionBlock:^(CLLocation *location, AMapLocationReGeocode *regeocode, NSError *error) {
         if (error)
         {
-            NSString *eee =@"您点得太快了哦，稍等一下下吧～～";
             
-            [self showErrorStatus:eee];
             MLLog(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
         }
         

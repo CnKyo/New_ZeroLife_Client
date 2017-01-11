@@ -38,6 +38,7 @@
 
     ZLCommitRepairsViewController *ZLCommitVC = [ZLCommitRepairsViewController new];
     ZLCommitVC.mClassObj = _mClassObj;
+    ZLCommitVC.mParentObj = _mParentObj;
     [self pushViewController:ZLCommitVC];
 }
 - (void)initWebView{

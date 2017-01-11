@@ -343,12 +343,11 @@ static int const ZLRunningManVC_ClassView_Height                  = 80;
     [[APIClient sharedClient] ZLGetRunningmanHomeList:self.mAddress.cmut_lat andLng:self.mAddress.cmut_lng andPage:self.page andPageSize:20 andClsId:mClass.cls_id block:^(APIObject *mBaseObj, ZLRunningmanHomeList *mList) {
         [mTempArr removeAllObjects];
         if (mBaseObj.code == RESP_STATUS_YES) {
-            [self dismiss];
-            
             [mTempArr addObjectsFromArray:mList.list];
             if (mList.list.count<=0) {
                 [self addEmptyView:self.tableView andType:ZLEmptyViewTypeWithCommon];
             }
+            [self showSuccessStatus:@"加载成功！"];
         }else{
             [self showErrorStatus:mBaseObj.msg];
             [self addEmptyView:self.tableView andType:ZLEmptyViewTypeWithCommon];

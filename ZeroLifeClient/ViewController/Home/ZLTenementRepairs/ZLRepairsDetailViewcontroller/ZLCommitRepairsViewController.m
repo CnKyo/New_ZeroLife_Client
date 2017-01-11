@@ -73,12 +73,20 @@
             [self showSuccessStatus:@"验证成功!"];
             
             mFixPreOrder = mPreOrder;
+            
+            if (!mFixPreOrder.goods) {
+                mFixPreOrder.goods = [ZLCommitFixObj new];
+                mFixPreOrder.goods.pro_name = _mParentObj.mParentName;
+                mFixPreOrder.goods.pro_component = _mClassObj.mClassName;
+                mFixPreOrder.goods.img_url = _mClassObj.mClassImg;
+            }
+            
             [self.tableView reloadData];
             
         }else{
             
             [self showErrorStatus:mBaseObj.msg];
-            [self performSelector:@selector(popViewController) withObject:nil afterDelay:0.5];
+            [self performSelector:@selector(popViewController_2) withObject:nil afterDelay:0.5];
         }
     }];
 }

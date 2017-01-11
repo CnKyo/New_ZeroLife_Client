@@ -11,4 +11,6 @@
 @interface ZLCommitRepairsViewController : CustomVC
 ///子类对象
 @property (strong,nonatomic) ZLFixSubExtObj *mClassObj;
+///父类对象
+@property (strong,nonatomic) ZLFixClassExtObj *mParentObj;
 @end

@@ -343,8 +343,8 @@
 #pragma mark----****----加载地址
 - (void)loadAddress{
     
-    [CurentLocation sharedManager].delegate = self;
-    [[CurentLocation sharedManager] getUSerLocation];
+//    [CurentLocation sharedManager].delegate = self;
+//    [[CurentLocation sharedManager] getUSerLocation];
     
     mLocation = [[AMapLocationManager alloc] init];
     mLocation.delegate = self;
