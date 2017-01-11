@@ -73,7 +73,7 @@
     cell.msgLable.text = item.cpm_content;
     
     cell.nameLable.text = [NSString strDesWithComplaintState:item.cpm_type];
-    cell.iconImgView.image = IMG([NSString iconImgStrWithComplaintState:item.cpm_type]);
+    cell.iconImgView.image = [UIImage imageNamed:[NSString iconImgStrWithComplaintState:item.cpm_type]];
     
     return cell;
 }

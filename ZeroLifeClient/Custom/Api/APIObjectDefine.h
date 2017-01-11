@@ -32,6 +32,7 @@
 +(NSString *)compIsNone:(NSString *)str;
 +(NSString *)houseIsOwner:(BOOL)is_owner; //!< 得到房主租客文字
 +(NSString *)strUserSexType:(kUserSexType)type;  //!< 得到性别文字
++(NSString *)strDesWithOrderType:(kOrderClassType)type; //!< 根据订单类型得到名称
 +(NSString *)iconImgStrOrderType:(kOrderClassType)type; //!< 根据订单类型得到图标名称
 +(NSString *)strDesWithOrderState:(NSString *)state; //!< 根据订单类型得到订单操作名称
 +(NSString *)strDesWithOpenState:(NSString *)state; //!< 根据开通状态类型得到名称
