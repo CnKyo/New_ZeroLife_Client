@@ -75,10 +75,13 @@
             mFixPreOrder = mPreOrder;
             
             if (!mFixPreOrder.goods) {
+                [self showErrorStatus:@"未查询到服务信息！请重试!"];
+                [self performSelector:@selector(popViewController_2) withObject:nil afterDelay:1.5];
                 mFixPreOrder.goods = [ZLCommitFixObj new];
                 mFixPreOrder.goods.pro_name = _mParentObj.mParentName;
                 mFixPreOrder.goods.pro_component = _mClassObj.mClassName;
                 mFixPreOrder.goods.img_url = _mClassObj.mClassImg;
+                return ;
             }
             
             [self.tableView reloadData];
