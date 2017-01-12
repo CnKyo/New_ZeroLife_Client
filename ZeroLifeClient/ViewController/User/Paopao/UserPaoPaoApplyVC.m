@@ -16,6 +16,7 @@
 #import <CoreText/CoreText.h>
 
 #import "CustomWebVC.h"
+#import "UIImage+ThumbnailImage.h"
 
 @interface UserPaoPaoApplyVC ()
 @property(nonatomic,strong) UserPaoPaoApplyTableViewCell *customCell;
@@ -182,7 +183,7 @@
     [cell.img1Btn jk_addActionHandler:^(NSInteger tag) {
         [self startChoosePhotoCall:^(UIImage *img) {
             [SVProgressHUD showWithStatus:@"上传中..."];
-            NSData* data = UIImageJPEGRepresentation(img, 0.7);
+            NSData* data = [UIImage compressImage:img toMaxFileSize:300];
             [[APIClient sharedClient] fileOneUploadWithTag:self data:data type:kFileType_photo path:kFileUploadPath_Apply call:^(NSString *fileUrlStr, APIObject *info) {
                 if (info.code == RESP_STATUS_YES) {
                     [cell.img1Btn setBackgroundImage:img forState:UIControlStateNormal];
@@ -199,7 +200,8 @@
     [cell.img2Btn jk_addActionHandler:^(NSInteger tag) {
         [self startChoosePhotoCall:^(UIImage *img) {
             [SVProgressHUD showWithStatus:@"上传中..."];
-            NSData* data = UIImageJPEGRepresentation(img, 0.7);
+            //NSData* data = UIImageJPEGRepresentation(img, 0.7);
+            NSData* data = [UIImage compressImage:img toMaxFileSize:300];
             [[APIClient sharedClient] fileOneUploadWithTag:self data:data type:kFileType_photo path:kFileUploadPath_Apply call:^(NSString *fileUrlStr, APIObject *info) {
                 if (info.code == RESP_STATUS_YES) {
                     [cell.img2Btn setBackgroundImage:img forState:UIControlStateNormal];
@@ -217,7 +219,8 @@
     [cell.img3Btn jk_addActionHandler:^(NSInteger tag) {
         [self startChoosePhotoCall:^(UIImage *img) {
             [SVProgressHUD showWithStatus:@"上传中..."];
-            NSData* data = UIImageJPEGRepresentation(img, 0.7);
+            //NSData* data = UIImageJPEGRepresentation(img, 0.7);
+            NSData* data = [UIImage compressImage:img toMaxFileSize:300];
             [[APIClient sharedClient] fileOneUploadWithTag:self data:data type:kFileType_photo path:kFileUploadPath_Apply call:^(NSString *fileUrlStr, APIObject *info) {
                 if (info.code == RESP_STATUS_YES) {
                     [cell.img3Btn setBackgroundImage:img forState:UIControlStateNormal];

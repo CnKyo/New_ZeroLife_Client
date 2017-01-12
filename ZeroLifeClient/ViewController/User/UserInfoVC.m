@@ -11,6 +11,7 @@
 #import "UserHouseEditVC.h"
 #import "UserAddressTVC.h"
 #import <RSKImageCropper/RSKImageCropper.h>
+#import "UIImage+ThumbnailImage.h"
 
 @interface UserInfoVC ()<UITextFieldDelegate, RSKImageCropViewControllerDelegate>
 @property(nonatomic,strong) ZLUserInfo *user;
@@ -307,7 +308,8 @@
 
 -(void)updateFileWithImg:(UIImage *)img
 {
-    NSData* data = UIImageJPEGRepresentation(img, 1.0);
+    //NSData* data = UIImageJPEGRepresentation(img, 1.0);
+    NSData* data = [UIImage compressImage:img toMaxFileSize:300];
     
     [SVProgressHUD showWithStatus:@"头像上传中..."];
     [[APIClient sharedClient] fileOneUploadWithTag:self data:data type:kFileType_photo path:kFileUploadPath_Photo call:^(NSString *fileUrlStr, APIObject *info) {
