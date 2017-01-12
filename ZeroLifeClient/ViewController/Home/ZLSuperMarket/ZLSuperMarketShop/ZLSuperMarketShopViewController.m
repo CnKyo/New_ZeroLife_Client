@@ -150,15 +150,10 @@ static const CGFloat mTopH = 156;
 #pragma mark----****----加载headerview
 - (void)initHeaderView{
     mHeaderView = [ZLSuperMarketHeaderView shareView];
+    mHeaderView.frame = CGRectMake(0, 64, DEVICE_Width, 150);
     mHeaderView.mRateBtn.hidden = NO;
     mHeaderView.delegaate = self;
     [self.view addSubview:mHeaderView];
-    
-    [mHeaderView makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(self.view).offset(0);
-        make.top.equalTo(self.view).offset(64);
-        make.height.offset(@156);
-    }];
     
     
 
@@ -449,8 +444,8 @@ static const CGFloat mTopH = 156;
         make.left.equalTo(self.view).offset(0);
         make.top.equalTo(self.view).offset(64);
         make.bottom.equalTo(self.view).offset(-50);
-        make.right.equalTo(mRightTableView.left).offset(0);
-        make.width.offset(DEVICE_Width/3);
+        //make.right.equalTo(mRightTableView.left).offset(0);
+        make.width.offset(90);
     }];
     
     [mRightTableView makeConstraints:^(MASConstraintMaker *make) {
@@ -458,7 +453,7 @@ static const CGFloat mTopH = 156;
         make.top.equalTo(self.view).offset(64);
         make.bottom.equalTo(self.view).offset(-50);
         make.left.equalTo(mLeftTableView.right).offset(0);
-        make.width.offset(DEVICE_Width-DEVICE_Width/3);
+        //make.width.offset(DEVICE_Width-120);
     }];
     
     mLeftTableView.contentInset = UIEdgeInsetsMake(mTopH, 0, 0, 0);

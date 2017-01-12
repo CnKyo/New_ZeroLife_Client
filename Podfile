@@ -8,7 +8,6 @@ target 'ZeroLifeClient' do
   # Pods for ZeroLifeClient
 
   pod 'DateTools'
-  pod 'BlocksKit', :git => 'https://github.com/zwaldowski/BlocksKit.git'
   pod 'JKCategories'
   pod 'WPAttributedMarkup'
   pod 'UITableView+FDTemplateLayoutCell'
@@ -50,6 +49,8 @@ target 'ZeroLifeClient' do
   pod 'CardIO'
   pod 'DZNEmptyDataSet'
   pod 'PYPhotoBrowser'
+  pod 'BlocksKit', :git => 'https://github.com/zwaldowski/BlocksKit.git'
+
 
 
 end

@@ -30,9 +30,9 @@
     // Do any additional setup after loading the view.
     self.title = @"登录";
     [self initView];
-    
-    mMainView.mLoginPhoneTx.text = @"13637959618";
-    mMainView.mLoginPwdTx.text = @"123456";
+//    
+//    mMainView.mLoginPhoneTx.text = @"13637959618";
+//    mMainView.mLoginPwdTx.text = @"123456";
 }
 
 - (void)initView{
@@ -45,6 +45,7 @@
     [self.view addSubview:mMainView];
     
     mBottomView = [ZLLoginView initQuikView];
+    mBottomView.hidden = YES;
     mBottomView.delegate = self;
     [self.view addSubview:mBottomView];
     
