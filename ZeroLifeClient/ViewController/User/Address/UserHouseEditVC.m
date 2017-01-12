@@ -76,7 +76,8 @@
             [SVProgressHUD showWithStatus:@"处理中..."];
             [[APIClient sharedClient] houseInfoEditWithTag:self postItem:_item is_default:_customCell.defaultAddressSwitch.on call:^(APIObject *info) {
                 if (info.code == RESP_STATUS_YES) {
-                    [[NSNotificationCenter defaultCenter] postNotificationName:MyUserAddressNeedUpdateNotification object:nil];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:MyUserNeedUpdateNotification object:nil]; //需要更新用户数据
+                    [[NSNotificationCenter defaultCenter] postNotificationName:MyUserAddressNeedUpdateNotification object:nil]; //需要更新地址数据
                     
                     [self performSelector:@selector(popViewController) withObject:nil afterDelay:0.5];
                     [SVProgressHUD showSuccessWithStatus:info.msg];
