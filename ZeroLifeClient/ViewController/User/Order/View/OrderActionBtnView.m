@@ -39,7 +39,7 @@
         float padding = 10;
         UIFont *font = [UIFont systemFontOfSize:14];
         UIView *superView = self;
-        UIColor *color = [UIColor colorWithWhite:0.3 alpha:1];
+        //UIColor *color = [UIColor colorWithWhite:0.3 alpha:1];
         
         self.actionBtn1 = [OrderButton buttonWithType:UIButtonTypeCustom];
         self.actionBtn2 = [OrderButton buttonWithType:UIButtonTypeCustom];

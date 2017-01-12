@@ -20,8 +20,8 @@
         [self.contentView setAutoresizingMask:UIViewAutoresizingFlexibleHeight];
         
         float padding = 5;
-        UIFont *font = [UIFont systemFontOfSize:14];
-        UIColor *color = [UIColor grayColor];
+        //UIFont *font = [UIFont systemFontOfSize:14];
+        //UIColor *color = [UIColor grayColor];
         UIView *superView = self.contentView;
         
         
