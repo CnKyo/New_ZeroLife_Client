@@ -288,7 +288,7 @@
 }
 - (void)reloadTableViewData{
 
-    [self reloadTableViewDataSource];
+    [self beginHeaderRereshing];
 }
 #pragma mark----****----加载数据
 - (void)reloadTableViewDataSource{
@@ -301,9 +301,11 @@
         return;
     }
     
+    [SVProgressHUD showWithStatus:@"加载中..."];
     [[APIClient sharedClient] ZLgetHomeBanner:^(APIObject *mBaseObj, ZLHomeFunvtionAndBanner *mFunc) {
         [mBannerArr removeAllObjects];
         [mFunctionArr removeAllObjects];
+        [SVProgressHUD dismiss];
 
         [self ZLHideEmptyView];
         if (mBaseObj.code == RESP_STATUS_YES) {
@@ -343,6 +345,7 @@
 #pragma mark----****----加载地址
 - (void)loadAddress{
     
+    [SVProgressHUD showWithStatus:@"定位中..."];
     [CurentLocation sharedManager].delegate = self;
     [[CurentLocation sharedManager] getUSerLocation];
     
