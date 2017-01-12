@@ -57,14 +57,23 @@
     NSMutableArray *arr = [ZLShopHomeClassify arrWithClassType:self.mType];
     [self reloadClassData:arr]; //先加载本地数据
 
+    [self loadClassDataWithNetwork];
+}
+
+-(void)loadClassDataWithNetwork
+{
     [[APIClient sharedClient] ZLGetShopHomePage:self.mLat andLng:self.mLng andType:self.mType block:^(APIObject *mBaseObj, ZLShopHomePage *mShopHome) {
         
         if (mBaseObj.code == RESP_STATUS_YES) {
-            
             [ZLShopHomeClassify updateWithClassType:self.mType newArr:mShopHome.classify];
+            
             [self reloadClassData:mShopHome.classify];
-        } else
+        } else {
+            if (_classArr.count == 0)
+                [self reloadClassData:mShopHome.classify];
+        
             [SVProgressHUD showErrorWithStatus:mBaseObj.msg];
+        }
     }];
 }
 
@@ -77,6 +86,8 @@
         
         ZLShopHomeClassify *item0 = [arr objectAtIndex:0];
         [self loadTableArrWithItem:item0];
+    } else {
+        [self addEmptyView:self.tableView andType:ZLEmptyViewTypeWithNoData];
     }
 }
 
@@ -113,8 +124,13 @@
     [self beginHeaderRereshing];
 }
 
+//点击空白重新刷新
 - (void)reloadTableViewData{
-    [self beginHeaderRereshing];
+    if (_classArr.count > 0) {
+        [self beginHeaderRereshing];
+    } else {
+        [self loadClassDataWithNetwork];
+    }
 }
 
 - (void)reloadTableViewDataSource{
