@@ -24,8 +24,6 @@
     
     NSMutableArray *mAddArr;
     
-    NSMutableArray *mPayArr;
-
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -40,8 +38,6 @@
 }
 
 - (void)initView{
-    mPayArr = [NSMutableArray new];
-
     
     mTableView = [UITableView new];
     mTableView.delegate = self;
@@ -225,11 +221,13 @@
  全选按钮
  */
 - (void)ZLShopCarBottomSelecteAllWithSelected:(BOOL)mSelected{
-    
+    [mAddArr removeAllObjects];
     for (int i =0; i<self.tableArr.count; i++) {
+        
         LKDBHelperGoodsObj *mGoods = self.tableArr[i];
         mGoods.mSelected = mSelected;
         [self.tableArr replaceObjectAtIndex:i withObject:mGoods];
+     
         if (mGoods.mSelected) {
             [mAddArr addObject:mGoods];
         }else{
@@ -247,7 +245,8 @@
  去结算
  */
 - (void)ZLShopCarBottomGoPay{
-    [mPayArr removeAllObjects];
+
+    NSMutableArray *mArrTemp = [NSMutableArray new];
     if (mAddArr.count <= 0) {
         [self showErrorStatus:@"亲，快去选择商品结算吧！"];
         return;
@@ -269,11 +268,11 @@
             }
         }
    
-        [mPayArr addObject:mPara];
+        [mArrTemp addObject:mPara];
     }
     
     [self showWithStatus:@"正在提交订单..."];
-    [[APIClient sharedClient] ZLCommitPreOrderWithType:_mType andShopId:self.mShopId andGoodsArr:[Util arrToJson:mPayArr] block:^( APIObject *mBaseObj,ZLPreOrderObj *mPreOrder) {
+    [[APIClient sharedClient] ZLCommitPreOrderWithType:_mType andShopId:self.mShopId andGoodsArr:[Util arrToJson:mArrTemp] block:^( APIObject *mBaseObj,ZLPreOrderObj *mPreOrder) {
         if (mBaseObj.code == RESP_STATUS_YES) {
             [self dismiss];
             ZLSuperMarketCommitOrderViewController *ZLCommitVC = [ZLSuperMarketCommitOrderViewController new];
@@ -321,10 +320,7 @@
         
         [mGoods deleteToDB];
         
-        [mTableView deleteRowsAtIndexPaths:@[mIndexPath] withRowAnimation:YES];
-        [mTableView beginUpdates];
-        [mTableView reloadRowsAtIndexPaths:@[mIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-        [mTableView endUpdates];
+        [mTableView reloadData];
     }
     
     

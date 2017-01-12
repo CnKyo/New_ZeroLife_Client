@@ -2533,7 +2533,7 @@ return [NSString stringWithFormat:@"%@%@%@",kAFAppDotNetImgBaseURLString,kAFAppD
         }else{
             mUrl = @"/preorder/pre_dryclean";
         }
-        
+        MLLog(@"上传的商品：------%@",mGoods);
         [self loadAPIWithTag:self path:mUrl parameters:para call:^(APIObject *info) {
             if (info.code == RESP_STATUS_YES) {
                 block(info,[ZLPreOrderObj mj_objectWithKeyValues:info.data]);
