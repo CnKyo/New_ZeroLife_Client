@@ -188,7 +188,7 @@
         }
         UIImageView *mStar = [UIImageView new];
         mStar.frame = CGRectMake(x, 0, 20, 20);
-        mStar.image = IMG(@"btn_star_evaluation_press");
+        mStar.image = IMG(@"ZLRate_Heart");
         [self.mStarView addSubview:mStar];
         x+=25;
     }

@@ -84,7 +84,6 @@
             
         }else{
             [self ZLShowEmptyView:info.msg andImage:nil andHiddenRefreshBtn:NO];
-            [self loadAddress];
 
         }
         [self doneLoadingTableViewData];
@@ -103,36 +102,10 @@
     
     [CurentLocation sharedManager].delegate = self;
     [[CurentLocation sharedManager] getUSerLocation];
-    
-    mLocation = [[AMapLocationManager alloc] init];
-    mLocation.delegate = self;
-    [mLocation setDesiredAccuracy:kCLLocationAccuracyHundredMeters];
-    mLocation.locationTimeout = 3;
-    mLocation.reGeocodeTimeout = 3;
-    [mLocation requestLocationWithReGeocode:YES completionBlock:^(CLLocation *location, AMapLocationReGeocode *regeocode, NSError *error) {
-        if (error)
-        {
-            [self ZLShowEmptyView:@"定位失败！" andImage:nil andHiddenRefreshBtn:NO];
-            MLLog(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
-        }
-        
-        
-        if (regeocode)
-        {
-            
-            MLLog(@"location:%f", location.coordinate.latitude);
-            
-            mCommunityAdd.cmut_lat = location.coordinate.latitude;
-            mCommunityAdd.cmut_lng = location.coordinate.longitude;
-            
-            MLLog(@"reGeocode:%@", regeocode);
-            [self doneHeaderRereshing];
 
-            
-        }
-    }];
     
 }
+
 #pragma mark----maplitdelegate
 - (void)MMapreturnLatAndLng:(NSDictionary *)mCoordinate{
     
@@ -140,7 +113,13 @@
     mCommunityAdd.cmut_lat = [[mCoordinate objectForKey:@"wei"] doubleValue];
     mCommunityAdd.cmut_lng = [[mCoordinate objectForKey:@"jing"] doubleValue];
     
-    [self doneHeaderRereshing];
+    if (mCommunityAdd.cmut_lng<=0) {
+        [self ZLShowEmptyView:@"定位失败！" andImage:nil andHiddenRefreshBtn:NO];
+        [self loadAddress];
+
+    }else{
+        [self reloadTableViewDataSource];
+    }
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

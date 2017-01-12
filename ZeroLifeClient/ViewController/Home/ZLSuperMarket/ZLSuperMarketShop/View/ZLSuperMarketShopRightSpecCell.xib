@@ -26,8 +26,8 @@
                             <constraint firstAttribute="height" constant="80" id="nTm-Rl-A0O"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="tqn-kJ-tsK">
-                        <rect key="frame" x="98" y="10" width="134" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="tqn-kJ-tsK">
+                        <rect key="frame" x="94" y="10" width="154" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="dmc-g9-iLu"/>
                         </constraints>
@@ -36,17 +36,17 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="月销1000件" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rzl-Jk-yaU">
-                        <rect key="frame" x="240" y="10" width="72" height="21"/>
+                        <rect key="frame" x="252" y="10" width="60" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="TyZ-VB-TpL"/>
-                            <constraint firstAttribute="width" constant="72" id="oX2-gA-kD3"/>
+                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="70" id="oX2-gA-kD3"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rJL-1T-MFm" customClass="WPHotspotLabel">
-                        <rect key="frame" x="98" y="39" width="214" height="21"/>
+                        <rect key="frame" x="94" y="39" width="218" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="MVc-vH-c6D"/>
                         </constraints>
@@ -55,7 +55,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="库存999件" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dn2-jb-L5Z">
-                        <rect key="frame" x="98" y="70" width="144" height="21"/>
+                        <rect key="frame" x="94" y="70" width="148" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="tNm-OG-YHZ"/>
                         </constraints>
@@ -88,13 +88,13 @@
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="rJL-1T-MFm" firstAttribute="leading" secondItem="jNB-dN-sjL" secondAttribute="trailing" constant="8" id="071-hP-23Y"/>
+                    <constraint firstItem="rJL-1T-MFm" firstAttribute="leading" secondItem="jNB-dN-sjL" secondAttribute="trailing" constant="4" id="071-hP-23Y"/>
                     <constraint firstItem="jNB-dN-sjL" firstAttribute="centerY" secondItem="L5x-xu-iZT" secondAttribute="centerY" id="4Oe-u8-DH9"/>
                     <constraint firstItem="tqn-kJ-tsK" firstAttribute="top" secondItem="L5x-xu-iZT" secondAttribute="topMargin" constant="2" id="Epy-LC-3PN"/>
                     <constraint firstItem="6ti-Ze-K16" firstAttribute="top" secondItem="jNB-dN-sjL" secondAttribute="bottom" constant="9" id="FdH-L9-nXW"/>
-                    <constraint firstItem="rzl-Jk-yaU" firstAttribute="leading" secondItem="tqn-kJ-tsK" secondAttribute="trailing" constant="8" id="HKF-CA-sVp"/>
+                    <constraint firstItem="rzl-Jk-yaU" firstAttribute="leading" secondItem="tqn-kJ-tsK" secondAttribute="trailing" constant="4" id="HKF-CA-sVp"/>
                     <constraint firstItem="jNB-dN-sjL" firstAttribute="leading" secondItem="L5x-xu-iZT" secondAttribute="leadingMargin" constant="2" id="I23-YC-emD"/>
-                    <constraint firstItem="Dn2-jb-L5Z" firstAttribute="leading" secondItem="jNB-dN-sjL" secondAttribute="trailing" constant="8" id="Ivg-rx-PaD"/>
+                    <constraint firstItem="Dn2-jb-L5Z" firstAttribute="leading" secondItem="jNB-dN-sjL" secondAttribute="trailing" constant="4" id="Ivg-rx-PaD"/>
                     <constraint firstItem="6ti-Ze-K16" firstAttribute="leading" secondItem="L5x-xu-iZT" secondAttribute="leadingMargin" constant="2" id="O2V-UT-4LZ"/>
                     <constraint firstItem="rzl-Jk-yaU" firstAttribute="top" secondItem="L5x-xu-iZT" secondAttribute="topMargin" constant="2" id="OA3-Rr-mwi"/>
                     <constraint firstAttribute="trailingMargin" secondItem="rJL-1T-MFm" secondAttribute="trailing" id="Uli-Nw-kRL"/>
@@ -104,7 +104,7 @@
                     <constraint firstItem="lbs-S3-GNR" firstAttribute="leading" secondItem="Dn2-jb-L5Z" secondAttribute="trailing" constant="10" id="gsY-ZM-bYF"/>
                     <constraint firstItem="Dn2-jb-L5Z" firstAttribute="top" secondItem="rJL-1T-MFm" secondAttribute="bottom" constant="10" id="ioi-kI-eW8"/>
                     <constraint firstItem="rJL-1T-MFm" firstAttribute="top" secondItem="tqn-kJ-tsK" secondAttribute="bottom" constant="8" id="ivV-ka-WeY"/>
-                    <constraint firstItem="tqn-kJ-tsK" firstAttribute="leading" secondItem="jNB-dN-sjL" secondAttribute="trailing" constant="8" id="pzr-Mn-alN"/>
+                    <constraint firstItem="tqn-kJ-tsK" firstAttribute="leading" secondItem="jNB-dN-sjL" secondAttribute="trailing" constant="4" id="pzr-Mn-alN"/>
                     <constraint firstAttribute="trailingMargin" secondItem="rzl-Jk-yaU" secondAttribute="trailing" id="twT-pg-pZn"/>
                 </constraints>
             </tableViewCellContentView>
@@ -116,7 +116,7 @@
                 <outlet property="mSailsNum" destination="rzl-Jk-yaU" id="Yol-nG-xAB"/>
                 <outlet property="mSpecBtn" destination="lbs-S3-GNR" id="XnW-OM-NDC"/>
             </connections>
-            <point key="canvasLocation" x="-36" y="47"/>
+            <point key="canvasLocation" x="59" y="67"/>
         </tableViewCell>
     </objects>
 </document>
