@@ -197,21 +197,13 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    //    if (self.tableArr.count > 0) {
-    //        UserAddressEditVC *vc = [[UserAddressEditVC alloc] init];
-    //        [self.navigationController pushViewController:vc animated:YES];
-    //    }
-    
-    if (indexPath.section == 1) {
+    if (self.tableArr.count > indexPath.row) {
         ZLSuperMarketShopViewController *vc = [ZLSuperMarketShopViewController new];
         vc.mType = ZLShopTypeHouseKeeping;
         vc.mShopObj = self.tableArr[indexPath.row];
-
+        
         [self pushViewController:vc];
     }
-    
-    
-    
 }
 
 /**
