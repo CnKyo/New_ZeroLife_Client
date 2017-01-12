@@ -70,22 +70,22 @@
     self.mGoodsCount.text = [NSString stringWithFormat:@"%@/%@",mGoods.pro_weight,mGoods.pro_unit];
     
     
-    NSDictionary* style = @{@"font" : [UIFont systemFontOfSize:13],
-                            @"color":[UIColor lightGrayColor]};
+//    NSDictionary* style = @{@"font" : [UIFont systemFontOfSize:13],
+//                            @"color":[UIColor lightGrayColor]};
     
     if (mGoods.skus.count<=0) {
         self.mGoodsPrice.text = [NSString stringWithFormat:@"保质期:%@",mGoods.pro_date_life];
     }else{
     
         for (ZLGoodsSKU *mSku in mGoods.skus) {
-            ZLGoodsSKU *mSku2 = mGoods.skus[0];
+            
             if (mGoods.sku_id == mSku.sku_id) {
            
-                self.mGoodsPrice.attributedText = [[NSString stringWithFormat:@"¥%.2f元  <color><font>%@</font></color>",mSku.sku_price,mSku.sta_val_name] attributedStringWithStyleBook:style];
+//                self.mGoodsPrice.attributedText = [[NSString stringWithFormat:@"¥%.2f元  <color><font>%@</font></color>",mSku.sku_price,mSku.sta_val_name] attributedStringWithStyleBook:style];
+                
+                self.mGoodsPrice.text = [NSString stringWithFormat:@"¥%.2f元",mSku.sku_price];
 
 
-            }else{
-                self.mGoodsPrice.attributedText = [[NSString stringWithFormat:@"¥%.2f元  <color><font>%@</font></color>",mSku2.sku_price,mSku2.sta_val_name] attributedStringWithStyleBook:style];
 
             }
         }
