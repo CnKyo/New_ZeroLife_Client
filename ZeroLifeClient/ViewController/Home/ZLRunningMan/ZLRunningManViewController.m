@@ -47,7 +47,7 @@ static int const ZLRunningManVC_ClassView_Height                  = 80;
 
     ZLPPTHomeClassList *mClassObj;
 
-    NSMutableArray *mTempArr;
+    //NSMutableArray *mTempArr;
     
     
     int mType;
@@ -190,7 +190,7 @@ static int const ZLRunningManVC_ClassView_Height                  = 80;
     self.navigationItem.title = @"跑跑腿";
     _mIndex = 0;
     mClassObj = [ZLPPTHomeClassList new];
-    mTempArr = [NSMutableArray new];
+    //mTempArr = [NSMutableArray new];
     [self initPPTLocation];
     [self addRightBtn:YES andTitel:@"发布跑单" andImage:nil];
     
@@ -239,18 +239,19 @@ static int const ZLRunningManVC_ClassView_Height                  = 80;
     NSArray *mTT = @[@"跑腿榜",@"我的跑单",@"酬金记录",@"我的评价"];
     NSArray *mII = @[@"ZLPPT_Anouncement",@"ZLPPT_My",@"ZLPPT_Reward",@"ZLPPT_Rate"];
     
+    NSMutableArray *arr = [NSMutableArray array];
     for (int i = 0; i<mTT.count; i++) {
         NSMutableDictionary *dic = [NSMutableDictionary new];
         
         [dic setObject:mTT[i] forKey:@"title"];
         [dic setObject:mII[i] forKey:@"img"];
         
-        [self.tableArr addObject:dic];
-        [self.tableView reloadData];
-        
+        [arr addObject:dic];
+        //[self.tableArr addObject:dic];
+        //[self.tableView reloadData];
     }
     
-    mTopView = [ZLRunningManTopView initView:self.tableArr];
+    mTopView = [ZLRunningManTopView initView:arr];
     mTopView.frame = CGRectMake(0, NAVBAR_Height, DEVICE_Width, ZLRunningManVC_TopView_Height);
     mTopView.delegate = self;
 
@@ -333,8 +334,7 @@ static int const ZLRunningManVC_ClassView_Height                  = 80;
 
   
     
-    if (_mIndex
-        <=0) {
+    if (_mIndex <=0) {
         _mIndex = 0;
     }
     
@@ -342,21 +342,22 @@ static int const ZLRunningManVC_ClassView_Height                  = 80;
     mType = [Util currentReleaseType:mClass.type_name];
     
     
-    [self showWithStatus:@"正在加载..."];
+    //[self showWithStatus:@"正在加载..."];
     [[APIClient sharedClient] ZLGetRunningmanHomeList:self.mAddress.cmut_lat andLng:self.mAddress.cmut_lng andPage:self.page andPageSize:20 andClsId:mClass.cls_id block:^(APIObject *mBaseObj, ZLRunningmanHomeList *mList) {
-        [mTempArr removeAllObjects];
-        if (mBaseObj.code == RESP_STATUS_YES) {
-            [mTempArr addObjectsFromArray:mList.list];
-            if (mList.list.count<=0) {
-                [self addEmptyView:self.tableView andType:ZLEmptyViewTypeWithCommon];
-            }
-            [self showSuccessStatus:@"加载成功！"];
-        }else{
-            [self showErrorStatus:mBaseObj.msg];
-            [self addEmptyView:self.tableView andType:ZLEmptyViewTypeWithCommon];
-        }
-        [self doneLoadingTableViewData];
-        [self.tableView reloadData];
+        [self reloadWithTableArr:mList.list info:mBaseObj];
+//        [mTempArr removeAllObjects];
+//        if (mBaseObj.code == RESP_STATUS_YES) {
+//            [mTempArr addObjectsFromArray:mList.list];
+//            if (mList.list.count<=0) {
+//                [self addEmptyView:self.tableView andType:ZLEmptyViewTypeWithCommon];
+//            }
+//            [self showSuccessStatus:@"加载成功！"];
+//        }else{
+//            [self showErrorStatus:mBaseObj.msg];
+//            [self addEmptyView:self.tableView andType:ZLEmptyViewTypeWithCommon];
+//        }
+//        [self doneLoadingTableViewData];
+//        [self.tableView reloadData];
 
     }];
 }
@@ -379,11 +380,8 @@ static int const ZLRunningManVC_ClassView_Height                  = 80;
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView              // Default is 1 if not implemented
 {
         return 1;
-  
-    
-    
-    
 }
+
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
 //    if (section == 0) {
 //        
@@ -401,6 +399,7 @@ static int const ZLRunningManVC_ClassView_Height                  = 80;
 //    }
     return 0;
 }
+
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
 //    if (section == 0) {
 //        
@@ -426,34 +425,20 @@ static int const ZLRunningManVC_ClassView_Height                  = 80;
 //    }
     return nil;
 }
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-   
-        return mTempArr.count;
-
-    
-   
-    
-    
+    return self.tableArr.count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-
-        return 127;
-
-    
+    return 127;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    
     NSString *reuseCellId = nil;
-    
-
-    
     reuseCellId = @"cell3";
     
     
@@ -461,12 +446,11 @@ static int const ZLRunningManVC_ClassView_Height                  = 80;
     cell.delegate = self;
     cell.mType = mType;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    [cell setMOrder:mTempArr[indexPath.row]];
+    [cell setMOrder:self.tableArr[indexPath.row]];
     return cell;
     
-    
-    
 }
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -476,7 +460,7 @@ static int const ZLRunningManVC_ClassView_Height                  = 80;
         return;
     }
     ZLPPTOrderDetailViewController *vc = [ZLPPTOrderDetailViewController new];
-    vc.mOrder = mTempArr[indexPath.row];
+    vc.mOrder = self.tableArr[indexPath.row];
     [self pushViewController:vc];
     
 //    OrderObject *item = [self.tableArr objectAtIndex:indexPath.row];
@@ -502,7 +486,7 @@ static int const ZLRunningManVC_ClassView_Height                  = 80;
  */
 - (void)ZLRunningManCellDelegateWithBtnClick:(NSIndexPath *)mIndexPath{
     
-    ZLRunningmanHomeOrder *mOrder = mTempArr[mIndexPath.row];
+    ZLRunningmanHomeOrder *mOrder = self.tableArr[mIndexPath.row];
     if ([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:kOpenState_NOTOPEN]) {
         UserPaoPaoRegisterVC*vc = [[UserPaoPaoRegisterVC alloc] initWithNibName:@"UserPaoPaoRegisterVC" bundle:nil];
         [self pushViewController:vc];
