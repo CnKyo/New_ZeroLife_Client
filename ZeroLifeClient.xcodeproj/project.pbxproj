@@ -45,6 +45,8 @@
 		040FA3A51E162B3400B8AF70 /* ZLPPTRateCell3.xib in Resources */ = {isa = PBXBuildFile; fileRef = 040FA3A41E162B3400B8AF70 /* ZLPPTRateCell3.xib */; };
 		040FE4321E275CD300742074 /* ZLCustomEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 040FE4311E275CD300742074 /* ZLCustomEmptyView.m */; };
 		040FE4341E275CDA00742074 /* ZLCustomEmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 040FE4331E275CDA00742074 /* ZLCustomEmptyView.xib */; };
+		040FE43A1E27788400742074 /* GPSLocationPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 040FE4371E27788400742074 /* GPSLocationPicker.m */; };
+		040FE43B1E27788400742074 /* GPSValidLocationPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 040FE4391E27788400742074 /* GPSValidLocationPicker.m */; };
 		04162DF81DCB2C9300FB4229 /* ZLHomeCoupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04162DF61DCB2C9300FB4229 /* ZLHomeCoupCell.m */; };
 		04162DF91DCB2C9300FB4229 /* ZLHomeCoupCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04162DF71DCB2C9300FB4229 /* ZLHomeCoupCell.xib */; };
 		04162DFF1DCB545200FB4229 /* ChineseToPinyin.m in Sources */ = {isa = PBXBuildFile; fileRef = 04162DFC1DCB545200FB4229 /* ChineseToPinyin.m */; };
@@ -679,6 +681,10 @@
 		040FE4301E275CD300742074 /* ZLCustomEmptyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLCustomEmptyView.h; sourceTree = "<group>"; };
 		040FE4311E275CD300742074 /* ZLCustomEmptyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLCustomEmptyView.m; sourceTree = "<group>"; };
 		040FE4331E275CDA00742074 /* ZLCustomEmptyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLCustomEmptyView.xib; sourceTree = "<group>"; };
+		040FE4361E27788400742074 /* GPSLocationPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPSLocationPicker.h; sourceTree = "<group>"; };
+		040FE4371E27788400742074 /* GPSLocationPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPSLocationPicker.m; sourceTree = "<group>"; };
+		040FE4381E27788400742074 /* GPSValidLocationPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPSValidLocationPicker.h; sourceTree = "<group>"; };
+		040FE4391E27788400742074 /* GPSValidLocationPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPSValidLocationPicker.m; sourceTree = "<group>"; };
 		04162DF51DCB2C9300FB4229 /* ZLHomeCoupCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLHomeCoupCell.h; sourceTree = "<group>"; };
 		04162DF61DCB2C9300FB4229 /* ZLHomeCoupCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLHomeCoupCell.m; sourceTree = "<group>"; };
 		04162DF71DCB2C9300FB4229 /* ZLHomeCoupCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLHomeCoupCell.xib; sourceTree = "<group>"; };
@@ -1685,6 +1691,17 @@
 				040FE4331E275CDA00742074 /* ZLCustomEmptyView.xib */,
 			);
 			path = ZLCustomEmptyView;
+			sourceTree = "<group>";
+		};
+		040FE4351E27788400742074 /* GPSLocationPicker */ = {
+			isa = PBXGroup;
+			children = (
+				040FE4361E27788400742074 /* GPSLocationPicker.h */,
+				040FE4371E27788400742074 /* GPSLocationPicker.m */,
+				040FE4381E27788400742074 /* GPSValidLocationPicker.h */,
+				040FE4391E27788400742074 /* GPSValidLocationPicker.m */,
+			);
+			path = GPSLocationPicker;
 			sourceTree = "<group>";
 		};
 		04162DFA1DCB544300FB4229 /* view */ = {
@@ -3369,6 +3386,7 @@
 		DFFAA7531DB744EF001CFBB5 /* OpenSourceLib */ = {
 			isa = PBXGroup;
 			children = (
+				040FE4351E27788400742074 /* GPSLocationPicker */,
 				040FE42F1E275CB000742074 /* ZLCustomEmptyView */,
 				046A75531E20C13300AF883C /* GuideView */,
 				043F69751E1A29C300B33EA0 /* ImageEffects */,
@@ -4155,10 +4173,12 @@
 				04721A231DE42C7F00CE8639 /* mBundleView.m in Sources */,
 				DF08E85E1DD1A82C003E4DD9 /* FeePayHistoryVC.m in Sources */,
 				041789D51DE01D9700D55EA7 /* ZLWebViewViewController.m in Sources */,
+				040FE43A1E27788400742074 /* GPSLocationPicker.m in Sources */,
 				DFFAA7621DB744EF001CFBB5 /* APIObjectDefine.m in Sources */,
 				049A12111DE9821E0087238D /* ZLSpeSelectedViewCell.m in Sources */,
 				DF8DBCB41DD0127D002E574B /* UIButton+CustomLocal.m in Sources */,
 				DF0308911DCD69DC00E1EAB6 /* UIViewController+Additions.m in Sources */,
+				040FE43B1E27788400742074 /* GPSValidLocationPicker.m in Sources */,
 				0416572B1DD6EE12004E7D9A /* ZLRepairsDetailViewController.m in Sources */,
 				DF630D0B1DD418360076A92C /* BaoXiuShopNoteView.m in Sources */,
 				04162DFF1DCB545200FB4229 /* ChineseToPinyin.m in Sources */,

@@ -37,6 +37,8 @@
 #import "ZLWebVc.h"
 #import "GuideView.h"
 #import "ZLNeighbourhoodViewController.h"
+#import "GPSValidLocationPicker.h"
+#import "GPSLocationPicker.h"
 
 #define NAVBAR_CHANGE_POINT 30
 @interface ZLHomeViewController ()<UITableViewDelegate,UITableViewDataSource,ZLHomeScrollerTableCellDelegate,ZLHomeLocationViewDelegate,ZLCoupViewDelegate,AMapLocationManagerDelegate,MMApBlockCoordinate>
@@ -103,9 +105,6 @@
     [self.navigationController.navigationBar lt_setBackgroundColor:[UIColor clearColor]];
     
     [self TableViewHaveHeader];
-
-    [self loadAddress];
-
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUserInfoNeedChange:) name:MyUserNeedUpdateNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUserInfoChange:) name:MyUserInfoChangedNotification object:nil];
@@ -211,8 +210,7 @@
     if (mCommunityObj.cmut_name.length > 0) {
         mLocationView.mAddress.text = mCommunityObj.cmut_name;
     }
-    
-    
+
     [self reloadTableViewDataSource];
 }
 #pragma mark ----****----社区选择view代理方法
@@ -268,7 +266,7 @@
     [header setTitle:@"" forState:MJRefreshStateIdle];
     [header setTitle:@"" forState:MJRefreshStatePulling];
     [header setTitle:@"" forState:MJRefreshStateRefreshing];
-
+    [self reloadTableViewDataSource];
 }
 
 
@@ -294,14 +292,15 @@
 - (void)reloadTableViewDataSource{
 
     [super reloadTableViewDataSource];
+    [self loadAddress];
 
     if (mCommunityObj.cmut_lat <= 0 || mCommunityObj.cmut_lng <= 0 ) {
-        [self loadAddress];
+        [self ZLHomLocationViewDidSelected];
+        [self endHeaderRereshing];
 
         return;
     }
     
-    [SVProgressHUD showWithStatus:@"加载中..."];
     [[APIClient sharedClient] ZLgetHomeBanner:^(APIObject *mBaseObj, ZLHomeFunvtionAndBanner *mFunc) {
         [mBannerArr removeAllObjects];
         [mFunctionArr removeAllObjects];
@@ -320,6 +319,7 @@
             
             [self addEmptyView:_mTableView andType:ZLEmptyViewTypeWithNoNet];
         }
+        [_mTableView reloadData];
         [self endHeaderRereshing];
 
     }];
@@ -336,6 +336,7 @@
         
             [self showErrorStatus:mBaseObj.msg];
         }
+        [_mTableView reloadData];
         [self endHeaderRereshing];
 
     }];
@@ -354,12 +355,44 @@
 - (void)MMapreturnLatAndLng:(NSDictionary *)mCoordinate{
     
     MLLog(@"定位成功之后返回的东东：%@",mCoordinate);
-    
     mCommunityObj.cmut_lat = [[mCoordinate objectForKey:@"wei"] doubleValue];
     mCommunityObj.cmut_lng = [[mCoordinate objectForKey:@"jing"] doubleValue];
-    [self beginHeaderRereshing];
 }
 
+- (void)updateLocationtitle{
+    GPSValidLocationPicker *gpsPicker = [GPSValidLocationPicker shareGPSValidLocationPicker];
+    //因为该类设计为单例模式，所以如果多处用则可能出现有些地方设置了变量值保留的问题，所以尽量在调用定位前进行一次重置
+    [gpsPicker resetDefaultVariable];
+    //测试用值
+    gpsPicker.timeoutPeriod = 5;
+    gpsPicker.precision = 100;
+    gpsPicker.validDistance = 1000;
+    //下面三个变量的默认值均为yes
+    gpsPicker.showWaitView = YES;
+    gpsPicker.showLocTime = YES;
+    gpsPicker.showDetailInfo = YES;
+    
+    gpsPicker.mode = GPSValidLocationPickerModeDeterminateHorizontalBar;
+    //这个坐标是测试用的,根据实际需求传入
+    CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(mCommunityObj.cmut_lat, mCommunityObj.cmut_lng);
+    gpsPicker.nowCoordinate = coord;
+    
+    [gpsPicker startLocationAndCompletion:^(CLLocation *location, NSError *error) {
+        if (error) {
+            MLLog(@"未采集到符合精度的坐标，错误信息:%@", error);
+        } else {
+            MLLog(@"采集到符合精度的坐标经度%f, 维度%f", location.coordinate.longitude, location.coordinate.latitude);
+            //反地理编码解析地理位置
+            [[GPSLocationPicker shareGPSLocationPicker] geocodeAddressWithCoordinate:location.coordinate completion:^(NSString *address) {
+                MLLog(@"解析到的地址:%@", address);
+                
+                mLocationView.mAddress.text = [NSString stringWithFormat:@"%@",address];
+                
+            }];
+        }
+    }];
+
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

@@ -64,7 +64,8 @@
 
     if (mCommunityAdd.cmut_lat <= 0 || mCommunityAdd.cmut_lng <= 0 ) {
         [self loadAddress];
-        
+        [self doneLoadingTableViewData];
+
         return;
     }
     

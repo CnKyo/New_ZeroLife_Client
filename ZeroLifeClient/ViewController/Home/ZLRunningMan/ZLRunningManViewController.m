@@ -135,7 +135,6 @@ static int const ZLRunningManVC_ClassView_Height                  = 80;
     
     _mAddress.cmut_lat = [[mCoordinate objectForKey:@"wei"] doubleValue];
     _mAddress.cmut_lng = [[mCoordinate objectForKey:@"jing"] doubleValue];
-    [self initPPTLocation];
 }
 #pragma mark----****----用户需要更新数据
 -(void)handleUserInfoNeedChange:(NSNotification *)note
