@@ -52,7 +52,8 @@
             
             
             for (ZLHomeBanner *mBanner in mBannerDataSource) {
-                [mImgUrl addObject:[Util currentSourceImgUrl:mBanner.bnr_image]];
+                NSString *str = [Util currentSourceImgUrl:mBanner.bnr_image];
+                [mImgUrl addObject:str];
             }
             
             mScrollerView = [[RKImageBrowser alloc] initWithFrame:CGRectMake(0, 0, screen_width, 150)];

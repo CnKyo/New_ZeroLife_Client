@@ -1979,7 +1979,7 @@ return [NSString stringWithFormat:@"%@%@%@",kAFAppDotNetImgBaseURLString,kAFAppD
             id mClassify = [info.data objectForKey:@"classify"];
             
             
-            mBannerArr = [ZLShopHomeCampaign mj_objectArrayWithKeyValuesArray:mBanner];
+            mBannerArr = [ZLHomeBanner mj_objectArrayWithKeyValuesArray:mBanner];
             
             mCampainArr = [ZLShopHomeCampaign mj_objectArrayWithKeyValuesArray:mCanpain];
 
