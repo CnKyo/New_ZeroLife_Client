@@ -567,6 +567,7 @@
                 ZLHomeAdvList *mAdv = mAdvDataSourceArr[indexPath.row];
                 ZLWebVc *vc = [ZLWebVc new];
                 vc.mUrl = mAdv.adv_click_url;
+                vc.mTitle = mAdv.adv_title;
                 vc.hidesBottomBarWhenPushed = YES;
 
                 [self pushViewController:vc];
