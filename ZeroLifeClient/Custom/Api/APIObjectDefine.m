@@ -166,6 +166,98 @@
 }
 
 
++(NSString *)strDesWithComplaintState:(kComplaintType)type
+{
+    NSString *str = @"";
+    switch (type) {
+        case kComplaintType_company:
+            str = @"对公司投诉";
+            break;
+        case kComplaintType_community:
+            str = @"物管投诉";
+            break;
+        case kComplaintType_people:
+            str = @"居民投诉";
+            break;
+        default:
+            break;
+    }
+    return str;
+}
+
++(NSString *)iconImgStrWithComplaintState:(kComplaintType)type
+{
+    NSString *str = @"";
+    switch (type) {
+        case kComplaintType_company:
+            str = @"cell_complaint_gongsi.png";
+            //str = @"对公司投诉";
+            break;
+        case kComplaintType_community:
+            str = @"cell_complaint_wuguan.png";
+            //str = @"物管投诉";
+            break;
+        case kComplaintType_people:
+            str = @"cell_complaint_juming.png";
+            //str = @"居民投诉";
+            break;
+        default:
+            break;
+    }
+    return str;
+}
+
+
++(NSString *)strDesWithOrderType:(kOrderClassType)type
+{
+    NSString *str = @"";
+    switch (type) {
+        case kOrderClassType_fix:
+            str = @"报修";
+            break;
+        case kOrderClassType_product:
+            str = @"购物";
+            break;
+        case kOrderClassType_dryclean:
+            str = @"干洗";
+            break;
+        case kOrderClassType_paopao:
+            str = @"跑跑腿";
+            break;
+        case kOrderClassType_paopao_apply:
+            str = @"跑跑腿申请";
+            break;
+        case kOrderClassType_fee_mobile:
+            str = @"手机充值";
+            break;
+        case kOrderClassType_fee_peroperty:
+            str = @"物管费";
+            break;
+        case kOrderClassType_balance_present:
+            str = @"余额提现";
+            break;
+        case kOrderClassType_balance_recharge:
+            str = @"余额充值";
+            break;
+        case kOrderClassType_balance_transfer:
+            str = @"转账";
+            break;
+        case kOrderClassType_balance_collection:
+            str = @"收款";
+            break;
+        case kOrderClassType_fee_sdq:
+            str = @"水电气缴费";
+            break;
+        case kOrderClassType_fee_parking:
+            str = @"停车缴费";
+            break;
+        default:
+            str = @"其它";
+            break;
+    }
+    return str;
+}
+
 
 +(NSString *)iconImgStrOrderType:(kOrderClassType)type
 {

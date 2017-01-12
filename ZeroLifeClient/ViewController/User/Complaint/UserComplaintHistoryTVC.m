@@ -72,22 +72,8 @@
     cell.timeLable.text = item.cpm_add_time;
     cell.msgLable.text = item.cpm_content;
     
-    switch (item.cpm_type) {
-        case kComplaintType_company:
-            cell.iconImgView.image = IMG(@"cell_complaint_gongsi.png");
-            cell.nameLable.text = @"对公司投诉";
-            break;
-        case kComplaintType_community:
-            cell.iconImgView.image = IMG(@"cell_complaint_wuguan.png");
-            cell.nameLable.text = @"物管投诉";
-            break;
-        case kComplaintType_people:
-            cell.iconImgView.image = IMG(@"cell_complaint_juming.png");
-            cell.nameLable.text = @"居民投诉";
-            break;
-        default:
-            break;
-    }
+    cell.nameLable.text = [NSString strDesWithComplaintState:item.cpm_type];
+    cell.iconImgView.image = [UIImage imageNamed:[NSString iconImgStrWithComplaintState:item.cpm_type]];
     
     return cell;
 }
@@ -96,11 +82,27 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-//    if (self.tableArr.count > 0) {
-//        UserAddressEditVC *vc = [[UserAddressEditVC alloc] init];
-//        [self.navigationController pushViewController:vc animated:YES];
-//    }
+    if (self.tableArr.count > indexPath.row) {
+        ComplaintObject *item = [self.tableArr objectAtIndex:indexPath.row];
+        
+        NSString *name = [NSString strDesWithComplaintState:item.cpm_type];
+        NSMutableString *str = [NSMutableString new];
+        [str appendFormat:@"时间：%@", item.cpm_add_time];
+        if (item.cmut_name.length > 0)
+            [str appendFormat:@"\n社区名称：%@", item.cmut_name];
+        if (item.cpm_staff.length > 0)
+            [str appendFormat:@"\n被投诉者：%@", item.cpm_staff];
+        if (item.cpm_content.length > 0)
+            [str appendFormat:@"\n投诉内容：%@", item.cpm_content];
+        [str appendFormat:@"\n处理结果：%@", item.cpm_handle_content.length>0 ? item.cpm_handle_content : @"暂无"];
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:name message:str preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) { }];
+        [alert addAction:cancel];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
 }
+
 
 - (void)reloadTableViewData{
     [self beginHeaderRereshing];

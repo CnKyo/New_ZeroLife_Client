@@ -435,6 +435,7 @@
         item.addr_city_val = component.city;
         item.addr_county_val = component.district;
         item.addr_address = response.regeocode.formattedAddress;
+        item.address = address;
         item.addr_lat = request.location.latitude;
         item.addr_lng = request.location.longitude;
         
