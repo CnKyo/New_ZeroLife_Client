@@ -282,9 +282,8 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     
     return 200;
-  
-    
 }
+
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     
     mHeadaerView = [ZLPayTypeHeaderView shareView];
