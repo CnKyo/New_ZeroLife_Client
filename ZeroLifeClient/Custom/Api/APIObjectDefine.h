@@ -850,7 +850,7 @@
 @property (strong,nonatomic) NSArray*           banner;     //!< banner
 @property (strong,nonatomic) NSArray*           functions;  //!< 功能分类
 @property (strong,nonatomic) NSArray*           campaign;   //!< 活动
-@property (strong,nonatomic) NSArray*           classify;   //!< 分类
+@property (strong,nonatomic) NSArray*           classify;   //!< 分类 ZLShopHomeClassify
 @end
 
 
@@ -890,6 +890,11 @@
 @property (assign,nonatomic) int                cls_sort;   //!< 排序
 @property (strong,nonatomic) NSString*          cls_state;
 @property (strong,nonatomic) NSString*          parent_name;
+@property (assign,nonatomic) kOrderClassType    class_type; //!< 分类类型
+
++(NSMutableArray *)arrWithClassType:(int)class_type; //!< 获取该类型下的分类集合
++(void)deleteAllWithClassType:(int)class_type callback:(void (^)(BOOL result))block; //!< 删除该类型下的分类集合
++(void)updateWithClassType:(int)class_type newArr:(NSArray *)arr; //!< 更新该类型下的分类集合
 @end
 
 

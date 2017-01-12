@@ -1156,6 +1156,36 @@ bool m_bind = NO;
 
 
 @implementation ZLShopHomeClassify
++ (nullable NSString *)getPrimaryKey
+{
+    return @"cls_id";
+}
+
+
++(NSMutableArray *)arrWithClassType:(int)class_type
+{
+    NSString *where = [NSString stringWithFormat:@"class_type=%i", class_type];
+    NSMutableArray *arr = [ZLShopHomeClassify searchWithWhere:where];
+    return arr;
+}
+
++(void)deleteAllWithClassType:(int)class_type callback:(void (^)(BOOL result))block
+{
+    NSString *where = [NSString stringWithFormat:@"class_type=%i", class_type];
+    
+    [[ZLShopHomeClassify getUsingLKDBHelper] deleteWithClass:[ZLShopHomeClassify class] where:where callback:^(BOOL result) {
+        block(result);
+    }];
+}
+
++(void)updateWithClassType:(int)class_type newArr:(NSArray *)arr
+{
+    [ZLShopHomeClassify deleteAllWithClassType:class_type callback:^(BOOL result) {
+        if (result == YES) {
+            [ZLShopHomeClassify insertArrayByAsyncToDB:arr];
+        }
+    }];
+}
 @end
 
 
