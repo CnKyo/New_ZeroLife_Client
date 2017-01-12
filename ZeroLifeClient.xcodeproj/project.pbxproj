@@ -43,6 +43,8 @@
 		040D92FF1DCAE84300DBE42E /* ZLHomeMsgDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 040D92FE1DCAE84300DBE42E /* ZLHomeMsgDetailCell.xib */; };
 		040E0C051E13DD7D001D4444 /* ZLRunningManCellDo.xib in Resources */ = {isa = PBXBuildFile; fileRef = 040E0C041E13DD7D001D4444 /* ZLRunningManCellDo.xib */; };
 		040FA3A51E162B3400B8AF70 /* ZLPPTRateCell3.xib in Resources */ = {isa = PBXBuildFile; fileRef = 040FA3A41E162B3400B8AF70 /* ZLPPTRateCell3.xib */; };
+		040FE4321E275CD300742074 /* ZLCustomEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 040FE4311E275CD300742074 /* ZLCustomEmptyView.m */; };
+		040FE4341E275CDA00742074 /* ZLCustomEmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 040FE4331E275CDA00742074 /* ZLCustomEmptyView.xib */; };
 		04162DF81DCB2C9300FB4229 /* ZLHomeCoupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04162DF61DCB2C9300FB4229 /* ZLHomeCoupCell.m */; };
 		04162DF91DCB2C9300FB4229 /* ZLHomeCoupCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04162DF71DCB2C9300FB4229 /* ZLHomeCoupCell.xib */; };
 		04162DFF1DCB545200FB4229 /* ChineseToPinyin.m in Sources */ = {isa = PBXBuildFile; fileRef = 04162DFC1DCB545200FB4229 /* ChineseToPinyin.m */; };
@@ -674,6 +676,9 @@
 		040D92FE1DCAE84300DBE42E /* ZLHomeMsgDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLHomeMsgDetailCell.xib; sourceTree = "<group>"; };
 		040E0C041E13DD7D001D4444 /* ZLRunningManCellDo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLRunningManCellDo.xib; sourceTree = "<group>"; };
 		040FA3A41E162B3400B8AF70 /* ZLPPTRateCell3.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLPPTRateCell3.xib; sourceTree = "<group>"; };
+		040FE4301E275CD300742074 /* ZLCustomEmptyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLCustomEmptyView.h; sourceTree = "<group>"; };
+		040FE4311E275CD300742074 /* ZLCustomEmptyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLCustomEmptyView.m; sourceTree = "<group>"; };
+		040FE4331E275CDA00742074 /* ZLCustomEmptyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLCustomEmptyView.xib; sourceTree = "<group>"; };
 		04162DF51DCB2C9300FB4229 /* ZLHomeCoupCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLHomeCoupCell.h; sourceTree = "<group>"; };
 		04162DF61DCB2C9300FB4229 /* ZLHomeCoupCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLHomeCoupCell.m; sourceTree = "<group>"; };
 		04162DF71DCB2C9300FB4229 /* ZLHomeCoupCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLHomeCoupCell.xib; sourceTree = "<group>"; };
@@ -1670,6 +1675,16 @@
 				040D92FE1DCAE84300DBE42E /* ZLHomeMsgDetailCell.xib */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		040FE42F1E275CB000742074 /* ZLCustomEmptyView */ = {
+			isa = PBXGroup;
+			children = (
+				040FE4301E275CD300742074 /* ZLCustomEmptyView.h */,
+				040FE4311E275CD300742074 /* ZLCustomEmptyView.m */,
+				040FE4331E275CDA00742074 /* ZLCustomEmptyView.xib */,
+			);
+			path = ZLCustomEmptyView;
 			sourceTree = "<group>";
 		};
 		04162DFA1DCB544300FB4229 /* view */ = {
@@ -3354,6 +3369,7 @@
 		DFFAA7531DB744EF001CFBB5 /* OpenSourceLib */ = {
 			isa = PBXGroup;
 			children = (
+				040FE42F1E275CB000742074 /* ZLCustomEmptyView */,
 				046A75531E20C13300AF883C /* GuideView */,
 				043F69751E1A29C300B33EA0 /* ImageEffects */,
 				043F69711E19E3D700B33EA0 /* CustomProgress */,
@@ -3788,6 +3804,7 @@
 				04866B8C1DD40E53008DA56B /* ZLSuperMarketShopCarCell.xib in Resources */,
 				DFE178691DD555C100E06F21 /* order_fix@2x.png in Resources */,
 				047109CA1DE294BF00CFA292 /* ZLORderReturnCell.xib in Resources */,
+				040FE4341E275CDA00742074 /* ZLCustomEmptyView.xib in Resources */,
 				DF630D4F1DD45D790076A92C /* purse_erweima@3x.png in Resources */,
 				DFBAA9781DF149AD004315F9 /* singIn_p@3x.png in Resources */,
 				DFE178CD1DD575E700E06F21 /* cell_complaint_juming@2x.png in Resources */,
@@ -4212,6 +4229,7 @@
 				DF630D2B1DD449C10076A92C /* ZLPurseViewController.m in Sources */,
 				DF29B67A1E10BFEB00CBAA3B /* CreatQRCodeAndBarCodeFromLeon.m in Sources */,
 				04A8DA0D1DDAB1E3000CE048 /* ZLPPTOrderDetailViewController.m in Sources */,
+				040FE4321E275CD300742074 /* ZLCustomEmptyView.m in Sources */,
 				041789CB1DDFE40500D55EA7 /* MZTimerLabel.m in Sources */,
 				DF98EC381DD2AE880006EBFE /* OrderGoodsThumbListView.m in Sources */,
 				DFBF96DF1E0A1921004E8107 /* AddressCommunityChooseTVC.m in Sources */,

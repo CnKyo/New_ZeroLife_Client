@@ -184,12 +184,23 @@ typedef enum{
 -(void)showErrorStatus:(NSString *)astr;
 
 
-#pragma mark----****----恐是徒
+#pragma mark----****----空视图
 - (void)ZLShowEmptyView:(NSString *)mText andImage:(NSString *)mImgName andHiddenRefreshBtn:(BOOL)mHidden;
-
+#pragma mark----****----隐藏空视图
 - (void)ZLHideEmptyView;
 ///重新加载数据
 - (void)reloadTableViewData;
-
+#pragma mark----****----加载空视图
 - (void)addEmptyView:(UITableView *)mTableView andType:(ZLEmptyViewType)mType;
+#pragma mark----****----加载table空视图
+/**
+ 添加table空view
+
+ @param mString 提示语
+ @param mHidden 是否显示刷新按钮
+ */
+- (void)addTableEmptyViewWithTitle:(NSString *)mString andHiddenRefresh:(BOOL)mHidden;
+#pragma mark----****----隐藏空视图
+- (void)hiddenTableEmptyView;
+
 @end

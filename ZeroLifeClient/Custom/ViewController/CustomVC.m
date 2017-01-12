@@ -11,8 +11,12 @@
 #import "MTAConfig.h"
 #import "CustomDefine.h"
 #import <JHUD.h>
-@interface CustomVC ()<UIGestureRecognizerDelegate>
+#import "ZLCustomEmptyView.h"
+@interface CustomVC ()<UIGestureRecognizerDelegate,ZLCustomEmptyViewDelegate>
 @property (nonatomic) JHUD *hudView;
+
+@property (strong,nonatomic) ZLCustomEmptyView *emptyView;
+
 
 @end
 
@@ -766,7 +770,39 @@
     [self reloadTableViewData];
 }
 
+#pragma mark----****----加载table空视图
+/**
+ 添加table空view
+ 
+ @param mString 提示语
+ @param mHidden 是否显示刷新按钮
+ */
+- (void)addTableEmptyViewWithTitle:(NSString *)mString andHiddenRefresh:(BOOL)mHidden{
+    
+    
+    self.tableView.emptyDataSetSource = nil;
+    self.tableView.emptyDataSetDelegate = nil;
+    
+    _emptyView = [ZLCustomEmptyView initView];
+    _emptyView.mBtn.hidden = mHidden;
+    _emptyView.frame = CGRectMake(0, 100, DEVICE_Width, 200);
+    _emptyView.backgroundColor = [UIColor clearColor];
+    _emptyView.delegate = self;
 
+    self.tableView.tableFooterView = _emptyView;
 
+    
+}
+
+#pragma mark----****----隐藏空视图
+- (void)hiddenTableEmptyView{
+
+    self.tableView.tableFooterView = nil;
+
+}
+#pragma mark----****----重新加载数据
+- (void)wk_emptyViewDidClicked{
+
+}
 
 @end

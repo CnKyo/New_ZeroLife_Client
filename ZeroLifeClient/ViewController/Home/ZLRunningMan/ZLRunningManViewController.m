@@ -333,8 +333,7 @@ static int const ZLRunningManVC_ClassView_Height                  = 80;
 
   
     
-    if (_mIndex
-        <=0) {
+    if (_mIndex<=0) {
         _mIndex = 0;
     }
     
@@ -723,5 +722,4 @@ static int const ZLRunningManVC_ClassView_Height                  = 80;
     MLLog(@"%ld",(long)mIndex);
     [self beginHeaderRereshing];
 }
-
 @end

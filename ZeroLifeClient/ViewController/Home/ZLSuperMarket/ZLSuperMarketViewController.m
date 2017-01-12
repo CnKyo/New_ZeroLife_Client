@@ -33,7 +33,8 @@
     
     ZLSuperMarketSearchView *mSearchView;
     
-
+    BOOL isClassOrTable;
+    NSInteger kIndex;
 
 }
 
@@ -52,7 +53,7 @@
 //    mSearchView.frame = CGRectMake(0, 0, 200, 30);
 //    self.navigationItem.titleView = mSearchView;
 //    [self addRightBtn:YES andTitel:@"搜索" andImage:nil];
-
+    kIndex = 0;
     
     [self addTableView];
 
@@ -92,34 +93,55 @@
             [mCampainArr addObjectsFromArray:mShopHome.campaign];
             [mClassifyArr addObjectsFromArray:mShopHome.classify];
             [self loadData];
+
         }else{
         
             [self showErrorStatus:mBaseObj.msg];
-            [self ZLShowEmptyView:mBaseObj.msg andImage:nil andHiddenRefreshBtn:NO];
+            [self addTableEmptyViewWithTitle:mBaseObj.msg andHiddenRefresh:NO];
         }
         
         [self doneHeaderRereshing];
 
     }];
     
+}
 
+- (void)wk_emptyViewDidClicked{
+    
+    if (isClassOrTable) {
+        [self beginHeaderRereshing];
+    }else{
+        [self upDatePage:mClassifyArr[kIndex]];
+
+    }
     
     
 }
 
 - (void)loadData{
+    
+    isClassOrTable = YES;
+    
     if (mClassifyArr.count>0) {
         ZLShopHomeClassify *mShopClassify = mClassifyArr[0];
         [[APIClient sharedClient] ZLGetShopHomeShopList:self.mType andLat:self.mLat andLng:self.mLng andClassId:[NSString stringWithFormat:@"%d",mShopClassify.cls_id] andPage:1 block:^(APIObject *mBaseObj, ZLShopHomeShopList *mShopList) {
-            
+            [self hiddenTableEmptyView];
+
             [self.tableArr removeAllObjects];
             if (mBaseObj.code == RESP_STATUS_YES) {
                 
                 [self.tableArr addObjectsFromArray:mShopList.list];
                 
+                if (mShopList.list.count <= 0) {
+                    [self addTableEmptyViewWithTitle:mBaseObj.msg andHiddenRefresh:NO];
+                }
+                
+                
             }else{
                 
                 [self showErrorStatus:mBaseObj.msg];
+                [self addTableEmptyViewWithTitle:mBaseObj.msg andHiddenRefresh:NO];
+
             }
             [self doneHeaderRereshing];
             
@@ -289,20 +311,26 @@
  @param mIndex 索引
  */
 - (void)ZLSupermarketClassCellDidSelectedWithIndex:(NSInteger)mIndex{
+    isClassOrTable = NO;
+    kIndex = mIndex;
     [self upDatePage:mClassifyArr[mIndex]];
 }
 - (void)upDatePage:(ZLShopHomeClassify *)mClassiFy{
 
     [[APIClient sharedClient] ZLGetShopHomeShopList:self.mType andLat:self.mLat andLng:self.mLng andClassId:[NSString stringWithFormat:@"%d",mClassiFy.cls_id] andPage:1 block:^(APIObject *mBaseObj, ZLShopHomeShopList *mShopList) {
-        
+        [self hiddenTableEmptyView];
         [self.tableArr removeAllObjects];
         if (mBaseObj.code == RESP_STATUS_YES) {
             
             [self.tableArr addObjectsFromArray:mShopList.list];
-            
+            if (mShopList.list.count <= 0) {
+                [self addTableEmptyViewWithTitle:mBaseObj.msg andHiddenRefresh:NO];
+            }
         }else{
         
             [self showErrorStatus:mBaseObj.msg];
+            [self addTableEmptyViewWithTitle:mBaseObj.msg andHiddenRefresh:NO];
+
         }
         [self.tableView reloadData];
     }];
