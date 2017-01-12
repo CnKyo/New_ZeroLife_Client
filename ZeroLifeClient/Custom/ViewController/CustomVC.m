@@ -404,10 +404,19 @@
         }
         
     } else {
-        if (_page > 1)
-            self.page --;
-        else
+        if (info.code == RESP_STATUS_YES) {
+            self.tableView.mj_footer.state = MJRefreshStateNoMoreData;
+        }
+        
+        if (_page <= 1) {
             [self.tableArr removeAllObjects];
+        }
+        
+//        if (_page > 1)
+//            self.page --;
+//        else {
+//            [self.tableArr removeAllObjects];
+//        }
         
         if (info.code != RESP_STATUS_YES){
             self.errMsg = info.msg!=nil ? info.msg : @"网络错误";
