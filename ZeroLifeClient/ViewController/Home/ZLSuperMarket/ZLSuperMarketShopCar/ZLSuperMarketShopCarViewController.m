@@ -247,7 +247,7 @@
  去结算
  */
 - (void)ZLShopCarBottomGoPay{
-    
+    [mPayArr removeAllObjects];
     if (mAddArr.count <= 0) {
         [self showErrorStatus:@"亲，快去选择商品结算吧！"];
         return;
