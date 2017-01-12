@@ -746,18 +746,14 @@
     [self hiddenSpeView];
     
     NSMutableArray *mPayArr = [NSMutableArray new];
-    NSMutableDictionary *mPara = [NSMutableDictionary new];
     
-    for (ZLSpeObj *mSP in self.mAddSkuArray) {
-        if (mSP.mSku.sta_required == 1) {
-            [mPara setInt:mSP.mSku.sku_id forKey:@"sku_id"];
-        }
-        
-    }
+
     [self.mAddSkuArray removeAllObjects];
     
     
     for (LKDBHelperGoodsObj *mGoods in mShopCarArr) {
+        NSMutableDictionary *mPara = [NSMutableDictionary new];
+
         [mPara setInt:mGoods.mGoodsId forKey:@"pro_id"];
         [mPara setInt:mGoods.mExtObj.mGoodsNum forKey:@"odrg_number"];
         [mPara setInt:mGoods.mCampId forKey:@"cam_gid"];
@@ -792,6 +788,7 @@
         if (mBaseObj.code == RESP_STATUS_YES) {
             [SVProgressHUD dismiss];
             ZLSuperMarketCommitOrderViewController *ZLCommitVC = [ZLSuperMarketCommitOrderViewController new];
+            ZLCommitVC.mOrderType = _mType;
             ZLCommitVC.mPreOrder = [ZLPreOrderObj new];
             ZLCommitVC.mPreOrder =  mPreOrder;
             

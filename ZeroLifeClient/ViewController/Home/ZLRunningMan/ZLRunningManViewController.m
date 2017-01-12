@@ -369,6 +369,7 @@ static int const ZLRunningManVC_ClassView_Height                  = 80;
     }
     ZLPPTOrderDetailViewController *vc = [ZLPPTOrderDetailViewController new];
     vc.mOrder = self.tableArr[indexPath.row];
+    [self pushViewController:vc];
 
 }
 
