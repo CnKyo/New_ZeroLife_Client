@@ -15,5 +15,6 @@
 ///获取网络视频的缩略图
 +(UIImage *)getThumbnailImage:(NSString *)videoURL;
 
-
+///获取指定文件大小的图片
++ (NSData *)compressImage:(UIImage *)image toMaxFileSize:(NSInteger)maxFileSize;
 @end

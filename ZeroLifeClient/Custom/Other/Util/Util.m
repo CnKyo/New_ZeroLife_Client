@@ -1678,7 +1678,7 @@
     if (mUrl.length > 0)
         return [NSString stringWithFormat:@"%@/%@",kAFAppDotNetImgBaseURLString,[mUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     
-    return @"空";
+    return @"";
 }
 #pragma mark----字符串拼接成数组
 /**

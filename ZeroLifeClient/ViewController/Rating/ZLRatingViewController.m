@@ -8,6 +8,7 @@
 
 #import "ZLRatingViewController.h"
 #import "ZLRatingTableViewCell.h"
+#import "UIImage+ThumbnailImage.h"
 
 @interface ZLRatingViewController ()<UITableViewDelegate,UITableViewDataSource,ZLRatingTableViewCellDelegate>
 @property(nonatomic,assign) double com_star;
@@ -64,7 +65,7 @@
     if (_com_imgsArr.count > 0) {
         NSMutableArray *arr = [NSMutableArray array];
         for (UIImage *img in _com_imgsArr) {
-            NSData* data = UIImageJPEGRepresentation(img, 1.0);
+            NSData* data = [UIImage compressImage:img toMaxFileSize:200];
             [arr addObject:data];
         }
         
