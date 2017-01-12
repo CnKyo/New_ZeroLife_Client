@@ -1956,14 +1956,12 @@ return [NSString stringWithFormat:@"%@%@%@",kAFAppDotNetImgBaseURLString,kAFAppD
 
     NSMutableDictionary *para = [NSMutableDictionary new];
     
-    
-    if (mLat) {
+    if (mLat)
         [para setNeedStr:mLat forKey:@"lat"];
-    }
-    if (mLng) {
+    
+    if (mLng)
         [para setNeedStr:mLng forKey:@"lng"];
-        
-    }
+    
     
     [para setInt:mType forKey:@"shop_type"];
     
@@ -1980,25 +1978,16 @@ return [NSString stringWithFormat:@"%@%@%@",kAFAppDotNetImgBaseURLString,kAFAppD
             id mCanpain = [info.data objectForKey:@"campaign"];
             id mClassify = [info.data objectForKey:@"classify"];
             
-            if ([mBanner isKindOfClass:[NSArray class]]) {
-                for (NSDictionary *dic in mBanner) {
-                    
-                    [mBannerArr addObject:[ZLHomeBanner mj_objectWithKeyValues:dic]];
-                    
-                }
-            }
-            if ([mCanpain isKindOfClass:[NSArray class]]) {
-                for (NSDictionary *dic in mCanpain) {
-                    
-                    [mCampainArr addObject:[ZLShopHomeCampaign mj_objectWithKeyValues:dic]];
-                    
-                }
-            }
+            
+            mBannerArr = [ZLShopHomeCampaign mj_objectArrayWithKeyValuesArray:mBanner];
+            
+            mCampainArr = [ZLShopHomeCampaign mj_objectArrayWithKeyValuesArray:mCanpain];
+
             if ([mClassify isKindOfClass:[NSArray class]]) {
                 for (NSDictionary *dic in mClassify) {
-                    
-                    [mClassifyArr addObject:[ZLShopHomeClassify mj_objectWithKeyValues:dic]];
-                    
+                    ZLShopHomeClassify *aa = [ZLShopHomeClassify mj_objectWithKeyValues:dic];
+                    aa.class_type = mType;
+                    [mClassifyArr addObject:aa];
                 }
             }
             
@@ -2014,9 +2003,6 @@ return [NSString stringWithFormat:@"%@%@%@",kAFAppDotNetImgBaseURLString,kAFAppD
         }
         
     }];
-    
-    
-    
     
 }
 

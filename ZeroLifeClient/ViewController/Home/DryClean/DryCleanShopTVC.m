@@ -13,6 +13,10 @@
 #import "ZLSuperMarketShopViewController.h"
 #import "ZLHouseKeepingClearnCell.h"
 @interface DryCleanShopTVC ()<ZLHouseKeepingClearnCellDelegate>
+@property(nonatomic,strong) NSMutableArray *classArr;
+@property(nonatomic,strong) ZLShopHomeClassify *classCurrentItem;
+
+@property(nonatomic,strong) ZLHouseKeepingClearnCell *classView;
 
 @end
 
@@ -31,69 +35,111 @@
     [super viewDidLoad];
     self.title = @"家政干洗";
     
-    mShopArr = [NSMutableArray new];
+    self.beginHeaderRereshingWhenViewWillAppear = NO;
+    self.classArr = [NSMutableArray new];
+    
     
     [self addTableView];
+    [self setTableViewHaveHeader];
     [self setTableViewHaveHeaderFooter];
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     
 
-    [self setTableViewHaveHeader];
-
+    [self loadClassData];
+    
 }
 
+
+//加载分类数据
+-(void)loadClassData
+{
+    NSMutableArray *arr = [ZLShopHomeClassify arrWithClassType:self.mType];
+    [self reloadClassData:arr]; //先加载本地数据
+
+    [self loadClassDataWithNetwork];
+}
+
+-(void)loadClassDataWithNetwork
+{
+    [[APIClient sharedClient] ZLGetShopHomePage:self.mLat andLng:self.mLng andType:self.mType block:^(APIObject *mBaseObj, ZLShopHomePage *mShopHome) {
+        
+        if (mBaseObj.code == RESP_STATUS_YES) {
+            [ZLShopHomeClassify updateWithClassType:self.mType newArr:mShopHome.classify];
+            
+            [self reloadClassData:mShopHome.classify];
+        } else {
+            if (_classArr.count == 0)
+                [self reloadClassData:mShopHome.classify];
+        
+            [SVProgressHUD showErrorWithStatus:mBaseObj.msg];
+        }
+    }];
+}
+
+//设置分类数据
+-(void)reloadClassData:(NSArray *)arr
+{
+    if (arr.count > 0) {
+        [self.classArr setArray:arr];
+        [self reloadClassUI];
+        
+        ZLShopHomeClassify *item0 = [arr objectAtIndex:0];
+        [self loadTableArrWithItem:item0];
+    } else {
+        [self addEmptyView:self.tableView andType:ZLEmptyViewTypeWithNoData];
+    }
+}
+
+//根据数据显示界面UI
+-(void)reloadClassUI
+{
+    UIView *view = self.view;
+    
+    NSUInteger row = self.classArr.count/4;
+    if (self.classArr.count%4 != 0)
+        row ++;
+    CGFloat height = row * 90;
+    
+    ZLHouseKeepingClearnCell *cell = [[ZLHouseKeepingClearnCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell2" andDataSource:self.classArr];
+    cell.delegate = self;
+    [view addSubview:cell];
+    self.classView = cell;
+    [cell makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(view);
+        make.top.equalTo(view.top).offset(NAVBAR_Height);
+        make.height.equalTo(height);
+    }];
+    [self.tableView remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.equalTo(view);
+        make.top.equalTo(view.top).offset(height);
+    }];
+    
+}
+
+-(void)loadTableArrWithItem:(ZLShopHomeClassify *)mClassiFy
+{
+    self.classCurrentItem = mClassiFy;
+    self.page = 1;
+    [self beginHeaderRereshing];
+}
+
+//点击空白重新刷新
 - (void)reloadTableViewData{
-    [self reloadTableViewDataSource];
+    if (_classArr.count > 0) {
+        [self beginHeaderRereshing];
+    } else {
+        [self loadClassDataWithNetwork];
+    }
 }
 
 - (void)reloadTableViewDataSource{
     [super reloadTableViewDataSource];
     
-    [[APIClient sharedClient] ZLGetShopHomePage:self.mLat andLng:self.mLng andType:self.mType block:^(APIObject *mBaseObj, ZLShopHomePage *mShopHome) {
-        
-        [self.tableArr removeAllObjects];
-        
-        [self ZLHideEmptyView];
-        if (mBaseObj.code == RESP_STATUS_YES) {
-            
-            [self.tableArr addObjectsFromArray:mShopHome.classify];
-            
-            [self loadData];
-            
-            
-        }else{
-            
-            [self showErrorStatus:mBaseObj.msg];
-            [self addEmptyView:self.tableView andType:ZLEmptyViewTypeWithCommon];
-        }
-        
-        [self doneHeaderRereshing];
-        
+    ZLShopHomeClassify *mShopClassify = _classCurrentItem;
+    [[APIClient sharedClient] ZLGetShopHomeShopList:self.mType andLat:self.mLat andLng:self.mLng andClassId:[NSString stringWithFormat:@"%d",mShopClassify.cls_id] andPage:1 block:^(APIObject *mBaseObj, ZLShopHomeShopList *mShopList) {
+        [self reloadWithTableArr:mShopList.list info:mBaseObj];
     }];
-    
-    
-    
-}
-- (void)loadData{
-    if (self.tableArr.count>0) {
-        ZLShopHomeClassify *mShopClassify = self.tableArr[0];
-        [[APIClient sharedClient] ZLGetShopHomeShopList:self.mType andLat:self.mLat andLng:self.mLng andClassId:[NSString stringWithFormat:@"%d",mShopClassify.cls_id] andPage:1 block:^(APIObject *mBaseObj, ZLShopHomeShopList *mShopList) {
-            
-            [mShopArr removeAllObjects];
-            if (mBaseObj.code == RESP_STATUS_YES) {
-                
-                [mShopArr addObjectsFromArray:mShopList.list];
-                
-            }else{
-                
-                [self showErrorStatus:mBaseObj.msg];
-            }
-            [self doneHeaderRereshing];
-            
-        }];
-        
-    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -111,12 +157,6 @@
 }
 */
 
-- (void)segmentedControlChangedValue:(HMSegmentedControl *)segmentedControl {
-    NSLog(@"Selected index %ld (via UIControlEventValueChanged)", (long)segmentedControl.selectedSegmentIndex);
-    
-    [self.tableArr removeAllObjects];
-    [self beginHeaderRereshing];
-}
 
 
 #pragma mark -- tableviewDelegate
@@ -126,93 +166,44 @@
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView              // Default is 1 if not implemented
 {
-
-    return 2;
-
-    
-    
-    
+    return 1;
 }
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    
-    if (section == 0) {
-        return 1;
-    }else{
-        return mShopArr.count;
-    }
-    
-    
+    return self.tableArr.count;
 }
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0) {
-        
-        if (self.tableArr.count<=4) {
-            return 180-90;
-        }else{
-            return 180;
-        }
-        
-        
-    }else{
-//        return [super tableView:tableView heightForRowAtIndexPath:indexPath];
-        MLLog(@"---HHHH:%f",[super tableView:tableView heightForRowAtIndexPath:indexPath]);
-        return 80;
-    }
- 
+    return 80;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    static NSString *CellIdentifier = @"Cell_DryCleanShopTVCTableViewCell";
+    DryCleanShopTableViewCell *cell = [[DryCleanShopTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    cell.selectionStyle = UITableViewCellSelectionStyleGray;
     
-    if (indexPath.section == 0) {
-        
-
-        ZLHouseKeepingClearnCell *cell = [[ZLHouseKeepingClearnCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell2" andDataSource:self.tableArr];
-        
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-     
-        cell.delegate = self;
-        
-        return cell;
-
-    }else{
-        static NSString *CellIdentifier = @"Cell_DryCleanShopTVCTableViewCell";
-        DryCleanShopTableViewCell *cell = [[DryCleanShopTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        cell.selectionStyle = UITableViewCellSelectionStyleGray;
-        
-        
-        cell.backgroundColor = [UIColor whiteColor];
-        
-        [cell setMShopObj:mShopArr[indexPath.row]];
-        
-
-        return cell;
-        
-
-    }
-
+    
+    cell.backgroundColor = [UIColor whiteColor];
+    
+    [cell setMShopObj:self.tableArr[indexPath.row]];
+    
+    
+    return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    //    if (self.tableArr.count > 0) {
-    //        UserAddressEditVC *vc = [[UserAddressEditVC alloc] init];
-    //        [self.navigationController pushViewController:vc animated:YES];
-    //    }
-    
-    if (indexPath.section == 1) {
+    if (self.tableArr.count > indexPath.row) {
         ZLSuperMarketShopViewController *vc = [ZLSuperMarketShopViewController new];
         vc.mType = ZLShopTypeHouseKeeping;
-        vc.mShopObj = mShopArr[indexPath.row];
-
+        vc.mShopObj = self.tableArr[indexPath.row];
+        
         [self pushViewController:vc];
     }
-    
-    
-    
 }
 
 /**
@@ -223,24 +214,9 @@
 - (void)ZLHouseKeepingClearnCellWithCatigryDidSelectedIndex:(NSInteger)mIndex{
 
     MLLog(@"----------******---：%ld",(long)mIndex);
-    [self upDatePage:self.tableArr[mIndex]];
-}
-- (void)upDatePage:(ZLShopHomeClassify *)mClassiFy{
-    [self showWithStatus:@"加载中..."];
-    [[APIClient sharedClient] ZLGetShopHomeShopList:self.mType andLat:self.mLat andLng:self.mLng andClassId:[NSString stringWithFormat:@"%d",mClassiFy.cls_id] andPage:1 block:^(APIObject *mBaseObj, ZLShopHomeShopList *mShopList) {
-        
-        [mShopArr removeAllObjects];
-        if (mBaseObj.code == RESP_STATUS_YES) {
-            [self dismiss];
-            [mShopArr addObjectsFromArray:mShopList.list];
-            
-        }else{
-            
-            [self showErrorStatus:mBaseObj.msg];
-        }
-        [self.tableView reloadData];
-    }];
     
+    [self loadTableArrWithItem:self.classArr[mIndex]];
 }
+
 
 @end
