@@ -14,7 +14,7 @@
 
 #import "ZLWebVc.h"
 @interface ZLTenementRepairsViewController ()<UITableViewDelegate,UITableViewDataSource,ZLRepairsColumsViewDelegate>
-
+@property(nonatomic,strong) NSMutableArray *classArr;
 @end
 
 @implementation ZLTenementRepairsViewController
@@ -25,6 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.classArr = [NSMutableArray array];
     
     self.navigationItem.title = @"物业报修";
     
@@ -32,7 +33,9 @@
 
     
     [self initView];
-
+    
+    
+    [self loadClassData];
 }
 
 - (void)initView{
@@ -49,17 +52,28 @@
     
 }
 
+//加载分类数据
+-(void)loadClassData
+{
+    NSMutableArray *arr = [ZLShopHomeClassify arrWithClassType:self.mType];
+    [self.classArr setArray:arr];
+    [self replaceDataSource]; //先加载本地数据
+    if (self.classArr.count > 0) {
+        [self reloadTableViewDataSource]; //重新下载数据
+    }
+}
+
+
 - (void)reloadTableViewDataSource{
     [super reloadTableViewDataSource];
     
     [[APIClient sharedClient] ZLGetShopHomePage:self.mLat andLng:self.mLng andType:self.mType block:^(APIObject *mBaseObj, ZLShopHomePage *mShopHome) {
         
-        [self.tableArr removeAllObjects];
-      
         [self ZLHideEmptyView];
         if (mBaseObj.code == RESP_STATUS_YES) {
 
-            [self.tableArr addObjectsFromArray:mShopHome.classify];
+            [ZLShopHomeClassify updateWithClassType:self.mType newArr:mShopHome.classify];
+            [self.classArr setArray:mShopHome.classify];
             [self replaceDataSource];
             
         }else{
@@ -79,8 +93,8 @@
 
     NSMutableArray *mClassArr = [NSMutableArray new];
     
-    for (int i =0; i<self.tableArr.count; i++) {
-        ZLShopHomeClassify *mOne = self.tableArr[i];
+    for (int i =0; i<self.classArr.count; i++) {
+        ZLShopHomeClassify *mOne = self.classArr[i];
         BOOL mIsAdd = YES;
         for (int j = 0; j<mClassArr.count; j++) {
             
@@ -121,8 +135,7 @@
         
     }
     
-    [self.tableArr removeAllObjects];
-    [self.tableArr addObjectsFromArray:mClassArr];
+    [self.tableArr setArray:mClassArr];
     [self.tableView reloadData];
     
 }

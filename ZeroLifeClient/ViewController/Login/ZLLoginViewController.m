@@ -106,7 +106,7 @@
 - (void)ZLLoginWithLoginAction{
     
     if (mMainView.mLoginPhoneTx.text.length <=0) {
-        [self showErrorStatus:@"手机号不能为空"];
+        [self showErrorStatus:@"登录账号不能为空"];
         [mMainView.mLoginPhoneTx becomeFirstResponder];
         return;
     }if (mMainView.mLoginPwdTx.text.length <= 0) {
@@ -115,12 +115,12 @@
         return;
     }
     
-    if (![Util isMobileNumber:mMainView.mLoginPhoneTx.text]) {
-        [self showErrorStatus:@"您输入的手机号码有误！请重新输入！"];
-        [mMainView.mLoginPhoneTx becomeFirstResponder];
-
-        return;
-    }
+//    if (![Util isMobileNumber:mMainView.mLoginPhoneTx.text]) {
+//        [self showErrorStatus:@"您输入的手机号码有误！请重新输入！"];
+//        [mMainView.mLoginPhoneTx becomeFirstResponder];
+//
+//        return;
+//    }
     
     [self showWithStatus:@"登陆中..."];
     
