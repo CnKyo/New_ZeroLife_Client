@@ -25,5 +25,6 @@
 @property (nonatomic, assign) kOrderClassType mType;
 @property (nonatomic, assign) ZLShopObj *mShopObj;
 
+@property (nonatomic, copy) NSString *mTitle;
 
 @end

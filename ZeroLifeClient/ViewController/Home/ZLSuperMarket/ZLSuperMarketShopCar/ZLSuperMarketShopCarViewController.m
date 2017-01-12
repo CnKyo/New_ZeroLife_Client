@@ -188,13 +188,13 @@
         mbtnContent = [NSString stringWithFormat:@"还差%.2f元起送",self.mShopMinSendPrice-price];
         mBottomView.mGoPayBtn.userInteractionEnabled = NO;
         [mBottomView.mGoPayBtn setBackgroundColor:[UIColor lightGrayColor]];
-        mBottomView.mPrice.text = mbtnContent;
+        mBottomView.mPrice.text = [NSString stringWithFormat:@"¥%.2f元",price];
 
     }else if (price<=0){
         mbtnContent = [NSString stringWithFormat:@"还差%.2f元起送",self.mShopMinSendPrice];
         mBottomView.mGoPayBtn.userInteractionEnabled = NO;
         [mBottomView.mGoPayBtn setBackgroundColor:[UIColor lightGrayColor]];
-        mBottomView.mPrice.text = mbtnContent;
+        mBottomView.mPrice.text = [NSString stringWithFormat:@"¥%.2f元",price];
 
     }else{
         mbtnContent = @"去结算";

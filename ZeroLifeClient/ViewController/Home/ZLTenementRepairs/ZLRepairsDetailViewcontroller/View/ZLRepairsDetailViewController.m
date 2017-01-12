@@ -175,7 +175,15 @@
 
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
-    self.title = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
+    
+    if (_mClassObj.mClassName.length<=0) {
+        self.title = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
+
+    }else{
+        self.title = _mClassObj.mClassName;
+
+    }
+    
     [SVProgressHUD dismiss];
     
 }

@@ -230,7 +230,13 @@
 
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
-    self.title = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
+    if (_mTitle.length<=0) {
+        self.title = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
+        
+    }else{
+        self.title = _mTitle;
+        
+    }
     [SVProgressHUD dismiss];
 
 }

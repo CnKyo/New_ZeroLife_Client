@@ -662,6 +662,7 @@ static const CGFloat mTopH = 156;
                 mWebvc.mCamGoodsObj = mCGoodsObj;
                 mWebvc.mShopId = self.mShopObj.shop_id;
                 mWebvc.mType = _mType;
+                mWebvc.mTitle = mCGoodsObj.pro_name;
                 [self pushViewController:mWebvc];
 
                 
@@ -685,6 +686,7 @@ static const CGFloat mTopH = 156;
                 mWebvc.mClsGoodsObj = mCGoodsObj;
                 mWebvc.mShopId = self.mShopObj.shop_id;
                 mWebvc.mType = _mType;
+                mWebvc.mTitle = mCGoodsObj.pro_name;
                 [self pushViewController:mWebvc];
             }
                 break;

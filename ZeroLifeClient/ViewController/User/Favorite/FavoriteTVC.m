@@ -117,6 +117,7 @@
     mWebvc.mShopObj.mShopMsg.ext_min_price = mGoods.ext_min_price;
     mWebvc.mShopId = mGoods.shop_id;
     mWebvc.mType = kOrderClassType_product;
+    mWebvc.mTitle = mGoods.pro_name;
     [self pushViewController:mWebvc];
 
 }

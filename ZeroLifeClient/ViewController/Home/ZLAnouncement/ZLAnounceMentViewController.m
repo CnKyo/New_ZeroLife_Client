@@ -123,7 +123,7 @@
         
         ZLWebVc *vc = [ZLWebVc new];
         vc.mUrl = [NSString stringWithFormat:@"%@/wap/wcmutNotice/findNotice?user_id=%d&not_id=%d",[[APIClient sharedClient] currentUrl],mUser.user_id,mNote.not_id];
-        
+        vc.mTitle = mNote.not_title;
         [self pushViewController:vc];
     }
     
