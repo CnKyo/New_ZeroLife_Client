@@ -9,9 +9,11 @@
 #import "ZLRepairsDetailViewController.h"
 #import "ZLRepairDetailSubViewController.h"
 #import "ZLCommitRepairsViewController.h"
+#import <WebViewJavascriptBridge/WebViewJavascriptBridge.h>
 
 @interface ZLRepairsDetailViewController ()<UIScrollViewDelegate,UIWebViewDelegate>
-
+@property WebViewJavascriptBridge* bridge;
+@property(nonatomic,strong) UIButton *doneBtn;
 @end
 
 @implementation ZLRepairsDetailViewController
@@ -28,11 +30,22 @@
     
     self.navigationItem.title = @"报修详情";
     
+    [WebViewJavascriptBridge enableLogging];
+    
+
+    
     
 //    [self  initView];
     [self initWebView];
-   
+    
+   //加载错误时，提交按钮无效
+    [_bridge registerHandler:@"error" handler:^(id data, WVJBResponseCallback responseCallback) {
+        NSLog(@"testObjcCallback called: %@", data);
+        self.doneBtn.enabled = NO;
+    }];
+
 }
+
 
 -(void)mcommit{
 
@@ -41,11 +54,18 @@
     ZLCommitVC.mParentObj = _mParentObj;
     [self pushViewController:ZLCommitVC];
 }
+
+
 - (void)initWebView{
 
     mWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, DEVICE_Width, DEVICE_Height-50)];
     mWebView.delegate = self;
     [self.view addSubview:mWebView];
+    
+    _bridge = [WebViewJavascriptBridge bridgeForWebView:mWebView];
+    [_bridge setWebViewDelegate:self];
+    
+    
     UIButton *mCommit = [UIButton new];
     mCommit.frame = CGRectMake(0, DEVICE_Height-50, DEVICE_Width, 50);
     mCommit.backgroundColor = M_CO;
@@ -53,6 +73,7 @@
     [mCommit setTitleColor:[UIColor whiteColor] forState:0];
     [mCommit addTarget:self action:@selector(mcommit) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:mCommit];
+    self.doneBtn = mCommit;
     
     //activityView
     UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
@@ -73,7 +94,8 @@
     
     [mWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0]];
     [activityView stopAnimating];
-
+    
+    
 }
 - (void)initView{
 
