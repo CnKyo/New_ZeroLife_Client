@@ -16,5 +16,6 @@
 
 @property (nonatomic, assign) int mShopId;
 
+@property (nonatomic, copy) NSString *mTitle;
 
 @end

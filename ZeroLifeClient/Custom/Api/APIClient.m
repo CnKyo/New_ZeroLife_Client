@@ -1834,9 +1834,11 @@ return [NSString stringWithFormat:@"%@%@%@",kAFAppDotNetImgBaseURLString,kAFAppD
         [para setNeedStr:mLng forKey:@"adv_lng"];
 
     }
-    [para setInt:[ZLUserInfo ZLCurrentUser].user_id forKey:@"user_id"];
     
-
+    if ([ZLUserInfo ZLCurrentUser]) {
+        [para setInt:[ZLUserInfo ZLCurrentUser].user_id forKey:@"user_id"];
+    }
+    
     [self loadAPIWithTag:self path:@"/home/homePage" parameters:para call:^(APIObject *info) {
         
         

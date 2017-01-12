@@ -23,6 +23,7 @@
     ZLSearchArearView *mSearchView;
     
     int mType;
+    BOOL isOk;
     
 }
 
@@ -84,7 +85,7 @@
                 [self ZLShowEmptyView:info.msg andImage:@"暂无数据！" andHiddenRefreshBtn:NO];
 
             }else{
-            
+                isOk = YES;
                 [self dismiss];
             }
             
@@ -116,8 +117,11 @@
     MLLog(@"定位成功之后返回的东东：%@",mCoordinate);
     mCommunityAdd.cmut_lat = [[mCoordinate objectForKey:@"wei"] doubleValue];
     mCommunityAdd.cmut_lng = [[mCoordinate objectForKey:@"jing"] doubleValue];
+    if (!isOk) {
+        [self beginHeaderRereshing];
+
+    }
     
-    [self beginHeaderRereshing];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -775,6 +775,18 @@
 @property (strong,nonatomic) NSString*              adv_click_url;  //!< 点击的URL
 @property (assign,nonatomic) int                    adv_type;       //!< 类型（0:WAP;1:原生）
 @property (assign,nonatomic) int                    cam_type;       //!< 活动类型
+
+@property (strong,nonatomic) NSString*              adv_add_person;  //!< 点击的URL
+@property (strong,nonatomic) NSString*              adv_add_time;  //!< 点击的URL
+@property (strong,nonatomic) NSString*              adv_title;  //!< 点击的URL
+@property (assign,nonatomic) int                    adv_click_type;       //!< 活动类型
+
+@property (assign,nonatomic) double                    adv_lat;       //!< 活动类型
+@property (assign,nonatomic) double                    adv_lng;       //!< 活动类型
+
+@property (assign,nonatomic) int                    adv_sort;       //!< 活动类型
+@property (strong,nonatomic) NSString*              adv_state;  //!< 点击的URL
+
 @end
 
 
