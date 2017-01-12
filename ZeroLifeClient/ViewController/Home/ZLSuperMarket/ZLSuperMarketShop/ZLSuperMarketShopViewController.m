@@ -993,7 +993,6 @@ static const CGFloat mTopH = 156;
     }
     
     NSMutableArray *mPayArr = [NSMutableArray new];
-    NSString *mContent = @"";
     
     for (LKDBHelperGoodsObj *mGoods in mShopCarArrSource) {
         NSMutableDictionary *mPara = [NSMutableDictionary new];
@@ -1002,6 +1001,8 @@ static const CGFloat mTopH = 156;
         [mPara setInt:mGoods.mExtObj.mGoodsNum forKey:@"odrg_number"];
         [mPara setInt:mGoods.mCampId forKey:@"cam_gid"];
         
+        NSString *mContent = @"";
+
         for (int i =0;i<mGoods.mGoodsSKU.count;i++) {
             ZLSpeObj *mSpe = mGoods.mGoodsSKU[i];
             
@@ -1512,7 +1513,6 @@ static const CGFloat mTopH = 156;
     [self hiddenSpeView];
     
     NSMutableArray *mPayArr = [NSMutableArray new];
-    NSString *mContent = @"";
 
     [self.mAddSkuArray removeAllObjects];
 
@@ -1525,6 +1525,8 @@ static const CGFloat mTopH = 156;
         [mPara setInt:mGoods.mCampId forKey:@"cam_gid"];
 
         if (mGoods.mGoodsSKU.count>2) {
+            NSString *mContent = @"";
+
             for (int i =0;i<mGoods.mGoodsSKU.count;i++) {
                 ZLSpeObj *mSpe = mGoods.mGoodsSKU[i];
                 

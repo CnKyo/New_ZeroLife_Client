@@ -747,7 +747,6 @@
     
     NSMutableArray *mPayArr = [NSMutableArray new];
     NSMutableDictionary *mPara = [NSMutableDictionary new];
-    NSString *mContent = @"";
     
     for (ZLSpeObj *mSP in self.mAddSkuArray) {
         if (mSP.mSku.sta_required == 1) {
@@ -763,6 +762,8 @@
         [mPara setInt:mGoods.mExtObj.mGoodsNum forKey:@"odrg_number"];
         [mPara setInt:mGoods.mCampId forKey:@"cam_gid"];
         if (mGoods.mGoodsSKU.count>2) {
+            NSString *mContent = @"";
+
             for (int i =0;i<mGoods.mGoodsSKU.count;i++) {
                 ZLSpeObj *mSpe = mGoods.mGoodsSKU[i];
                 
