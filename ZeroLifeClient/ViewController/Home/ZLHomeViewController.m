@@ -344,43 +344,10 @@
 }
 #pragma mark----****----加载地址
 - (void)loadAddress{
-    
-    [SVProgressHUD showWithStatus:@"定位中..."];
+
     [CurentLocation sharedManager].delegate = self;
     [[CurentLocation sharedManager] getUSerLocation];
     
-    mLocation = [[AMapLocationManager alloc] init];
-    mLocation.delegate = self;
-    [mLocation setDesiredAccuracy:kCLLocationAccuracyHundredMeters];
-    mLocation.locationTimeout = 3;
-    mLocation.reGeocodeTimeout = 3;
-    [mLocation requestLocationWithReGeocode:YES completionBlock:^(CLLocation *location, AMapLocationReGeocode *regeocode, NSError *error) {
-        if (error)
-        {
-            NSString *eee =@"定位失败！请检查网络和定位设置！";
-            mLocationView.mAddress.text = eee;
-
-            [self showErrorStatus:eee];
-            MLLog(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
-            [self ZLHomLocationViewDidSelected];
-        }
-
-        
-        if (regeocode)
-        {
-            
-            MLLog(@"location:%f", location.coordinate.latitude);
-            
-            mCommunityObj.cmut_lat = location.coordinate.latitude;
-            mCommunityObj.cmut_lng = location.coordinate.longitude;
-            
-            MLLog(@"reGeocode:%@", regeocode);
-            mLocationView.mAddress.text = [NSString stringWithFormat:@"%@%@",regeocode.street,regeocode.number];
-            
-            [self reloadTableViewDataSource];
-
-        }
-    }];
 
 }
 #pragma mark----maplitdelegate
@@ -390,6 +357,7 @@
     
     mCommunityObj.cmut_lat = [[mCoordinate objectForKey:@"wei"] doubleValue];
     mCommunityObj.cmut_lng = [[mCoordinate objectForKey:@"jing"] doubleValue];
+    [self beginHeaderRereshing];
 }
 
 - (void)didReceiveMemoryWarning {

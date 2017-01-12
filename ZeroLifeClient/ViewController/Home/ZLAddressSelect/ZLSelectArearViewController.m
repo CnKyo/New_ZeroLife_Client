@@ -62,6 +62,11 @@
 - (void)reloadTableViewDataSource{
     [super reloadTableViewDataSource];
 
+    if (mCommunityAdd.cmut_lat <= 0 || mCommunityAdd.cmut_lng <= 0 ) {
+        [self loadAddress];
+        
+        return;
+    }
     
     [[APIClient sharedClient] communityListWithTag:self location:CLLocationCoordinate2DMake(mCommunityAdd.cmut_lat, mCommunityAdd.cmut_lng) search:mSearchView.mSearchTx.text province:mCommunityAdd.cmut_province city:mCommunityAdd.cmut_city county:mCommunityAdd.cmut_county call:^(NSArray *tableArr, APIObject *info) {
 
@@ -99,11 +104,9 @@
 }
 #pragma mark----****----加载地址
 - (void)loadAddress{
-    
     [CurentLocation sharedManager].delegate = self;
     [[CurentLocation sharedManager] getUSerLocation];
 
-    
 }
 
 #pragma mark----maplitdelegate
@@ -113,13 +116,7 @@
     mCommunityAdd.cmut_lat = [[mCoordinate objectForKey:@"wei"] doubleValue];
     mCommunityAdd.cmut_lng = [[mCoordinate objectForKey:@"jing"] doubleValue];
     
-    if (mCommunityAdd.cmut_lng<=0) {
-        [self ZLShowEmptyView:@"定位失败！" andImage:nil andHiddenRefreshBtn:NO];
-        [self loadAddress];
-
-    }else{
-        [self reloadTableViewDataSource];
-    }
+    [self beginHeaderRereshing];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

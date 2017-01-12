@@ -70,17 +70,8 @@ static int const ZLRunningManVC_ClassView_Height                  = 80;
     [self beginHeaderRereshing];
 }
 - (void)updateUserInfo{
-
-//    [[APIClient sharedClient] ZLUpdateUserInfo:^(APIObject *info) {
-//        if (info.code == RESP_STATUS_YES) {
-//            [self dismiss];
-//        }else{
-//            [self showErrorStatus:info.msg];
-//        }
-//    }];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUserInfoNeedChange:) name:MyUserNeedUpdateNotification object:nil];
-
     
 }
 #pragma mark----****----****加载跑腿者经纬度
@@ -136,37 +127,6 @@ static int const ZLRunningManVC_ClassView_Height                  = 80;
     
     [CurentLocation sharedManager].delegate = self;
     [[CurentLocation sharedManager] getUSerLocation];
-    
-    mLocation = [[AMapLocationManager alloc] init];
-    mLocation.delegate = self;
-    [mLocation setDesiredAccuracy:kCLLocationAccuracyHundredMeters];
-    mLocation.locationTimeout = 3;
-    mLocation.reGeocodeTimeout = 3;
-    [mLocation requestLocationWithReGeocode:YES completionBlock:^(CLLocation *location, AMapLocationReGeocode *regeocode, NSError *error) {
-        if (error)
-        {
-            NSString *eee =@"定位失败！请检查网络和定位设置！";
-            mIsVerrify = NO;
-            [self showErrorStatus:eee];
-            MLLog(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
-        }
-        
-        
-        if (regeocode)
-        {
-            
-            MLLog(@"location:%f", location.coordinate.latitude);
-            
-            _mAddress.cmut_lat = location.coordinate.latitude;
-            _mAddress.cmut_lng = location.coordinate.longitude;
-            
-            MLLog(@"reGeocode:%@", regeocode);
-            mIsVerrify = YES;
-            
-            
-        }
-    }];
-
 }
 #pragma mark----maplitdelegate
 - (void)MMapreturnLatAndLng:(NSDictionary *)mCoordinate{
@@ -175,6 +135,7 @@ static int const ZLRunningManVC_ClassView_Height                  = 80;
     
     _mAddress.cmut_lat = [[mCoordinate objectForKey:@"wei"] doubleValue];
     _mAddress.cmut_lng = [[mCoordinate objectForKey:@"jing"] doubleValue];
+    [self initPPTLocation];
 }
 #pragma mark----****----用户需要更新数据
 -(void)handleUserInfoNeedChange:(NSNotification *)note
@@ -190,7 +151,6 @@ static int const ZLRunningManVC_ClassView_Height                  = 80;
     self.navigationItem.title = @"跑跑腿";
     _mIndex = 0;
     mClassObj = [ZLPPTHomeClassList new];
-    //mTempArr = [NSMutableArray new];
     [self initPPTLocation];
     [self addRightBtn:YES andTitel:@"发布跑单" andImage:nil];
     
@@ -203,7 +163,6 @@ static int const ZLRunningManVC_ClassView_Height                  = 80;
     self.tableView.dataSource = self;
     self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     
-    //self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     [self.view addSubview:self.tableView];
     self.tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
     self.tableView.tableFooterView = [[UIView alloc] init];
@@ -341,24 +300,8 @@ static int const ZLRunningManVC_ClassView_Height                  = 80;
     ZLPPTClassObj *mClass = mClassObj.classifyList[_mIndex];
     mType = [Util currentReleaseType:mClass.type_name];
     
-    
-    //[self showWithStatus:@"正在加载..."];
     [[APIClient sharedClient] ZLGetRunningmanHomeList:self.mAddress.cmut_lat andLng:self.mAddress.cmut_lng andPage:self.page andPageSize:20 andClsId:mClass.cls_id block:^(APIObject *mBaseObj, ZLRunningmanHomeList *mList) {
         [self reloadWithTableArr:mList.list info:mBaseObj];
-//        [mTempArr removeAllObjects];
-//        if (mBaseObj.code == RESP_STATUS_YES) {
-//            [mTempArr addObjectsFromArray:mList.list];
-//            if (mList.list.count<=0) {
-//                [self addEmptyView:self.tableView andType:ZLEmptyViewTypeWithCommon];
-//            }
-//            [self showSuccessStatus:@"加载成功！"];
-//        }else{
-//            [self showErrorStatus:mBaseObj.msg];
-//            [self addEmptyView:self.tableView andType:ZLEmptyViewTypeWithCommon];
-//        }
-//        [self doneLoadingTableViewData];
-//        [self.tableView reloadData];
-
     }];
 }
 
@@ -383,46 +326,12 @@ static int const ZLRunningManVC_ClassView_Height                  = 80;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-//    if (section == 0) {
-//        
-//        if ([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"NOTOPEN"]) {
-//            return 40;
-//        }else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"PAYMENTED"]){
-//            return 40;
-//        }
-//        else{
-//            return 0;
-//        }
-//
-//    }else{
-//        return 80;
-//    }
+
     return 0;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-//    if (section == 0) {
-//        
-//        mFirstSectionView = [ZLRuuningManHomeHeaderSectionView initView];
-//        mFirstSectionView.delegate = self;
-//        
-//        if ([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"NOTOPEN"]) {
-//            mFirstSectionView.mContent.text = @"申请开通跑跑腿才能接单赚取酬金";
-//            mFirstSectionView.mDetail.text = @"去开通";
-//            return mFirstSectionView;
-//        }else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"PAYMENTED"]){
-//            mFirstSectionView.mContent.text = @"您还未提交申请跑腿资料哦～";
-//            mFirstSectionView.mDetail.text = @"去提交";
-//            return mFirstSectionView;
-//        }
-//        else{
-//            return nil;
-//        }
-//        
-//
-//    }else{
-//        return mSecondSectionView;
-//    }
+
     return nil;
 }
 
@@ -461,15 +370,7 @@ static int const ZLRunningManVC_ClassView_Height                  = 80;
     }
     ZLPPTOrderDetailViewController *vc = [ZLPPTOrderDetailViewController new];
     vc.mOrder = self.tableArr[indexPath.row];
-    [self pushViewController:vc];
-    
-//    OrderObject *item = [self.tableArr objectAtIndex:indexPath.row];
-//    
-//    OrderDetailVC *vc = [[OrderDetailVC alloc] init];
-//    vc.classType = kOrderClassType_paopao;
-//    vc.item = item;
-//    vc.isShopOrderBool = YES;
-//    [self.navigationController pushViewController:vc animated:YES];
+
 }
 
 #pragma mark----****----去发布
