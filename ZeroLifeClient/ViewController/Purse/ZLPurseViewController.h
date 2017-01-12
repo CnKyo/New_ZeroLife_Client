@@ -7,6 +7,8 @@
 //
 
 #import "CustomVC.h"
+#import "CustomScrollVC.h"
+
 
 @interface PurseHeaderView : UIView
 @property(nonatomic,strong) UILabel *desLable;
@@ -15,6 +17,6 @@
 
 
 
-@interface ZLPurseViewController : CustomVC
+@interface ZLPurseViewController : CustomScrollVC
 
 @end

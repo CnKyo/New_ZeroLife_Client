@@ -70,6 +70,7 @@
 
 
 @interface ZLPurseViewController ()<QUItemBtnViewDelegate>
+
 @property(nonatomic,strong) SingInHeaderView *headerView;
 @property(nonatomic,strong) PlurseValueNameControl *userBalanceView;
 @property(nonatomic,strong) PlurseValueNameControl *userScoreView;
@@ -84,7 +85,7 @@
     [super loadView];
     
     float padding = 10;
-    UIView *superView = self.view;
+    UIView *superView = self.contentView;
     
     //PurseHeaderView *headerView = [[PurseHeaderView alloc] init];
     SingInHeaderView *headerView = [[SingInHeaderView alloc] init];
@@ -303,6 +304,24 @@
         make.top.equalTo(headerView.bottom).offset(padding);
     }];
     
+    [self.contentView updateConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(aView.bottom);
+    }];
+    [self.scrollView remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.equalTo(self.view);
+        make.top.equalTo(self.view).offset(-NAVBAR_Height);
+    }];
+    
+    
+    __weak typeof(self) weakSelf = self;
+    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [weakSelf loadHeaderRefreshing];
+    }];
+    self.scrollView.mj_header = header;
+    
+    [header setTitle:@"" forState:MJRefreshStateIdle];
+    [header setTitle:@"" forState:MJRefreshStatePulling];
+    [header setTitle:@"" forState:MJRefreshStateRefreshing];
 
     
     __weak __typeof__(SingInHeaderView) *weakHeaderViewSelf = headerView;
@@ -312,8 +331,7 @@
             [ZLLoginViewController startPresent:self];
             return;
         }
-        
-        [self showWithStatus:@"正在签到..."];
+        [SVProgressHUD showWithStatus:@"正在签到..."];
         [[APIClient sharedClient] userSignWithTag:self call:^(int score, APIObject *info) {
             if (info.code == RESP_STATUS_YES) {
                 [[NSNotificationCenter defaultCenter] postNotificationName:MyUserNeedUpdateNotification object:nil];
@@ -321,9 +339,9 @@
                 weakHeaderViewSelf.singView.score = score;
                 weakHeaderViewSelf.singView.is_singin = ! weakHeaderViewSelf.singView.is_singin;
                 
-                [self showSuccessStatus:@"签到成功!"];
+                [SVProgressHUD showSuccessWithStatus:@"签到成功!"];
             }else{
-                [self showErrorStatus:info.msg];
+                [SVProgressHUD showErrorWithStatus:info.msg];
             }
         }];
     };
@@ -357,6 +375,17 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)loadHeaderRefreshing{
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    if (user.user_id > 0) {
+        [[APIClient sharedClient] userInfoWithTag:self call:^(ZLUserInfo *user, APIObject *info) {
+            [self reloadUIWithData];
+        }];
+    } else
+        [self performSelector:@selector(reloadUIWithData) withObject:nil afterDelay:0.1];
+}
+
+
 
 -(void)reloadUIWithData
 {
@@ -369,6 +398,8 @@
     self.headerView.singView.score = user.wallet.score;
     self.headerView.singView.is_singin = user.wallet.is_sign;
     [self.headerView loadUIWithDay:user.wallet.signCount];
+    
+    [self.scrollView.mj_header endRefreshing];
 }
 
 - (void)selectItemBtnView:(QUItemBtnView *)view
