@@ -857,56 +857,93 @@ static const CGFloat mTopH = 156;
 #pragma mark----****----滚动代理方法
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    
     if (scrollView == mRightTableView) {
         CGFloat offsetY = scrollView.contentOffset.y;
         
+        CGFloat need_height = mTopH - NAVBAR_Height;
+        
         MLLog(@"yyyyyyyyy----------:  %f",offsetY);
         
-        if (offsetY > 0 ) {
-            
-            CGFloat mHH = offsetY;
-            MLLog(@"mHH----------:  %f",mHH);
-            if (mHH>=mTopH || mHH >= 0) {
-                mHH = mTopH;
-            }
-            
-            [self setHeaderViewY:-mHH];
-            mLeftTableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
-            mRightTableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
-            
+        if (offsetY <= -mTopH ) {
             MLLog(@"执行A");
-        }
-        else if (offsetY <= -mTopH){
-            
-            
-            [self setHeaderViewY:64];
+            [self setHeaderViewY:NAVBAR_Height];
             mLeftTableView.contentInset = UIEdgeInsetsMake(mTopH, 0, 0, 0);
             mRightTableView.contentInset = UIEdgeInsetsMake(mTopH, 0, 0, 0);
+        }
+        else if (offsetY > 0){
             MLLog(@"执行B");
+            [self setHeaderViewY:-need_height];
+            mLeftTableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+            mRightTableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
         }
         else{
-            CGFloat mH = -mTopH - offsetY;
-            MLLog(@"mHH----------:  %f",mH);
-            [self setHeaderViewY:64+mH];
             MLLog(@"执行C");
+            CGFloat mH = -need_height - offsetY;
+            MLLog(@"mHH----------:  %f",mH);
+            [self setHeaderViewY:mH];
+            
             mLeftTableView.contentOffset = mRightTableView.contentOffset;
 
-            if (offsetY == 0) {
-                mLeftTableView.contentInset = UIEdgeInsetsMake(mTopH, 0, 0, 0 );
-                mRightTableView.contentInset = UIEdgeInsetsMake(mTopH, 0, 0, 0 );
-            }else{
+            mLeftTableView.contentInset = UIEdgeInsetsMake(-offsetY, 0, 0, 0 );
+            mRightTableView.contentInset = UIEdgeInsetsMake(-offsetY, 0, 0, 0 );
 
-                mLeftTableView.contentInset = UIEdgeInsetsMake(-offsetY, 0, 0, 0 );
-                mRightTableView.contentInset = UIEdgeInsetsMake(-offsetY, 0, 0, 0 );
-            }
-            
-            
-            
         }
         
-        
     }
+    
+    
+//    if (scrollView == mRightTableView) {
+//        CGFloat offsetY = scrollView.contentOffset.y;
+//        
+//        MLLog(@"yyyyyyyyy----------:  %f",offsetY);
+//        
+//        if (offsetY > NAVBAR_Height ) {
+//            
+//            CGFloat mHH = offsetY;
+//            MLLog(@"mHH----------:  %f",mHH);
+//            if (mHH>=mTopH || mHH >= 0) {
+//                mHH = mTopH;
+//            }
+//            
+//            [self setHeaderViewY:-mHH];
+//            mLeftTableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+//            mRightTableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+//            
+//            MLLog(@"执行A");
+//        }
+//        else if (offsetY < -mTopH){
+//            [self setHeaderViewY:NAVBAR_Height];
+//            mLeftTableView.contentInset = UIEdgeInsetsMake(mTopH, 0, 0, 0);
+//            mRightTableView.contentInset = UIEdgeInsetsMake(mTopH, 0, 0, 0);
+//            MLLog(@"执行B");
+//            
+////            [self setHeaderViewY:64];
+////            mLeftTableView.contentInset = UIEdgeInsetsMake(mTopH, 0, 0, 0);
+////            mRightTableView.contentInset = UIEdgeInsetsMake(mTopH, 0, 0, 0);
+////            MLLog(@"执行B");
+//        }
+//        else{
+//            CGFloat mH = -mTopH - offsetY;
+//            MLLog(@"mHH----------:  %f",mH);
+//            [self setHeaderViewY:NAVBAR_Height + mH];
+//            MLLog(@"执行C");
+//            mLeftTableView.contentOffset = mRightTableView.contentOffset;
+//
+//            if (offsetY == 0) {
+//                mLeftTableView.contentInset = UIEdgeInsetsMake(mTopH, 0, 0, 0 );
+//                mRightTableView.contentInset = UIEdgeInsetsMake(mTopH, 0, 0, 0 );
+//            }else{
+//
+//                mLeftTableView.contentInset = UIEdgeInsetsMake(-offsetY, 0, 0, 0 );
+//                mRightTableView.contentInset = UIEdgeInsetsMake(-offsetY, 0, 0, 0 );
+//            }
+//            
+//            
+//            
+//        }
+//        
+//        
+//    }
     
     
 }

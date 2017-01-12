@@ -100,6 +100,7 @@
     
     [MTA trackPageViewEnd:self.navigationItem.title];
     navBarHairlineImageView.hidden = NO;
+    [SVProgressHUD dismiss];
 
 }
 - (UIImageView *)findHairlineImageViewUnder:(UIView *)view {
