@@ -105,6 +105,7 @@
                     if (mBaseObj.code == RESP_STATUS_YES) {
                         ZLGoPayViewController *vc = [ZLGoPayViewController new];
                         vc.mOrder = mOrder;
+                        vc.mOrderType = kOrderClassType_fee_peroperty;
                         vc.paySuccessCallBack = ^(ZLGoPayViewController *payVC){
                             [payVC performSelector:@selector(popViewController) withObject:nil afterDelay:0.2];
                             

@@ -266,6 +266,8 @@
                 ZLGoPayViewController *vc = [ZLGoPayViewController new];
                 vc.mOrder = mOrder;
                 vc.mOrder.sign = _item.sign;
+                vc.mOrderType = kOrderClassType_fee_mobile;
+
                 vc.paySuccessCallBack = ^(ZLGoPayViewController *payVC){
                     [payVC performSelector:@selector(popViewController_2) withObject:nil afterDelay:0.2];
                 };

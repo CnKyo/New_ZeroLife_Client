@@ -2681,27 +2681,30 @@ return [NSString stringWithFormat:@"%@%@%@",kAFAppDotNetImgBaseURLString,kAFAppD
                 
                 if (mPayType == ZLPayTypeWithWechat) {
                     SWxPayInfo* wxpayinfo = [SWxPayInfo mj_objectWithKeyValues:info.data];
-                    [ZLUserInfo ZLCurrentUser].mPayBlock = ^(APIObject *resb){
-                        if (resb.code == RESP_STATUS_YES) {
-                            block(resb,nil);//再回调获取
-
-                        }else{
-                            block(resb,nil);//再回调获取
-
-                        }
-                    };
+//                    [ZLUserInfo ZLCurrentUser].mPayBlock = ^(APIObject *resb){
+//                        if (resb.code == RESP_STATUS_YES) {
+//                            block(resb,nil);//再回调获取
+//
+//                        }else{
+//                            block(resb,nil);//再回调获取
+//
+//                        }
+//                        [ZLUserInfo ZLCurrentUser].mPayBlock = nil;
+//                    };
                     [self gotoWXPayWithSRV:wxpayinfo];
                 }else if (mPayType == ZLPayTypeWithAlipay){
                     SWxPayInfo* aliPay = [SWxPayInfo mj_objectWithKeyValues:info.data];
-                    [ZLUserInfo ZLCurrentUser].mPayBlock = ^(APIObject *resb){
-                        if (resb.code == RESP_STATUS_YES) {
-                            block(resb,nil);//再回调获取
-                            
-                        }else{
-                            block(resb,nil);//再回调获取
-                            
-                        }
-                    };
+//                    [ZLUserInfo ZLCurrentUser].mPayBlock = ^(APIObject *resb){
+//                        if (resb.code == RESP_STATUS_YES) {
+//                            block(resb,nil);//再回调获取
+//                            
+//                        }else{
+//                            block(resb,nil);//再回调获取
+//                            
+//                        }
+//                        [ZLUserInfo ZLCurrentUser].mPayBlock = nil;
+//
+//                    };
 
                     [self gotoAliPay:aliPay];
                 }else{
@@ -2763,13 +2766,16 @@ return [NSString stringWithFormat:@"%@%@%@",kAFAppDotNetImgBaseURLString,kAFAppD
             
 
         }
-        if ( [ZLUserInfo ZLCurrentUser].mPayBlock ) {
-            [ZLUserInfo ZLCurrentUser].mPayBlock( retobj );
-        }else{
+//        if ( [ZLUserInfo ZLCurrentUser].mPayBlock ) {
+//            [ZLUserInfo ZLCurrentUser].mPayBlock( retobj );
+//        }else{
+//
+//            retobj.msg = @"支付回调异常";
+//            retobj.code = 500;
+//        }
+        [SVProgressHUD showErrorWithStatus:retobj.msg];
+        [[NSNotificationCenter defaultCenter] postNotificationName:MyOrderPaySuccessNotification object:nil];
 
-            retobj.msg = @"支付回调异常";
-            retobj.code = 500;
-        }
     }];
 }
 
