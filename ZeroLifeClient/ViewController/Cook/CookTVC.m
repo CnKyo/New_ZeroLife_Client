@@ -33,6 +33,7 @@
     
     [self addTableView];
     [self setTableViewHaveHeader];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     
 }
 
@@ -101,7 +102,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 60;
+    return 70;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

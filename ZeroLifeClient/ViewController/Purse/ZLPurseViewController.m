@@ -382,6 +382,9 @@
     if (user.user_id > 0) {
         [[APIClient sharedClient] userInfoWithTag:self call:^(ZLUserInfo *user, APIObject *info) {
             [self reloadUIWithData];
+            
+            if (info.code != RESP_STATUS_YES)
+                [SVProgressHUD showErrorWithStatus:info.msg];
         }];
     } else
         [self performSelector:@selector(reloadUIWithData) withObject:nil afterDelay:0.1];
