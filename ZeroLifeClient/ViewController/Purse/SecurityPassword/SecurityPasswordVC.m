@@ -546,6 +546,10 @@
                 user.wallet.pass = kWalletPayment_Pass;
                 [ZLUserInfo updateUserInfo:user];
                 
+                if (self.settingPwdSuccessCallBack)
+                    self.settingPwdSuccessCallBack(seView1.pwStr);
+                
+                
                 [self performSelector:@selector(popViewController) withObject:nil afterDelay:0.5];
                 
                 [SVProgressHUD showSuccessWithStatus:info.msg];

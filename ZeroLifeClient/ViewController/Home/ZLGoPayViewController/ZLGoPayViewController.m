@@ -162,7 +162,16 @@
                     
                     ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
                     if ([user.wallet.pass isEqualToString:kWalletPayment_NoPass]) {
-                        [self performSelector:@selector(pushSecurityPasswordVC) withObject:nil afterDelay:0.25];
+                        
+                        SecurityPasswordVC *vc = [[SecurityPasswordVC alloc] init];
+                        vc.settingPwdSuccessCallBack = ^(NSString* pwd) {
+                            self.mOrder.pass = pwd;
+                            
+                            [self commitOrder:mOrder];
+                        };
+                        [self pushViewController:vc];
+                        
+                        //[self performSelector:@selector(pushSecurityPasswordVC) withObject:nil afterDelay:0.25];
                     }
                     
                     return;

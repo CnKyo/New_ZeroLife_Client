@@ -39,28 +39,28 @@
     [super reloadTableViewDataSource];
 
     [[APIClient sharedClient] ZLGetHomeAnouncement:self.page block:^(int totalPage, NSArray *tableArr, APIObject *info) {
-//        [self reloadWithTableArr:tableArr info:info];
-        [self.tableArr removeAllObjects];
-//        [self ZLHideEmptyView];
-        if (info.code == RESP_STATUS_YES) {
-            [self.tableArr addObjectsFromArray:tableArr];
-            
-            if (tableArr.count<=0) {
-                [self addEmptyView:self.tableView andType:ZLEmptyViewTypeWithCommon];
-                [self showSuccessStatus:@"暂无数据！"];
-
-            }else{
-                [self showSuccessStatus:info.msg];
-
-            }
-            
-        }else{
-        
-            [self showErrorStatus:info.msg];
-            [self addEmptyView:self.tableView andType:ZLEmptyViewTypeWithCommon];
-        }
-        [self doneLoadingTableViewData];
-        [self.tableView reloadData];
+        [self reloadWithTableArr:tableArr info:info];
+//        [self.tableArr removeAllObjects];
+////        [self ZLHideEmptyView];
+//        if (info.code == RESP_STATUS_YES) {
+//            [self.tableArr addObjectsFromArray:tableArr];
+//            
+//            if (tableArr.count<=0) {
+//                [self addEmptyView:self.tableView andType:ZLEmptyViewTypeWithCommon];
+//                [self showSuccessStatus:@"暂无数据！"];
+//
+//            }else{
+//                [self showSuccessStatus:info.msg];
+//
+//            }
+//            
+//        }else{
+//        
+//            [self showErrorStatus:info.msg];
+//            [self addEmptyView:self.tableView andType:ZLEmptyViewTypeWithCommon];
+//        }
+//        [self doneLoadingTableViewData];
+//        [self.tableView reloadData];
     }];
 }
 - (void)didReceiveMemoryWarning {
@@ -90,7 +90,8 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 365;
+    return (DEVICE_Width*1.1);
+    //return 365;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
