@@ -303,8 +303,11 @@
             
             [self showSuccessStatus:mBaseObj.msg];
             ZLGoPayViewController *ZLGoPayVC = [ZLGoPayViewController new];
+            ZLGoPayVC.mOrderType = kOrderClassType_product;
             ZLGoPayVC.mOrder = [ZLCreateOrderObj new];
             ZLGoPayVC.mOrder = mOrder;
+            ZLGoPayVC.mOrderType = _mOrderType;
+
             ZLGoPayVC.mOrder.sign = self.mPreOrder.sign;
             ZLGoPayVC.mShopId = self.mShopId;
             ZLGoPayVC.paySuccessCallBack = ^(ZLGoPayViewController *payVC){

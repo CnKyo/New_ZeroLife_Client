@@ -90,8 +90,10 @@
     self.nameLable.text = mShopObj.shop_name;
     self.timeLable.text = [NSString stringWithFormat:@"%@  满%.f元起送",mShopObj.ext_max_time,mShopObj.ext_min_price];
     self.saleLable.text = [NSString stringWithFormat:@"销量：%d",mShopObj.ext_sales_month];
-    self.distanceLable.text = [NSString stringWithFormat:@"%@m",mShopObj.distance];
     [self.iconImgView sd_setImageWithURL:[NSURL URLWithString:[Util currentSourceImgUrl:mShopObj.shop_logo]] placeholderImage:[UIImage imageNamed:@"ZLDefault_Shop"]];
+    
+    self.distanceLable.text = [NSString stringWithFormat:@"距离%.2fkm",mShopObj.distance/1000];
+
     
 }
 

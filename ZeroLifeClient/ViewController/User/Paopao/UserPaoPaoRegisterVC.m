@@ -60,6 +60,7 @@
             if (mBaseObj.code == RESP_STATUS_YES) {
                 ZLGoPayViewController *vc = [ZLGoPayViewController new];
                 vc.mOrder = mOrder;
+                vc.mOrderType = kOrderClassType_paopao;
                 vc.mOrder.sign = _item.sign;
                 vc.paySuccessCallBack = ^(ZLGoPayViewController *payVC){
                     [self performSelector:@selector(successAndPushNext) withObject:nil afterDelay:0.2];

@@ -37,7 +37,11 @@
     // Do any additional setup after loading the view.
     self.navigationItem.title = @"收银台";
 
-  
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(handleUserPaySuccess:)
+                                                 name:MyOrderPaySuccessNotification
+                                               object:nil];
     
     mPayTypeArr = [NSMutableArray new];
     
@@ -88,6 +92,10 @@
     
     [self initShareView];
     [self initData];
+}
+-(void)handleUserPaySuccess:(NSNotification *)note
+{
+    [self mPopAction];
 }
 - (void)initData{
     NSArray *mTT = @[@"支付宝支付",@"微信支付",@"余额支付"];

@@ -70,6 +70,7 @@
             
             ZLGoPayViewController *vc = [ZLGoPayViewController new];
             vc.mOrder = pay;
+            
             vc.paySuccessCallBack = ^(ZLGoPayViewController *payVC){
                 [payVC performSelector:@selector(popViewController) withObject:nil afterDelay:0.2];
                 
