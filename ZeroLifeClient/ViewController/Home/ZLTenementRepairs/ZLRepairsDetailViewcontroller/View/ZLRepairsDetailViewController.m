@@ -42,6 +42,7 @@
     [_bridge registerHandler:@"error" handler:^(id data, WVJBResponseCallback responseCallback) {
         NSLog(@"testObjcCallback called: %@", data);
         self.doneBtn.enabled = NO;
+        [self.doneBtn jk_setBackgroundColor:[UIColor grayColor] forState:UIControlStateNormal];
     }];
 
 }
@@ -68,9 +69,9 @@
     
     UIButton *mCommit = [UIButton new];
     mCommit.frame = CGRectMake(0, DEVICE_Height-50, DEVICE_Width, 50);
-    mCommit.backgroundColor = M_CO;
     [mCommit setTitle:@"立即提交订单" forState:0];
     [mCommit setTitleColor:[UIColor whiteColor] forState:0];
+    [mCommit jk_setBackgroundColor:M_CO forState:UIControlStateNormal];
     [mCommit addTarget:self action:@selector(mcommit) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:mCommit];
     self.doneBtn = mCommit;
