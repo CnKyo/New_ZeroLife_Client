@@ -151,8 +151,8 @@
             if (indexPath.section == 0)
                 [str1 appendString:@"<red>(默认地址)</red>"];
             [str1 appendString:[item getFullStr]];
-            
-            [str2 appendFormat:@"%@  %@  %@", item.real_owner, item.real_phone, [NSString houseIsOwner:item.real_is_owner]];
+            [str2 appendFormat:@"%@  %@", item.real_owner, item.real_phone];
+            //[str2 appendFormat:@"%@  %@  %@", item.real_owner, item.real_phone, [NSString houseIsOwner:item.real_is_owner]];
             
 
         } else {
