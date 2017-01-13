@@ -35,6 +35,13 @@
 //    mMainView.mLoginPwdTx.text = @"123456";
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:MyUserInfoChangedNotification object:nil]; //显示的时候刷新一下用户数据
+}
+
 - (void)initView{
 
     [self addLeftBtn:YES andTitel:nil andImage:IMG(@"login_close.png")];
