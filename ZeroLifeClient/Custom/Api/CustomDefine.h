@@ -200,7 +200,7 @@ static BOOL JPush_IsProduction = NO;
 static int const RESP_STATUS_YES                  = 200;             //成功
 static int const RESP_STATUS_NO                   = 1;             //失败
 static int const RESP_STATUS_LOGIN                  = 300;             //需要登录
-
+static int const RESP_STATUS_RELOGIN                  = 405;             //需要重新登录
 
 #define RETCODE_SUCCESS  200
 

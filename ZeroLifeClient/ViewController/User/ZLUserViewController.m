@@ -440,6 +440,9 @@
         [[APIClient sharedClient] userInfoWithTag:self call:^(ZLUserInfo *user, APIObject *info) {
             [self.tableView reloadData];
             [self doneLoadingTableViewData];
+            
+            if (info.code != RESP_STATUS_YES)
+                [SVProgressHUD showErrorWithStatus:info.msg];
         }];
     } else
         [self performSelector:@selector(doneLoadingTableViewData) withObject:nil afterDelay:0.1];

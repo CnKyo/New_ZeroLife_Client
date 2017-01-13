@@ -930,7 +930,7 @@
 @property (strong,nonatomic) NSString*          shop_name;  //!< 名称
 @property (strong,nonatomic) NSString*          shop_logo;  //!< 图片
 @property (strong,nonatomic) NSString*          shop_address;   //!< 地址
-@property (strong,nonatomic) NSString*          distance;   //!< 距离
+@property (assign,nonatomic) float              distance;   //!< 距离
 @property (assign,nonatomic) int                ext_sales_month;    //!< 销量
 @property (strong,nonatomic) NSString*          ext_max_time;   //!< 送达时间
 @property (assign,nonatomic) float              ext_min_price;  //!< 配送费

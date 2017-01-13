@@ -599,7 +599,7 @@
 {
     _code = code;
     
-    if (code == RESP_STATUS_LOGIN)
+    if (code==RESP_STATUS_LOGIN || code==RESP_STATUS_RELOGIN)
         [self performSelector:@selector(startLogin) withObject:nil afterDelay:0.8];
 }
 #pragma mark----****----登录
