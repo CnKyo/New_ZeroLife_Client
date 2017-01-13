@@ -276,19 +276,19 @@ static const CGFloat mTopH = 156;
 - (void)upDatePage:(ZLShopObj *)mShop{
     
     NSString *mHeadUrl = [Util currentSourceImgUrl:mShop.mShopMsg.shop_logo];
-    mHeaderView.mBgkImg.backgroundColor = M_CO;
-    UIImage *mHead = nil;
-    mHead = [UIImage imageNamed:@"ZLDefault_Shop"];
-    
-    UIImage *mLastImg = [mHead applyLightEffect];
-    mHeaderView.mBgkImg.image = mLastImg;
+//    mHeaderView.mBgkImg.backgroundColor = M_CO;
+//    UIImage *mHead = nil;
+//    mHead = [UIImage imageNamed:@"ZLDefault_Shop"];
+//    
+//    UIImage *mLastImg = [mHead applyLightEffect];
+//    mHeaderView.mBgkImg.image = mLastImg;
     
     [mHeaderView.mShopLogo sd_setImageWithURL:[NSURL URLWithString:mHeadUrl] placeholderImage:[UIImage imageNamed:@"ZLDefault_Shop"]];
     
     [mHeaderView.mShopLogo sd_setImageWithURL:[NSURL URLWithString:mHeadUrl] placeholderImage:[UIImage imageNamed:@"ZLDefault_Shop"] options:SDWebImageRetryFailed completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         if (image != nil) {
             UIImage *mLastImg11 = [image applyLightEffect];
-            mHeaderView.mBgkImg.image = mLastImg11;
+//            mHeaderView.mBgkImg.image = mLastImg11;
         }
     }];
     
