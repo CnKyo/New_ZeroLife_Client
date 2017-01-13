@@ -110,7 +110,9 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUserInfoChange:) name:MyUserInfoChangedNotification object:nil];
     
 
-    [self performSelector:@selector(startLoadUserInfo) withObject:nil afterDelay:1.0]; //更新用户数据
+    if ([ZLUserInfo ZLCurrentUser] != nil) {
+        [self performSelector:@selector(startLoadUserInfo) withObject:nil afterDelay:1.0]; //更新用户数据
+    }
 }
 
 -(void)startLoadUserInfo
