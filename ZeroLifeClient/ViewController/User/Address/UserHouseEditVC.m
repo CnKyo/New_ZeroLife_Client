@@ -105,6 +105,7 @@
         self.item = [HouseObject new];
         self.item.user_id = [ZLUserInfo ZLCurrentUser].user_id;
         self.item.real_sex = kUserSexType_man;
+        self.item.real_is_owner = YES;
     }
 }
 
