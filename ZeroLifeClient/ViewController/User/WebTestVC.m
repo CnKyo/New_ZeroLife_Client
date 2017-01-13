@@ -43,9 +43,16 @@
         responseCallback(@"Response from 333333");
     }];
     
+    //加载错误时，提交按钮无效
+    [_bridge registerHandler:@"error" handler:^(id data, WVJBResponseCallback responseCallback) {
+        NSLog(@"testErrorObjcCallback called: %@", data);
+
+    }];
+    
     //[_bridge callHandler:@"testJavascriptHandler" data:@{ @"foo":@"before ready" }];
     
-    NSURL* url = [NSURL URLWithString:@"http://192.168.1.120/api/app/client/wap/good/goodsdetails?pro_id=33&sku_id=34&shop_id=1&user_id=6"];
+    NSURL* url = [NSURL URLWithString:@"http://192.168.1.120/api/app/client/wap/good/repairDetails?cls_id=34"];
+    //NSURL* url = [NSURL URLWithString:@"http://192.168.1.120/api/app/client/wap/good/goodsdetails?pro_id=33&sku_id=34&shop_id=1&user_id=6"];
     //NSURL* url = [NSURL URLWithString:@"http://localhost:8080/crkj_zlife/app/zlifeclient/ExampleApp.html"];
     //NSURL* url = [NSURL URLWithString:@"http://192.168.1.114/app/zlifeclient/ExampleApp.html"];
     NSURLRequest* request = [NSURLRequest requestWithURL:url];//
