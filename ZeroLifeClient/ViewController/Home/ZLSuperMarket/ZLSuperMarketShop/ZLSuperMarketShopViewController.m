@@ -106,6 +106,8 @@ static const CGFloat mTopH = 156;
     
     ///规格数组
     NSMutableArray *mSkuTempArr;
+    
+    NSInteger kIndex;
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -122,7 +124,7 @@ static const CGFloat mTopH = 156;
     self.navigationItem.title = self.mShopObj.shop_name;
 
     self.mSpeAddArray = [NSMutableArray new];
-    
+    kIndex = 0;
     mLeftDataArr = [NSMutableArray new];
     mRightDataArr = [NSMutableArray new];
     self.mSelectedSpeArray = [NSMutableArray new];
@@ -160,7 +162,7 @@ static const CGFloat mTopH = 156;
 }
 - (void)reloadTableViewData{
     if (mLeftDataArr.count!=0) {
-        ZLShopLeftObj *mNew = mLeftDataArr[0];
+        ZLShopLeftObj *mNew = mLeftDataArr[kIndex];
         
         if (mNew.mType == ZLShopLeftTypeCamp) {
             
@@ -275,18 +277,18 @@ static const CGFloat mTopH = 156;
     
     NSString *mHeadUrl = [Util currentSourceImgUrl:mShop.mShopMsg.shop_logo];
     mHeaderView.mBgkImg.backgroundColor = M_CO;
-//    UIImage *mHead = nil;
-//    mHead = [UIImage imageNamed:@"ZLDefault_Shop"];
-//    
-//    UIImage *mLastImg = [mHead applyLightEffect];
-//    mHeaderView.mBgkImg.image = mLastImg;
+    UIImage *mHead = nil;
+    mHead = [UIImage imageNamed:@"ZLDefault_Shop"];
+    
+    UIImage *mLastImg = [mHead applyLightEffect];
+    mHeaderView.mBgkImg.image = mLastImg;
     
     [mHeaderView.mShopLogo sd_setImageWithURL:[NSURL URLWithString:mHeadUrl] placeholderImage:[UIImage imageNamed:@"ZLDefault_Shop"]];
     
     [mHeaderView.mShopLogo sd_setImageWithURL:[NSURL URLWithString:mHeadUrl] placeholderImage:[UIImage imageNamed:@"ZLDefault_Shop"] options:SDWebImageRetryFailed completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         if (image != nil) {
             UIImage *mLastImg11 = [image applyLightEffect];
-//            mHeaderView.mBgkImg.image = mLastImg11;
+            mHeaderView.mBgkImg.image = mLastImg11;
         }
     }];
     
@@ -699,7 +701,7 @@ static const CGFloat mTopH = 156;
     }else{
         
         ZLShopLeftObj *mClass = mLeftDataArr[indexPath.row];
-        
+        kIndex = indexPath.row;
         if (mClass.mType == ZLShopLeftTypeCamp) {
             
             [self upDateRightTableView:mShopObj.mShopMsg.shop_id andCampId:[NSString stringWithFormat:@"%d",mClass.mId] andClassId:nil andPage:1 andType:ZLRightGoodsTypeFromCamp];
