@@ -35,9 +35,9 @@
 //    mMainView.mLoginPwdTx.text = @"123456";
 }
 
--(void)viewWillAppear:(BOOL)animated
+-(void)viewDidAppear:(BOOL)animated
 {
-    [super viewWillAppear:animated];
+    [super viewDidAppear:animated];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:MyUserInfoChangedNotification object:nil]; //显示的时候刷新一下用户数据
 }
