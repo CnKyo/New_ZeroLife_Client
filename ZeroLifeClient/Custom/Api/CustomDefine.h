@@ -194,7 +194,7 @@ typedef enum {
 
 static NSString *JPush_AppKey = @"5e3e27da01ec6cb61b8e2b4d";
 static NSString *JPush_Channel = @"25b4503e82ad1f91cfc56061";
-static BOOL JPush_IsProduction = NO;
+static BOOL JPush_IsProduction = YES;
 
 
 static int const RESP_STATUS_YES                  = 200;             //成功
