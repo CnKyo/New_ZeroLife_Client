@@ -1846,25 +1846,25 @@ return [NSString stringWithFormat:@"%@%@%@",kAFAppDotNetImgBaseURLString,kAFAppD
             
             ZLHomeObj *mHomeObj = [[ZLHomeObj alloc] init];
             
-            id mAdv = [info.data objectForKey:@"sAdvertList"];
+            id mAdv = [info.data objectWithKey:@"sAdvertList"];
             
-            id mCom = [info.data objectForKey:@"eCompanyNoticeList"];
+            id mCom = [info.data objectWithKey:@"eCompanyNoticeList"];
             
             
-            NSMutableArray *mAdvArr = [NSMutableArray new];
-            NSMutableArray *mComArr = [NSMutableArray new];
-            if ([mAdv isKindOfClass:[NSArray class]]) {
-                
-                for ( NSDictionary *dic in mAdv) {
-                    [mAdvArr addObject:[ZLHomeAdvList mj_objectWithKeyValues:dic]];
-                }
-                
-            }
-            if ([mCom isKindOfClass:[NSArray class]]) {
-                for ( NSDictionary *dic in mCom) {
-                    [mComArr addObject:[ZLHomeAdvList mj_objectWithKeyValues:dic]];
-                }                
-            }
+            NSMutableArray *mAdvArr = [ZLHomeAdvList mj_objectArrayWithKeyValuesArray:mAdv];
+            NSMutableArray *mComArr = [ZLHomeCompainNoticeList mj_objectArrayWithKeyValuesArray:mCom];
+//            if ([mAdv isKindOfClass:[NSArray class]]) {
+//                
+//                for ( NSDictionary *dic in mAdv) {
+//                    [mAdvArr addObject:[ZLHomeAdvList mj_objectWithKeyValues:dic]];
+//                }
+//                
+//            }
+//            if ([mCom isKindOfClass:[NSArray class]]) {
+//                for ( NSDictionary *dic in mCom) {
+//                    [mComArr addObject:[ZLHomeAdvList mj_objectWithKeyValues:dic]];
+//                }                
+//            }
             
             mHomeObj.sAdvertList = mAdvArr;
             mHomeObj.eCompanyNoticeList = mComArr;

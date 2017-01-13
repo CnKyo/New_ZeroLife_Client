@@ -421,14 +421,14 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView              // Default is 1 if not implemented
 {
     if (tableView == self.mTableView) {
-        
-        if (mComDataSourceArr.count <=0 && mAdvDataSourceArr.count <= 0) {
-            return 1;
-        }else if ((mComDataSourceArr && mAdvDataSourceArr.count <= 0) || (mAdvDataSourceArr && mComDataSourceArr.count <= 0)){
-            return 2;
-        }else{
-            return 3;
-        }
+        return 3;
+//        if (mComDataSourceArr.count <=0 && mAdvDataSourceArr.count <= 0) {
+//            return 1;
+//        }else if ((mComDataSourceArr && mAdvDataSourceArr.count <= 0) || (mAdvDataSourceArr && mComDataSourceArr.count <= 0)){
+//            return 2;
+//        }else{
+//            return 3;
+//        }
         
         
     }else{
@@ -450,26 +450,32 @@
 {
     
     if (tableView == self.mTableView) {
-        
         if (section == 0) {
             return 1;
-        }else {
-            if (mComDataSourceArr.count <=0 && mAdvDataSourceArr.count <= 0) {
-                return mComDataSourceArr.count;
-            }else if (mComDataSourceArr && mAdvDataSourceArr.count <= 0){
-                return mComDataSourceArr.count;
-            }else{
-                return mAdvDataSourceArr.count;
-            }
-
+        } else if (section == 1) {
+            return mAdvDataSourceArr.count;
+        } else if (section == 2) {
+            return mComDataSourceArr.count;
         }
+        
+//        if (section == 0) {
+//            return 1;
+//        }else {
+//            if (mComDataSourceArr.count <=0 && mAdvDataSourceArr.count <= 0) {
+//                return mComDataSourceArr.count;
+//            }else if (mComDataSourceArr && mAdvDataSourceArr.count <= 0){
+//                return mComDataSourceArr.count;
+//            }else{
+//                return mAdvDataSourceArr.count;
+//            }
+//
+//        }
     }else{
         
         return 5;
     }
  
-    
-    
+    return 0;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -525,17 +531,15 @@
             
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
-            if (mComDataSourceArr.count <=0 && mAdvDataSourceArr.count <= 0) {
-                
-            }else if (mComDataSourceArr && mAdvDataSourceArr.count <= 0){
-                
+            if (indexPath.section == 1) {
+                ZLHomeAdvList *mAdv = mAdvDataSourceArr[indexPath.row];
+                [cell.mImage sd_setImageWithURL:[NSURL imageurl:mAdv.adv_image] placeholderImage:[UIImage imageNamed:@"ZLDefault_Activity"]];
+            } else {
                 ZLHomeCompainNoticeList *mCampain = mComDataSourceArr[indexPath.row];
                 
-                [cell.mImage sd_setImageWithURL:[NSURL URLWithString:[Util currentSourceImgUrl:mCampain.not_image]] placeholderImage:[UIImage imageNamed:@"ZLDefault_Activity"]];
-            }else{
-                ZLHomeAdvList *mAdv = mAdvDataSourceArr[indexPath.row];
-                [cell.mImage sd_setImageWithURL:[NSURL URLWithString:[Util currentSourceImgUrl:mAdv.adv_image]] placeholderImage:[UIImage imageNamed:@"ZLDefault_Activity"]];
+                [cell.mImage sd_setImageWithURL:[NSURL imageurl:mCampain.not_image] placeholderImage:[UIImage imageNamed:@"ZLDefault_Activity"]];
             }
+
             
             return cell;
         }
