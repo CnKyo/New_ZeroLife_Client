@@ -41,7 +41,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.navigationItem.title = @"社区超市";
+    self.navigationItem.title = @"社区店铺";
     mBannerArr = [NSMutableArray new];
 
     mCampainArr = [NSMutableArray new];
