@@ -30,5 +30,5 @@
 
 
 @interface SecurityPasswordVC : CustomVC
-
+@property(nonatomic, copy) void (^settingPwdSuccessCallBack)(NSString* pwd); //成功设置密码字符串
 @end
