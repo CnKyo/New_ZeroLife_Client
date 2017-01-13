@@ -109,6 +109,13 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUserInfoNeedChange:) name:MyUserNeedUpdateNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUserInfoChange:) name:MyUserInfoChangedNotification object:nil];
     
+
+    [self performSelector:@selector(startLoadUserInfo) withObject:nil afterDelay:1.0]; //更新用户数据
+}
+
+-(void)startLoadUserInfo
+{
+    [self handleUserInfoNeedChange:nil];
 }
 
 #pragma mark----****----用户需要更新数据
