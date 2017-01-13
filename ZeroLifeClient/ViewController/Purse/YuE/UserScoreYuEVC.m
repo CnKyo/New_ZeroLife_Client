@@ -224,7 +224,40 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    if (self.tableArr.count > indexPath.row && _isScoreView==NO) {
+        WalletRecordObject *item = [self.tableArr objectAtIndex:indexPath.row];
+        
+        NSString *name = [NSString strDesWithOrderType:item.odr_type];
+        NSMutableString *str = [NSMutableString new];
+        [str appendFormat:@"订单编号：%@", item.odr_code];
+        if (item.recw_desc.length > 0)
+            [str appendFormat:@"\n时间：%@", item.recw_add_time];
+        [str appendFormat:@"\n之前余额：￥%.2f", item.uwal_balance];
+        
+        switch (item.recw_record_type) {
+            case kWalletRecordType_input:
+                [str appendFormat:@"\n收入：+￥%.2f", item.uwal_operation_money];
+                break;
+            case kWalletRecordType_output:
+                [str appendFormat:@"\n支出：-￥%.2f", item.uwal_operation_money];
+                break;
+            default:
+                break;
+        }
+        
+        [str appendFormat:@"\n剩余金额：￥%.2f", item.operation_money];
+        if (item.recw_desc.length > 0)
+            [str appendFormat:@"\n描述：%@", item.recw_desc];
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:name message:str preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) { }];
+        [alert addAction:cancel];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
 }
+
+
 
 
 - (void)reloadTableViewData{

@@ -45,11 +45,14 @@
             break;
         case kOrderClassType_paopao:
         {
-            self.navigationItem.title =  @"跑跑腿订单";
-            if (_isShopOrderBool)
+            
+            if (_isShopOrderBool) {
+                self.navigationItem.title =  @"我的跑单";
                 arr = @[@"待处理", @"已完成", @"已取消"];
-            else
+            } else {
+                self.navigationItem.title =  @"跑跑腿订单";
                 arr = @[@"待支付", @"待接单", @"待确认", @"已完成"];
+            }
         }
             break;
         default:
