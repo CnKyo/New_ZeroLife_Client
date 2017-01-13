@@ -1328,7 +1328,14 @@ bool m_bind = NO;
 
 @end
 
+@implementation LKDBHelperAddress
 
++ (NSString *)getPrimaryKey{
+    
+    return @"mId";
+}
+
+@end
 @implementation ZLPreOrderObj
 + (NSDictionary *)mj_objectClassInArray{
     

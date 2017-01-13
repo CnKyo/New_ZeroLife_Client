@@ -292,8 +292,18 @@
 - (void)reloadTableViewDataSource{
 
     [super reloadTableViewDataSource];
-    [self loadAddress];
 
+    NSUserDefaults *mAdd = [NSUserDefaults standardUserDefaults];
+    NSData *mData = [mAdd objectForKey:@"address"];
+    LKDBHelperAddress *mAddress = [NSKeyedUnarchiver unarchiveObjectWithData:mData];
+
+    if (mAddress) {
+        mCommunityObj = mAddress.mAddress;
+        mLocationView.mAddress.text = mCommunityObj.cmut_name;
+    }else{
+        [self loadAddress];
+    }
+    
     if (mCommunityObj.cmut_lat <= 0 || mCommunityObj.cmut_lng <= 0 ) {
         [self ZLHomLocationViewDidSelected];
         [self endHeaderRereshing];

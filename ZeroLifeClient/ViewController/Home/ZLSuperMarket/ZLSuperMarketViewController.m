@@ -70,9 +70,8 @@
     [self.tableView registerNib:nib forCellReuseIdentifier:@"actovotyTypeCell2"];
 
     
-//    [self loadData];
+    [self loadData];
     
-    [self setTableViewHaveHeader];
 }
 
 //- (void)loadData{
@@ -80,6 +79,56 @@
 - (void)reloadTableViewDataSource{
 
     [super reloadTableViewDataSource];
+    
+    isClassOrTable = YES;
+    
+    
+    if (kIndex<=0) {
+        kIndex = 0;
+    }
+    
+    ZLShopHomeClassify *mShopClassify = mClassifyArr[kIndex];
+    [[APIClient sharedClient] ZLGetShopHomeShopList:self.mType andLat:self.mLat andLng:self.mLng andClassId:[NSString stringWithFormat:@"%d",mShopClassify.cls_id] andPage:1 block:^(APIObject *mBaseObj, ZLShopHomeShopList *mShopList) {
+        [self hiddenTableEmptyView];
+        
+        [self.tableArr removeAllObjects];
+        if (mBaseObj.code == RESP_STATUS_YES) {
+            
+            [self.tableArr addObjectsFromArray:mShopList.list];
+            
+            if (mShopList.list.count <= 0) {
+                [self addTableEmptyViewWithTitle:mBaseObj.msg andHiddenRefresh:NO];
+            }
+            
+            
+        }else{
+            
+            [self showErrorStatus:mBaseObj.msg];
+            [self addTableEmptyViewWithTitle:mBaseObj.msg andHiddenRefresh:NO];
+            
+        }
+        [self doneHeaderRereshing];
+        
+    }];
+    
+
+    
+}
+
+- (void)wk_emptyViewDidClicked{
+    
+//    if (isClassOrTable) {
+        [self beginHeaderRereshing];
+//    }else{
+//        [self upDatePage:mClassifyArr[kIndex]];
+    
+
+//    }
+    
+    
+}
+
+- (void)loadData{
     
     [[APIClient sharedClient] ZLGetShopHomePage:self.mLat andLng:self.mLng andType:self.mType block:^(APIObject *mBaseObj, ZLShopHomePage *mShopHome) {
         
@@ -89,67 +138,32 @@
         [mClassifyArr removeAllObjects];
         [self ZLHideEmptyView];
         if (mBaseObj.code == RESP_STATUS_YES) {
+            
+            if (mShopHome.banner.count<=0 || mShopHome.classify.count<=0) {
+                [self ZLShowEmptyView:@"暂无数据!" andImage:nil andHiddenRefreshBtn:NO];
+                return ;
+            }
+            
             [mBannerArr addObjectsFromArray:mShopHome.banner];
             [mCampainArr addObjectsFromArray:mShopHome.campaign];
             [mClassifyArr addObjectsFromArray:mShopHome.classify];
-            [self loadData];
+            [self setTableViewHaveHeader];
 
+            [self beginHeaderRereshing];
+            
         }else{
-        
+            
             [self showErrorStatus:mBaseObj.msg];
             [self addTableEmptyViewWithTitle:mBaseObj.msg andHiddenRefresh:NO];
         }
         
         [self doneHeaderRereshing];
-
-    }];
-    
-}
-
-- (void)wk_emptyViewDidClicked{
-    
-    if (isClassOrTable) {
-        [self beginHeaderRereshing];
-    }else{
-        [self upDatePage:mClassifyArr[kIndex]];
-
-    }
-    
-    
-}
-
-- (void)loadData{
-    
-    isClassOrTable = YES;
-    
-    if (mClassifyArr.count>0) {
-        ZLShopHomeClassify *mShopClassify = mClassifyArr[0];
-        [[APIClient sharedClient] ZLGetShopHomeShopList:self.mType andLat:self.mLat andLng:self.mLng andClassId:[NSString stringWithFormat:@"%d",mShopClassify.cls_id] andPage:1 block:^(APIObject *mBaseObj, ZLShopHomeShopList *mShopList) {
-            [self hiddenTableEmptyView];
-
-            [self.tableArr removeAllObjects];
-            if (mBaseObj.code == RESP_STATUS_YES) {
-                
-                [self.tableArr addObjectsFromArray:mShopList.list];
-                
-                if (mShopList.list.count <= 0) {
-                    [self addTableEmptyViewWithTitle:mBaseObj.msg andHiddenRefresh:NO];
-                }
-                
-                
-            }else{
-                
-                [self showErrorStatus:mBaseObj.msg];
-                [self addTableEmptyViewWithTitle:mBaseObj.msg andHiddenRefresh:NO];
-
-            }
-            [self doneHeaderRereshing];
-            
-        }];
         
-    }
+    }];
 }
-
+- (void)reloadTableViewData{
+    [self loadData];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -313,7 +327,8 @@
 - (void)ZLSupermarketClassCellDidSelectedWithIndex:(NSInteger)mIndex{
     isClassOrTable = NO;
     kIndex = mIndex;
-    [self upDatePage:mClassifyArr[mIndex]];
+
+    [self beginHeaderRereshing];
 }
 - (void)upDatePage:(ZLShopHomeClassify *)mClassiFy{
 

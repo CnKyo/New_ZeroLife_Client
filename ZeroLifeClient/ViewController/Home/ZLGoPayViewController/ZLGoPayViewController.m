@@ -183,7 +183,7 @@
             [self showSuccessStatus:mBaseObj.msg];
             
             if (_mShopId > 0) {
-                [LKDBHelperGoodsObj deleteWithWhere:[NSString stringWithFormat:@"%d",self.mShopId]];
+                [LKDBHelperGoodsObj deleteWithWhere:[NSString stringWithFormat:@"mShopId=%d",self.mShopId]];
             }
             
             if (self.paySuccessCallBack) {

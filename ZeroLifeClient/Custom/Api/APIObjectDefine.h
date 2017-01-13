@@ -1310,7 +1310,13 @@
 @property (strong,nonatomic) NSArray*               mGoodsSKU;
 @end
 
+@class CommunityObject;
+@interface LKDBHelperAddress : NSObject
+@property (strong,nonatomic) CommunityObject*     mAddress;
 
+@property (assign,nonatomic) int                    mId;    //!< 店铺id
+
+@end
 
 
 @class AddressObject;

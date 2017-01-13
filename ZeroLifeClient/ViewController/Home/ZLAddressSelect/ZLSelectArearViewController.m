@@ -222,7 +222,7 @@
     
     NSArray *cityArray = [_newCityDic objectForKey:[_allKeysArray objectAtIndex:indexPath.section]];
     CommunityObject *mObj = cityArray[indexPath.row];
-
+    [self saveAddressToDB:mObj];
     self.block(mObj);
 
     if (mType == 0) {
@@ -232,10 +232,19 @@
         [self popViewController];
     }
     
-    
-    
-    
 }
+- (void)saveAddressToDB:(CommunityObject *)mObj{
+   
+    LKDBHelperAddress *mAddress = [LKDBHelperAddress new];
+    mAddress.mId = mObj.cmut_id;
+    mAddress.mAddress = mObj;
+
+    NSData *mdata = [NSKeyedArchiver archivedDataWithRootObject:mAddress];
+    NSUserDefaults *mAdd = [NSUserDefaults standardUserDefaults];
+    [mAdd setObject:mdata forKey:@"address"];
+
+}
+
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView{
     
     if (_allKeysArray.count>0) {
