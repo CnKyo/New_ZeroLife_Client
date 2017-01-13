@@ -38,7 +38,7 @@
                     callback(itemNew);
                 }];
             }
-            else
+            else //其它通用操作
             {
                 [SVProgressHUD showWithStatus:@"操作中..."];
                 [[APIClient sharedClient] orderPaopaoManOprateWithTag:self odr_id:item.odr_id odr_code:item.odr_code odr_state_next:stateStr call:^(NSString *odr_state_val, NSMutableArray *odr_state_next, APIObject *info) {
@@ -151,7 +151,7 @@
             };
             [self.navigationController pushViewController:vc animated:YES];
         }
-        else
+        else //其它通用操作
         {
             [SVProgressHUD showWithStatus:@"操作中..."];
             [[APIClient sharedClient] orderOprateWithTag:self odr_id:item.odr_id odr_type:item.odr_type odr_code:item.odr_code odr_state_next:stateStr odr_memo:nil call:^(NSString *odr_state_val, NSMutableArray *odr_state_next, APIObject *info) {

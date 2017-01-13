@@ -511,13 +511,13 @@ static int const ZLRunningManVC_ClassView_Height                  = 80;
                 
             }
             else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"UNCHECK"]){
-                [self showErrorStatus:@"待审核中..."];
+                [self showErrorStatus:@"您的跑腿者功能待审核中..."];
             } else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"REFUSE"]){
-                [self showErrorStatus:@"审核失败！"];
+                [self showErrorStatus:@"您的跑腿者功能审核失败！"];
             } else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"LOGOFF"]){
-                [self showErrorStatus:@"已注销！"];
+                [self showErrorStatus:@"您的跑腿者功能已注销！"];
             } else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"LOCKED"]){
-                [self showErrorStatus:@"已禁用！"];
+                [self showErrorStatus:@"您的跑腿者功能已禁用！"];
             }else{
                 OrderTVC *vc = [[OrderTVC alloc] init];
                 vc.classType = kOrderClassType_paopao;

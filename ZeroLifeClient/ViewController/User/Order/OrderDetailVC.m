@@ -511,6 +511,31 @@
 
     }
     
+    else if (_classType == kOrderClassType_paopao && _isShopOrderBool==NO)  //跑跑腿相关
+    {
+        if (_item.odr_service_person.length > 0) {
+            BaoXiuWorkerView *itemView = [[BaoXiuWorkerView alloc] init];
+            [superView addSubview:itemView];
+            [itemView makeConstraints:^(MASConstraintMaker *make) {
+                make.left.right.equalTo(superView);
+                make.top.equalTo(lastView.bottom).offset(padding);
+                make.height.equalTo(60);
+            }];
+            lastView = itemView;
+            
+            itemView.workerLable.text = [NSString stringWithFormat:@"跑腿者信息\n%@ %@", _item.odr_service_person, _item.odr_service_phone];
+            [itemView.mobileBtn jk_addActionHandler:^(NSInteger tag) {
+                if (_item.odr_service_phone.length > 1) {
+                    NSString *str = [NSString stringWithFormat:@"tel://%@", _item.odr_service_phone];
+                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+                } else
+                    [SVProgressHUD showErrorWithStatus:@"暂无联系电话"];
+            }];
+        }
+    }
+    
+    
+    
     if (_item.odr_state_next.count > 0) {
         OrderActionBtnView *actionView = [[OrderActionBtnView alloc] init];
         [superView addSubview:actionView];
