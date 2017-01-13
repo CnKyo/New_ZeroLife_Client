@@ -38,6 +38,8 @@
 #import "PushAudioPlayer.h"
 #import "UIViewController+Additions.h"
 
+#import "ZLLoginViewController.h"
+
 @interface AppDelegate ()<UIAlertViewDelegate,WXApiDelegate, JPUSHRegisterDelegate>
 
 @end
@@ -555,6 +557,8 @@
                 [[PushAudioPlayer sharedClient] play:it.aps.sound];
             }
             
+            [self goToVCWithPush:it];
+            
 //            UIViewController *vc = [UIViewController topViewController];
 //            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:it.aps.alert preferredStyle:UIAlertControllerStyleAlert];
 //            UIAlertAction *ok = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
@@ -570,9 +574,11 @@
         if (it.aps.sound.length > 0 && ![it.aps.sound isEqualToString:@"default"]) {
             [[PushAudioPlayer sharedClient] play:it.aps.sound];
         }
+        
+        [self goToVCWithPush:it];
     }
     else {
-        //[self goToVCWithPush:it];
+        [self goToVCWithPush:it];
     }
     
     NSString *tempStr1 =
@@ -589,6 +595,28 @@
                                                format:NULL
                                      errorDescription:NULL];
     return str;
+}
+
+
+-(void)goToVCWithPush:(JPushReceiveObject *)item
+{
+    UINavigationController *navVC = (UINavigationController *)self.window.rootViewController;
+    NSArray *arr = navVC.viewControllers;
+    
+    UIViewController *lastVC = [arr lastObject];
+    
+    if (item.msg_type == 1) {
+        
+    }
+    else if (item.msg_type == 2) {
+        [ZLUserInfo logOut];
+        
+        if (![lastVC isKindOfClass:[ZLLoginViewController class]]) {
+            [ZLLoginViewController startPresent:lastVC];
+        }
+    
+    }
+    
 }
 
 
