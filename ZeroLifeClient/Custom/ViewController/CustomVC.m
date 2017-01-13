@@ -420,6 +420,10 @@
         
         if (info.code != RESP_STATUS_YES){
             self.errMsg = info.msg!=nil ? info.msg : @"网络错误";
+            
+//            if (info.code == RESP_STATUS_LOGIN || info.code==RESP_STATUS_RELOGIN) {
+//                [self performSelector:@selector(popViewController) withObject:nil afterDelay:0.8];
+//            }
         }
         else{
             self.errMsg = @"";

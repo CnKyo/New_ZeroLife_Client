@@ -678,6 +678,11 @@
             break;
         case ZLHomeFunctionTypeNote:
         {
+            ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+            if (user == nil) {
+                [ZLLoginViewController startPresent:self];
+                return;
+            }
             
             ZLAnounceMentViewController *vc = [[ZLAnounceMentViewController alloc] init];
             vc.hidesBottomBarWhenPushed = YES;
