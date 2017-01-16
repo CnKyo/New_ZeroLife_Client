@@ -191,7 +191,7 @@
                     return ;
                 }
                 
-                [SVProgressHUD showWithStatus:@"上传中..."];
+                [SVProgressHUD showWithStatus:@"投诉提交中..."];
                 [[APIClient sharedClient] complaintCommunityUpWithTag:self content:_view1TextView.text cmut_id:_view1ChooseCommunity.cmut_id  call:^(APIObject *info) {
                     if (info.code == RESP_STATUS_YES) {
                         [SVProgressHUD showSuccessWithStatus:info.msg];
@@ -213,7 +213,7 @@
                     return ;
                 }
                 
-                [SVProgressHUD showWithStatus:@"上传中..."];
+                [SVProgressHUD showWithStatus:@"投诉提交中..."];
                 [[APIClient sharedClient] complaintCommunityUpWithTag:self content:_view2TextView.text cmut_id:_view2ChooseCommunity.cmut_id call:^(APIObject *info) {
                     if (info.code == RESP_STATUS_YES) {
                         [SVProgressHUD showSuccessWithStatus:info.msg];
@@ -230,7 +230,7 @@
                     return ;
                 }
                 
-                [SVProgressHUD showWithStatus:@"投诉中..."];
+                [SVProgressHUD showWithStatus:@"建议提交中..."];
                 [[APIClient sharedClient] complaintCompanyAddWithTag:self content:_view3TextView.text call:^(APIObject *info) {
                     if (info.code == RESP_STATUS_YES) {
                         [SVProgressHUD showSuccessWithStatus:info.msg];

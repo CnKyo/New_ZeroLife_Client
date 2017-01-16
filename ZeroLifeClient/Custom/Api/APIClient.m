@@ -1705,7 +1705,6 @@ return [NSString stringWithFormat:@"%@%@%@",kAFAppDotNetImgBaseURLString,kAFAppD
 -(void)communityListWithTag:(NSObject *)tag location:(CLLocationCoordinate2D)location search:(NSString *)search province:(int)province city:(int)city county:(int)county call:(TableArrBlock)callback
 {
     NSMutableDictionary* paramDic = [NSMutableDictionary dictionary];
-    [paramDic setInt:6 forKey:@"user_id"];
     
     if (search.length > 0)
         [paramDic setObject:search forKey:@"search"];
