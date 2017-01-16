@@ -210,16 +210,16 @@ static int const RESP_STATUS_RELOGIN                  = 405;             //需�
 //static NSString* const  kAFAppDotNetApiServiceURLString    = @"/crkj_zlife/api/app/service";
 
 
-static NSString* const  kAFAppDotNetApiBaseURLString    = @"http://192.168.1.114";
-static NSString* const  kAFAppDotNetApiExtraURLString    = @"/api/app/client";
-static NSString* const  kAFAppDotNetApiServiceURLString    = @"/api/app/service";
-static NSString* const  kAFAppDotNetImgBaseURLString    = @"http://192.168.1.114/resource";
-
-
-//static NSString* const  kAFAppDotNetApiBaseURLString    = @"http://120.26.235.162";
+//static NSString* const  kAFAppDotNetApiBaseURLString    = @"http://192.168.1.114";
 //static NSString* const  kAFAppDotNetApiExtraURLString    = @"/api/app/client";
 //static NSString* const  kAFAppDotNetApiServiceURLString    = @"/api/app/service";
-//static NSString* const  kAFAppDotNetImgBaseURLString    = @"http://120.26.235.162/resource";
+//static NSString* const  kAFAppDotNetImgBaseURLString    = @"http://192.168.1.114/resource";
+
+
+static NSString* const  kAFAppDotNetApiBaseURLString    = @"http://120.26.235.162";
+static NSString* const  kAFAppDotNetApiExtraURLString    = @"/api/app/client";
+static NSString* const  kAFAppDotNetApiServiceURLString    = @"/api/app/service";
+static NSString* const  kAFAppDotNetImgBaseURLString    = @"http://120.26.235.162/resource";
 
 
 static NSString * const MyUserNeedUpdateNotification     = @"MyUserNeedUpdateNotification";
@@ -536,6 +536,19 @@ typedef enum {
 }ZLShopLeftType;///店铺左边类型
 
 
+
+typedef enum {
+    ZLForgetPwd = 2,///忘记密码
+    ZLRegistPwd = 1,///注册
+}ZLRegistOrForgetPwd;///注册还是忘记密码
+
+typedef NS_ENUM(NSUInteger,ZLHomeCellType){
+    ZLHomeFuncOne = 1,
+    ZLHomeFuncTwo = 2,
+    ZLHomeFuncThree = 3,
+    ZLHomeFuncFour = 4,
+    ZLHomeFuncFive = 5
+};
 
 
 

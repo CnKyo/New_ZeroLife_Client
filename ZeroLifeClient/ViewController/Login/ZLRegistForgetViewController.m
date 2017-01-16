@@ -68,7 +68,7 @@
         return;
     }
     [self showWithStatus:@"正在发送验证码..."];
-    [[APIClient sharedClient] ZLGetVerigyCode:mView.mRegistPhoneTx.text andType:1 block:^(APIObject *mBaseObj) {
+    [[APIClient sharedClient] ZLGetVerigyCode:mView.mRegistPhoneTx.text andType:_mType block:^(APIObject *mBaseObj) {
         [self dismiss];
         if (mBaseObj.code == RESP_STATUS_YES) {
             [self dismiss];
@@ -108,7 +108,7 @@
         return;
     }
     [self showWithStatus:@"正在注册..."];
-    [[APIClient sharedClient] ZLRegistPhone:mView.mRegistPhoneTx.text andPwd:mView.mRegistPwdTx.text andCode:mView.mRegistCodeTx.text block:^(APIObject *mBaseObj) {
+    [[APIClient sharedClient] ZLRegistPhone:mView.mRegistPhoneTx.text andPwd:mView.mRegistPwdTx.text andCode:mView.mRegistCodeTx.text andType:_mType block:^(APIObject *mBaseObj) {
         
         [self dismiss];
         if (mBaseObj.code == RESP_STATUS_YES) {

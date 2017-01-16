@@ -81,6 +81,7 @@
 - (void)mRightAction:(UIButton *)sender{
     ZLRegistForgetViewController *vc = [ZLRegistForgetViewController new];
     vc.mTitle = @"注册";
+    vc.mType = ZLRegistPwd;
     [self pushViewController:vc];
 }
 
@@ -104,6 +105,7 @@
 - (void)ZLLoginWithForgetAction{
     ZLRegistForgetViewController *vc = [ZLRegistForgetViewController new];
     vc.mTitle = @"忘记密码";
+    vc.mType = ZLForgetPwd;
     [self pushViewController:vc];
 }
 

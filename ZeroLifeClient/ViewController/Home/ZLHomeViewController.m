@@ -41,7 +41,7 @@
 #import "GPSLocationPicker.h"
 
 #define NAVBAR_CHANGE_POINT 30
-@interface ZLHomeViewController ()<UITableViewDelegate,UITableViewDataSource,ZLHomeScrollerTableCellDelegate,ZLHomeLocationViewDelegate,ZLCoupViewDelegate,AMapLocationManagerDelegate,MMApBlockCoordinate>
+@interface ZLHomeViewController ()<UITableViewDelegate,UITableViewDataSource,ZLHomeScrollerTableCellDelegate,ZLHomeLocationViewDelegate,ZLCoupViewDelegate,AMapLocationManagerDelegate,MMApBlockCoordinate,ZLHomeOtherCellDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *mTableView;
 
 @end
@@ -447,22 +447,11 @@
 {
     if (tableView == self.mTableView) {
         return 3;
-//        if (mComDataSourceArr.count <=0 && mAdvDataSourceArr.count <= 0) {
-//            return 1;
-//        }else if ((mComDataSourceArr && mAdvDataSourceArr.count <= 0) || (mAdvDataSourceArr && mComDataSourceArr.count <= 0)){
-//            return 2;
-//        }else{
-//            return 3;
-//        }
-        
-        
     }else{
     
         return 1;
     }
-    
-    
-    
+
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     
@@ -482,19 +471,7 @@
         } else if (section == 2) {
             return mComDataSourceArr.count;
         }
-        
-//        if (section == 0) {
-//            return 1;
-//        }else {
-//            if (mComDataSourceArr.count <=0 && mAdvDataSourceArr.count <= 0) {
-//                return mComDataSourceArr.count;
-//            }else if (mComDataSourceArr && mAdvDataSourceArr.count <= 0){
-//                return mComDataSourceArr.count;
-//            }else{
-//                return mAdvDataSourceArr.count;
-//            }
-//
-//        }
+
     }else{
         
         return 5;
@@ -517,7 +494,7 @@
             
             
         }else{
-            return 200;
+            return 210;
         }
     }else{
         
@@ -553,9 +530,10 @@
             reuseCellId = @"cell2";
             
             ZLHomeOtherCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
-            
+            cell.delegate = self;
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            
+
+//            [cell setMDataSource:@[@"1",@"2",@"3",@"4",@"5"]];
             if (indexPath.section == 1) {
                 ZLHomeAdvList *mAdv = mAdvDataSourceArr[indexPath.row];
                 [cell.mImage sd_setImageWithURL:[NSURL imageurl:mAdv.adv_image] placeholderImage:[UIImage imageNamed:@"ZLDefault_Activity"]];
@@ -589,7 +567,6 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if (tableView == self.mTableView) {
-//        [self showCoupView];
         
         if (indexPath.section == 1) {
             if (mComDataSourceArr.count <=0 && mAdvDataSourceArr.count <= 0) {
@@ -772,5 +749,14 @@
 #pragma mark ----****----隐藏优惠券view
 - (void)ZLCoupOKBtnSelected{
     [self hiddenCoupView];
+}
+#pragma mark ----****----模块cell点击代理方法
+/**
+ 点击代理方法
+ 
+ @param mIndex 索引
+ */
+- (void)ZLHomeOtherCellFuncDidSelectedWithIndex:(NSInteger)mIndex{
+    MLLog(@"点击了------%ld",(long)mIndex);
 }
 @end

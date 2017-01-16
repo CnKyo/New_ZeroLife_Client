@@ -216,6 +216,10 @@
 		04B862AC1DD5983200BDEA59 /* ZLGoodsDetailBottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04B862AB1DD5983200BDEA59 /* ZLGoodsDetailBottomView.xib */; };
 		04B862B01DD59A9D00BDEA59 /* JXLayoutButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B862AF1DD59A9D00BDEA59 /* JXLayoutButton.m */; };
 		04B862B21DD5AEDF00BDEA59 /* ZLGoodsDetailCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04B862B11DD5AEDF00BDEA59 /* ZLGoodsDetailCell2.xib */; };
+		04C02AEC1E2C9B4000DD78A8 /* ZLHomeCampFuncView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C02AEB1E2C9B4000DD78A8 /* ZLHomeCampFuncView.m */; };
+		04C02AEE1E2C9B4900DD78A8 /* ZLHomeCampFuncView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04C02AED1E2C9B4900DD78A8 /* ZLHomeCampFuncView.xib */; };
+		04C02AF01E2C9D3100DD78A8 /* ZLHomeCampFuncImgRightView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04C02AEF1E2C9D3100DD78A8 /* ZLHomeCampFuncImgRightView.xib */; };
+		04C02AF21E2C9F1D00DD78A8 /* ZLHomeCampFuncBigView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04C02AF11E2C9F1D00DD78A8 /* ZLHomeCampFuncBigView.xib */; };
 		04C6A3731DCB07B9002C4D4A /* Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C6A3721DCB07B9002C4D4A /* Util.m */; };
 		04C6A3761DCB0874002C4D4A /* keyChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C6A3751DCB0874002C4D4A /* keyChain.m */; };
 		04C6A37E1DCB08AF002C4D4A /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C6A3791DCB08AF002C4D4A /* NSData+Base64.m */; };
@@ -944,6 +948,11 @@
 		04B862AE1DD59A9D00BDEA59 /* JXLayoutButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JXLayoutButton.h; sourceTree = "<group>"; };
 		04B862AF1DD59A9D00BDEA59 /* JXLayoutButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JXLayoutButton.m; sourceTree = "<group>"; };
 		04B862B11DD5AEDF00BDEA59 /* ZLGoodsDetailCell2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLGoodsDetailCell2.xib; sourceTree = "<group>"; };
+		04C02AEA1E2C9B4000DD78A8 /* ZLHomeCampFuncView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLHomeCampFuncView.h; sourceTree = "<group>"; };
+		04C02AEB1E2C9B4000DD78A8 /* ZLHomeCampFuncView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLHomeCampFuncView.m; sourceTree = "<group>"; };
+		04C02AED1E2C9B4900DD78A8 /* ZLHomeCampFuncView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLHomeCampFuncView.xib; sourceTree = "<group>"; };
+		04C02AEF1E2C9D3100DD78A8 /* ZLHomeCampFuncImgRightView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLHomeCampFuncImgRightView.xib; sourceTree = "<group>"; };
+		04C02AF11E2C9F1D00DD78A8 /* ZLHomeCampFuncBigView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLHomeCampFuncBigView.xib; sourceTree = "<group>"; };
 		04C6A3711DCB07B2002C4D4A /* Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Util.h; sourceTree = "<group>"; };
 		04C6A3721DCB07B9002C4D4A /* Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Util.m; sourceTree = "<group>"; };
 		04C6A3741DCB0874002C4D4A /* keyChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = keyChain.h; sourceTree = "<group>"; };
@@ -2385,6 +2394,18 @@
 			path = JXLayoutButton;
 			sourceTree = "<group>";
 		};
+		04C02AE91E2C9B1F00DD78A8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				04C02AEA1E2C9B4000DD78A8 /* ZLHomeCampFuncView.h */,
+				04C02AEB1E2C9B4000DD78A8 /* ZLHomeCampFuncView.m */,
+				04C02AED1E2C9B4900DD78A8 /* ZLHomeCampFuncView.xib */,
+				04C02AF11E2C9F1D00DD78A8 /* ZLHomeCampFuncBigView.xib */,
+				04C02AEF1E2C9D3100DD78A8 /* ZLHomeCampFuncImgRightView.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		04C6A3701DCB079B002C4D4A /* Util */ = {
 			isa = PBXGroup;
 			children = (
@@ -2462,6 +2483,7 @@
 		04D64D6E1DC9CCDC004E8859 /* ZLHomeCell */ = {
 			isa = PBXGroup;
 			children = (
+				04C02AE91E2C9B1F00DD78A8 /* View */,
 				04D64D6F1DC9CCDC004E8859 /* ZLHomeOtherCell.h */,
 				04D64D701DC9CCDC004E8859 /* ZLHomeOtherCell.m */,
 				04D64D711DC9CCDC004E8859 /* ZLHomeOtherCell.xib */,
@@ -3651,6 +3673,7 @@
 				DF630D361DD44CE60076A92C /* sigin_qian@2x.png in Resources */,
 				DF993D3F1DDAE7640061D7CA /* baoxiuShop_pei@2x.png in Resources */,
 				DFBAA9801DF159B9004315F9 /* user_header@3x.png in Resources */,
+				04C02AF01E2C9D3100DD78A8 /* ZLHomeCampFuncImgRightView.xib in Resources */,
 				DFA3C0ED1E153C9C00DF8923 /* OrderMainTainVC.xib in Resources */,
 				040D92FF1DCAE84300DBE42E /* ZLHomeMsgDetailCell.xib in Resources */,
 				04C6A37F1DCB08AF002C4D4A /* private_key.p12 in Resources */,
@@ -3742,6 +3765,7 @@
 				040917681DCC39DE00DB2568 /* ZLSuperMarketHeaderSectionView.xib in Resources */,
 				DF29B69A1E11092D00CBAA3B /* icon_order_paopao@3x.png in Resources */,
 				DF993D4E1DDAF3D60061D7CA /* ganxi_shijian@3x.png in Resources */,
+				04C02AEE1E2C9B4900DD78A8 /* ZLHomeCampFuncView.xib in Resources */,
 				DFE178A71DD55A9A00E06F21 /* cell_img_nike@2x.png in Resources */,
 				DFA135351DD6AA6C00805BA2 /* coupon_top_icon.png in Resources */,
 				DFE1786F1DD555C100E06F21 /* order_paopao@2x.png in Resources */,
@@ -3855,6 +3879,7 @@
 				DF993D571DDAFFB30061D7CA /* notice@3x.png in Resources */,
 				04A763261DDC0CE10061E2B0 /* ZLPPTReleaseGeneryCell2.xib in Resources */,
 				0445AD7F1DD44CE600788779 /* ZLPayTypeTableViewCell.xib in Resources */,
+				04C02AF21E2C9F1D00DD78A8 /* ZLHomeCampFuncBigView.xib in Resources */,
 				DFA135361DD6AA6C00805BA2 /* coupon_top_icon@2x.png in Resources */,
 				04866BA01DD415B9008DA56B /* ZLCommitOrderHeaderView.xib in Resources */,
 				DF98EC651DD2FCA00006EBFE /* order_gouwu_peisong.png in Resources */,
@@ -4204,6 +4229,7 @@
 				DF828D321DEEA923004C1501 /* BanUnitFloorNumberTextField.m in Sources */,
 				DF08E87A1DD1C072003E4DD9 /* UserAddressTVC.m in Sources */,
 				DF993D451DDAF0790061D7CA /* DryCleanOrderChooseTimeVC.m in Sources */,
+				04C02AEC1E2C9B4000DD78A8 /* ZLHomeCampFuncView.m in Sources */,
 				DF04C2D41E08D06C00CC2EEC /* SelectedAddressVC.m in Sources */,
 				0409178A1DCC919200DB2568 /* ZLSuperMarketShopRightCell.m in Sources */,
 				04162E001DCB545200FB4229 /* HeaderView.m in Sources */,

@@ -598,18 +598,25 @@ return [NSString stringWithFormat:@"%@%@%@",kAFAppDotNetImgBaseURLString,kAFAppD
 
 
 #pragma mark----****----注册
-- (void)ZLRegistPhone:(NSString *)mPhone andPwd:(NSString *)mPwd andCode:(NSString *)mCode block:(void(^)(APIObject *mBaseObj))block{
+- (void)ZLRegistPhone:(NSString *)mPhone andPwd:(NSString *)mPwd andCode:(NSString *)mCode andType:(ZLRegistOrForgetPwd)mType block:(void (^)(APIObject *))block{
     NSMutableDictionary *para = [NSMutableDictionary new];
     [para setObject:mPhone forKey:@"acc_phone"];
     [para setObject:mPwd forKey:@"acc_pass"];
     [para setObject:mCode forKey:@"v_code"];
     
-    [self loadAPIWithTag:self path:@"/user/user_register" parameters:para call:^(APIObject *info) {
+    NSString *mUrl = nil;
+    if (mType == ZLRegistPwd) {
+        mUrl = @"/user/user_register";
+    }else{
+        mUrl = @"user/user_repass";
+    }
+    
+    [self loadAPIWithTag:self path:mUrl parameters:para call:^(APIObject *info) {
         block(info);
     }];
 }
 #pragma mark----****----获取验证码
-- (void)ZLGetVerigyCode:(NSString *)mCode andType:(int)mtype block:(void(^)(APIObject *mBaseObj))block{
+- (void)ZLGetVerigyCode:(NSString *)mCode andType:(ZLRegistOrForgetPwd)mtype block:(void(^)(APIObject *mBaseObj))block{
     NSMutableDictionary *para = [NSMutableDictionary new];
     [para setObject:mCode forKey:@"mobile"];
     [para setObject:NumberWithInt(mtype) forKey:@"type"];

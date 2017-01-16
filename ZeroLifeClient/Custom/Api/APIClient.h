@@ -197,10 +197,10 @@ typedef void (^TableShareSdkBlock)(int totalpage, NSArray *tableArr, APIShareSdk
 
 #pragma mark----****----注册
 ///注册
-- (void)ZLRegistPhone:(NSString *)mPhone andPwd:(NSString *)mPwd andCode:(NSString *)mCode block:(void(^)(APIObject *mBaseObj))block;
+- (void)ZLRegistPhone:(NSString *)mPhone andPwd:(NSString *)mPwd andCode:(NSString *)mCode andType:(ZLRegistOrForgetPwd)mType block:(void(^)(APIObject *mBaseObj))block;
 #pragma mark----****----获取验证码
 ///获取验证码
-- (void)ZLGetVerigyCode:(NSString *)mCode andType:(int)mtype block:(void(^)(APIObject *mBaseObj))block;
+- (void)ZLGetVerigyCode:(NSString *)mCode andType:(ZLRegistOrForgetPwd)mtype block:(void(^)(APIObject *mBaseObj))block;
 #pragma mark----****----app初始化加载数据
 - (void)ZLAppInit:(void(^)(APIObject *mBaseObj,ZLAPPInfo *mAppInfo))block;
 

@@ -7,9 +7,11 @@
 //
 
 #import "CustomVC.h"
-
+#import "CustomDefine.h"
 @interface ZLRegistForgetViewController : CustomVC
 
 @property (strong,nonatomic) NSString *mTitle;
+
+@property (assign,nonatomic) ZLRegistOrForgetPwd mType;
 
 @end
