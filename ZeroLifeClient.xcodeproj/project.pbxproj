@@ -437,6 +437,7 @@
 		DF8DBCE81DD06C8A002E574B /* DryCleanShopTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF8DBCE71DD06C8A002E574B /* DryCleanShopTableViewCell.m */; };
 		DF8DBCED1DD0782F002E574B /* LifePayVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF8DBCEC1DD0782F002E574B /* LifePayVC.m */; };
 		DF8DBCF31DD07CB2002E574B /* MobileRechargeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF8DBCF21DD07CB2002E574B /* MobileRechargeVC.m */; };
+		DF9880611E2CC1BB00AC9066 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF9880601E2CC1BB00AC9066 /* AVFoundation.framework */; };
 		DF98AFFA1E24D2BF00F08BF4 /* PushAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = DF98AFF91E24D2BF00F08BF4 /* PushAudioPlayer.m */; };
 		DF98B00E1E24EDC400F08BF4 /* UIButton+Border.m in Sources */ = {isa = PBXBuildFile; fileRef = DF98B00D1E24EDC400F08BF4 /* UIButton+Border.m */; };
 		DF98EC351DD2AE460006EBFE /* OrderTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF98EC341DD2AE460006EBFE /* OrderTVC.m */; };
@@ -1268,6 +1269,7 @@
 		DF8DBCEC1DD0782F002E574B /* LifePayVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LifePayVC.m; sourceTree = "<group>"; };
 		DF8DBCF11DD07CB2002E574B /* MobileRechargeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobileRechargeVC.h; sourceTree = "<group>"; };
 		DF8DBCF21DD07CB2002E574B /* MobileRechargeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobileRechargeVC.m; sourceTree = "<group>"; };
+		DF9880601E2CC1BB00AC9066 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		DF98AFF81E24D2BF00F08BF4 /* PushAudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushAudioPlayer.h; sourceTree = "<group>"; };
 		DF98AFF91E24D2BF00F08BF4 /* PushAudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushAudioPlayer.m; sourceTree = "<group>"; };
 		DF98B00C1E24EDC400F08BF4 /* UIButton+Border.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Border.h"; sourceTree = "<group>"; };
@@ -1512,6 +1514,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF9880611E2CC1BB00AC9066 /* AVFoundation.framework in Frameworks */,
 				041789D71DE03C1500D55EA7 /* WebKit.framework in Frameworks */,
 				041789D11DDFE91A00D55EA7 /* JavaScriptCore.framework in Frameworks */,
 				041789CF1DDFE91300D55EA7 /* libstdc++.tbd in Frameworks */,
@@ -2518,6 +2521,7 @@
 		12B582CBD65385C342FBEFDA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DF9880601E2CC1BB00AC9066 /* AVFoundation.framework */,
 				041789D61DE03C1500D55EA7 /* WebKit.framework */,
 				041789D01DDFE91A00D55EA7 /* JavaScriptCore.framework */,
 				041789CE1DDFE91300D55EA7 /* libstdc++.tbd */,

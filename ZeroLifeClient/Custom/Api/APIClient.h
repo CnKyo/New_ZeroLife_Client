@@ -394,19 +394,6 @@ typedef void (^TableShareSdkBlock)(int totalpage, NSArray *tableArr, APIShareSdk
 // */
 //- (void)ZLGetPreRechargePhone:(void(^)(APIObject *mBaseObj,ZLCreatePreOrder *mRecharge))block;
 
-#pragma mark----****----手机充值订单
-/**
- 手机充值
-
- @param mRecharge 充值对象
- @param mPhone 充值电话
-
- @param mOrderType 充值订单类型
- @param mMoney 充值金额
-
- @param block 返回值
- */
-- (void)ZLPhoneRecharge:(int)mRecharge andOrderType:(kOrderClassType)mOrderType andPhone:(NSString *)mPhone andMoney:(NSString *)mMoney block:(void(^)(APIObject *mBaseObj))block;
 
 #pragma mark----****---- 报修预订单接口
 /**
