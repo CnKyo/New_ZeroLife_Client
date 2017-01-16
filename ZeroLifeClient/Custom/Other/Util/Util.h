@@ -443,5 +443,8 @@ typedef enum _RelDic
 + (NSArray *)wk_StringToArr:(NSString *)string;
 
 
++ (void)ZLSaveLocalData:(id)mData withKey:(NSString *)mKey;
++ (id)ZLGetLocalDataWithKey:(NSString *)mKey;
+
 
 @end

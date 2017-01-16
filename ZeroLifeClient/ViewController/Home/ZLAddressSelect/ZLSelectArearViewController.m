@@ -261,9 +261,7 @@
     mAddress.mId = mObj.cmut_id;
     mAddress.mAddress = mObj;
 
-    NSData *mdata = [NSKeyedArchiver archivedDataWithRootObject:mAddress];
-    NSUserDefaults *mAdd = [NSUserDefaults standardUserDefaults];
-    [mAdd setObject:mdata forKey:@"address"];
+    [Util ZLSaveLocalData:mAddress withKey:kAddressCommunity];
 
 }
 

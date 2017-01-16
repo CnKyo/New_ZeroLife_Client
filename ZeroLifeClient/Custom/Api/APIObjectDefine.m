@@ -1503,3 +1503,5 @@ bool m_bind = NO;
 @implementation JPushReceiveObject
 @end
 
+@implementation LKDBHomeData
+@end

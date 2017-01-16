@@ -67,6 +67,7 @@
     NSMutableArray *mComDataSourceArr;
 
     AMapLocationManager *mLocation;
+    
 }
 
 - (void)viewDidLoad {
@@ -75,7 +76,6 @@
 
     [self appInit];
     mCommunityObj = [CommunityObject new];
-    
     NSNotificationCenter *mNotify = [NSNotificationCenter defaultCenter];
     [mNotify addObserver:self selector:@selector(webAction:) name:@"ZLAdView" object:nil];
     
@@ -301,11 +301,12 @@
 - (void)reloadTableViewDataSource{
 
     [super reloadTableViewDataSource];
-
-    NSUserDefaults *mAdd = [NSUserDefaults standardUserDefaults];
-    NSData *mData = [mAdd objectForKey:@"address"];
-    LKDBHelperAddress *mAddress = [NSKeyedUnarchiver unarchiveObjectWithData:mData];
-
+    
+    LKDBHelperAddress *mAddress = [Util ZLGetLocalDataWithKey:kAddressCommunity];
+    LKDBHomeData *mHomeCacke = [Util ZLGetLocalDataWithKey:kHomeData];
+    if (mHomeCacke == nil) {
+        mHomeCacke = [LKDBHomeData new];
+    }
     if (mAddress) {
         mCommunityObj = mAddress.mAddress;
         mLocationView.mAddress.text = mCommunityObj.cmut_name;
@@ -331,16 +332,23 @@
             [mBannerArr addObjectsFromArray:mFunc.banners];
             [mFunctionArr addObjectsFromArray:mFunc.functions];
   
-        
-        }else{
-        
-            [self showErrorStatus:mBaseObj.msg];
+            mHomeCacke.mBannerArr  = mFunc.banners;
+            mHomeCacke.mFunctionArr = mFunc.functions;
             
-            [self addEmptyView:_mTableView andType:ZLEmptyViewTypeWithNoNet];
+        }else{
+            if (mHomeCacke != nil) {
+                [mBannerArr addObjectsFromArray:mHomeCacke.mBannerArr];
+                [mFunctionArr addObjectsFromArray:mHomeCacke.mFunctionArr];
+            }else{
+                [self showErrorStatus:mBaseObj.msg];
+                
+                [self addEmptyView:_mTableView andType:ZLEmptyViewTypeWithNoNet];
+            }
+            
         }
         [_mTableView reloadData];
         [self endHeaderRereshing];
-
+        MLLog(@"迈左腿");
     }];
     
     [[APIClient sharedClient] ZLGetHome:[NSString stringWithFormat:@"%f", mCommunityObj.cmut_lat] andLng:[NSString stringWithFormat:@"%f", mCommunityObj.cmut_lng] block:^(APIObject *mBaseObj, ZLHomeObj *mHome) {
@@ -350,13 +358,21 @@
 
             [mAdvDataSourceArr addObjectsFromArray:mHome.sAdvertList];
             [mComDataSourceArr addObjectsFromArray:mHome.eCompanyNoticeList];
+            mHomeCacke.mAdvArr = mHome.sAdvertList;
+            mHomeCacke.mCampArr = mHome.eCompanyNoticeList;
             
         }else{
-        
-            [self showErrorStatus:mBaseObj.msg];
+            if (mHomeCacke != nil) {
+                [mAdvDataSourceArr addObjectsFromArray:mHomeCacke.mAdvArr];
+                [mComDataSourceArr addObjectsFromArray:mHomeCacke.mCampArr];
+            }else{
+                [self showErrorStatus:mBaseObj.msg];
+            }
         }
         [_mTableView reloadData];
         [self endHeaderRereshing];
+        MLLog(@"迈右腿");
+        [Util ZLSaveLocalData:mHomeCacke withKey:kHomeData];
 
     }];
     

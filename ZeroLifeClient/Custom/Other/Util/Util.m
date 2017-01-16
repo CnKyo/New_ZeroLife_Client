@@ -1708,7 +1708,17 @@
     }
 
 }
++ (void)ZLSaveLocalData:(id)mData withKey:(NSString *)mKey{
+    NSData *mdata = [NSKeyedArchiver archivedDataWithRootObject:mData];
+    NSUserDefaults *mAdd = [NSUserDefaults standardUserDefaults];
+    [mAdd setObject:mdata forKey:mKey];
+    
+}
 
++ (NSData *)ZLGetLocalDataWithKey:(NSString *)mKey{
+    NSUserDefaults *mAdd = [NSUserDefaults standardUserDefaults];
+    return [NSKeyedUnarchiver unarchiveObjectWithData:[mAdd objectForKey:mKey]];
+}
 @end
 
 

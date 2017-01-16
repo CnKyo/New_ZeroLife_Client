@@ -372,7 +372,10 @@
     
     [mPara setNeedStr:mFixPreOrder.goods.pro_name forKey:@"odrg_pro_name"];
 
-    [mPara setNeedStr:mFixPreOrder.goods.pro_spec forKey:@"odrg_spec"];
+    if (mFixPreOrder.mRemark) {
+        [mPara setNeedStr:mFixPreOrder.mRemark forKey:@"odrg_spec"];
+    }
+    
     [mPara setInt:0 forKey:@"odrg_price"];
 
     [mPara setNeedStr:mFixPreOrder.goods.img_url forKey:@"odrg_img"];

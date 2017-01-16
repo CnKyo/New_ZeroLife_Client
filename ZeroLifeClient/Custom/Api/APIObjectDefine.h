@@ -1820,5 +1820,13 @@
 @property (nonatomic, assign) int                   odr_code;              //
 @property (nonatomic, strong) NSString *            url;              //
 @end
+#pragma mark-----****----首页缓存数据对象
+///首页缓存数据对象
+@interface LKDBHomeData : NSObject
+@property (nonatomic, strong) NSArray  *            mBannerArr;                 ///banner数组
+@property (nonatomic, strong) NSArray  *            mFunctionArr;               ///功能模块数组
+@property (nonatomic, strong) NSArray  *            mAdvArr;                    ///公告数组
+@property (nonatomic, strong) NSArray  *            mCampArr;                   ///活动数组
+@end
 
 
