@@ -18,6 +18,7 @@
 #import "WithDrawalVC.h"
 #import "SouKuanVC.h"
 #import "SecurityPasswordVC.h"
+#import "SecurityPasswordDoneTVC.h"
 
 #import "SingInView.h"
 #import "ZLLoginViewController.h"
@@ -290,9 +291,16 @@
                 return;
             }
             
-            SecurityPasswordVC *vc = [[SecurityPasswordVC alloc] init];
-            vc.hidesBottomBarWhenPushed = YES;
-            [self.navigationController pushViewController:vc animated:YES];
+            if ([user.wallet.pass isEqualToString:kWalletPayment_Pass]) {
+                SecurityPasswordDoneTVC *vc = [[SecurityPasswordDoneTVC alloc] init];
+                vc.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:vc animated:YES];
+            } else {
+                SecurityPasswordVC *vc = [[SecurityPasswordVC alloc] init];
+                vc.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+            
         }];
         
         view;

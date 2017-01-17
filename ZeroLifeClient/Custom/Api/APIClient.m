@@ -735,6 +735,32 @@ return [NSString stringWithFormat:@"%@%@%@",kAFAppDotNetImgBaseURLString,kAFAppD
         callback([APIObject infoWithReLoginErrorMessage:@"请重新登陆"]);
 }
 
+
+/**
+ *  用户交易密码设置接口
+ *
+ *  @param tag      链接对象
+ *  @param mobile   手机号
+ *  @param idCard   身份证号
+ *  @param acc_pass  登录密码
+ *  @param callback 返回信息
+ */
+-(void)userSecurityPasswordCompalainWithTag:(NSObject *)tag mobile:(NSString *)mobile idCard:(NSString *)idCard acc_pass:(NSString *)acc_pass call:(void (^)(APIObject* info))callback
+{
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    if (user.user_id > 0) {
+        NSMutableDictionary* paramDic = [NSMutableDictionary dictionary];
+        [paramDic setNeedStr:mobile forKey:@"mobile"];
+        [paramDic setNeedStr:idCard forKey:@"idCard"];
+        [paramDic setNeedStr:acc_pass forKey:@"acc_pass"];
+        [paramDic setInt:user.user_id forKey:@"user_id"];
+        [self loadAPIWithTag:tag path:@"/user/user_security_password" parameters:paramDic call:^(APIObject *info) {
+            callback(info);
+        }];
+    } else
+        callback([APIObject infoWithReLoginErrorMessage:@"请重新登陆"]);
+}
+
 #pragma mark----****---- 更新用户信息
 /**
  更新用户信息
