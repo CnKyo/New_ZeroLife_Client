@@ -39,6 +39,7 @@
 #import "UIViewController+Additions.h"
 
 #import "ZLLoginViewController.h"
+#import "MTVersionHelper.h"
 
 @interface AppDelegate ()<UIAlertViewDelegate,WXApiDelegate, JPUSHRegisterDelegate>
 
@@ -125,8 +126,10 @@
     
 }
 
-
+#pragma mark----****----初始化app配置信息
 - (void)initLibraries{
+    ///检查更新app
+    [MTVersionHelper checkNewVersion];
     
     [AMapServices sharedServices].apiKey = AMAP_KEY;
 
@@ -193,7 +196,7 @@
     [WXApi registerApp:WXPAYKEY withDescription:[Util getAPPName]];// 配置info.plist的 Scheme,
 
     
-    // 引导页在程序中只会显示一次
+    /// 引导页在程序中只会显示一次
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     int a=[[userDefaults objectForKey:@"isShow"] intValue];
     if (a!=10) {

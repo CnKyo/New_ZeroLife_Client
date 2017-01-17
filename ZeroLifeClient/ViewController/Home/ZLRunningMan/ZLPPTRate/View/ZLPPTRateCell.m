@@ -8,6 +8,7 @@
 
 #import "ZLPPTRateCell.h"
 #import "CustomProgress.h"
+#import "MJPhotoBrowser.h"
 
 @interface ZLPPTRateCell ()
 
@@ -164,6 +165,7 @@
 
 - (void)setMRate:(OrderCommentObject *)mRate{
 
+    self.mImgArr = [NSMutableArray new];
     
     [self.mHeaderImg sd_setImageWithURL:[NSURL URLWithString:[Util currentSourceImgUrl:mRate.user_header]] placeholderImage:ZLDefaultAvatorImg];
     self.mName.text = mRate.user_nike;
@@ -198,24 +200,60 @@
     }
     
     if ([Util wk_StringToArr:mRate.com_imgs]) {
-    
         int x = 0;
-        
+    
         NSArray *mImgS = [Util wk_StringToArr:mRate.com_imgs];
-        
+//       NSArray *mImgS = @[@"http://ww4.sinaimg.cn/thumbnail/7f8c1087gw1e9g06pc68ug20ag05y4qq.gif", @"http://ww3.sinaimg.cn/thumbnail/8e88b0c1gw1e9lpr0nly5j20pf0gygo6.jpg", @"http://ww4.sinaimg.cn/thumbnail/8e88b0c1gw1e9lpr1d0vyj20pf0gytcj.jpg", @"http://ww3.sinaimg.cn/thumbnail/8e88b0c1gw1e9lpr1xydcj20gy0o9q6s.jpg", @"http://ww2.sinaimg.cn/thumbnail/8e88b0c1gw1e9lpr2n1jjj20gy0o9tcc.jpg", @"http://ww2.sinaimg.cn/thumbnail/8e88b0c1gw1e9lpr39ht9j20gy0o6q74.jpg", @"http://ww3.sinaimg.cn/thumbnail/8e88b0c1gw1e9lpr3xvtlj20gy0obadv.jpg", @"http://ww4.sinaimg.cn/thumbnail/8e88b0c1gw1e9lpr4nndfj20gy0o9q6i.jpg", @"http://ww3.sinaimg.cn/thumbnail/8e88b0c1gw1e9lpr57tn9j20gy0obn0f.jpg"];
+        [self.mImgArr addObjectsFromArray:mImgS];
+
         for ( int i = 0; i<mImgS.count; i++) {
             if (i>=3) {
                 continue;
             }
-            UIImageView *mStar = [UIImageView new];
-            mStar.frame = CGRectMake(x, 0, 60, 60);
-            [mStar sd_setImageWithURL:[NSURL URLWithString:[Util currentSourceImgUrl:mImgS[i]]] placeholderImage:ZLDefaultAvatorImg];
-            [self.mImgView addSubview:mStar];
+            NSString *mUrl = self.mImgArr[i];
+            UIImageView *mImg = [UIImageView new];
+            mImg.frame = CGRectMake(x, 0, 60, 60);
+            mImg.backgroundColor = [UIColor redColor];
+            mImg.tag = i;
+            mImg.userInteractionEnabled = YES;
+            [mImg addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapImage:)]];
+            
+            // 内容模式
+            mImg.clipsToBounds = YES;
+            mImg.contentMode = UIViewContentModeScaleAspectFill;
+
+//            [mImg sd_setImageWithURL:[NSURL URLWithString:[Util currentSourceImgUrl:mImgS[i]]] placeholderImage:ZLDefaultAvatorImg];
+
+            [mImg setImageURLStr:[Util currentSourceImgUrl:mUrl] placeholder:ZLDefaultAvatorImg];
+
+            [self.mImgView addSubview:mImg];
             x+=65;
         }
     }
 
     
 }
+- (void)tapImage:(UITapGestureRecognizer *)tap{
+    NSInteger count = self.mImgArr.count;
+    // 1.封装图片数据
+    NSMutableArray *photos = [NSMutableArray arrayWithCapacity:count];
+    for (int i = 0; i<count; i++) {
+        if (i>=3) {
+            continue;
+        }
+        // 替换为中等尺寸图片
+        NSString *url = self.mImgArr[i];
+        MJPhoto *photo = [[MJPhoto alloc] init];
+        photo.url = [NSURL URLWithString:url]; // 图片路径
+        photo.srcImageView = self.mImgView.subviews[i]; // 来源于哪个UIImageView
+        [photos addObject:photo];
+    }
+    
+    // 2.显示相册
+    MJPhotoBrowser *browser = [[MJPhotoBrowser alloc] init];
+    browser.currentPhotoIndex = tap.view.tag; // 弹出相册时显示的第一张图片是？
+    browser.photos = photos; // 设置所有的图片
+    [browser show];
 
+}
 @end

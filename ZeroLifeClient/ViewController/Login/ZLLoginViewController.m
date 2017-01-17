@@ -52,7 +52,7 @@
     [self.view addSubview:mMainView];
     
     mBottomView = [ZLLoginView initQuikView];
-    mBottomView.hidden = YES;
+    mBottomView.hidden = NO;
     mBottomView.delegate = self;
     [self.view addSubview:mBottomView];
     
