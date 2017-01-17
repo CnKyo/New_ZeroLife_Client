@@ -39,6 +39,7 @@
 #import "UIViewController+Additions.h"
 
 #import "ZLLoginViewController.h"
+#import "ZLPPTRealeseOrderViewController.h"
 
 @interface AppDelegate ()<UIAlertViewDelegate,WXApiDelegate, JPUSHRegisterDelegate>
 
@@ -306,6 +307,11 @@
     {
         return  [WXApi handleOpenURL:url delegate:self];
     }
+    else if( [url.absoluteString containsString:@"jumpToPaoPaoPublic"] )
+    {
+        [self performSelector:@selector(gotoVCWithPaopaoPublic) withObject:nil afterDelay:0.3];
+    }
+    
     return NO;
 }
 
@@ -407,6 +413,10 @@
     else if([[options objectForKey:@"UIApplicationOpenURLOptionsSourceApplicationKey"] isEqualToString:@"com.tencent.xin"]){
         
         return  [WXApi handleOpenURL:url delegate:self];
+    }
+    else if( [url.absoluteString containsString:@"jumpToPaoPaoPublic"] )
+    {
+        [self performSelector:@selector(gotoVCWithPaopaoPublic) withObject:nil afterDelay:0.3];
     }
     
     return YES;
@@ -588,6 +598,15 @@
     
 }
 
+//跳转到跑跑发布界面
+-(void)gotoVCWithPaopaoPublic
+{
+    UIViewController *currentVC = [UIViewController topViewController];
+    
+    ZLPPTRealeseOrderViewController *vc = [ZLPPTRealeseOrderViewController new];
+    vc.hidesBottomBarWhenPushed = YES;
+    [currentVC.navigationController pushViewController:vc animated:YES];
+}
 
 
 @end
