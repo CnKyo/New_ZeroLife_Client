@@ -39,8 +39,11 @@
 #import "UIViewController+Additions.h"
 
 #import "ZLLoginViewController.h"
+<<<<<<< HEAD
 #import "MTVersionHelper.h"
+=======
 #import "ZLPPTRealeseOrderViewController.h"
+>>>>>>> b207d66052f75d26e1d878df3ce0f514dbc183ad
 
 @interface AppDelegate ()<UIAlertViewDelegate,WXApiDelegate, JPUSHRegisterDelegate>
 
@@ -310,6 +313,11 @@
     {
         return  [WXApi handleOpenURL:url delegate:self];
     }
+    else if( [url.absoluteString containsString:@"jumpToPaoPaoPublic"] )
+    {
+        [self performSelector:@selector(gotoVCWithPaopaoPublic) withObject:nil afterDelay:0.3];
+    }
+    
     return NO;
 }
 
@@ -411,6 +419,10 @@
     else if([[options objectForKey:@"UIApplicationOpenURLOptionsSourceApplicationKey"] isEqualToString:@"com.tencent.xin"]){
         
         return  [WXApi handleOpenURL:url delegate:self];
+    }
+    else if( [url.absoluteString containsString:@"jumpToPaoPaoPublic"] )
+    {
+        [self performSelector:@selector(gotoVCWithPaopaoPublic) withObject:nil afterDelay:0.3];
     }
     
     return YES;

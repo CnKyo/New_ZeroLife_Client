@@ -88,4 +88,6 @@
 
 @property (assign,nonatomic) int mThree;
 
+@property (strong,nonatomic) NSMutableArray *mImgArr;
+
 @end

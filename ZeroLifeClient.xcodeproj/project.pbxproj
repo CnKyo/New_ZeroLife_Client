@@ -254,6 +254,18 @@
 		04D64D7A1DC9CD35004E8859 /* ZLHomeCoupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D64D791DC9CD35004E8859 /* ZLHomeCoupView.m */; };
 		04D64D7C1DC9CDA4004E8859 /* ZlHomeCoupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D64D7B1DC9CDA4004E8859 /* ZlHomeCoupView.xib */; };
 		04D7040A1E0CC68C00BDC9F5 /* TXTimeChoose.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D704091E0CC68C00BDC9F5 /* TXTimeChoose.m */; };
+		04E936451E2DB7EF007D6F6E /* MTVersionHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E936421E2DB7EF007D6F6E /* MTVersionHelper.m */; };
+		04E936461E2DB7EF007D6F6E /* MTVersionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E936441E2DB7EF007D6F6E /* MTVersionModel.m */; };
+		04E9365B1E2DBED7007D6F6E /* MBProgressHUD+Add.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E936491E2DBED7007D6F6E /* MBProgressHUD+Add.m */; };
+		04E9365C1E2DBED7007D6F6E /* MJPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E9364B1E2DBED7007D6F6E /* MJPhoto.m */; };
+		04E9365D1E2DBED7007D6F6E /* MJPhotoBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 04E9364C1E2DBED7007D6F6E /* MJPhotoBrowser.bundle */; };
+		04E9365E1E2DBED7007D6F6E /* MJPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E9364E1E2DBED7007D6F6E /* MJPhotoBrowser.m */; };
+		04E9365F1E2DBED7007D6F6E /* MJPhotoLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E936501E2DBED7007D6F6E /* MJPhotoLoadingView.m */; };
+		04E936601E2DBED7007D6F6E /* MJPhotoProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E936521E2DBED7007D6F6E /* MJPhotoProgressView.m */; };
+		04E936611E2DBED7007D6F6E /* MJPhotoToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E936541E2DBED7007D6F6E /* MJPhotoToolbar.m */; };
+		04E936621E2DBED7007D6F6E /* MJPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E936561E2DBED7007D6F6E /* MJPhotoView.m */; };
+		04E936631E2DBED7007D6F6E /* SDWebImageManager+MJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E936581E2DBED7007D6F6E /* SDWebImageManager+MJ.m */; };
+		04E936641E2DBED7007D6F6E /* UIImageView+MJWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E9365A1E2DBED7007D6F6E /* UIImageView+MJWebCache.m */; };
 		92AF8AA63E2B8C882D0429B1 /* libPods-ZeroLifeClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 339DEB89053AF616C6AD0FF3 /* libPods-ZeroLifeClient.a */; };
 		DF00C5221E08FFB800680771 /* SelectedAddressTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF00C5211E08FFB800680771 /* SelectedAddressTableViewCell.m */; };
 		DF0308881DCD67ED00E1EAB6 /* UserInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0308871DCD67ED00E1EAB6 /* UserInfoVC.m */; };
@@ -1012,6 +1024,29 @@
 		04D64D7B1DC9CDA4004E8859 /* ZlHomeCoupView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZlHomeCoupView.xib; sourceTree = "<group>"; };
 		04D704081E0CC68C00BDC9F5 /* TXTimeChoose.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TXTimeChoose.h; sourceTree = "<group>"; };
 		04D704091E0CC68C00BDC9F5 /* TXTimeChoose.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TXTimeChoose.m; sourceTree = "<group>"; };
+		04E936411E2DB7EF007D6F6E /* MTVersionHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTVersionHelper.h; sourceTree = "<group>"; };
+		04E936421E2DB7EF007D6F6E /* MTVersionHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTVersionHelper.m; sourceTree = "<group>"; };
+		04E936431E2DB7EF007D6F6E /* MTVersionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTVersionModel.h; sourceTree = "<group>"; };
+		04E936441E2DB7EF007D6F6E /* MTVersionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTVersionModel.m; sourceTree = "<group>"; };
+		04E936481E2DBED7007D6F6E /* MBProgressHUD+Add.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+Add.h"; sourceTree = "<group>"; };
+		04E936491E2DBED7007D6F6E /* MBProgressHUD+Add.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+Add.m"; sourceTree = "<group>"; };
+		04E9364A1E2DBED7007D6F6E /* MJPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPhoto.h; sourceTree = "<group>"; };
+		04E9364B1E2DBED7007D6F6E /* MJPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPhoto.m; sourceTree = "<group>"; };
+		04E9364C1E2DBED7007D6F6E /* MJPhotoBrowser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MJPhotoBrowser.bundle; sourceTree = "<group>"; };
+		04E9364D1E2DBED7007D6F6E /* MJPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPhotoBrowser.h; sourceTree = "<group>"; };
+		04E9364E1E2DBED7007D6F6E /* MJPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPhotoBrowser.m; sourceTree = "<group>"; };
+		04E9364F1E2DBED7007D6F6E /* MJPhotoLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPhotoLoadingView.h; sourceTree = "<group>"; };
+		04E936501E2DBED7007D6F6E /* MJPhotoLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPhotoLoadingView.m; sourceTree = "<group>"; };
+		04E936511E2DBED7007D6F6E /* MJPhotoProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPhotoProgressView.h; sourceTree = "<group>"; };
+		04E936521E2DBED7007D6F6E /* MJPhotoProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPhotoProgressView.m; sourceTree = "<group>"; };
+		04E936531E2DBED7007D6F6E /* MJPhotoToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPhotoToolbar.h; sourceTree = "<group>"; };
+		04E936541E2DBED7007D6F6E /* MJPhotoToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPhotoToolbar.m; sourceTree = "<group>"; };
+		04E936551E2DBED7007D6F6E /* MJPhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPhotoView.h; sourceTree = "<group>"; };
+		04E936561E2DBED7007D6F6E /* MJPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPhotoView.m; sourceTree = "<group>"; };
+		04E936571E2DBED7007D6F6E /* SDWebImageManager+MJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SDWebImageManager+MJ.h"; sourceTree = "<group>"; };
+		04E936581E2DBED7007D6F6E /* SDWebImageManager+MJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SDWebImageManager+MJ.m"; sourceTree = "<group>"; };
+		04E936591E2DBED7007D6F6E /* UIImageView+MJWebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+MJWebCache.h"; sourceTree = "<group>"; };
+		04E9365A1E2DBED7007D6F6E /* UIImageView+MJWebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+MJWebCache.m"; sourceTree = "<group>"; };
 		26781393B9810BF63F686EF1 /* Pods-ZeroLifeClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZeroLifeClient.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZeroLifeClient/Pods-ZeroLifeClient.release.xcconfig"; sourceTree = "<group>"; };
 		339DEB89053AF616C6AD0FF3 /* libPods-ZeroLifeClient.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZeroLifeClient.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF00C5201E08FFB800680771 /* SelectedAddressTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectedAddressTableViewCell.h; sourceTree = "<group>"; };
@@ -2529,6 +2564,43 @@
 			path = ZLDatePick;
 			sourceTree = "<group>";
 		};
+		04E936401E2DB7EF007D6F6E /* ZLCheckAppVersion */ = {
+			isa = PBXGroup;
+			children = (
+				04E936411E2DB7EF007D6F6E /* MTVersionHelper.h */,
+				04E936421E2DB7EF007D6F6E /* MTVersionHelper.m */,
+				04E936431E2DB7EF007D6F6E /* MTVersionModel.h */,
+				04E936441E2DB7EF007D6F6E /* MTVersionModel.m */,
+			);
+			path = ZLCheckAppVersion;
+			sourceTree = "<group>";
+		};
+		04E936471E2DBED7007D6F6E /* MJPhotoBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				04E936481E2DBED7007D6F6E /* MBProgressHUD+Add.h */,
+				04E936491E2DBED7007D6F6E /* MBProgressHUD+Add.m */,
+				04E9364A1E2DBED7007D6F6E /* MJPhoto.h */,
+				04E9364B1E2DBED7007D6F6E /* MJPhoto.m */,
+				04E9364C1E2DBED7007D6F6E /* MJPhotoBrowser.bundle */,
+				04E9364D1E2DBED7007D6F6E /* MJPhotoBrowser.h */,
+				04E9364E1E2DBED7007D6F6E /* MJPhotoBrowser.m */,
+				04E9364F1E2DBED7007D6F6E /* MJPhotoLoadingView.h */,
+				04E936501E2DBED7007D6F6E /* MJPhotoLoadingView.m */,
+				04E936511E2DBED7007D6F6E /* MJPhotoProgressView.h */,
+				04E936521E2DBED7007D6F6E /* MJPhotoProgressView.m */,
+				04E936531E2DBED7007D6F6E /* MJPhotoToolbar.h */,
+				04E936541E2DBED7007D6F6E /* MJPhotoToolbar.m */,
+				04E936551E2DBED7007D6F6E /* MJPhotoView.h */,
+				04E936561E2DBED7007D6F6E /* MJPhotoView.m */,
+				04E936571E2DBED7007D6F6E /* SDWebImageManager+MJ.h */,
+				04E936581E2DBED7007D6F6E /* SDWebImageManager+MJ.m */,
+				04E936591E2DBED7007D6F6E /* UIImageView+MJWebCache.h */,
+				04E9365A1E2DBED7007D6F6E /* UIImageView+MJWebCache.m */,
+			);
+			path = MJPhotoBrowser;
+			sourceTree = "<group>";
+		};
 		12B582CBD65385C342FBEFDA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -3438,6 +3510,8 @@
 		DFFAA7531DB744EF001CFBB5 /* OpenSourceLib */ = {
 			isa = PBXGroup;
 			children = (
+				04E936471E2DBED7007D6F6E /* MJPhotoBrowser */,
+				04E936401E2DB7EF007D6F6E /* ZLCheckAppVersion */,
 				040FE4351E27788400742074 /* GPSLocationPicker */,
 				040FE42F1E275CB000742074 /* ZLCustomEmptyView */,
 				046A75531E20C13300AF883C /* GuideView */,
@@ -3791,6 +3865,7 @@
 				040917841DCC904B00DB2568 /* ZLSuperMarketShopLeftCellType.xib in Resources */,
 				0464E7081DF26B4E00A3F954 /* StandarsDel@2x.png in Resources */,
 				04A8DA1B1DDABDE4000CE048 /* ZLPPTOrderDetailHeaderSectionView.xib in Resources */,
+				04E9365D1E2DBED7007D6F6E /* MJPhotoBrowser.bundle in Resources */,
 				04B07E9C1DD9602E004A7294 /* ZLRuuningManHomeHeaderSectionView.xib in Resources */,
 				040917681DCC39DE00DB2568 /* ZLSuperMarketHeaderSectionView.xib in Resources */,
 				DF29B69A1E11092D00CBAA3B /* icon_order_paopao@3x.png in Resources */,
@@ -4215,6 +4290,7 @@
 				04866B9E1DD415AF008DA56B /* ZLCommitOrderHeaderView.m in Sources */,
 				DF630D6C1DD465B90076A92C /* UserYuEHeaderView.m in Sources */,
 				DF7F1BFA1DCDDD3000D2242B /* ComplaintJumingView.m in Sources */,
+				04E9365C1E2DBED7007D6F6E /* MJPhoto.m in Sources */,
 				04C6A3841DCB11A4002C4D4A /* UIViewExt.m in Sources */,
 				040592F71E113DFA0041F3A7 /* LTPickerView.m in Sources */,
 				041657161DD6B22D004E7D9A /* ZLRepairsCell.m in Sources */,
@@ -4225,6 +4301,8 @@
 				DF7D0A1C1DBA0019005A62A7 /* CookCategoryTVC.m in Sources */,
 				DF98EC6F1DD31C6C0006EBFE /* OrderBaoxiuImgVideoView.m in Sources */,
 				049A12171DE983080087238D /* ZLSpeHeaderView.m in Sources */,
+				04E936461E2DB7EF007D6F6E /* MTVersionModel.m in Sources */,
+				04E9365F1E2DBED7007D6F6E /* MJPhotoLoadingView.m in Sources */,
 				043347911DF6519700052FBE /* LDXScore.m in Sources */,
 				04721A231DE42C7F00CE8639 /* mBundleView.m in Sources */,
 				DF08E85E1DD1A82C003E4DD9 /* FeePayHistoryVC.m in Sources */,
@@ -4263,6 +4341,7 @@
 				DF993D451DDAF0790061D7CA /* DryCleanOrderChooseTimeVC.m in Sources */,
 				04C02AEC1E2C9B4000DD78A8 /* ZLHomeCampFuncView.m in Sources */,
 				DF04C2D41E08D06C00CC2EEC /* SelectedAddressVC.m in Sources */,
+				04E936611E2DBED7007D6F6E /* MJPhotoToolbar.m in Sources */,
 				0409178A1DCC919200DB2568 /* ZLSuperMarketShopRightCell.m in Sources */,
 				04162E001DCB545200FB4229 /* HeaderView.m in Sources */,
 				DF08E87B1DD1C072003E4DD9 /* UserHouseEditVC.m in Sources */,
@@ -4270,6 +4349,7 @@
 				DF08E87C1DD1C072003E4DD9 /* UserAddressEditTableViewCell.m in Sources */,
 				046134B61E23733C003D62F9 /* ZLNeighbourhoodViewController.m in Sources */,
 				DF55B4611DBAFE5800F89341 /* ZLCookViewController.m in Sources */,
+				04E936641E2DBED7007D6F6E /* UIImageView+MJWebCache.m in Sources */,
 				DF0308881DCD67ED00E1EAB6 /* UserInfoVC.m in Sources */,
 				DFFAA7641DB744EF001CFBB5 /* CustomScrollVC.m in Sources */,
 				0472A9071DE7E03100D861D2 /* ZLHouseKeepingClearnCell.m in Sources */,
@@ -4289,6 +4369,7 @@
 				DFA135651DD6F5F700805BA2 /* BankCardTableViewCell.m in Sources */,
 				DFA3C0E81E15295B00DF8923 /* OrderVC+Custom.m in Sources */,
 				04866B9A1DD41500008DA56B /* ZLSuperMarketCommitOrderViewController.m in Sources */,
+				04E936451E2DB7EF007D6F6E /* MTVersionHelper.m in Sources */,
 				04866B8D1DD40E53008DA56B /* ZLSuperMarketShopCarViewController.m in Sources */,
 				DF630D691DD463180076A92C /* UserNotIDAuthNoteView.m in Sources */,
 				DFFAA7371DB744C5001CFBB5 /* AppDelegate.m in Sources */,
@@ -4314,6 +4395,7 @@
 				042B52AB1E12298200B093BE /* CurentLocation.m in Sources */,
 				DF7F1BF71DCDDCF500D2242B /* UserComplaintAddVC.m in Sources */,
 				DFF9325F1DD9A8A900BA8C8B /* BianMingVC.m in Sources */,
+				04E9365E1E2DBED7007D6F6E /* MJPhotoBrowser.m in Sources */,
 				04721A171DE4193700CE8639 /* ZLAnounceMentCell.m in Sources */,
 				DFEF59D01E0D0EB2002AD150 /* CustomWebVC.m in Sources */,
 				040D92F91DCAE34E00DBE42E /* ZLHomeMSGCell.m in Sources */,
@@ -4344,6 +4426,7 @@
 				DF8DBCC11DD01FCA002E574B /* UserComplaintHistoryTVC.m in Sources */,
 				04C6A3761DCB0874002C4D4A /* keyChain.m in Sources */,
 				04C6A37E1DCB08AF002C4D4A /* NSData+Base64.m in Sources */,
+				04E936621E2DBED7007D6F6E /* MJPhotoView.m in Sources */,
 				04B07E961DD96003004A7294 /* ZLRunningManHomeCell.m in Sources */,
 				04C73BE71DDD404800E5D554 /* ZLHouseKeepingHomeCell.m in Sources */,
 				DFFAA7651DB744EF001CFBB5 /* CustomVC.m in Sources */,
@@ -4366,6 +4449,7 @@
 				DF00C5221E08FFB800680771 /* SelectedAddressTableViewCell.m in Sources */,
 				041657121DD6B218004E7D9A /* ZLRepairsColumsView.m in Sources */,
 				042EDB8E1E1B53EE00EBEF5B /* ZLWebVc.m in Sources */,
+				04E936631E2DBED7007D6F6E /* SDWebImageManager+MJ.m in Sources */,
 				04A7631E1DDBFA540061E2B0 /* ZLPPTReleaseRewardCell.m in Sources */,
 				044021AB1DF94A5800234066 /* ZLCustomImgButton.m in Sources */,
 				043F69741E19E3D700B33EA0 /* CustomProgress.m in Sources */,
@@ -4405,6 +4489,7 @@
 				04721A501DE4569100CE8639 /* LHRatingView.m in Sources */,
 				DFF9323E1DD9978000BA8C8B /* TopLeftLabel.m in Sources */,
 				04770EEF1DDE99A9008B7505 /* ZLLoginViewController.m in Sources */,
+				04E936601E2DBED7007D6F6E /* MJPhotoProgressView.m in Sources */,
 				04D64D6C1DC9CCA5004E8859 /* ZLHomeLocationView.m in Sources */,
 				04B07EAB1DD98D89004A7294 /* ZLPPTAnounceMentViewController.m in Sources */,
 				0409176C1DCC55C300DB2568 /* RKImageBrowser.m in Sources */,
@@ -4424,6 +4509,7 @@
 				DF7D0A1E1DBA0019005A62A7 /* CookDetailVC.m in Sources */,
 				DFE4F08C1E2DCD7C00705C2F /* SecurityPasswordComplainTableViewCell.m in Sources */,
 				DF55B46A1DBAFE7700F89341 /* ZLUserViewController.m in Sources */,
+				04E9365B1E2DBED7007D6F6E /* MBProgressHUD+Add.m in Sources */,
 				DF29B6BB1E1131C200CBAA3B /* UserPaoPaoApplyTableViewCell.m in Sources */,
 				04770EFE1DDEEE47008B7505 /* ZLRegistForgetViewController.m in Sources */,
 				DF7D0A241DBA0023005A62A7 /* TagsTableCell.m in Sources */,
