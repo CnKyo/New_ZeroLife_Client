@@ -39,15 +39,15 @@ static const void *JKStringProperty = &JKStringProperty;
 {
     UIViewController *vc = [UIViewController topViewController];
     
-    UIActionSheet *sheet = [UIActionSheet bk_actionSheetWithTitle:@"相片选取"];
-    [sheet bk_setCancelButtonWithTitle:@"取消" handler:^{  }];
-    [sheet bk_addButtonWithTitle:@"拍照" handler:^{
+    UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"相片选取" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+    [alertVC addAction:[UIAlertAction actionWithTitle:@"取消"style:UIAlertActionStyleCancel handler:nil]];
+    [alertVC addAction:[UIAlertAction actionWithTitle:@"拍照"style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         if ([self isCameraAvailable] && [self doesCameraSupportTakingPhotos]) {
             UIImagePickerController *controller = [[UIImagePickerController alloc] init];
             controller.sourceType = UIImagePickerControllerSourceTypeCamera;
-//            if ([self isFrontCameraAvailable]) {
-//                controller.cameraDevice = UIImagePickerControllerCameraDeviceFront;
-//            }
+            //            if ([self isFrontCameraAvailable]) {
+            //                controller.cameraDevice = UIImagePickerControllerCameraDeviceFront;
+            //            }
             NSMutableArray *mediaTypes = [[NSMutableArray alloc] init];
             [mediaTypes addObject:(__bridge NSString *)kUTTypeImage];
             controller.mediaTypes = mediaTypes;
@@ -64,8 +64,8 @@ static const void *JKStringProperty = &JKStringProperty;
             };
             [vc presentViewController:controller animated:YES completion:^(void){ }];
         }
-    }];
-    [sheet bk_addButtonWithTitle:@"从相册中选取" handler:^{
+    }]];
+    [alertVC addAction:[UIAlertAction actionWithTitle:@"从相册中选取"style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         if ([self isPhotoLibraryAvailable]) {
             UIImagePickerController *controller = [[UIImagePickerController alloc] init];
             controller.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
@@ -85,8 +85,8 @@ static const void *JKStringProperty = &JKStringProperty;
             };
             [vc presentViewController:controller animated:YES completion:^(void){ }];
         }
-    }];
-    [sheet showInView:vc.view];
+    }]];
+    [vc presentViewController:alertVC animated:YES completion:nil];
 }
 
 
