@@ -397,7 +397,8 @@
         
         if (mBaseObj.code == RESP_STATUS_YES) {
             [self showSuccessStatus:@"提交订单成功！"];
-            [self popViewController_3];
+            
+            [self performSelector:@selector(popViewController_3) withObject:nil afterDelay:0.5];
         }else{
         
             [self showErrorStatus:mBaseObj.msg];
