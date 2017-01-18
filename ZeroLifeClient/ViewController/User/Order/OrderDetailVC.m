@@ -364,8 +364,8 @@
         UIFont *font = [UIFont systemFontOfSize:13];
         UIView *littleLastView = nil;
         UILabel *orderNoteLable = [view newUILableWithText:@"订单信息" textColor:color font:font];
-        UILabel *orderNumLable = [view newUILableWithText:[NSString stringWithFormat:@"订单编号：%@", _item.odr_code] textColor:color font:font];
-        UILabel *orderCreateTimeLable = [view newUILableWithText:[NSString stringWithFormat:@"下单时间：%@", _item.odr_add_time] textColor:color font:font];
+        UILabel *orderNumLable = [view newUILableWithText:[NSString stringWithFormat:@"订单编号：%@", [NSString compIsNone:_item.odr_code] ] textColor:color font:font];
+        UILabel *orderCreateTimeLable = [view newUILableWithText:[NSString stringWithFormat:@"下单时间：%@", [NSString compIsNone:_item.odr_add_time] ] textColor:color font:font];
         [orderNoteLable makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(view.left).offset(padding);
             make.right.equalTo(view.right).offset(-padding);
@@ -384,7 +384,7 @@
         
         
         if (_classType == kOrderClassType_dryclean || _classType == kOrderClassType_fix) {
-            UILabel *orderServerTimeLable = [view newUILableWithText:[NSString stringWithFormat:@"服务时间：%@", _item.odr_timing] textColor:color font:font];
+            UILabel *orderServerTimeLable = [view newUILableWithText:[NSString stringWithFormat:@"服务时间：%@", [NSString compIsNone:_item.odr_timing] ] textColor:color font:font];
             [orderServerTimeLable makeConstraints:^(MASConstraintMaker *make) {
                 make.left.right.height.equalTo(orderNoteLable);
                 make.top.equalTo(orderCreateTimeLable.bottom);
@@ -488,7 +488,7 @@
 //                }];
                 
                 OrderGoodsObject *it = _item.goods.count>0 ? [_item.goods objectAtIndex:0] : nil;
-                itemView1.nameLable.text = [NSString stringWithFormat:@"%@竞价成功，并安排人员进行维修", _item.shop_name];
+                itemView1.nameLable.text = [NSString stringWithFormat:@"%@竞价成功，并安排人员进行维修", _item.shop_name.length>0 ? _item.shop_name : @"未知店铺" ];
                 itemView1.priceLable.text = [NSString stringWithFormat:@"￥%.2f", it.odrg_price];
 //                itemView2.workerLable.text = [NSString stringWithFormat:@"%@ %@", _item.odr_deliver_name, _item.odr_deliver_phone];
 //                [itemView2.mobileBtn jk_addActionHandler:^(NSInteger tag) {
@@ -523,7 +523,7 @@
             }];
             lastView = itemView;
             
-            itemView.workerLable.text = [NSString stringWithFormat:@"跑腿者信息\n%@ %@", _item.odr_service_person, _item.odr_service_phone];
+            itemView.workerLable.text = [NSString stringWithFormat:@"跑腿者信息\n%@ %@", [NSString compIsNone:_item.odr_service_person], [NSString compIsNone:_item.odr_service_phone] ];
             [itemView.mobileBtn jk_addActionHandler:^(NSInteger tag) {
                 if (_item.odr_service_phone.length > 1) {
                     NSString *str = [NSString stringWithFormat:@"tel://%@", _item.odr_service_phone];
