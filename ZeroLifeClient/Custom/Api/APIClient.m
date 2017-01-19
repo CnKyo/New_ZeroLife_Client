@@ -580,7 +580,7 @@ return [NSString stringWithFormat:@"%@%@%@",kAFAppDotNetImgBaseURLString,kAFAppD
  @param mLoginObj 登录对象
  @param block 返回值
  */
-- (void)ZLPlaframtLogin:(ZLPlafarmtLogin *)mLoginObj block:(void (^)(APIObject* info))block{
+- (void)ZLPlaframtLogin:(ZLPlafarmtLogin *)mLoginObj block:(void (^)(APIObject* info,ZLUserInfo *mUser))block{
     
     NSMutableDictionary *para = [NSMutableDictionary new];
    
@@ -607,11 +607,11 @@ return [NSString stringWithFormat:@"%@%@%@",kAFAppDotNetImgBaseURLString,kAFAppD
                 if (open != nil)
                     user.openInfo = open;
                 
-                [ZLUserInfo updateUserInfo:user];
             }
-            block(info);
+       
+            block(info,user);
         }else{
-            block(info);
+            block(info,nil);
         }
 
     }];

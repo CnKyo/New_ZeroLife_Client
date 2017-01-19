@@ -130,7 +130,9 @@
                     [mSubView.mIcon sd_setImageWithURL:[NSURL URLWithString:[Util currentSourceImgUrl:Icon]] placeholderImage:ZLDefaultAvatorImg];
                     [mSubView.mBigImg sd_setImageWithURL:[NSURL URLWithString:[Util currentSourceImgUrl:Big]] placeholderImage:ZLDefaultGoodsImg];
                     mSubView.mTitle.text = mAdv.adv_title;
+//                    mSubView.mContent.text = [NSString stringWithFormat:@"%@%@%@%@%@%@",mAdv.adv_desc,mAdv.adv_desc,mAdv.adv_desc,mAdv.adv_desc,mAdv.adv_desc,mAdv.adv_desc];
                     mSubView.mContent.text = mAdv.adv_desc;
+
                     mSubView.mIndex = i;
                     mSubView.delegate = self;
                     [self.contentView addSubview:mSubView];

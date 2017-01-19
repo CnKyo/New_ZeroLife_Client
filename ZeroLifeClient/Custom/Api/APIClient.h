@@ -203,7 +203,7 @@ typedef void (^TableShareSdkBlock)(int totalpage, NSArray *tableArr, APIShareSdk
  @param mLoginObj 登录对象
  @param block 返回值
  */
-- (void)ZLPlaframtLogin:(ZLPlafarmtLogin *)mLoginObj block:(void (^)(APIObject* info))block;
+- (void)ZLPlaframtLogin:(ZLPlafarmtLogin *)mLoginObj block:(void (^)(APIObject* info,ZLUserInfo *mUser))block;
 #pragma mark----****----绑定手机账号
 /**
  绑定账号

@@ -102,6 +102,10 @@
 
     [[APIClient sharedClient] ZLPlaframtLogin:self.mOpenId andPhone:mView.mPhoneTx.text andPwd:mView.mPwdTx.text block:^(APIObject *info) {
         if (info.code == RESP_STATUS_YES) {
+            [ZLUserInfo updateUserInfo:_mUserInfo];
+
+            [[NSNotificationCenter defaultCenter] postNotificationName:MyUserInfoChangedNotification object:nil];
+
             [self showSuccessStatus:info.msg];
             self.block(mView.mPhoneTx.text,mView.mPwdTx.text);
             [self popViewController];
