@@ -15,4 +15,10 @@
  *  登录类型  1为qq 2为微信 3为新浪
  */
 @property (assign,nonatomic) int mType;
+
+/**
+ block
+ */
+@property (nonatomic,strong) void(^block)(NSString *Phone,NSString *Pwd);
+
 @end

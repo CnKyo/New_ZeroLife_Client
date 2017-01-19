@@ -157,7 +157,7 @@
                 <outlet property="mRegistPwdTx" destination="dDT-Qv-EMK" id="GAl-8V-4Y3"/>
                 <outlet property="mregistBtn" destination="qZs-X5-7NI" id="PPi-jz-39b"/>
             </connections>
-            <point key="canvasLocation" x="-6" y="1"/>
+            <point key="canvasLocation" x="-127" y="2"/>
         </view>
     </objects>
     <resources>

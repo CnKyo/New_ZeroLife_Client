@@ -31,6 +31,12 @@
  *  绑定按钮
  */
 @property (weak, nonatomic) IBOutlet UIButton *mBundleBtn;
+
+/**
+ 验证码按钮
+ */
+@property (weak, nonatomic) IBOutlet UIButton *mVerifyBtn;
+
 /**
  *  初始化方法
  *

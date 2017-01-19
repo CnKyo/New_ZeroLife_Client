@@ -194,7 +194,23 @@ typedef void (^TableShareSdkBlock)(int totalpage, NSArray *tableArr, APIShareSdk
 - (void)ZLLoginWithPhone:(NSString *)mPhone andPwd:(NSString *)mPwd block:(void(^)(APIObject *mBaseObj,ZLUserInfo *mUser))block;
 -(void)userLoginOutWithTag:(NSObject *)tag call:(void (^)(APIObject* info))callback;
 -(void)userJpushUpdateWithTag:(NSObject *)tag jpush_id:(NSString *)jpush_id call:(void (^)(APIObject* info))callback;
+#pragma mark----****----三方登录
+/**
+ 三方登录
 
+ @param mLoginObj 登录对象
+ @param block 返回值
+ */
+- (void)ZLPlaframtLogin:(ZLPlafarmtLogin *)mLoginObj block:(void (^)(APIObject* info))block;
+#pragma mark----****----绑定手机账号
+/**
+ 绑定账号
+ @param mOpenId openid
+ @param mPhone 手机
+ @param mPwd 密码
+ @param block 返回值
+ */
+- (void)ZLPlaframtLogin:(NSString *)mOpenId andPhone:(NSString *)mPhone andPwd:(NSString *)mPwd block:(void (^)(APIObject* info))block;
 #pragma mark----****----注册
 ///注册
 - (void)ZLRegistPhone:(NSString *)mPhone andPwd:(NSString *)mPwd andCode:(NSString *)mCode andType:(ZLRegistOrForgetPwd)mType block:(void(^)(APIObject *mBaseObj))block;

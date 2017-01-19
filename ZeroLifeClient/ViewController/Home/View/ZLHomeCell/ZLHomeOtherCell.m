@@ -8,7 +8,7 @@
 
 #import "ZLHomeOtherCell.h"
 #import "ZLHomeCampFuncView.h"
-
+#import "APIObjectDefine.h"
 @interface ZLHomeOtherCell()<ZLHomeCampFuncViewDelegate>
 
 @end
@@ -28,7 +28,7 @@
 
 
 - (void)setMDataSource:(NSArray *)mDataSource{
-
+    self.contentView.backgroundColor = [UIColor colorWithRed:0.96 green:0.96 blue:0.96 alpha:1.00];
     for (UIView *vvv in self.contentView.subviews) {
         [vvv removeFromSuperview];
     }
@@ -37,8 +37,11 @@
     switch (mType) {
         case ZLHomeFuncOne:
         {
+            
+            ZLHomeAdvList *mAdv = mDataSource[0];
             UIImageView *mBgk = [UIImageView new];
-            mBgk.backgroundColor = [UIColor redColor];
+//            mBgk.backgroundColor = [UIColor redColor];
+            [mBgk sd_setImageWithURL:[NSURL URLWithString:[Util currentSourceImgUrl:mAdv.adv_image_l]] placeholderImage:ZLDefaultBannerImg];
             mBgk.frame = CGRectMake(5, 5, DEVICE_Width-10, 190);
             [self.contentView addSubview:mBgk];
             
@@ -56,8 +59,36 @@
             CGFloat w = self.contentView.mwidth/2;
             CGFloat x = 0;
             for (int i = 0; i<mDataSource.count; i++) {
+                
+                ZLHomeAdvList *mAdv = mDataSource[i];
+
+                NSString *Icon = nil;
+                NSString *Big = nil;
+                
+                if (mAdv.adv_image_l.length<=0) {
+                    Big = mAdv.adv_image;
+                }else if (mAdv.adv_image.length<=0){
+                    Big = nil;
+                }else{
+                    Big = mAdv.adv_image_other;
+                }
+                if (mAdv.adv_image_logo.length<=0) {
+                    Icon = mAdv.adv_image;
+                }else if (mAdv.adv_image_logo.length<=0){
+                    Icon = nil;
+                }else{
+                    Icon = mAdv.adv_image_other;
+                }
+                
+                
                 ZLHomeCampFuncView *mSubView = [ZLHomeCampFuncView initBigView];
                 mSubView.frame = CGRectMake(x, 0, w, 200);
+                [mSubView.mIcon sd_setImageWithURL:[NSURL URLWithString:[Util currentSourceImgUrl:Icon]] placeholderImage:ZLDefaultAvatorImg];
+                [mSubView.mBigImg sd_setImageWithURL:[NSURL URLWithString:[Util currentSourceImgUrl:Big]] placeholderImage:ZLDefaultGoodsImg];
+                
+                mSubView.mTitle.text = mAdv.adv_title;
+                mSubView.mContent.text = mAdv.adv_desc;
+                
                 mSubView.mIndex = i;
                 mSubView.delegate = self;
                 [self.contentView addSubview:mSubView];
@@ -75,9 +106,31 @@
             CGFloat x = 0;
             CGFloat y = 0;
             for (int i = 0; i<mDataSource.count; i++) {
+                ZLHomeAdvList *mAdv = mDataSource[i];
+                NSString *Icon = nil;
+                NSString *Big = nil;
+                
+                if (mAdv.adv_image_l.length<=0) {
+                    Big = mAdv.adv_image;
+                }else if (mAdv.adv_image.length<=0){
+                    Big = nil;
+                }else{
+                    Big = mAdv.adv_image_other;
+                }
+                if (mAdv.adv_image_logo.length<=0) {
+                    Icon = mAdv.adv_image;
+                }else if (mAdv.adv_image_logo.length<=0){
+                    Icon = nil;
+                }else{
+                    Icon = mAdv.adv_image_other;
+                }
                 if (i==0) {
                     ZLHomeCampFuncView *mSubView = [ZLHomeCampFuncView initBigView];
                     mSubView.frame = CGRectMake(x, 0, w, 200);
+                    [mSubView.mIcon sd_setImageWithURL:[NSURL URLWithString:[Util currentSourceImgUrl:Icon]] placeholderImage:ZLDefaultAvatorImg];
+                    [mSubView.mBigImg sd_setImageWithURL:[NSURL URLWithString:[Util currentSourceImgUrl:Big]] placeholderImage:ZLDefaultGoodsImg];
+                    mSubView.mTitle.text = mAdv.adv_title;
+                    mSubView.mContent.text = mAdv.adv_desc;
                     mSubView.mIndex = i;
                     mSubView.delegate = self;
                     [self.contentView addSubview:mSubView];
@@ -86,6 +139,9 @@
                 
                     ZLHomeCampFuncView *mSubView = [ZLHomeCampFuncView initImgRightView];
                     mSubView.frame = CGRectMake(w, y, w, h);
+                    [mSubView.mIcon sd_setImageWithURL:[NSURL URLWithString:[Util currentSourceImgUrl:Icon]] placeholderImage:ZLDefaultAvatorImg];
+                    [mSubView.mBigImg sd_setImageWithURL:[NSURL URLWithString:[Util currentSourceImgUrl:Big]] placeholderImage:ZLDefaultGoodsImg];                    mSubView.mTitle.text = mAdv.adv_title;
+                    mSubView.mContent.text = mAdv.adv_desc;
                     mSubView.mIndex = i;
                     mSubView.delegate = self;
                     [self.contentView addSubview:mSubView];
@@ -106,9 +162,30 @@
             CGFloat x = 0;
             CGFloat y = 0;
             for (int i = 0; i<mDataSource.count; i++) {
+                ZLHomeAdvList *mAdv = mDataSource[i];
+                NSString *Icon = nil;
+                NSString *Big = nil;
                 
+                if (mAdv.adv_image_l.length<=0) {
+                    Big = mAdv.adv_image;
+                }else if (mAdv.adv_image.length<=0){
+                    Big = nil;
+                }else{
+                    Big = mAdv.adv_image_other;
+                }
+                if (mAdv.adv_image_logo.length<=0) {
+                    Icon = mAdv.adv_image;
+                }else if (mAdv.adv_image_logo.length<=0){
+                    Icon = nil;
+                }else{
+                    Icon = mAdv.adv_image_other;
+                }
                 ZLHomeCampFuncView *mSubView = [ZLHomeCampFuncView initImgRightView];
                 mSubView.frame = CGRectMake(x, y, w, h);
+                [mSubView.mIcon sd_setImageWithURL:[NSURL URLWithString:[Util currentSourceImgUrl:Icon]] placeholderImage:ZLDefaultAvatorImg];
+                [mSubView.mBigImg sd_setImageWithURL:[NSURL URLWithString:[Util currentSourceImgUrl:Big]] placeholderImage:ZLDefaultGoodsImg];
+                mSubView.mTitle.text = mAdv.adv_title;
+                mSubView.mContent.text = mAdv.adv_desc;
                 mSubView.mIndex = i;
                 mSubView.delegate = self;
                 [self.contentView addSubview:mSubView];
@@ -128,9 +205,31 @@
             CGFloat x = 0;
             CGFloat y = 0;
             for (int i = 0; i<mDataSource.count; i++) {
+                ZLHomeAdvList *mAdv = mDataSource[i];
+                NSString *Icon = nil;
+                NSString *Big = nil;
+                
+                if (mAdv.adv_image_l.length<=0) {
+                    Big = mAdv.adv_image;
+                }else if (mAdv.adv_image.length<=0){
+                    Big = nil;
+                }else{
+                    Big = mAdv.adv_image_other;
+                }
+                if (mAdv.adv_image_logo.length<=0) {
+                    Icon = mAdv.adv_image;
+                }else if (mAdv.adv_image_logo.length<=0){
+                    Icon = nil;
+                }else{
+                    Icon = mAdv.adv_image_other;
+                }
                 if (i==0) {
                     ZLHomeCampFuncView *mSubView = [ZLHomeCampFuncView initBigView];
                     mSubView.frame = CGRectMake(x, 0, w, 200);
+                    [mSubView.mIcon sd_setImageWithURL:[NSURL URLWithString:[Util currentSourceImgUrl:Icon]] placeholderImage:ZLDefaultAvatorImg];
+                    [mSubView.mBigImg sd_setImageWithURL:[NSURL URLWithString:[Util currentSourceImgUrl:Big]] placeholderImage:ZLDefaultGoodsImg];
+                    mSubView.mTitle.text = mAdv.adv_title;
+                    mSubView.mContent.text = mAdv.adv_desc;
                     mSubView.mIndex = i;
                     mSubView.delegate = self;
                     [self.contentView addSubview:mSubView];
@@ -139,6 +238,10 @@
                     w = DEVICE_Width/4;
                     ZLHomeCampFuncView *mSubView = [ZLHomeCampFuncView initSmallView];
                     mSubView.frame = CGRectMake(x, y, w, h);
+                    [mSubView.mIcon sd_setImageWithURL:[NSURL URLWithString:[Util currentSourceImgUrl:Icon]] placeholderImage:ZLDefaultAvatorImg];
+                    [mSubView.mBigImg sd_setImageWithURL:[NSURL URLWithString:[Util currentSourceImgUrl:Big]] placeholderImage:ZLDefaultGoodsImg];
+                    mSubView.mTitle.text = mAdv.adv_title;
+                    mSubView.mContent.text = mAdv.adv_desc;
                     mSubView.mIndex = i;
                     mSubView.delegate = self;
                     [self.contentView addSubview:mSubView];

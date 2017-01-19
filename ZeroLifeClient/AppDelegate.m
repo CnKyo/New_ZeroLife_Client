@@ -148,21 +148,17 @@
     [ShareSDK registerApp:@"11070552590dc"
      
           activePlatforms:@[
-                            @(SSDKPlatformTypeSinaWeibo),
                             @(SSDKPlatformTypeWechat),
                             @(SSDKPlatformTypeQQ)]
                  onImport:^(SSDKPlatformType platformType)
      {
          switch (platformType)
          {
-             case SSDKPlatformTypeWechat:
-                 [ShareSDKConnector connectWeChat:[WXApi class]];
-                 break;
              case SSDKPlatformTypeQQ:
                  [ShareSDKConnector connectQQ:[QQApiInterface class] tencentOAuthClass:[TencentOAuth class]];
                  break;
-             case SSDKPlatformTypeSinaWeibo:
-                 [ShareSDKConnector connectWeibo:[WeiboSDK class]];
+             case SSDKPlatformTypeWechat:
+                 [ShareSDKConnector connectWeChat:[WXApi class]];
                  break;
              default:
                  break;
@@ -173,23 +169,16 @@
          
          switch (platformType)
          {
-             case SSDKPlatformTypeSinaWeibo:
-                 //设置新浪微博应用信息,其中authType设置为使用SSO＋Web形式授权
-                 [appInfo SSDKSetupSinaWeiboByAppKey:@"568898243"
-                                           appSecret:@"38a4f8204cc784f81f9f0daaf31e02e3"
-                                         redirectUri:@"http://www.sharesdk.cn"
-                                            authType:SSDKAuthTypeBoth];
-                 break;
-             case SSDKPlatformTypeWechat:
-                 [appInfo SSDKSetupWeChatByAppId:@"wxf8feb845b3a4d04e"
-                                       appSecret:@"5060f2cb199015e81b74c6d5fc26e4a6"];
-                 break;
              case SSDKPlatformTypeQQ:
                  [appInfo SSDKSetupQQByAppId:@"1105204239"
                                       appKey:@"5SShQsbv5YgKswaF"
                                     authType:SSDKAuthTypeBoth];
                  break;
-            
+             case SSDKPlatformTypeWechat:
+                 [appInfo SSDKSetupWeChatByAppId:@"wxf8feb845b3a4d04e"
+                                       appSecret:@"5060f2cb199015e81b74c6d5fc26e4a6"];
+                 break;
+                 
              default:
                  break;
          }

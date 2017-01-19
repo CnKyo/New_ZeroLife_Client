@@ -1505,3 +1505,6 @@ bool m_bind = NO;
 
 @implementation LKDBHomeData
 @end
+
+@implementation ZLPlafarmtLogin
+@end

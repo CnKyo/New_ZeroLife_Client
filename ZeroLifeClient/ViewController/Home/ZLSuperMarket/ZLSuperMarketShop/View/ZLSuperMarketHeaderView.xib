@@ -50,7 +50,7 @@
                         <constraint firstItem="fRf-Gd-vua" firstAttribute="top" secondItem="O5E-fw-wUn" secondAttribute="top" id="wzy-Lb-Wwh"/>
                     </constraints>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="askjashdk打开来是打算考虑到拉萨看到卡拉斯科德令哈时代阿斯顿好" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="Jbu-4X-S2H">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="Jbu-4X-S2H">
                     <rect key="frame" x="68" y="39" width="219" height="20"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="xoK-qf-UgD"/>
@@ -123,7 +123,7 @@
                         <constraint firstAttribute="height" constant="1" id="wOx-ya-e9g"/>
                     </constraints>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="askjashdk打开来是打算考虑到拉萨看到卡拉斯科德令哈时代阿斯顿好" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="HOz-VK-OjC">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="HOz-VK-OjC">
                     <rect key="frame" x="68" y="67" width="219" height="20"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="fDD-iN-Jex"/>

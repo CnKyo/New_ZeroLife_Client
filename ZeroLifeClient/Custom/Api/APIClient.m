@@ -573,7 +573,68 @@ return [NSString stringWithFormat:@"%@%@%@",kAFAppDotNetImgBaseURLString,kAFAppD
         }];
     }
 }
+#pragma mark----****----三方登录
+/**
+ 三方登录
+ 
+ @param mLoginObj 登录对象
+ @param block 返回值
+ */
+- (void)ZLPlaframtLogin:(ZLPlafarmtLogin *)mLoginObj block:(void (^)(APIObject* info))block{
+    
+    NSMutableDictionary *para = [NSMutableDictionary new];
+   
+    [para setObject:mLoginObj.open_id forKey:@"open_id"];
+    [para setObject:mLoginObj.nick_name forKey:@"nick_name"];
+    [para setObject:mLoginObj.photo forKey:@"photo"];
+    [para setObject:mLoginObj.jpush forKey:@"jpush"];
+    [para setObject:mLoginObj.app_v forKey:@"app_v"];
+    [para setObject:mLoginObj.sys_v forKey:@"sys_v"];
+    [para setObject:mLoginObj.sys_t forKey:@"sys_t"];
+    MLLog(@"三方登录传的参数：%@",para);
+    [self loadAPIWithTag:self path:@"/user/plat/plat_login" parameters:para call:^(APIObject *info) {
+        if (info.code == RESP_STATUS_YES) {
+            ZLUserInfo *user = [ZLUserInfo mj_objectWithKeyValues:[info.data objectWithKey:@"user"]];
+            CommunityObject *community = [CommunityObject mj_objectWithKeyValues:[info.data objectWithKey:@"community"]];
+            WalletObject *wallet = [WalletObject mj_objectWithKeyValues:[info.data objectWithKey:@"wallet"]];
+            OpeningFunctionObject *open = [OpeningFunctionObject mj_objectWithKeyValues:[info.data objectWithKey:@"openInfo"]];
+            if (user != nil) {
+                if (community != nil)
+                    user.community = community;
+                
+                if (wallet != nil)
+                    user.wallet = wallet;
+                if (open != nil)
+                    user.openInfo = open;
+                
+                [ZLUserInfo updateUserInfo:user];
+            }
+            block(info);
+        }else{
+            block(info);
+        }
 
+    }];
+
+}
+#pragma mark----****----绑定手机账号
+/**
+ 绑定账号
+ @param mOpenId openid
+ @param mPhone 手机
+ @param mPwd 密码
+ @param block 返回值
+ */
+- (void)ZLPlaframtLogin:(NSString *)mOpenId andPhone:(NSString *)mPhone andPwd:(NSString *)mPwd block:(void (^)(APIObject* info))block{
+    block(nil);
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    [para setObject:mOpenId forKey:@"open_id"];
+    [para setObject:mPhone forKey:@"acc_phone"];
+    [para setObject:mPwd forKey:@"v_code"];
+    [self loadAPIWithTag:self path:@"/user/plat/plat_bind" parameters:para call:^(APIObject *info) {
+        block(info);
+    }];
+}
 
 
 /**
@@ -1859,18 +1920,6 @@ return [NSString stringWithFormat:@"%@%@%@",kAFAppDotNetImgBaseURLString,kAFAppD
             
             NSMutableArray *mAdvArr = [ZLHomeAdvList mj_objectArrayWithKeyValuesArray:mAdv];
             NSMutableArray *mComArr = [ZLHomeCompainNoticeList mj_objectArrayWithKeyValuesArray:mCom];
-//            if ([mAdv isKindOfClass:[NSArray class]]) {
-//                
-//                for ( NSDictionary *dic in mAdv) {
-//                    [mAdvArr addObject:[ZLHomeAdvList mj_objectWithKeyValues:dic]];
-//                }
-//                
-//            }
-//            if ([mCom isKindOfClass:[NSArray class]]) {
-//                for ( NSDictionary *dic in mCom) {
-//                    [mComArr addObject:[ZLHomeAdvList mj_objectWithKeyValues:dic]];
-//                }                
-//            }
             
             mHomeObj.sAdvertList = mAdvArr;
             mHomeObj.eCompanyNoticeList = mComArr;

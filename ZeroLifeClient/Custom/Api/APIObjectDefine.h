@@ -787,6 +787,13 @@
 @property (assign,nonatomic) int                    adv_sort;       //!< 活动类型
 @property (strong,nonatomic) NSString*              adv_state;  //!< 点击的URL
 
+
+@property (strong,nonatomic) NSString*              adv_desc;  //!< 点击的URL
+@property (strong,nonatomic) NSString*              adv_image_l;  //!< 点击的URL
+@property (strong,nonatomic) NSString*              adv_image_logo;  //!< 点击的URL
+@property (strong,nonatomic) NSString*              adv_image_other;  //!< 点击的URL
+@property (strong,nonatomic) NSString*              adv_image_s;  //!< 点击的URL
+
 @end
 
 
@@ -1827,6 +1834,20 @@
 @property (nonatomic, strong) NSArray  *            mFunctionArr;               ///功能模块数组
 @property (nonatomic, strong) NSArray  *            mAdvArr;                    ///公告数组
 @property (nonatomic, strong) NSArray  *            mCampArr;                   ///活动数组
+@end
+#pragma mark-----****----三方登录
+///
+@interface ZLPlafarmtLogin : NSObject
+
+@property (nonatomic, strong) NSString *            open_id;                ///
+@property (nonatomic, strong) NSString *            nick_name;              ///
+@property (nonatomic, strong) NSString *            photo;                  ///
+@property (nonatomic, strong) NSString *            jpush;                  ///
+@property (nonatomic, strong) NSString *            app_v;                  ///
+@property (nonatomic, strong) NSString *            sys_v;                  ///
+@property (nonatomic, strong) NSString *            sys_t;                  ///
+
+
 @end
 
 

@@ -467,7 +467,7 @@
         if (section == 0) {
             return 1;
         } else if (section == 1) {
-            return mAdvDataSourceArr.count;
+            return 1;
         } else if (section == 2) {
             return mComDataSourceArr.count;
         }
@@ -533,10 +533,10 @@
             cell.delegate = self;
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
-//            [cell setMDataSource:@[@"1",@"2",@"3",@"4",@"5"]];
             if (indexPath.section == 1) {
-                ZLHomeAdvList *mAdv = mAdvDataSourceArr[indexPath.row];
-                [cell.mImage sd_setImageWithURL:[NSURL imageurl:mAdv.adv_image] placeholderImage:[UIImage imageNamed:@"ZLDefault_Activity"]];
+//                ZLHomeAdvList *mAdv = mAdvDataSourceArr[indexPath.row];
+//                [cell.mImage sd_setImageWithURL:[NSURL imageurl:mAdv.adv_image] placeholderImage:[UIImage imageNamed:@"ZLDefault_Activity"]];
+                [cell setMDataSource:mAdvDataSourceArr];
             } else {
                 ZLHomeCompainNoticeList *mCampain = mComDataSourceArr[indexPath.row];
                 
@@ -575,18 +575,12 @@
                 
                 ZLHomeCompainNoticeList *mCampain = mComDataSourceArr[indexPath.row];
                 ZLWebVc *vc = [ZLWebVc new];
-//                vc.mUrl = mCampain.adv_click_url;
-                vc.hidesBottomBarWhenPushed = YES;
-
+                vc.mUrl = [NSString stringWithFormat:@"%@/wap/wcmutNotice/findNotice?user_id=%d&not_id=%d",[[APIClient sharedClient] currentUrl],[ZLUserInfo ZLCurrentUser].user_id,mCampain.not_id];
+                vc.mTitle = mCampain.not_title;
                 [self pushViewController:vc];
+
             }else{
-                ZLHomeAdvList *mAdv = mAdvDataSourceArr[indexPath.row];
-                ZLWebVc *vc = [ZLWebVc new];
-                vc.mUrl = mAdv.adv_click_url;
-                vc.mTitle = mAdv.adv_title;
-                vc.hidesBottomBarWhenPushed = YES;
 
-                [self pushViewController:vc];
             }
 
         }
@@ -758,5 +752,14 @@
  */
 - (void)ZLHomeOtherCellFuncDidSelectedWithIndex:(NSInteger)mIndex{
     MLLog(@"点击了------%ld",(long)mIndex);
+    
+    ZLHomeAdvList *mAdv = mAdvDataSourceArr[mIndex];
+    ZLWebVc *vc = [ZLWebVc new];
+    vc.mUrl = mAdv.adv_click_url;
+    vc.mTitle = mAdv.adv_title;
+    vc.hidesBottomBarWhenPushed = YES;
+    
+    [self pushViewController:vc];
+
 }
 @end
