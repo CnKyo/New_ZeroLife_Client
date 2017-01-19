@@ -388,27 +388,47 @@ static int const ZLRunningManVC_ClassView_Height                  = 80;
 - (void)ZLRunningManCellDelegateWithBtnClick:(NSIndexPath *)mIndexPath{
     
     ZLRunningmanHomeOrder *mOrder = self.tableArr[mIndexPath.row];
-    if ([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:kOpenState_NOTOPEN]) {
-        UserPaoPaoRegisterVC*vc = [[UserPaoPaoRegisterVC alloc] initWithNibName:@"UserPaoPaoRegisterVC" bundle:nil];
-        [self pushViewController:vc];
-    }else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:kOpenState_PAYMENTED]){
-        UserPaoPaoApplyVC *vc = [UserPaoPaoApplyVC new];
-        [self pushViewController:vc];
+    
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    if (![user.openInfo.open_state isEqualToString:kOpenState_CHECKED]) {
+        if (user.openInfo==nil || [user.openInfo.open_state isEqualToString:kOpenState_NOTOPEN]) {
+            UserPaoPaoRegisterVC*vc = [[UserPaoPaoRegisterVC alloc] initWithNibName:@"UserPaoPaoRegisterVC" bundle:nil];
+            vc.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:vc animated:YES];
+        } else if([user.openInfo.open_state isEqualToString:kOpenState_PAYMENTED]) {
+            UserPaoPaoApplyVC *vc = [UserPaoPaoApplyVC new];
+            vc.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:vc animated:YES];
+        } else
+            [SVProgressHUD showInfoWithStatus:[NSString strDesWithOpenState:user.openInfo.open_state]];
         
+        return;
     }
-    else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:kOpenState_UNCHECK]){
-        [self showErrorStatus:@"待审核中..."];
-    } else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:kOpenState_REFUSE]){
-        [self showErrorStatus:@"审核失败！"];
-    } else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:kOpenState_LOGOFF]){
-        [self showErrorStatus:@"已注销！"];
-    } else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:kOpenState_LOCKED]){
-        [self showErrorStatus:@"已禁用！"];
-    }
-    else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"null"] || [ZLUserInfo ZLCurrentUser].openInfo.open_state == nil){
-        UserPaoPaoRegisterVC*vc = [[UserPaoPaoRegisterVC alloc] initWithNibName:@"UserPaoPaoRegisterVC" bundle:nil];
-        [self pushViewController:vc];
-    }else{
+
+    
+    
+//    if ([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:kOpenState_NOTOPEN]) {
+//        UserPaoPaoRegisterVC*vc = [[UserPaoPaoRegisterVC alloc] initWithNibName:@"UserPaoPaoRegisterVC" bundle:nil];
+//        [self pushViewController:vc];
+//    }else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:kOpenState_PAYMENTED]){
+//        UserPaoPaoApplyVC *vc = [UserPaoPaoApplyVC new];
+//        [self pushViewController:vc];
+//        
+//    }
+//    else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:kOpenState_UNCHECK]){
+//        [self showErrorStatus:@"待审核中..."];
+//    } else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:kOpenState_REFUSE]){
+//        [self showErrorStatus:@"审核失败！"];
+//    } else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:kOpenState_LOGOFF]){
+//        [self showErrorStatus:@"已注销！"];
+//    } else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:kOpenState_LOCKED]){
+//        [self showErrorStatus:@"已禁用！"];
+//    }
+//    else if([[ZLUserInfo ZLCurrentUser].openInfo.open_state isEqualToString:@"null"] || [ZLUserInfo ZLCurrentUser].openInfo.open_state == nil){
+//        UserPaoPaoRegisterVC*vc = [[UserPaoPaoRegisterVC alloc] initWithNibName:@"UserPaoPaoRegisterVC" bundle:nil];
+//        [self pushViewController:vc];
+//
+//    }else{
         if (mIsVerrify == NO) {
             [self showErrorStatus:@"您需要打开定位才能接单哦～～"];
             [self initPPTLocation];
@@ -447,7 +467,7 @@ static int const ZLRunningManVC_ClassView_Height                  = 80;
         }
         
  
-    }
+    //}
 
     
     
