@@ -77,7 +77,7 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="距离30000m" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vvq-B6-KtD">
                         <rect key="frame" x="242" y="96" width="70" height="21"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="70" id="60t-5B-nUy"/>
+                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="70" id="60t-5B-nUy"/>
                             <constraint firstAttribute="height" constant="21" id="AY9-j2-c5y"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
@@ -92,7 +92,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="重庆市渝中区大坪石油路" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RB4-tw-Dtb">
-                        <rect key="frame" x="33" y="97" width="277" height="15"/>
+                        <rect key="frame" x="33" y="97" width="204" height="15"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -118,6 +118,7 @@
                     <constraint firstItem="6UR-ST-Uhd" firstAttribute="top" secondItem="Pd8-BP-XeJ" secondAttribute="bottom" constant="9" id="VKC-y0-rdu"/>
                     <constraint firstItem="WbP-22-CxI" firstAttribute="leading" secondItem="V0x-Af-mKX" secondAttribute="leadingMargin" constant="-8" id="Vsu-dc-Cou"/>
                     <constraint firstItem="2MF-pT-V7a" firstAttribute="leading" secondItem="V0x-Af-mKX" secondAttribute="leadingMargin" constant="2" id="YBv-Ib-gmn"/>
+                    <constraint firstItem="Vvq-B6-KtD" firstAttribute="leading" secondItem="RB4-tw-Dtb" secondAttribute="trailing" constant="5" id="ZDj-57-aT8"/>
                     <constraint firstAttribute="trailingMargin" secondItem="coj-MY-40Q" secondAttribute="trailing" id="aMg-Fy-OT6"/>
                     <constraint firstItem="1po-JB-N18" firstAttribute="top" secondItem="qJ3-fY-cU6" secondAttribute="bottom" constant="9" id="cfs-QF-PwW"/>
                     <constraint firstItem="RB4-tw-Dtb" firstAttribute="top" secondItem="Pd8-BP-XeJ" secondAttribute="bottom" constant="9" id="coK-y0-zLv"/>
@@ -127,7 +128,6 @@
                     <constraint firstItem="2MF-pT-V7a" firstAttribute="top" secondItem="V0x-Af-mKX" secondAttribute="topMargin" constant="2" id="mN2-n5-kUs"/>
                     <constraint firstItem="Pd8-BP-XeJ" firstAttribute="leading" secondItem="V0x-Af-mKX" secondAttribute="leadingMargin" constant="5" id="mf5-zg-oKZ"/>
                     <constraint firstItem="RB4-tw-Dtb" firstAttribute="leading" secondItem="6UR-ST-Uhd" secondAttribute="trailing" constant="9" id="mmX-EZ-cVr"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="RB4-tw-Dtb" secondAttribute="trailing" constant="2" id="msD-w3-Jrc"/>
                     <constraint firstItem="dm3-gt-AS4" firstAttribute="leading" secondItem="qJ3-fY-cU6" secondAttribute="trailing" constant="8" id="pza-Tb-j5a"/>
                     <constraint firstItem="1po-JB-N18" firstAttribute="leading" secondItem="2MF-pT-V7a" secondAttribute="trailing" constant="8" id="rWc-A3-DPv"/>
                     <constraint firstItem="dm3-gt-AS4" firstAttribute="top" secondItem="coj-MY-40Q" secondAttribute="bottom" constant="16" id="syx-w6-tMk"/>
