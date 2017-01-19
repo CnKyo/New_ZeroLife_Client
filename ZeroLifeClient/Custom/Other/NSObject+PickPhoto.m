@@ -39,7 +39,7 @@ static const void *JKStringProperty = &JKStringProperty;
 {
     UIViewController *vc = [UIViewController topViewController];
     
-    UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"相片选取" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"相片选取" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
     [alertVC addAction:[UIAlertAction actionWithTitle:@"取消"style:UIAlertActionStyleCancel handler:nil]];
     [alertVC addAction:[UIAlertAction actionWithTitle:@"拍照"style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         if ([self isCameraAvailable] && [self doesCameraSupportTakingPhotos]) {

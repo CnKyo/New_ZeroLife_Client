@@ -245,7 +245,7 @@
             }];
         } else if (indexPath.row == 2) { //性别
             
-            UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"选择性别" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"选择性别" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
             [alertVC addAction:[UIAlertAction actionWithTitle:@"取消"style:UIAlertActionStyleCancel handler:nil]];
             [alertVC addAction:[UIAlertAction actionWithTitle:@"男"style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 self.user.user_sex = kUserSexType_man;

@@ -92,6 +92,8 @@ typedef void (^TableShareSdkBlock)(int totalpage, NSArray *tableArr, APIShareSdk
 -(void)userInfoEditWithTag:(NSObject *)tag postItem:(ZLUserInfo *)it call:(void (^)(APIObject* info))callback;
 -(void)userPushSettingWithTag:(NSObject *)tag isOn:(BOOL)ison call:(void (^)(APIObject* info))callback;
 -(void)userSecurityPasswordSettingWithTag:(NSObject *)tag acc_pass:(NSString *)acc_pass security_password:(NSString *)security_password call:(void (^)(APIObject* info))callback;
+-(void)userSecurityPasswordCompalainWithTag:(NSObject *)tag mobile:(NSString *)mobile idCard:(NSString *)idCard acc_pass:(NSString *)acc_pass call:(void (^)(APIObject* info))callback;
+
 #pragma mark----****---- 更新用户信息
 /**
  更新用户信息

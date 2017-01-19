@@ -192,7 +192,7 @@
                 }
                 
                 [SVProgressHUD showWithStatus:@"投诉提交中..."];
-                [[APIClient sharedClient] complaintCommunityUpWithTag:self content:_view1TextView.text cmut_id:_view1ChooseCommunity.cmut_id  call:^(APIObject *info) {
+                [[APIClient sharedClient] complaintPeopleUpWithTag:self content:_view1TextView.text cmut_id:_view1ChooseCommunity.cmut_id  call:^(APIObject *info) {
                     if (info.code == RESP_STATUS_YES) {
                         [SVProgressHUD showSuccessWithStatus:info.msg];
                         self.view1TextView.text = nil;

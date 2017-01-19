@@ -619,6 +619,10 @@
 		DFE178E01DD5901E00E06F21 /* cell_soukuan_item.png in Resources */ = {isa = PBXBuildFile; fileRef = DFE178D71DD5901E00E06F21 /* cell_soukuan_item.png */; };
 		DFE178E11DD5901E00E06F21 /* cell_soukuan_item@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFE178D81DD5901E00E06F21 /* cell_soukuan_item@2x.png */; };
 		DFE178E21DD5901E00E06F21 /* cell_soukuan_item@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFE178D91DD5901E00E06F21 /* cell_soukuan_item@3x.png */; };
+		DFE4F0841E2DCAD900705C2F /* SecurityPasswordDoneTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DFE4F0831E2DCAD900705C2F /* SecurityPasswordDoneTVC.m */; };
+		DFE4F0871E2DCD5200705C2F /* SecurityPasswordComplainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DFE4F0861E2DCD5200705C2F /* SecurityPasswordComplainVC.m */; };
+		DFE4F08C1E2DCD7C00705C2F /* SecurityPasswordComplainTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DFE4F08A1E2DCD7C00705C2F /* SecurityPasswordComplainTableViewCell.m */; };
+		DFE4F08D1E2DCD7C00705C2F /* SecurityPasswordComplainTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFE4F08B1E2DCD7C00705C2F /* SecurityPasswordComplainTableViewCell.xib */; };
 		DFEF59D01E0D0EB2002AD150 /* CustomWebVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DFEF59CF1E0D0EB2002AD150 /* CustomWebVC.m */; };
 		DFF634C11DB873D200B5C917 /* ScrollModelVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF634C01DB873D200B5C917 /* ScrollModelVC.m */; };
 		DFF9322D1DD95C1300BA8C8B /* UserScoreYuEVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF9322C1DD95C1300BA8C8B /* UserScoreYuEVC.m */; };
@@ -1509,6 +1513,13 @@
 		DFE178D71DD5901E00E06F21 /* cell_soukuan_item.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cell_soukuan_item.png; sourceTree = "<group>"; };
 		DFE178D81DD5901E00E06F21 /* cell_soukuan_item@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cell_soukuan_item@2x.png"; sourceTree = "<group>"; };
 		DFE178D91DD5901E00E06F21 /* cell_soukuan_item@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cell_soukuan_item@3x.png"; sourceTree = "<group>"; };
+		DFE4F0821E2DCAD900705C2F /* SecurityPasswordDoneTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecurityPasswordDoneTVC.h; sourceTree = "<group>"; };
+		DFE4F0831E2DCAD900705C2F /* SecurityPasswordDoneTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecurityPasswordDoneTVC.m; sourceTree = "<group>"; };
+		DFE4F0851E2DCD5200705C2F /* SecurityPasswordComplainVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecurityPasswordComplainVC.h; sourceTree = "<group>"; };
+		DFE4F0861E2DCD5200705C2F /* SecurityPasswordComplainVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecurityPasswordComplainVC.m; sourceTree = "<group>"; };
+		DFE4F0891E2DCD7C00705C2F /* SecurityPasswordComplainTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecurityPasswordComplainTableViewCell.h; sourceTree = "<group>"; };
+		DFE4F08A1E2DCD7C00705C2F /* SecurityPasswordComplainTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecurityPasswordComplainTableViewCell.m; sourceTree = "<group>"; };
+		DFE4F08B1E2DCD7C00705C2F /* SecurityPasswordComplainTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SecurityPasswordComplainTableViewCell.xib; sourceTree = "<group>"; };
 		DFEF59CE1E0D0EB2002AD150 /* CustomWebVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomWebVC.h; sourceTree = "<group>"; };
 		DFEF59CF1E0D0EB2002AD150 /* CustomWebVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomWebVC.m; sourceTree = "<group>"; };
 		DFF2BA083AFD4D1DD56A8848 /* Pods-ZeroLifeClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZeroLifeClient.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZeroLifeClient/Pods-ZeroLifeClient.debug.xcconfig"; sourceTree = "<group>"; };
@@ -3048,11 +3059,26 @@
 			path = Other;
 			sourceTree = "<group>";
 		};
+		DFE4F0881E2DCD6700705C2F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DFE4F0891E2DCD7C00705C2F /* SecurityPasswordComplainTableViewCell.h */,
+				DFE4F08A1E2DCD7C00705C2F /* SecurityPasswordComplainTableViewCell.m */,
+				DFE4F08B1E2DCD7C00705C2F /* SecurityPasswordComplainTableViewCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		DFF9322E1DD9640300BA8C8B /* SecurityPassword */ = {
 			isa = PBXGroup;
 			children = (
+				DFE4F0881E2DCD6700705C2F /* View */,
 				DFF9322F1DD9641A00BA8C8B /* SecurityPasswordVC.h */,
 				DFF932301DD9641A00BA8C8B /* SecurityPasswordVC.m */,
+				DFE4F0821E2DCAD900705C2F /* SecurityPasswordDoneTVC.h */,
+				DFE4F0831E2DCAD900705C2F /* SecurityPasswordDoneTVC.m */,
+				DFE4F0851E2DCD5200705C2F /* SecurityPasswordComplainVC.h */,
+				DFE4F0861E2DCD5200705C2F /* SecurityPasswordComplainVC.m */,
 			);
 			path = SecurityPassword;
 			sourceTree = "<group>";
@@ -3895,6 +3921,7 @@
 				DFE178631DD555C100E06F21 /* cell_souchang@2x.png in Resources */,
 				DF8DBCBE1DD01C9C002E574B /* ComplaintGongsiView.xib in Resources */,
 				DFBAA9791DF149AD004315F9 /* singIn_p@2x.png in Resources */,
+				DFE4F08D1E2DCD7C00705C2F /* SecurityPasswordComplainTableViewCell.xib in Resources */,
 				DFBAA97C1DF149AD004315F9 /* singIn_n@3x.png in Resources */,
 				DF630D4A1DD45D790076A92C /* purse_anquanma.png in Resources */,
 				040D92FA1DCAE34E00DBE42E /* ZLHomeMSGCell.xib in Resources */,
@@ -4287,6 +4314,7 @@
 				DF0308911DCD69DC00E1EAB6 /* UIViewController+Additions.m in Sources */,
 				040FE43B1E27788400742074 /* GPSValidLocationPicker.m in Sources */,
 				0416572B1DD6EE12004E7D9A /* ZLRepairsDetailViewController.m in Sources */,
+				DFE4F0871E2DCD5200705C2F /* SecurityPasswordComplainVC.m in Sources */,
 				DF630D0B1DD418360076A92C /* BaoXiuShopNoteView.m in Sources */,
 				04162DFF1DCB545200FB4229 /* ChineseToPinyin.m in Sources */,
 				DF55B46F1DBAFEAC00F89341 /* ZLTabBarViewController.m in Sources */,
@@ -4467,6 +4495,7 @@
 				0409176C1DCC55C300DB2568 /* RKImageBrowser.m in Sources */,
 				0445AD891DD457E600788779 /* ZLGoPayPopRedBagView.m in Sources */,
 				DF8DBCED1DD0782F002E574B /* LifePayVC.m in Sources */,
+				DFE4F0841E2DCAD900705C2F /* SecurityPasswordDoneTVC.m in Sources */,
 				DFFAA7341DB744C5001CFBB5 /* main.m in Sources */,
 				04721A2E1DE4325B00CE8639 /* ZLRatingViewController.m in Sources */,
 				0464E7051DF26B4E00A3F954 /* StandardModel.m in Sources */,
@@ -4478,6 +4507,7 @@
 				040917791DCC664300DB2568 /* ZLSuperMarketShopViewController.m in Sources */,
 				DF300D141E02879C00AC23CC /* UserComplaintUpVC.m in Sources */,
 				DF7D0A1E1DBA0019005A62A7 /* CookDetailVC.m in Sources */,
+				DFE4F08C1E2DCD7C00705C2F /* SecurityPasswordComplainTableViewCell.m in Sources */,
 				DF55B46A1DBAFE7700F89341 /* ZLUserViewController.m in Sources */,
 				04E9365B1E2DBED7007D6F6E /* MBProgressHUD+Add.m in Sources */,
 				DF29B6BB1E1131C200CBAA3B /* UserPaoPaoApplyTableViewCell.m in Sources */,
