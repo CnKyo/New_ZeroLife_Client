@@ -39,9 +39,9 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥20" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1po-JB-N18">
-                        <rect key="frame" x="68" y="59" width="176" height="20"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                        <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <rect key="frame" x="68" y="59" width="176" height="18.5"/>
+                        <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="16"/>
+                        <color key="textColor" red="0.98946946859359741" green="0.49463647603988647" blue="0.076085187494754791" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dm3-gt-AS4">
@@ -52,21 +52,21 @@
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <state key="normal" title="立即接单">
-                            <color key="titleColor" red="0.99934500459999998" green="0.76848846670000004" blue="0.53371113540000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="titleColor" red="0.99305051565170288" green="0.53458142280578613" blue="0.0832257941365242" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </state>
                         <connections>
                             <action selector="mBtnAction:" destination="MY0-zA-NkZ" eventType="touchUpInside" id="cr6-L2-FcV"/>
                         </connections>
                     </button>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yDu-JS-RDg">
-                        <rect key="frame" x="10" y="87" width="300" height="1"/>
+                        <rect key="frame" x="10" y="85.5" width="300" height="1"/>
                         <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="0.25251498290000002" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="9fG-cM-tB6"/>
                         </constraints>
                     </view>
                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="重庆市渝中区大坪" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pd8-BP-XeJ">
-                        <rect key="frame" x="13" y="88" width="221" height="0.0"/>
+                        <rect key="frame" x="13" y="86.5" width="221" height="0.0"/>
                         <constraints>
                             <constraint firstAttribute="height" id="bh1-wP-Wk6"/>
                         </constraints>
@@ -75,7 +75,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="距离30000m" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vvq-B6-KtD">
-                        <rect key="frame" x="242" y="96" width="70" height="21"/>
+                        <rect key="frame" x="242" y="94.5" width="70" height="21"/>
                         <constraints>
                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="70" id="60t-5B-nUy"/>
                             <constraint firstAttribute="height" constant="21" id="AY9-j2-c5y"/>
@@ -85,20 +85,20 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ZLPPT_Location_arear" translatesAutoresizingMaskIntoConstraints="NO" id="6UR-ST-Uhd">
-                        <rect key="frame" x="12" y="97" width="12" height="15"/>
+                        <rect key="frame" x="12" y="95.5" width="12" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="9P9-tj-2v1"/>
                             <constraint firstAttribute="width" constant="12" id="mV1-AU-Rdv"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="重庆市渝中区大坪石油路" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RB4-tw-Dtb">
-                        <rect key="frame" x="33" y="97" width="204" height="15"/>
+                        <rect key="frame" x="33" y="95.5" width="204" height="15"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WbP-22-CxI">
-                        <rect key="frame" x="0.0" y="125" width="320" height="2.5"/>
+                        <rect key="frame" x="0.0" y="123.5" width="320" height="4"/>
                         <color key="backgroundColor" red="0.96912556890000001" green="0.96985918280000005" blue="0.96923929450000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                 </subviews>
