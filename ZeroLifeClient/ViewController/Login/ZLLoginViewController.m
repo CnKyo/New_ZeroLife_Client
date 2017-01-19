@@ -206,13 +206,13 @@
         mLoginObj.sys_t = @"ios";
         mLoginObj.jpush = [JPUSHService registrationID];
         [self showWithStatus:@"正在登录..."];
-        [[APIClient sharedClient] ZLPlaframtLogin:mLoginObj block:^(APIObject *info) {
+        [[APIClient sharedClient] ZLPlaframtLogin:mLoginObj block:^(APIObject *info,ZLUserInfo *mUser) {
             if (info.code == RESP_STATUS_YES) {
-                [[NSNotificationCenter defaultCenter] postNotificationName:MyUserInfoChangedNotification object:nil];
-
                 [self showSuccessStatus:info.msg];
-                if ([ZLUserInfo ZLCurrentUser].user_phone.length<=0) {
+                if (mUser.user_phone.length<=0) {
                     otherLoginViewController *vc = [[otherLoginViewController alloc] initWithNibName:@"otherLoginViewController" bundle:nil];
+                    vc.mUserInfo = [ZLUserInfo new];
+                    vc.mUserInfo = mUser;
                     vc.mOpenId = mLoginObj.open_id;
                     vc.block = ^(NSString *mPhone,NSString *mPwd){
                         
@@ -222,6 +222,9 @@
                     };
                     [self pushViewController:vc];
                 }else{
+                    [ZLUserInfo updateUserInfo:mUser];
+                    
+                    [[NSNotificationCenter defaultCenter] postNotificationName:MyUserInfoChangedNotification object:nil];
                     [self showSuccessStatus:@"登录成功！"];
                     [self performSelector:@selector(dismissViewController) withObject:nil afterDelay:0.5];
 
