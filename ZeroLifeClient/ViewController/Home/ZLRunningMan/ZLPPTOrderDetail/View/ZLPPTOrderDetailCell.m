@@ -90,6 +90,18 @@
 
     }
     
+    if (mOrderDetail.odr_remark.length<=0 || [mOrderDetail.odr_remark isEqualToString:@"null"]) {
+        mOrderDetail.odr_remark = @" ";
+    }
+    if (mOrderDetail.odr_code.length<=0 || [mOrderDetail.odr_code isEqualToString:@"null"]) {
+        mOrderDetail.odr_code = @" ";
+    }
+    if (mOrderDetail.odr_add_time.length<=0 || [mOrderDetail.odr_add_time isEqualToString:@"null"]) {
+        mOrderDetail.odr_add_time = @" ";
+    }
+    if (mOrderDetail.odr_deliver_address.length<=0 || [mOrderDetail.odr_deliver_address isEqualToString:@"null"]) {
+        mOrderDetail.odr_deliver_address = @" ";
+    }
     
     self.mRemark.text = [NSString stringWithFormat:@"订单备注：%@",mOrderDetail.odr_remark];
     self.mOrderCode.text = [NSString stringWithFormat:@"订单编号：%@",mOrderDetail.odr_code];
