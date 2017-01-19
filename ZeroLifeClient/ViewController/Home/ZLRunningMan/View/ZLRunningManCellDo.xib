@@ -66,7 +66,7 @@
                         </constraints>
                     </view>
                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="重庆市渝中区大坪" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pd8-BP-XeJ">
-                        <rect key="frame" x="13" y="86.5" width="221" height="0.0"/>
+                        <rect key="frame" x="13" y="86.5" width="216" height="0.0"/>
                         <constraints>
                             <constraint firstAttribute="height" id="bh1-wP-Wk6"/>
                         </constraints>
@@ -75,9 +75,9 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="距离30000m" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vvq-B6-KtD">
-                        <rect key="frame" x="242" y="94.5" width="70" height="21"/>
+                        <rect key="frame" x="237" y="94.5" width="75" height="21"/>
                         <constraints>
-                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="70" id="60t-5B-nUy"/>
+                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="75" id="60t-5B-nUy"/>
                             <constraint firstAttribute="height" constant="21" id="AY9-j2-c5y"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
@@ -92,7 +92,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="重庆市渝中区大坪石油路" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RB4-tw-Dtb">
-                        <rect key="frame" x="33" y="95.5" width="204" height="15"/>
+                        <rect key="frame" x="33" y="95.5" width="199" height="15"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
