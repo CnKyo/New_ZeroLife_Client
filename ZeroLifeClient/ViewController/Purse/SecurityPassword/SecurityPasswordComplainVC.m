@@ -51,18 +51,18 @@
                 return;
             }
             
-            if (_customCell.pwdField.text.length==0) {
-                [SVProgressHUD showErrorWithStatus:@"请输入登录密码"];
-                return ;
-            }
+//            if (_customCell.pwdField.text.length==0) {
+//                [SVProgressHUD showErrorWithStatus:@"请输入登录密码"];
+//                return ;
+//            }
 
-#warning 接口不是正确的，未测试
+
             [SVProgressHUD showWithStatus:@"处理中..."];
-            [[APIClient sharedClient] userSecurityPasswordCompalainWithTag:self mobile:_customCell.mobileField.text idCard:_customCell.idField.text acc_pass:_customCell.pwdField.text call:^(APIObject *info) {
+            [[APIClient sharedClient] userSecurityPasswordCompalainWithTag:self mobile:_customCell.mobileField.text idCard:_customCell.idField.text call:^(APIObject *info) {
                 if (info.code == RESP_STATUS_YES) {
                     //[[NSNotificationCenter defaultCenter] postNotificationName:MyUserNeedUpdateNotification object:nil];
                     
-                    [self performSelector:@selector(popViewController) withObject:nil afterDelay:0.5];
+                    [self performSelector:@selector(popViewController) withObject:nil afterDelay:0.8];
                     [SVProgressHUD showSuccessWithStatus:info.msg];
                 } else
                     [SVProgressHUD showErrorWithStatus:info.msg];
@@ -114,7 +114,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 152;
+    return 101;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
