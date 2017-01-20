@@ -172,7 +172,7 @@
         
         if (_isChooseAddress == YES) {
             cell.chooseBtn.enabled = YES;
-            cell.editBtn.enabled = NO;
+            //cell.editBtn.enabled = NO;
             if (isSameItem) {
                 [cell.chooseBtn setImage:IMG(@"shimingrenzheng_on.png") forState:UIControlStateNormal];
             } else
@@ -180,7 +180,7 @@
             
         } else {
             cell.chooseBtn.enabled = NO;
-            cell.editBtn.enabled = YES;
+            //cell.editBtn.enabled = YES;
             [cell.chooseBtn setImage:IMG(@"cell_address_myplace.png") forState:UIControlStateNormal];
         }
         
