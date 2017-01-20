@@ -451,7 +451,7 @@
         [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
         NSLog(@"_selectedPoi.name:%@", address);
         // 刷新后TableView返回顶部
-        [self.tableView setContentOffset:CGPointMake(0, 0) animated:NO];
+        //[self.tableView setContentOffset:CGPointMake(0, 0) animated:NO];
         
         //NSString *city = response.regeocode.addressComponent.city;
 
@@ -599,6 +599,8 @@
             }
             
             [self reloadWithTableArr:newArr info:info];
+            
+            self.tableView.mj_footer.state = MJRefreshStateNoMoreData; //没有分页，只加载一次
         }];
     } else {
         [self searchPoiByAMapGeoPoint:point];
