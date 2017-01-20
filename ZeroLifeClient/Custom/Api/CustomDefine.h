@@ -210,7 +210,7 @@ static int const RESP_STATUS_RELOGIN                  = 405;             //éœ€è¦
 //static NSString* const  kAFAppDotNetApiServiceURLString    = @"/crkj_zlife/api/app/service";
 
 
-static NSString* const  kAFAppDotNetApiBaseURLString    = @"http://192.168.1.114";
+static NSString* const  kAFAppDotNetApiBaseURLString    = @"http://192.168.1.120";
 static NSString* const  kAFAppDotNetApiExtraURLString    = @"/api/app/client";
 static NSString* const  kAFAppDotNetApiServiceURLString    = @"/api/app/service";
 static NSString* const  kAFAppDotNetImgBaseURLString    = @"http://192.168.1.114/resource";

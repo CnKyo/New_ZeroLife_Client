@@ -41,7 +41,7 @@
             ZLHomeAdvList *mAdv = mDataSource[0];
             UIImageView *mBgk = [UIImageView new];
 //            mBgk.backgroundColor = [UIColor redColor];
-            [mBgk sd_setImageWithURL:[NSURL URLWithString:[Util currentSourceImgUrl:mAdv.adv_image_l]] placeholderImage:ZLDefaultBannerImg];
+            [mBgk sd_setImageWithURL:[NSURL URLWithString:[Util currentSourceImgUrl:mAdv.adv_image_other]] placeholderImage:ZLDefaultBannerImg];
             mBgk.frame = CGRectMake(5, 5, DEVICE_Width-10, 190);
             [self.contentView addSubview:mBgk];
             
@@ -65,20 +65,42 @@
                 NSString *Icon = nil;
                 NSString *Big = nil;
                 
-                if (mAdv.adv_image_l.length<=0) {
-                    Big = mAdv.adv_image;
-                }else if (mAdv.adv_image.length<=0){
-                    Big = nil;
-                }else{
-                    Big = mAdv.adv_image_other;
+                if (Big==nil && mAdv.adv_image_l.length > 0) {
+                    Big = mAdv.adv_image_l;
                 }
-                if (mAdv.adv_image_logo.length<=0) {
-                    Icon = mAdv.adv_image;
-                }else if (mAdv.adv_image_logo.length<=0){
-                    Icon = nil;
-                }else{
+                if (Big==nil && mAdv.adv_image_other) {
+                    Big = mAdv.adv_image_l;
+                }
+                if (Big==nil && mAdv.adv_image_s) {
+                    Big = mAdv.adv_image_s;
+                }
+                
+                
+                if (Icon==nil && mAdv.adv_image_logo.length > 0) {
+                    Icon = mAdv.adv_image_logo;
+                }
+                if (Icon==nil && mAdv.adv_image_other.length > 0) {
                     Icon = mAdv.adv_image_other;
                 }
+                
+//                if (mAdv.adv_image_l.length<=0) {
+//                    Big = mAdv.adv_image;
+//                }else if (mAdv.adv_image.length<=0){
+//                    Big = nil;
+//                }else{
+//                    Big = mAdv.adv_image_other;
+//                }
+                
+                
+
+                
+//                if (mAdv.adv_image_logo.length<=0) {
+//                    Icon = mAdv.adv_image;
+//                }else if (mAdv.adv_image_logo.length<=0){
+//                    Icon = nil;
+//                }else{
+//                    Icon = mAdv.adv_image_other;
+//                }
                 
                 
                 ZLHomeCampFuncView *mSubView = [ZLHomeCampFuncView initBigView];
@@ -110,20 +132,24 @@
                 NSString *Icon = nil;
                 NSString *Big = nil;
                 
-                if (mAdv.adv_image_l.length<=0) {
-                    Big = mAdv.adv_image;
-                }else if (mAdv.adv_image.length<=0){
-                    Big = nil;
-                }else{
-                    Big = mAdv.adv_image_other;
+                if (Big==nil && mAdv.adv_image_l.length > 0) {
+                    Big = mAdv.adv_image_l;
                 }
-                if (mAdv.adv_image_logo.length<=0) {
-                    Icon = mAdv.adv_image;
-                }else if (mAdv.adv_image_logo.length<=0){
-                    Icon = nil;
-                }else{
+                if (Big==nil && mAdv.adv_image_other) {
+                    Big = mAdv.adv_image_l;
+                }
+                if (Big==nil && mAdv.adv_image_s) {
+                    Big = mAdv.adv_image_s;
+                }
+                
+                
+                if (Icon==nil && mAdv.adv_image_logo.length > 0) {
+                    Icon = mAdv.adv_image_logo;
+                }
+                if (Icon==nil && mAdv.adv_image_other.length > 0) {
                     Icon = mAdv.adv_image_other;
                 }
+                
                 if (i==0) {
                     ZLHomeCampFuncView *mSubView = [ZLHomeCampFuncView initBigView];
                     mSubView.frame = CGRectMake(x, 0, w, 200);
@@ -168,20 +194,25 @@
                 NSString *Icon = nil;
                 NSString *Big = nil;
                 
-                if (mAdv.adv_image_l.length<=0) {
-                    Big = mAdv.adv_image;
-                }else if (mAdv.adv_image.length<=0){
-                    Big = nil;
-                }else{
-                    Big = mAdv.adv_image_other;
+                if (Big==nil && mAdv.adv_image_s) {
+                    Big = mAdv.adv_image_s;
                 }
-                if (mAdv.adv_image_logo.length<=0) {
-                    Icon = mAdv.adv_image;
-                }else if (mAdv.adv_image_logo.length<=0){
-                    Icon = nil;
-                }else{
+                if (Big==nil && mAdv.adv_image_l.length > 0) {
+                    Big = mAdv.adv_image_l;
+                }
+                if (Big==nil && mAdv.adv_image_other) {
+                    Big = mAdv.adv_image_l;
+                }
+
+                
+                if (Icon==nil && mAdv.adv_image_logo.length > 0) {
+                    Icon = mAdv.adv_image_logo;
+                }
+                if (Icon==nil && mAdv.adv_image_other.length > 0) {
                     Icon = mAdv.adv_image_other;
                 }
+                
+                
                 ZLHomeCampFuncView *mSubView = [ZLHomeCampFuncView initImgRightView];
                 mSubView.frame = CGRectMake(x, y, w, h);
                 [mSubView.mIcon sd_setImageWithURL:[NSURL URLWithString:[Util currentSourceImgUrl:Icon]] placeholderImage:ZLDefaultAvatorImg];
@@ -211,20 +242,31 @@
                 NSString *Icon = nil;
                 NSString *Big = nil;
                 
-                if (mAdv.adv_image_l.length<=0) {
-                    Big = mAdv.adv_image;
-                }else if (mAdv.adv_image.length<=0){
-                    Big = nil;
-                }else{
-                    Big = mAdv.adv_image_other;
+                if (i==0) {
+                    if (Big==nil && mAdv.adv_image_l.length > 0) {
+                        Big = mAdv.adv_image_l;
+                    }
                 }
-                if (mAdv.adv_image_logo.length<=0) {
-                    Icon = mAdv.adv_image;
-                }else if (mAdv.adv_image_logo.length<=0){
-                    Icon = nil;
-                }else{
+                if (Big==nil && mAdv.adv_image_s) {
+                    Big = mAdv.adv_image_s;
+                }
+                if (Big==nil && mAdv.adv_image_l.length > 0) {
+                    Big = mAdv.adv_image_l;
+                }
+                if (Big==nil && mAdv.adv_image_other) {
+                    Big = mAdv.adv_image_l;
+                }
+
+                
+                
+                if (Icon==nil && mAdv.adv_image_logo.length > 0) {
+                    Icon = mAdv.adv_image_logo;
+                }
+                if (Icon==nil && mAdv.adv_image_other.length > 0) {
                     Icon = mAdv.adv_image_other;
                 }
+                
+                
                 if (i==0) {
                     ZLHomeCampFuncView *mSubView = [ZLHomeCampFuncView initBigView];
                     mSubView.frame = CGRectMake(x, 0, w, 200);
