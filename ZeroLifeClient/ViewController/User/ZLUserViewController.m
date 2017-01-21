@@ -28,6 +28,7 @@
 
 #import "WebTestVC.h"
 #import "UserPaoPaoApplyVC.h"
+#import "OrderMainTainVC.h"
 
 #define NAVBAR_CHANGE_POINT 30
 
@@ -422,8 +423,8 @@
             [self.navigationController pushViewController:vc animated:YES];
             
         } else if (indexPath.row == 3) {
-            //UserPaoPaoApplyVC *vc = [[UserPaoPaoApplyVC alloc] init];
-            WebTestVC *vc = [[WebTestVC alloc] init];
+            OrderMainTainVC *vc = [[OrderMainTainVC alloc] init];
+            //WebTestVC *vc = [[WebTestVC alloc] init];
             vc.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:vc animated:YES];
         }

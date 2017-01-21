@@ -13,6 +13,6 @@
 @property (weak, nonatomic) IBOutlet IQTextView *textVIew;
 @property (weak, nonatomic) IBOutlet UIButton *doneBtn;
 
-@property (nonatomic, copy) void (^textCallBack)(NSString* text);
+@property (nonatomic, copy) void (^textCallBack)(NSString* maintainReasonStr, NSString* maintainTypeStr);
 
 @end

@@ -165,7 +165,7 @@ typedef void (^TableShareSdkBlock)(int totalpage, NSArray *tableArr, APIShareSdk
 //订单相关接口
 -(void)orderListWithTag:(NSObject *)tag odr_type:(kOrderClassType)odr_type odr_status:(NSString *)odr_status page:(int)page call:(TablePageArrBlock)callback;
 -(void)orderInfoWithTag:(NSObject *)tag odr_id:(int)odr_id odr_code:(NSString *)odr_code call:(void (^)(OrderObject *item, APIObject* info))callback;
--(void)orderOprateWithTag:(NSObject *)tag odr_id:(int)odr_id odr_type:(int)odr_type odr_code:(NSString *)odr_code odr_state_next:(NSString *)odr_state_next odr_memo:(NSString *)odr_memo call:(void (^)(NSString* odr_state_val, NSMutableArray* odr_state_next, APIObject* info))callback;
+-(void)orderOprateWithTag:(NSObject *)tag odr_id:(int)odr_id odr_type:(int)odr_type odr_code:(NSString *)odr_code odr_state_next:(NSString *)odr_state_next maintain_reason:(NSString *)maintain_reason maintain_type:(NSString *)maintain_type call:(void (^)(NSString* odr_state_val, NSMutableArray* odr_state_next, APIObject* info))callback;
 -(void)orderOprateRecycleWithTag:(NSObject *)tag odr_id:(int)odr_id odr_code:(NSString *)odr_code pay_amount:(int)pay_amount pass:(NSString *)pass call:(void (^)(NSString* odr_state_val, NSMutableArray* odr_state_next, APIObject* info))callback;
 -(void)orderOprateDiffPriceWithTag:(NSObject *)tag odr_id:(int)odr_id odr_code:(NSString *)odr_code call:(void (^)(ZLCreateOrderObj* item, APIObject* info))callback;
 -(void)orderOprateBidWithTag:(NSObject *)tag odr_id:(int)odr_id odr_code:(NSString *)odr_code bid_id:(int)bid_id call:(void (^)(ZLCreateOrderObj *payItem, APIObject* info))callback;

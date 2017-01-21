@@ -125,10 +125,10 @@
         }
         else if ([stateStr isEqualToString:kOrderState_MAINTAIN]) //维权操作
         {
-            OrderMainTainVC *vc = [[OrderMainTainVC alloc] initWithNibName:@"OrderMainTainVC" bundle:nil];
-            vc.textCallBack = ^(NSString* text) {
+            OrderMainTainVC *vc = [[OrderMainTainVC alloc] init];
+            vc.textCallBack = ^(NSString* maintainReasonStr, NSString* maintainTypeStr) {
                 [SVProgressHUD showWithStatus:@"提交维权..."];
-                [[APIClient sharedClient] orderOprateWithTag:self odr_id:item.odr_id odr_type:item.odr_type odr_code:item.odr_code odr_state_next:stateStr odr_memo:text call:^(NSString *odr_state_val, NSMutableArray *odr_state_next, APIObject *info) {
+                [[APIClient sharedClient] orderOprateWithTag:self odr_id:item.odr_id odr_type:item.odr_type odr_code:item.odr_code odr_state_next:stateStr maintain_reason:maintainReasonStr maintain_type:maintainTypeStr call:^(NSString *odr_state_val, NSMutableArray *odr_state_next, APIObject *info) {
                     if (info.code == RESP_STATUS_YES) {
                         item.odr_state_next = odr_state_next;
                         item.odr_state_val = odr_state_val;
@@ -155,7 +155,7 @@
         else //其它通用操作
         {
             [SVProgressHUD showWithStatus:@"操作中..."];
-            [[APIClient sharedClient] orderOprateWithTag:self odr_id:item.odr_id odr_type:item.odr_type odr_code:item.odr_code odr_state_next:stateStr odr_memo:nil call:^(NSString *odr_state_val, NSMutableArray *odr_state_next, APIObject *info) {
+            [[APIClient sharedClient] orderOprateWithTag:self odr_id:item.odr_id odr_type:item.odr_type odr_code:item.odr_code odr_state_next:stateStr maintain_reason:nil maintain_type:nil call:^(NSString *odr_state_val, NSMutableArray *odr_state_next, APIObject *info) {
                 if (info.code == RESP_STATUS_YES) {
                     item.odr_state_next = odr_state_next;
                     item.odr_state_val = odr_state_val;

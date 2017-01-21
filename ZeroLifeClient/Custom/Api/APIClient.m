@@ -1336,10 +1336,11 @@ return [NSString stringWithFormat:@"%@%@%@",kAFAppDotNetImgBaseURLString,kAFAppD
  *  @param odr_type         订单类型（列表数据或者详情数据获取）
  *  @param odr_code         订单订单编号
  *  @param odr_state_next   操作状态
- *  @param odr_memo         维权原因(可选)
+ *  @param maintain_reason  维权原因(可选)
+ *  @param maintain_type    维权处理方式（全额退款、退款不退货等文字描述）(可选)
  *  @param callback         返回信息
  */
--(void)orderOprateWithTag:(NSObject *)tag odr_id:(int)odr_id odr_type:(int)odr_type odr_code:(NSString *)odr_code odr_state_next:(NSString *)odr_state_next odr_memo:(NSString *)odr_memo call:(void (^)(NSString* odr_state_val, NSMutableArray* odr_state_next, APIObject* info))callback
+-(void)orderOprateWithTag:(NSObject *)tag odr_id:(int)odr_id odr_type:(int)odr_type odr_code:(NSString *)odr_code odr_state_next:(NSString *)odr_state_next maintain_reason:(NSString *)maintain_reason maintain_type:(NSString *)maintain_type call:(void (^)(NSString* odr_state_val, NSMutableArray* odr_state_next, APIObject* info))callback
 {
     ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
     if (user.user_id > 0) {
@@ -1349,7 +1350,8 @@ return [NSString stringWithFormat:@"%@%@%@",kAFAppDotNetImgBaseURLString,kAFAppD
         [paramDic setInt:odr_type forKey:@"odr_type"];
         [paramDic setNeedStr:odr_code forKey:@"odr_code"];
         [paramDic setNeedStr:odr_state_next forKey:@"odr_state_next"];
-        [paramDic setValidStr:odr_memo forKey:@"odr_memo"];
+        [paramDic setValidStr:maintain_reason forKey:@"maintain_reason"];
+        [paramDic setValidStr:maintain_type forKey:@"maintain_type"];
         [self loadAPIWithTag:tag path:@"/order/order_oprate" parameters:paramDic call:^(APIObject *info) {
             if (info.code == RESP_STATUS_YES) {
                 NSString *str = [info.data objectWithKey:@"odr_state_val"]; //操作成功后的状态描述

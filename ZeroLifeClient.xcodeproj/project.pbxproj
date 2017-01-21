@@ -365,6 +365,7 @@
 		DF55B46A1DBAFE7700F89341 /* ZLUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF55B4681DBAFE7700F89341 /* ZLUserViewController.m */; };
 		DF55B46F1DBAFEAC00F89341 /* ZLTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF55B46B1DBAFEAC00F89341 /* ZLTabBarViewController.m */; };
 		DF55B4701DBAFEAC00F89341 /* ZLNavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF55B46D1DBAFEAC00F89341 /* ZLNavViewController.m */; };
+		DF5A1B4E1E332A810059EB85 /* QUTagChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5A1B4D1E332A810059EB85 /* QUTagChooseView.m */; };
 		DF5C49031DBA1BEC006E4825 /* DCPicScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5C49001DBA1BEC006E4825 /* DCPicScrollView.m */; };
 		DF5C49041DBA1BEC006E4825 /* DCWebImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5C49021DBA1BEC006E4825 /* DCWebImageManager.m */; };
 		DF630CF01DD401F40076A92C /* BaoXiuChooseShopView.m in Sources */ = {isa = PBXBuildFile; fileRef = DF630CEF1DD401F40076A92C /* BaoXiuChooseShopView.m */; };
@@ -535,7 +536,6 @@
 		DFA135871DD70C5600805BA2 /* SouKuanHistoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DFA135861DD70C5600805BA2 /* SouKuanHistoryTableViewCell.m */; };
 		DFA3C0E81E15295B00DF8923 /* OrderVC+Custom.m in Sources */ = {isa = PBXBuildFile; fileRef = DFA3C0E71E15295B00DF8923 /* OrderVC+Custom.m */; };
 		DFA3C0EC1E153C9C00DF8923 /* OrderMainTainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DFA3C0EA1E153C9C00DF8923 /* OrderMainTainVC.m */; };
-		DFA3C0ED1E153C9C00DF8923 /* OrderMainTainVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFA3C0EB1E153C9C00DF8923 /* OrderMainTainVC.xib */; };
 		DFBAA9711DF12407004315F9 /* SingInView.m in Sources */ = {isa = PBXBuildFile; fileRef = DFBAA9701DF12407004315F9 /* SingInView.m */; };
 		DFBAA9781DF149AD004315F9 /* singIn_p@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFBAA9721DF149AD004315F9 /* singIn_p@3x.png */; };
 		DFBAA9791DF149AD004315F9 /* singIn_p@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFBAA9731DF149AD004315F9 /* singIn_p@2x.png */; };
@@ -1187,6 +1187,8 @@
 		DF55B46C1DBAFEAC00F89341 /* ZLTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLTabBarViewController.h; sourceTree = "<group>"; };
 		DF55B46D1DBAFEAC00F89341 /* ZLNavViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLNavViewController.m; sourceTree = "<group>"; };
 		DF55B46E1DBAFEAC00F89341 /* ZLNavViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLNavViewController.h; sourceTree = "<group>"; };
+		DF5A1B4C1E332A810059EB85 /* QUTagChooseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QUTagChooseView.h; sourceTree = "<group>"; };
+		DF5A1B4D1E332A810059EB85 /* QUTagChooseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QUTagChooseView.m; sourceTree = "<group>"; };
 		DF5C48FF1DBA1BEC006E4825 /* DCPicScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCPicScrollView.h; sourceTree = "<group>"; };
 		DF5C49001DBA1BEC006E4825 /* DCPicScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCPicScrollView.m; sourceTree = "<group>"; };
 		DF5C49011DBA1BEC006E4825 /* DCWebImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCWebImageManager.h; sourceTree = "<group>"; };
@@ -1424,7 +1426,6 @@
 		DFA3C0E71E15295B00DF8923 /* OrderVC+Custom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OrderVC+Custom.m"; sourceTree = "<group>"; };
 		DFA3C0E91E153C9C00DF8923 /* OrderMainTainVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderMainTainVC.h; sourceTree = "<group>"; };
 		DFA3C0EA1E153C9C00DF8923 /* OrderMainTainVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderMainTainVC.m; sourceTree = "<group>"; };
-		DFA3C0EB1E153C9C00DF8923 /* OrderMainTainVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderMainTainVC.xib; sourceTree = "<group>"; };
 		DFBAA96F1DF12407004315F9 /* SingInView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingInView.h; sourceTree = "<group>"; };
 		DFBAA9701DF12407004315F9 /* SingInView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingInView.m; sourceTree = "<group>"; };
 		DFBAA9721DF149AD004315F9 /* singIn_p@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "singIn_p@3x.png"; sourceTree = "<group>"; };
@@ -2936,7 +2937,6 @@
 				DF630CF21DD407AE0076A92C /* OrderBaoXiuChooseShopVC.m */,
 				DFA3C0E91E153C9C00DF8923 /* OrderMainTainVC.h */,
 				DFA3C0EA1E153C9C00DF8923 /* OrderMainTainVC.m */,
-				DFA3C0EB1E153C9C00DF8923 /* OrderMainTainVC.xib */,
 			);
 			path = Order;
 			sourceTree = "<group>";
@@ -3600,6 +3600,8 @@
 				DFF9323D1DD9978000BA8C8B /* TopLeftLabel.m */,
 				DF828D301DEEA923004C1501 /* BanUnitFloorNumberTextField.h */,
 				DF828D311DEEA923004C1501 /* BanUnitFloorNumberTextField.m */,
+				DF5A1B4C1E332A810059EB85 /* QUTagChooseView.h */,
+				DF5A1B4D1E332A810059EB85 /* QUTagChooseView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3778,7 +3780,6 @@
 				DF993D3F1DDAE7640061D7CA /* baoxiuShop_pei@2x.png in Resources */,
 				DFBAA9801DF159B9004315F9 /* user_header@3x.png in Resources */,
 				04C02AF01E2C9D3100DD78A8 /* ZLHomeCampFuncImgRightView.xib in Resources */,
-				DFA3C0ED1E153C9C00DF8923 /* OrderMainTainVC.xib in Resources */,
 				040D92FF1DCAE84300DBE42E /* ZLHomeMsgDetailCell.xib in Resources */,
 				04C6A37F1DCB08AF002C4D4A /* private_key.p12 in Resources */,
 				0445AD8D1DD45A6B00788779 /* ZLSendRedBagView.xib in Resources */,
@@ -4482,6 +4483,7 @@
 				04B07E911DD95F26004A7294 /* ZLRunningManViewController.m in Sources */,
 				04C73BE31DDD3FDE00E5D554 /* ZLHouseKeepingViewController.m in Sources */,
 				04A7632F1DDC42590061E2B0 /* ZLPPTReleaseShorSendCell.m in Sources */,
+				DF5A1B4E1E332A810059EB85 /* QUTagChooseView.m in Sources */,
 				04162DF81DCB2C9300FB4229 /* ZLHomeCoupCell.m in Sources */,
 				047109C91DE294BF00CFA292 /* ZLORderReturnCell.m in Sources */,
 				DF7F1BE61DCDD0CF00D2242B /* HMSegmentedControl.m in Sources */,
