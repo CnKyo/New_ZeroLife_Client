@@ -2832,6 +2832,9 @@ return [NSString stringWithFormat:@"%@%@%@",kAFAppDotNetImgBaseURLString,kAFAppD
                 
                 retobj.msg = @"支付成功";
                 retobj.code = 200;
+                [[NSNotificationCenter defaultCenter] postNotificationName:MyOrderPaySuccessNotification object:nil];
+                [SVProgressHUD showSuccessWithStatus:retobj.msg];
+
             }
             else
             {
@@ -2839,23 +2842,18 @@ return [NSString stringWithFormat:@"%@%@%@",kAFAppDotNetImgBaseURLString,kAFAppD
 
                 retobj.msg = [resultDic objectForKey:@"memo" ];
                 retobj.code = 500;
+                [SVProgressHUD showErrorWithStatus:retobj.msg];
+
             }
         }else{
 
             retobj.msg = @"支付出现异常";
             retobj.code = 500;
-            
+            [SVProgressHUD showErrorWithStatus:retobj.msg];
+
 
         }
-//        if ( [ZLUserInfo ZLCurrentUser].mPayBlock ) {
-//            [ZLUserInfo ZLCurrentUser].mPayBlock( retobj );
-//        }else{
-//
-//            retobj.msg = @"支付回调异常";
-//            retobj.code = 500;
-//        }
-        [SVProgressHUD showErrorWithStatus:retobj.msg];
-        [[NSNotificationCenter defaultCenter] postNotificationName:MyOrderPaySuccessNotification object:nil];
+
 
     }];
 }

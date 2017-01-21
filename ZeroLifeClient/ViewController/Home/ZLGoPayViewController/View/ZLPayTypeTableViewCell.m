@@ -20,7 +20,10 @@
 
     // Configure the view for the selected state
 }
-
+- (void)layoutSubviews{
+    self.mStatusBtn.layer.masksToBounds = YES;
+    self.mStatusBtn.layer.cornerRadius = 3;
+}
 - (IBAction)mStatusBtnAction:(UIButton *)sender {
     
     

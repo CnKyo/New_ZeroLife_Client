@@ -267,15 +267,7 @@
                                                               retobj.msg = @"支付成功";
                                                               retobj.code = 200;
                                                               [SVProgressHUD showSuccessWithStatus:retobj.msg];
-                                                              
-//                                                              if( [ZLUserInfo ZLCurrentUser].mPayBlock )
-//                                                              {
-//                                                                  [ZLUserInfo ZLCurrentUser].mPayBlock(retobj);
-//                                                              }
-//                                                              else
-//                                                              {
-//                                                                  MLLog(@"may be err no block to back");
-//                                                              }
+
                                                           }
                                                           else
                                                           {
@@ -327,15 +319,7 @@
             retobj.code = 200;
             retobj.msg = @"支付成功";
         }
-        
-//        if( [ZLUserInfo ZLCurrentUser].mPayBlock )
-//        {
-//            [ZLUserInfo ZLCurrentUser].mPayBlock(retobj);
-//        }
-//        else
-//        {
-//            MLLog(@"may be err no block to back");
-//        }
+
 
         [SVProgressHUD showErrorWithStatus:retobj.msg];
     }
@@ -367,15 +351,7 @@
                                                               retobj.code = 200;
                                                               retobj.msg = @"支付成功";
                                                               [SVProgressHUD showSuccessWithStatus:retobj.msg];
-                                                              
-//                                                              if( [ZLUserInfo ZLCurrentUser].mPayBlock )
-//                                                              {
-//                                                                  [ZLUserInfo ZLCurrentUser].mPayBlock(retobj);
-//                                                              }
-//                                                              else
-//                                                              {
-//                                                                  MLLog(@"may be err no block to back");
-//                                                              }
+
                                                           }
                                                           else
                                                           {

@@ -1,28 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KK9-Ao-Vbw" customClass="ZLPayTypeTableViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="400"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="296" id="KK9-Ao-Vbw" customClass="ZLPayTypeTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="296"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KK9-Ao-Vbw" id="1g9-Hx-g72">
-                <frame key="frameInset" width="320" height="399"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="296"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="M2c-MN-gs9">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ZLPayType_Head" translatesAutoresizingMaskIntoConstraints="NO" id="M2c-MN-gs9">
+                        <rect key="frame" x="135" y="26" width="50" height="50"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="60" id="MyY-9n-cRs"/>
-                            <constraint firstAttribute="width" constant="60" id="lGU-SM-9jG"/>
+                            <constraint firstAttribute="height" constant="50" id="MyY-9n-cRs"/>
+                            <constraint firstAttribute="width" constant="50" id="lGU-SM-9jG"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="支付成功" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4In-n3-lSG">
+                        <rect key="frame" x="45" y="101" width="231" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="8uG-rE-EVi"/>
                         </constraints>
@@ -31,6 +36,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥500" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bOx-YW-ieB">
+                        <rect key="frame" x="16" y="130" width="288" height="50"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="50" id="ubS-fh-U8n"/>
                         </constraints>
@@ -39,16 +45,17 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B4R-jo-fOX">
+                        <rect key="frame" x="8" y="240" width="304" height="40"/>
                         <color key="backgroundColor" red="0.59415739769999998" green="0.78603571650000004" blue="0.16135776039999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="45" id="Cbj-mT-72Y"/>
+                            <constraint firstAttribute="height" constant="40" id="Cbj-mT-72Y"/>
                         </constraints>
                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <state key="normal" title="完成">
                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                         <connections>
-                            <action selector="mStatusBtnAction:" destination="KK9-Ao-Vbw" eventType="touchUpInside" id="95g-9l-gKQ"/>
+                            <action selector="mStatusBtnAction:" destination="KK9-Ao-Vbw" eventType="touchUpInside" id="6bM-cG-wI1"/>
                         </connections>
                     </button>
                 </subviews>
@@ -72,7 +79,10 @@
                 <outlet property="mStatusBtn" destination="B4R-jo-fOX" id="AXk-Pc-NiE"/>
                 <outlet property="mStatusImg" destination="M2c-MN-gs9" id="lRM-bx-dJ9"/>
             </connections>
-            <point key="canvasLocation" x="-3" y="60"/>
+            <point key="canvasLocation" x="25" y="9"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="ZLPayType_Head" width="38" height="38"/>
+    </resources>
 </document>

@@ -30,13 +30,15 @@
     UIView *mRedBgkView;
     
     NSMutableArray *mPayTypeArr;
+    
+    BOOL isSucess;
 }
 @synthesize mPopView;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationItem.title = @"收银台";
-
+    isSucess = NO;
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(handleUserPaySuccess:)
@@ -95,7 +97,10 @@
 }
 -(void)handleUserPaySuccess:(NSNotification *)note
 {
-    [self mPopAction];
+//    [self mPopAction];
+    isSucess = YES;
+    mComformBtn.hidden = YES;
+    [self.tableView reloadData];
 }
 - (void)initData{
     NSArray *mTT = @[@"支付宝支付",@"微信支付",@"余额支付"];
@@ -195,6 +200,7 @@
     [[APIClient sharedClient] ZLSendToPayOrderObjGoPay:ZLGoPayTypeWithConfirmPay andPayObj:self.mOrder andPayType:mOrder.mPayType block:^(APIObject *mBaseObj,ZLCreateOrderObj* mPayOrderObj) {
         
         if (mBaseObj.code == RESP_STATUS_YES) {
+            isSucess = YES;
             [[NSNotificationCenter defaultCenter] postNotificationName:MyUserNeedUpdateNotification object:nil];
             
             [self showSuccessStatus:mBaseObj.msg];
@@ -202,15 +208,11 @@
             if (_mShopId > 0) {
                 [LKDBHelperGoodsObj deleteWithWhere:[NSString stringWithFormat:@"mShopId=%d",self.mShopId]];
             }
-            
-            if (self.paySuccessCallBack) {
-                self.paySuccessCallBack(self);
-            } else {
-                [self performSelector:@selector(mPopAction) withObject:nil afterDelay:0.25];
-            }
-            
+            mComformBtn.hidden = YES;
+            [self.tableView reloadData];
         }else{
-            
+            mComformBtn.hidden = NO;
+            isSucess = NO;
             [self showErrorStatus:mBaseObj.msg];
         }
     }];
@@ -297,8 +299,13 @@
     
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    
-    return 200;
+    if (isSucess == NO) {
+        return 200;
+        
+    }else{
+        return  0;
+        
+    }
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
@@ -314,15 +321,25 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return self.tableArr.count;
-
+    if (isSucess == NO) {
+        return self.tableArr.count;
+        
+    }else{
+        return  1;
+        
+    }
     
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    return  50;
+    if (isSucess == NO) {
+        return  50;
+        
+    }else{
+        return  300;
+        
+    }
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -330,16 +347,27 @@
     
     
     NSString *reuseCellId = nil;
+    if (isSucess == NO) {
+        reuseCellId = @"cell";
+        ZLPayTypeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
+        cell.delegate = self;
+        [cell cellWithData:self.tableArr[indexPath.row]];
+        cell.mIndexPath = indexPath;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
+
+    }else{
+        reuseCellId = @"cell2";
+        ZLPayTypeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
+        cell.mPrice.text = [NSString stringWithFormat:@"¥%.2f元",self.mOrder.odr_pay_price];
+        cell.delegate = self;
+         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
+
+    }
     
-    reuseCellId = @"cell";
+
     
-    ZLPayTypeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
-    cell.delegate = self;
-    [cell cellWithData:self.tableArr[indexPath.row]];
-    cell.mIndexPath = indexPath;
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
-    return cell;
 }
 //-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 //{
@@ -350,6 +378,12 @@
 #pragma mark----****----状态按钮点击事件
 ///状态按钮点击事件
 - (void)ZLGoPayStatusBtnClicked{
+    if (self.paySuccessCallBack) {
+        self.paySuccessCallBack(self);
+    } else {
+        [self performSelector:@selector(mPopAction) withObject:nil afterDelay:0.25];
+    }
+    [self mPopAction];
 
 }
 
@@ -420,5 +454,14 @@
     [self.tableView reloadData];
 
 }
+- (void)mBackAction{
+    if (isSucess == NO) {
+        [self popViewController];
+    }else{
+        [self mPopAction];
+    }
+    
+}
+
 
 @end
