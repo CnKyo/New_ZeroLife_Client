@@ -83,29 +83,14 @@
                     Icon = mAdv.adv_image_other;
                 }
                 
-//                if (mAdv.adv_image_l.length<=0) {
-//                    Big = mAdv.adv_image;
-//                }else if (mAdv.adv_image.length<=0){
-//                    Big = nil;
-//                }else{
-//                    Big = mAdv.adv_image_other;
-//                }
-                
-                
-
-                
-//                if (mAdv.adv_image_logo.length<=0) {
-//                    Icon = mAdv.adv_image;
-//                }else if (mAdv.adv_image_logo.length<=0){
-//                    Icon = nil;
-//                }else{
-//                    Icon = mAdv.adv_image_other;
-//                }
+                if (Big.length<=0) {
+                    Big = mAdv.adv_image;
+                }
                 
                 
                 ZLHomeCampFuncView *mSubView = [ZLHomeCampFuncView initBigView];
                 mSubView.frame = CGRectMake(x, 0, w, 200);
-                [mSubView.mIcon sd_setImageWithURL:[NSURL URLWithString:[Util currentSourceImgUrl:Icon]] placeholderImage:ZLDefaultAvatorImg];
+                [mSubView.mIcon sd_setImageWithURL:[NSURL URLWithString:[Util currentSourceImgUrl:Icon]] placeholderImage:ZLDefaultHomeIcon];
                 [mSubView.mBigImg sd_setImageWithURL:[NSURL URLWithString:[Util currentSourceImgUrl:Big]] placeholderImage:ZLDefaultGoodsImg];
                 
                 mSubView.mTitle.text = mAdv.adv_title;
@@ -149,11 +134,13 @@
                 if (Icon==nil && mAdv.adv_image_other.length > 0) {
                     Icon = mAdv.adv_image_other;
                 }
-                
+                if (Big.length<=0) {
+                    Big = mAdv.adv_image;
+                }
                 if (i==0) {
                     ZLHomeCampFuncView *mSubView = [ZLHomeCampFuncView initBigView];
                     mSubView.frame = CGRectMake(x, 0, w, 200);
-                    [mSubView.mIcon sd_setImageWithURL:[NSURL URLWithString:[Util currentSourceImgUrl:Icon]] placeholderImage:ZLDefaultAvatorImg];
+                    [mSubView.mIcon sd_setImageWithURL:[NSURL URLWithString:[Util currentSourceImgUrl:Icon]] placeholderImage:ZLDefaultHomeIcon];
                     [mSubView.mBigImg sd_setImageWithURL:[NSURL URLWithString:[Util currentSourceImgUrl:Big]] placeholderImage:ZLDefaultGoodsImg];
                     mSubView.mTitle.text = mAdv.adv_title;
 //                    mSubView.mContent.text = [NSString stringWithFormat:@"%@%@%@%@%@%@",mAdv.adv_desc,mAdv.adv_desc,mAdv.adv_desc,mAdv.adv_desc,mAdv.adv_desc,mAdv.adv_desc];
@@ -167,7 +154,7 @@
                 
                     ZLHomeCampFuncView *mSubView = [ZLHomeCampFuncView initImgRightView];
                     mSubView.frame = CGRectMake(w, y, w, h);
-                    [mSubView.mIcon sd_setImageWithURL:[NSURL URLWithString:[Util currentSourceImgUrl:Icon]] placeholderImage:ZLDefaultAvatorImg];
+                    [mSubView.mIcon sd_setImageWithURL:[NSURL URLWithString:[Util currentSourceImgUrl:Icon]] placeholderImage:ZLDefaultHomeIcon];
                     [mSubView.mBigImg sd_setImageWithURL:[NSURL URLWithString:[Util currentSourceImgUrl:Big]] placeholderImage:ZLDefaultGoodsImg];                    mSubView.mTitle.text = mAdv.adv_title;
                     mSubView.mContent.text = mAdv.adv_desc;
                     mSubView.mIndex = i;
@@ -211,11 +198,13 @@
                 if (Icon==nil && mAdv.adv_image_other.length > 0) {
                     Icon = mAdv.adv_image_other;
                 }
-                
+                if (Big.length<=0) {
+                    Big = mAdv.adv_image;
+                }
                 
                 ZLHomeCampFuncView *mSubView = [ZLHomeCampFuncView initImgRightView];
                 mSubView.frame = CGRectMake(x, y, w, h);
-                [mSubView.mIcon sd_setImageWithURL:[NSURL URLWithString:[Util currentSourceImgUrl:Icon]] placeholderImage:ZLDefaultAvatorImg];
+                [mSubView.mIcon sd_setImageWithURL:[NSURL URLWithString:[Util currentSourceImgUrl:Icon]] placeholderImage:ZLDefaultHomeIcon];
                 [mSubView.mBigImg sd_setImageWithURL:[NSURL URLWithString:[Util currentSourceImgUrl:Big]] placeholderImage:ZLDefaultGoodsImg];
                 mSubView.mTitle.text = mAdv.adv_title;
                 mSubView.mContent.text = mAdv.adv_desc;
@@ -265,12 +254,14 @@
                 if (Icon==nil && mAdv.adv_image_other.length > 0) {
                     Icon = mAdv.adv_image_other;
                 }
-                
+                if (Big.length<=0) {
+                    Big = mAdv.adv_image;
+                }
                 
                 if (i==0) {
                     ZLHomeCampFuncView *mSubView = [ZLHomeCampFuncView initBigView];
                     mSubView.frame = CGRectMake(x, 0, w, 200);
-                    [mSubView.mIcon sd_setImageWithURL:[NSURL URLWithString:[Util currentSourceImgUrl:Icon]] placeholderImage:ZLDefaultAvatorImg];
+                    [mSubView.mIcon sd_setImageWithURL:[NSURL URLWithString:[Util currentSourceImgUrl:Icon]] placeholderImage:ZLDefaultHomeIcon];
                     [mSubView.mBigImg sd_setImageWithURL:[NSURL URLWithString:[Util currentSourceImgUrl:Big]] placeholderImage:ZLDefaultGoodsImg];
                     mSubView.mTitle.text = mAdv.adv_title;
                     mSubView.mContent.text = mAdv.adv_desc;
@@ -282,7 +273,7 @@
                     w = DEVICE_Width/4;
                     ZLHomeCampFuncView *mSubView = [ZLHomeCampFuncView initSmallView];
                     mSubView.frame = CGRectMake(x, y, w, h);
-                    [mSubView.mIcon sd_setImageWithURL:[NSURL URLWithString:[Util currentSourceImgUrl:Icon]] placeholderImage:ZLDefaultAvatorImg];
+                    [mSubView.mIcon sd_setImageWithURL:[NSURL URLWithString:[Util currentSourceImgUrl:Icon]] placeholderImage:ZLDefaultHomeIcon];
                     [mSubView.mBigImg sd_setImageWithURL:[NSURL URLWithString:[Util currentSourceImgUrl:Big]] placeholderImage:ZLDefaultGoodsImg];
                     mSubView.mTitle.text = mAdv.adv_title;
                     mSubView.mContent.text = mAdv.adv_desc;

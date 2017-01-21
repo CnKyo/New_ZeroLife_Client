@@ -42,6 +42,7 @@
 #define ZLDefaultBannerImg           [UIImage imageNamed:@"ZLDefault_Banner"]
 #define ZLDefaultAvatorImg           [UIImage imageNamed:@"ZLDefault_Avator"]
 #define ZLDefaultClassImg           [UIImage imageNamed:@"ZLDefault_Green"]
+#define ZLDefaultHomeIcon           [UIImage imageNamed:@"ZLShop_Hot"]
 
 
 #define ColorRGB(_R_, _G_, _B_)       ([UIColor colorWithRed:_R_/255.0f green:_G_/255.0f blue:_B_/255.0f alpha:1])
@@ -194,7 +195,7 @@ typedef enum {
 
 static NSString *JPush_AppKey = @"5e3e27da01ec6cb61b8e2b4d";
 static NSString *JPush_Channel = @"25b4503e82ad1f91cfc56061";
-static BOOL JPush_IsProduction = NO;
+static BOOL JPush_IsProduction = YES;
 
 
 static int const RESP_STATUS_YES                  = 200;             //成功
