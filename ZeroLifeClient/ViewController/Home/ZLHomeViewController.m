@@ -93,7 +93,7 @@
     self.mTableView.dataSource = self;
     self.mTableView.delegate = self;
     self.mTableView.separatorStyle = UITableViewCellSelectionStyleNone;
-
+    self.mTableView.backgroundColor = [UIColor colorWithRed:0.96 green:0.96 blue:0.96 alpha:0.65];
     [self initLeftAndRightBarButton];
     
     UINib   *nib = [UINib nibWithNibName:@"ZLHomeOtherCell" bundle:nil];
@@ -494,7 +494,7 @@
             
             
         }else{
-            return 210;
+            return 200;
         }
     }else{
         

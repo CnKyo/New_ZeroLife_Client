@@ -304,12 +304,7 @@
         default:
             break;
     }
-    
-    
-    UIView *mLine = [UIView new];
-    mLine.frame = CGRectMake(0, 200, DEVICE_Width, 10);
-    mLine.backgroundColor = [UIColor clearColor];
-    [self.contentView addSubview:mLine];
+
 }
 
 - (void)mbtnAction:(UIButton *)sender{

@@ -280,7 +280,7 @@
                                                       {
                                                           retobj.msg = @"支付成功";
                                                           retobj.code = 200;
-                                                          [SVProgressHUD showErrorWithStatus:retobj.msg];
+                                                          [SVProgressHUD showSuccessWithStatus:retobj.msg];
                                                       }
                                                   }];
         
@@ -306,11 +306,15 @@
         {//
             retobj.code = 500;
             retobj.msg = @"支付出现异常";
+            [SVProgressHUD showErrorWithStatus:retobj.msg];
+
         }
         else if( resp.errCode == -2 )
         {
             retobj.code = 500;
             retobj.msg = @"用户取消了支付";
+            [SVProgressHUD showErrorWithStatus:retobj.msg];
+
         }
         else
         {
@@ -318,10 +322,11 @@
             
             retobj.code = 200;
             retobj.msg = @"支付成功";
+            [SVProgressHUD showSuccessWithStatus:retobj.msg];
+
         }
 
 
-        [SVProgressHUD showErrorWithStatus:retobj.msg];
     }
     else
     {
