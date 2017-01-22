@@ -101,6 +101,8 @@
     isSucess = YES;
     mComformBtn.hidden = YES;
     [self.tableView reloadData];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:MyUserNeedUpdateNotification object:nil];
 }
 - (void)initData{
     NSArray *mTT = @[@"支付宝支付",@"微信支付",@"余额支付"];
@@ -201,7 +203,7 @@
         
         if (mBaseObj.code == RESP_STATUS_YES) {
             isSucess = YES;
-            [[NSNotificationCenter defaultCenter] postNotificationName:MyUserNeedUpdateNotification object:nil];
+            //[[NSNotificationCenter defaultCenter] postNotificationName:MyUserNeedUpdateNotification object:nil];
             
             [self showSuccessStatus:mBaseObj.msg];
             
