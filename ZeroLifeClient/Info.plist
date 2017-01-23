@@ -70,7 +70,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>2017012301</string>
+	<string>2017012302</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>iosamap</string>
@@ -95,6 +95,8 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>零生活想访问您的蓝牙?</string>
 	<key>NSCalendarsUsageDescription</key>
 	<string>零生活想访问您的日历?</string>
 	<key>NSCameraUsageDescription</key>
