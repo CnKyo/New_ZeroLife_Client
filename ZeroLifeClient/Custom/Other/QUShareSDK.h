@@ -33,7 +33,7 @@
 + (QUShareSDK *)shared;
 - (BOOL)applicationDidFinishLaunchingWithOptions:(NSDictionary *)launchOptions;
 
-- (void)getUserInfoWithType:(SSDKPlatformType)shareType call:( void(^)(SSDKUser *user))callback;
+- (void)getUserInfoWithType:(SSDKPlatformType)shareType call:( void(^)(SSDKUser *user, NSError *error))callback;
 
 - (void)shareAllButtonClickHandler:(UIButton *)sender imageUrl:(NSString *)imageUrl title:(NSString *)title content:(NSString *)content description:(NSString *)des linkUrl:(NSString *)url;
 

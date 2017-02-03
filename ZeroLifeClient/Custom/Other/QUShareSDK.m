@@ -180,7 +180,7 @@
 }
 
 #pragma mark - 用户资料读取
-- (void)getUserInfoWithType:(SSDKPlatformType)shareType call:( void(^)(SSDKUser *user))callback
+- (void)getUserInfoWithType:(SSDKPlatformType)shareType call:( void(^)(SSDKUser *user, NSError *error))callback
 {
     [SSEThirdPartyLoginHelper loginByPlatform:shareType
                                    onUserSync:^(SSDKUser *user, SSEUserAssociateHandler associateHandler) {
@@ -188,13 +188,13 @@
                                        //在此回调中可以将社交平台用户信息与自身用户系统进行绑定，最后使用一个唯一用户标识来关联此用户信息。
                                        //在此示例中没有跟用户系统关联，则使用一个社交用户对应一个系统用户的方式。将社交用户的uid作为关联ID传入associateHandler。
                                        associateHandler (user.uid, user, user);
-                                       callback(user);
+                                       callback(user, nil);
                                        NSLog(@"user: %@", user);
                                        
                                    }
                                 onLoginResult:^(SSDKResponseState state, SSEBaseUser *user, NSError *error) {
                                     NSLog(@"error:%@",error);
-                                    callback(nil);
+                                    callback(nil, error);
                                 }];
 }
 
