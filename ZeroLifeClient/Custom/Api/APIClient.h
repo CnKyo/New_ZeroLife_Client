@@ -376,24 +376,12 @@ typedef void (^TableShareSdkBlock)(int totalpage, NSArray *tableArr, APIShareSdk
 
 
 #pragma mark----****----获取跑腿榜
-/**
- 获取跑腿榜
 
- @param mPage 行数页数
- @param mPageSize 每页条数
- @param mSort 排序类型(1:订单量排名[默认为0]，2：金额量排名,3:评价排名)
- */
-- (void)ZLGetPPTTopList:(NSString *)mPage andPageSize:(NSString *)mPageSize andSort:(NSString *)mSort block:(void(^)(APIObject *mBaseObj,ZLPPTTopObj *mList))block;
+-(void)ZLGetPPTTopListWithTag:(NSObject *)tag sort:(kPaopaoSortType)mSort page:(int)page call:(TablePageArrBlock)callback;
 
 
 #pragma mark----****----获取跑腿酬金列表
-/**
- 获取跑腿酬金列表
-
- @param mPage 行数页数
- @param block 返回值
- */
-- (void)ZLGetPPTRewardList:(NSString *)mPage block:(void(^)(APIObject *mBaseObj,ZLPPTRewardList *mList))block;
+-(void)ZLGetPPTRewardList:(NSObject *)tag page:(int)page call:(TablePageArrBlock)callback;
 
 #pragma mark----****----获取评价
 /**

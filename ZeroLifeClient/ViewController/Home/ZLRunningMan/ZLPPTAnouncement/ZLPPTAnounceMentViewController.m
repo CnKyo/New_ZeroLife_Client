@@ -35,8 +35,8 @@
 - (void)reloadTableViewDataSource{
     [super reloadTableViewDataSource];
     
-    [[APIClient sharedClient] ZLGetPPTTopList:[NSString stringWithFormat:@"%d",self.page] andPageSize:[NSString stringWithFormat:@"20"] andSort:0 block:^(APIObject *mBaseObj, ZLPPTTopObj *mList) {
-        [self reloadWithTableArr:mList.list info:mBaseObj];
+    [[APIClient sharedClient] ZLGetPPTTopListWithTag:self sort:kPaopaoSortType_normal page:self.page call:^(int totalPage, NSArray *tableArr, APIObject *info) {
+        [self reloadWithTableArr:tableArr info:info];
     }];
 }
 

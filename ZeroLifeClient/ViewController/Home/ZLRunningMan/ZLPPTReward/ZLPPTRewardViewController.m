@@ -40,8 +40,8 @@
 - (void)reloadTableViewDataSource{
     [super reloadTableViewDataSource];
     
-    [[APIClient sharedClient] ZLGetPPTRewardList:[NSString stringWithFormat:@"%d",self.page] block:^(APIObject *mBaseObj, ZLPPTRewardList *mList) {
-        [self reloadWithTableArr:mList.list info:mBaseObj];
+    [[APIClient sharedClient] ZLGetPPTRewardList:self page:self.page call:^(int totalPage, NSArray *tableArr, APIObject *info) {
+        [self reloadWithTableArr:tableArr info:info];
     }];
 }
 
