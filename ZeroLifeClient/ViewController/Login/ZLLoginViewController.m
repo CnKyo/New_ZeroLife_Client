@@ -143,7 +143,8 @@
     [[APIClient sharedClient] ZLLoginWithPhone:mMainView.mLoginPhoneTx.text andPwd:mMainView.mLoginPwdTx.text block:^(APIObject *mBaseObj,ZLUserInfo *mUser) {
         if ( mBaseObj.code == RESP_STATUS_YES ) {
             [[NSNotificationCenter defaultCenter] postNotificationName:MyUserInfoChangedNotification object:nil];
-            
+            [[NSNotificationCenter defaultCenter] postNotificationName:UpDateSystemCoupNotification object:nil];
+
             [self showSuccessStatus:@"登录成功！"];
             [self performSelector:@selector(dismissViewController) withObject:nil afterDelay:0.5];
         }else{
@@ -225,6 +226,7 @@
                     [ZLUserInfo updateUserInfo:mUser];
                     
                     [[NSNotificationCenter defaultCenter] postNotificationName:MyUserInfoChangedNotification object:nil];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:UpDateSystemCoupNotification object:nil];
                     [self showSuccessStatus:@"登录成功！"];
                     [self performSelector:@selector(dismissViewController) withObject:nil afterDelay:0.5];
 

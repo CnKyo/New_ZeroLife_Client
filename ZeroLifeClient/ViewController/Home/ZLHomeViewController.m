@@ -67,7 +67,8 @@
     NSMutableArray *mComDataSourceArr;
 
     AMapLocationManager *mLocation;
-    
+    ///系统优惠卷数据源
+    NSMutableArray *mSystemCoupList;
 }
 
 - (void)viewDidLoad {
@@ -88,7 +89,7 @@
     
     mAdvDataSourceArr = [NSMutableArray new];
     mComDataSourceArr = [NSMutableArray new];
-
+    mSystemCoupList = [NSMutableArray new];
 
     self.mTableView.dataSource = self;
     self.mTableView.delegate = self;
@@ -109,6 +110,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUserInfoNeedChange:) name:MyUserNeedUpdateNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUserInfoChange:) name:MyUserInfoChangedNotification object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateCoup:) name:UpDateSystemCoupNotification object:nil];
 
     if ([ZLUserInfo ZLCurrentUser] != nil) {
         [self performSelector:@selector(startLoadUserInfo) withObject:nil afterDelay:1.0]; //更新用户数据
@@ -127,7 +129,11 @@
         
     }];
 }
-
+#pragma mark----****----用户需要更新优惠卷数据
+-(void)updateCoup:(NSNotification *)note
+{
+    [self loadSystemCoup];
+}
 -(void)handleUserInfoChange:(NSNotification *)note
 {
 //    MemberObject *item = [MemberObject currentUser];
@@ -186,7 +192,6 @@
     [super viewWillAppear:YES];
     self.mTableView.delegate = self;
     [self scrollViewDidScroll:self.mTableView];
-    
 
 }
 
@@ -474,7 +479,7 @@
 
     }else{
         
-        return 5;
+        return mSystemCoupList.count;
     }
  
     return 0;
@@ -554,7 +559,7 @@
         ZLHomeCoupCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
+        [cell setMCoup:mSystemCoupList[indexPath.row]];
         return cell;
     }
     
@@ -720,8 +725,31 @@
     
     UITapGestureRecognizer *mTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapACount)];
     [mCoupView addGestureRecognizer:mTap];
+    [self loadSystemCoup];
     
 }
+#pragma mark ----****----加载优惠券数据源
+- (void)loadSystemCoup{
+    
+    [[APIClient sharedClient] ZLGetSystemCoupList:^(APIObject *mBaseObj, NSArray *List) {
+        [mSystemCoupList removeAllObjects];
+        if (mBaseObj.code == RESP_STATUS_YES) {
+            
+            if (List.count>0) {
+                [self showCoupView];
+                [mSystemCoupList addObjectsFromArray:List];
+                
+                [mCoupView.mCoupTableView reloadData];
+            }else{
+                [self hiddenCoupView];
+            }
+            
+        }else{
+            [self hiddenCoupView];
+        }
+    }];
+}
+#pragma mark ----****----隐藏优惠券view
 - (void)tapACount{
     
     [self hiddenCoupView];

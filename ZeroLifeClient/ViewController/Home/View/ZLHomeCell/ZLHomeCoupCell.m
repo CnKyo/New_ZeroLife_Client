@@ -20,5 +20,10 @@
 
     // Configure the view for the selected state
 }
+- (void)setMCoup:(ZLSystempCoup *)mCoup{
 
+    self.mMoney.text = mCoup.cup_price;
+    self.mContent.text = mCoup.cup_content;
+    self.mTitle.text = mCoup.cup_name;
+}
 @end

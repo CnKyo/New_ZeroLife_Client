@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "WPHotspotLabel.h"
+#import "APIObjectDefine.h"
 @interface ZLHomeCoupCell : UITableViewCell
 
 /**
@@ -24,5 +25,7 @@
  内容
  */
 @property (weak, nonatomic) IBOutlet UILabel *mContent;
+
+@property (strong,nonatomic) ZLSystempCoup *mCoup;
 
 @end

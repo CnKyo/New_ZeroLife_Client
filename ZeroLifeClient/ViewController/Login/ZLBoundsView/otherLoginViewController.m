@@ -105,6 +105,7 @@
             [ZLUserInfo updateUserInfo:_mUserInfo];
 
             [[NSNotificationCenter defaultCenter] postNotificationName:MyUserInfoChangedNotification object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:UpDateSystemCoupNotification object:nil];
 
             [self showSuccessStatus:info.msg];
             self.block(mView.mPhoneTx.text,mView.mPwdTx.text);

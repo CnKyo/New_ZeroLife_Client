@@ -1959,7 +1959,22 @@ return [NSString stringWithFormat:@"%@%@%@",kAFAppDotNetImgBaseURLString,kAFAppD
         
     }];
 }
+#pragma mark----****----获取首页系统发放优惠卷数据
+- (void)ZLGetSystemCoupList:(void(^)(APIObject *mBaseObj,NSArray *List))block{
 
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    NSMutableDictionary *para = [NSMutableDictionary new];
+
+    if (user.user_id > 0) {
+        [para setInt:user.user_id forKey:@"user_id"];
+        [self loadAPITableListWithTag:self path:@"/user/coupon/load_coupon" parameters:para pageIndex:1 subClass:[ZLSystempCoup class] call:^(int totalPage, NSArray *tableArr, APIObject *info) {
+            block(info,tableArr);
+        }];
+    }else{
+        block(nil,nil);
+
+    }
+}
 //#pragma mark----****----获取首页社区地址数据
 ///**
 // 获取首页社区地址数据

@@ -229,6 +229,8 @@ static NSString * const MyUserInfoChangedNotification   = @"MyUserInfoChangedNot
 static NSString * const MyUserAddressNeedUpdateNotification   = @"MyUserAddressNeedUpdateNotification"; //地址信息需要更新
 static NSString * const MyOrderPaySuccessNotification   = @"MyOrderPaySuccessNotification";
 
+static NSString * const UpDateSystemCoupNotification   = @"UpDateSystemCoupNotification";
+
 //功能参数（用户头像-U_PHOTO，用户认证文件-U_AUT，用户跑跑腿申请资料-U_APPLY，用户订单处理-U_ORDERS）
 static NSString* const  kFileUploadPath_Photo       = @"U_PHOTO";
 static NSString* const  kFileUploadPath_Aut         = @"U_AUT";
@@ -551,6 +553,10 @@ typedef NS_ENUM(NSUInteger,ZLHomeCellType){
     ZLHomeFuncFive = 5
 };
 
-
+typedef NS_ENUM(int,cuc_state){
+    OVERDUE = 1,
+    NOUSE = 2,
+    ISUSED = 3
+};
 
 #endif /* CustomDefine_h */

@@ -1508,3 +1508,6 @@ bool m_bind = NO;
 
 @implementation ZLPlafarmtLogin
 @end
+
+@implementation ZLSystempCoup
+@end

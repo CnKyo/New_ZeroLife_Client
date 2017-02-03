@@ -228,6 +228,8 @@ typedef void (^TableShareSdkBlock)(int totalpage, NSArray *tableArr, APIShareSdk
 #pragma mark----****----获取首页数据
 ///获取首页数据
 - (void)ZLGetHome:(NSString *)mLat andLng:(NSString *)mLng block:(void(^)(APIObject *mBaseObj,ZLHomeObj *mHome))block;
+#pragma mark----****----获取首页系统发放优惠卷数据
+- (void)ZLGetSystemCoupList:(void(^)(APIObject *mBaseObj,NSArray *List))block;
 //#pragma mark----****----获取首页社区地址数据
 ///**
 // 获取首页社区地址数据
