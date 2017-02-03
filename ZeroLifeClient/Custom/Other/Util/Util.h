@@ -181,9 +181,9 @@ typedef enum _RelDic
     
 + (NSString *)sha1:(NSString *)input;
 
-+ (NSString *)getIPAddress:(BOOL)preferIPv4;
+//+ (NSString *)getIPAddress:(BOOL)preferIPv4;
 
-+ (NSDictionary *)getIPAddresses;
+//+ (NSDictionary *)getIPAddresses;
 
 //requrl http://api.fun.com/getxxxx
 //

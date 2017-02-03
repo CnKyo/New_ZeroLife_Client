@@ -15,7 +15,7 @@
 
 {
     RKImageBrowser  *mScrollerView;
-    ZLActivityView *mActivityView;
+    ZLActivityView *mActivityView11;
 }
 
 @end
@@ -79,10 +79,10 @@
     }
     
     for (int i = 0; i<mActivityDataSource.count; i++) {
-        mActivityView = [ZLActivityView initWithActivityView];
-        mActivityView.frame = CGRectMake(0, mYY, self.mActivityView.mwidth, self.mActivityView.mheight);
+        mActivityView11 = [ZLActivityView initWithActivityView];
+        mActivityView11.frame = CGRectMake(0, mYY, self.mActivityView.mwidth, self.mActivityView.mheight);
         
-        [self.mActivityView addSubview:mActivityView];
+        [self.mActivityView addSubview:mActivityView11];
         
         mYY += 30;
   

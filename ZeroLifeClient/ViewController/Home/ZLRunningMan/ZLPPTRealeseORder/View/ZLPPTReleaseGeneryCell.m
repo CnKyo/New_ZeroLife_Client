@@ -48,7 +48,7 @@
     LtpickerView.dataSource = mTT;//设置要显示的数据
     LtpickerView.defaultStr = mTT[0];//默认选择的数据
     [LtpickerView show];//显示
-    __weak __typeof(self)weakSelf = self;
+    //__weak __typeof(self)weakSelf = self;
     
     //回调block
     LtpickerView.block = ^(LTPickerView* obj,NSString* str,int num){

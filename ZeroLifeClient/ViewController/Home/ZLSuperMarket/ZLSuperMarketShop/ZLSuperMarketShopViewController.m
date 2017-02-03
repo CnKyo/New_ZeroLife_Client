@@ -121,7 +121,7 @@ static const CGFloat mTopH = 156;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.navigationItem.title = self.mShopObj.shop_name;
+    self.navigationItem.title = self.mShopBaseObj.shop_name;
 
     self.mSpeAddArray = [NSMutableArray new];
     kIndex = 0;
@@ -180,7 +180,7 @@ static const CGFloat mTopH = 156;
 - (void)loadData{
     [self showWithStatus:@"正在加载..."];
     
-    [[APIClient sharedClient] ZLGetShopMsgWithShopType:self.mType andShopId:self.mShopObj.shop_id block:^(APIObject *mBaseObj, ZLShopObj *mShop,ZLShopLeftTableArr *mLeftTabArr) {
+    [[APIClient sharedClient] ZLGetShopMsgWithShopType:self.mType andShopId:self.mShopBaseObj.shop_id block:^(APIObject *mBaseObj, ZLShopObj *mShop,ZLShopLeftTableArr *mLeftTabArr) {
         
         [mLeftDataArr removeAllObjects];
         
@@ -287,7 +287,7 @@ static const CGFloat mTopH = 156;
     
     [mHeaderView.mShopLogo sd_setImageWithURL:[NSURL URLWithString:mHeadUrl] placeholderImage:[UIImage imageNamed:@"ZLDefault_Shop"] options:SDWebImageRetryFailed completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         if (image != nil) {
-            UIImage *mLastImg11 = [image applyLightEffect];
+            //UIImage *mLastImg11 = [image applyLightEffect];
 //            mHeaderView.mBgkImg.image = mLastImg11;
         }
     }];
@@ -360,7 +360,7 @@ static const CGFloat mTopH = 156;
     NSInteger num = 0;
     float price = 0.0;
     
-    NSArray *mLKDArr =  [LKDBHelperGoodsObj searchWithWhere:[NSString stringWithFormat:@"mShopId=%d",self.mShopObj.shop_id]];
+    NSArray *mLKDArr =  [LKDBHelperGoodsObj searchWithWhere:[NSString stringWithFormat:@"mShopId=%d",self.mShopBaseObj.shop_id]];
     num = mLKDArr.count;
     
     for (int i = 0; i<mLKDArr.count; i++) {
@@ -655,14 +655,14 @@ static const CGFloat mTopH = 156;
                 NSString *mUrl = nil;
                 
                 if (_mType == kOrderClassType_product) {
-                    mUrl = [NSString stringWithFormat:@"%@/wap/good/goodsdetails?pro_id=%d&sku_id=%d&shop_id=%d&user_id=%d",[[APIClient sharedClient] currentUrl],mCGoodsObj.pro_id,mCGoodsObj.sku_id,self.mShopObj.shop_id,[ZLUserInfo ZLCurrentUser].user_id];
+                    mUrl = [NSString stringWithFormat:@"%@/wap/good/goodsdetails?pro_id=%d&sku_id=%d&shop_id=%d&user_id=%d",[[APIClient sharedClient] currentUrl],mCGoodsObj.pro_id,mCGoodsObj.sku_id,self.mShopBaseObj.shop_id,[ZLUserInfo ZLCurrentUser].user_id];
                 }else{
-                    mUrl = [NSString stringWithFormat:@"%@/wap/good/dryDetails?pro_id=%d&shop_id=%d",[[APIClient sharedClient] currentUrl],mCGoodsObj.pro_id,self.mShopObj.shop_id];
+                    mUrl = [NSString stringWithFormat:@"%@/wap/good/dryDetails?pro_id=%d&shop_id=%d",[[APIClient sharedClient] currentUrl],mCGoodsObj.pro_id,self.mShopBaseObj.shop_id];
                 }
                 mWebvc.mUrl = mUrl;
                 mWebvc.mShopObj = mShopObj;
                 mWebvc.mCamGoodsObj = mCGoodsObj;
-                mWebvc.mShopId = self.mShopObj.shop_id;
+                mWebvc.mShopId = self.mShopBaseObj.shop_id;
                 mWebvc.mType = _mType;
                 mWebvc.mTitle = mCGoodsObj.pro_name;
                 [self pushViewController:mWebvc];
@@ -679,14 +679,14 @@ static const CGFloat mTopH = 156;
                 NSString *mUrl = nil;
                 
                 if (_mType == kOrderClassType_product) {
-                    mUrl = [NSString stringWithFormat:@"%@/wap/good/goodsdetails?pro_id=%d&sku_id=%d&shop_id=%d&user_id=%d",[[APIClient sharedClient] currentUrl],mCGoodsObj.pro_id,mCGoodsObj.sku_id,self.mShopObj.shop_id,[ZLUserInfo ZLCurrentUser].user_id];
+                    mUrl = [NSString stringWithFormat:@"%@/wap/good/goodsdetails?pro_id=%d&sku_id=%d&shop_id=%d&user_id=%d",[[APIClient sharedClient] currentUrl],mCGoodsObj.pro_id,mCGoodsObj.sku_id,self.mShopBaseObj.shop_id,[ZLUserInfo ZLCurrentUser].user_id];
                 }else{
-                    mUrl = [NSString stringWithFormat:@"%@/wap/good/dryDetails?pro_id=%d&shop_id=%d",[[APIClient sharedClient] currentUrl],mCGoodsObj.pro_id,self.mShopObj.shop_id];
+                    mUrl = [NSString stringWithFormat:@"%@/wap/good/dryDetails?pro_id=%d&shop_id=%d",[[APIClient sharedClient] currentUrl],mCGoodsObj.pro_id,self.mShopBaseObj.shop_id];
                 }
                 mWebvc.mUrl = mUrl;
                 mWebvc.mShopObj = mShopObj;
                 mWebvc.mClsGoodsObj = mCGoodsObj;
-                mWebvc.mShopId = self.mShopObj.shop_id;
+                mWebvc.mShopId = self.mShopBaseObj.shop_id;
                 mWebvc.mType = _mType;
                 mWebvc.mTitle = mCGoodsObj.pro_name;
                 [self pushViewController:mWebvc];
@@ -795,7 +795,7 @@ static const CGFloat mTopH = 156;
         [APIObject infoWithReLoginErrorMessage:@"登录之后才能领取哦～"];
     }else{
         ZLWebVc *vc = [ZLWebVc new];
-        vc.mUrl = [NSString stringWithFormat:@"%@/wap/wshop/coupon_wap?shop_id=%d&user_id=%d",[[APIClient sharedClient] currentUrl],self.mShopObj.shop_id,[ZLUserInfo ZLCurrentUser].user_id];
+        vc.mUrl = [NSString stringWithFormat:@"%@/wap/wshop/coupon_wap?shop_id=%d&user_id=%d",[[APIClient sharedClient] currentUrl],self.mShopBaseObj.shop_id,[ZLUserInfo ZLCurrentUser].user_id];
         
         [self pushViewController:vc];
     }
@@ -811,7 +811,7 @@ static const CGFloat mTopH = 156;
  */
 - (void)ZLSuperMarketRateBtnSelected{
     ZLPPTRateViewController *vc = [ZLPPTRateViewController new];
-    vc.mId = self.mShopObj.shop_id;
+    vc.mId = self.mShopBaseObj.shop_id;
     vc.mType = ZLRateVCTypeWithShop;
     [self pushViewController:vc];
 }
@@ -968,13 +968,13 @@ static const CGFloat mTopH = 156;
 - (void)ZLSuperMarketShopCarDidSelected{
     
     
-    if ([LKDBHelperGoodsObj searchWithWhere:[NSString stringWithFormat:@"mShopId=%d",self.mShopObj.shop_id]].count <= 0) {
+    if ([LKDBHelperGoodsObj searchWithWhere:[NSString stringWithFormat:@"mShopId=%d",self.mShopBaseObj.shop_id]].count <= 0) {
         [self showErrorStatus:@"购物车空空如也，快去挑选商品吧！"];
         return;
     }
     
     ZLSuperMarketShopCarViewController *ZLShopCarVC = [ZLSuperMarketShopCarViewController new];
-    ZLShopCarVC.mShopId = self.mShopObj.shop_id;
+    ZLShopCarVC.mShopId = self.mShopBaseObj.shop_id;
     ZLShopCarVC.mType = self.mType;
     ZLShopCarVC.mShopMinSendPrice = mShopObj.mShopMsg.ext_min_price;
     [self pushViewController:ZLShopCarVC];
@@ -987,7 +987,7 @@ static const CGFloat mTopH = 156;
  */
 - (void)ZLSuperMarketGoPayDidSelected{
     
-    NSArray *mShopCarArrSource = [LKDBHelperGoodsObj searchWithWhere:[NSString stringWithFormat:@"mShopId=%d",self.mShopObj.shop_id]];
+    NSArray *mShopCarArrSource = [LKDBHelperGoodsObj searchWithWhere:[NSString stringWithFormat:@"mShopId=%d",self.mShopBaseObj.shop_id]];
     
     if (mShopCarArrSource.count <= 0) {
         [self showErrorStatus:@"购物车空空如也，快去挑选商品吧！"];
@@ -1025,14 +1025,14 @@ static const CGFloat mTopH = 156;
     }
     
     [self showWithStatus:@"正在提交订单..."];
-    [[APIClient sharedClient] ZLCommitPreOrderWithType:_mType andShopId:self.mShopObj.shop_id andGoodsArr:[Util arrToJson:mPayArr] block:^( APIObject *mBaseObj,ZLPreOrderObj *mPreOrder) {
+    [[APIClient sharedClient] ZLCommitPreOrderWithType:_mType andShopId:self.mShopBaseObj.shop_id andGoodsArr:[Util arrToJson:mPayArr] block:^( APIObject *mBaseObj,ZLPreOrderObj *mPreOrder) {
         if (mBaseObj.code == RESP_STATUS_YES) {
             [self dismiss];
             ZLSuperMarketCommitOrderViewController *ZLCommitVC = [ZLSuperMarketCommitOrderViewController new];
             ZLCommitVC.mPreOrder = [ZLPreOrderObj new];
             ZLCommitVC.mPreOrder =  mPreOrder;
             ZLCommitVC.mOrderType = _mType;
-            ZLCommitVC.mShopId = self.mShopObj.shop_id;
+            ZLCommitVC.mShopId = self.mShopBaseObj.shop_id;
             [self pushViewController:ZLCommitVC];
         }else{
             [self showErrorStatus:mBaseObj.msg];
@@ -1223,102 +1223,102 @@ static const CGFloat mTopH = 156;
 
     
 }
--(StandardsView *)buildStandardView:(UIImage *)img andIndex:(NSInteger)index
-{
-    ///规格数组
-    NSMutableArray *mSkuTempArr = [NSMutableArray new];
-    
-    ///从这里取值
-    ZLGoodsWithClass *mGoods = mRightDataArr[index];
-    
-    
-    for (int i = 0;i<mGoods.skus.count;i++) {
-        
-        ZLGoodsSKU *mOne = mGoods.skus[i];
-        
-        BOOL mIsAdd = YES;
-        
-        for (int j = 0; j<mSkuTempArr.count ; j++) {
-            
-            
-            
-            ZLGoodsSpeList *mTwo = mSkuTempArr[j];
-            
-            if (mOne.sta_id == mTwo.mStaId) {
-                
-                
-                
-                ZLSpeObj *mSkuValue  = [ZLSpeObj new];
-                mSkuValue.mSpeGoodsName = mOne.sta_val_name;
-                mSkuValue.mSku = mOne;
-                mSkuValue.mSta_val_id = mOne.sta_val_id;
-                
-                [mTwo.mSpeArr addObject:mSkuValue];
-                [mSkuTempArr replaceObjectAtIndex:j withObject:mTwo];
-                mIsAdd = NO;
-                continue;
-                
-            }
-            
-        }
-        
-        
-        if (mIsAdd == YES) {
-            
-            ZLGoodsSpeList *mSpeListObj = [ZLGoodsSpeList new];
-            mSpeListObj.mSpeName = mOne.sta_name;
-            mSpeListObj.mStaId = mOne.sta_id;
-            
-            ZLSpeObj *mSkuValue  = [ZLSpeObj new];
-            mSkuValue.mSpeGoodsName = mOne.sta_val_name;
-            mSkuValue.mSku = mOne;
-            mSkuValue.mSta_val_id = mOne.sta_val_id;
-            
-            NSMutableArray *tempArr = [NSMutableArray new];
-            [tempArr addObject:mSkuValue];
-            mSpeListObj.mSpeArr = tempArr;
-            
-            [mSkuTempArr addObject:mSpeListObj];
-            
-        }
-        
-        
-    }
-    
-    
-    StandardsView *standview = [[StandardsView alloc] init];
-    standview.tag = index;
-    standview.delegate = self;
-    
-    standview.mainImgView.image = img;
-    standview.mainImgView.backgroundColor = [UIColor whiteColor];
-    standview.priceLab.text = @"¥100.0";
-    standview.tipLab.text = @"请选择规格";
-    standview.goodNum.text = @"库存 10件";
-    
-    
-    standview.customBtns = @[@"加入购物车",@"立即购买"];
-    
-    
-    standardClassInfo *tempClassInfo1 = [standardClassInfo StandardClassInfoWith:@"0" andStandClassName:@"红色das"];
-    standardClassInfo *tempClassInfo2 = [standardClassInfo StandardClassInfoWith:@"1" andStandClassName:@"蓝色ads"];
-    
-    NSArray *tempClassInfoArr = @[tempClassInfo1,tempClassInfo2];
-    StandardModel *tempModel = [StandardModel StandardModelWith:tempClassInfoArr andStandName:@"颜色"];
-    
-    
-    
-    standardClassInfo *tempClassInfo3 = [standardClassInfo StandardClassInfoWith:@"2" andStandClassName:@"XL"];
-    standardClassInfo *tempClassInfo4 = [standardClassInfo StandardClassInfoWith:@"3" andStandClassName:@"XXL"];
-    
-    NSArray *tempClassInfoArr2 = @[tempClassInfo3,tempClassInfo4];
-    StandardModel *tempModel2 = [StandardModel StandardModelWith:tempClassInfoArr2 andStandName:@"尺寸"];
-    standview.standardArr = @[tempModel,tempModel2];
-    
-    
-    
-    return standview;
-}
+//-(StandardsView *)buildStandardView:(UIImage *)img andIndex:(NSInteger)index
+//{
+//    ///规格数组
+//    NSMutableArray *mSkuTempArr = [NSMutableArray new];
+//    
+//    ///从这里取值
+//    ZLGoodsWithClass *mGoods = mRightDataArr[index];
+//    
+//    
+//    for (int i = 0;i<mGoods.skus.count;i++) {
+//        
+//        ZLGoodsSKU *mOne = mGoods.skus[i];
+//        
+//        BOOL mIsAdd = YES;
+//        
+//        for (int j = 0; j<mSkuTempArr.count ; j++) {
+//            
+//            
+//            
+//            ZLGoodsSpeList *mTwo = mSkuTempArr[j];
+//            
+//            if (mOne.sta_id == mTwo.mStaId) {
+//                
+//                
+//                
+//                ZLSpeObj *mSkuValue  = [ZLSpeObj new];
+//                mSkuValue.mSpeGoodsName = mOne.sta_val_name;
+//                mSkuValue.mSku = mOne;
+//                mSkuValue.mSta_val_id = mOne.sta_val_id;
+//                
+//                [mTwo.mSpeArr addObject:mSkuValue];
+//                [mSkuTempArr replaceObjectAtIndex:j withObject:mTwo];
+//                mIsAdd = NO;
+//                continue;
+//                
+//            }
+//            
+//        }
+//        
+//        
+//        if (mIsAdd == YES) {
+//            
+//            ZLGoodsSpeList *mSpeListObj = [ZLGoodsSpeList new];
+//            mSpeListObj.mSpeName = mOne.sta_name;
+//            mSpeListObj.mStaId = mOne.sta_id;
+//            
+//            ZLSpeObj *mSkuValue  = [ZLSpeObj new];
+//            mSkuValue.mSpeGoodsName = mOne.sta_val_name;
+//            mSkuValue.mSku = mOne;
+//            mSkuValue.mSta_val_id = mOne.sta_val_id;
+//            
+//            NSMutableArray *tempArr = [NSMutableArray new];
+//            [tempArr addObject:mSkuValue];
+//            mSpeListObj.mSpeArr = tempArr;
+//            
+//            [mSkuTempArr addObject:mSpeListObj];
+//            
+//        }
+//        
+//        
+//    }
+//    
+//    
+//    StandardsView *standview = [[StandardsView alloc] init];
+//    standview.tag = index;
+//    standview.delegate = self;
+//    
+//    standview.mainImgView.image = img;
+//    standview.mainImgView.backgroundColor = [UIColor whiteColor];
+//    standview.priceLab.text = @"¥100.0";
+//    standview.tipLab.text = @"请选择规格";
+//    standview.goodNum.text = @"库存 10件";
+//    
+//    
+//    standview.customBtns = @[@"加入购物车",@"立即购买"];
+//    
+//    
+//    standardClassInfo *tempClassInfo1 = [standardClassInfo StandardClassInfoWith:@"0" andStandClassName:@"红色das"];
+//    standardClassInfo *tempClassInfo2 = [standardClassInfo StandardClassInfoWith:@"1" andStandClassName:@"蓝色ads"];
+//    
+//    NSArray *tempClassInfoArr = @[tempClassInfo1,tempClassInfo2];
+//    StandardModel *tempModel = [StandardModel StandardModelWith:tempClassInfoArr andStandName:@"颜色"];
+//    
+//    
+//    
+//    standardClassInfo *tempClassInfo3 = [standardClassInfo StandardClassInfoWith:@"2" andStandClassName:@"XL"];
+//    standardClassInfo *tempClassInfo4 = [standardClassInfo StandardClassInfoWith:@"3" andStandClassName:@"XXL"];
+//    
+//    NSArray *tempClassInfoArr2 = @[tempClassInfo3,tempClassInfo4];
+//    StandardModel *tempModel2 = [StandardModel StandardModelWith:tempClassInfoArr2 andStandName:@"尺寸"];
+//    standview.standardArr = @[tempModel,tempModel2];
+//    
+//    
+//    
+//    return standview;
+//}
 
 #pragma mark - standardView  delegate
 //点击自定义按键
@@ -1496,7 +1496,7 @@ static const CGFloat mTopH = 156;
     ZLAddObj.mGoodsName =mGoodObj.pro_name;
     ZLAddObj.mGoodsImg = mGoodObj.img_url;
     ZLAddObj.mExtObj.mGoodsNum = mGoodObj.mNum;
-    ZLAddObj.mShopId = self.mShopObj.shop_id;
+    ZLAddObj.mShopId = self.mShopBaseObj.shop_id;
     ZLAddObj.mGoodsSKU = self.mAddSkuArray;
     ZLAddObj.mSpe = [ZLSpeObj new];
     ZLAddObj.mSpe.mSpeGoodsName = mSKUname;
@@ -1555,7 +1555,7 @@ static const CGFloat mTopH = 156;
         [mPayArr addObject:mPara];
     }
     [self showWithStatus:@"正在提交订单..."];
-    [[APIClient sharedClient] ZLCommitPreOrderWithType:_mType andShopId:self.mShopObj.shop_id andGoodsArr:[Util arrToJson:mPayArr] block:^(APIObject *mBaseObj,ZLPreOrderObj *mPreOrder) {
+    [[APIClient sharedClient] ZLCommitPreOrderWithType:_mType andShopId:self.mShopBaseObj.shop_id andGoodsArr:[Util arrToJson:mPayArr] block:^(APIObject *mBaseObj,ZLPreOrderObj *mPreOrder) {
         if (mBaseObj.code == RESP_STATUS_YES) {
             [self dismiss];
             ZLSuperMarketCommitOrderViewController *ZLCommitVC = [ZLSuperMarketCommitOrderViewController new];
@@ -1614,7 +1614,7 @@ static const CGFloat mTopH = 156;
             ZLAddObj.mExtObj.mGoodsNum = mCamGoods.mNum;
             ZLAddObj.mExtObj.mTotlePrice = mCamGoods.mNum*mCamGoods.sku_price;
 
-            ZLAddObj.mShopId = self.mShopObj.shop_id;
+            ZLAddObj.mShopId = self.mShopBaseObj.shop_id;
             ZLAddObj.mGoodsSKU = self.mAddSkuArray;
             ZLAddObj.mSpe = [ZLSpeObj new];
             ZLAddObj.mSpe.mSpeGoodsName = mCamGoods.sta_val_name;
@@ -1633,7 +1633,7 @@ static const CGFloat mTopH = 156;
             break;
         case ZLRightGoodsTypeFromClass:
         {
-            ZLGoodsWithClass *mClasGoods = mRightDataArr[mIndexPath.row];
+            //ZLGoodsWithClass *mClasGoods = mRightDataArr[mIndexPath.row];
             
             
             
@@ -1681,7 +1681,7 @@ static const CGFloat mTopH = 156;
             ZLAddObj.mGoodsImg = mCamGoods.img_url;
             ZLAddObj.mExtObj.mGoodsNum = mCamGoods.mNum;
             ZLAddObj.mExtObj.mTotlePrice = mCamGoods.mNum*mCamGoods.sku_price;
-            ZLAddObj.mShopId = self.mShopObj.shop_id;
+            ZLAddObj.mShopId = self.mShopBaseObj.shop_id;
             ZLAddObj.mGoodsSKU = self.mAddSkuArray;
             ZLAddObj.mSpe = [ZLSpeObj new];
             ZLAddObj.mSpe.mSpeGoodsName = mCamGoods.sta_val_name;
@@ -1699,7 +1699,7 @@ static const CGFloat mTopH = 156;
             break;
         case ZLRightGoodsTypeFromClass:
         {
-            ZLGoodsWithClass *mClasGoods = mRightDataArr[mIndexPath.row];
+            //ZLGoodsWithClass *mClasGoods = mRightDataArr[mIndexPath.row];
             
             
             
@@ -1747,7 +1747,7 @@ static const CGFloat mTopH = 156;
             ZLAddObj.mGoodsName =mGoodObj.pro_name;
             ZLAddObj.mGoodsImg = mGoodObj.img_url;
             ZLAddObj.mExtObj = mAddShopCarEx;
-            ZLAddObj.mShopId = self.mShopObj.shop_id;
+            ZLAddObj.mShopId = self.mShopBaseObj.shop_id;
             ZLAddObj.mGoodsSKU = self.mAddSkuArray;
             ZLAddObj.mSpe = [ZLSpeObj new];
             ZLAddObj.mSpe.mSpeGoodsName = mGoodObj.sta_val_name;
@@ -1761,7 +1761,7 @@ static const CGFloat mTopH = 156;
             break;
         case ZLRightGoodsTypeFromClass:
         {
-            ZLGoodsWithClass *mClasGoods = mRightDataArr[mIndexPath.row];
+            //ZLGoodsWithClass *mClasGoods = mRightDataArr[mIndexPath.row];
 
 
             
@@ -1970,7 +1970,7 @@ static const CGFloat mTopH = 156;
     ZLAddObj.mGoodsName =mGoodObj.pro_name;
     ZLAddObj.mGoodsImg = mGoodObj.img_url;
     ZLAddObj.mExtObj.mGoodsNum = mGoodObj.mNum;
-    ZLAddObj.mShopId = self.mShopObj.shop_id;
+    ZLAddObj.mShopId = self.mShopBaseObj.shop_id;
     ZLAddObj.mGoodsSKU = self.mAddSkuArray;
     ZLAddObj.mSpe = [ZLSpeObj new];
     ZLAddObj.mSpe.mSpeGoodsName = mSKUname;
