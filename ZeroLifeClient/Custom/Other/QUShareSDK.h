@@ -23,6 +23,8 @@
 #import <TencentOpenAPI/TencentOAuth.h>
 #import <TencentOpenAPI/QQApiInterface.h>
 
+#import "CustomDefine.h"
+
 
 
 @interface QUShareSDK : NSObject

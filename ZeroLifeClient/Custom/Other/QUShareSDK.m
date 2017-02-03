@@ -49,7 +49,7 @@
 
 - (BOOL)applicationDidFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [ShareSDK registerApp:@"104f0624c5e55"
+    [ShareSDK registerApp:ShareSDK_AppKey
           activePlatforms:@[@(SSDKPlatformTypeSinaWeibo),
                             @(SSDKPlatformTypeQQ),
                             @(SSDKPlatformTypeWechat),
@@ -84,12 +84,12 @@
                                                  authType:SSDKAuthTypeBoth];
                       break;
                   case SSDKPlatformTypeWechat:
-                      [appInfo SSDKSetupWeChatByAppId:@"wx81013437f356c5de"
-                                            appSecret:@"b3bc186242ba3c527859e125fd397caf"];
+                      [appInfo SSDKSetupWeChatByAppId:ShareSDK_WeChat_AppId
+                                            appSecret:ShareSDK_WeChat_AppSecret];
                       break;
                   case SSDKPlatformTypeQQ:
-                      [appInfo SSDKSetupQQByAppId:@"1104430887"
-                                           appKey:@"AV0KWEDwalAYfA9h"
+                      [appInfo SSDKSetupQQByAppId:ShareSDK_QQ_AppId
+                                           appKey:ShareSDK_QQ_AppKey
                                          authType:SSDKAuthTypeBoth];
                       break;
                   default:

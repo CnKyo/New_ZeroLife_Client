@@ -3441,7 +3441,7 @@ return [NSString stringWithFormat:@"%@%@%@",kAFAppDotNetImgBaseURLString,kAFAppD
     [para setObject:mPara.mPaytype.payProjectId forKey:@"cardid"];
     
     [para setObject:mPara.mPayAmount forKey:@"account"];
-    [para setObject:JH_KEY forKey:@"key"];
+    [para setObject:JHSDK_AppKey forKey:@"key"];
 
     
     [[JHJsonRequst sharedHDNetworking] postUrl:@"mbalance" parameters:para call:^(mJHBaseData *info) {
@@ -3477,7 +3477,7 @@ return [NSString stringWithFormat:@"%@%@%@",kAFAppDotNetImgBaseURLString,kAFAppD
     [para setObject:mPara.mPaytype.payProjectId forKey:@"cardid"];
     
     [para setObject:mPara.mPayAmount forKey:@"account"];
-    [para setObject:JH_KEY forKey:@"key"];
+    [para setObject:JHSDK_AppKey forKey:@"key"];
     
     [[JHJsonRequst sharedHDNetworking] postUrl:@"order" parameters:para call:^(mJHBaseData *info) {
         
