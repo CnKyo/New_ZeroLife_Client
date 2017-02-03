@@ -669,7 +669,7 @@ return [NSString stringWithFormat:@"%@%@%@",kAFAppDotNetImgBaseURLString,kAFAppD
     if (mType == ZLRegistPwd) {
         mUrl = @"/user/user_register";
     }else{
-        mUrl = @"user/user_repass";
+        mUrl = @"/user/user_repass";
     }
     
     [self loadAPIWithTag:self path:mUrl parameters:para call:^(APIObject *info) {

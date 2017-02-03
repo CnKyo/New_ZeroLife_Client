@@ -28,6 +28,17 @@
     self.title = _mTitle;
     
     mView = [ZLLoginView initRegistView];
+    
+    NSString *mPlaceHolder = nil;
+    
+    if (_mType == ZLForgetPwd) {
+        mPlaceHolder = @"请输入新密码";
+
+    }else{
+        mPlaceHolder = @"请输入密码";
+
+    }
+    mView.mRegistPwdTx.placeholder = mPlaceHolder;
     mView.delegate = self;
     [self.view addSubview:mView];
     [mView makeConstraints:^(MASConstraintMaker *make) {
