@@ -398,6 +398,13 @@ typedef enum{
 }ZLWalletStatu;
 
 
+typedef enum {
+    kPaopaoSortType_normal = 0,///默认排名
+    kPaopaoSortType_order = 1,///订单量排名
+    kPaopaoSortType_money = 2,///金额量排名
+    kPaopaoSortType_pingjia = 3,///评价排名
+} kPaopaoSortType;///跑跑腿排序类型
+
 typedef enum{
     ZLHomeBannerTypeSystem,//banner类型为平台
     ZLHomeBannerTypeShop,//banner类型为商家
@@ -536,25 +543,19 @@ typedef enum {
 
 
 typedef enum {
-    
     ZLOrdreStatusWithSymb,///待处理
     ZLOrdreStatusWithFinish,///已完成
     ZLOrdreStatusWithCancel,///已取消
-    
 }ZLOrdreStatus;///订单状态
 
 typedef enum {
-    
     ZLRateVCTypeWithShop,///评价界面类型-店铺
     ZLRateVCTypeWithPPT,///评价界面类型-跑跑腿
-    
 }ZLRateVCType;///评价界面类型
 
 typedef enum {
-    
     ZLShopLeftTypeCamp = 1,///店铺左边类型活动
     ZLShopLeftTypeClass = 2,///店铺左边类型分类
-    
 }ZLShopLeftType;///店铺左边类型
 
 

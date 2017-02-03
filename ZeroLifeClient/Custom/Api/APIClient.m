@@ -1188,6 +1188,7 @@ return [NSString stringWithFormat:@"%@%@%@",kAFAppDotNetImgBaseURLString,kAFAppD
  *   用户商品收藏列表接口
  *
  *  @param tag      链接对象
+ *  @param page     页码数
  *  @param callback 返回列表
  */
 -(void)productFocusListWithTag:(NSObject *)tag page:(int)page call:(TablePageArrBlock)callback
@@ -1865,48 +1866,21 @@ return [NSString stringWithFormat:@"%@%@%@",kAFAppDotNetImgBaseURLString,kAFAppD
 }
 #pragma mark----****----获取首页banner
 - (void)ZLgetHomeBanner:(void(^)(APIObject *mBaseObj,ZLHomeFunvtionAndBanner *mFunc))block{
-    
-    NSMutableDictionary *para = [NSMutableDictionary new];
-    
-    
 
-    [self loadAPIWithTag:self path:@"/home/banner" parameters:para call:^(APIObject *info) {
+    [self loadAPIWithTag:self path:@"/home/banner" parameters:nil call:^(APIObject *info) {
 
        
         if (info.code == RESP_STATUS_YES) {
             
             ZLHomeFunvtionAndBanner *mFuncTion = [ZLHomeFunvtionAndBanner new];
             
-            NSMutableArray *mBannerArr = [NSMutableArray new];
-            NSMutableArray *mFuncArr = [NSMutableArray new];
-            
-            id mBanner = [info.data objectForKey:@"banners"];
-            id mFunction = [info.data objectForKey:@"functions"];
-            
-            if ([mBanner isKindOfClass:[NSArray class]]) {
-                for (NSDictionary *dic in mBanner) {
-                    [mBannerArr addObject:[ZLHomeBanner mj_objectWithKeyValues:dic]];
-                }
-                
-            }
-            if ([mFunction isKindOfClass:[NSArray class]]) {
-                for (NSDictionary *dic in mFunction) {
-                    [mFuncArr addObject:[ZLHomeFunctions mj_objectWithKeyValues:dic]];
-                }
-                
-            }
-            
-            mFuncTion.banners = mBannerArr;
-            mFuncTion.functions = mFuncArr;
+            mFuncTion.banners = [ZLHomeBanner mj_objectArrayWithKeyValuesArray:[info.data objectWithKey:@"banners"]];
+            mFuncTion.functions = [ZLHomeFunctions mj_objectArrayWithKeyValuesArray:[info.data objectWithKey:@"functions"]];
             
             block (info,mFuncTion);
             
-            
-        }else{
+        } else
             block (info,nil);
-            
-        }
-    
     }];
     
 
@@ -1920,29 +1894,20 @@ return [NSString stringWithFormat:@"%@%@%@",kAFAppDotNetImgBaseURLString,kAFAppD
     NSMutableDictionary *para = [NSMutableDictionary new];
     
     
-    if (mLat) {
-        [para setNeedStr:mLat forKey:@"adv_lat"];
-    }
-    if (mLng) {
-        [para setNeedStr:mLng forKey:@"adv_lng"];
-
-    }
+    [para setValidStr:mLat forKey:@"adv_lat"];
+    [para setValidStr:mLng forKey:@"adv_lng"];
     
     if ([ZLUserInfo ZLCurrentUser]) {
         [para setInt:[ZLUserInfo ZLCurrentUser].user_id forKey:@"user_id"];
     }
     
     [self loadAPIWithTag:self path:@"/home/homePage" parameters:para call:^(APIObject *info) {
-        
-        
         if (info.code == RESP_STATUS_YES) {
             
             ZLHomeObj *mHomeObj = [[ZLHomeObj alloc] init];
             
             id mAdv = [info.data objectWithKey:@"sAdvertList"];
-            
             id mCom = [info.data objectWithKey:@"eCompanyNoticeList"];
-            
             
             NSMutableArray *mAdvArr = [ZLHomeAdvList mj_objectArrayWithKeyValuesArray:mAdv];
             NSMutableArray *mComArr = [ZLHomeCompainNoticeList mj_objectArrayWithKeyValuesArray:mCom];
@@ -1971,8 +1936,7 @@ return [NSString stringWithFormat:@"%@%@%@",kAFAppDotNetImgBaseURLString,kAFAppD
             block(info,tableArr);
         }];
     }else{
-        block(nil,nil);
-
+        block([APIObject infoWithReLoginErrorMessage:@"请重新登陆"], nil);
     }
 }
 //#pragma mark----****----获取首页社区地址数据
@@ -2054,18 +2018,11 @@ return [NSString stringWithFormat:@"%@%@%@",kAFAppDotNetImgBaseURLString,kAFAppD
 
     NSMutableDictionary *para = [NSMutableDictionary new];
     
-    if (mLat)
-        [para setNeedStr:mLat forKey:@"lat"];
-    
-    if (mLng)
-        [para setNeedStr:mLng forKey:@"lng"];
-    
-    
+    [para setValidStr:mLat forKey:@"lat"];
+    [para setValidStr:mLng forKey:@"lng"];
     [para setInt:mType forKey:@"shop_type"];
     
     [self loadAPIWithTag:self path:@"/shop/shop_home" parameters:para call:^(APIObject *info) {
-        
-        
         if (info.code == RESP_STATUS_YES) {
             
             NSMutableArray *mBannerArr = [NSMutableArray new];
@@ -2076,11 +2033,9 @@ return [NSString stringWithFormat:@"%@%@%@",kAFAppDotNetImgBaseURLString,kAFAppD
             id mCanpain = [info.data objectForKey:@"campaign"];
             id mClassify = [info.data objectForKey:@"classify"];
             
-            
             mBannerArr = [ZLHomeBanner mj_objectArrayWithKeyValuesArray:mBanner];
-            
             mCampainArr = [ZLShopHomeCampaign mj_objectArrayWithKeyValuesArray:mCanpain];
-
+            
             if ([mClassify isKindOfClass:[NSArray class]]) {
                 for (NSDictionary *dic in mClassify) {
                     ZLShopHomeClassify *aa = [ZLShopHomeClassify mj_objectWithKeyValues:dic];
@@ -2097,7 +2052,6 @@ return [NSString stringWithFormat:@"%@%@%@",kAFAppDotNetImgBaseURLString,kAFAppD
             
         }else{
             block(info,nil);
-            
         }
         
     }];
@@ -2916,91 +2870,45 @@ return [NSString stringWithFormat:@"%@%@%@",kAFAppDotNetImgBaseURLString,kAFAppD
 
 #pragma mark----****----获取跑腿榜
 /**
- 获取跑腿榜
- 
- @param mPage 行数页数
- @param mPageSize 每页条数
- @param mSort 排序类型(1:订单量排名[默认为0]，2：金额量排名,3:评价排名)
+ *  获取跑腿榜
+ *
+ *  @param tag      链接对象
+ *  @param mSort 排序类型(1:订单量排名[默认为0]，2：金额量排名,3:评价排名)
+ *  @param page     页码数
+ *  @param callback 返回列表
  */
-- (void)ZLGetPPTTopList:(NSString *)mPage andPageSize:(NSString *)mPageSize andSort:(NSString *)mSort block:(void(^)(APIObject *mBaseObj,ZLPPTTopObj *mList))block{
-    
-    
-    
-    NSMutableDictionary* para = [NSMutableDictionary dictionary];
-    
-    if (mPage) {
-        [para setObject:mPage forKey:@"pageNumber"];
-        
-    }
-    if (mPageSize) {
-        [para setObject:mPageSize forKey:@"pageSize"];
-        
-    }
-    if (mSort) {
-        [para setObject:mSort forKey:@"sort"];
-        
-    }
-    
-    [self loadAPIWithTag:self path:@"/ppao/ppao_sort" parameters:para call:^(APIObject *info) {
-        
-        if (info.code == RESP_STATUS_YES) {
-            
-            block(info,[ZLPPTTopObj mj_objectWithKeyValues:info.data]);
-            
-        }else{
-            
-            block(info,nil);
-            
-        }
-        
+-(void)ZLGetPPTTopListWithTag:(NSObject *)tag sort:(kPaopaoSortType)mSort page:(int)page call:(TablePageArrBlock)callback
+{
+    NSMutableDictionary* paramDic = [NSMutableDictionary dictionary];
+    [paramDic setInt:mSort forKey:@"sort"];
+    [self loadAPITableListWithTag:self path:@"/ppao/ppao_sort" parameters:paramDic pageIndex:page subClass:[ZLPPTTopObj class] call:^(int totalPage, NSArray *tableArr, APIObject *info) {
+        callback(totalPage, tableArr, info);
     }];
-    
-    
-    
 }
+
+
 #pragma mark----****----获取跑腿酬金列表
 /**
- 获取跑腿酬金列表
- 
- @param mPage 行数页数
- @param block 返回值
+ *  获取跑腿酬金列表
+ *
+ *  @param tag      链接对象
+ *  @param page     页码数
+ *  @param callback 返回列表
  */
-- (void)ZLGetPPTRewardList:(NSString *)mPage block:(void(^)(APIObject *mBaseObj,ZLPPTRewardList *mList))block{
-
+-(void)ZLGetPPTRewardList:(NSObject *)tag page:(int)page call:(TablePageArrBlock)callback
+{
     ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
     
     if (user.user_id > 0) {
-        
-        NSMutableDictionary* para = [NSMutableDictionary dictionary];
-        
-        if (mPage) {
-            [para setObject:mPage forKey:@"pageNumber"];
-
-        }
-        [para setInt:[ZLUserInfo ZLCurrentUser].user_id forKey:@"user_id"];
-        [para setInt:20 forKey:@"pageSize"];
-
-        
-        [self loadAPIWithTag:self path:@"/ppao/ppao_revenue" parameters:para call:^(APIObject *info) {
-            
-            if (info.code == RESP_STATUS_YES) {
-                
-                block(info,[ZLPPTRewardList mj_objectWithKeyValues:info.data]);
-                
-            }else{
-                
-                block(info,nil);
-                
-            }
-            
+        NSMutableDictionary* paramDic = [NSMutableDictionary dictionary];
+        [paramDic setInt:user.user_id forKey:@"user_id"];
+        [self loadAPITableListWithTag:self path:@"/ppao/ppao_revenue" parameters:paramDic pageIndex:page subClass:[ZLPPTRewardObj class] call:^(int totalPage, NSArray *tableArr, APIObject *info) {
+            callback(totalPage, tableArr, info);
         }];
-        
-    }else{
-        block([APIObject infoWithReLoginErrorMessage:@"请重新登陆"],nil);
-        
-    }
-    
+    } else
+        callback(0, nil, [APIObject infoWithReLoginErrorMessage:@"请重新登陆"]);
 }
+
 #pragma mark----****----获取评价
 /**
  获取评价
@@ -3331,6 +3239,7 @@ return [NSString stringWithFormat:@"%@%@%@",kAFAppDotNetImgBaseURLString,kAFAppD
         [para setObject:mStatus forKey:@"odr_status"];
         MLLog(@"%@",[ZLUserInfo ZLCurrentUser]);
         
+        
         [self loadAPIWithTag:self path:@"/ppao/ppao_order_list" parameters:para call:^(APIObject *info) {
             
             if (info.code == RESP_STATUS_YES) {
@@ -3342,7 +3251,6 @@ return [NSString stringWithFormat:@"%@%@%@",kAFAppDotNetImgBaseURLString,kAFAppD
                     [mTempArr addObject:[OrderObject mj_objectWithKeyValues:dic]];
 
                 }
-                
                 
                 block(info,mTempArr);
                 
@@ -3397,28 +3305,20 @@ return [NSString stringWithFormat:@"%@%@%@",kAFAppDotNetImgBaseURLString,kAFAppD
         [[JHJsonRequst sharedHDNetworking] postUrl:posturl parameters:mPara call:^(mJHBaseData *info) {
             
             NSMutableArray *tempArr = [NSMutableArray new];
-            [tempArr removeAllObjects];
             if (info.mSucess) {
                 
                 if (mType == ZLHydroelectricTypeWithProvince) {
-
-                    for (NSDictionary *dic in info.mData) {
-                        [tempArr addObject:[ZLJHProvince mj_objectWithKeyValues:dic]];
-                    }
+                    tempArr = [ZLJHProvince mj_objectArrayWithKeyValuesArray:info.mData];
                     
                 }else if (mType == ZLHydroelectricTypeWithCity){
-                    for (NSDictionary *dic in info.mData) {
-                        [tempArr addObject:[ZLJHCity mj_objectWithKeyValues:dic]];
-                    }
-                }else if (mType == ZLHydroelectricTypeWithPayType){
-                    for (NSDictionary *dic in info.mData) {
-                        [tempArr addObject:[ZLJHPayType mj_objectWithKeyValues:dic]];
-                    }
-                }else if(mType == ZLHydroelectricTypeWithPayUnint){
+                    tempArr = [ZLJHCity mj_objectArrayWithKeyValuesArray:info.mData];
                     
-                    for (NSDictionary *dic in info.mData) {
-                        [tempArr addObject:[ZLJHPayUnint mj_objectWithKeyValues:dic]];
-                    }
+                }else if (mType == ZLHydroelectricTypeWithPayType){
+                    tempArr = [ZLJHPayType mj_objectArrayWithKeyValuesArray:info.mData];
+
+                }else if(mType == ZLHydroelectricTypeWithPayUnint){
+                    tempArr = [ZLJHPayUnint mj_objectArrayWithKeyValuesArray:info.mData];
+
                 }else{
                     
                 }
