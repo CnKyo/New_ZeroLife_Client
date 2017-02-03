@@ -548,6 +548,7 @@
 		DFBAA9841DF16525004315F9 /* login_close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFBAA9821DF16525004315F9 /* login_close@2x.png */; };
 		DFBAA9851DF16525004315F9 /* login_close@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFBAA9831DF16525004315F9 /* login_close@3x.png */; };
 		DFBF96DF1E0A1921004E8107 /* AddressCommunityChooseTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DFBF96DE1E0A1921004E8107 /* AddressCommunityChooseTVC.m */; };
+		DFC3A7431E4419CB009C3970 /* QUShareSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = DFC3A7421E4419CB009C3970 /* QUShareSDK.m */; };
 		DFE178501DD54F6800E06F21 /* UserYuETableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DFE1784F1DD54F6800E06F21 /* UserYuETableViewCell.m */; };
 		DFE178611DD555C100E06F21 /* cell_address@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFE178511DD555C100E06F21 /* cell_address@2x.png */; };
 		DFE178621DD555C100E06F21 /* cell_address@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFE178521DD555C100E06F21 /* cell_address@3x.png */; };
@@ -1440,6 +1441,8 @@
 		DFBAA9831DF16525004315F9 /* login_close@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_close@3x.png"; sourceTree = "<group>"; };
 		DFBF96DD1E0A1921004E8107 /* AddressCommunityChooseTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressCommunityChooseTVC.h; sourceTree = "<group>"; };
 		DFBF96DE1E0A1921004E8107 /* AddressCommunityChooseTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressCommunityChooseTVC.m; sourceTree = "<group>"; };
+		DFC3A7411E4419CB009C3970 /* QUShareSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QUShareSDK.h; sourceTree = "<group>"; };
+		DFC3A7421E4419CB009C3970 /* QUShareSDK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QUShareSDK.m; sourceTree = "<group>"; };
 		DFE1784E1DD54F6800E06F21 /* UserYuETableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserYuETableViewCell.h; sourceTree = "<group>"; };
 		DFE1784F1DD54F6800E06F21 /* UserYuETableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserYuETableViewCell.m; sourceTree = "<group>"; };
 		DFE178511DD555C100E06F21 /* cell_address@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cell_address@2x.png"; sourceTree = "<group>"; };
@@ -3583,6 +3586,8 @@
 				DF98AFF91E24D2BF00F08BF4 /* PushAudioPlayer.m */,
 				DF98B00C1E24EDC400F08BF4 /* UIButton+Border.h */,
 				DF98B00D1E24EDC400F08BF4 /* UIButton+Border.m */,
+				DFC3A7411E4419CB009C3970 /* QUShareSDK.h */,
+				DFC3A7421E4419CB009C3970 /* QUShareSDK.m */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -4266,6 +4271,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DFC3A7431E4419CB009C3970 /* QUShareSDK.m in Sources */,
 				DF98EC411DD2C1DD0006EBFE /* PaoPaoGoodsView.m in Sources */,
 				0464E7091DF26B4E00A3F954 /* ThrowLineTool.m in Sources */,
 				042B52B01E123B9000B093BE /* ZLHydroelectricViewController.m in Sources */,
