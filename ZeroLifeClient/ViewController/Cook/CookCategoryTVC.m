@@ -58,7 +58,7 @@ static NSString *const kTagsTableCellReuseIdentifier = @"TagsTableCell";
     
     [[APIClient sharedClient] cookCategoryQueryWithTag:self call:^(CookCategoryObject *item, APIShareSdkObject *info) {
         
-        if (info.retCode == RETCODE_SUCCESS) {
+        if (info.retCode == RESP_STATUS_YES) {
             self.item = item;
             if (item == nil) {
                 self.errMsg = @"暂无数据";

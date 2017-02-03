@@ -264,7 +264,7 @@ return [NSString stringWithFormat:@"%@%@%@",kAFAppDotNetImgBaseURLString,kAFAppD
         int newPage = 0;
         int total = 0;
         NSArray *newArr = nil;
-        if (info.retCode == RETCODE_SUCCESS && [info.result isKindOfClass:[NSDictionary class]]) {
+        if (info.retCode == RESP_STATUS_YES && [info.result isKindOfClass:[NSDictionary class]]) {
             total = [[info.result objectForKey:@"total"] intValue];
             newPage = [[info.result objectForKey:@"curPage"] intValue];
             NSArray *list = [info.result objectForKey:@"list"];

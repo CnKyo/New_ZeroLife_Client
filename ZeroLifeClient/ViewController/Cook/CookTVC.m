@@ -80,7 +80,7 @@
             if (self.page > 1)
                 self.page --;
             
-            if (info.retCode != RETCODE_SUCCESS)
+            if (info.retCode != RESP_STATUS_YES)
                 self.errMsg = info.msg!=nil ? info.msg : @"网络错误";
             else
                 self.errMsg = @"暂无数据";
