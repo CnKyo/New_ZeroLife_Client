@@ -118,7 +118,7 @@
     [self showWithStatus:@"正在查询..."];
     
     NSMutableDictionary *para = [NSMutableDictionary new];
-    [para setObject:JH_KEY forKey:@"key"];
+    [para setObject:JHSDK_AppKey forKey:@"key"];
     
     if (mType == ZLHydroelectricTypeWithProvince) {
  

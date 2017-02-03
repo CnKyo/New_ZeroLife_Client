@@ -14,5 +14,5 @@
  页面类型：1是超市2是报修3是家政
  */
 @property (assign,nonatomic) kOrderClassType mType;
-@property (strong,nonatomic) ZLShopHomeShopObj *mShopObj;
+@property (strong,nonatomic) ZLShopHomeShopObj *mShopBaseObj;
 @end

@@ -320,12 +320,12 @@
     
     NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
     
-    BOOL success;
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSError *error;
+    //BOOL success;
+    //NSFileManager *fileManager = [NSFileManager defaultManager];
+    //NSError *error;
     
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
+    //NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    //NSString *documentsDirectory = [paths objectAtIndex:0];
     
     if ([mediaType isEqualToString:@"public.image"]){
        

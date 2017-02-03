@@ -32,6 +32,9 @@
 
 @protocol StandardsViewDelegate <NSObject>
 
+
+@optional
+
 /**
  * 自定义btn点击事件
  */

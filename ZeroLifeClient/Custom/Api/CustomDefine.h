@@ -31,11 +31,8 @@
 #define  KEY_USERNAME_PASSWORD @"com.company.app.usernamepassword"
 #define  KEY_USERNAME @"com.company.app.username"
 #define  KEY_PASSWORD @"com.company.app.password"
-#define AMAP_KEY @"7970dba38f00e9b34aed65fb0bd29194"
 
-#define  JH_KEY @"29c41f5f6374ad7a7a6bc635b9e06cfa"
 
-#define  JH_API @"http://op.juhe.cn/ofpay/public/province"
 
 #define ZLDefaultGoodsImg           [UIImage imageNamed:@"ZLDefault_Img"]
 #define ZLDefaultShopImg           [UIImage imageNamed:@"ZLDefault_Shop"]
@@ -189,21 +186,39 @@ typedef enum {
 #define COLOR_LowNavBar             [UIColor colorWithRed:0.761 green:0.914 blue:0.769 alpha:1.000]
 #define COLOR_BtnBar                [UIColor colorWithRed:0.980 green:0.675 blue:0.082 alpha:1.000]
 #define TABLE_PAGE_ROW              20  //每次页面调用20条数据
-#define WXPAYKEY @"wxf8feb845b3a4d04e"
 
 
 
-static NSString *JPush_AppKey = @"5e3e27da01ec6cb61b8e2b4d";
-static NSString *JPush_Channel = @"25b4503e82ad1f91cfc56061";
-static BOOL JPush_IsProduction = YES;
+
+//极光推送
+static NSString *JPush_AppKey                               = @"5e3e27da01ec6cb61b8e2b4d";
+static NSString *JPush_Channel                              = @"25b4503e82ad1f91cfc56061";
+static BOOL      JPush_IsProduction                         = YES;
+
+//sharesdk分享
+static NSString *ShareSDK_AppKey                            = @"11070552590dc";
+static NSString *ShareSDK_QQ_AppId                          = @"1105204239";
+static NSString *ShareSDK_QQ_AppKey                         = @"5SShQsbv5YgKswaF";
+static NSString *ShareSDK_WeChat_AppId                      = @"wxf8feb845b3a4d04e";
+static NSString *ShareSDK_WeChat_AppSecret                  = @"5060f2cb199015e81b74c6d5fc26e4a6";
+
+//腾讯统计
+static NSString *MTASDK_AppKey                              = @"IBW9PAI485ZQ";
+
+//地图
+static NSString *AMapSDK_AppKey                             = @"7970dba38f00e9b34aed65fb0bd29194";
+
+//聚合平台
+static NSString *JHSDK_AppKey                               = @"29c41f5f6374ad7a7a6bc635b9e06cfa";
+static NSString *JHSDK_API                                  = @"http://op.juhe.cn/ofpay/public/province";
 
 
-static int const RESP_STATUS_YES                  = 200;             //成功
-static int const RESP_STATUS_NO                   = 1;             //失败
-static int const RESP_STATUS_LOGIN                  = 300;             //需要登录
-static int const RESP_STATUS_RELOGIN                  = 405;             //需要重新登录
 
-#define RETCODE_SUCCESS  200
+static int const RESP_STATUS_YES                            = 200;             //成功
+static int const RESP_STATUS_NO                             = 1;             //失败
+static int const RESP_STATUS_LOGIN                          = 300;             //需要登录
+static int const RESP_STATUS_RELOGIN                        = 405;             //需要重新登录
+
 
 
 //static NSString* const  kAFAppDotNetApiBaseURLString    = @"http://localhost:8080";
@@ -216,40 +231,44 @@ static int const RESP_STATUS_RELOGIN                  = 405;             //需�
 //static NSString* const  kAFAppDotNetApiServiceURLString    = @"/api/app/service";
 //static NSString* const  kAFAppDotNetImgBaseURLString    = @"http://192.168.1.114/resource";
 
+//api访问地址
+static NSString* const  kAFAppDotNetApiBaseURLString        = @"http://app.china-cr.com";
+static NSString* const  kAFAppDotNetApiExtraURLString       = @"/api/app/client";
+static NSString* const  kAFAppDotNetApiServiceURLString     = @"/api/app/service";
+static NSString* const  kAFAppDotNetImgBaseURLString        = @"http://resource.china-cr.com/resource";
 
-static NSString* const  kAFAppDotNetApiBaseURLString    = @"http://app.china-cr.com";
-static NSString* const  kAFAppDotNetApiExtraURLString    = @"/api/app/client";
-static NSString* const  kAFAppDotNetApiServiceURLString    = @"/api/app/service";
-static NSString* const  kAFAppDotNetImgBaseURLString    = @"http://resource.china-cr.com/resource";
+
+static NSString * const MyUserNeedUpdateNotification        = @"MyUserNeedUpdateNotification";
+static NSString * const MyUserInfoChangedNotification       = @"MyUserInfoChangedNotification";
+
+static NSString * const MyUserAddressNeedUpdateNotification = @"MyUserAddressNeedUpdateNotification"; //地址信息需要更新
+static NSString * const MyOrderPaySuccessNotification       = @"MyOrderPaySuccessNotification";
 
 
-static NSString * const MyUserNeedUpdateNotification     = @"MyUserNeedUpdateNotification";
-static NSString * const MyUserInfoChangedNotification   = @"MyUserInfoChangedNotification";
 
-static NSString * const MyUserAddressNeedUpdateNotification   = @"MyUserAddressNeedUpdateNotification"; //地址信息需要更新
-static NSString * const MyOrderPaySuccessNotification   = @"MyOrderPaySuccessNotification";
+
 
 static NSString * const UpDateSystemCoupNotification   = @"UpDateSystemCoupNotification";
 
 //功能参数（用户头像-U_PHOTO，用户认证文件-U_AUT，用户跑跑腿申请资料-U_APPLY，用户订单处理-U_ORDERS）
-static NSString* const  kFileUploadPath_Photo       = @"U_PHOTO";
-static NSString* const  kFileUploadPath_Aut         = @"U_AUT";
-static NSString* const  kFileUploadPath_Apply       = @"U_APPLY";
-static NSString* const  kFileUploadPath_Orders      = @"U_ORDERS";
+static NSString* const  kFileUploadPath_Photo           = @"U_PHOTO";
+static NSString* const  kFileUploadPath_Aut             = @"U_AUT";
+static NSString* const  kFileUploadPath_Apply           = @"U_APPLY";
+static NSString* const  kFileUploadPath_Orders          = @"U_ORDERS";
 
 
 //是否有支付密码(NOPASS-无/PASS-有)
-static NSString* const  kWalletPayment_NoPass       = @"NOPASS";
-static NSString* const  kWalletPayment_Pass         = @"PASS";
+static NSString* const  kWalletPayment_NoPass           = @"NOPASS";
+static NSString* const  kWalletPayment_Pass             = @"PASS";
 
 
 
 // 用户红包、优惠券状态（创建，发放中，暂停发放，过期，未使用，已使用）
 // 1. 用户领取后的优惠券：NOUSE->ISUSED->OVERDUE
 // 2. 用户领取后的红包：CONFIRM->NOUSE->ISUSED
-static NSString* const  kCouponState_NoUse          = @"NOUSE";
-static NSString* const  kCouponState_IsUsed         = @"ISUSED";
-static NSString* const  kCouponState_Overdue        = @"OVERDUE";
+static NSString* const  kCouponState_NoUse              = @"NOUSE";
+static NSString* const  kCouponState_IsUsed             = @"ISUSED";
+static NSString* const  kCouponState_Overdue            = @"OVERDUE";
 
 
 

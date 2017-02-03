@@ -200,7 +200,7 @@
     if (self.tableArr.count > indexPath.row) {
         ZLSuperMarketShopViewController *vc = [ZLSuperMarketShopViewController new];
         vc.mType = ZLShopTypeHouseKeeping;
-        vc.mShopObj = self.tableArr[indexPath.row];
+        vc.mShopBaseObj = self.tableArr[indexPath.row];
         
         [self pushViewController:vc];
     }
