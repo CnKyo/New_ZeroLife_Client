@@ -95,11 +95,14 @@
     [self initShareView];
     [self initData];
 }
+#pragma mark----****----支付成功之后在这里处理分享，发红包
 -(void)handleUserPaySuccess:(NSNotification *)note
 {
 //    [self mPopAction];
     isSucess = YES;
     mComformBtn.hidden = YES;
+    ///这里显示发红包按钮
+    mSendRedBagBtn.hidden = NO;
     [self.tableView reloadData];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:MyUserNeedUpdateNotification object:nil];

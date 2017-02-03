@@ -111,6 +111,10 @@
     self.mServiceContent.text = mPreOrder.goods.pro_component;
     
     
+    AddressObject *mLocalAddress = [Util ZLGetLocalDataWithKey:kDeliveryAddress];
+    if (mPreOrder.mAddress == nil) {
+        mPreOrder.mAddress = mLocalAddress;
+    }
     NSString *mConnectP = [NSString stringWithFormat:@"%@-%@",mPreOrder.mAddress.addr_name,mPreOrder.mAddress.addr_phone];
     NSString *mDetailAddress = mPreOrder.mAddress.addr_address;
     

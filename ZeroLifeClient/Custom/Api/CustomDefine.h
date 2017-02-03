@@ -337,6 +337,7 @@ static NSString* const  kMessageReadState_READ          = @"READ";  //已读
 //本地数据缓存
 static NSString* const  kAddressCommunity               = @"mAddress";  ///社区地址缓存
 static NSString* const  kHomeData                       = @"mHome";     ///首页缓存
+static NSString* const  kDeliveryAddress                        = @"mDeliveryAddress";  ///收货地址缓存
 
 typedef enum {
     kUserSexType_man = 1,//

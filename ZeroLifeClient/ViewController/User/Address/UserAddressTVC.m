@@ -257,7 +257,7 @@
     if (self.tableArr.count > 0) {
         if (_isChooseAddress == YES) {
             self.block(self.tableArr[indexPath.section]);
-
+            [Util ZLSaveLocalData:self.tableArr[indexPath.section] withKey:kDeliveryAddress];
             if (self.chooseCallBack)
                 self.chooseCallBack(nil);
             [self performSelector:@selector(popViewController) withObject:nil afterDelay:0.2];
