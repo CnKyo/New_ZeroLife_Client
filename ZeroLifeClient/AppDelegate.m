@@ -114,7 +114,7 @@
     NSString *advertisingId = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
     [JPUSHService setupWithOption:launchOptions appKey:JPush_AppKey
                           channel:JPush_Channel
-                 apsForProduction:JPush_IsProduction///极光推送修改发布环境
+                 apsForProduction:JPush_IsProduction///极光推送修改发布环境改为yes
             advertisingIdentifier:advertisingId];
     
     
