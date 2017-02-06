@@ -131,6 +131,11 @@
         mHeaderView = [ZLCommitOrderHeaderView initWithHeder];
         mHeaderView.delegate = self;
         
+        AddressObject *mLocalAddress = [Util ZLGetLocalDataWithKey:kDeliveryAddress];
+        if (self.mPreOrder.mAddress == nil) {
+            self.mPreOrder.mAddress = mLocalAddress;
+        }
+        
         NSString *mConnectP = [NSString stringWithFormat:@"%@-%@",self.mPreOrder.mAddress.addr_name,self.mPreOrder.mAddress.addr_phone];
         NSString *mAddress = [NSString stringWithFormat:@"%@",self.mPreOrder.mAddress.addr_address];
         
