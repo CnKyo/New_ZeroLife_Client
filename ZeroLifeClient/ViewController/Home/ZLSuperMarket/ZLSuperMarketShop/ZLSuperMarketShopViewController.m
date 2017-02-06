@@ -1686,8 +1686,12 @@ static const CGFloat mTopH = 156;
             ZLAddObj.mSpe = [ZLSpeObj new];
             ZLAddObj.mSpe.mSpeGoodsName = mCamGoods.sta_val_name;
             
+            if (mCamGoods.mNum<=0) {
+                [ZLAddObj deleteToDB];
+            }else{
+                [ZLAddObj saveToDB];
+            }
             
-            [ZLAddObj saveToDB];
             [mRightDataArr replaceObjectAtIndex:mIndexPath.row withObject:mCamGoods];
             
             [mRightTableView beginUpdates];

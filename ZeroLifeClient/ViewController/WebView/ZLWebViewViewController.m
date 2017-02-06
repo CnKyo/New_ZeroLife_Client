@@ -76,7 +76,10 @@
     self.mSpeAddArray = [NSMutableArray new];
     self.mAddSkuArray = [NSMutableArray new];
     self.mSelectedSpeArray = [NSMutableArray new];
-    [self.mSelectedSpeArray addObject:_mClsGoodsObj];
+    if (_mClsGoodsObj != nil) {
+        [self.mSelectedSpeArray addObject:_mClsGoodsObj];
+    }
+    
     mAddShopCarEx = [ZLAddShopCarExObj new];
 
     [self initNaviBar];
@@ -302,74 +305,112 @@
 - (void)showSpeView{
     [self.mSpeAddArray removeAllObjects];
 
-    mSpeView.mModel = _mClsGoodsObj;
-    float mP = 0;
-    int count = 0;
-    for (ZLGoodsSKU *sku in _mClsGoodsObj.skus) {
-        if (_mClsGoodsObj.sku_id == sku.sku_id) {
-            mP = sku.sku_price;
-            count = sku.sku_stock;
-        }
-    }
-    
-    [self UpdateSpeViewPage:_mClsGoodsObj.img_url andGoodsName:_mClsGoodsObj.pro_name andGoodsPrice:mP andSkuCount:count andGoodsNum:_mClsGoodsObj.mNum];
-    
+//    mSpeView.mModel = _mClsGoodsObj;
     ///规格数组
     NSMutableArray *mSkuTempArr = [NSMutableArray new];
-    
-    for (int i = 0;i<_mClsGoodsObj.skus.count;i++) {
+    float mP = 0;
+    int count = 0;
+    int pronum = 0;
+    NSString *mImgUrl = nil;
+    NSString *mProName = nil;
+    if (_mClsGoodsObj != nil) {
+        mImgUrl = _mClsGoodsObj.img_url;
+        mProName = _mClsGoodsObj.pro_name;
+        pronum = _mClsGoodsObj.mNum;
+        for (ZLGoodsSKU *sku in _mClsGoodsObj.skus) {
+            if (_mClsGoodsObj.sku_id == sku.sku_id) {
+                mP = sku.sku_price;
+                count = sku.sku_stock;
+            }
+        }
         
-        ZLGoodsSKU *mOne = _mClsGoodsObj.skus[i];
-        
-        BOOL mIsAdd = YES;
-        
-        for (int j = 0; j<mSkuTempArr.count ; j++) {
+        for (int i = 0;i<_mClsGoodsObj.skus.count;i++) {
             
+            ZLGoodsSKU *mOne = _mClsGoodsObj.skus[i];
             
+            BOOL mIsAdd = YES;
             
-            ZLGoodsSpeList *mTwo = mSkuTempArr[j];
-            
-            if (mOne.sta_id == mTwo.mStaId) {
+            for (int j = 0; j<mSkuTempArr.count ; j++) {
                 
                 
+                ZLGoodsSpeList *mTwo = mSkuTempArr[j];
+                
+                if (mOne.sta_id == mTwo.mStaId) {
+                    
+                    
+                    
+                    ZLSpeObj *mSkuValue  = [ZLSpeObj new];
+                    mSkuValue.mSpeGoodsName = mOne.sta_val_name;
+                    mSkuValue.mSku = mOne;
+                    mSkuValue.mSta_val_id = mOne.sta_val_id;
+                    
+                    [mTwo.mSpeArr addObject:mSkuValue];
+                    [mSkuTempArr replaceObjectAtIndex:j withObject:mTwo];
+                    mIsAdd = NO;
+                    continue;
+                    
+                }
+                
+            }
+            
+            
+            if (mIsAdd == YES) {
+                
+                ZLGoodsSpeList *mSpeListObj = [ZLGoodsSpeList new];
+                mSpeListObj.mSpeName = mOne.sta_name;
+                mSpeListObj.mStaId = mOne.sta_id;
                 
                 ZLSpeObj *mSkuValue  = [ZLSpeObj new];
                 mSkuValue.mSpeGoodsName = mOne.sta_val_name;
                 mSkuValue.mSku = mOne;
                 mSkuValue.mSta_val_id = mOne.sta_val_id;
                 
-                [mTwo.mSpeArr addObject:mSkuValue];
-                [mSkuTempArr replaceObjectAtIndex:j withObject:mTwo];
-                mIsAdd = NO;
-                continue;
+                NSMutableArray *tempArr = [NSMutableArray new];
+                [tempArr addObject:mSkuValue];
+                mSpeListObj.mSpeArr = tempArr;
+                
+                [mSkuTempArr addObject:mSpeListObj];
                 
             }
             
         }
+
+    }else{
+        mImgUrl = _mCamGoodsObj.img_url;
+        mProName = _mCamGoodsObj.pro_name;
+        pronum = _mCamGoodsObj.mNum;
+        mP = +_mCamGoodsObj.sku_price;
+        count = _mCamGoodsObj.sku_stock;
+        
+        ZLGoodsSpeList *mSpeListObj = [ZLGoodsSpeList new];
+        mSpeListObj.mSpeName = _mCamGoodsObj.sta_name;
+        mSpeListObj.mStaId = _mCamGoodsObj.sta_id;
+        
+        ZLGoodsSKU *mOne = [ZLGoodsSKU new];
+        mOne.sta_required = _mCamGoodsObj.sta_required;
+        mOne.sku_price = _mCamGoodsObj.sku_price;
+        mOne.sta_id = _mCamGoodsObj.sta_id;
+        mOne.sku_stock = _mCamGoodsObj.sku_stock;
+        mOne.sku_cost = _mCamGoodsObj.sku_cost;
+        mOne.sta_val_id = _mCamGoodsObj.sta_val_id;
+        mOne.sta_val_name = _mCamGoodsObj.sta_val_name;
+        mOne.sta_name = _mCamGoodsObj.sta_name;
+        mOne.sta_val_state = _mCamGoodsObj.sta_val_state;
         
         
-        if (mIsAdd == YES) {
-            
-            ZLGoodsSpeList *mSpeListObj = [ZLGoodsSpeList new];
-            mSpeListObj.mSpeName = mOne.sta_name;
-            mSpeListObj.mStaId = mOne.sta_id;
-            
-            ZLSpeObj *mSkuValue  = [ZLSpeObj new];
-            mSkuValue.mSpeGoodsName = mOne.sta_val_name;
-            mSkuValue.mSku = mOne;
-            mSkuValue.mSta_val_id = mOne.sta_val_id;
-            
-            NSMutableArray *tempArr = [NSMutableArray new];
-            [tempArr addObject:mSkuValue];
-            mSpeListObj.mSpeArr = tempArr;
-            
-            [mSkuTempArr addObject:mSpeListObj];
-            
-        }
-        
-        
+        ZLSpeObj *mSkuValue  = [ZLSpeObj new];
+        mSkuValue.mSpeGoodsName = _mCamGoodsObj.sta_val_name;
+        mSkuValue.mSku = mOne;
+        mSkuValue.mSta_val_id = _mCamGoodsObj.sta_val_id;
+        NSMutableArray *tempArr = [NSMutableArray new];
+        [tempArr addObject:mSkuValue];
+        mSpeListObj.mSpeArr = tempArr;
+        [mSkuTempArr addObject:mSpeListObj];
+
     }
     
+    [self UpdateSpeViewPage:mImgUrl andGoodsName:mProName andGoodsPrice:mP andSkuCount:count andGoodsNum:pronum];
+
     [self.mSpeAddArray addObjectsFromArray:mSkuTempArr];
     
     [_mSpeTableView reloadData];

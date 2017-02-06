@@ -743,6 +743,10 @@
 @property (strong,nonatomic) NSString*              bnr_page;       //!< page(跳转界面)
 @property (strong,nonatomic) NSString*              bnr_image;      //!< url（图片URL）
 @property (assign,nonatomic) ZLHomeBannerType       bnr_state;      //!< 状态1平台 2超市
+
+@property (strong,nonatomic) NSString*              bnr_url;      //!< 点击连接url
+@property (strong,nonatomic) NSString*              bnr_add_time;      //!< 添加时间
+
 @end
 
 

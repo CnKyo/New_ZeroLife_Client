@@ -59,6 +59,8 @@
  */
 @property (weak, nonatomic) IBOutlet UILabel *mSailsNum;
 
+@property (weak, nonatomic) IBOutlet UILabel *mGoodsPrice;
+
 /**
  内容
  */

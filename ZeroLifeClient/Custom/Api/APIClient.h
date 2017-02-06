@@ -35,7 +35,8 @@ typedef void (^TableShareSdkBlock)(int totalpage, NSArray *tableArr, APIShareSdk
 @property (nonatomic, copy) NSSet <NSString *> *acceptableContentTypes;
 
 + (instancetype)sharedClient;
-
+#pragma mark----  图片上传方法
++ (instancetype)sharedUpLoad;
 #pragma mark----  获取跑跑腿订单操作状态
 /**
  获取跑跑腿订单操作状态

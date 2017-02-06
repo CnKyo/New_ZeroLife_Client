@@ -70,7 +70,7 @@
         }
         
         [SVProgressHUD showWithStatus:@"上传中..."];
-        [[APIClient sharedClient] fileUploadWithTag:self uploadDatas:arr type:kFileType_photo path:kFileUploadPath_Orders call:^(NSArray *tableArr, APIObject *info) {
+        [[APIClient sharedUpLoad] fileUploadWithTag:self uploadDatas:arr type:kFileType_photo path:kFileUploadPath_Orders call:^(NSArray *tableArr, APIObject *info) {
             if (info.code == RESP_STATUS_YES) {
                 [self.com_imgsUrlArr setArray:tableArr];
                 [self evaluateSubmmit];

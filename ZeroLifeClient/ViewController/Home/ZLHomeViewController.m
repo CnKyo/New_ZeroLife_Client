@@ -39,7 +39,7 @@
 #import "ZLNeighbourhoodViewController.h"
 #import "GPSValidLocationPicker.h"
 #import "GPSLocationPicker.h"
-
+#import "ZLSuperMarketShopViewController.h"
 #define NAVBAR_CHANGE_POINT 30
 @interface ZLHomeViewController ()<UITableViewDelegate,UITableViewDataSource,ZLHomeScrollerTableCellDelegate,ZLHomeLocationViewDelegate,ZLCoupViewDelegate,AMapLocationManagerDelegate,MMApBlockCoordinate,ZLHomeOtherCellDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *mTableView;
@@ -701,10 +701,14 @@
 - (void)ZLHomeBannerDidSelectedWithIndex:(NSInteger)mIndex{
     MLLog(@"点击了第:%ld个",(long)mIndex);
     
-    //ZLHomeBanner *mBaner = mBannerArr[mIndex];
-    
-    
-    
+    ZLHomeBanner *mBaner = mBannerArr[mIndex];
+//    if (mBaner.bnr_url.length>0) {
+//        ZLWebVc *vc = [ZLWebVc new];
+//        vc.mUrl = mBaner.bnr_url;
+//        vc.hidesBottomBarWhenPushed = YES;
+//        
+//        [self pushViewController:vc];
+//    }
 
 }
 #pragma mark ----****----优惠券view
@@ -782,12 +786,29 @@
     MLLog(@"点击了------%ld",(long)mIndex);
     
     ZLHomeAdvList *mAdv = mAdvDataSourceArr[mIndex];
-    ZLWebVc *vc = [ZLWebVc new];
-    vc.mUrl = mAdv.adv_click_url;
-    vc.mTitle = mAdv.adv_title;
-    vc.hidesBottomBarWhenPushed = YES;
     
-    [self pushViewController:vc];
+    if (mAdv.adv_click_type == 1) {
+
+        ZLSuperMarketShopViewController *ZLSuperMarketShopVC = [ZLSuperMarketShopViewController new];
+        ZLSuperMarketShopVC.mType = kOrderClassType_product;
+        ZLSuperMarketShopVC.mShopBaseObj = [ZLShopHomeShopObj new];
+        ZLSuperMarketShopVC.mShopBaseObj.shop_id = mAdv.shop_id;
+        ZLSuperMarketShopVC.title = mAdv.adv_title;
+        
+        ZLSuperMarketShopVC.hidesBottomBarWhenPushed = YES;
+        
+        [self pushViewController:ZLSuperMarketShopVC];
+    }else{
+
+        ZLWebVc *vc = [ZLWebVc new];
+        vc.mUrl = mAdv.adv_click_url;
+        vc.mTitle = mAdv.adv_title;
+        vc.hidesBottomBarWhenPushed = YES;
+        
+        [self pushViewController:vc];
+    }
+    
+    
 
 }
 @end
