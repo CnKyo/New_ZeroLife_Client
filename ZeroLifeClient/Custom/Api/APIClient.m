@@ -66,15 +66,7 @@
 
     return [NSString stringWithFormat:@"%@%@",kAFAppDotNetApiBaseURLString,kAFAppDotNetApiExtraURLString];
 }
-/**
- 返回当前图片url
- 
- @param mUrl 图片的url
- @return 返回图片的URL
- */
-- (NSString *)currentImgUrl:(NSString *)mUrl{
-return [NSString stringWithFormat:@"%@%@%@",kAFAppDotNetImgBaseURLString,kAFAppDotNetApiExtraURLString,mUrl];
-}
+
 #pragma mark----  获取跑跑腿订单操作状态
 /**
  获取跑跑腿订单操作状态
