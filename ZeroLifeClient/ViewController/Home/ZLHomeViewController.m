@@ -744,6 +744,7 @@
                 [mSystemCoupList addObjectsFromArray:List];
                 
                 [mCoupView.mCoupTableView reloadData];
+                [[NSNotificationCenter defaultCenter] postNotificationName:MyUserNeedUpdateNotification object:nil];
             }else{
                 [self hiddenCoupView];
             }

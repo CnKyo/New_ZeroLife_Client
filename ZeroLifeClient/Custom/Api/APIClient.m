@@ -1940,8 +1940,21 @@
 
     if (user.user_id > 0) {
         [para setInt:user.user_id forKey:@"user_id"];
-        [self loadAPITableListWithTag:self path:@"/user/coupon/load_coupon" parameters:para pageIndex:1 subClass:[ZLSystempCoup class] call:^(int totalPage, NSArray *tableArr, APIObject *info) {
-            block(info,tableArr);
+        [self loadAPIWithTag:self path:@"/user/coupon/load_coupon" parameters:para call:^(APIObject *info) {
+
+            if (info.code == RESP_STATUS_YES) {
+                
+                NSMutableArray *mTempArr = [NSMutableArray new];
+                for (NSDictionary *dic in info.data) {
+                    [mTempArr addObject:[ZLSystempCoup mj_objectWithKeyValues:dic]];
+                }
+                block(info,mTempArr);
+
+            }else{
+                block(info,nil);
+            }
+            
+            
         }];
     }else{
         block(nil, nil);
