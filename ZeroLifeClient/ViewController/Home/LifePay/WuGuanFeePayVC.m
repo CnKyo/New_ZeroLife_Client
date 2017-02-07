@@ -27,10 +27,11 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     
     
-//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] bk_initWithTitle:@"缴费记录" style:UIBarButtonItemStylePlain handler:^(id  _Nonnull sender) {
-//        FeePayHistoryVC *vc = [[FeePayHistoryVC alloc] init];
-//        [self.navigationController pushViewController:vc animated:YES];
-//    }];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] bk_initWithTitle:@"缴费记录" style:UIBarButtonItemStylePlain handler:^(id  _Nonnull sender) {
+        FeePayHistoryVC *vc = [[FeePayHistoryVC alloc] init];
+        vc.orderType = kOrderClassType_fee_peroperty;
+        [self.navigationController pushViewController:vc animated:YES];
+    }];
 }
 
 

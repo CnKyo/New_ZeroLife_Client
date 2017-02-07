@@ -9,5 +9,5 @@
 #import "CustomVC.h"
 
 @interface FeePayHistoryVC : CustomVC
-
+@property(nonatomic,assign) kOrderClassType orderType;
 @end

@@ -1303,7 +1303,7 @@
         NSMutableDictionary* paramDic = [NSMutableDictionary dictionary];
         [paramDic setInt:user.user_id forKey:@"user_id"];
         [paramDic setInt:odr_type forKey:@"odr_type"];
-        [paramDic setNeedStr:odr_status forKey:@"odr_status"];
+        [paramDic setValidStr:odr_status forKey:@"odr_status"];
         
         [self loadAPITableListWithTag:self path:@"/order/order_list" parameters:paramDic pageIndex:page subClass:[OrderObject class] call:^(int totalPage, NSArray *tableArr, APIObject *info) {
             callback(totalPage, tableArr, info);

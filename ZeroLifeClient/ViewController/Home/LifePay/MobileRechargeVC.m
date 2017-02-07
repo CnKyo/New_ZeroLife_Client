@@ -12,6 +12,7 @@
 #import <JKCategories/NSString+JKNormalRegex.h>
 
 #import "ZLGoPayViewController.h"
+#import "FeePayHistoryVC.h"
 
 @implementation MobileRechargeMoneyView
 
@@ -294,6 +295,13 @@
         make.right.equalTo(superView.right).offset(-padding);
         make.top.equalTo(_moneyChooseView.bottom).offset(50);
         make.height.equalTo(50);
+    }];
+    
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] bk_initWithTitle:@"缴费记录" style:UIBarButtonItemStylePlain handler:^(id  _Nonnull sender) {
+        FeePayHistoryVC *vc = [[FeePayHistoryVC alloc] init];
+        vc.orderType = kOrderClassType_fee_mobile;
+        [self.navigationController pushViewController:vc animated:YES];
     }];
 }
 

@@ -258,6 +258,55 @@
     return str;
 }
 
++(NSString *)strMemoDesWithOrderType:(kOrderClassType)type
+{
+    NSString *str = @"";
+    switch (type) {
+        case kOrderClassType_fix:
+            str = @"报修订单分类ID";
+            break;
+        case kOrderClassType_product:
+            str = @"商品备注";
+            break;
+        case kOrderClassType_dryclean:
+            str = @"干洗";
+            break;
+        case kOrderClassType_paopao:
+            str = @"跑跑腿分类描述";
+            break;
+        case kOrderClassType_paopao_apply:
+            str = @"跑跑腿申请";
+            break;
+        case kOrderClassType_fee_mobile:
+            str = @"话费号码";
+            break;
+        case kOrderClassType_fee_peroperty:
+            str = @"物业费ID";
+            break;
+        case kOrderClassType_balance_present:
+            str = @"提现银行卡";
+            break;
+        case kOrderClassType_balance_recharge:
+            str = @"余额充值";
+            break;
+        case kOrderClassType_balance_transfer:
+            str = @"转账用户账号";
+            break;
+        case kOrderClassType_balance_collection:
+            str = @"收款";
+            break;
+        case kOrderClassType_fee_sdq:
+            str = @"水电气缴费";
+            break;
+        case kOrderClassType_fee_parking:
+            str = @"停车缴费";
+            break;
+        default:
+            str = @"其它";
+            break;
+    }
+    return str;
+}
 
 +(NSString *)iconImgStrOrderType:(kOrderClassType)type
 {
