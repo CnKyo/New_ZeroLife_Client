@@ -131,6 +131,9 @@
 		04770EFE1DDEEE47008B7505 /* ZLRegistForgetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04770EFD1DDEEE47008B7505 /* ZLRegistForgetViewController.m */; };
 		04770F011DDEF523008B7505 /* ZLGoPaySucsessCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04770F001DDEF523008B7505 /* ZLGoPaySucsessCell.m */; };
 		04770F031DDEF581008B7505 /* ZLGoPaySucsessViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04770F021DDEF581008B7505 /* ZLGoPaySucsessViewCell.xib */; };
+		047C97E41E4AAF6900F5B70E /* NetAndUDManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 047C97DF1E4AAF6900F5B70E /* NetAndUDManager.m */; };
+		047C97E51E4AAF6900F5B70E /* OnlyLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 047C97E11E4AAF6900F5B70E /* OnlyLocationManager.m */; };
+		047C97E61E4AAF6900F5B70E /* OnlyLocationVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 047C97E31E4AAF6900F5B70E /* OnlyLocationVO.m */; };
 		047D7C311E125994005F9081 /* ZLPayHydroelectricViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 047D7C301E125994005F9081 /* ZLPayHydroelectricViewController.m */; };
 		04866B891DD40E53008DA56B /* ZLShopCarBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04866B811DD40E53008DA56B /* ZLShopCarBottomView.m */; };
 		04866B8A1DD40E53008DA56B /* ZLShopCarBottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04866B821DD40E53008DA56B /* ZLShopCarBottomView.xib */; };
@@ -840,6 +843,12 @@
 		04770EFF1DDEF523008B7505 /* ZLGoPaySucsessCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLGoPaySucsessCell.h; sourceTree = "<group>"; };
 		04770F001DDEF523008B7505 /* ZLGoPaySucsessCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLGoPaySucsessCell.m; sourceTree = "<group>"; };
 		04770F021DDEF581008B7505 /* ZLGoPaySucsessViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLGoPaySucsessViewCell.xib; sourceTree = "<group>"; };
+		047C97DE1E4AAF6900F5B70E /* NetAndUDManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetAndUDManager.h; sourceTree = "<group>"; };
+		047C97DF1E4AAF6900F5B70E /* NetAndUDManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetAndUDManager.m; sourceTree = "<group>"; };
+		047C97E01E4AAF6900F5B70E /* OnlyLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlyLocationManager.h; sourceTree = "<group>"; };
+		047C97E11E4AAF6900F5B70E /* OnlyLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlyLocationManager.m; sourceTree = "<group>"; };
+		047C97E21E4AAF6900F5B70E /* OnlyLocationVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlyLocationVO.h; sourceTree = "<group>"; };
+		047C97E31E4AAF6900F5B70E /* OnlyLocationVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlyLocationVO.m; sourceTree = "<group>"; };
 		047D7C2F1E125994005F9081 /* ZLPayHydroelectricViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPayHydroelectricViewController.h; sourceTree = "<group>"; };
 		047D7C301E125994005F9081 /* ZLPayHydroelectricViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPayHydroelectricViewController.m; sourceTree = "<group>"; };
 		04866B801DD40E53008DA56B /* ZLShopCarBottomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLShopCarBottomView.h; sourceTree = "<group>"; };
@@ -2139,6 +2148,19 @@
 				04770EFA1DDEA7DD008B7505 /* ZLRegistView.xib */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		047C97DD1E4AAF6900F5B70E /* OnlyLocationManager */ = {
+			isa = PBXGroup;
+			children = (
+				047C97DE1E4AAF6900F5B70E /* NetAndUDManager.h */,
+				047C97DF1E4AAF6900F5B70E /* NetAndUDManager.m */,
+				047C97E01E4AAF6900F5B70E /* OnlyLocationManager.h */,
+				047C97E11E4AAF6900F5B70E /* OnlyLocationManager.m */,
+				047C97E21E4AAF6900F5B70E /* OnlyLocationVO.h */,
+				047C97E31E4AAF6900F5B70E /* OnlyLocationVO.m */,
+			);
+			path = OnlyLocationManager;
 			sourceTree = "<group>";
 		};
 		04866B7E1DD40E53008DA56B /* ZLSuperMarketShopCar */ = {
@@ -3525,6 +3547,7 @@
 		DFFAA7531DB744EF001CFBB5 /* OpenSourceLib */ = {
 			isa = PBXGroup;
 			children = (
+				047C97DD1E4AAF6900F5B70E /* OnlyLocationManager */,
 				0466EB3D1E4856F600C82076 /* Nav_Background */,
 				04E936471E2DBED7007D6F6E /* MJPhotoBrowser */,
 				04E936401E2DB7EF007D6F6E /* ZLCheckAppVersion */,
@@ -4449,11 +4472,13 @@
 				04C6A37E1DCB08AF002C4D4A /* NSData+Base64.m in Sources */,
 				04E936621E2DBED7007D6F6E /* MJPhotoView.m in Sources */,
 				04B07E961DD96003004A7294 /* ZLRunningManHomeCell.m in Sources */,
+				047C97E51E4AAF6900F5B70E /* OnlyLocationManager.m in Sources */,
 				04C73BE71DDD404800E5D554 /* ZLHouseKeepingHomeCell.m in Sources */,
 				DFFAA7651DB744EF001CFBB5 /* CustomVC.m in Sources */,
 				DF630D3D1DD455530076A92C /* PlurseValueNameControl.m in Sources */,
 				DF8DBCE41DD0616F002E574B /* DryCleanShopTVC.m in Sources */,
 				DF539F141DD5B22A00AF228F /* UserCouponTableViewCell.m in Sources */,
+				047C97E41E4AAF6900F5B70E /* NetAndUDManager.m in Sources */,
 				DF630D641DD462F60076A92C /* UserIDAuthVC.m in Sources */,
 				04A763291DDC30F00061E2B0 /* ZLPPTReleaseBottomView.m in Sources */,
 				04C73BEC1DDD7CEE00E5D554 /* PPNumberButton.m in Sources */,
@@ -4501,6 +4526,7 @@
 				040D92FD1DCAE82000DBE42E /* ZLHomeMessageDetailViewController.m in Sources */,
 				DF98EC3B1DD2B0C70006EBFE /* OrderTableViewCell.m in Sources */,
 				04B07E911DD95F26004A7294 /* ZLRunningManViewController.m in Sources */,
+				047C97E61E4AAF6900F5B70E /* OnlyLocationVO.m in Sources */,
 				04C73BE31DDD3FDE00E5D554 /* ZLHouseKeepingViewController.m in Sources */,
 				04A7632F1DDC42590061E2B0 /* ZLPPTReleaseShorSendCell.m in Sources */,
 				DF5A1B4E1E332A810059EB85 /* QUTagChooseView.m in Sources */,

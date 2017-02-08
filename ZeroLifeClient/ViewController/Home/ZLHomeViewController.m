@@ -40,6 +40,8 @@
 #import "GPSValidLocationPicker.h"
 #import "GPSLocationPicker.h"
 #import "ZLSuperMarketShopViewController.h"
+#import "OnlyLocationManager.h"
+
 #define NAVBAR_CHANGE_POINT 30
 @interface ZLHomeViewController ()<UITableViewDelegate,UITableViewDataSource,ZLHomeScrollerTableCellDelegate,ZLHomeLocationViewDelegate,ZLCoupViewDelegate,AMapLocationManagerDelegate,MMApBlockCoordinate,ZLHomeOtherCellDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *mTableView;
@@ -161,6 +163,8 @@
 }
 - (void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:@"ZLAdView"];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
@@ -386,53 +390,66 @@
 #pragma mark----****----加载地址
 - (void)loadAddress{
 
-    [CurentLocation sharedManager].delegate = self;
-    [[CurentLocation sharedManager] getUSerLocation];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationStateChange:) name:LocationStateNoti object:nil];
     
-
-}
-#pragma mark----maplitdelegate
-- (void)MMapreturnLatAndLng:(NSDictionary *)mCoordinate{
-    
-    MLLog(@"定位成功之后返回的东东：%@",mCoordinate);
-    mCommunityObj.cmut_lat = [[mCoordinate objectForKey:@"wei"] doubleValue];
-    mCommunityObj.cmut_lng = [[mCoordinate objectForKey:@"jing"] doubleValue];
-}
-
-- (void)updateLocationtitle{
-    GPSValidLocationPicker *gpsPicker = [GPSValidLocationPicker shareGPSValidLocationPicker];
-    //因为该类设计为单例模式，所以如果多处用则可能出现有些地方设置了变量值保留的问题，所以尽量在调用定位前进行一次重置
-    [gpsPicker resetDefaultVariable];
-    //测试用值
-    gpsPicker.timeoutPeriod = 5;
-    gpsPicker.precision = 100;
-    gpsPicker.validDistance = 1000;
-    //下面三个变量的默认值均为yes
-    gpsPicker.showWaitView = YES;
-    gpsPicker.showLocTime = YES;
-    gpsPicker.showDetailInfo = YES;
-    
-    gpsPicker.mode = GPSValidLocationPickerModeDeterminateHorizontalBar;
-    //这个坐标是测试用的,根据实际需求传入
-    CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(mCommunityObj.cmut_lat, mCommunityObj.cmut_lng);
-    gpsPicker.nowCoordinate = coord;
-    
-    [gpsPicker startLocationAndCompletion:^(CLLocation *location, NSError *error) {
-        if (error) {
-            MLLog(@"未采集到符合精度的坐标，错误信息:%@", error);
-        } else {
-            MLLog(@"采集到符合精度的坐标经度%f, 维度%f", location.coordinate.longitude, location.coordinate.latitude);
-            //反地理编码解析地理位置
-            [[GPSLocationPicker shareGPSLocationPicker] geocodeAddressWithCoordinate:location.coordinate completion:^(NSString *address) {
-                MLLog(@"解析到的地址:%@", address);
-                
-                mLocationView.mAddress.text = [NSString stringWithFormat:@"%@",address];
-                
-            }];
-        }
+    [OnlyLocationManager shareManager:NO needVO:YES initCallBack:^(LocationInitType type, CLLocationManager *manager) {
+        
+    } resultCallBack:^(CLLocationCoordinate2D coordinate, CLLocation *location, OnlyLocationVO *locationVO) {
+        [self locationSuccess:locationVO];
     }];
 
+    
+
 }
+-(void)locationSuccess:(OnlyLocationVO *)locationVO{
+
+    MLLog(@"定位成功之后返回的东东：%@",locationVO);
+
+    mCommunityObj.cmut_lat = locationVO.location.latitude;
+    mCommunityObj.cmut_lng = locationVO.location.longitude;
+    
+
+}
+-(void)locationStateChange:(NSNotification* )noti{
+    OnlyLocationManager* manager = [OnlyLocationManager getLocationManager];
+    NSLog(@"%ld",manager.state);
+    
+    NSString* stateStr = @"初始化";
+    switch (manager.state) {
+        case 0:
+            stateStr = @"初始化失败";
+            break;
+        case 1:
+            stateStr = @"定位中";
+            break;
+        case 2:
+            stateStr = @"已获取初始位置并持续定位中";
+            break;
+        case 3:
+            stateStr = @"已定位，正在逆地理编码";
+            break;
+        case 4:
+            stateStr = @"已定位，逆地理编码完成";
+            break;
+        case 5:
+            stateStr = @"已定位，逆地理编码失败";
+            break;
+    }
+    
+    MLLog(@"%@",stateStr);
+    self.title = stateStr;
+}
+//
+//
+//#pragma mark----maplitdelegate
+//- (void)MMapreturnLatAndLng:(NSDictionary *)mCoordinate{
+//    
+//    MLLog(@"定位成功之后返回的东东：%@",mCoordinate);
+//    mCommunityObj.cmut_lat = [[mCoordinate objectForKey:@"wei"] doubleValue];
+//    mCommunityObj.cmut_lng = [[mCoordinate objectForKey:@"jing"] doubleValue];
+//}
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
