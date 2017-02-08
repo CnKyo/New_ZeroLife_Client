@@ -21,7 +21,7 @@
 +(NSMutableDictionary *)quDic
 {
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    //[dic setObject:@"104ef5c579850" forKey:@"key"];
+    [dic setObject:@"104ef5c579850" forKey:@"key"]; //apicloud key
     return dic;
 }
 

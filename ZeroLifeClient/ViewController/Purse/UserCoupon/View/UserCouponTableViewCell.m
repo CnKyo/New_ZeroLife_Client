@@ -34,6 +34,7 @@
         self.typeLable.layer.cornerRadius = 5;
         
         self.moneyLable = [superView newUILableWithText:@"" textColor:color font:font textAlignment:NSTextAlignmentCenter];
+
         
         self.nameLable = [superView newUILableWithText:@"超尔店铺" textColor:[UIColor blackColor] font:[UIFont systemFontOfSize:14]];
         self.desLable = [superView newUILableWithText:@"满100减20元" textColor:[UIColor grayColor] font:[UIFont systemFontOfSize:14]];

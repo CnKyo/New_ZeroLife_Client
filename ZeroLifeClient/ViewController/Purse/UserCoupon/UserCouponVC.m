@@ -195,27 +195,36 @@
         cell.view.statusLable.textColor = COLOR(150, 150, 150);
         cell.view.timeLable.textColor = COLOR(150, 150, 150);
     }
+    UIFont *font1 = [UIFont systemFontOfSize:25];
+    UIFont *font2 = [UIFont systemFontOfSize:14];
+    NSDictionary* style = @{@"body" : @[font1, bordColor],
+                            @"u" : @[font2, COLOR(253, 156, 16)]};
     
-    CGFloat moneyBaseWidth = 50;
+
     NSDictionary *attrs = @{NSFontAttributeName : cell.view.typeLable.font};
     CGSize size = [typeStr sizeWithAttributes:attrs];
-    size.width += 10;
+    size.width += 5;
     NSLog(@"width: %.2f", size.width);
+    
+    NSString *moneyStr1 = [NSString stringWithFormat:@"%.2f", item.cup_price];
+    NSString *moneyStr2 = @"元";
+    NSString *moneyStr = [NSString stringWithFormat:@"%@<u>%@</u>", moneyStr1, moneyStr2];
+    CGSize size1 = [moneyStr1 sizeWithAttributes:@{NSFontAttributeName : font1}];
+    CGSize size2 = [moneyStr2 sizeWithAttributes:@{NSFontAttributeName : font2}];
+    CGFloat moneyWidth = size1.width + size2.width + 5;
+    
     [cell.view.typeLable updateConstraints:^(MASConstraintMaker *make) {
         make.width.equalTo(size.width);
     }];
     [cell.view.moneyLable updateConstraints:^(MASConstraintMaker *make) {
-        if (size.width < moneyBaseWidth) {
-            make.width.equalTo(moneyBaseWidth);
+        if (size.width < moneyWidth) {
+            make.width.equalTo(moneyWidth);
         } else {
             make.width.equalTo(size.width);
         }
     }];
     
-    NSDictionary* style = @{@"body" : @[[UIFont systemFontOfSize:25], bordColor],
-                            @"u" : @[[UIFont systemFontOfSize:14], COLOR(253, 156, 16)]};
-    
-    NSString *moneyStr = [NSString stringWithFormat:@"%.2f <u>元</u>", item.cup_price];
+    //[NSString stringWithFormat:@"%.2f<u>元</u>", item.cup_price];
     cell.view.typeLable.text = typeStr;
     cell.view.layer.borderColor = bordColor.CGColor;
     cell.view.typeLable.layer.borderColor = bordColor.CGColor;
