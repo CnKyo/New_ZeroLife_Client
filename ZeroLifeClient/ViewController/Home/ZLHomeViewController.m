@@ -390,17 +390,28 @@
 #pragma mark----****----加载地址
 - (void)loadAddress{
 
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationStateChange:) name:LocationStateNoti object:nil];
-    
-    [OnlyLocationManager shareManager:NO needVO:YES initCallBack:^(LocationInitType type, CLLocationManager *manager) {
-        
-    } resultCallBack:^(CLLocationCoordinate2D coordinate, CLLocation *location, OnlyLocationVO *locationVO) {
-        [self locationSuccess:locationVO];
-    }];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationStateChange:) name:LocationStateNoti object:nil];
+//    
+//    [OnlyLocationManager shareManager:NO needVO:YES initCallBack:^(LocationInitType type, CLLocationManager *manager) {
+//        
+//    } resultCallBack:^(CLLocationCoordinate2D coordinate, CLLocation *location, OnlyLocationVO *locationVO) {
+//        [self locationSuccess:locationVO];
+//    }];
 
+    [CurentLocation sharedManager].delegate = self;
+    [[CurentLocation sharedManager] getUSerLocation];
     
 
 }
+#pragma mark----maplitdelegate
+- (void)MMapreturnLatAndLng:(NSDictionary *)mCoordinate{
+    
+    MLLog(@"定位成功之后返回的东东：%@",mCoordinate);
+    mCommunityObj.cmut_lat = [[mCoordinate objectForKey:@"wei"] doubleValue];
+    mCommunityObj.cmut_lng = [[mCoordinate objectForKey:@"jing"] doubleValue];
+    
+}
+
 -(void)locationSuccess:(OnlyLocationVO *)locationVO{
 
     MLLog(@"定位成功之后返回的东东：%@",locationVO);
