@@ -37,13 +37,13 @@
 */
 
 - (IBAction)mSelfAction:(UIButton *)sender {
-    self.block(ZLShopSendTypeWithSelf);
+    self.block(ZLShopSendTypeWithShop);
 
     [self popViewController];
 }
 
 - (IBAction)mStoreAction:(UIButton *)sender {
-    self.block(ZLShopSendTypeWithShop);
+    self.block(ZLShopSendTypeWithSelf);
 
     
     [self popViewController];

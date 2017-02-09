@@ -64,16 +64,20 @@
 
 - (void)setMPreOrderObj:(ZLPreOrderObj *)mPreOrderObj{
 
-
-    self.mPrice.text = [NSString stringWithFormat:@"¥%.2f元",mPreOrderObj.payMoney];
+    NSString *mSendP = nil;
     self.mCoupMoney.text = [NSString stringWithFormat:@"¥%.2f元",mPreOrderObj.campaignMoney];
     
-    if (mPreOrderObj.mSendType == ZLShopSendTypeWithSelf) {
-        [self.mSendType setTitle:@"上门自提" forState:0];
-    }else{
+    if (mPreOrderObj.mSendType == ZLShopSendTypeWithShop) {
+
         [self.mSendType setTitle:@"店铺配送" forState:0];
+        mSendP = [NSString stringWithFormat:@"配送费:¥%.2f元",mPreOrderObj.deliver_price_free];
+
+    }else{
+        [self.mSendType setTitle:@"上门自取" forState:0];
+        mSendP = @"自取";
     }
-    
+    self.mPrice.text = [NSString stringWithFormat:@"¥%.2f元  %@",mPreOrderObj.payMoney,mSendP];
+
     NSString *mCoupT = nil;
     
     if (mPreOrderObj.coupons.count<=0) {

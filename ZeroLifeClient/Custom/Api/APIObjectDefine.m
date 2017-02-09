@@ -440,7 +440,7 @@
 @implementation NSURL (AFObjectDefine)
 + (NSURL*)imageurl:(NSString*)str
 {
-    return [NSURL URLWithString:[NSString linkUrl:str]];
+    return [NSURL URLWithString:[[NSString linkUrl:str] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
 }
 @end
 

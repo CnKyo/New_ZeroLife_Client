@@ -90,7 +90,7 @@
         make.left.right.bottom.equalTo(self.view).offset(0);
         make.height.offset(@60);
     }];
-    
+    self.mPreOrder.mSendType = ZLShopSendTypeWithSelf;
     [self UpdataBottomView:self.mPreOrder];
     
 }
@@ -340,6 +340,22 @@
     vc.block = ^(ZLShopSendType mSendType){
     
         self.mPreOrder.mSendType = mSendType;
+        
+        float mTT = self.mPreOrder.payMoney;
+
+        if (mSendType == ZLShopSendTypeWithSelf) {
+            mTT-=self.mPreOrder.deliver_price_free;
+            if (mTT<=self.mPreOrder.totalMoney) {
+                mTT = self.mPreOrder.totalMoney;
+            }
+        }else{
+            mTT+=self.mPreOrder.deliver_price_free;
+            if (mTT>=self.mPreOrder.totalMoney+self.mPreOrder.deliver_price_free) {
+                mTT = self.mPreOrder.totalMoney+self.mPreOrder.deliver_price_free;
+            }
+        }
+        self.mPreOrder.payMoney = mTT;
+        [self UpdataBottomView:self.mPreOrder];
         [self.mTableView reloadData];
 
     };

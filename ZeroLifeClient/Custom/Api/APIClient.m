@@ -1940,6 +1940,7 @@
 
     if (user.user_id > 0) {
         [para setInt:user.user_id forKey:@"user_id"];
+        [para setObject:@"3ac4bb811f3d9dde89eb6079133426e8" forKey:@"sign"];
         [self loadAPIWithTag:self path:@"/user/coupon/load_coupon" parameters:para call:^(APIObject *info) {
 
             if (info.code == RESP_STATUS_YES) {
