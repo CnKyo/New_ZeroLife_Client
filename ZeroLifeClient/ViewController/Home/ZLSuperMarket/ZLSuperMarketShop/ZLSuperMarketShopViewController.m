@@ -166,11 +166,11 @@ static const CGFloat mTopH = 156;
         
         if (mNew.mType == ZLShopLeftTypeCamp) {
             
-            [self upDateRightTableView:mShopObj.mShopMsg.shop_id andCampId:[NSString stringWithFormat:@"%d",mNew.mId] andClassId:nil andPage:1 andType:ZLRightGoodsTypeFromCamp];
+            [self upDateRightTableView:mShopObj.mShopMsg.shop_id andCampId:[NSString stringWithFormat:@"%d",mNew.mId] andClassId:nil andPage:1 andType:ZLRightGoodsTypeFromCamp andisRemove:NO];
             
         }else{
             
-            [self upDateRightTableView:mShopObj.mShopMsg.shop_id andCampId:nil andClassId:[NSString stringWithFormat:@"%d",mNew.mId] andPage:1 andType:ZLRightGoodsTypeFromClass];
+            [self upDateRightTableView:mShopObj.mShopMsg.shop_id andCampId:nil andClassId:[NSString stringWithFormat:@"%d",mNew.mId] andPage:1 andType:ZLRightGoodsTypeFromClass andisRemove:NO];
             
         }
         
@@ -261,11 +261,11 @@ static const CGFloat mTopH = 156;
         
         if (mNew.mType == ZLShopLeftTypeCamp) {
             
-            [self upDateRightTableView:mShopObj.mShopMsg.shop_id andCampId:[NSString stringWithFormat:@"%d",mNew.mId] andClassId:nil andPage:1 andType:ZLRightGoodsTypeFromCamp];
+            [self upDateRightTableView:mShopObj.mShopMsg.shop_id andCampId:[NSString stringWithFormat:@"%d",mNew.mId] andClassId:nil andPage:1 andType:ZLRightGoodsTypeFromCamp andisRemove:NO];
             
         }else{
             
-            [self upDateRightTableView:mShopObj.mShopMsg.shop_id andCampId:nil andClassId:[NSString stringWithFormat:@"%d",mNew.mId] andPage:1 andType:ZLRightGoodsTypeFromClass];
+            [self upDateRightTableView:mShopObj.mShopMsg.shop_id andCampId:nil andClassId:[NSString stringWithFormat:@"%d",mNew.mId] andPage:1 andType:ZLRightGoodsTypeFromClass andisRemove:NO];
             
         }
 
@@ -471,8 +471,35 @@ static const CGFloat mTopH = 156;
         make.height.offset(@60);
         
     }];
+    
+    UIButton *mMoreBtn = [UIButton new];
+    mMoreBtn.frame = CGRectMake(0, 0, DEVICE_Width, 40);
+    mMoreBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+    [mMoreBtn setTitle:@"加载更多" forState:0];
+    [mMoreBtn setTitleColor:[UIColor lightGrayColor] forState:0];
+    [mMoreBtn addTarget:self action:@selector(loadMore) forControlEvents:UIControlEventTouchUpInside];
+    [mRightTableView setTableFooterView:mMoreBtn];
+    
+    
 }
+- (void)loadMore{
+    self.page+=1;
+    if (mLeftDataArr.count!=0) {
+        ZLShopLeftObj *mNew = mLeftDataArr[kIndex];
+        
+        if (mNew.mType == ZLShopLeftTypeCamp) {
+            
+            [self upDateRightTableView:mShopObj.mShopMsg.shop_id andCampId:[NSString stringWithFormat:@"%d",mNew.mId] andClassId:nil andPage:self.page andType:ZLRightGoodsTypeFromCamp andisRemove:YES];
+            
+        }else{
+            
+            [self upDateRightTableView:mShopObj.mShopMsg.shop_id andCampId:nil andClassId:[NSString stringWithFormat:@"%d",mNew.mId] andPage:self.page andType:ZLRightGoodsTypeFromClass andisRemove:YES];
+            
+        }
+        
+    }
 
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -499,6 +526,7 @@ static const CGFloat mTopH = 156;
     
     
 }
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
@@ -699,16 +727,16 @@ static const CGFloat mTopH = 156;
 
         
     }else{
-        
+        self.page = 1;
         ZLShopLeftObj *mClass = mLeftDataArr[indexPath.row];
         kIndex = indexPath.row;
         if (mClass.mType == ZLShopLeftTypeCamp) {
             
-            [self upDateRightTableView:mShopObj.mShopMsg.shop_id andCampId:[NSString stringWithFormat:@"%d",mClass.mId] andClassId:nil andPage:1 andType:ZLRightGoodsTypeFromCamp];
+            [self upDateRightTableView:mShopObj.mShopMsg.shop_id andCampId:[NSString stringWithFormat:@"%d",mClass.mId] andClassId:nil andPage:1 andType:ZLRightGoodsTypeFromCamp andisRemove:NO];
             
         }else{
             
-            [self upDateRightTableView:mShopObj.mShopMsg.shop_id andCampId:nil andClassId:[NSString stringWithFormat:@"%d",mClass.mId] andPage:1 andType:ZLRightGoodsTypeFromClass];
+            [self upDateRightTableView:mShopObj.mShopMsg.shop_id andCampId:nil andClassId:[NSString stringWithFormat:@"%d",mClass.mId] andPage:1 andType:ZLRightGoodsTypeFromClass andisRemove:NO];
             
         }
         
@@ -735,7 +763,7 @@ static const CGFloat mTopH = 156;
 
 #pragma mark----****----更新商品列表
 ///更新商品列表
-- (void)upDateRightTableView:(int)mShopId andCampId:(NSString *)mCampId andClassId:(NSString *)mClassId andPage:(int)mPage andType:(ZLRightGoodsType)mType{
+- (void)upDateRightTableView:(int)mShopId andCampId:(NSString *)mCampId andClassId:(NSString *)mClassId andPage:(int)mPage andType:(ZLRightGoodsType)mType andisRemove:(BOOL)mRemove{
     mRightTabType = mType;
     NSString *mCamptr = nil;
     NSString *mClassstr = nil;
@@ -749,7 +777,10 @@ static const CGFloat mTopH = 156;
     
     [self showWithStatus:@"正在加载中..."];
     [[APIClient sharedClient] ZLGetShopGoodsList:mShopId andCamId:[[NSString stringWithFormat:@"%@",mCamptr] intValue] andClassId:[[NSString stringWithFormat:@"%@",mClassstr] intValue] andPage:mPage andType:mType block:^(APIObject *mBaseObj, ZLShopGoodsList *mShopGoodsObj) {
-        [mRightDataArr removeAllObjects];
+        if (mRemove == NO) {
+            [mRightDataArr removeAllObjects];
+        }
+        
         if (mBaseObj.code == RESP_STATUS_YES) {
             [self dismiss];
 
