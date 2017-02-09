@@ -80,9 +80,9 @@
     }
     [self showWithStatus:@"正在发送验证码..."];
     [[APIClient sharedClient] ZLGetVerigyCode:mView.mRegistPhoneTx.text andType:_mType block:^(APIObject *mBaseObj) {
-        [self dismiss];
         if (mBaseObj.code == RESP_STATUS_YES) {
-            [self dismiss];
+            [self showSuccessStatus:@"验证码发送成功！"];
+            
             [self timeCount];
         }else{
         

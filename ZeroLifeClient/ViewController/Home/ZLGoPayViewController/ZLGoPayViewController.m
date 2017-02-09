@@ -102,7 +102,7 @@
     isSucess = YES;
     mComformBtn.hidden = YES;
     ///这里显示发红包按钮
-    mSendRedBagBtn.hidden = NO;
+    mSendRedBagBtn.hidden = YES;
     [self.tableView reloadData];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:MyUserNeedUpdateNotification object:nil];
