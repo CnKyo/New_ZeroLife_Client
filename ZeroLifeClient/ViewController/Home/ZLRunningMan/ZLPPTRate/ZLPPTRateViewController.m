@@ -37,12 +37,6 @@
     
     nib = [UINib nibWithNibName:@"ZLPPTRateCell2" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"mHeadCell"];
-
-    
-//    NSArray *mTT = @[@"全部",@"好评",@"中评",@"差评"];
-//    
-//    mSegmentView = [WKSegmentControl initWithSegmentControlFrame:CGRectMake(0, 165, DEVICE_Width, 40) andTitleWithBtn:mTT andBackgroudColor:[UIColor whiteColor] andBtnSelectedColor:[UIColor colorWithRed:0.91 green:0.53 blue:0.16 alpha:1.00] andBtnTitleColor:M_TextColor1 andUndeLineColor:[UIColor colorWithRed:0.91 green:0.53 blue:0.16 alpha:1.00] andBtnTitleFont:[UIFont systemFontOfSize:15] andInterval:20 delegate:self andIsHiddenLine:YES andType:2];
-
     
     [self setTableViewHaveHeaderFooter];
     
@@ -94,30 +88,7 @@
     return 2;
     
 }
-//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-//    
-//    if (section == 0) {
-//        return 0.1;
-//    }else{
-//        return 40;
-//    }
-//    
-//    
-//    
-//}
-//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-//    
-//    if (section == 0) {
-//        
-//        return nil;
-//    }else{
-//        return mSegmentView;
-//
-//    }
-//    
-//    
-//    
-//}
+
 - (void)mGoReleaseAction:(UIButton *)sender{
     
 }

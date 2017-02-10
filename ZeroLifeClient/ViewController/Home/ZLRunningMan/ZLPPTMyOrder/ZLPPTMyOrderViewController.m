@@ -68,7 +68,7 @@
         make.top.equalTo(mSegmentView.bottom).offset(-64);
     }];
 
-    [self setTableViewHaveHeader];
+    [self setTableViewHaveHeaderFooter];
 
     
 }
@@ -76,29 +76,23 @@
     NSLog(@"Selected index %ld (via UIControlEventValueChanged)", (long)segmentedControl.selectedSegmentIndex);
     
     m_Index = segmentedControl.selectedSegmentIndex;
+    [self.tableArr removeAllObjects];
+
     [self reloadTableViewDataSource];
     
 
 }
+- (void)reloadTableViewData{
+    [self beginHeaderRereshing];
+}
+
 - (void)reloadTableViewDataSource{
     [super reloadTableViewDataSource];
 
     [[APIClient sharedClient] ZLGetMyPPTOrder:self.page andPageSize:10 andStatus:[self currentOrderStatus:mStatusArr[m_Index]] block:^(APIObject *mBaseObj, NSArray *mArr) {
         
-        [self.tableArr removeAllObjects];
-        [self ZLHideEmptyView];
-        
-        if (mBaseObj.code == RESP_STATUS_YES) {
-            [self dismiss];
-            
-            [self.tableArr addObjectsFromArray:mArr];
-        }else{
-            [self ZLShowEmptyView:@"暂无数据" andImage:nil andHiddenRefreshBtn:NO];
-            [self showErrorStatus:mBaseObj.msg];
-        }
-        
-        [self doneLoadingTableViewData];
-        [self.tableView reloadData];
+        [self reloadWithTableArr:mArr info:mBaseObj];
+
     }];
     
 

@@ -626,6 +626,7 @@ static int const ZLRunningManVC_ClassView_Height                  = 80;
 - (void)ZLRunningManClassViewBtnClickedWithIndex:(NSInteger)mIndex{
     _mIndex = mIndex;
     MLLog(@"%ld",(long)mIndex);
+    [self.tableArr removeAllObjects];
     [self beginHeaderRereshing];
 }
 
