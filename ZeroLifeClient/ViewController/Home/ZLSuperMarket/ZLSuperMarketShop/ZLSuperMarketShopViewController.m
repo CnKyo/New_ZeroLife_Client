@@ -68,12 +68,10 @@ static const CGFloat mTopH = 156;
     ZLSuperMarketHeaderView *mHeaderView;
     ///左边的列表的数据源
     NSMutableArray *mLeftDataArr;
-    ///右边列表的数据源
-    NSMutableArray *mRightDataArr;
+
     ///左边的列表
     UITableView *mLeftTableView;
-    ///右边的列表
-    UITableView *mRightTableView;
+    
     ///通用headerview
     UIView *mGeneraHeaderView;
     
@@ -126,7 +124,7 @@ static const CGFloat mTopH = 156;
     self.mSpeAddArray = [NSMutableArray new];
     kIndex = 0;
     mLeftDataArr = [NSMutableArray new];
-    mRightDataArr = [NSMutableArray new];
+    self.tableArr = [NSMutableArray new];
     self.mSelectedSpeArray = [NSMutableArray new];
     self.mAddSkuArray = [NSMutableArray new];
     mSkuTempArr = [NSMutableArray new];
@@ -161,16 +159,31 @@ static const CGFloat mTopH = 156;
 
 }
 - (void)reloadTableViewData{
+    [self beginHeaderRereshing];
+
+   
+}
+- (void)reloadTableViewDataSource{
+    [super reloadTableViewDataSource];
+
     if (mLeftDataArr.count!=0) {
         ZLShopLeftObj *mNew = mLeftDataArr[kIndex];
         
+        BOOL refresh;
+        
+        if (kIndex <= 0) {
+            [self.tableArr removeAllObjects];
+            refresh = NO;
+        }else{
+            refresh = YES;
+        }
         if (mNew.mType == ZLShopLeftTypeCamp) {
             
-            [self upDateRightTableView:mShopObj.mShopMsg.shop_id andCampId:[NSString stringWithFormat:@"%d",mNew.mId] andClassId:nil andPage:1 andType:ZLRightGoodsTypeFromCamp andisRemove:NO];
+            [self upDateRightTableView:mShopObj.mShopMsg.shop_id andCampId:[NSString stringWithFormat:@"%d",mNew.mId] andClassId:nil andPage:self.page andType:ZLRightGoodsTypeFromCamp andisRemove:refresh];
             
         }else{
             
-            [self upDateRightTableView:mShopObj.mShopMsg.shop_id andCampId:nil andClassId:[NSString stringWithFormat:@"%d",mNew.mId] andPage:1 andType:ZLRightGoodsTypeFromClass andisRemove:NO];
+            [self upDateRightTableView:mShopObj.mShopMsg.shop_id andCampId:nil andClassId:[NSString stringWithFormat:@"%d",mNew.mId] andPage:self.page andType:ZLRightGoodsTypeFromClass andisRemove:refresh];
             
         }
         
@@ -179,7 +192,7 @@ static const CGFloat mTopH = 156;
 }
 - (void)loadData{
     [self showWithStatus:@"正在加载..."];
-    
+    self.page = 1;
     [[APIClient sharedClient] ZLGetShopMsgWithShopType:self.mType andShopId:self.mShopBaseObj.shop_id block:^(APIObject *mBaseObj, ZLShopObj *mShop,ZLShopLeftTableArr *mLeftTabArr) {
         
         [mLeftDataArr removeAllObjects];
@@ -256,40 +269,32 @@ static const CGFloat mTopH = 156;
     
     [mLeftTableView reloadData];
 
-    if (mLeftDataArr.count!=0) {
-        ZLShopLeftObj *mNew = mLeftDataArr[0];
-        
-        if (mNew.mType == ZLShopLeftTypeCamp) {
-            
-            [self upDateRightTableView:mShopObj.mShopMsg.shop_id andCampId:[NSString stringWithFormat:@"%d",mNew.mId] andClassId:nil andPage:1 andType:ZLRightGoodsTypeFromCamp andisRemove:NO];
-            
-        }else{
-            
-            [self upDateRightTableView:mShopObj.mShopMsg.shop_id andCampId:nil andClassId:[NSString stringWithFormat:@"%d",mNew.mId] andPage:1 andType:ZLRightGoodsTypeFromClass andisRemove:NO];
-            
-        }
-
-    }
+//    if (mLeftDataArr.count!=0) {
+//        ZLShopLeftObj *mNew = mLeftDataArr[0];
+//        
+//        if (mNew.mType == ZLShopLeftTypeCamp) {
+//
+//            [self upDateRightTableView:mShopObj.mShopMsg.shop_id andCampId:[NSString stringWithFormat:@"%d",mNew.mId] andClassId:nil andPage:self.page andType:ZLRightGoodsTypeFromCamp andisRemove:NO];
+//            
+//        }else{
+//            
+//            [self upDateRightTableView:mShopObj.mShopMsg.shop_id andCampId:nil andClassId:[NSString stringWithFormat:@"%d",mNew.mId] andPage:self.page andType:ZLRightGoodsTypeFromClass andisRemove:NO];
+//            
+//        }
+//
+//    }
     
     
 }
 - (void)upDatePage:(ZLShopObj *)mShop{
     
     NSString *mHeadUrl = [Util currentSourceImgUrl:mShop.mShopMsg.shop_logo];
-//    mHeaderView.mBgkImg.backgroundColor = M_CO;
-//    UIImage *mHead = nil;
-//    mHead = [UIImage imageNamed:@"ZLDefault_Shop"];
-//    
-//    UIImage *mLastImg = [mHead applyLightEffect];
-//    mHeaderView.mBgkImg.image = mLastImg;
-    
+
     [mHeaderView.mShopLogo sd_setImageWithURL:[NSURL URLWithString:mHeadUrl] placeholderImage:[UIImage imageNamed:@"ZLDefault_Shop"]];
     
     [mHeaderView.mShopLogo sd_setImageWithURL:[NSURL URLWithString:mHeadUrl] placeholderImage:[UIImage imageNamed:@"ZLDefault_Shop"] options:SDWebImageRetryFailed completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         if (image != nil) {
-            //UIImage *mLastImg11 = [image applyLightEffect];
-//            mHeaderView.mBgkImg.image = mLastImg11;
-        }
+         }
     }];
     
     
@@ -414,7 +419,7 @@ static const CGFloat mTopH = 156;
     mLeftTableView.delegate = self;
     mLeftTableView.dataSource = self;
     mLeftTableView.layer.masksToBounds = YES;
-    mRightTableView.separatorStyle = UITableViewCellSelectionStyleNone;
+    mLeftTableView.separatorStyle = UITableViewCellSelectionStyleNone;
 
     mLeftTableView.layer.borderColor = [UIColor colorWithRed:0.96 green:0.95 blue:0.96 alpha:1.00].CGColor;
     mLeftTableView.layer.borderWidth = 0.5;
@@ -423,43 +428,31 @@ static const CGFloat mTopH = 156;
     UINib   *nib = [UINib nibWithNibName:@"ZLSuperMarketShopLeftCellType" bundle:nil];
     [mLeftTableView registerNib:nib forCellReuseIdentifier:@"mLeftCell"];
 
-    
-    
-    
-    mRightTableView = [UITableView new];
-    mRightTableView.delegate = self;
-    mRightTableView.dataSource = self;
-    mRightTableView.layer.masksToBounds = YES;
-    mRightTableView.separatorStyle = UITableViewCellSelectionStyleNone;
+    [self addTableView];
+    [self setTableViewHaveHeaderFooter];
 
-    mRightTableView.layer.borderColor = [UIColor colorWithRed:0.96 green:0.95 blue:0.96 alpha:1.00].CGColor;
-    mRightTableView.layer.borderWidth = 0.5;
-    [self.view addSubview:mRightTableView];
-    
     nib = [UINib nibWithNibName:@"ZLSuperMarketShopRightSpecCell" bundle:nil];
-    [mRightTableView registerNib:nib forCellReuseIdentifier:@"mRightCell"];
+    [self.tableView registerNib:nib forCellReuseIdentifier:@"mRightCell"];
 
     nib = [UINib nibWithNibName:@"ZLHouseKeppingServiceCell" bundle:nil];
-    [mRightTableView registerNib:nib forCellReuseIdentifier:@"mHouseKeepCell"];
+    [self.tableView registerNib:nib forCellReuseIdentifier:@"mHouseKeepCell"];
     
     [mLeftTableView makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view).offset(0);
         make.top.equalTo(self.view).offset(64);
         make.bottom.equalTo(self.view).offset(-50);
-        //make.right.equalTo(mRightTableView.left).offset(0);
         make.width.offset(90);
     }];
     
-    [mRightTableView makeConstraints:^(MASConstraintMaker *make) {
+    [self.tableView remakeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.view).offset(0);
         make.top.equalTo(self.view).offset(64);
         make.bottom.equalTo(self.view).offset(-50);
         make.left.equalTo(mLeftTableView.right).offset(0);
-        //make.width.offset(DEVICE_Width-120);
     }];
     
     mLeftTableView.contentInset = UIEdgeInsetsMake(mTopH, 0, 0, 0);
-    mRightTableView.contentInset = UIEdgeInsetsMake(mTopH, 0, 0, 0);
+    self.tableView.contentInset = UIEdgeInsetsMake(mTopH, 0, 0, 0);
 
     mBottomView = [ZLSuperMarketShopCarView shareView];
     mBottomView.delegate = self;
@@ -472,14 +465,14 @@ static const CGFloat mTopH = 156;
         
     }];
     
-    UIButton *mMoreBtn = [UIButton new];
-    mMoreBtn.frame = CGRectMake(0, 0, DEVICE_Width, 40);
-    mMoreBtn.titleLabel.font = [UIFont systemFontOfSize:14];
-    [mMoreBtn setTitle:@"加载更多" forState:0];
-    [mMoreBtn setTitleColor:[UIColor lightGrayColor] forState:0];
-    [mMoreBtn addTarget:self action:@selector(loadMore) forControlEvents:UIControlEventTouchUpInside];
-    [mRightTableView setTableFooterView:mMoreBtn];
-    
+//    UIButton *mMoreBtn = [UIButton new];
+//    mMoreBtn.frame = CGRectMake(0, 0, DEVICE_Width, 40);
+//    mMoreBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+//    [mMoreBtn setTitle:@"加载更多" forState:0];
+//    [mMoreBtn setTitleColor:[UIColor lightGrayColor] forState:0];
+//    [mMoreBtn addTarget:self action:@selector(loadMore) forControlEvents:UIControlEventTouchUpInside];
+//    [self.tableView setTableFooterView:mMoreBtn];
+
     
 }
 - (void)loadMore{
@@ -534,8 +527,8 @@ static const CGFloat mTopH = 156;
 
         return mLeftDataArr.count;
         
-    }else if (tableView == mRightTableView){
-        return mRightDataArr.count;
+    }else if (tableView == self.tableView){
+        return self.tableArr.count;
     }else{
         return self.mSpeAddArray.count;
     }
@@ -552,7 +545,7 @@ static const CGFloat mTopH = 156;
     
     if (tableView == mLeftTableView) {
         return 50;
-    }else if(tableView == mRightTableView){
+    }else if(tableView == self.tableView){
         
         switch (mRightTabType) {
             case ZLRightGoodsTypeFromCamp:
@@ -602,7 +595,7 @@ static const CGFloat mTopH = 156;
         
         return cell;
         
-    }else if(tableView == mRightTableView){
+    }else if(tableView == self.tableView){
         
             switch (mRightTabType) {
                 case ZLRightGoodsTypeFromCamp:
@@ -613,7 +606,7 @@ static const CGFloat mTopH = 156;
                     cell.delegate = self;
                     cell.mIndexPath = indexPath;
                     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                    [cell setMGoodsObj:mRightDataArr[indexPath.row]];
+                    [cell setMGoodsObj:self.tableArr[indexPath.row]];
 
                     return cell;
                     
@@ -627,7 +620,7 @@ static const CGFloat mTopH = 156;
                     cell.delegate = self;
                     cell.selectionStyle = UITableViewCellSelectionStyleNone;
                     cell.mIndexPath = indexPath;
-                    [cell setMGoods:mRightDataArr[indexPath.row]];
+                    [cell setMGoods:self.tableArr[indexPath.row]];
                     return cell;
 
                 }
@@ -669,14 +662,14 @@ static const CGFloat mTopH = 156;
     
     if (tableView == _mSpeTableView) {
         
-    }else if (tableView == mRightTableView) {
+    }else if (tableView == self.tableView) {
         [self showWithStatus:@"正在加载..."];
 
         switch (mRightTabType) {
             case ZLRightGoodsTypeFromCamp:
             {
                 
-                ZLGoodsWithCamp *mCGoodsObj = mRightDataArr[indexPath.row];
+                ZLGoodsWithCamp *mCGoodsObj = self.tableArr[indexPath.row];
                 
                 ZLWebViewViewController *mWebvc = [ZLWebViewViewController new];
                 
@@ -701,7 +694,7 @@ static const CGFloat mTopH = 156;
             case ZLRightGoodsTypeFromClass:
             {
                 
-                ZLGoodsWithClass *mCGoodsObj = mRightDataArr[indexPath.row];
+                ZLGoodsWithClass *mCGoodsObj = self.tableArr[indexPath.row];
                 
                 ZLWebViewViewController *mWebvc = [ZLWebViewViewController new];
                 NSString *mUrl = nil;
@@ -778,26 +771,27 @@ static const CGFloat mTopH = 156;
     [self showWithStatus:@"正在加载中..."];
     [[APIClient sharedClient] ZLGetShopGoodsList:mShopId andCamId:[[NSString stringWithFormat:@"%@",mCamptr] intValue] andClassId:[[NSString stringWithFormat:@"%@",mClassstr] intValue] andPage:mPage andType:mType block:^(APIObject *mBaseObj, ZLShopGoodsList *mShopGoodsObj) {
         if (mRemove == NO) {
-            [mRightDataArr removeAllObjects];
+            [self.tableArr removeAllObjects];
         }
         
         if (mBaseObj.code == RESP_STATUS_YES) {
             [self dismiss];
 
-            [mRightDataArr addObjectsFromArray:mShopGoodsObj.list];
+            [self.tableArr addObjectsFromArray:mShopGoodsObj.list];
             
             
             if (mShopGoodsObj.list.count<=0) {
-                [self addEmptyView:mRightTableView andType:ZLEmptyViewTypeWithCommon];
+                [self addEmptyView:self.tableView andType:ZLEmptyViewTypeWithCommon];
             }
             
 
         }else{
         
             [self showErrorStatus:mBaseObj.msg];
-            [self addEmptyView:mRightTableView andType:ZLEmptyViewTypeWithCommon];
+            [self addEmptyView:self.tableView andType:ZLEmptyViewTypeWithCommon];
         }
-        [mRightTableView reloadData];
+        [self.tableView reloadData];
+        [self doneLoadingTableViewData];
 
     }];
     
@@ -870,7 +864,7 @@ static const CGFloat mTopH = 156;
         case ZLRightGoodsTypeFromCamp:
         {
 
-            ZLGoodsWithCamp *mCampGoods = mRightDataArr[mIndexPath.row];
+            ZLGoodsWithCamp *mCampGoods = self.tableArr[mIndexPath.row];
             [_mSpeAddArray addObject:mCampGoods];
         }
             break;
@@ -878,7 +872,7 @@ static const CGFloat mTopH = 156;
         {
             
             [self.mSelectedSpeArray removeAllObjects];
-            [self.mSelectedSpeArray addObject:mRightDataArr[mIndexPath.row]];
+            [self.mSelectedSpeArray addObject:self.tableArr[mIndexPath.row]];
             [self showSpeView:mIndexPath];
 //            [self updateSpeView:mIndexPath];
         }
@@ -892,7 +886,7 @@ static const CGFloat mTopH = 156;
 #pragma mark----****----滚动代理方法
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    if (scrollView == mRightTableView) {
+    if (scrollView == self.tableView) {
         CGFloat offsetY = scrollView.contentOffset.y;
         
         CGFloat need_height = mTopH - NAVBAR_Height;
@@ -903,13 +897,13 @@ static const CGFloat mTopH = 156;
             MLLog(@"执行A");
             [self setHeaderViewY:NAVBAR_Height];
             mLeftTableView.contentInset = UIEdgeInsetsMake(mTopH, 0, 0, 0);
-            mRightTableView.contentInset = UIEdgeInsetsMake(mTopH, 0, 0, 0);
+            self.tableView.contentInset = UIEdgeInsetsMake(mTopH, 0, 0, 0);
         }
         else if (offsetY > 0){
             MLLog(@"执行B");
             [self setHeaderViewY:-need_height];
             mLeftTableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
-            mRightTableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+            self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
         }
         else{
             MLLog(@"执行C");
@@ -917,10 +911,10 @@ static const CGFloat mTopH = 156;
             MLLog(@"mHH----------:  %f",mH);
             [self setHeaderViewY:mH];
             
-            mLeftTableView.contentOffset = mRightTableView.contentOffset;
+            mLeftTableView.contentOffset = self.tableView.contentOffset;
 
             mLeftTableView.contentInset = UIEdgeInsetsMake(-offsetY, 0, 0, 0 );
-            mRightTableView.contentInset = UIEdgeInsetsMake(-offsetY, 0, 0, 0 );
+            self.tableView.contentInset = UIEdgeInsetsMake(-offsetY, 0, 0, 0 );
 
         }
         
@@ -1132,7 +1126,7 @@ static const CGFloat mTopH = 156;
 #pragma mark----****----显示规格view
 - (void)showSpeView:(NSIndexPath *)mIndexPath{
     [mSkuTempArr removeAllObjects];
-    ZLGoodsWithClass *mGoodObj = mRightDataArr[mIndexPath.row];
+    ZLGoodsWithClass *mGoodObj = self.tableArr[mIndexPath.row];
     mSpeView.mIndexPath = mIndexPath;
     mSpeView.mModel = mGoodObj;
     float mP = 0;
@@ -1148,7 +1142,7 @@ static const CGFloat mTopH = 156;
     
     
     ///从这里取值
-    ZLGoodsWithClass *mGoods = mRightDataArr[mIndexPath.row];
+    ZLGoodsWithClass *mGoods = self.tableArr[mIndexPath.row];
     
     
     for (int i = 0;i<mGoods.skus.count;i++) {
@@ -1411,13 +1405,13 @@ static const CGFloat mTopH = 156;
  */
 - (void)ZLSuperMarketAddBtnSelected:(NSIndexPath *)mIndexPath{
 
-    ZLGoodsWithClass *mGoodObj = mRightDataArr[mIndexPath.row];
+    ZLGoodsWithClass *mGoodObj = self.tableArr[mIndexPath.row];
     if (mGoodObj.mNum == 0) {
         mGoodObj.mNum = 1;
     }
     
     mGoodObj.mNum +=1;
-    [mRightDataArr replaceObjectAtIndex:mIndexPath.row withObject:mGoodObj];
+    [self.tableArr replaceObjectAtIndex:mIndexPath.row withObject:mGoodObj];
 
     if (self.mAddSkuArray.count<= 0) {
         [self showErrorStatus:@"请先选择规格！"];
@@ -1442,7 +1436,7 @@ static const CGFloat mTopH = 156;
  减按钮
  */
 - (void)ZLSuperMarketSubsructBtnSelected:(NSIndexPath *)mIndexPath{
-    ZLGoodsWithClass *mGoodObj = mRightDataArr[mIndexPath.row];
+    ZLGoodsWithClass *mGoodObj = self.tableArr[mIndexPath.row];
     if (mGoodObj.mNum == 0) {
         mGoodObj.mNum = 1;
     }
@@ -1453,7 +1447,7 @@ static const CGFloat mTopH = 156;
 
     }
     
-    [mRightDataArr replaceObjectAtIndex:mIndexPath.row withObject:mGoodObj];
+    [self.tableArr replaceObjectAtIndex:mIndexPath.row withObject:mGoodObj];
     
     
     for (ZLSpeObj *mObj  in self.mAddSkuArray) {
@@ -1476,7 +1470,7 @@ static const CGFloat mTopH = 156;
  */
 - (void)ZLSuperMarketShopCarBtnSelected:(NSIndexPath *)mIndexPath{
     
-    ZLGoodsWithClass *mGoodObj = mRightDataArr[mIndexPath.row];
+    ZLGoodsWithClass *mGoodObj = self.tableArr[mIndexPath.row];
     [self LKDB_SaveToDB:mGoodObj];
     [self updateBottomView:mAddShopCarEx];
     [self hiddenSpeView];
@@ -1489,7 +1483,7 @@ static const CGFloat mTopH = 156;
  立即购买代理方法
  */
 - (void)ZLSuperMarketBuyNowBtnSelected:(NSIndexPath *)mIndexPath{
-    ZLGoodsWithClass *mGoodObj = mRightDataArr[mIndexPath.row];
+    ZLGoodsWithClass *mGoodObj = self.tableArr[mIndexPath.row];
 
     LKDBHelperGoodsObj *ZLAddObj = [LKDBHelperGoodsObj new];
     ZLAddObj.mExtObj = [ZLAddShopCarExObj new];
@@ -1618,7 +1612,7 @@ static const CGFloat mTopH = 156;
 - (void)ZLHouseKeepingAddBtnClicked:(NSIndexPath *)mIndexPath{
     
     
-    ZLGoodsWithCamp *mCamGoods = mRightDataArr[mIndexPath.row];
+    ZLGoodsWithCamp *mCamGoods = self.tableArr[mIndexPath.row];
 
     
     switch (mRightTabType) {
@@ -1652,11 +1646,11 @@ static const CGFloat mTopH = 156;
             
             
             [ZLAddObj saveToDB];
-            [mRightDataArr replaceObjectAtIndex:mIndexPath.row withObject:mCamGoods];
+            [self.tableArr replaceObjectAtIndex:mIndexPath.row withObject:mCamGoods];
             
-            [mRightTableView beginUpdates];
-            [mRightTableView reloadRowsAtIndexPaths:@[mIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-            [mRightTableView endUpdates];
+            [self.tableView beginUpdates];
+            [self.tableView reloadRowsAtIndexPaths:@[mIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [self.tableView endUpdates];
 
             [self updateBottomView:mAddShopCarEx];
             
@@ -1687,7 +1681,7 @@ static const CGFloat mTopH = 156;
 - (void)ZLHouseKeepingSubstructBtnClicked:(NSIndexPath *)mIndexPath{
 
     
-    ZLGoodsWithCamp *mCamGoods = mRightDataArr[mIndexPath.row];
+    ZLGoodsWithCamp *mCamGoods = self.tableArr[mIndexPath.row];
     if (mCamGoods.mNum<=0) {
         return;
     }
@@ -1723,11 +1717,11 @@ static const CGFloat mTopH = 156;
                 [ZLAddObj saveToDB];
             }
             
-            [mRightDataArr replaceObjectAtIndex:mIndexPath.row withObject:mCamGoods];
+            [self.tableArr replaceObjectAtIndex:mIndexPath.row withObject:mCamGoods];
             
-            [mRightTableView beginUpdates];
-            [mRightTableView reloadRowsAtIndexPaths:@[mIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-            [mRightTableView endUpdates];
+            [self.tableView beginUpdates];
+            [self.tableView reloadRowsAtIndexPaths:@[mIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [self.tableView endUpdates];
             [self updateBottomView:mAddShopCarEx];
             
         }
@@ -1766,7 +1760,7 @@ static const CGFloat mTopH = 156;
         case ZLRightGoodsTypeFromCamp:
         {
             
-            ZLGoodsWithCamp *mCamGoods = mRightDataArr[mIndexPath.row];
+            ZLGoodsWithCamp *mCamGoods = self.tableArr[mIndexPath.row];
             
             mAddShopCarEx.mTotlePrice += mCamGoods.sku_price*mTnum;
             
@@ -1775,7 +1769,7 @@ static const CGFloat mTopH = 156;
             }
             MLLog(@"得到的购物车扩展对象是:商品数量：%d   商品总价：%.2f",mAddShopCarEx.mGoodsNum,mAddShopCarEx.mTotlePrice);
 
-            ZLGoodsWithCamp *mGoodObj = mRightDataArr[mIndexPath.row];
+            ZLGoodsWithCamp *mGoodObj = self.tableArr[mIndexPath.row];
             LKDBHelperGoodsObj *ZLAddObj = [LKDBHelperGoodsObj new];
             ZLAddObj.mCampId = mGoodObj.cam_gid;
             ZLAddObj.mGoodsId = mGoodObj.pro_id;
