@@ -44,6 +44,8 @@
 
 #import "QUShareSDK.h"
 
+#import <JSPatchPlatform/JSPatch.h>
+
 @interface AppDelegate ()<UIAlertViewDelegate,WXApiDelegate, JPUSHRegisterDelegate>
 
 @end
@@ -137,7 +139,14 @@
     [MTVersionHelper checkNewVersion];
     
     [AMapServices sharedServices].apiKey = AMapSDK_AppKey;
-
+    
+    [JSPatch setupCallback:^(JPCallbackType type, NSDictionary *data, NSError *error) {
+        if (type == JPCallbackTypeJSException) {
+            NSAssert(NO, data[@"msg"]);
+        }
+    }];
+    ///初始化jspatch
+    [JSPatch startWithAppKey:JSPatch_Key];
 
     //初始化腾讯统计
     [MTA startWithAppkey:MTASDK_AppKey];
@@ -193,6 +202,10 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+#ifdef DEBUG
+    [JSPatch setupDevelopment];
+#endif
+    [JSPatch sync];
 }
 
 

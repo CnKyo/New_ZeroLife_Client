@@ -211,8 +211,8 @@ static NSString *AMapSDK_AppKey                             = @"7970dba38f00e9b3
 //聚合平台
 static NSString *JHSDK_AppKey                               = @"29c41f5f6374ad7a7a6bc635b9e06cfa";
 static NSString *JHSDK_API                                  = @"http://op.juhe.cn/ofpay/public/province";
-
-
+///jspatchKEY
+static NSString *JSPatch_Key                                  = @"4d87eb4a3bee0b96";
 
 static int const RESP_STATUS_YES                            = 200;             //成功
 static int const RESP_STATUS_NO                             = 1;             //失败

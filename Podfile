@@ -24,7 +24,7 @@ target 'ZeroLifeClient' do
   pod 'AMap2DMap'
   pod 'AMapSearch'
   pod 'AMapLocation'
-  pod 'SDWebImage'
+  pod 'SDWebImage','~> 3.8.2'
   pod 'SKTagView'
   pod 'JPush'
   pod 'LTNavigationBar'
@@ -48,9 +48,12 @@ target 'ZeroLifeClient' do
   pod 'WebViewJavascriptBridge','~> 5.0'
   pod 'CardIO'
   pod 'DZNEmptyDataSet'
-  pod 'PYPhotoBrowser'
+  pod 'PYPhotoBrowser’,'~> 1.2.3'
   pod 'BlocksKit', :git => 'https://github.com/zwaldowski/BlocksKit.git'
-
+  pod 'JSPatchPlatform'
+  pod 'JSPatchPlatform'
+  pod 'JSPatch/Extensions'
+  pod 'JSPatch/JPCFunction'
 
 
 end

@@ -777,8 +777,9 @@ static const CGFloat mTopH = 156;
         if (mBaseObj.code == RESP_STATUS_YES) {
             [self dismiss];
 
-            [self.tableArr addObjectsFromArray:mShopGoodsObj.list];
-            
+//            [self.tableArr addObjectsFromArray:mShopGoodsObj.list];
+            [self reloadWithTableArr:mShopGoodsObj.list info:mBaseObj];
+
             
             if (mShopGoodsObj.list.count<=0) {
                 [self addEmptyView:self.tableView andType:ZLEmptyViewTypeWithCommon];

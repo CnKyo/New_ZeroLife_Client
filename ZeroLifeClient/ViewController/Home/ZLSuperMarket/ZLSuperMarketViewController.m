@@ -89,7 +89,7 @@
         
         if (mBaseObj.code == RESP_STATUS_YES) {
             
-            [self.tableArr addObjectsFromArray:mShopList.list];
+            [self reloadWithTableArr:mShopList.list info:mBaseObj];
             
             if (mShopList.list.count <= 0) {
                 [self addTableEmptyViewWithTitle:mBaseObj.msg andHiddenRefresh:NO];
@@ -137,7 +137,6 @@
             [mClassifyArr addObjectsFromArray:mShopHome.classify];
             
 
-            [self reloadTableViewDataSource];
         }else{
             
             [self showErrorStatus:mBaseObj.msg];
