@@ -202,6 +202,9 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    [JSPatch setupRSAPublicKey:@"-----BEGIN PUBLIC KEY-----\nMIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAvEDe5IDQzNGKTO075IE2\nMzJUdtikdw0siLPxOnTl2WsusgR/0lTxmowK24UWsBr9R3+6Cu9TxWUT6jzqktlA\nUQENhqbYC0Zlxpuc16dA33g0kcB/loJcXKq4SaeMRYP4lhrPqIwI7SYXhQXR9vZx\nz3te06132QXKNnxwAH0ilKrUeZIYvUMfx2JBAqywiVjDJkHUvtHxSZMyp0Xnuux3\n5yrCEPc66mdce1A/FsOChCXuIkYq3q7lYPFpEItitNe8UIVhF/d9zuwDyJ0oBL6C\ntHKGNK/YX8qcPc8JGFYIr6WWMzeVLT4Ah490ww5ZELqqLx0eRqFrVPJ9UwhM8WFZ\novVWqHOIKX2zd4UUySMyW+90s8dq+nF62lUPwA304TqhY+uMBgAhBKIGJCmk8rnF\nVtRy+KZEqXCUUlS5VLIj/fxp7gCOxveJhTkKae2oosrNYU9qpLTX4qW6mcQXQr6A\n6a+sU3zr+KIXr7lBk6tKMT5CVMy/RbpRf8w9Lj+bIE0QZSLAobFf1gQ7fATmgyL0\naF+KWtDvj++vCqrE3dfpLmFMN/ZRdmmtUQ5G8vjoZoUoUX/6iuLED5YbOrYXltCL\nCLGLgHTCK6t2QlIIIoZbtjSezHPCJunS7mT2a+jCJBQjlLbbaRv2QdiVwyRVCtfv\nO22GzP+1NkeneOTJjiTdw3MCAwEAAQ==-----END PUBLIC KEY-----"];
+
+    
 #ifdef DEBUG
     [JSPatch setupDevelopment];
 #endif

@@ -247,30 +247,11 @@
 }
 #pragma mark ----****----消息按钮方法
 - (void)mRightAction:(UIButton *)sender{
-    MLLog(@"----******:%@",[ZLAPPInfo ZLCurrentAppInfo].set.fig_phone);
-    
-    
+
     ZLHomeMessageViewController *ZLHomeMsgVC = [ZLHomeMessageViewController new];
     ZLHomeMsgVC.hidesBottomBarWhenPushed = YES;
-
     [self pushViewController:ZLHomeMsgVC];
-    
-//    ZLLoginViewController *vc = [ZLLoginViewController new];
-//    ZLWebViewViewController *vc = [ZLWebViewViewController new];
-//    ZLOrderReturnViewController *vc = [ZLOrderReturnViewController new];
-//    ZLRatingViewController *vc = [ZLRatingViewController new];
 
-    
-
-//    vc.hidesBottomBarWhenPushed = YES;
-//    vc.mUrl = @"www.baidu.com";
-//    vc.title = @"web";
-
-//    [self pushViewController:vc];
-    
-    
-    
-    
 }
 - (void)TableViewHaveHeader{
     
