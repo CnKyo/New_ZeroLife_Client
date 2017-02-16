@@ -23,6 +23,7 @@ HDSingletonH(HDNetworking) // 单例声明
 
 -(void)postUrl:(NSString *)URLString parameters:(id)parameters call:(void (^)( mJHBaseData* info))callback;
 
++ (instancetype)sharedJHFlow;
 
 + (NSString *)returnNowURL;
 

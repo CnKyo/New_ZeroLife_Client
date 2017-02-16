@@ -1733,6 +1733,12 @@
 
 @property (nonatomic,strong) NSString   *mMessage;
 
+@property (nonatomic,assign) int        error_code;
+
+@property (nonatomic,strong) NSString        *reason;
+
+@property (nonatomic,strong) id         result;
+
 
 -(id)initWithObj:(NSDictionary*)obj;
 
@@ -1795,10 +1801,26 @@
 @property (nonatomic,strong) NSString   *payUnitName;///缴费单位名称
 @property (nonatomic,strong) NSString   *provinceId;///省份id
 @end
+#pragma mark----聚合流量充值数据结构
+@interface ZLJHFlowTelcheck : NSObject
+@property (nonatomic,strong) NSString   *city;///城市
+@property (nonatomic,strong) NSString   *company;///运营商
+@property (assign,nonatomic) int        companytype;    //!< 运营商类型
 
+@property (nonatomic,strong) NSString   *name;///名称
+@property (assign,nonatomic) int        type;    //!< 类型
 
+@property (nonatomic,strong) NSArray    *flows;///列表
 
+@end
+#pragma mark----聚合流量充值列表数据结构
+@interface ZLJHFlows : NSObject
+@property (assign,nonatomic) int        id;    //!< 类型
+@property (nonatomic,strong) NSString   *p;///名称
+@property (assign,nonatomic) int        v;    //!< 类型
+@property (assign,nonatomic) float      inprice;    //!< 类型
 
+@end
 
 
 #pragma mark-----****----店铺商品收藏web处理对象

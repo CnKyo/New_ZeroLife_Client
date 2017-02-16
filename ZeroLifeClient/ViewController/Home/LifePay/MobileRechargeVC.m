@@ -345,22 +345,7 @@
 - (void)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker didSelectPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier {
     
     [self setSelectedPerson:person identifier:identifier];
-//    
-//    ABMultiValueRef phone = ABRecordCopyValue(person, kABPersonPhoneProperty);
-//    
-//    long index = ABMultiValueGetIndexForIdentifier(phone,identifier);
-//    
-//    NSString *phoneNO = (__bridge NSString *)ABMultiValueCopyValueAtIndex(phone, index);
-//    phoneNO = [phoneNO stringByReplacingOccurrencesOfString:@"-" withString:@""];
-//    NSLog(@"%@", phoneNO);
-//    if (phone && phoneNO.length == 11) {
-//        self.mobileField.text = phoneNO;
-//        [peoplePicker dismissViewControllerAnimated:YES completion:nil];
-//        return;
-//    }else{
-//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"错误提示" message:@"请选择正确手机号" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
-//        [alertView show];
-//    }
+
 }
 
 

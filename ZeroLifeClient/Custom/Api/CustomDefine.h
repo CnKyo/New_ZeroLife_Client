@@ -208,8 +208,10 @@ static NSString *MTASDK_AppKey                              = @"IBW9PAI485ZQ";
 //地图
 static NSString *AMapSDK_AppKey                             = @"7970dba38f00e9b34aed65fb0bd29194";
 
-//聚合平台
+///聚合平台水电气key
 static NSString *JHSDK_AppKey                               = @"29c41f5f6374ad7a7a6bc635b9e06cfa";
+///聚合流量充值key
+static NSString *JHFlow_AppKey                               = @"94a6a05ffa61742d1c7cee01e07d7415";
 static NSString *JHSDK_API                                  = @"http://op.juhe.cn/ofpay/public/province";
 ///jspatchKEY
 static NSString *JSPatch_Key                                  = @"4d87eb4a3bee0b96";
@@ -236,6 +238,8 @@ static NSString* const  kAFAppDotNetApiBaseURLString        = @"http://app.china
 static NSString* const  kAFAppDotNetApiExtraURLString       = @"/api/app/client";
 static NSString* const  kAFAppDotNetApiServiceURLString     = @"/api/app/service";
 static NSString* const  kAFAppDotNetImgBaseURLString        = @"http://resource.china-cr.com/resource";
+
+static NSString* const  kAFAppJHFlowURLString               = @"http://v.juhe.cn/flow/";
 
 
 static NSString * const MyUserNeedUpdateNotification        = @"MyUserNeedUpdateNotification";

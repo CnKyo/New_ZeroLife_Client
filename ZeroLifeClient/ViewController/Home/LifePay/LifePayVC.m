@@ -10,6 +10,7 @@
 #import "MobileRechargeVC.h"
 #import "WuGuanFeePayVC.h"
 #import "ZLHydroelectricViewController.h"
+#import "ZLFlowTopupViewController.h"
 @interface LifePayVC ()
 
 @end
@@ -100,12 +101,22 @@
             textLable.text = @"水电煤";
             break;
         case 2:
-            //                imgView.image = [UIImage imageNamed:[NSString iconImgStrOrderType:kOrderClassType_fee_parking]];
-            //                textLable.text = @"停车费";
-            //                break;
-            //            case 3:
+  
             imgView.image = [UIImage imageNamed:[NSString iconImgStrOrderType:kOrderClassType_fee_mobile]];
             textLable.text = @"手机充值";
+            break;
+        case 3:
+            imgView.image = [UIImage imageNamed:[NSString iconImgStrOrderType:kOrderClassType_fee_peroperty]];
+            textLable.text = @"流量充值";
+            break;
+        case 4:
+            imgView.image = [UIImage imageNamed:[NSString iconImgStrOrderType:kOrderClassType_fee_sdq]];
+            textLable.text = @"加油卡充值";
+            break;
+        case 5:
+            
+            imgView.image = [UIImage imageNamed:[NSString iconImgStrOrderType:kOrderClassType_fee_mobile]];
+            textLable.text = @"宽带／固话充值";
             break;
         default:
             break;
@@ -122,11 +133,23 @@
         WuGuanFeePayVC *vc = [[WuGuanFeePayVC alloc] init];
         [self pushViewController:vc];
         
-    } else if (indexPath.row == 2) {
+    } else if (indexPath.row == 1){
+        
+        ZLHydroelectricViewController *vc = [[ZLHydroelectricViewController alloc] init];
+        [self pushViewController:vc];
+    }else if (indexPath.row == 2) {
         MobileRechargeVC *vc = [[MobileRechargeVC alloc] init];
         [self pushViewController:vc];
+    }else if (indexPath.row == 3){
+        ZLFlowTopupViewController *vc = [[ZLFlowTopupViewController alloc] init];
+
+        [self pushViewController:vc];
+    }else if (indexPath.row == 4){
+        
+        ZLHydroelectricViewController *vc = [[ZLHydroelectricViewController alloc] init];
+        [self pushViewController:vc];
     }else{
-    
+        
         ZLHydroelectricViewController *vc = [[ZLHydroelectricViewController alloc] init];
         [self pushViewController:vc];
     }

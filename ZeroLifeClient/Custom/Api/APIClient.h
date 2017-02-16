@@ -37,6 +37,8 @@ typedef void (^TableShareSdkBlock)(int totalpage, NSArray *tableArr, APIShareSdk
 + (instancetype)sharedClient;
 #pragma mark----  图片上传方法
 + (instancetype)sharedUpLoad;
+#pragma mark----  聚合流量充值方法
++ (instancetype)sharedJHFlow;
 #pragma mark----  获取跑跑腿订单操作状态
 /**
  获取跑跑腿订单操作状态
@@ -514,6 +516,16 @@ typedef void (^TableShareSdkBlock)(int totalpage, NSArray *tableArr, APIShareSdk
  @param block 返回值
  */
 - (void)ZLReleaseOperatorPPTOrder:(int)mOrderId andOrderCode:(NSString *)mOrderCode andOperatorStatus:(ZLOperatorPPTOrderStatus)mStatus block:(void(^)(APIObject *resb))block;
+
+#pragma mark----****---- 聚合电话号码流量查询
+/**
+ 聚合电话号码流量查询
+
+ @param mPhone 电话
+ @param block 返回值
+ */
+- (void)ZLJHCheckePhone:(NSString *)mPhone block:(void(^)(mJHBaseData *resb,ZLJHFlowTelcheck *JHFlow))block;
+
 
 
 

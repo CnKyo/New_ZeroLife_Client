@@ -1536,6 +1536,14 @@ bool m_bind = NO;
 @implementation ZLJHPayUnint
 @end
 
+@implementation ZLJHFlowTelcheck
++ (NSDictionary *)mj_objectClassInArray{
+    
+    return @{@"flows":@"ZLJHFlows"};
+}
+@end
+@implementation ZLJHFlows
+@end
 
 
 @implementation ProductFocusWebBridgeObject

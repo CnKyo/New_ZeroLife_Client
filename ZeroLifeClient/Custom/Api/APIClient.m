@@ -78,6 +78,21 @@
     });
     return _sharedClient;
 }
+#pragma mark----  聚合流量充值方法
++ (instancetype)sharedJHFlow{
+    static APIClient *_sharedClient = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        //[APIClient loadDefault];
+        _sharedClient = [[APIClient alloc] initWithBaseURL:[NSURL URLWithString:kAFAppJHFlowURLString]];
+        _sharedClient.responseSerializer = [AFJSONResponseSerializer serializer];
+        _sharedClient.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html", nil];
+        
+        ;
+        _sharedClient.requestSerializer.HTTPShouldHandleCookies = YES;
+    });
+    return _sharedClient;
+}
 - (NSString *)currentUrl{
 
     return [NSString stringWithFormat:@"%@%@",kAFAppDotNetApiBaseURLString,kAFAppDotNetApiExtraURLString];
@@ -386,6 +401,35 @@
         callback(info);
     }];
 }
+-(void)JHloadAPIWithTag:(NSObject *)tag path:(NSString *)URLString parameters:(id)parameters call:(void (^)(mJHBaseData* info))callback
+{
+
+    NSLog(@"URLString:%@ 参数parameters:%@", URLString, parameters);
+
+    [self urlGroupKey:NSStringFromClass([tag class]) path:URLString parameters:parameters call:^(NSError *error, id responseObject) {
+        mJHBaseData *info = nil;
+        if (error == nil) {
+            NSLog(@"\n\n ---APIObject----result:-----------%@", responseObject);
+            info = [mJHBaseData mj_objectWithKeyValues:responseObject];
+            
+            if ([info.reason isEqualToString:@"success"]) {
+                info.mSucess = YES;
+            }else{
+                info.mSucess = NO;
+            }
+            info.mData = info.result;
+            
+            if (info==nil)
+                info = [mJHBaseData infoWithError:@"网络错误"];
+        } else {
+            NSLog(@"\n\n ---APIObject----result error:-----------%@", error);
+            info = [mJHBaseData infoWithError:error.description];
+        }
+        
+        callback(info);
+    }];
+}
+
 -(void)loadAPITableListWithTag:(NSObject *)tag path:(NSString *)URLString parameters:(NSDictionary *)parameters pageIndex:(int)page subClass:(Class)aClass call:(TablePageArrBlock)callback
 {
     NSMutableDictionary *dic = [NSMutableDictionary quDicWithPage:page pageRow:TABLE_PAGE_ROW];
@@ -1815,6 +1859,9 @@
     if (location.latitude>0 || location.longitude>0) {
         [paramDic setObject:StringWithDouble(location.latitude) forKey:@"lat"];
         [paramDic setObject:StringWithDouble(location.longitude) forKey:@"lng"];
+    }else{
+        [paramDic setObject:StringWithDouble(29.542968) forKey:@"lat"];
+        [paramDic setObject:StringWithDouble(106.511898) forKey:@"lng"];
     }
     
     if (province > 0)
@@ -1823,7 +1870,7 @@
         [paramDic setObject:StringWithInt(city) forKey:@"cmut_city"];
     if (county > 0)
         [paramDic setObject:StringWithInt(county) forKey:@"cmut_county"];
-    
+    MLLog(@"para_is:%@",paramDic);
     [self loadAPIWithTag:self path:@"/community/community_search_list" parameters:paramDic call:^(APIObject *info) {
         NSArray *newArr = [CommunityObject mj_objectArrayWithKeyValuesArray:info.data];
         callback(newArr, info);
@@ -3565,6 +3612,42 @@
     }
     
 }
+#pragma mark----****---- 聚合电话号码流量查询
+/**
+ 聚合电话号码流量查询
+ 
+ @param mPhone 电话
+ @param block 返回值
+ */
+- (void)ZLJHCheckePhone:(NSString *)mPhone block:(void(^)(mJHBaseData *resb,ZLJHFlowTelcheck *JHFlow))block{
+    
+    
+    NSMutableDictionary* para = [NSMutableDictionary dictionary];
+    
+    [para setObject:mPhone forKey:@"phone"];
+    [para setObject:JHFlow_AppKey forKey:@"key"];
+    
+    
+    MLLog(@"%@",[ZLUserInfo ZLCurrentUser]);
+    
+    [self JHloadAPIWithTag:self path:@"telcheck" parameters:para call:^(mJHBaseData *info) {
+        if (info.mSucess) {
+            if ([info.result isKindOfClass:[NSArray class]]) {
+                ZLJHFlowTelcheck *mFlow = [ZLJHFlowTelcheck mj_objectWithKeyValues:info.result[0]];
+                block(info,mFlow);
+            }else{
+                block(info,nil);
+            }
+   
+        }else{
+            block(info,nil);
+        }
+        
+    }];
+    
+    
+}
+
 @end
 
 

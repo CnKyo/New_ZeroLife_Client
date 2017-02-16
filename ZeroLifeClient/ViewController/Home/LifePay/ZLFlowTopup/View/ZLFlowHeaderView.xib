@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ZLFlowHeaderView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="112"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textField opaque="NO" clipsSubviews="YES" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder=" 请输入电话号码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Atm-JQ-51q">
+                    <rect key="frame" x="16" y="15" width="276" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="3ZQ-gD-5yw"/>
+                    </constraints>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nuP-FO-BSY">
+                    <rect key="frame" x="300" y="8" width="65" height="65"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="65" id="0eR-mJ-MAs"/>
+                        <constraint firstAttribute="width" constant="65" id="68J-iX-DNV"/>
+                    </constraints>
+                    <state key="normal" image="address_book">
+                        <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="mAddressBook:" destination="iN0-l3-epB" eventType="touchUpInside" id="VXb-nm-xj5"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请输入电话号码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5fc-Kg-eRF">
+                    <rect key="frame" x="16" y="80" width="349" height="16"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KkI-V6-sOI">
+                    <rect key="frame" x="0.0" y="111" width="375" height="1"/>
+                    <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="0.24646832191780826" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="UsV-Ic-NNk"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="5fc-Kg-eRF" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="6pi-ZK-8b1"/>
+                <constraint firstAttribute="trailing" secondItem="KkI-V6-sOI" secondAttribute="trailing" id="7sh-lp-txP"/>
+                <constraint firstItem="5fc-Kg-eRF" firstAttribute="top" secondItem="Atm-JQ-51q" secondAttribute="bottom" constant="15" id="9RX-1J-7q8"/>
+                <constraint firstAttribute="trailing" secondItem="nuP-FO-BSY" secondAttribute="trailing" constant="10" id="JQK-Q9-Ss3"/>
+                <constraint firstItem="KkI-V6-sOI" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="L8A-My-lMo"/>
+                <constraint firstItem="nuP-FO-BSY" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="MQw-uv-GOd"/>
+                <constraint firstItem="nuP-FO-BSY" firstAttribute="leading" secondItem="Atm-JQ-51q" secondAttribute="trailing" constant="8" id="at4-nN-XrU"/>
+                <constraint firstItem="Atm-JQ-51q" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="15" id="iha-1K-gp9"/>
+                <constraint firstItem="KkI-V6-sOI" firstAttribute="top" secondItem="5fc-Kg-eRF" secondAttribute="bottom" constant="15" id="kro-76-BiF"/>
+                <constraint firstItem="Atm-JQ-51q" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="qQm-qQ-CLj"/>
+                <constraint firstAttribute="trailing" secondItem="5fc-Kg-eRF" secondAttribute="trailing" constant="10" id="xll-QL-aZ1"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="mAddressBookBtn" destination="nuP-FO-BSY" id="f8H-fq-x9a"/>
+                <outlet property="mContent" destination="5fc-Kg-eRF" id="nca-P5-2IA"/>
+                <outlet property="mPhoneTx" destination="Atm-JQ-51q" id="V8x-wc-3Rn"/>
+            </connections>
+            <point key="canvasLocation" x="-9.5" y="-79.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="address_book" width="32" height="32"/>
+    </resources>
+</document>

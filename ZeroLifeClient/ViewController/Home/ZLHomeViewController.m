@@ -129,12 +129,15 @@
 {
     [[APIClient sharedClient] userInfoWithTag:self call:^(ZLUserInfo *user, APIObject *info) {
         
+
     }];
 }
+
 #pragma mark----****----用户需要更新优惠卷数据
 -(void)updateCoup:(NSNotification *)note
 {
     [self loadSystemCoup];
+
 }
 -(void)handleUserInfoChange:(NSNotification *)note
 {

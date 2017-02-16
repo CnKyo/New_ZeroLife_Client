@@ -83,12 +83,6 @@
 //        return;
 //    }
     
-    if (mCommunityAdd.cmut_lat <= 0 || mCommunityAdd.cmut_lng <= 0 ) {
-        [self loadAddress];
-        
-        return;
-    }
-    
     [[APIClient sharedClient] communityListWithTag:self location:CLLocationCoordinate2DMake(mCommunityAdd.cmut_lat, mCommunityAdd.cmut_lng) search:mSearchView.mSearchTx.text province:mCommunityAdd.cmut_province city:mCommunityAdd.cmut_city county:mCommunityAdd.cmut_county call:^(NSArray *tableArr, APIObject *info) {
 
         [self ZLHideEmptyView];
@@ -125,7 +119,6 @@
 }
 #pragma mark----****----加载地址
 - (void)loadAddress{
-//    [SVProgressHUD showWithStatus:@"定位中..."];
     [CurentLocation sharedManager].delegate = self;
     [[CurentLocation sharedManager] getUSerLocation];
 }
@@ -134,7 +127,6 @@
 - (void)MMapreturnLatAndLng:(NSDictionary *)mCoordinate{
     
     MLLog(@"定位成功之后返回的东东：%@",mCoordinate);
-//    [SVProgressHUD showSuccessWithStatus:@"定位成功！"];
     
     mCommunityAdd.cmut_lat = [[mCoordinate objectForKey:@"wei"] doubleValue];
     mCommunityAdd.cmut_lng = [[mCoordinate objectForKey:@"jing"] doubleValue];
