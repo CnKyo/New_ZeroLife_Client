@@ -28,7 +28,6 @@
 #import "ZLWebVc.h"
 
 
-#import "StandardsView.h"
 #import "ZLSkuCell.h"
 #import "LDXScore.h"
 #import "mCheckMoreActivityView.h"
@@ -38,7 +37,7 @@
 
 static const CGFloat mTopH = 156;
 
-@interface ZLSuperMarketShopViewController ()<UITableViewDelegate,UITableViewDataSource,ZLSuperMarketShopDelegate,ZLSuperMarketGoodsCellDelegate,UIScrollViewDelegate,ZLSuperMarketShopCarDelegate,ZLSuperMarketGoodsSpecDelegate,UICollectionViewDelegate,ZLHouseKeppingServiceCellDelegate,ZLSpeSelectedViewCellDelegate,StandardsViewDelegate,ZLSKUCellDelegate,LDXScoreDelegate,mCheckMoreActivityViewDelegate>
+@interface ZLSuperMarketShopViewController ()<UITableViewDelegate,UITableViewDataSource,ZLSuperMarketShopDelegate,ZLSuperMarketGoodsCellDelegate,UIScrollViewDelegate,ZLSuperMarketShopCarDelegate,ZLSuperMarketGoodsSpecDelegate,UICollectionViewDelegate,ZLHouseKeppingServiceCellDelegate,ZLSpeSelectedViewCellDelegate,ZLSKUCellDelegate,LDXScoreDelegate,mCheckMoreActivityViewDelegate>
 
 /**
  规格瀑布流
@@ -464,35 +463,9 @@ static const CGFloat mTopH = 156;
         make.height.offset(@60);
         
     }];
-    
-//    UIButton *mMoreBtn = [UIButton new];
-//    mMoreBtn.frame = CGRectMake(0, 0, DEVICE_Width, 40);
-//    mMoreBtn.titleLabel.font = [UIFont systemFontOfSize:14];
-//    [mMoreBtn setTitle:@"加载更多" forState:0];
-//    [mMoreBtn setTitleColor:[UIColor lightGrayColor] forState:0];
-//    [mMoreBtn addTarget:self action:@selector(loadMore) forControlEvents:UIControlEventTouchUpInside];
-//    [self.tableView setTableFooterView:mMoreBtn];
-
-    
-}
-- (void)loadMore{
-    self.page+=1;
-    if (mLeftDataArr.count!=0) {
-        ZLShopLeftObj *mNew = mLeftDataArr[kIndex];
-        
-        if (mNew.mType == ZLShopLeftTypeCamp) {
-            
-            [self upDateRightTableView:mShopObj.mShopMsg.shop_id andCampId:[NSString stringWithFormat:@"%d",mNew.mId] andClassId:nil andPage:self.page andType:ZLRightGoodsTypeFromCamp andisRemove:YES];
-            
-        }else{
-            
-            [self upDateRightTableView:mShopObj.mShopMsg.shop_id andCampId:nil andClassId:[NSString stringWithFormat:@"%d",mNew.mId] andPage:self.page andType:ZLRightGoodsTypeFromClass andisRemove:YES];
-            
-        }
-        
-    }
 
 }
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -920,61 +893,7 @@ static const CGFloat mTopH = 156;
         }
         
     }
-    
-    
-//    if (scrollView == mRightTableView) {
-//        CGFloat offsetY = scrollView.contentOffset.y;
-//        
-//        MLLog(@"yyyyyyyyy----------:  %f",offsetY);
-//        
-//        if (offsetY > NAVBAR_Height ) {
-//            
-//            CGFloat mHH = offsetY;
-//            MLLog(@"mHH----------:  %f",mHH);
-//            if (mHH>=mTopH || mHH >= 0) {
-//                mHH = mTopH;
-//            }
-//            
-//            [self setHeaderViewY:-mHH];
-//            mLeftTableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
-//            mRightTableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
-//            
-//            MLLog(@"执行A");
-//        }
-//        else if (offsetY < -mTopH){
-//            [self setHeaderViewY:NAVBAR_Height];
-//            mLeftTableView.contentInset = UIEdgeInsetsMake(mTopH, 0, 0, 0);
-//            mRightTableView.contentInset = UIEdgeInsetsMake(mTopH, 0, 0, 0);
-//            MLLog(@"执行B");
-//            
-////            [self setHeaderViewY:64];
-////            mLeftTableView.contentInset = UIEdgeInsetsMake(mTopH, 0, 0, 0);
-////            mRightTableView.contentInset = UIEdgeInsetsMake(mTopH, 0, 0, 0);
-////            MLLog(@"执行B");
-//        }
-//        else{
-//            CGFloat mH = -mTopH - offsetY;
-//            MLLog(@"mHH----------:  %f",mH);
-//            [self setHeaderViewY:NAVBAR_Height + mH];
-//            MLLog(@"执行C");
-//            mLeftTableView.contentOffset = mRightTableView.contentOffset;
-//
-//            if (offsetY == 0) {
-//                mLeftTableView.contentInset = UIEdgeInsetsMake(mTopH, 0, 0, 0 );
-//                mRightTableView.contentInset = UIEdgeInsetsMake(mTopH, 0, 0, 0 );
-//            }else{
-//
-//                mLeftTableView.contentInset = UIEdgeInsetsMake(-offsetY, 0, 0, 0 );
-//                mRightTableView.contentInset = UIEdgeInsetsMake(-offsetY, 0, 0, 0 );
-//            }
-//            
-//            
-//            
-//        }
-//        
-//        
-//    }
-    
+
     
 }
 
@@ -1248,135 +1167,6 @@ static const CGFloat mTopH = 156;
     mSpeView.mNum.text = [NSString stringWithFormat:@"%d",num];
 
     
-}
-//-(StandardsView *)buildStandardView:(UIImage *)img andIndex:(NSInteger)index
-//{
-//    ///规格数组
-//    NSMutableArray *mSkuTempArr = [NSMutableArray new];
-//    
-//    ///从这里取值
-//    ZLGoodsWithClass *mGoods = mRightDataArr[index];
-//    
-//    
-//    for (int i = 0;i<mGoods.skus.count;i++) {
-//        
-//        ZLGoodsSKU *mOne = mGoods.skus[i];
-//        
-//        BOOL mIsAdd = YES;
-//        
-//        for (int j = 0; j<mSkuTempArr.count ; j++) {
-//            
-//            
-//            
-//            ZLGoodsSpeList *mTwo = mSkuTempArr[j];
-//            
-//            if (mOne.sta_id == mTwo.mStaId) {
-//                
-//                
-//                
-//                ZLSpeObj *mSkuValue  = [ZLSpeObj new];
-//                mSkuValue.mSpeGoodsName = mOne.sta_val_name;
-//                mSkuValue.mSku = mOne;
-//                mSkuValue.mSta_val_id = mOne.sta_val_id;
-//                
-//                [mTwo.mSpeArr addObject:mSkuValue];
-//                [mSkuTempArr replaceObjectAtIndex:j withObject:mTwo];
-//                mIsAdd = NO;
-//                continue;
-//                
-//            }
-//            
-//        }
-//        
-//        
-//        if (mIsAdd == YES) {
-//            
-//            ZLGoodsSpeList *mSpeListObj = [ZLGoodsSpeList new];
-//            mSpeListObj.mSpeName = mOne.sta_name;
-//            mSpeListObj.mStaId = mOne.sta_id;
-//            
-//            ZLSpeObj *mSkuValue  = [ZLSpeObj new];
-//            mSkuValue.mSpeGoodsName = mOne.sta_val_name;
-//            mSkuValue.mSku = mOne;
-//            mSkuValue.mSta_val_id = mOne.sta_val_id;
-//            
-//            NSMutableArray *tempArr = [NSMutableArray new];
-//            [tempArr addObject:mSkuValue];
-//            mSpeListObj.mSpeArr = tempArr;
-//            
-//            [mSkuTempArr addObject:mSpeListObj];
-//            
-//        }
-//        
-//        
-//    }
-//    
-//    
-//    StandardsView *standview = [[StandardsView alloc] init];
-//    standview.tag = index;
-//    standview.delegate = self;
-//    
-//    standview.mainImgView.image = img;
-//    standview.mainImgView.backgroundColor = [UIColor whiteColor];
-//    standview.priceLab.text = @"¥100.0";
-//    standview.tipLab.text = @"请选择规格";
-//    standview.goodNum.text = @"库存 10件";
-//    
-//    
-//    standview.customBtns = @[@"加入购物车",@"立即购买"];
-//    
-//    
-//    standardClassInfo *tempClassInfo1 = [standardClassInfo StandardClassInfoWith:@"0" andStandClassName:@"红色das"];
-//    standardClassInfo *tempClassInfo2 = [standardClassInfo StandardClassInfoWith:@"1" andStandClassName:@"蓝色ads"];
-//    
-//    NSArray *tempClassInfoArr = @[tempClassInfo1,tempClassInfo2];
-//    StandardModel *tempModel = [StandardModel StandardModelWith:tempClassInfoArr andStandName:@"颜色"];
-//    
-//    
-//    
-//    standardClassInfo *tempClassInfo3 = [standardClassInfo StandardClassInfoWith:@"2" andStandClassName:@"XL"];
-//    standardClassInfo *tempClassInfo4 = [standardClassInfo StandardClassInfoWith:@"3" andStandClassName:@"XXL"];
-//    
-//    NSArray *tempClassInfoArr2 = @[tempClassInfo3,tempClassInfo4];
-//    StandardModel *tempModel2 = [StandardModel StandardModelWith:tempClassInfoArr2 andStandName:@"尺寸"];
-//    standview.standardArr = @[tempModel,tempModel2];
-//    
-//    
-//    
-//    return standview;
-//}
-
-#pragma mark - standardView  delegate
-//点击自定义按键
--(void)StandardsView:(StandardsView *)standardView CustomBtnClickAction:(UIButton *)sender
-{
-    if (sender.tag == 0) {
-        //将商品图片抛到指定点
-        [standardView ThrowGoodTo:CGPointMake(200, 100) andDuration:1.6 andHeight:150 andScale:20];
-    }
-    else
-    {
-        [standardView dismiss];
-    }
-}
-
-//点击规格代理
--(void)Standards:(StandardsView *)standardView SelectBtnClick:(UIButton *)sender andSelectID:(NSString *)selectID andStandName:(NSString *)standName andIndex:(NSInteger)index
-{
-    
-    MLLog(@"selectID = %@ standName = %@ index = %ld",selectID,standName,(long)index);
-    
-}
-//设置自定义btn的属性
--(void)StandardsView:(StandardsView *)standardView SetBtn:(UIButton *)btn
-{
-    if (btn.tag == 0) {
-        btn.backgroundColor = M_CO;
-    }
-    else if (btn.tag == 1)
-    {
-        btn.backgroundColor = [UIColor redColor];
-    }
 }
 
 
