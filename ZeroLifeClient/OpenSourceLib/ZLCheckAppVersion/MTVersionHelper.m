@@ -61,11 +61,15 @@
             
         }]];
         [alert addAction:[UIAlertAction actionWithTitle:@"更新" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            if ([[UIApplication sharedApplication]canOpenURL:[NSURL URLWithString:self.appInfo.trackViewUrl]]) {
-                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.appInfo.trackViewUrl]];
+            if (([[[UIDevice currentDevice] systemVersion] doubleValue] >= 10.0)) {
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.appInfo.trackViewUrl] options:@{UIApplicationOpenURLOptionsOpenInPlaceKey:@"1"} completionHandler:^(BOOL success) {
 
+                }];
+            }else{
+                if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:self.appInfo.trackViewUrl]]) {
+                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.appInfo.trackViewUrl]];
+                }
             }
-            
         }]];
         
         [[[UIApplication sharedApplication] keyWindow].rootViewController presentViewController:alert animated:YES completion:nil];
