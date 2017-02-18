@@ -1568,3 +1568,6 @@ bool m_bind = NO;
 
 @implementation ZLSystempCoup
 @end
+
+@implementation ZLShopSearhHistory
+@end

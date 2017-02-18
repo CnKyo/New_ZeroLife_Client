@@ -784,7 +784,7 @@
 @property (strong,nonatomic) NSString*              adv_add_person;  //!< 点击的URL
 @property (strong,nonatomic) NSString*              adv_add_time;  //!< 点击的URL
 @property (strong,nonatomic) NSString*              adv_title;  //!< 点击的URL
-@property (assign,nonatomic) int                    adv_click_type;       //!< 活动类型
+@property (assign,nonatomic) int                    adv_click_type;       //!< 活动类型（0:WAP;1:原生）
 
 @property (assign,nonatomic) double                    adv_lat;       //!< 活动类型
 @property (assign,nonatomic) double                    adv_lng;       //!< 活动类型
@@ -1898,6 +1898,13 @@
 @property (nonatomic, assign) BOOL                  cuc_overdue;            ///是否已过期
 
 @property (nonatomic, assign) cuc_state                   cuc_state;              ///使用状态(过期:OVERDUE，未使用:NOUSE，已使用:ISUSED)
+
+@end
+
+#pragma mark----****----历史搜索对象
+@interface ZLShopSearhHistory : NSObject
+@property (nonatomic, assign) int            mType;             ///
+@property (nonatomic, strong) NSString *            mSerachName;             ///优惠券发放主题（店铺名称、公司名称）
 
 @end
 

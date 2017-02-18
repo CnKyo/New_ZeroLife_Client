@@ -53,6 +53,7 @@ target 'ZeroLifeClient' do
   pod 'JSPatchPlatform'
   pod 'JSPatch/Extensions'
   pod 'JSPatch/JPCFunction'
+  pod 'PYSearch'
 
 
 end

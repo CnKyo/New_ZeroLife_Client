@@ -35,9 +35,11 @@
 #import "ZLSuperMarketCommitOrderViewController.h"
 #import "UIImage+ImageEffects.h"
 
+#import "ZLShopSearchViewController.h"
+#import <PYSearch.h>
 static const CGFloat mTopH = 156;
 
-@interface ZLSuperMarketShopViewController ()<UITableViewDelegate,UITableViewDataSource,ZLSuperMarketShopDelegate,ZLSuperMarketGoodsCellDelegate,UIScrollViewDelegate,ZLSuperMarketShopCarDelegate,ZLSuperMarketGoodsSpecDelegate,UICollectionViewDelegate,ZLHouseKeppingServiceCellDelegate,ZLSpeSelectedViewCellDelegate,ZLSKUCellDelegate,LDXScoreDelegate,mCheckMoreActivityViewDelegate>
+@interface ZLSuperMarketShopViewController ()<UITableViewDelegate,UITableViewDataSource,ZLSuperMarketShopDelegate,ZLSuperMarketGoodsCellDelegate,UIScrollViewDelegate,ZLSuperMarketShopCarDelegate,ZLSuperMarketGoodsSpecDelegate,UICollectionViewDelegate,ZLHouseKeppingServiceCellDelegate,ZLSpeSelectedViewCellDelegate,ZLSKUCellDelegate,LDXScoreDelegate,mCheckMoreActivityViewDelegate,PYSearchViewControllerDelegate>
 
 /**
  规格瀑布流
@@ -79,8 +81,6 @@ static const CGFloat mTopH = 156;
 //    UIScrollView *mMainView;
     ///地步view
     ZLSuperMarketShopCarView *mBottomView;
-    ///搜索view
-    ZLSuperMArketSearchGoodsView *mSearchView;
     ///规格view
     ZLSuperMArketSearchGoodsView *mSpeView;
 
@@ -130,7 +130,7 @@ static const CGFloat mTopH = 156;
     mAddShopCarEx = [ZLAddShopCarExObj new];
     mLeftDataSource = [ZLShopLeftTableArr new];
     
-    [self addRightBtn:NO andTitel:nil andImage:[UIImage imageNamed:@"ZLSearch_white"]];
+    [self addRightBtn:YES andTitel:nil andImage:[UIImage imageNamed:@"ZLSearch_white"]];
 
     mShopObj = [ZLShopObj new];
     [self initView];
@@ -139,7 +139,71 @@ static const CGFloat mTopH = 156;
     [self initMoreCampView];
     [self loadData];
 }
+- (void)mRightAction:(UIButton *)sender{
+    
+    
+    ZLShopSearchViewController *vc = [ZLShopSearchViewController new];
+    [self pushViewController:vc];
+//    // 1. 创建热门搜索
+//    NSArray *hotSeaches = @[@"Java", @"Python", @"Objective-C", @"Swift", @"C", @"C++", @"PHP", @"C#", @"Perl", @"Go", @"JavaScript", @"R", @"Ruby", @"MATLAB"];
+//    // 2. 创建控制器
+//    PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:hotSeaches searchBarPlaceholder:NSLocalizedString(@"请输入您要搜索的商品或分类", @"请输入您要搜索的商品或分类") didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
+//        // 开始搜索执行以下代码
+//        // 如：跳转到指定控制器
+//
+//        
+//    }];
+//    // 3. 设置风格
+////    if (indexPath.section == 0) { // 选择热门搜索
+////        searchViewController.hotSearchStyle = (NSInteger)indexPath.row; // 热门搜索风格根据选择
+////        searchViewController.searchHistoryStyle = PYHotSearchStyleDefault; // 搜索历史风格为default
+////    } else { // 选择搜索历史
+//        searchViewController.hotSearchStyle = PYHotSearchStyleDefault; // 热门搜索风格为默认
+//        searchViewController.searchHistoryStyle = PYSearchHistoryStyleBorderTag; // 搜索历史风格根据选择
+////    }
+//    // 4. 设置代理
+//    searchViewController.delegate = self;
+//    // 5. 跳转到搜索控制器
+////    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:searchViewController];
+////    [self presentViewController:nav animated:YES completion:nil];
+//    [self pushViewController:searchViewController];
 
+    
+}
+//#pragma mark - PYSearchViewControllerDelegate
+//- (void)searchViewController:(PYSearchViewController *)searchViewController searchTextDidChange:(UISearchBar *)seachBar searchText:(NSString *)searchText
+//{
+//    if (searchText.length) { // 与搜索条件再搜索
+//        // 根据条件发送查询（这里模拟搜索）
+//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{ // 搜索完毕
+//            // 显示建议搜索结果
+//            NSMutableArray *searchSuggestionsM = [NSMutableArray array];
+//            for (int i = 0; i < arc4random_uniform(5) + 10; i++) {
+//                NSString *searchSuggestion = [NSString stringWithFormat:@"搜索建议 %d", i];
+//                [searchSuggestionsM addObject:searchSuggestion];
+//            }
+//            // 返回
+//            searchViewController.searchSuggestions = searchSuggestionsM;
+//        });
+//    }
+//}
+//#pragma mark ----****----点击热门搜索时调用
+///** 点击热门搜索时调用，如果实现该代理方法则点击热门搜索时searchViewController:didSearchWithsearchBar:searchText:失效*/
+//- (void)searchViewController:(PYSearchViewController *)searchViewController didSelectHotSearchAtIndex:(NSInteger)index searchText:(NSString *)searchText{
+//    MLLog(@"点击热门搜索时调用");
+//}
+//#pragma mark ----****----点击搜索历史时调用
+///** 点击搜索历史时调用，如果实现该代理方法则搜索历史时searchViewController:didSearchWithsearchBar:searchText:失效 */
+//- (void)searchViewController:(PYSearchViewController *)searchViewController didSelectSearchHistoryAtIndex:(NSInteger)index searchText:(NSString *)searchText{
+//    MLLog(@"点击搜索历史时调用");
+//
+//}
+//#pragma mark ----****----点击搜索建议史时调用
+///** 点击搜索建议时调用，如果实现该代理方法则点击搜索建议时searchViewController:didSearchWithsearchBar:searchText:失效 */
+//- (void)searchViewController:(PYSearchViewController *)searchViewController didSelectSearchSuggestionAtIndex:(NSInteger)index searchText:(NSString *)searchText{
+//    MLLog(@"点击搜索建议时调用");
+//
+//}
 - (void)loadView{
 
     [super loadView];
@@ -986,39 +1050,6 @@ static const CGFloat mTopH = 156;
 
 }
 
-#pragma mark----****----加载搜索view
-- (void)initSearchView{
-    [self hiddenSpeView];
-    mSearchView = [ZLSuperMArketSearchGoodsView shareView];
-    mSearchView.frame = CGRectMake(0, 0, 200, 30);
-    mSearchView.layer.masksToBounds = YES;
-    mSearchView.layer.cornerRadius = 15;
-    mSearchView.alpha = 0;
-    self.navigationItem.titleView = mSearchView;
-    [UIView animateWithDuration:0.25 animations:^{
-        mSearchView.alpha = 1;
-    }];
-
-    
-}
-#pragma mark----****----隐藏搜索view
-- (void)dismissSearchView{
-    [UIView animateWithDuration:0.25 animations:^{
-        mSearchView.alpha = 0;
-        [mSearchView removeFromSuperview];
-        self.navigationItem.titleView = nil;
-    }];
-}
-- (void)mRightAction:(UIButton *)sender{
-
-    sender.selected = !sender.selected;
-    if (sender.selected) {
-        [self initSearchView];
-    }else{
-        [self dismissSearchView];
-    }
-    
-}
 #pragma mark----****----加载规格view
 - (void)initSpeView{
     
@@ -1117,7 +1148,6 @@ static const CGFloat mTopH = 156;
     [self.mSpeAddArray addObjectsFromArray:mSkuTempArr];
     
     [_mSpeTableView reloadData];
-    [self dismissSearchView];
     [UIView animateWithDuration:0.25 animations:^{
         CGRect mSpeRect = mSpeView.frame;
         mSpeRect.origin.y = 0;
@@ -1390,7 +1420,6 @@ static const CGFloat mTopH = 156;
 }
 - (void)mBackAction{
 
-    [self dismissSearchView];
     [self hiddenSpeView];
     [self popViewController];
 }
