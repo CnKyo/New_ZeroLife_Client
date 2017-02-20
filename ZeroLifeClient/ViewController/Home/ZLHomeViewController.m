@@ -42,6 +42,7 @@
 #import "ZLSuperMarketShopViewController.h"
 #import "OnlyLocationManager.h"
 
+#import "ZLFixLineViewController.h"
 #define NAVBAR_CHANGE_POINT 30
 @interface ZLHomeViewController ()<UITableViewDelegate,UITableViewDataSource,ZLHomeScrollerTableCellDelegate,ZLHomeLocationViewDelegate,ZLCoupViewDelegate,AMapLocationManagerDelegate,MMApBlockCoordinate,ZLHomeOtherCellDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *mTableView;
@@ -251,10 +252,13 @@
 #pragma mark ----****----消息按钮方法
 - (void)mRightAction:(UIButton *)sender{
 
-    ZLHomeMessageViewController *ZLHomeMsgVC = [ZLHomeMessageViewController new];
-    ZLHomeMsgVC.hidesBottomBarWhenPushed = YES;
-    [self pushViewController:ZLHomeMsgVC];
-
+//    ZLHomeMessageViewController *ZLHomeMsgVC = [ZLHomeMessageViewController new];
+//    ZLHomeMsgVC.hidesBottomBarWhenPushed = YES;
+//    [self pushViewController:ZLHomeMsgVC];
+    
+    ZLFixLineViewController *vc = [ZLFixLineViewController new];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self pushViewController:vc];
 }
 - (void)TableViewHaveHeader{
     

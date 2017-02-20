@@ -213,6 +213,8 @@ static const CGFloat mTopH = 156;
 #pragma mark----****----加载headerview
 - (void)initHeaderView{
     mHeaderView = [ZLSuperMarketHeaderView shareView];
+    mHeaderView.backgroundColor = M_CO;
+    mHeaderView.mBgkImg.backgroundColor = M_CO;
     mHeaderView.frame = CGRectMake(0, 64, DEVICE_Width, 150);
     mHeaderView.mRateBtn.hidden = NO;
     mHeaderView.delegaate = self;

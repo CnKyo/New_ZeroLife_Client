@@ -203,7 +203,7 @@
         int x = 0;
     
         NSArray *mImgS = [Util wk_StringToArr:mRate.com_imgs];
-//       NSArray *mImgS = @[@"http://ww4.sinaimg.cn/thumbnail/7f8c1087gw1e9g06pc68ug20ag05y4qq.gif", @"http://ww3.sinaimg.cn/thumbnail/8e88b0c1gw1e9lpr0nly5j20pf0gygo6.jpg", @"http://ww4.sinaimg.cn/thumbnail/8e88b0c1gw1e9lpr1d0vyj20pf0gytcj.jpg", @"http://ww3.sinaimg.cn/thumbnail/8e88b0c1gw1e9lpr1xydcj20gy0o9q6s.jpg", @"http://ww2.sinaimg.cn/thumbnail/8e88b0c1gw1e9lpr2n1jjj20gy0o9tcc.jpg", @"http://ww2.sinaimg.cn/thumbnail/8e88b0c1gw1e9lpr39ht9j20gy0o6q74.jpg", @"http://ww3.sinaimg.cn/thumbnail/8e88b0c1gw1e9lpr3xvtlj20gy0obadv.jpg", @"http://ww4.sinaimg.cn/thumbnail/8e88b0c1gw1e9lpr4nndfj20gy0o9q6i.jpg", @"http://ww3.sinaimg.cn/thumbnail/8e88b0c1gw1e9lpr57tn9j20gy0obn0f.jpg"];
+
         [self.mImgArr addObjectsFromArray:mImgS];
 
         for ( int i = 0; i<mImgS.count; i++) {
@@ -218,11 +218,8 @@
             mImg.userInteractionEnabled = YES;
             [mImg addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapImage:)]];
             
-            // 内容模式
             mImg.clipsToBounds = YES;
             mImg.contentMode = UIViewContentModeScaleAspectFill;
-
-//            [mImg sd_setImageWithURL:[NSURL URLWithString:[Util currentSourceImgUrl:mImgS[i]]] placeholderImage:ZLDefaultAvatorImg];
 
             [mImg setImageURLStr:[Util currentSourceImgUrl:mUrl] placeholder:ZLDefaultAvatorImg];
 
@@ -231,7 +228,6 @@
         }
     }
 
-    
 }
 - (void)tapImage:(UITapGestureRecognizer *)tap{
     NSInteger count = self.mImgArr.count;
