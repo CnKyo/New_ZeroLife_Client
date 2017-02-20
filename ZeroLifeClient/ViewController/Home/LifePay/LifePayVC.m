@@ -48,7 +48,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    return 6;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -101,21 +101,19 @@
             textLable.text = @"水电煤";
             break;
         case 2:
-  
             imgView.image = [UIImage imageNamed:[NSString iconImgStrOrderType:kOrderClassType_fee_mobile]];
             textLable.text = @"手机充值";
             break;
         case 3:
-            imgView.image = [UIImage imageNamed:[NSString iconImgStrOrderType:kOrderClassType_fee_peroperty]];
+            imgView.image = [UIImage imageNamed:[NSString iconImgStrOrderType:kOrderClassType_fee_mobileFlow]];
             textLable.text = @"流量充值";
             break;
         case 4:
-            imgView.image = [UIImage imageNamed:[NSString iconImgStrOrderType:kOrderClassType_fee_sdq]];
+            imgView.image = [UIImage imageNamed:[NSString iconImgStrOrderType:kOrderClassType_fee_sinopec]];
             textLable.text = @"加油卡充值";
             break;
         case 5:
-            
-            imgView.image = [UIImage imageNamed:[NSString iconImgStrOrderType:kOrderClassType_fee_mobile]];
+            imgView.image = [UIImage imageNamed:[NSString iconImgStrOrderType:kOrderClassType_fee_broadband]];
             textLable.text = @"宽带／固话充值";
             break;
         default:
@@ -133,22 +131,30 @@
         WuGuanFeePayVC *vc = [[WuGuanFeePayVC alloc] init];
         [self pushViewController:vc];
         
-    } else if (indexPath.row == 1){
-        
+    } else if (indexPath.row == 1) {
         ZLHydroelectricViewController *vc = [[ZLHydroelectricViewController alloc] init];
         [self pushViewController:vc];
-    }else if (indexPath.row == 2) {
+        
+    } else if (indexPath.row == 2) {
         MobileRechargeVC *vc = [[MobileRechargeVC alloc] init];
+        vc.orderClassType = kOrderClassType_fee_mobile;
         [self pushViewController:vc];
-    }else if (indexPath.row == 3){
-        ZLFlowTopupViewController *vc = [[ZLFlowTopupViewController alloc] init];
-
-        [self pushViewController:vc];
-    }else if (indexPath.row == 4){
         
-        ZLHydroelectricViewController *vc = [[ZLHydroelectricViewController alloc] init];
+    } else if (indexPath.row == 3) {
+        ZLFlowTopupViewController *vc = [[ZLFlowTopupViewController alloc] init];
         [self pushViewController:vc];
-    }else{
+        
+    } else if (indexPath.row == 4) {
+//        ZLHydroelectricViewController *vc = [[ZLHydroelectricViewController alloc] init];
+//        [self pushViewController:vc];
+        MobileRechargeVC *vc = [[MobileRechargeVC alloc] init];
+        vc.orderClassType = kOrderClassType_fee_mobileFlow;
+        [self pushViewController:vc];
+        
+    } else if (indexPath.row == 5) {
+
+
+    } else{
         
         ZLHydroelectricViewController *vc = [[ZLHydroelectricViewController alloc] init];
         [self pushViewController:vc];
