@@ -642,6 +642,7 @@
 @property(nonatomic,strong) NSString *              odrg_pro_name;         //!< 商品名称
 @property(nonatomic,strong) NSString *              odrg_spec;         //!< 商品描述（如：{$}元余额充值-其中{$}需替换成用户充值金额）
 @property(nonatomic,strong) NSString *              sign;         //!< 签名字段（下单接口需要将原数据提交）
+@property(nonatomic,strong) NSMutableArray *        goods;         //!< 产品集合
 -(NSString *)getCustomSpecWithMoney:(float)money; //!< 获取自定义描述
 @end
 
@@ -659,6 +660,15 @@
 @end
 
 
+
+
+/// 流量套餐信息对象
+@interface MobileFluxObject : NSObject
+@property(nonatomic,assign) int                     pay_id;         //!< id
+@property(nonatomic,strong) NSString *              title;         //!< 名称
+@property(nonatomic,assign) float                   price;         //!< 金额
+@property(nonatomic,assign) float                   pay_price;         //!< 支付金额
+@end
 
 
 

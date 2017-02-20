@@ -251,6 +251,15 @@
         case kOrderClassType_fee_parking:
             str = @"停车缴费";
             break;
+        case kOrderClassType_fee_broadband:
+            str = @"固话/宽带充值";
+            break;
+        case kOrderClassType_fee_mobileFlow:
+            str = @"手机流量充值";
+            break;
+        case kOrderClassType_fee_sinopec:
+            str = @"加油卡充值";
+            break;
         default:
             str = @"其它";
             break;
@@ -301,6 +310,15 @@
         case kOrderClassType_fee_parking:
             str = @"停车缴费";
             break;
+        case kOrderClassType_fee_broadband:
+            str = @"固话/宽带充值";
+            break;
+        case kOrderClassType_fee_mobileFlow:
+            str = @"手机流量充值";
+            break;
+        case kOrderClassType_fee_sinopec:
+            str = @"加油卡充值";
+            break;
         default:
             str = @"其它";
             break;
@@ -349,6 +367,15 @@
             str = @"icon_order_fee_sdq.png";
             break;
         case kOrderClassType_fee_parking:
+            str = @"icon_order_fee_parking.png";
+            break;
+        case kOrderClassType_fee_broadband:
+            str = @"icon_order_fee_broadband.png";
+            break;
+        case kOrderClassType_fee_mobileFlow:
+            str = @"icon_order_fee_mobileflow.png";
+            break;
+        case kOrderClassType_fee_sinopec:
             str = @"icon_order_fee_parking.png";
             break;
         default:
@@ -745,6 +772,10 @@
 @end
 
 
+
+
+@implementation MobileFluxObject
+@end
 
 
 
