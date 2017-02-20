@@ -367,6 +367,12 @@
 		DF3660131E1F8E36006EA3A5 /* fix_man@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF3660111E1F8E36006EA3A5 /* fix_man@2x.png */; };
 		DF3660141E1F8E36006EA3A5 /* fix_man@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF3660121E1F8E36006EA3A5 /* fix_man@3x.png */; };
 		DF3B4F0D1DF560F200583D24 /* WebTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF3B4F0C1DF560F200583D24 /* WebTestVC.m */; };
+		DF4D62D31E5A9CE800A50452 /* icon_order_fee_mobileflow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF4D62CD1E5A9CE800A50452 /* icon_order_fee_mobileflow@2x.png */; };
+		DF4D62D41E5A9CE800A50452 /* icon_order_fee_mobileflow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF4D62CE1E5A9CE800A50452 /* icon_order_fee_mobileflow@3x.png */; };
+		DF4D62D51E5A9CE800A50452 /* icon_order_fee_broadband@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF4D62CF1E5A9CE800A50452 /* icon_order_fee_broadband@2x.png */; };
+		DF4D62D61E5A9CE800A50452 /* icon_order_fee_broadband@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF4D62D01E5A9CE800A50452 /* icon_order_fee_broadband@3x.png */; };
+		DF4D62D71E5A9CE800A50452 /* icon_order_fee_sinopec@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF4D62D11E5A9CE800A50452 /* icon_order_fee_sinopec@2x.png */; };
+		DF4D62D81E5A9CE800A50452 /* icon_order_fee_sinopec@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF4D62D21E5A9CE800A50452 /* icon_order_fee_sinopec@3x.png */; };
 		DF539F041DD5932900AF228F /* UserPayTypeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF539F031DD5932900AF228F /* UserPayTypeTableViewCell.m */; };
 		DF539F091DD595F400AF228F /* user_payTyple_alipay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF539F051DD595F400AF228F /* user_payTyple_alipay@2x.png */; };
 		DF539F0A1DD595F400AF228F /* user_payTyple_alipay@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF539F061DD595F400AF228F /* user_payTyple_alipay@3x.png */; };
@@ -1212,6 +1218,12 @@
 		DF3660121E1F8E36006EA3A5 /* fix_man@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fix_man@3x.png"; sourceTree = "<group>"; };
 		DF3B4F0B1DF560F200583D24 /* WebTestVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebTestVC.h; sourceTree = "<group>"; };
 		DF3B4F0C1DF560F200583D24 /* WebTestVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebTestVC.m; sourceTree = "<group>"; };
+		DF4D62CD1E5A9CE800A50452 /* icon_order_fee_mobileflow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_order_fee_mobileflow@2x.png"; sourceTree = "<group>"; };
+		DF4D62CE1E5A9CE800A50452 /* icon_order_fee_mobileflow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_order_fee_mobileflow@3x.png"; sourceTree = "<group>"; };
+		DF4D62CF1E5A9CE800A50452 /* icon_order_fee_broadband@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_order_fee_broadband@2x.png"; sourceTree = "<group>"; };
+		DF4D62D01E5A9CE800A50452 /* icon_order_fee_broadband@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_order_fee_broadband@3x.png"; sourceTree = "<group>"; };
+		DF4D62D11E5A9CE800A50452 /* icon_order_fee_sinopec@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_order_fee_sinopec@2x.png"; sourceTree = "<group>"; };
+		DF4D62D21E5A9CE800A50452 /* icon_order_fee_sinopec@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_order_fee_sinopec@3x.png"; sourceTree = "<group>"; };
 		DF539F021DD5932900AF228F /* UserPayTypeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserPayTypeTableViewCell.h; sourceTree = "<group>"; };
 		DF539F031DD5932900AF228F /* UserPayTypeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserPayTypeTableViewCell.m; sourceTree = "<group>"; };
 		DF539F051DD595F400AF228F /* user_payTyple_alipay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_payTyple_alipay@2x.png"; sourceTree = "<group>"; };
@@ -3395,6 +3407,12 @@
 		DFFAA7521DB744EF001CFBB5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DF4D62CD1E5A9CE800A50452 /* icon_order_fee_mobileflow@2x.png */,
+				DF4D62CE1E5A9CE800A50452 /* icon_order_fee_mobileflow@3x.png */,
+				DF4D62CF1E5A9CE800A50452 /* icon_order_fee_broadband@2x.png */,
+				DF4D62D01E5A9CE800A50452 /* icon_order_fee_broadband@3x.png */,
+				DF4D62D11E5A9CE800A50452 /* icon_order_fee_sinopec@2x.png */,
+				DF4D62D21E5A9CE800A50452 /* icon_order_fee_sinopec@3x.png */,
 				DF2F15941E2480610053CB06 /* notice_paopao_new.mp3 */,
 				DF3660111E1F8E36006EA3A5 /* fix_man@2x.png */,
 				DF3660121E1F8E36006EA3A5 /* fix_man@3x.png */,
@@ -3845,6 +3863,7 @@
 				DF29B6941E11092D00CBAA3B /* icon_order_balance_recharge@3x.png in Resources */,
 				DF7F1BFC1DCDDD4900D2242B /* ComplaintJumingView.xib in Resources */,
 				DF539F1A1DD5C01F00AF228F /* user_coupon_red.png in Resources */,
+				DF4D62D41E5A9CE800A50452 /* icon_order_fee_mobileflow@3x.png in Resources */,
 				0445AD841DD44D0600788779 /* ZLPayTypeHeaderView.xib in Resources */,
 				DF29B6911E11092D00CBAA3B /* icon_order_fix@2x.png in Resources */,
 				DFE178921DD558B400E06F21 /* shimingrenzheng_off@3x.png in Resources */,
@@ -3935,6 +3954,7 @@
 				04721A4F1DE4569100CE8639 /* starGray@3x.png in Resources */,
 				040917711DCC5E1000DB2568 /* ZLSuperMarketSearchView.xib in Resources */,
 				DFE1788C1DD558B400E06F21 /* cell_address_del@3x.png in Resources */,
+				DF4D62D81E5A9CE800A50452 /* icon_order_fee_sinopec@3x.png in Resources */,
 				DF630D661DD462F60076A92C /* UserIDAuthTableViewCell.xib in Resources */,
 				DF2F15951E2480610053CB06 /* notice_paopao_new.mp3 in Resources */,
 				04A8DA141DDAB211000CE048 /* ZLPPTOrderDetailCell2.xib in Resources */,
@@ -3985,6 +4005,7 @@
 				DF630D191DD442960076A92C /* call_mobile@3x.png in Resources */,
 				DFE178A51DD55A9A00E06F21 /* cell_img_mobile@2x.png in Resources */,
 				DFE178B61DD55E3300E06F21 /* cell_address_add@3x.png in Resources */,
+				DF4D62D61E5A9CE800A50452 /* icon_order_fee_broadband@3x.png in Resources */,
 				DF630D1A1DD442960076A92C /* order_shop_fix.png in Resources */,
 				040917841DCC904B00DB2568 /* ZLSuperMarketShopLeftCellType.xib in Resources */,
 				0464E7081DF26B4E00A3F954 /* StandarsDel@2x.png in Resources */,
@@ -4041,12 +4062,14 @@
 				DFA1357C1DD7028600805BA2 /* add_bankCard_auto@3x.png in Resources */,
 				DF630D371DD44CE60076A92C /* sigin_qian@3x.png in Resources */,
 				DF630D791DD475660076A92C /* chongzi.png in Resources */,
+				DF4D62D51E5A9CE800A50452 /* icon_order_fee_broadband@2x.png in Resources */,
 				DF630D7A1DD475660076A92C /* chongzi@2x.png in Resources */,
 				DF630D511DD45D790076A92C /* purse_tixian@2x.png in Resources */,
 				DFE178631DD555C100E06F21 /* cell_souchang@2x.png in Resources */,
 				DF8DBCBE1DD01C9C002E574B /* ComplaintGongsiView.xib in Resources */,
 				DFBAA9791DF149AD004315F9 /* singIn_p@2x.png in Resources */,
 				DFE4F08D1E2DCD7C00705C2F /* SecurityPasswordComplainTableViewCell.xib in Resources */,
+				DF4D62D71E5A9CE800A50452 /* icon_order_fee_sinopec@2x.png in Resources */,
 				DFBAA97C1DF149AD004315F9 /* singIn_n@3x.png in Resources */,
 				DF630D4A1DD45D790076A92C /* purse_anquanma.png in Resources */,
 				040D92FA1DCAE34E00DBE42E /* ZLHomeMSGCell.xib in Resources */,
@@ -4103,6 +4126,7 @@
 				DFFAA73D1DB744C5001CFBB5 /* Main.storyboard in Resources */,
 				DF7F1BEE1DCDD5F200D2242B /* gongsi_on@2x.png in Resources */,
 				DFA135781DD6FE6F00805BA2 /* BankCardAddVC.xib in Resources */,
+				DF4D62D31E5A9CE800A50452 /* icon_order_fee_mobileflow@2x.png in Resources */,
 				DFA092551E091B0900A109C9 /* gpssearchbutton@3x.png in Resources */,
 				DFA135371DD6AA6C00805BA2 /* coupon_top_icon@3x.png in Resources */,
 				DF29B6A11E11092D00CBAA3B /* icon_order_balance_present@2x.png in Resources */,

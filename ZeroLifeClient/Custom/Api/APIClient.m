@@ -1612,6 +1612,31 @@
         callback(nil, [APIObject infoWithReLoginErrorMessage:@"请重新登陆"]);
 }
 
+/**
+ *   手机充值预订单接口(新)
+ *
+ *  @param tag              链接对象
+ *  @param callback         返回信息
+ */
+-(void)preOrderMobileV2WithTag:(NSObject *)tag call:(void (^)(PreApplyObject*item, APIObject* info))callback
+{
+    ZLUserInfo *user = [ZLUserInfo ZLCurrentUser];
+    if (user.user_id > 0) {
+        NSMutableDictionary *paramDic = [NSMutableDictionary dictionary];
+        [paramDic setInt:user.user_id forKey:@"user_id"];
+        [self loadAPIWithTag:tag path:@"/preorder/pre_mobile_v" parameters:paramDic call:^(APIObject *info) {
+            PreApplyObject *it = [PreApplyObject mj_objectWithKeyValues:info.data];
+            
+            NSMutableArray *aaa = [MobileFluxObject mj_objectArrayWithKeyValuesArray:it.goods];
+            it.goods = aaa;
+            
+            callback(it, info);
+        }];
+    } else
+        callback(nil, [APIObject infoWithReLoginErrorMessage:@"请重新登陆"]);
+}
+
+
 
 /**
  *   提现预订单接口

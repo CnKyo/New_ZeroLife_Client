@@ -169,7 +169,8 @@ typedef void (^TableShareSdkBlock)(int totalpage, NSArray *tableArr, APIShareSdk
 -(void)orderBidListWithTag:(NSObject *)tag odr_id:(int)odr_id odr_code:(NSString *)odr_code call:(TableArrBlock)callback;
 
 -(void)preOrderRechargeWithTag:(NSObject *)tag call:(void (^)(PreApplyObject*item, APIObject* info))callback;
--(void)preOrderMobileWithTag:(NSObject *)tag call:(void (^)(PreApplyObject*item, APIObject* info))callback;
+-(void)preOrderMobileWithTag:(NSObject *)tag call:(void (^)(PreApplyObject*item, APIObject* info))callback __deprecated_msg("Method deprecated. Use `-(void)preOrderMobileV2WithTag:(NSObject *)tag call:(void (^)(PreApplyObject*item, APIObject* info))callback`");
+-(void)preOrderMobileV2WithTag:(NSObject *)tag call:(void (^)(PreApplyObject*item, APIObject* info))callback;
 -(void)preOrderPresentWithTag:(NSObject *)tag call:(void (^)(PrePresentApplyObject*item, APIObject* info))callback;
 -(void)preOrderPaopaoApplyWithTag:(NSObject *)tag call:(void (^)(PrePaopaoApplyObject*item, APIObject* info))callback;
 -(void)preOrderTransferWithTag:(NSObject *)tag call:(void (^)(PreApplyObject*item, APIObject* info))callback;

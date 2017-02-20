@@ -228,16 +228,16 @@ static int const RESP_STATUS_RELOGIN                        = 405;             /
 //static NSString* const  kAFAppDotNetApiServiceURLString    = @"/crkj_zlife/api/app/service";
 
 
-//static NSString* const  kAFAppDotNetApiBaseURLString    = @"http://192.168.1.114";
-//static NSString* const  kAFAppDotNetApiExtraURLString    = @"/api/app/client";
-//static NSString* const  kAFAppDotNetApiServiceURLString    = @"/api/app/service";
-//static NSString* const  kAFAppDotNetImgBaseURLString    = @"http://192.168.1.114/resource";
+static NSString* const  kAFAppDotNetApiBaseURLString    = @"http://192.168.1.114";
+static NSString* const  kAFAppDotNetApiExtraURLString    = @"/api/app/client";
+static NSString* const  kAFAppDotNetApiServiceURLString    = @"/api/app/service";
+static NSString* const  kAFAppDotNetImgBaseURLString    = @"http://192.168.1.114/resource";
 
 ////api访问地址
-static NSString* const  kAFAppDotNetApiBaseURLString        = @"http://app.china-cr.com";
-static NSString* const  kAFAppDotNetApiExtraURLString       = @"/api/app/client";
-static NSString* const  kAFAppDotNetApiServiceURLString     = @"/api/app/service";
-static NSString* const  kAFAppDotNetImgBaseURLString        = @"http://resource.china-cr.com/resource";
+//static NSString* const  kAFAppDotNetApiBaseURLString        = @"http://app.china-cr.com";
+//static NSString* const  kAFAppDotNetApiExtraURLString       = @"/api/app/client";
+//static NSString* const  kAFAppDotNetApiServiceURLString     = @"/api/app/service";
+//static NSString* const  kAFAppDotNetImgBaseURLString        = @"http://resource.china-cr.com/resource";
 
 static NSString* const  kAFAppJHFlowURLString               = @"http://v.juhe.cn/flow/";
 
@@ -365,6 +365,9 @@ typedef enum {
     kOrderClassType_fee_mobile          = 32,//手机缴费
     kOrderClassType_fee_sdq             = 33,//水电气缴费
     kOrderClassType_fee_parking         = 34,//停车缴费
+    kOrderClassType_fee_broadband       = 35,//固话/宽带充值
+    kOrderClassType_fee_mobileFlow      = 36,//手机流量充值
+    kOrderClassType_fee_sinopec         = 37,//加油卡充值
 } kOrderClassType;
 
 

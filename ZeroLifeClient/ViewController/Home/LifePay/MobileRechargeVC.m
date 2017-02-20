@@ -14,6 +14,80 @@
 #import "ZLGoPayViewController.h"
 #import "FeePayHistoryVC.h"
 
+
+
+@implementation TitleDesBtnView
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        
+        UIView *view = self;
+        //view.backgroundColor = [UIColor redColor];
+        int padding = 5;
+        self.bgImgView = [view newUIImageView];
+        
+        self.titleLable = [view newUILableWithText:@"" textColor:[UIColor colorWithWhite:0.2 alpha:1] font:[UIFont systemFontOfSize:14] textAlignment:NSTextAlignmentCenter];
+        self.titleLable.adjustsFontSizeToFitWidth = YES;
+        self.titleLable.highlightedTextColor = COLOR_NavBar;
+        
+        self.desLable = [view newUILableWithText:@"" textColor:[UIColor grayColor] font:[UIFont systemFontOfSize:13] textAlignment:NSTextAlignmentCenter];
+        self.desLable.adjustsFontSizeToFitWidth = YES;
+        self.desLable.highlightedTextColor = COLOR_NavBar;
+        
+        [self.bgImgView makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(view);
+        }];
+        [self.titleLable makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(view.left).offset(padding/2);
+            make.right.equalTo(view.right).offset(-padding/2);
+            make.top.equalTo(view.top).offset(padding);
+        }];
+        [self.desLable makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.height.equalTo(_titleLable);
+            make.top.equalTo(_titleLable.bottom);
+            make.bottom.equalTo(view.bottom).offset(-padding);
+        }];
+    }
+    return self;
+}
+
+- (void)setIsChooseState:(BOOL)isChooseState
+{
+    if (isChooseState) {
+        UIColor *colorChoose = [UIColor colorWithRed:0.525 green:0.753 blue:0.129 alpha:1.000];
+        UIImage *bgChoose = IMG(@"MobileRechargeMoneyView_kuangChoose.png");
+        self.bgImgView.image = bgChoose;
+        self.titleLable.textColor = colorChoose;
+        self.desLable.textColor = colorChoose;
+    } else {
+        UIColor *colorNormal = [UIColor colorWithWhite:0.5 alpha:1];
+        UIImage *bgNormal = IMG(@"MobileRechargeMoneyView_kuangNormal.png");
+        self.bgImgView.image = bgNormal;
+        self.titleLable.textColor = colorNormal;
+        self.desLable.textColor = colorNormal;
+    }
+}
+
++(TitleDesBtnView *)initWithTag:(NSInteger)tag item:(MobileFluxObject *)item
+{
+    TitleDesBtnView *btnView = [[TitleDesBtnView alloc] init];
+    btnView.tag = tag;
+    btnView.item = item;
+    btnView.titleLable.text = StringWithDouble(item.price);
+    btnView.desLable.text = [NSString stringWithFormat:@"售价￥%.2f", item.pay_price];
+    return btnView;
+}
+
+@end
+
+
+
+
+
+
+
 @implementation MobileRechargeMoneyView
 
 - (id)initWithTitleArr:(NSArray *)arr
@@ -31,7 +105,7 @@
 
 -(void)reloadUIWithData
 {
-    int row = 4;
+    int row = 3;
     int offsetX = 10;
     int offsetY = 20;
     
@@ -39,16 +113,14 @@
     
     UIView *lastView = nil;
     for (int i=0; i<_arr.count; i++) {
-        NSString *item = [_arr objectAtIndex:i];
+        MobileFluxObject *item = [_arr objectAtIndex:i];
         
-        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        //btn.backgroundColor = [UIColor redColor];
-        [self addSubview:btn];
+        int tag = 100 + i;
+        
+        TitleDesBtnView *btn = [TitleDesBtnView initWithTag:tag item:item];
         [btn addTarget:self action:@selector(chooseMethod:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:btn];
         
-        btn.tag = 100 + i;
-        [btn setTitle:item forState:UIControlStateNormal];
-        //[btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
 
         [btn makeConstraints:^(MASConstraintMaker *make) {
             if (i % row == 0) {
@@ -84,45 +156,35 @@
     [self reloadBtnChooseState];
 }
 
+
 -(void)chooseMethod:(UIButton *)sender
 {
     NSInteger index = sender.tag - 100;
     NSLog(@"index:%li", (long)index);
     
-    NSString *title = [sender titleForState:UIControlStateNormal];
-    self.chooseStr = title;
-    
-    [self reloadBtnChooseState];
-    
-    if (self.chooseCallBack) {
-        self.chooseCallBack(title);
+    if (_arr.count > index) {
+        MobileFluxObject *item = [_arr objectAtIndex:index];
+        self.chooseItem = item;
+        [self reloadBtnChooseState];
+        
+        if (self.chooseCallBack) {
+            self.chooseCallBack(item);
+        }
     }
 }
 
+
+
 -(void)reloadBtnChooseState
 {
-    UIColor *colorChoose = [UIColor colorWithRed:0.525 green:0.753 blue:0.129 alpha:1.000];
-    UIColor *colorNormal = [UIColor colorWithWhite:0.5 alpha:1];
-    UIImage *bgNormal = IMG(@"MobileRechargeMoneyView_kuangNormal.png");
-    UIImage *bgChoose = IMG(@"MobileRechargeMoneyView_kuangChoose.png");
-    
     NSArray *arr = [self subviews];
     for (UIView *view in arr) {
-        if ([view isKindOfClass:[UIButton class]]) {
-            UIButton *btn = (UIButton *)view;
-            NSString *title = [btn titleForState:UIControlStateNormal];
-            if ([title isEqualToString:_chooseStr]) {
-//                btn.layer.borderWidth = 1;
-//                btn.layer.borderColor = colorChoose.CGColor;
-//                btn.layer.masksToBounds = YES;
-                [btn setTitleColor:colorChoose forState:UIControlStateNormal];
-                [btn setBackgroundImage:bgChoose forState:UIControlStateNormal];
+        if ([view isKindOfClass:[TitleDesBtnView class]]) {
+            TitleDesBtnView *btn = (TitleDesBtnView *)view;
+            if (btn.item.price == _chooseItem.price) {
+                btn.isChooseState = YES;
             } else {
-//                btn.layer.borderWidth = 1;
-//                btn.layer.borderColor = COLOR(220, 220, 220).CGColor;
-//                btn.layer.masksToBounds = YES;
-                [btn setTitleColor:colorNormal forState:UIControlStateNormal];
-                [btn setBackgroundImage:bgNormal forState:UIControlStateNormal];
+                btn.isChooseState = NO;
             }
             
         }
@@ -145,7 +207,16 @@
 @implementation MobileRechargeVC
 {
 
-    NSString *mMoneyStr;
+    MobileFluxObject *mMoneyItem;
+}
+
+-(id)init
+{
+    self = [super init];
+    if (self) {
+        self.orderClassType = kOrderClassType_fee_mobile;
+    }
+    return self;
 }
 
 
@@ -153,6 +224,10 @@
 -(void)loadView
 {
     [super loadView];
+}
+
+-(void)reloadUIWithData
+{
     UIView *superView = self.view;
     int padding = 10;
     
@@ -205,31 +280,33 @@
                 
             });
             
-//            ABAddressBookRequestAccessWithCompletion(self.addressBookRef, ^(bool granted, CFErrorRef error) {
-//                if success {
-//                    [self presentViewController:pNC animated:YES completion:nil];
-//                    //self.presentViewController(self.contactPicker, animated: true, completion: nil)
-//                }
-//            }));
+            //            ABAddressBookRequestAccessWithCompletion(self.addressBookRef, ^(bool granted, CFErrorRef error) {
+            //                if success {
+            //                    [self presentViewController:pNC animated:YES completion:nil];
+            //                    //self.presentViewController(self.contactPicker, animated: true, completion: nil)
+            //                }
+            //            }));
             
-//            ZLPeoplePickerViewController *vc4 = [[ZLPeoplePickerViewController alloc] init];
-//            //vc4.filedMask = ZLContactFieldAll;
-//            vc4.title = @"联系人";
-//            vc4.allowAddPeople = NO;
-//            vc4.numberOfSelectedPeople = ZLNumSelectionNone;
-//            vc4.delegate = self;
-//            [self.navigationController pushViewController:vc4 animated:YES];
-//            [self presentViewController:vc4 animated:YES completion:^{
-//                
-//            }];
+            //            ZLPeoplePickerViewController *vc4 = [[ZLPeoplePickerViewController alloc] init];
+            //            //vc4.filedMask = ZLContactFieldAll;
+            //            vc4.title = @"联系人";
+            //            vc4.allowAddPeople = NO;
+            //            vc4.numberOfSelectedPeople = ZLNumSelectionNone;
+            //            vc4.delegate = self;
+            //            [self.navigationController pushViewController:vc4 animated:YES];
+            //            [self presentViewController:vc4 animated:YES completion:^{
+            //
+            //            }];
         }];
         view;
     });
     
-    self.moneyChooseView = [[MobileRechargeMoneyView alloc] initWithTitleArr:@[@"30", @"50", @"100", @"300",]];
-    self.moneyChooseView.chooseCallBack = ^(NSString *chooseStr){
     
-        mMoneyStr = chooseStr;
+    NSArray *arr = _item.goods;
+    
+    self.moneyChooseView = [[MobileRechargeMoneyView alloc] initWithTitleArr:arr];
+    self.moneyChooseView.chooseCallBack = ^(MobileFluxObject *item){
+        mMoneyItem = item;
     };
     [superView addSubview:_moneyChooseView];
     
@@ -244,20 +321,20 @@
             return ;
         }
         
-        if (mMoneyStr.length <= 0) {
+        if (mMoneyItem == nil) {
             [self showErrorStatus:@"请选择您要充值的金额！"];
             return ;
         }
         
         [[IQKeyboardManager sharedManager] resignFirstResponder];
         
-        NSString *spec = [_item getCustomSpecWithMoney:[mMoneyStr floatValue]];
+        NSString *spec = [_item getCustomSpecWithMoney:mMoneyItem.price];
         
         NSMutableArray *mPayArr = [NSMutableArray new];
         NSMutableDictionary *mPara = [NSMutableDictionary new];
         [mPara setObject:_item.odrg_pro_name forKey:@"odrg_pro_name"];
         [mPara setObject:spec forKey:@"odrg_spec"];
-        [mPara setObject:mMoneyStr forKey:@"odrg_price"];
+        [mPara setObject:StringWithDouble(mMoneyItem.price) forKey:@"odrg_price"];
         [mPara setObject:_mobileField.text forKey:@"mobile"];
         [mPayArr addObject:mPara];
         
@@ -268,7 +345,7 @@
                 vc.mOrder = mOrder;
                 vc.mOrder.sign = _item.sign;
                 vc.mOrderType = kOrderClassType_fee_mobile;
-
+                
                 vc.paySuccessCallBack = ^(ZLGoPayViewController *payVC){
                     [payVC performSelector:@selector(popViewController_2) withObject:nil afterDelay:0.2];
                 };
@@ -303,26 +380,33 @@
         vc.orderType = kOrderClassType_fee_mobile;
         [self.navigationController pushViewController:vc animated:YES];
     }];
+
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"手机充值";
-    mMoneyStr = nil;
+    self.title = [NSString strDesWithOrderType:_orderClassType];
+    mMoneyItem = nil;
 //    _addressBookRef = ABAddressBookCreateWithOptions(NULL, NULL);
 //    [ZLPeoplePickerViewController initializeAddressBook];
     
     
-    [SVProgressHUD showWithStatus:@"正在验证..."];
-    [[APIClient sharedClient] preOrderMobileWithTag:self call:^(PreApplyObject *item, APIObject *info) {
-        if (info.code==RESP_STATUS_YES && item!=nil) {
-            self.item = item;
-            [SVProgressHUD showSuccessWithStatus:@"验证成功"];
-        } else {
-            [SVProgressHUD showErrorWithStatus:info.msg];
-            [self performSelector:@selector(popViewController) withObject:nil afterDelay:0.5];
-        }
-    }];
+    if (_orderClassType == kOrderClassType_fee_mobile) {
+        [SVProgressHUD showWithStatus:@"正在验证..."];
+        [[APIClient sharedClient] preOrderMobileV2WithTag:self call:^(PreApplyObject *item, APIObject *info) {
+            if (info.code==RESP_STATUS_YES && item!=nil) {
+                self.item = item;
+                [self reloadUIWithData];
+                [SVProgressHUD showSuccessWithStatus:@"验证成功"];
+            } else {
+                [SVProgressHUD showErrorWithStatus:info.msg];
+                [self performSelector:@selector(popViewController) withObject:nil afterDelay:0.5];
+            }
+        }];
+    } else if (_orderClassType == kOrderClassType_fee_mobileFlow) {
+        
+    }
+
     
 }
 
@@ -340,6 +424,7 @@
     // Pass the selected object to the new view controller.
 }
 */
+
 
 #pragma mark - ABPeoplePickerNavigationControllerDelegate
 - (void)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker didSelectPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier {
